@@ -19,11 +19,20 @@
 
 | # | Module | File | Time Needed | Difficulty |
 |---|--------|------|-------------|------------|
-| 1 | **Signals & Why Digital Matters** | [01-signals-and-digital.md](./01-signals-and-digital.md) | ☕ 10 min | 🟢 Easy |
-| 2 | **Number Systems — The Core** | [02-number-systems.md](./02-number-systems.md) | ☕☕ 20 min | 🟢 Easy |
-| 3 | **Number Conversions — The Tricks** | [03-number-conversions.md](./03-number-conversions.md) | ☕☕☕ 30 min | 🟡 Medium |
+| 1 | **Signals & Why Digital Matters** | [01-signals-and-digital.md](./01-signals-and-digital.md) | ☕ 5 min | 🟢 Easy |
+| 2 | **Number Systems — The Core** | [02-number-systems.md](./02-number-systems.md) | ☕☕ 10 min | 🟢 Easy |
+| 3 | **Number Conversions — The Tricks** | [03-number-conversions.md](./03-number-conversions.md) | ☕☕☕ 20 min | 🟡 Medium |
+| 4 | **Complements & Signed Numbers** | [04-complements-and-signed-numbers.md](./04-complements-and-signed-numbers.md) | ☕☕☕ 15 min | 🟡 Medium |
+| 5 | **BCD Codes & BCD Addition** | [05-bcd-codes.md](./05-bcd-codes.md) | ☕☕ 15 min | 🟡 Medium |
 
 > 📌 More modules coming as your lessons progress (Boolean Algebra, K-Maps, Combinational Circuits, Sequential Logic, Counters/FSMs, Verilog)
+
+### 📄 Cheatsheets (print these!)
+
+| Covers | File |
+|--------|------|
+| Day 1 — Signals, Number Systems, Conversions | [cheatsheet-day1.md](./cheatsheet-day1.md) |
+| Day 2 — Complements, Signed Numbers, BCD | [cheatsheet-day2.md](./cheatsheet-day2.md) |
 
 ---
 
