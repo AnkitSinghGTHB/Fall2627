@@ -56,9 +56,10 @@ graph LR
 <summary>📱 Tap here for Mobile/Text version of the diagram</summary>
 
 ```text
-        0,1        0          1
-  → ( q₀ ) ──0──→ ( q₁ ) ──1──→ (( q₂ ))
-       ↺ 0,1
+      0,1        0          1
+      +-+
+      | v
+ -> ( q0 ) --0--> ( q1 ) --1--> (( q2 ))
 ```
 </details>
 
@@ -110,7 +111,7 @@ graph LR
 <summary>📱 Tap here for Mobile/Text version of the diagram</summary>
 
 ```text
-Example:  → ( q₀ ) ──ε──→ ( q₁ ) ──a──→ (( q₂ ))
+Example:  -> ( q0 ) --eps--> ( q1 ) --a--> (( q2 ))
 ```
 </details>
 
