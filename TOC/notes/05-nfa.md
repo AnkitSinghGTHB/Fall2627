@@ -52,6 +52,16 @@ graph LR
     class q2 accept
 ```
 
+<details>
+<summary>📱 Tap here for Mobile/Text version of the diagram</summary>
+
+```text
+        0,1        0          1
+  → ( q₀ ) ──0──→ ( q₁ ) ──1──→ (( q₂ ))
+       ↺ 0,1
+```
+</details>
+
 | State | 0 | 1 |
 |:---:|:---:|:---:|
 | → q₀ | {q₀, q₁} | {q₀} |
@@ -95,6 +105,14 @@ graph LR
     classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
     class q2 accept
 ```
+
+<details>
+<summary>📱 Tap here for Mobile/Text version of the diagram</summary>
+
+```text
+Example:  → ( q₀ ) ──ε──→ ( q₁ ) ──a──→ (( q₂ ))
+```
+</details>
 
 From q₀, you can "teleport" to q₁ for free (without reading anything).
 

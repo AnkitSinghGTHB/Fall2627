@@ -52,6 +52,18 @@ graph LR
     class q1 accept
 ```
 
+<details>
+<summary>📱 Tap here for Mobile/Text version of the diagram</summary>
+
+```text
+         ┌──0──┐          ┌──1──┐
+         ↓     │          ↓     │
+  →  ( q₀ ) ──1──→  (( q₁ ))
+         ↑                 │
+         └────── 0 ────────┘
+```
+</details>
+
 - Start at q₀
 - Reading '1' → go to q₁ (accepting state)
 - Reading '0' → go back to q₀
@@ -126,6 +138,17 @@ graph LR
     classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
     class C accept
 ```
+
+<details>
+<summary>📱 Tap here for Mobile/Text version of the diagram</summary>
+
+```text
+          1       0       0,1
+    ┌───────┐  ┌────┐   ┌────┐
+    ↓       │  ↓    │   ↓    │
+→ ( A ) ──0──→ ( B ) ──1──→ (( C ))
+```
+</details>
 
 **Step 3**: Write the transition table
 
