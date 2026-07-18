@@ -39,10 +39,17 @@ NFA:  δ(q₀, a) = {q₁, q₂}    → goes to MULTIPLE states (or ∅ for none
 
 ### As an NFA (easy to design):
 
-```
-        0,1        0          1
-  → ( q₀ ) ──0──→ ( q₁ ) ──1──→ (( q₂ ))
-       ↺ 0,1
+```mermaid
+graph LR
+    start[ ] --> q0((q₀))
+    style start fill:none,stroke:none,color:none
+
+    q0 -->|0, 1| q0
+    q0 -->|0| q1((q₁))
+    q1 -->|1| q2(((q₂)))
+
+    classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
+    class q2 accept
 ```
 
 | State | 0 | 1 |
@@ -75,11 +82,21 @@ q₂ is accepting → ACCEPT ✅
 
 An ε-NFA allows **ε-transitions** = transitions that happen **without consuming any input symbol**.
 
+**Example**:
+
+```mermaid
+graph LR
+    start[ ] --> q0((q₀))
+    style start fill:none,stroke:none,color:none
+
+    q0 -->|ε| q1((q₁))
+    q1 -->|a| q2(((q₂)))
+
+    classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
+    class q2 accept
 ```
-Example:  → ( q₀ ) ──ε──→ ( q₁ ) ──a──→ (( q₂ ))
 
 From q₀, you can "teleport" to q₁ for free (without reading anything).
-```
 
 ### ε-closure
 

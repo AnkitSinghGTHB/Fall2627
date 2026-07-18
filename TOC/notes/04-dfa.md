@@ -27,29 +27,29 @@ A DFA is the **simplest type of machine** in TOC. It:
 
 ## 🎨 How to Draw a DFA
 
-```
-Conventions:
-  ○ = regular state (circle)
-  ◎ = accepting/final state (double circle)
-  → = start state indicator (arrow pointing to it from nowhere)
-  labeled arrows = transitions
+**Conventions:**
+- **Circle** = Regular state
+- **Double/Thick Circle** = Accepting/Final state
+- **Arrow from nowhere** = Start state
+- **Labeled Arrows** = Transitions
 
-Example: DFA that accepts strings ending in '1'
+**Example**: DFA that accepts strings ending in '1'
 
-        0           1           0
-  → ○──────→ ○  ←──────  ◎ ──────→ ○
-    q₀       q₀          q₁         q₀
-        ↺ 0                    ↺ 1
-```
+```mermaid
+graph LR
+    %% Start state indicator
+    start[ ] --> q0((q₀))
+    style start fill:none,stroke:none,color:none
 
-Let me draw this more clearly:
+    %% States and Transitions
+    q0 -->|0| q0
+    q0 -->|1| q1(((q₁)))
+    q1 -->|0| q0
+    q1 -->|1| q1
 
-```
-         ┌──0──┐          ┌──1──┐
-         ↓     │          ↓     │
-  →  ( q₀ ) ──1──→  (( q₁ ))
-         ↑                 │
-         └────── 0 ────────┘
+    %% Styling to make accepting state stand out more
+    classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
+    class q1 accept
 ```
 
 - Start at q₀
@@ -112,11 +112,19 @@ Result: ACCEPT ✅ (ended on q₁)
 
 **Step 2**: Draw transitions
 
-```
-          1       0       0,1
-    ┌───────┐  ┌────┐   ┌────┐
-    ↓       │  ↓    │   ↓    │
-→ ( A ) ──0──→ ( B ) ──1──→ (( C ))
+```mermaid
+graph LR
+    start[ ] --> A((A))
+    style start fill:none,stroke:none,color:none
+
+    A -->|1| A
+    A -->|0| B((B))
+    B -->|0| B
+    B -->|1| C(((C)))
+    C -->|0, 1| C
+
+    classDef accept fill:#f9f9f9,stroke:#333,stroke-width:4px;
+    class C accept
 ```
 
 **Step 3**: Write the transition table
