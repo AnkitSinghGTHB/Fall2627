@@ -1,0 +1,136 @@
+--- Extracted text from toc.pptx ---
+Theory of Computation and Compiler Design
+Dr. Gaurav Soni
+‘VIT, Bhopal
+School of Computer Science & Engineering 
+
+Theory of computation (TOC) 
+It is a branch of Computer Science that is concerned with how problems can be solved using algorithms and how efficiently they can be solved.
+Real-world computers perform computations that by nature run like mathematical models to solve problems in systematic ways. The essence of the theory of computation is to help develop mathematical and logical models that run efficiently and to the point of halting. Since all machines that implement logic apply TOC, studying TOC gives learners an insight into computer hardware and software limitations.
+
+main()
+{
+int
+}
+
+ 
+A
+B
+State
+int
+C
+a 
+D
+a
+E
+F
+G
+
+a
+_ _
+a
+a
+a
+S= a,b,c,d,e,f
+L(m)= aaaaaa
+
+
+Initial State
+final State
+
+
+  ,, c;
+Char c,d 
+}
+
+ 
+
+a
+H
+I
+a
+b
+
+String 
+Sting Acceptor
+Set Acceptor
+Sequence of Symbol Acceptor
+Key considerations of computational problems
+What can and cannot be computed.
+Speed of such computations.
+The amount of memory in use during such computations.
+
+Importance of Theory of computation
+The theory of computation forms the basis for:
+Writing efficient algorithms that run in computing devices.
+Programming language research and their development.
+Efficient compiler design and construction.
+
+The Theory of Computation is made up of 3 branches
+Automata Theory.
+Computability Theory.
+Complexity Theory.
+
+1) Automata Theory
+Mathematicians and Computer Scientists developed this theoretical computer science branch to simplify the logic of computation by using well defined abstract computational devices (models).
+
+
+Finite Automata (FA): This is a computer model that is inferior in its computation ability. This model is fit for devices with limited memory. It is a simple abstract machine with five elements that define its functioning and processing of problems.
+A Finite Automaton (FA) is a finite collection of states with rules (transition functions) for traversing through the states depending on the input symbol. FA accepts or rejects input strings while reading the strings from left to right.
+The tuples are:
+Q: Finite set of states.    Q= {A,B,C,D,E,F,G,H,I}
+∑: Set of input symbols. ∑={a}
+q: Initial state.   q={A}
+F: Set of final states. F={E,F,H,I}
+δ: Transition function.(mapping between the states and the input symbols)
+Finite Automata is useful in building text editors/text preprocessors. FA are poor models of computers. They can only perform simple computational tasks.
+
+Automata Theory is the study of abstract computational devices. It forms a formal framework for designing and analyzing computing devices such as biocomputers and quantum computers. These models are essential in several areas of computation (applied and theoretical fields).
+An Automaton is a machine that operates singularly on input and follows a defined pattern or configuration to produce the desired output. Through automata, we learn how problems and compute functions are solved by the use of automatons.
+A basic computation performed on/by an automaton is defined by the following features:
+A set of input symbols.
+The configuration states.
+Output.
+Branches of Automata theory
+
+What is automata theory in computer science?
+Automata theory is the study of abstract machines and automata, as well as the computational problems that can be solved using them. It is a theory in theoretical computer science, under Discrete mathematics (a section of Mathematics and also of Computer Science).
+
+What is meant by finite state automata?
+A finite-state machine (FSM) or finite-state automaton (plural: automata), or simply a state machine, is a mathematical model of computation used to design both computer programs and sequential logic circuits. It is conceived as an abstract machine that can be in one of a finite number of states.
+
+We can represent Finite automata in two ways, which are given below
+Or
+FSM
+1) Transition diagram
+The transition diagram is also called a transition graph; it is represented by a diagraph. A transition graph consists of three things:
+Arrow (->): The initial state in the transition diagram is marked with an arrow.
+  Circle:  Each circle represents the state.
+  Double circle: Double circle indicates the final state or accepting state.
+
+2) Transition Table
+It is the tabular representation of the behavior of the transition function that takes two arguments, the first is a state, and the other is input, and it returns a value, which is the new state of the automata. It represents all the moves of finite-state function based on the current state and input. In the transition table, the initial state is represented with an arrow, and the final state is represented by a single circle. Formally a transition table is a 2-dimensional array, which consists of rows and columns where:
+
+
+The rows in the transition table represent the states.
+The columns contain the state in which the machine will move on the input alphabet
+Types of Finite Automata
+
+Pumping leema
+Application of pumping lemma
+Pumping lemma is to be applied to show that certain languages are not regular.
+It should never be used to show a language is regular.
+If L is regular, it satisfies the Pumping lemma.
+If L does not satisfy the Pumping Lemma, it is not regular.
+
+Steps to prove that a language is not regular by using PLare as follows−
+step 1 − We have to assume that L is regular
+step 2 − So, the pumping lemma should hold for L.
+step 3 − It has to have a pumping length (say P).
+step 4 − All strings longer that P can be pumped |w|>=p.
+step 5 − Now find a string 'w' in L such that |w|>=P
+step 6 − Divide w into xyz.
+step 7 − Show that xyiz ∉ L for some i.
+step 8 − Then consider all ways that w can be divided into xyz.
+step 9 − Show that none of these can satisfy all the 3 pumping conditions at same time.
+step 10 − w cannot be pumped = CONTRADICTION.

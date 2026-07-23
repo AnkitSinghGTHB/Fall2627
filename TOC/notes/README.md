@@ -26,6 +26,10 @@
 | 5 | **NFA & ε-NFA** | [05-nfa.md](./05-nfa.md) | ☕☕☕ 20 min | 🟡 Medium |
 | 6 | **Regular Expressions** | [06-regular-expressions.md](./06-regular-expressions.md) | ☕☕☕ 20 min | 🟡 Medium |
 | 7 | **Regular Grammars & Compiler Intro** | [07-regular-grammars-and-compilers.md](./07-regular-grammars-and-compilers.md) | ☕☕ 15 min | 🟡 Medium |
+| 8 | **The Pumping Lemma** | [08-pumping-lemma.md](./08-pumping-lemma.md) | ☕ 5 min | 🟡 Medium |
+| 9 | **Mealy and Moore Machines** | [09-mealy-moore-machines.md](./09-mealy-moore-machines.md) | ☕☕ 10 min | 🟢 Easy |
+| 10 | **CFG & Ambiguity** | [10-cfg-ambiguity.md](./10-cfg-ambiguity.md) | ☕☕ 10 min | 🟡 Medium |
+| 11 | **Compilers & the LEX Tool** | [11-compilers-and-lex.md](./11-compilers-and-lex.md) | ☕☕ 10 min | 🟢 Easy |
 
 ### 📄 Cheatsheets
 

@@ -1,0 +1,652 @@
+--- Extracted text from TOC Notes students-1.docx ---
+VELLORE INSTITUTE OF TECHNOLOGY, BHOPAL
+School of Computer Science & Engineering
+TOC (CS-2004)
+Dr. Gaurav Soni
+UNIT 1:
+What is automata theory in computer science?
+Automata theory is the study of abstract machines and automata, as well as the computational problems that can be solved using them. It is a theory in theoretical computer science, under Discrete mathematics (a section of Mathematics and also of Computer Science).
+
+What is meant by finite state automata?
+A finite-state machine (FSM) or finite-state automaton (plural: automata), or simply a state machine, is a mathematical model of computation used to design both computer programs and sequential logic circuits. It is conceived as an abstract machine that can be in one of a finite number of states.
+
+What do you mean by finite automata?
+A finite automaton (FA) is a simple idealized machine used to recognize patterns within input taken from some character set (or alphabet) C. The job of an FA is to accept or reject an input depending on whether the pattern defined by the FA occurs in the input. A finite automaton consists of: a finite set S of N states.
+
+Finite State Automata
+ A finite-state automaton is a device that can be in one of a finite number of states . In certain conditions, it can switch to another state. This is called a transition . When the automaton starts working (when it is switched on), it can be in one of its initial states. There is also another important subset of states of the automaton: the final states. If the automaton is in a final state when it stops working, it is said to accept its input. The input is a sequence of symbols. The interpretation of the symbols depends on the application; they usually represent events, or can be interpreted as ``the event that a particular data became available''. The symbols must come from a finite set of symbols, called the alphabet . If a particular symbol in a particular state triggers a transition from that state to another one, that transition is labeled with that symbol. The labels of transitions can contain one particular symbol that is not in the alphabet. A transition is labeled with (not present in the alphabet) if it can be traversed with no input symbol. 
+It is convenient to present automata as directed graphs. The vertices denote states. They are portrayed as small circles. The transitions form the edges - arcs with arrows pointing from the source state (the state where the transition originates) to the target state. They are labeled with symbols. Unless it is clear from the context, the initial states have short arrows that point to them from ``nowhere''. The final states are represented as two concentric circles. 
+                                 
+                                    Figure 2.1: Sample finite-state automaton
+The example automaton (fig. 2.1) contains 6 states labeled A, B, C, D, E and F. The state labeled A is initial. The states A, C, and D are final. The automaton contains no cycles, as it is impossible to leave a state, follow some transitions, and return in this way to the same original state. 
+Starting in one of the initial states, the automaton processes a sequence of input symbols. In a given state, it checks if the next input symbol matches any of the labels of the transitions that go out of the state. If so, the automaton follows it to the target state of the transition. If is among the labels, the transition it labels is followed without reading the input. There may be more than one transition with the same label, or a transition with a matching label and a transition labeled with . In that case, the decision which path to choose is arbitrary. If there is no transition that matches the input symbol (in particular, if there is no -transition), the automaton stops and rejects the input. The input is accepted when all input is read and matched by transitions and the automaton is in a final state. 
+A set of sequences of symbols gathered by pursuing all paths from initial states to the final ones is called the language   accepted by the automaton. E.g. the example automaton (fig. 2.1) accepts the language . The symbol , meaning an empty input, is accepted because the initial state A is also the final one. a is accepted, because there is a transition from A to C labeled with a, and C is a final state. The input bc is accepted, because the control in the automaton can go from A to F on a, and then it can follow the -labeled transition to B, and then a transition labeled c to D, which is a final state. The sequences: {ad, ae, af, ba} are all rejected, because E is not a final state. The language of the automaton in fig. 2.1 is finite, because the automaton contains no cycles. 
+An automaton that has no -labeled transitions is called -free. An automaton that has one initial state, is -free, and for each state there is at most one transition labeled with the same symbol is called a deterministic finite-state automaton  . The automaton from fig. 2.1 can be transformed into the deterministic automaton from fig. 2.2. 
+                               
+                             Figure 2.2: Deterministic version of the sample automaton
+A state is said to be reachable    from another state iff there is a sequence of transitions leading to the state from that other state. An automaton is said to be start-useful    iff every state is reachable from any of its initial states. An automaton is useful    iff it is start-useful and for every state there is at least one final state reachable from that state. The automaton from the fig. 2.2 is not useful; its useful version is presented in fig. 2.3. That version accepts the same language. 
+                                   
+                         Figure 2.3: Useful version of the sample deterministic automaton
+An automaton is said to be acyclic    when it contains no cycles, i.e. it is not possible to arrive at the same state twice when following the transitions. All automata in figures presented in this dissertation are acyclic. 
+
+1.1 Finite State Recognizers and Generators
+Finite state automata are used a lot for all kinds of things in computational linguistics. For example, they are used in morphology, phonology, text to speech, data mining. Why are they so popular? Well, they are very simple (as you will see for yourself, soon) and extremely well understood mathematically. Furthermore, they are easy to implement (this, you will also see soon) and usually these implementations are very efficient. Therefore, finite state solutions tend to be good solutions. However, something so simple and efficient, has to be restricted in what it is able to do in some way, which means that there isn't a finite state solution for every problem. We will look at some limitations of finite state methods later in this chapter. But first, let's see what finite state automata are and what they can do.
+1.1.1 A Simple Machine that can laugh
+A finite state generator is a simple computing machine that outputs a sequence of symbols.
+It starts in some start state 
+         
+and then tries to reach a final state by making transitions from one state to another. Every time it makes such a transition it emits (or writes or generates) a symbol. 
+
+It has to keep doing this until it reaches a final state; before that it cannot stop. All in all, finite state generators can only have a finite number of different states, that's where the name comes from. Another important property of finite state generators is that they only know the state they are currently in. That means they cannot look ahead at the states that come and also don't have any memory of the states they have been in before or the symbols that they have emitted.
+So, what does the generator in the pictures say? It laughs. It generates sequences of symbols of the form ha! or haha! or hahaha! or hahahaha! and so on. Why does it behave like that? Well, it first has to make a transition emitting h. The state that it reaches through this transition is not a final state. So, it has to keep on going emitting an a. Here, it has two possibilities: it can either follow the ! arrow, emitting ! and then stopping in the final state (but remember, it can't look ahead to see that it would reach a final state with the ! transition) or it can follow the h arrow emitting an h and going back to the state where it just came from.
+Finite state generators can be thought of as directed graphs. And in fact finite state generators are usually drawn as directed graphs. Here is our laughing machine as we will from now on draw finite state generators: 
+                                             
+The nodes of the graph are the states of the generator. We have numbered them, so that it is easier to talk about them. The arcs of the graph are the transitions, and the labels of the arcs are the symbols that the machine emits. A double circle indicates that this state is a final state and is a start state.
+                                                                       
+1.1.2 Finite State Automata
+In the previous section, we have learned that finite state generators are simple computing machines that output a sequence of symbols. Finite state recognizers are simple computing machines that read (or at least try to read) a sequence of symbols from an input tape. That seems to be only a small differnce, and in fact, finite state generators and finite state recognizers are exactly the same kind of machine. Just that we are using them to output symbols in one case and to read symbols in the other case. The general term for such machines is finite state automaton (FSA) or finite state machine (FSM). But let's have a closer look at what it means for a finite state automaton to recognize a string of symbols.
+An FSA recognizes (or accepts) a string of symbols (or word) if starting in an intial state it can read in the symbols one after the other while making transitions from one state to another such that the transition reading in the last symbol takes the machine into a final state. That means an FSA fails to recognize a string if: 
+it cannot reach a final state; or
+it can reach a final state, but when it does there are still unread symbols left over
+So, this machine 
+
+recognizes laughter. For example, it accepts the word ha! by going from state 1 via state 2 and state 3 to state 4. At that point it has read all of the input and is in a final state. It also accepts the word haha! by making the following sequence of transitions: state 1, state 2, state 3, state 2, state 3, state 4. Similarly, it accepts hahaha! and hahahaha! and so on. However, does it accept the word haha? No! Although it will be able to read the whole input (state 1, state 2, state 3, state 2, state 3), it will end in a non-final state without anything left to read that could take it into the final state. Does it accept hoho!? No, because with this input, it won't be able to read the whole input (there is no transition that allows reading an o.
+So, when used in recognition mode, this machine recognizes exactly the same words that it generates, when used in generation mode. This is something which is true for all finite state automata and we can make it more precise: 
+A formal language is a set of strings.
+The language accepted (or recognized) by an FSM is the set of all strings it recognizes when used in recognition mode.
+The language generated by an FSM is the set of all strings it can generate when used in generation mode.
+The language accepted and the language generated by an FSM are exactly the same.
+1.2 Some Examples
+Now, let's have a look at some more examples of what finite state automata can look like. 
+Assume that we want to extend our laughing machine so that it not only recognizes sequences of ha (followed by !) as laughter but also sequences of ho (followed by !) and sequences mixing has and hos (followed by !). So, as may now be replaced by os. This means that in all states where the machine can make an a transition, it should now also be able to make an o transition. So, all we have to do to extend our machine in this way is to add an o transition from state 2 to state 3. 
+                                        
+Now, look at the following FSA: 
+                                              
+It has a strange transition from state 3 to state 1 which is reading/emitting #. We will call transitions of this type jump arcs. Jump arcs let us jump from one state to another without emitting or reading a symbol. So, # is really just there to indicate that this is a jump arc and the machine is not reading or writing anything when making this transition. This FSA accepts/generates the same language as our first laughing machine, namely sequences of ha followed by a !.
+And what language does this FSA accept/generate? 
+                                         
+It also accepts/generates the same language as our first laughing machine. But the alphabet it uses is a bit different. Here ha counts as one symbol and can therefore be read by one transition. Furthermore, the FSA has a reflexive transition, going from state 2 back to itself.
+Finally, an FSA can have several intial and final states (it must have at least one initial and one final state, though). Here is a machine that has two final states. What language does it recognize? 
+                                 
+The machine can stop after having generated one exclamation mark or after having generated two exclamation mark. So, the words of the language it accepts/generates all consist of a sequence of ha followed by either one ! or two !.
+1.3 Deterministic vs. Non-deterministic FSAs
+Look at the following FSA: 
+                                    
+It accepts/generates the same language as our first laughing machine, but it differs from the FSAs we have seen so far in a very important way. It has two arcs labelled with the same symbol (a) going out of one state (state 2) -- this FSA is non-deterministic. 
+Mathematically speaking, non-determinism doesn't add anything to what FSAs can do. In fact, we can always find a deterministic automaton that recognizes/generates exactly the same language as a non-deterministic automaton. Also when using an automaton for generation, there is no big difference between deterministic and non-deterministic machines. You can think of the machine flipping a coin to decide which transitition to take whenever there is more than one arc going out of a state. There is, however, a big difference when we want to use the machine for recognition. When the next symbol on the input tape is an a, the machine has to decide which transition to take and if it makes the wrong decision, it may fail to recognize the input string, even though it would have been able to, had it decided differently. That means that non-determinism brings with it the need to perform search.
+Here is an example. Assume that we want to check whether the FSA above recognizes the word ha!. Starting from state 1 we have no choice but to go to state 2 via the h transition. But next, we have to read an a and there are two a transitions going out of state 2. Which one should we take? Well, you can see of course that we would want to take the transition leading to state 3, because only when taking this transition will we be able to read the whole input and end in a final state. However, remember that the machine cannot look ahead and can therefore not base its decision on the rest of the input or the following states in the automaton. All it can do at this point is to arbitrarily decide for one transition, try it, and go back to try another transition in case this one turns out to not lead us to acceptance of the string. That means, we have to systematically try all alternatives and to do so, we have to keep track of what we have tried already.
+1.5 Finite State Methods in Computational Linguistics and their Limitations
+We have seen in this chapter that finite state machines are very simple. As a consequence, there are limitations to what they can do. It is, for example, not possible to write an FSM that generates the language , i.e. the set of all strings which consist of a (possibly empty) block of as followed by a (possibly empty) block of bs of exactly the same length). That is, viewed mathematically, FSAs have certain expressive weaknesses. This also limits their expressive adequacy from a linguistic point of view, because many linguistic phenomena can only be described by languages which cannot be generated by FSAs. In fact, even the language is linguistically relevant, since many linguistic constructions require `balanced' structures.
+However, there are linguistic applications where the expressive power of finite state methods seems to be sufficient and FSAs have been used and are used a lot for all kinds of tasks in computational linguistics; the flip side of their expressive weakness being that they usually behave very well computationally. If you can find a solution based on finite state methods, your implementation will probably be efficient. 
+Areas where finite state methods have been shown to be particularly useful are phonological and morphological processing. We will see some simple examples for that in the next chapter. But finite state methods have also been applied to syntactic analysis. Although they are not expressive enough if a full syntactic analysis is required there are many applications where a partial syntacic analysis of the input is sufficient. And such partial analyses can be constructed with cascades of finite state automata (or rather transducers, which we will learn about in the next chapter) where one machine is applied to the output of another. Furthermore, hidden markov models, which are very common for speech recognition and part of speech tagging, can be seen as a variant of FSAs which assigns probabiltites to its transitions.
+Equivalence of DFA and NDFA 
+Theorem 
+If L is a language accepted by a nondeterministic finite automaton, then a deterministic finite automaton exists accepting L. 
+The proof of this theorem is a constructive one. Given a NDFA we construct an equivalent DFA where the set of final states is the set of subsets that contains at least one final state of the starting NDFA and the transition function is defined by applying the delta of the NDFA to each state in a given subset and taking the union of resulting states. 
+Finite State Machines with Output (Mealy and Moore Machines) 
+Introduction 
+If a combinational logic circuit is an implementation of a Boolean function, then a sequential logic circuit can be considered an implementation of a finite state machine. There is a little more to it than that (because a sequential logic circuit can contain combinational logic circuits). 
+If you take a course in programming languages, you will also learn about finite state machines. Usually, you will call it a DFA (deterministic finite automata). 
+While finite state machines with outputs are essentially DFAs, the purpose behind them is different. 
+DFAs in programming languages 
+When you are learning about models of computation, one simple model is a deterministic finite automata or DFA for short. 
+Formally, the definition of a DFA is: 
+Q, a set of states 
+S, an single state which is an element of Q. This is the start state. 
+F, a set of states designated as the final states 
+Sigma, the input alphabet 
+delta, a transition function that maps a state and a letter from the input alphabet, to a state 
+DFAs are used to recognize a language, L. A language is a set of strings made from characters in the input alphabet. If a language can be recognized by a DFA, it is said to have a regular grammar. 
+To use a DFA, you start in an initial state, and process the input string a character at a time. For example, if the input alphabet consists of "a" and "b", then a typical question is to ask whether the string "aaab" is accepted by a DFA. 
+To find out whether it is accepted, you start off in the state state, S. Then you process each character (first "a", then "a", then "a", and finally "b"). This may cause you to move from one state to another. After the last character is processed, if you are in a final state, then the string is in the language. Otherwise, it's not in the language. 
+There are some languages that can't be recognized by a DFA (for example, palindromes). Thus, a DFA, while reasonably powerful, there are other (mathematical) machines that are more powerful. 
+Often, tokens in programming languages can be described using a regular grammar. 
+FSM with output in hardware 
+A finite state machine with output is similar to describe formally. 
+Q, a set of states 
+q 0, is an initial state which is an element of Q. This is the start state. 
+Ʃ Sigma, the input alphabet 
+Pi, the output alphabet 
+delta, Δ a transition function that maps a state and a letter from the input alphabet, to a state and a letter from the output alphabet. 
+The primary difference is that there is no set of final states, and that the transition function not only puts you in a new state, but also generates an output symbol. 
+The goal of this kind of FSM is not accepting or rejecting strings, but generating a set of outputs given a set of inputs. Recall that a black box takes in inputs, processes, and generates outputs. FSMs are one way of describing how the inputs are being processed, based on the inputs and state, to generate outputs. Thus, we're very interested in what output is generated. 
+In DFAs, we don't care what output is generated. We care only whether a string has been accepted by the DFA or not. 
+Since we're talking about circuits, the input alphabet is going to be the set of k bit bitstrings, while the output alphabet is the set of m bit bitstrings. 
+We'll look at this more informally, just in case you're confused. 
+An Example 
+Let's look at an example of an FSM. 
+                                   
+Each of the circle is a state. For now, all you need to know is that, at any given moment, you are in one state. Think of this as a game, where there are circles drawn on the ground, and at any moment, you are standing in exactly one circle. 
+Each of the circle is given a unique binary number. The number of bits used depends on the total number of states. If there are N states, then you need ceil( lg N ) bits (the ceiling of log base 2 of N). The states are labelled with the letter q, plus subscripts. In this example, it's q1q0. 
+You may have k input bits. The input bits tell you which state to transition to. For example, if you have 2 input bits (x1x0), then there are four possible out going edges (x1x0 = 00, x1x0 = 01, x1x0 = 10, and x1x0 = 11). In general, there are 2k outgoing edges for k bits of input. 
+Thus, the number of edges depends on the number of bits used in the input. 
+FSM with Outputs: Moore machines 
+The goal of FSMs is to describe a circuit with inputs and outputs. So far, we have inputs, that tell us which state we should go to, given some initial, start state. However, the machine generates no outputs. 
+We modify the FSM shown above, by adding outputs. Moore machines add outputs to each state. Thus, each state is associated with an output. When you transition into the state, the output corresponding to the state is produced. The information in the state is typically written as 01/1. 01 indicates the state, while 1 indicates the output. 01/1 is short hand for q1q0 = 01/z = 1 
+The number of bits in the output is arbitary, and depends on whatever your application needs. Thus, the number of bits may be less than, equal, or greater than the number of bits used to represent the state. 
+Let's look at an example of a Moore machine. 
+                                                      
+In this example, you see two bits for the state and two bits for the output. Thus, when you see 00/01 inside one of the circles, it is shorthand for q1q0 = 00 / z1 z0 = 01. 
+FSM with Outputs: Mealy machines 
+A Moore machine has outputs that are a function of state. That is, z = f( qk-1,..., q0 ). 
+A Mealy machine has outputs that are a function of state and input, that is That is, z = f( qk-1,..., q0, xm-1,..., x0 ). 
+We usually indicate that the output is depedent on current state and input by drawing the output on the edge. In the example below, look at the edge from state 00 to state 01. This edge has the value 1/1. This means, that if you are in state 00, and you see an input of 1, then you output a 1, and transition to state 01. 
+Thus, 1/1 is short hand for x = 1 / z = 1. 
+Here's a sample Mealy machine. 
+
+One thing you will notice is the numbering of the states. Usually, if there are 3 states, we number them 00, 01, and 10, since those are the first 3 UB numbers. However, given that we're using two bits, we can, in principle, pick any 3 of the 4 possible 2-bit numbers. 
+One reason we might want to pick something else besides 00, 01, and 10 is because implementing an FSM with minimal gates often involves picking the correct state numbering. Thus, if you're careful which state is numbered, say, 00, 01, and 11, you may be able to create a circuit that has fewer gates. 
+However, minimization of the circuit based on well-chosen state numberings is outside the scope of the course. We only pick the state numberings just to make a note that this could happen, but we won't take advantage of this fact. 
+Another interesting point to observe is how a Mealy machine differs from a Moore. Already we said that a Mealy machine's output may depend on both the values of state and input variables. We can see this in the example. Look at the edge from 00 to 01. 
+This edge says that if a 1 is input, we will transition to state 01 and output a 1. Now look at the loop in state 01. This says that if the input is 1, we will loop back to state 01, and output a 0. 
+So, in the first case, going to state 01 outputs a 1, whereas in the second case, going to state 01 outputs a 0. In a Moore machine, this would not happen. The output depends only on the state you transition into, not how you got into that state. 
+Equivalence of Mealy and Moore machines 
+We have two ways to describe a FSM: Mealy and Moore machines. A mathematician might ask: are the two machines equivalent? 
+
+
+
+
+
+
+
+
+
+
+
+
+Initially, you might think not. A Mealy machine can have its output depend on both input and state. Thus, if we ignore the state, we should be able to convert a Moore machine to a Mealy machine. 
+It's not so easy to see that you can convert an arbitrary Mealy machine to a Moore machine. 
+It turns out that the two machines are equivalent. What does that mean? It means that given a Moore machine, you can create a Mealy machine, such that if both machines are fed the same sequence of inputs, they will both produce the same sequence of outputs. You can also convert from a Mealy machine to its equivalent Moore machine, and again generate the same outputs given the same sequence of inputs. 
+Actually, to be precise we must ignore one fact about Moore machines. Moore machines generate output even if no input has been read in. So, if you ignore this initial output of the Moore machine, you can convert between one machine and the other. 
+The actual algorithm is beyond the scope of the course. However, the basic idea of converting a Mealy machine to a Moore machine is to increase the number of states. Roughly speaking, if you have a Mealy machine with N states, and there are k bits of input, you may need up to 2kN states in the equivalent Moore machine. 
+Effectively, the new states record information about how that state was reached. 
+Summary 
+Finite state machines are one way of describing the behavior of a circuit with state. Think of it as a very crude programming language, which takes inputs, and uses those inputs and the state to compute outputs, and also to determine what state to transition into. 
+CPUs use finite state machines as control units to sychronize the fetch, execute, decode cycle. These machines can be rather sophisticated, however, programs exists to convert the finite state machine into actual flip flops and logic gates. 
+
+UNIT 2:
+Context-Free Grammar and Context-Free Languages
+
+Regular languages are generally used to describe how letters of the alphabet form meaning tokens in a language. However, they are not powerful enough to describe the structure in programming languages. Recall the anbn example, we know that regular languages cannot describe nested constructs that are often found in programming languages.
+
+The class of languages that is slightly more powerful than regular languages is called context-free languages. The corresponding notation to describe the syntax of a context-free language is called the context-free grammar.
+
+Grammar Introduction
+A grammar describes a language. A grammar describe the legal words and sentences allowed in a language. A grammar consists of rules for generating legal words and sentences in the language. The generation process is usually depicted as a tree. The term “parse tree” or “derivation tree” is often used to describe the process of using the grammar to determine if a word or a sentence is valid for a given language.
+
+A grammar is a specification for a language that consists of the following components:
+Letters of the alphabet - legal letters allowed in words and sentences of the language. The letters of the alphabet are also called terminals (T) of the language. Terminals also include λ. 3,.,^,*k,l A
+•	Non-terminals or Variables(V) – nonterminals are intermediate symbols or variables used to generate words of the language.
+Start symbol (S) – usually the letter “S”. The start symbol is the root of the tree. Start symbol is a symbol used in the generation of words, therefore it is always a non-terminal.
+Production r(P) – Describe all the legal words and sentences in the language.
+
+
+
+S-> aB | cA
+					A->a|b
+					B-> c
+
+
+
+
+
+
+
+A production rule has the following format:
+left-hand side -> right –hand side
+
+Production rules are like substitution rules. Replace the left-hand side with the right-hand side. In terms of the tree, the left-hand side is a node in the tree and right-hand side are the children of that node. Production rules will be applied continuously until there are no more non-terminals in the tree.
+
+For a context-free grammar, there are some restrictions as to what can be on the left-hand side and what can be on the right-hand side:
+1. Left-hand side of the productions must be a non-terminal
+2. There is no restriction on the right-hand side of the productions. They can be any
+    combination of terminals and non-terminals.
+
+
+
+
+Context-Free vs. Regular languages
+• A language is said to be context-free if and only if there is a context-free
+  grammar for the language.
+• Every regular grammar is context-free, so a regular language is also a context-
+free language.
+
+Example 1:
+L = {w wr}
+
+L is a language that contains all words which read the same forwards and backwards.
+To describe L using a context-free grammar, we must identify the following:
+
+1.Letters of the alphabet – {a, b} – also called terminals.
+2.Start symbol – S
+3.Non-terminals or Variable – For this particular problem, we only need 1  
+   nonterminal - S
+4.Production rules:
+
+S->λ
+S->aSa
+S->bSb
+
+Notice that there are 3 production rules. The context-free grammar is inherently nondeterministic. The start symbol S has 3 choices. Notice also that context-free grammar is inherently recursive. The symbol S also appears on the right-hand side of a production rule. We can apply one of the 3 rules for S recursively and continuously until the desired word is generated or enough to determine that the word is not in the language. The latter part is more difficult. Often it’s easier to tell if something is in the language than to tell if something is not in the language.
+
+Using the grammar specified, we can start generating some words and use it to test if a certain word is in the language.
+
+Word = λ (empty string)
+
+Use rule #1: S->λ and generate a tree for the empty string
+
+S
+ |
+λ
+
+λ is a terminal and there is nothing else to do. Based on this tree, we know that 
+λ is in the language L.
+
+           Word = aa
+
+The word “aa” is a palindrome. It should be recognized by our grammar. We would need to use 2 rules, Rule #1: S->λ and Rule #2: S->aSa
+
+
+
+   S
+/  |  \
+          a   S   a
+                           |
+                          λ
+
+The word “aa” is formed by concatenating all the leaves of the tree together “a λ a” which is just “aa”.
+Example 2:
+               L2 = {anbn}
+
+Context-free grammar for L2:
+S->λ
+S->aSb
+
+Example 3:
+
+L3 = {ab(bbaa)nbba(ba)n}
+
+Context-Free grammar for L3:
+S-> abB
+A -> aaBb
+A ->λ
+B-> bbAa
+
+More on Grammars
+• Rules can be combined on one line using the bar(|)
+For example:
+S -> a
+S -> bA
+Can be written as:
+S -> a | bA
+• The process of applying a production rule is also called a derivation.
+• -> is called the derivation symbol.
+• S -> a can be read as “S derives a”.
+• A grammar is ambiguous if it is possible to get 2 or more parse trees for the same word.
+Example: given the following grammar production rules:
+S -> a S
+S -> S a
+S -> a
+It’s easy to see that for the word “aaa”, there are several possible ways to construct the parse tree. This grammar is therefore ambiguous.
+
+
+Derivation trees and Ambiguity:
+Derivations: First let's look at a simple grammar that describes a limited collection of arithmetic expressions. (This could have been written with a single rule using more "or"s.)
+Here is a sequence of replacements that leads to a sequence of terminal symbols.
+E ===> E * E ===> ( E ) * E ===> ( E + E) * E ===> ( a + E ) * E ===> ( a + b ) * E ===> ( a + b ) * c
+
+In this case, we obtained the final sentence ( a + b ) * c starting from E. One says that "E derives ( a + b ) * c" or (to use passive voice) "( a + b ) * c is derived from E". The sequence is called a derivation sequence. In this case it is a leftmost derivation sequence, because at each stage the leftmost non-terminal was replaced. Each non-terminal that is replaced is colored red above. Sometimes there was only one non-terminal, so it is leftmost on an honorary basis.) Here is another derivation:
+
+E ===> E * E ===> E * c ===> ( E ) * c ===> ( E + E ) * c ===> ( E + b ) * c ===> ( a + b ) * c
+
+This was a rightmost derivation sequence, because at each stage the rightmost non-terminal was replaced.
+The sentence ( a + b ) * c has a unique leftmost derivation, a unique (different) rightmost derivation and the unique parse tree shown below: 
+
+Ambiguity: There are other sentences derived from E above that have more than one parse tree, and corresponding left- and rightmost derivations. For example, the very simple sentence a + b * c. The table looks at leftmost derivations and parse trees:
+Even if some parse trees are unique, if there are multiple parse trees for any sentence, then the grammar is called ambiguous. In a programming language it is not acceptable to have more than one possible reading of a construct. We can't flip a coin to decide which parse tree to use. There are several ways around this problem: 
+Rewrite the grammar so that it is no longer ambiguous yet still accepts exactly the same language. This is not always possible. 
+Introduce extra rules that allow the program to decide which of multiple parse trees to use. These are called disambiguating rules. (Ah, yes, "disambiguating", one of my favorite words.) 
+An ambiguous grammar may signal problems with language design, and the programming language itself might be changed. 
+Here is a new grammar that is not ambiguous and accepts the same language as the previous grammar.:
+It's can be very hard (or impossible) to prove results such as determining whether or not a grammar is ambiguous. In practice there are usually no problems. With this grammar every sentence has a unique leftmost and rightmost derivation and a unique parse tree. For example, the above sentence a + b * c that caused a problem has the following leftmost derivation and parse tree on the left (along with the its twin a * b + c on the right):
+The Parsing Problem: Given an unambiguous grammar and a sentence derived from the start symbol of the grammar, the parsing problem is the problem of calculating
+the parse tree, or 
+the leftmost derivation, or 
+the rightmost derivation. 
+Each of the above three items starts with "the" because each is unique.
+It is important to realize that the grammar rules can be examined in any order, but the sentence must be scanned from left to right. The parsing problem is to find an algorithm that will carry out the parse.
+There are two basic approaches to parsing, namely top-down and bottom-up:
+Top-Down Parsing: In this case we do the following:
+Construct the parse tree from the top down and from left to right, or 
+Construct the leftmost derivation from left to right, or
+In practice the parse tree itself is almost never constructed (too much computation), although all the information needed to construct it will be available.
+The problem becomes: at each stage there may be several choices of replacements for the leftmost non-terminal. How do we decide which replacement to use? Here are two diagrams illustrating the top-down parsing process, without showing how to make the choices along the way. 
+
+
+What is a compiler?
+A program that translates an executable program in one language (source language) into an executable language or program in another language (target language).
+The compiler should improve the program, in some way.
+Source code is normally optimized for human readability 
+Machine code is optimized for hardware 
+    
+What is an Interpreter?
+A program that reads an executable program and produces the results of executing that program
+C is typically compiled, Scheme is typically interpreted
+Java is compiled to bytecodes (code for the Java VM)
+Major data structures in a compiler
+Tokens:  A value of an enumerated data type              the sets of tokens
+The syntax tree:   Each node is a record whose fields represent the information collected by the parser and semantic analyzer
+ The symbol table: Information associated with identifiers: functions, variables, constants, and data types.
+The symbol table interacts with
+The Lexical 
+ The Syntex  
+The semantic analyzer  
+The optimization   
+Code generation
+
+
+Temporary files:
+Using temporary files to hold the products of intermediate steps
+for example:  back patch  address during code generation 
+          if  x = 0  then …….else …….
+      Code :  CMP x, 0
+             JNE  NEXT
+           ………
+        NEXT:  
+          ……….
+
+
+
+
+
+
+
+Various phases of a compiler
+
+
+
+                                       int 1abc, 2b;(validity of word)		
+								
+
+
+
+	      validity of sentences
+	(parser)
+
+
+	Check the sentences are meaning full or not or logical errors   
+
+
+
+
+                                                -b+(a+b)^c-d(a+b)  (3-Address Code)
+
+
+
+	-b+(t)^c-d(t) (Direct Acyclic Graph (DAG))
+	Optimize the code or input of ICG
+
+
+
+	LOAD a,  MOV B ,A,      ADD B, Jump 14
+
+101010101000011111      (machine language)
+
+The Lexical analysis
+Lexical analysis: input a stream of characters, output tokens
+a[index] = 4 + 2
+Tokens: a, [, index, ], = , 4, + , 2
+
+The Syntax or parser
+Determine the structure of the program and check the validity of sentences
+Ex- int a, b, c; [correct], iny 1a, 1b, c; [incorrect]
+   
+The semantic analyzer
+Static semantics: be cannot be conveniently expressed as syntax and analyzed by the parser, but can be determined prior to execution.
+Intermediate code generator or The source code optimizer
+Source-level optimization:
+ 			4+2           6, constant folding
+
+Three–address code: 
+(intermediate code: any internal representation for the source code used by the compiler)
+        t = 4+2
+        a[index] = t
+
+Code Optimizer or The code generator
+Input:  intermediate code  or  IR
+Output:  machine code, code for the target machine
+
+Code generator or The target code optimizer
+Improve the target code generated by the code generator. Task: choosing addressing mode to improve performance
+Replacing slow instructions by faster ones 
+Eliminating redundant or unnecessary operations
+Lexical analysis
+Lexical Analysis is the first phase of a compiler.
+Main Task: Read the input characters and produce a sequence of Tokens that will be processed by the Parser.
+Upon receiving a “get-next-token” command from the Parser input is read to identify the next token.
+While looking for next token it eliminates comments and white-spaces.
+Tokens are treated as Terminal Symbols in the Grammar for the source program.
+
+In programming language tokens can be described by regular languages :
+• Regular languages
+– Are easy to understand
+– There is a well understood and useful theory 
+– They have efficient implementation
+
+LEX   a, aa, aaa, aaaa, 
+Tool for constructing lexical analyzers from special purpose notations based on regular expressions.
+ Tool widely used to specify lexical analyzers for a variety of languages.
+It is a program that takes as its input a text file containing regular expressions, together with the actions to be taken when each expression is matched.
+Lex produces an output file that contains C source code defining a procedure lex that is table driven implementation of a DFA corresponding to the regular expression of the input file and that operates like a get Token procedure.
+The Lex output file, usually called lex.yy.c is then compiled and linked to a main program to get a running program.
+There are several lex versions. We're going to use flex.
+In order to maximize compatibility, use –l option when compiling, and %option yywrap in the definition part of the Lex input file.
+Create a specification in a file called scan.l 
+lex processes scan.l and produces lex.yy.c 
+The c compiler can turn lex.yy.c into a.out 
+$ lex scan.l 
+$ cc lex.yy.c -ll     
+(-ll means link with lex library, use lfl if using flex) 
+lex contains a function yylex( ) which does actual lexical analysis
+
+
+https://drive.google.com/file/d/1wwLCSWWiFWy_V93nYR4jdMXfNA5ufztK/view?usp=sharing
+
+
+Structure of Lex Programs
+Lex program will be in following form
+declarations
+%%
+translation rules
+%%
+auxiliary functions
+Example:
+
+Write Lex program that recognize the :
+White space
+Identifiers
+Keywords (if, then, else)
+Operaters
+
+declarations
+delim   [\t, \n]
+{delim}+
+Identifiers (id={letters}({letter | digits})
+Letters [A-Z a-z]
+Degits[0-9]
+
+If {return (if);}
+Then {return (Then)}
+{id} {val = install id(); return(id)}<{return(Lt);}
+Install id()
+{ this is an auxiliary procedure that enters the name field of identifier into symbol  table}
+
+
+
+
+
+
+
+
+
+
+
+Declarations This section includes declaration of variables, constants and regular definitions.
+Translation rules It contains regular expressions and code segments.
+Form : Pattern {Action}
+Pattern is a regular expression or regular definition.
+Action refers to segments of code.
+Auxiliary functions
+This section holds additional functions which are used in actions. These functions are compiled separately and loaded with lexical analyzer.
+Lexical analyzer produced by lex starts its process by reading one character at a time until a valid match for a pattern is found.
+Once a match is found, the associated action takes place to produce token.
+The token is then given to parser for further processing.
+Conflict Resolution in Lex
+Conflict arises when several prefixes of input matches one or more patterns. This can be resolved by the following:
+• Always prefer a longer prefix than a shorter prefix.
+
+If two or more patterns are matched for the longest prefix, then the first pattern listed in lex program is preferred.
+Lookahead Operator
+• Lookahead operator is the additional operator that is read by lex in order to distinguish additional pattern for a token.
+• Lexical analyzer is used to read one character ahead of valid lexeme and then retracts to produce token.
+• At times, it is needed to have certain characters at the end of input to match with a pattern. In such cases, slash (/) is used to indicate end of part of pattern that matches the lexeme.
+(eg.) In some languages keywords are not reserved. So the statements
+IF (I, J) = 5 and IF(condition) THEN
+results in conflict whether to produce IF as an array name or a keyword. To resolve this the lex rule for keyword IF can be written as,
+IF/\ (.* \) {letter }
+Design of Lexical Analyzer
+• Lexical analyzer can either be generated by NFA or by DFA.
+• DFA is preferable in the implementation of lex.
+Structure of Generated Analyzer
+Architecture of lexical analyzer generated by lex is given in Fig.
+               
+Lexical analyzer program includes:
+• Program to simulate automata
+• Components created from lex program by lex itself which are listed as follows:
+   o A transition table for automaton.
+   o Functions that are passed directly through lex to the output.
+    o Actions from input program (fragments of code) which are invoked by automaton simulator when needed.
+ Steps to construct automaton
+Step 1: Convert each regular expression into NFA either by Thompson’s subset construction or Direct Method.
+Step 2: Combine all NFAs into one by introducing new start state with s-transitions to each of start states of NFAs Ni for pattern Pi·
+Step 2 is needed as the objective is to construct single automaton to recognize lexemes that matches with any of the patterns.
+
+                
+
+(eg.)    a {action A1 for pattern Pl}
+           abb { action A2 for pattern P2 }
+           a*b+ { action A3 for pattern P3 }
+ 
+For string obb, pattern P2 and pattern p3 matches. But the pattern P2 will be taken into account as it was listed first in lex program.
+For string aabbb · · · , matches pattern p3 as it has many prefixes.
+Fig. Shows NFAs for recognizing the above mentioned three patterns.
+The combined NFA for all three given patterns is shown in Fig.
+                
+ 
+                
+
+Pattern Matching Based on NFAs
+Lexical analyzer reads input from input buffer from the beginning of lexeme pointed by the pointer lexemeBegin. Forward pointer is used to move ahead of input symbols, calculates the set of states it is in at each point. If NFA simulation has no next state for some input symbol, then there will be no longer prefix which reaches the accepting state exists. At such cases, the decision will be made on the so seen longest prefix i.e., lexeme matching some pattern. Process is repeated until one or more accepting states are reached. If there are several accepting states, then the pattern Pi which appears earliest in the list of lex program is chosen.
+e.g.
+           W= aaba
+          
+
+ 
+Explanation
+Process starts with s-closure of initial state 0. After processing all the input symbols, no state is found as there is no transition out of state 8 on input a. Hence, look for accepting state by retracting to previous state. From Fig. state 2 which is an accepting state is reached after reading input symbol a and therefore the pattern a has been matched. At state 8, string aab has been matched with pattern avb”: By Lex rule, the longest matching prefix should be considered. Hence, action Ag corresponds to pattern p3 will be executed for the string aab.
+DFAs for Lexical Analyzers
+DFAs are also used to represent the output oflex. DFA is constructed from NFA, by converting all the patterns into equivalent DFA using subset construction algorithm. If there are one or more accepting NFA states, the first pattern whose accepting state is represented in each DFA state is determined and displayed as output of DFA state. Process of DFA is similar to that of NFA. Simulation of DFA is continued until no next state is found. Then retraction takes place to find the accepting state of DFA. Action associated with the pattern for that state is executed.
+Implementing Lookahead Operator
+Lookahead operator r1/r2 is needed because the pattern r1 for a particular token may need to describe some trailing context r2 in order to correctly identify the actual lexeme.
+For the pattern r1/r2, ‘/’ is treated as Ɛ.
+If some prefix ab, is recognized by NFA as a match for regular expression then the lexeme is not ended as NFA reaches the accepting state.
+The end of lexeme occurs when NFA enters a state p such that
+• p has an Ɛ -transition on I,
+• There is a path from start state to state p, that spells out a.
+• There is a path from state p to accepting state that spells out b.
+• a is as Jong as possible for any ab satisfying conditions 1 – 3.
+      
+Figure shows the NFA for recognizing the keyword IF with lookahead. Transition from state 2 to state 3 represents the lookahead operator (-transition).
+Accepting state is state 6, which indicates the presence of keyword IF. Hence, the lexeme IF is found by looking backwards to the state 2, whenever accepting state (state 6) is reached.
+
+
+                                         Reverse RMD
+
+
+
+
+
+
+
+
+
+
+S -> BaAS | a	
+A->ASbA|SS|ba
+“aabbaa”
+RMD
+S->aAS
+ ->aSbAa
+->aSbbaa
+->aabb
+Structure of Table Driven Parser
+Input tape
+
+
+
+
+
+
+
+
+
+
+
+A->BCa | abc | abd      
+
+B->Abc | xyx | xyxa 
+
+Design a Predictive Parser Or LL(1) Or Recursive Descent Parser
+Step-1 Remove Left Recursion if it exists. 
+Step-2 Do left Factoring if required.
+Step-3 Calculate first and follow symbols of all grammar variables
+Step-4 Use proper rules for construct parsing table. 
+first and follow symbols are always terminals. 
+Always calculate the first and follow of non-terminals or variables.	
+
+
+
+
+
+
+
+A->abc| Bd      
+B->Ca |e | ϵ
+C-> xy| B | ϵ 
+
+S-> x A y
+
+
+
+
+
+
+
+
+
+
+
+S->xyzA | Bd      	
+A->aB |eB | ϵ
+B-> Aab| Aa| ϵ
+
+
+
+
+
+
+
+
+
+ddd
+
