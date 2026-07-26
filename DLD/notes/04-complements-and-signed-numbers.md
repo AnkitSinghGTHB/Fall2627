@@ -213,6 +213,57 @@ Add carry back: 0011 + 1 = 0100 = +4  ✅
 
 ---
 
+## 🏋️ Solved Exam Practice Questions
+
+### Question 1 (2's Complement Subtraction Numerical)
+**Perform $(14)_{10} - (9)_{10}$ using 8-bit 2's complement arithmetic.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Step 1:** Represent $+14$ and $+9$ in 8-bit binary:
+- $14 = (00001110)_2$
+- $9 = (00001001)_2$
+
+**Step 2:** Find 2's complement of $9$ (which represents $-9$):
+- 1's complement of $9 = 11110110$
+- 2's complement of $9 = 11110110 + 1 = 11110111$
+
+**Step 3:** Add $+14$ and $-9$:
+$$\begin{array}{r@{\quad}l}
+  00001110 & (+14) \\
++ 11110111 & (-9) \\
+\hline
+1\,00000101 &
+\end{array}$$
+
+**Step 4:** Discard the end carry $1$.
+- Result $= 00000101_2 = (+5)_{10}$. ✅
+</details>
+
+---
+
+### Question 2 (Overflow Detection)
+**Add $+70$ and $+80$ in 8-bit signed 2's complement system. Check if overflow occurs.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+- $+70 = (01000110)_2$ (MSB $= 0$)
+- $+80 = (01010000)_2$ (MSB $= 0$)
+
+$$\begin{array}{r@{\quad}l}
+  01000110 & (+70) \\
++ 01010000 & (+80) \\
+\hline
+  10010110 & (-106 \text{ in 2's comp})
+\end{array}$$
+
+**Conclusion:** We added two positive numbers (both MSB $= 0$) and got a negative result (MSB $= 1$). Carry into MSB ($C_{\text{in}}=1$) $\neq$ Carry out of MSB ($C_{\text{out}}=0$). **Overflow detected!** (150 exceeds the 8-bit signed range $-128 \text{ to } +127$). ✅
+</details>
+
+---
+
 ## ✅ Quick Self-Check (1 minute)
 
 1. What's the 1's complement of `10110`?

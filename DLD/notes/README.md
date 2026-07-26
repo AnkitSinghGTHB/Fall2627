@@ -11,7 +11,7 @@
 1. **Read in order** — each module builds on the last
 2. **Do the "Try It" boxes** — they take 30 seconds and save you hours later
 3. **Check the TL;DR** at the top of each section — if you already know it, skip ahead
-4. **Use the Exam Cheatsheets** the night before — they exist for a reason
+4. **Use the Exam Cheatsheets & Practice Worksheet** before exams
 
 ---
 
@@ -24,8 +24,13 @@
 | 3 | **Number Conversions — The Tricks** | [03-number-conversions.md](./03-number-conversions.md) | ☕☕☕ 20 min | 🟡 Medium |
 | 4 | **Complements & Signed Numbers** | [04-complements-and-signed-numbers.md](./04-complements-and-signed-numbers.md) | ☕☕☕ 15 min | 🟡 Medium |
 | 5 | **BCD Codes & BCD Addition** | [05-bcd-codes.md](./05-bcd-codes.md) | ☕☕ 15 min | 🟡 Medium |
-
-> 📌 More modules coming as your lessons progress (Boolean Algebra, K-Maps, Combinational Circuits, Sequential Logic, Counters/FSMs, Verilog)
+| 6 | **Boolean Algebra, Gates & Families** | [06-boolean-algebra-and-gates.md](./06-boolean-algebra-and-gates.md) | ☕☕ 15 min | 🟡 Medium |
+| 7 | **K-Map Minimization & SOP/POS** | [07-kmap-minimization.md](./07-kmap-minimization.md) | ☕☕☕ 15 min | 🟡 Medium |
+| 8 | **Combinational Logic Circuits** | [08-combinational-circuits.md](./08-combinational-circuits.md) | ☕☕☕ 15 min | 🟡 Medium |
+| 9 | **Sequential Logic & Flip-Flops** | [09-sequential-flipflops.md](./09-sequential-flipflops.md) | ☕☕☕ 15 min | 🟡 Medium |
+| 10 | **Registers, Counters & FSMs** | [10-counters-registers-fsm.md](./10-counters-registers-fsm.md) | ☕☕☕ 15 min | 🔴 Hard |
+| 11 | **Verilog HDL & Hardware Modeling** | [11-verilog-hdl.md](./11-verilog-hdl.md) | ☕☕ 15 min | 🟡 Medium |
+| 📝 | **DLD Question-Only Practice Worksheet** | [dld-practice-worksheet.md](./dld-practice-worksheet.md) | 🏋️ Test Yourself | 🟡 Medium |
 
 ### 📄 Cheatsheets (print these!)
 
@@ -39,32 +44,22 @@
 ## 🧠 The Full Syllabus at a Glance
 
 ```
-Module 1 → Number Systems + Boolean Algebra        (9 hrs)   ← YOU ARE HERE
-Module 2 → Combinational Logic (MUX, Adders, etc)  (10 hrs)
-Module 3 → Sequential Logic (Flip-flops, Latches)  (7 hrs)
-Module 4 → Counters, Registers & FSMs              (8 hrs)
-Module 5 → Verilog HDL                             (9 hrs)
-Module 6 → Guest Lecture (free marks lol)           (2 hrs)
+Module 1 → Number Systems + Boolean Algebra        (9 hrs)   ✅ Complete
+Module 2 → Combinational Logic (MUX, Adders, etc)  (10 hrs)  ✅ Complete
+Module 3 → Sequential Logic (Flip-flops, Latches)  (7 hrs)   ✅ Complete
+Module 4 → Counters, Registers & FSMs              (8 hrs)   ✅ Complete
+Module 5 → Verilog HDL                             (9 hrs)   ✅ Complete
 ```
 
 ---
 
 ## 💡 Study Strategy
 
-> Your friend doesn't need to *love* DLD. They just need to **pattern-match** the question types and **nail the procedure**.
-
 ### The 80/20 Rule for DLD:
-- **40% of the marks** = Number conversions + Boolean simplification (pure practice)
-- **30% of the marks** = Circuit design procedures (follow the steps = get the marks)
-- **20% of the marks** = Sequential logic + FSM (learn the templates)
-- **10% of the marks** = Verilog (syntax memorization, mostly)
-
-### Time Budget per Week:
-- 🎯 **2 hours** = Read the notes for that week's module
-- 🎯 **1 hour** = Do the practice problems (just the ones in these notes)
-- 🎯 **30 min** = Review the cheatsheet before class
-
-That's it. **3.5 hours/week** and you're golden.
+- **40% of the marks** = Number conversions + Boolean simplification + K-Maps
+- **30% of the marks** = Combinational circuit design (Adders, MUX, Decoders)
+- **20% of the marks** = Sequential logic, Flip-flops, Counters & FSMs
+- **10% of the marks** = Verilog HDL modeling syntax
 
 ---
 

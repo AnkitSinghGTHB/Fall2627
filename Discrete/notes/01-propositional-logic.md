@@ -129,6 +129,48 @@ Columns 4 and 5 are **identical** → they are logically equivalent ✅
 
 ---
 
+## 🏋️ Solved Exam Practice Questions
+
+### Question 1 (VIT TEE/MTE Style)
+**Construct a truth table to determine whether $(p \to q) \land (q \to p)$ is logically equivalent to $p \leftrightarrow q$.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Step 1:** List all combinations for inputs $p$ and $q$.  
+**Step 2:** Evaluate $(p \to q)$, $(q \to p)$, and their conjunction $(p \to q) \land (q \to p)$.  
+**Step 3:** Compare with $p \leftrightarrow q$.
+
+| $p$ | $q$ | $p \to q$ | $q \to p$ | $(p \to q) \land (q \to p)$ | $p \leftrightarrow q$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| T | T | T | T | **T** | **T** |
+| T | F | F | T | **F** | **F** |
+| F | T | T | F | **F** | **F** |
+| F | F | T | T | **T** | **T** |
+
+**Conclusion:** The last two columns are identical for all truth assignments. Hence, $(p \to q) \land (q \to p) \equiv p \leftrightarrow q$. ✅
+</details>
+
+---
+
+### Question 2 (Simplification Proof)
+**Without using a truth table, prove that $\neg(p \lor (\neg p \land q)) \equiv \neg p \land \neg q$.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+Apply logical equivalence laws step-by-step:
+1. $\neg(p \lor (\neg p \land q))$
+2. $\equiv \neg p \land \neg(\neg p \land q)$ *(De Morgan's Law on outer OR)*
+3. $\equiv \neg p \land (\neg(\neg p) \lor \neg q)$ *(De Morgan's Law on inner AND)*
+4. $\equiv \neg p \land (p \lor \neg q)$ *(Double Negation Law)*
+5. $\equiv (\neg p \land p) \lor (\neg p \land \neg q)$ *(Distributive Law)*
+6. $\equiv \mathbf{F} \lor (\neg p \land \neg q)$ *(Negation Law: $\neg p \land p = \mathbf{F}$)*
+7. $\equiv \neg p \land \neg q$ *(Identity Law: $\mathbf{F} \lor A = A$)* ✅
+</details>
+
+---
+
 ## ✅ Quick Self-Check
 
 1. Is "x + 5 = 10" a proposition?

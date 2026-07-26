@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TOC/notes/01-what-is-toc.md",
+                "file": "Discrete/notes/README.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01-what-is-toc"
+              "title": "README"
             }
           }
         ]
@@ -186,6 +186,12 @@
   },
   "active": "a3c48de46c77c3d0",
   "lastOpenFiles": [
+    "Discrete/notes/cheatsheet-logic.md",
+    "Discrete/notes/01-propositional-logic.md",
+    "TOC/notes/02-alphabets-strings-languages.md",
+    "Discrete/notes/02-predicates-and-quantifiers.md",
+    "Discrete/notes/03-sets-relations-hasse.md",
+    "TOC/notes/01-what-is-toc.md",
     "TOC/notes/11-compilers-and-lex.md",
     "TOC/notes/10-cfg-ambiguity.md",
     "TOC/notes/09-mealy-moore-machines.md",
@@ -193,8 +199,6 @@
     "TOC/notes/03-grammars-and-derivations.md",
     "TOC/pptx_output.txt",
     "TOC/notes/04-dfa.md",
-    "TOC/notes/02-alphabets-strings-languages.md",
-    "TOC/notes/01-what-is-toc.md",
     "TOC/1.module-I.pdf"
   ]
 }

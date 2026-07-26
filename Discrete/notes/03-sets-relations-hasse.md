@@ -128,6 +128,54 @@ Actually:
 
 ---
 
+## 🏋️ Solved Exam Practice Questions
+
+### Question 1 (Prove Relation Properties — VIT Fav)
+**Let $A = \{1, 2, 3, 4\}$ and $R = \{(1,1), (2,2), (3,3), (4,4), (1,2), (2,1)\}$. Check if $R$ is (i) Reflexive (ii) Symmetric (iii) Transitive (iv) Equivalence Relation.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**(i) Reflexive?** ✅ YES — $(1,1), (2,2), (3,3), (4,4)$ are ALL present.
+
+**(ii) Symmetric?** ✅ YES — $(1,2) \in R$ and $(2,1) \in R$ ✓. All other pairs are reflexive (always symmetric).
+
+**(iii) Transitive?** ✅ YES — Check all chains:
+- $(1,2) \in R$ and $(2,1) \in R$ → is $(1,1) \in R$? YES ✓
+- $(2,1) \in R$ and $(1,2) \in R$ → is $(2,2) \in R$? YES ✓
+- No other chains to check.
+
+**(iv) Equivalence Relation?** ✅ YES — it's Reflexive + Symmetric + Transitive.
+
+The equivalence classes are: $[1] = [2] = \{1, 2\}$ and $[3] = \{3\}$ and $[4] = \{4\}$. ✅
+</details>
+
+### Question 2 (Hasse Diagram — LUB/GLB Numerical)
+**For the POSET $(D_{30}, |)$ where $D_{30} = \{1, 2, 3, 5, 6, 10, 15, 30\}$, find: (a) LUB(2, 3) (b) GLB(6, 10) (c) All maximal and minimal elements.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Draw the Hasse diagram first** (divisibility):
+```
+          30
+        / | \
+       6  10  15
+      /|  /|   |\
+     2 3 2 5  3  5
+      \ | / \ /
+        1
+```
+
+**(a) LUB(2, 3)**: Find elements divisible by BOTH 2 and 3: $\{6, 30\}$. Smallest = **6**. ✅
+
+**(b) GLB(6, 10)**: Find elements that divide BOTH 6 and 10: $\{1, 2\}$. Largest = **2**. ✅
+
+**(c) Maximal = 30** (nothing above it). **Minimal = 1** (nothing below it). ✅
+</details>
+
+---
+
 ## 🏋️ Practice: Draw Hasse Diagrams
 
 1. D₆ = {1, 2, 3, 6} under divisibility

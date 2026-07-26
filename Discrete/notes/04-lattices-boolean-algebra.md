@@ -152,6 +152,50 @@ Draw the simplified circuit:
 
 Two branches in parallel. Much simpler than the original!
 
+## 🏋️ Solved Exam Practice Questions
+
+### Question 1 (Sub-lattice Check — Very Common)
+**In the lattice $(D_{12}, |)$ where $D_{12} = \{1, 2, 3, 4, 6, 12\}$, check if $L_1 = \{1, 2, 4\}$ is a sub-lattice.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+Check every pair in $L_1$ for closure under meet (gcd) and join (lcm):
+
+| Pair | gcd (meet) | ∈ $L_1$? | lcm (join) | ∈ $L_1$? |
+|------|:---:|:---:|:---:|:---:|
+| (1, 2) | 1 | ✅ | 2 | ✅ |
+| (1, 4) | 1 | ✅ | 4 | ✅ |
+| (2, 4) | 2 | ✅ | 4 | ✅ |
+
+All pairs are closed under both operations → **$L_1$ IS a sub-lattice** ✅
+
+</details>
+
+### Question 2 (PDNF & PCNF — Guaranteed 5+ Marks)
+**Find the PDNF and PCNF of $f(A, B) = A + B'$.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Step 1**: Build the truth table:
+
+| A | B | B' | A + B' | f |
+|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | 1 | 1 | 1 |
+| 0 | 1 | 0 | 0 | 0 |
+| 1 | 0 | 1 | 1 | 1 |
+| 1 | 1 | 0 | 1 | 1 |
+
+**Step 2 — PDNF** (OR the minterms where $f = 1$): Rows 0, 2, 3.
+$$\text{PDNF} = A'B' + AB' + AB = \Sigma m(0, 2, 3)$$
+
+**Step 3 — PCNF** (AND the maxterms where $f = 0$): Row 1.
+$$\text{PCNF} = (A + B') = \Pi M(1)$$
+
+**Verification**: Simplify PDNF → $A'B' + AB' + AB = B'(A' + A) + AB = B' + AB = B' + A$ ✓ ✅
+</details>
+
 ---
 
 ## ✅ Quick Self-Check

@@ -159,6 +159,42 @@ c  [  0   1 ]
 
 ---
 
+## 🏋️ Solved Exam Practice Questions
+
+### Question 1 (Handshaking Theorem Numerical)
+**A simple graph $G$ has 12 edges and 6 vertices. If 3 vertices have a degree of 4 each, and all other vertices have the same degree $k$, find the value of $k$.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Step 1:** Apply Handshaking Theorem: $\sum_{v \in V} \text{deg}(v) = 2 \cdot |E|$.  
+**Step 2:** Substitute $|E| = 12$, so total sum of degrees $= 2 \times 12 = 24$.  
+**Step 3:** The graph has 6 vertices total:
+- 3 vertices have degree 4 $\implies$ Sum $= 3 \times 4 = 12$.
+- Remaining 3 vertices have degree $k \implies$ Sum $= 3k$.  
+**Step 4:** Set up equation:
+$$12 + 3k = 24 \implies 3k = 12 \implies k = 4$$
+**Answer:** $k = 4$. ✅
+</details>
+
+---
+
+### Question 2 (Isomorphism Verification)
+**Are two graphs with degree sequences $(3, 3, 2, 2)$ and $(3, 2, 2, 1)$ isomorphic?**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Check Invariants:**
+1. Number of vertices: Both have 4 vertices.
+2. Degree sequences: Graph 1 has $(3, 3, 2, 2)$, Graph 2 has $(3, 2, 2, 1)$.
+3. Sum of degrees: Graph 1 $= 10$, Graph 2 $= 8$.
+
+**Conclusion:** Since the degree sequences and edge counts are not equal, the two graphs are **NOT isomorphic**. ✅
+</details>
+
+---
+
 ## ✅ Quick Self-Check
 
 1. If a graph has 5 vertices with degrees 2,3,3,4,2 — how many edges?

@@ -124,6 +124,77 @@ Step 4: Mortal(Socrates)                   ← Modus Ponens (Steps 2 + 3)  ∎
 
 ---
 
+## 🏋️ Solved Practice Questions (From MAT2002 Module 1 Question Bank)
+
+### Question 1 (System Specification Translation - Rosen Ex. 42)
+**Express the following system specification using predicates and quantifiers:**  
+*"When there is less than 30 megabytes free on the hard disk, a warning message is sent to all users."*
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+**Step 1:** Define Predicates:
+- $P$: "There is less than 30 MB free on the hard disk" (proposition).
+- $W(u)$: "Warning message is sent to user $u$".
+- Domain for $u$: All users on the system.
+
+**Step 2:** Formulate Logical Expression:
+$$P \longrightarrow \forall u \, W(u)$$
+
+Alternatively, using predicate $F(d)$ for disk free space $< 30\text{MB}$:
+$$L \to \forall u \, W(u) \quad \text{or} \quad \forall u \, (L \to W(u))$$
+
+**Result:** Correct ✅
+
+</details>
+
+---
+
+### Question 2 (Negating Nested Quantifiers - Rosen Ex. 30)
+**Rewrite $\neg \exists y (\forall x \exists z \, T(x, y, z) \lor \exists x \forall z \, U(x, y, z))$ so that negations appear only within predicates.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+1. Push $\neg$ past $\exists y$:  
+   $$\forall y \, \neg (\forall x \exists z \, T(x, y, z) \lor \exists x \forall z \, U(x, y, z))$$
+2. Apply De Morgan's Law for propositions $\neg(A \lor B) \equiv \neg A \land \neg B$:  
+   $$\forall y \, (\neg(\forall x \exists z \, T(x, y, z)) \land \neg(\exists x \forall z \, U(x, y, z)))$$
+3. Push $\neg$ inside both quantified expressions:
+   - $\neg(\forall x \exists z \, T(x, y, z)) \implies \exists x \forall z \, \neg T(x, y, z)$
+   - $\neg(\exists x \forall z \, U(x, y, z)) \implies \forall x \exists z \, \neg U(x, y, z)$
+4. Combine results:  
+   $$\forall y \, ((\exists x \forall z \, \neg T(x, y, z)) \land (\forall x \exists z \, \neg U(x, y, z)))$$
+
+**Result:** Correct ✅
+
+</details>
+
+---
+
+### Question 3 (Formal Predicate Inference Proof - Rosen Ex. 27)
+**Use rules of inference to show that if $\forall x (P(x) \to (Q(x) \land S(x)))$ and $\forall x (P(x) \land R(x))$ are true, then $\forall x (R(x) \land S(x))$ is true.**
+
+<details>
+<summary>💡 Step-by-Step Solution</summary>
+
+| Step | Expression | Reason |
+|:---:|---|---|
+| 1 | $\forall x (P(x) \land R(x))$ | Premise |
+| 2 | $P(c) \land R(c)$ | Universal Instantiation (1) for an arbitrary element $c$ |
+| 3 | $P(c)$ | Simplification from (2) |
+| 4 | $R(c)$ | Simplification from (2) |
+| 5 | $\forall x (P(x) \to (Q(x) \land S(x)))$ | Premise |
+| 6 | $P(c) \to (Q(c) \land S(c))$ | Universal Instantiation (5) for $c$ |
+| 7 | $Q(c) \land S(c)$ | Modus Ponens from (3) and (6) |
+| 8 | $S(c)$ | Simplification from (7) |
+| 9 | $R(c) \land S(c)$ | Conjunction from (4) and (8) |
+| 10 | $\forall x (R(x) \land S(x))$ | Universal Generalization from (9) ✅ |
+
+</details>
+
+---
+
 ## ✅ Quick Self-Check
 
 1. What's ¬(∀x P(x)) equivalent to?
