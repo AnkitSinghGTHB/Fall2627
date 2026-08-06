@@ -20,12 +20,13 @@
 | # | Topic | File | Time | Difficulty |
 |---|-------|------|:---:|:---:|
 | 1 | **Java Programs Explained** | [01-programs-explained.md](./01-programs-explained.md) | ☕☕ 15 min | 🟢 Easy |
+| 2 | **CAT-1 Algorithms Master Guide** | [01-cat1-algorithms-master.md](./01-cat1-algorithms-master.md) | ☕☕ 20 min | 🔴 Hard |
 
 ### 📄 Quick Reference
 
 | Covers | File |
 |--------|------|
-| Java syntax cheatsheet | [cheatsheet.md](./cheatsheet.md) |
+| Master Algorithm Cheat Sheet | [01-cat1-algorithms-master.md](./01-cat1-algorithms-master.md) |
 
 ---
 

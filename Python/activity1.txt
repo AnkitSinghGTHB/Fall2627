@@ -1,0 +1,6 @@
+Write a function that returns the square of a number.
+Write a function that returns the factorial of a number.
+Write a function that returns the largest of three numbers.
+Write a function that returns the reverse of a string.
+Write a function without parameters and without a return value to print "Welcome to Python".  
+Write a function without parameters but with a return value to return the current year.

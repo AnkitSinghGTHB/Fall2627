@@ -1,0 +1,2 @@
+Minimization of DFA  (very IMP)
+https://www.youtube.com/watch?v=A7eKj_GXam0

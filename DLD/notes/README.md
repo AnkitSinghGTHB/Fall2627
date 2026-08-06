@@ -38,6 +38,7 @@
 |--------|------|
 | Day 1 — Signals, Number Systems, Conversions | [cheatsheet-day1.md](./cheatsheet-day1.md) |
 | Day 2 — Complements, Signed Numbers, BCD | [cheatsheet-day2.md](./cheatsheet-day2.md) |
+| Day 3+ — Boolean Algebra, K-Maps, Sequential, Verilog | [cheatsheet-day3.md](./cheatsheet-day3.md) |
 
 ---
 

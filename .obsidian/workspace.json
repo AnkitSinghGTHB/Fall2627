@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Discrete/notes/README.md",
-                "mode": "preview",
+                "file": "TOC/notes/assignment-1-solutions.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "assignment-1-solutions"
+            }
+          },
+          {
+            "id": "eb32a33cd92d3937",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Discrete/notes/02-predicates-and-quantifiers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "02-predicates-and-quantifiers"
             }
           }
         ]
@@ -78,8 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "02fbfcc4c55b6218",
@@ -186,19 +199,29 @@
   },
   "active": "a3c48de46c77c3d0",
   "lastOpenFiles": [
-    "Discrete/notes/cheatsheet-logic.md",
-    "Discrete/notes/01-propositional-logic.md",
-    "TOC/notes/02-alphabets-strings-languages.md",
     "Discrete/notes/02-predicates-and-quantifiers.md",
-    "Discrete/notes/03-sets-relations-hasse.md",
+    "TOC/notes/assignment-1-solutions.md",
+    "TOC/notes/04-dfa.md",
+    "TOC/notes/03-grammars-and-derivations.md",
+    "TOC/notes/02-alphabets-strings-languages.md",
     "TOC/notes/01-what-is-toc.md",
+    "Discrete/notes/practice-questions-worksheet.md",
+    "Discrete/notes/03-sets-relations-hasse.md",
+    "Discrete/notes/01-propositional-logic.md",
+    "DLD/notes/07-kmap-minimization.md",
+    "DLD/notes/06-boolean-algebra-and-gates.md",
+    "DLD/notes/05-bcd-codes.md",
+    "DLD/notes/04-complements-and-signed-numbers.md",
+    "DLD/notes/03-number-conversions.md",
+    "DLD/notes/02-number-systems.md",
+    "DLD/notes/01-signals-and-digital.md",
+    "Discrete/notes/README.md",
+    "Discrete/notes/cheatsheet-logic.md",
     "TOC/notes/11-compilers-and-lex.md",
     "TOC/notes/10-cfg-ambiguity.md",
     "TOC/notes/09-mealy-moore-machines.md",
     "TOC/notes/08-pumping-lemma.md",
-    "TOC/notes/03-grammars-and-derivations.md",
     "TOC/pptx_output.txt",
-    "TOC/notes/04-dfa.md",
     "TOC/1.module-I.pdf"
   ]
 }

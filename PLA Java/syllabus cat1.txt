@@ -1,0 +1,118 @@
+Please find the CAT 1 syllabus and the corresponding PPTs attached below.
+
+
+
+
+
+Topics
+
+
+
+Basic I/O, Operators
+
+
+
+Basic I/O, Operators"
+
+
+
+Decision making and Control
+structures
+
+
+
+Introduction to Algorithms
+
+
+
+Time & Space
+complexity-1.1
+
+
+
+Time & Space
+complexity-1.2
+
+
+
+Simple Sieve
+
+
+
+Remainder Theorem (CRT)
+
+
+
+Segmented & Incremental
+Sieve
+
+
+
+Euclid's Algorithm
+
+
+
+Karatsuba Algorithm
+
+
+
+Toggle the switch & Alice
+Apple tree
+
+
+
+Euler's phi Algorithm
+
+
+
+Strobogrammatic Number
+
+
+
+Binary Palindrome
+
+
+
+Longest Sequence of 1 after
+flipping a bit
+
+
+
+BOOTH'S ALGOITHM
+
+
+
+Swap two nibbles in a byte
+
+
+
+Natural Sort order
+
+
+
+Quick, Selection Sort
+
+
+
+Block Swap Algorithm
+
+
+
+Leaders in array
+
+
+
+Majority element
+
+
+
+Max product subarray
+
+
+
+Maximum sum of hour glass in
+matrix
+
+
+
+Max Equlibrium Sum

@@ -22,8 +22,28 @@
 
 ---
 
-## 🧠 Model Trade-offs
+## 🧠 Model Trade-offs (Bias-Variance)
 
-- **High Bias**: Underfitting (model too simple).
-- **High Variance**: Overfitting (model memorizes training noise).
-- **Goal**: Low Bias + Low Variance.
+| Error Type | Meaning | Result | Fix |
+|---|---|---|---|
+| **High Bias** | Model is too simple to learn the data | **Underfitting** | Make model more complex, add features |
+| **High Variance** | Model memorizes the training noise | **Overfitting** | Simplify model, get more data, use regularization |
+
+> **Goal**: Low Bias + Low Variance (The Goldilocks Zone).
+
+---
+
+## 🤖 Learning Paradigms
+
+| Paradigm | Data Type | Goal | Example Algorithms |
+|---|---|---|---|
+| **Supervised** | Labeled (Answers provided) | Predict future answers | Linear Regression, SVM, Random Forest |
+| **Unsupervised** | Unlabeled (No answers) | Find hidden patterns/groups | K-Means Clustering, PCA |
+| **Reinforcement** | Environment & Rewards | Learn by trial and error | Q-Learning (Chess, Self-driving cars) |
+
+---
+
+## ⚡ Perceptron Update Rule
+If the perceptron makes a mistake:
+$$ w_{\text{new}} = w_{\text{old}} + (\alpha \times \text{Error} \times X) $$
+*Where $\alpha$ is the Learning Rate, and Error = True Label - Predicted Label.*

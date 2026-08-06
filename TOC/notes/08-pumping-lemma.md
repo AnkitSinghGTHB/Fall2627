@@ -21,6 +21,27 @@ When the exam asks you to prove that a language (like $L = \{a^n b^n \mid n \ge 
 
 ---
 
+## 📝 Worked Example: $L = \{a^n b^n \mid n \ge 0\}$
+**Prove that the language $L$ consisting of equal numbers of $a$'s followed by equal numbers of $b$'s is NOT regular.**
+
+<details>
+<summary>💡 Step-by-Step Proof</summary>
+
+1. **Assume the opposite**: We assume that $L$ is regular.
+2. **State the Lemma**: So, the pumping lemma should hold for $L$.
+3. **Define a length**: It must have a pumping length $P$.
+4. **State the condition**: All strings in $L$ with length $\ge P$ can be pumped.
+5. **Pick a string**: Let's pick a valid string from the language that is long enough: let $w = a^P b^P$. (Notice it has $P$ a's followed by $P$ b's, so length is $2P$, which is $\ge P$).
+6. **Divide the string**: We must divide $w$ into $x, y, z$ such that $w = xyz$, with $|xy| \le P$ and $|y| > 0$.
+7. **Check combinations**: Since $|xy| \le P$, and the first $P$ characters of $w$ are ALL $a$'s, the string $y$ (the part we pump) MUST consist *entirely* of $a$'s.
+8. **Pump it up**: Let's pump $y$ by picking $i = 2$ (so $x y^2 z$).
+9. **Break the rules**: Since $y$ is made only of $a$'s, pumping it adds more $a$'s to the string but leaves the number of $b$'s exactly the same. The new string will have MORE $a$'s than $b$'s.
+10. **Conclusion**: The new pumped string $x y^2 z \notin L$ (because the number of $a$'s and $b$'s are no longer equal). This breaks the pumping condition. **CONTRADICTION!** Therefore, $L$ is not regular.
+
+</details>
+
+---
+
 ## 🛑 What are the "3 Pumping Conditions"?
 If you're asked for the actual conditions that must be broken (mentioned in Step 9), they are:
 1. $xy^iz \in L$ for all $i \ge 0$

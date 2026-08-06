@@ -23,7 +23,8 @@
 | 2 | **Predicates, Quantifiers & Inference** | [02-predicates-and-quantifiers.md](./02-predicates-and-quantifiers.md) | ☕☕☕ 20 min | 🟡 Medium |
 | 3 | **Sets, Relations & Hasse Diagrams** | [03-sets-relations-hasse.md](./03-sets-relations-hasse.md) | ☕☕☕ 20 min | 🟡 Medium |
 | 4 | **Lattices & Boolean Algebra** | [04-lattices-boolean-algebra.md](./04-lattices-boolean-algebra.md) | ☕☕☕ 20 min | 🟡 Medium |
-| 5 | **Graphs & Matrix Representations** | [05-graphs.md](./05-graphs.md) | ☕☕☕ 20 min | 🟡 Medium |
+| 5a | **Graphs & Matrix Representations** | [05-graphs.md](./05-graphs.md) | ☕☕☕ 20 min | 🟡 Medium |
+| 5b | **Relations & Partial Orders (Lexicographic)** | [05-relations-and-functions.md](./05-relations-and-functions.md) | ☕☕ 15 min | 🟡 Medium |
 | 6 | **Module 1 Rosen Master Practice Bank** | [06-module1-rosen-practice-solutions.md](./06-module1-rosen-practice-solutions.md) | ☕☕☕ 20 min | 🔴 Hard |
 | 📝 | **Question-Only Practice Worksheet** | [practice-questions-worksheet.md](./practice-questions-worksheet.md) | 🏋️ Test Yourself | 🟡 Medium |
 

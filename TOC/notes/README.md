@@ -1,4 +1,4 @@
-# 🎯 TOC — Theory of Computation
+# 🧠 TOC — Theory of Computation
 
 > **The "just tell me what I need to know to ace this" edition**
 >
@@ -6,7 +6,7 @@
 
 ---
 
-## 📚 How to Use These Notes
+## 📌 How to Use These Notes
 
 1. **Read in order** — later modules build on earlier ones heavily
 2. **Draw the diagrams yourself** — TOC is visual, you MUST draw the automata by hand
@@ -15,67 +15,79 @@
 
 ---
 
-## 🗺️ Module 1 — Map
+## 🗺️ Module 1: Finite Automata & Regular Languages
 
 | # | Topic | File | Time | Difficulty |
 |---|-------|------|:---:|:---:|
-| 1 | **What is TOC? (The Big Picture)** | [01-what-is-toc.md](./01-what-is-toc.md) | ☕ 5 min | 🟢 Easy |
-| 2 | **Alphabets, Strings & Languages** | [02-alphabets-strings-languages.md](./02-alphabets-strings-languages.md) | ☕☕ 10 min | 🟢 Easy |
-| 3 | **Grammars & Derivations** | [03-grammars-and-derivations.md](./03-grammars-and-derivations.md) | ☕☕ 15 min | 🟡 Medium |
-| 4 | **Finite Automata (DFA)** | [04-dfa.md](./04-dfa.md) | ☕☕☕ 20 min | 🟡 Medium |
-| 5 | **NFA & ε-NFA** | [05-nfa.md](./05-nfa.md) | ☕☕☕ 20 min | 🟡 Medium |
-| 6 | **Regular Expressions** | [06-regular-expressions.md](./06-regular-expressions.md) | ☕☕☕ 20 min | 🟡 Medium |
-| 7 | **Regular Grammars & Compiler Intro** | [07-regular-grammars-and-compilers.md](./07-regular-grammars-and-compilers.md) | ☕☕ 15 min | 🟡 Medium |
-| 8 | **The Pumping Lemma** | [08-pumping-lemma.md](./08-pumping-lemma.md) | ☕ 5 min | 🟡 Medium |
-| 9 | **Mealy and Moore Machines** | [09-mealy-moore-machines.md](./09-mealy-moore-machines.md) | ☕☕ 10 min | 🟢 Easy |
-| 10 | **CFG & Ambiguity** | [10-cfg-ambiguity.md](./10-cfg-ambiguity.md) | ☕☕ 10 min | 🟡 Medium |
-| 11 | **Compilers & the LEX Tool** | [11-compilers-and-lex.md](./11-compilers-and-lex.md) | ☕☕ 10 min | 🟢 Easy |
-
-### 📄 Cheatsheets
-
-| Covers | File |
-|--------|------|
-| Module 1 — Everything in one page | [cheatsheet-module1.md](./cheatsheet-module1.md) |
+| 1 | **What is TOC? (The Big Picture)** | [01-what-is-toc.md](./01-what-is-toc.md) | ⏱️ 5 min | 🟢 Easy |
+| 2 | **Alphabets, Strings & Languages** | [02-alphabets-strings-languages.md](./02-alphabets-strings-languages.md) | ⏱️ ⏱️ 10 min | 🟢 Easy |
+| 3 | **Finite Automata (DFA)** | [04-dfa.md](./04-dfa.md) | ⏱️ ⏱️ ⏱️ 20 min | 🟡 Medium |
+| 4 | **NFA & ε-NFA** | [05-nfa.md](./05-nfa.md) | ⏱️ ⏱️ ⏱️ 20 min | 🟡 Medium |
+| 5 | **DFA Minimization (Table Filling)** | [04-dfa-minimization.md](./04-dfa-minimization.md) | ⏱️ ⏱️ 15 min | 🟡 Medium |
+| 6 | **Regular Expressions** | [06-regular-expressions.md](./06-regular-expressions.md) | ⏱️ ⏱️ ⏱️ 20 min | 🟡 Medium |
+| 7 | **Regular Grammars** | [07-regular-grammars-and-compilers.md](./07-regular-grammars-and-compilers.md) | ⏱️ ⏱️ 15 min | 🟡 Medium |
+| 8 | **The Pumping Lemma** | [08-pumping-lemma.md](./08-pumping-lemma.md) | ⏱️ 5 min | 🟡 Medium |
+| 9 | **Compilers & the LEX Tool** | [11-compilers-and-lex.md](./11-compilers-and-lex.md) | ⏱️ ⏱️ 10 min | 🟢 Easy |
 
 ---
 
-## 🧠 What You're Actually Learning
+## 🗺️ Module 2: Context Free Grammars
+
+| # | Topic | File | Time | Difficulty |
+|---|-------|------|:---:|:---:|
+| 10 | **Grammars & Derivations** | [03-grammars-and-derivations.md](./03-grammars-and-derivations.md) | ⏱️ ⏱️ 15 min | 🟡 Medium |
+| 11 | **CFG & Ambiguity** | [10-cfg-ambiguity.md](./10-cfg-ambiguity.md) | ⏱️ ⏱️ 10 min | 🟡 Medium |
+*(More PDA notes coming soon!)*
+
+---
+
+### 📝 Cheatsheets & Assignments
+
+| Type | File |
+|------|------|
+| **Module 1 — Everything in one page** | [cheatsheet-module1.md](./cheatsheet-module1.md) |
+| **Assignment 1 Solutions (Complete)** | [assignment-1-solutions.md](./assignment-1-solutions.md) |
+| **Assignment 2 Solutions (NFA to DFA)** | [assignment-2-solutions.md](./assignment-2-solutions.md) |
+
+---
+
+## 💡 What You're Actually Learning
 
 ```
 TOC = Theory of Computation
 
 Three pillars:
-┌─────────────────┐  ┌──────────────────┐  ┌───────────────┐
-│ Automata Theory │  │ Computability    │  │ Complexity    │
-│ "What machines  │  │ "Can this be     │  │ "How hard is  │
-│  exist?"        │  │  solved at all?" │  │  this problem?"│
-└────────┬────────┘  └────────┬─────────┘  └───────┬───────┘
-         │                    │                     │
+╔══════════════════╗  ╔═══════════════════╗  ╔═══════════════╗
+║ Automata Theory  ║  ║ Computability     ║  ║ Complexity    ║
+║ "What machines   ║  ║ "Can this be      ║  ║ "How hard is  ║
+║  exist?"         ║  ║  solved at all?"  ║  ║  this problem"║
+╚══════════════════╝  ╚═══════════════════╝  ╚═══════════════╝
+         ↑                    ↑                     ↑
     Module 1 focus       Mentioned briefly     P vs NP stuff
     (DFA, NFA, RE)       (halting problem)     (mentioned)
 ```
 
 ---
 
-## 💡 Study Strategy for TOC
+## 🧠 Study Strategy for TOC
 
 ### The 80/20 Rule:
-- **50%** = DFA/NFA construction + string tracing (draw it → trace it → done)
-- **25%** = Regular expressions ↔ Automata conversion (mechanical process)
+- **50%** = DFA/NFA construction + string tracing (draw it -> trace it -> done)
+- **25%** = Regular expressions -> Automata conversion (mechanical process)
 - **15%** = Grammars (follow the production rules)
 - **10%** = Theory questions (definitions, Chomsky hierarchy — memorize)
 
 ### Time Budget per Week:
-- 🎯 **2 hours** = Read the notes
-- 🎯 **1.5 hours** = Practice drawing DFAs/NFAs by hand (this is NON-NEGOTIABLE)
-- 🎯 **30 min** = Review cheatsheet
+- 📖 **2 hours** = Read the notes
+- ✍️ **1.5 hours** = Practice drawing DFAs/NFAs by hand (this is NON-NEGOTIABLE)
+- ⚡ **30 min** = Review cheatsheet
 
 ---
 
-## ⚠️ The #1 Mistake in TOC
+## 🚨 The #1 Mistake in TOC
 
 > Students try to "understand the theory" without drawing. **TOC is a drawing subject.** If you're not sketching automata on paper, you're studying it wrong.
 
 ---
 
-*Made with ❤️ by a friend who wants you to clear this without pain.*
+*Made with ☕ ❤️ by a friend who wants you to clear this without pain.*

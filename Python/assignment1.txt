@@ -1,0 +1,11 @@
+1.Why is Python considered an interpreted language?
+
+List of programs:
+
+1.   Fibonacci series
+2.  Palindrome
+3.  Factorial
+4.  Star Pattern
+5.  Lcm, gcd
+6.  Sudoku
+7.   N queen

@@ -1,0 +1,10 @@
+Find the frequency of each character.
+Find the first non-repeating character.
+Remove duplicate characters from a string.
+Check whether two strings are anagrams.
+Count the number of words in a sentence.
+Find the longest word in a sentence.
+Print words in reverse order.
+Check whether one string is a substring of another.
+Sort the characters of a string alphabetically.
+Find the most frequent character in a string.
