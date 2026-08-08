@@ -15,6 +15,15 @@
 
 ---
 
+## ⚡ CAT-1 Master Blitz & Exam Question Blueprint
+
+| Topic | File | Time | Difficulty |
+|-------|------|:---:|:---:|
+| 🏆 **Handwritten Blueprint: 5 Solved Exam Questions (50M)** | [cat1-questions-master.md](./cat1-questions-master.md) | ⏱️ 20 min | 🔴 **MUST READ FOR EXAM** |
+| 🎯 **CAT-1 Master Exam Blitz (Class Questions & Exact Scope)** | [cat1-exam-blitz.md](./cat1-exam-blitz.md) | ⏱️ 15 min | 🔴 **MUST READ** |
+
+---
+
 ## 🗺️ Module 1: Finite Automata & Regular Languages
 
 | # | Topic | File | Time | Difficulty |
