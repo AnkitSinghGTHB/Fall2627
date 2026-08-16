@@ -22,6 +22,18 @@ Strings in Python are **immutable** (they can't be changed after creation). So w
    # The cheating way (using built-ins)
    from collections import Counter
    freq = Counter("hello")
+   
+   # using dictionary
+   s="hello"
+   f={}
+   for i in s:
+	   if i not in f:
+		   f[i]=1
+	   else:
+		   f[i]+=1
+	
+	for i,j in f.items():
+		print(i, j)
    ```
 2. **Remove duplicate characters:**
    ```python
@@ -92,6 +104,9 @@ import math
 print(math.factorial(5)) # 120
 print(math.gcd(48, 18))  # 6
 print(math.lcm(12, 15))  # 60
+
+#how about wihtout math module
+
 ```
 </details>
 

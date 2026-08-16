@@ -128,6 +128,7 @@ print(10 % 3)
 1
 ```
 
+
 > 🤦 **This is THE trap**: Students write -3 for -7//2. Python rounds DOWN (toward -∞), not toward zero! ✅
 </details>
 

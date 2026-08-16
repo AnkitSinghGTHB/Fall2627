@@ -1,6 +1,6 @@
 # 🤖 Lesson 1 — Introduction to Machine Learning
 
-> **TL;DR**: Normal coding = you write the rules, computer follows them. Machine Learning = you show the computer a TON of examples, and it figures out the rules by itself. That's literally the whole concept. Netflix recommendations, YouTube autoplay, Instagram Explore — all ML.
+> **TL;DR**: Normal coding = you write the rules, computer follows them. Machine Learning = you show the computer a TON of examples, and it figures out the rules by itself. That's literallzy the whole concept. Netflix recommendations, YouTube autoplay, Instagram Explore — all ML.
 
 ---
 

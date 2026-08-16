@@ -15,6 +15,15 @@
 
 ---
 
+## ⚡ CAT-1 Faculty Assignment Solutions & Topic Blueprints
+
+| Topic | File | Time | Difficulty |
+|-------|------|:---:|:---:|
+| 🏆 **Handwritten Blueprint: 6 Core Exam Topics & Decoder/Subtractor Designs** | [cat1-important-topics-master.md](./cat1-important-topics-master.md) | ⏱️ 15 min | 🔴 **MUST READ FOR EXAM** |
+| 🏆 **All 13 Faculty Assignment Problems (Fully Solved Step-by-Step)** | [cat1-faculty-assignments-solved.md](./cat1-faculty-assignments-solved.md) | ⏱️ 20 min | 🔴 **MUST READ FOR EXAM** |
+
+---
+
 ## 🗺️ Module Map
 
 | # | Module | File | Time Needed | Difficulty |
