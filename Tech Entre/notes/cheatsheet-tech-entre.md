@@ -1,54 +1,63 @@
 # ⚡ Technology Entrepreneurship — Master Cheatsheet
 
----
-
-## 🛡️ Intellectual Property Types
-
-| IP Type | Protects | Example |
-|---|---|---|
-| **Patent** | Technical inventions / processes | New battery technology |
-| **Trademark** | Brand identity / Logos | Brand name & logo |
-| **Copyright** | Expressed works / Code | Books, Software source code |
-| **Trade Secret** | Confidential internal formulas | Algorithm / Recipe |
+> **3-Minute High-Yield Cheat Sheet for CAT-1 (MGT2003)**
 
 ---
 
-## 🔬 4 Feasibility Checkpoints
+## 👥 Employee vs Intrapreneur vs Entrepreneur
 
-1. **Market**: Is there paying demand?
-2. **Technical**: Can we build it?
-3. **Financial**: Will it be profitable?
-4. **Legal**: Is it compliant & protected?
+| Trait | Employee | Intrapreneur | Entrepreneur |
+|---|---|---|---|
+| **Risk** | Zero personal risk | Career/project risk | High personal financial & career risk |
+| **Focus** | Daily job execution | Corporate innovation inside firm | Enterprise creation & survival |
+| **Resources** | Uses assigned tools | Leverages parent company's assets | Must raise capital & find resources |
+| **Example** | Software dev at Google | Creator of **Gmail / PlayStation** | Founder of **Zomato / Ola / Zerodha** |
 
 ---
 
 ## 🏗️ The 9 Blocks of the Business Model Canvas (BMC)
 
-1. **Customer Segments:** Who are we solving the problem for?
-2. **Value Proposition:** What is the actual solution/benefit?
-3. **Channels:** How do we deliver the product/message to them?
-4. **Customer Relationships:** How do we interact with them?
-5. **Revenue Streams:** How do we make money?
-6. **Key Resources:** What assets do we need?
-7. **Key Activities:** What tasks do we need to do daily?
-8. **Key Partnerships:** Who helps us outside our company?
-9. **Cost Structure:** What do we spend money on?
+1. **Customer Segments:** Target niche / demographic.
+2. **Value Proposition:** The core solution & benefit provided.
+3. **Channels:** Delivery & marketing touchpoints.
+4. **Customer Relationships:** Retention, support, community.
+5. **Revenue Streams:** How money is generated.
+6. **Key Resources:** Critical assets (tech, fleet, team, IP).
+7. **Key Activities:** Day-to-day operations (coding, logistics, marketing).
+8. **Key Partnerships:** External suppliers, alliances, platforms.
+9. **Cost Structure:** Major fixed and variable costs.
 
 ---
 
-## 🕵️‍♂️ Customer Discovery Steps
+## 🔬 4 Feasibility Checkpoints (Go / No-Go)
 
-1. **Formulate a Hypothesis**: "I think X group has Y problem."
-2. **Get Out of the Building**: Talk to actual potential customers.
-3. **Test the Problem**: Validate if the problem is painful enough.
-4. **Pivot or Persevere**: Change the idea (Pivot) or continue building (Persevere).
+1. **Market Feasibility:** Target market size (TAM/SAM/SOM), customer pain point, willingness to pay.
+2. **Technical Feasibility:** Engineering viability, scalability, supply chain, hardware/software stack.
+3. **Financial Feasibility:** Unit economics ($LTV/CAC > 3x$), breakeven timeline, startup CAPEX & OPEX.
+4. **Legal & Regulatory:** IP protection, safety compliance, municipal zoning, data privacy laws.
 
 ---
 
-## 🆚 Entrepreneur vs Employer/Manager
+## 🕵️‍♂️ Customer Discovery 4-Step Cycle
 
-| Trait | Entrepreneur | Employer / Manager |
+1. **Hypothesize:** State assumptions about customer pain and pricing.
+2. **Get Out of the Building:** Conduct non-leading qualitative interviews (The Mom Test).
+3. **Validate:** Build Smoke Test landing page / MVP to test real demand.
+4. **Pivot or Persevere:** Iterate based on customer feedback.
+
+---
+
+## 💡 SCAMPER Technique for Innovation
+
+- **S**ubstitute | **C**ombine | **A**dapt | **M**odify/Magnify | **P**ut to another use | **E**liminate | **R**everse
+
+---
+
+## 🛡️ Intellectual Property (IP) Types
+
+| IP Type | What It Protects | Real-World Example |
 |---|---|---|
-| **Risk** | Takes high calculated risks | Minimizes risk |
-| **Focus** | Innovation, creating the vision | Execution, daily operations |
-| **Reward** | High potential (equity/profits) | Stable, predictable salary |
+| **Patent** | Technical inventions & functional mechanisms | Proprietary EV fast-charging algorithm |
+| **Trademark** | Brand names, logos, slogans, trade dress | "Zomato" name & red delivery logo |
+| **Copyright** | Original source code, documentation, creative assets | App UI source code & website content |
+| **Trade Secret** | Confidential internal formulas & algorithms | Search ranking / food recommendation algorithm |

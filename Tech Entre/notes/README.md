@@ -2,6 +2,14 @@
 
 ---
 
+## ⚡ CAT-1 Master Exam Solved Papers (Slot A & Slot E)
+
+| Topic | File | Time | Difficulty |
+|-------|------|:---:|:---:|
+| 🏆 **All 10 Questions from CAT-1 Official Papers (Slot A & E Fully Solved)** | [cat1-master-solved-papers.md](./cat1-master-solved-papers.md) | ⏱️ 20 min | 🔴 **MUST READ FOR EXAM TODAY** |
+
+---
+
 ## 🗺️ Module Map
 
 | # | Topic | File | Time | Difficulty |
