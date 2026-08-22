@@ -19,6 +19,7 @@
 
 | # | Topic | File | Time | Difficulty |
 |---|-------|------|:---:|:---:|
+| 🏆 | **Official CAT-1 Master Solved Papers (Slot B22/B24 & B14/D21)** | [cat1-solved-papers-master.md](./cat1-solved-papers-master.md) | ⏱️ 25 min | 🔴 **MUST READ FOR EXAM** |
 | 1 | ⚡ **CAT-1 Complete 2-Hour Master Guide** | [cat1-complete-2hr-master-guide.md](./cat1-complete-2hr-master-guide.md) | ⏱️ 2 hours | 🚀 0-to-Hero (All PYQs + Assignments) |
 | 2 | ☕ **Java Programs Explained Line-by-Line** | [01-programs-explained.md](./01-programs-explained.md) | ☕ 15 min | 🟢 Easy |
 | 3 | 🧠 **CAT-1 Algorithms Master Cheat Sheet** | [01-cat1-algorithms-master.md](./01-cat1-algorithms-master.md) | ☕ 20 min | 🟡 Medium |
@@ -27,6 +28,7 @@
 
 | Covers | File |
 |--------|------|
+| **Official CAT-1 Master Solved Papers (Both Slots Fully Solved)** | [cat1-solved-papers-master.md](./cat1-solved-papers-master.md) |
 | **Complete CAT-1 2-Hour Exam Master Guide** (All PYQs, Assignments, Code, Math Traces) | [cat1-complete-2hr-master-guide.md](./cat1-complete-2hr-master-guide.md) |
 | Master Algorithm Cheat Sheet | [01-cat1-algorithms-master.md](./01-cat1-algorithms-master.md) |
 | Basic Programs Breakdown | [01-programs-explained.md](./01-programs-explained.md) |

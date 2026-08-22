@@ -3,7 +3,7 @@ import java.util.*;
 public class euler_phi {
     // euler's phi algo
     // factorize n into its distinct prime factors, with their corresponding powers
-    // for reach prime factor p, compute p^(k-1) and p^k, where k is the power of p
+    // for each prime factor p, compute p^(k-1) and p^k, where k is the power of p
     // in te prime factorization of n
     // compute the product of all (p-1)*p^(k-1) for each prime factor p
     // return the product from step 3 as the value of euler's totient function
