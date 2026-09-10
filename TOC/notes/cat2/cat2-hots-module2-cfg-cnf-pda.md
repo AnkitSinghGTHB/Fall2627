@@ -1,137 +1,152 @@
-# ⚡ CAT-2 HOTS Master Crib — Module 2 & 3: CFG, CNF, GNF & Pushdown Automata
+# ⚡ CAT-2 HOTS Master Crib — Module 2: CFG, CNF, GNF & Pushdown Automata
 **Course**: CSE2004 — Theory of Computation & Compiler Design  
-**Coverage**: Context-Free Grammars & Pushdown Automata | **Exam Mode**: Open Book / Notes Allowed  
-**Target Score**: 45+ / 50 (S-Grade Boundary)
+**Level**: Self-Contained / Zero-Assumption (From Bedrock Basics to HOTS)  
+**Exam Mode**: Open Book / Handwritten Notes Allowed | **Target Score**: 45+ / 50
+
+---
+
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if you think TOC makes zero sense)*
+
+### 1. What on Earth is a Grammar?
+A grammar is just a **word-replacement factory**:
+* **Variables / Non-Terminals (CAPITAL letters: $S, A, B$)**:
+  * These are temporary placeholders. They can be replaced.
+* **Terminals (lowercase letters, numbers, symbols: $a, b, +, *, id$)**:
+  * These are the final bricks. Once a terminal is produced, it **CANNOT be replaced**.
+* **Production Rule ($A \to a B$)**:
+  * Means: *"Whenever you see the capital letter $A$, you can swap it for the letters $a B$."*
+* **Start Symbol ($S$)**:
+  * The initial placeholder you must always start with.
+
+---
+
+### 2. What is a "Derivation" & "Parse Tree"?
+* **Derivation**: The step-by-step substitution process starting from $S$ until NO capital letters remain.
+* **Leftmost Derivation (LMD)**: At every step, you are strictly forced to replace the **LEFTMOST capital letter first**.
+* **Parse Tree**: A family tree showing which parent variable produced which children. Leaves of the tree are the final terminal letters.
+
+---
+
+### 3. What is Ambiguity? (The Most Common 5-Mark Question)
+Think of the confusing English sentence:
+> *"I saw the man with the telescope."*  
+> (Did I use a telescope to see him, or was the man holding a telescope?)
+
+In programming languages, ambiguity is disastrous!
+* Consider the math expression: **$2 + 3 \times 4$**.
+  * If the parser builds Tree 1: $(2 + 3) \times 4 = 20$.
+  * If the parser builds Tree 2: $2 + (3 \times 4) = 14$.
+* **Definition of Ambiguity**: A grammar is **AMBIGUOUS** if there exists **AT LEAST ONE string** that can produce:
+  1. **TWO different parse trees**, OR
+  2. **TWO different leftmost derivations**.
+* **How to prove it in an exam**: Pick a simple test string (e.g. $a + a * a$). Show two different leftmost derivations for it. Boom, full marks!
+
+---
+
+### 4. What is Chomsky Normal Form (CNF)? (The Strict Grammar Diet)
+Faculties love asking you to convert an ugly grammar into CNF.
+A grammar is in **CNF** if EVERY single rule looks like ONE of these two:
+1. **$A \to B C$** (Exactly **TWO capital letters** on the right).
+2. **$A \to a$** (Exactly **ONE small letter** on the right).
+
+*Nothing else is allowed!* No empty strings ($\epsilon$), no single capital letters ($A \to B$), no mixed strings ($A \to a B$).
+
+---
+
+### 5. What is a Pushdown Automaton (PDA)?
+In CAT-1, you learned DFA/NFA. But a DFA has **finite memory**—it cannot remember how many $a$'s it saw. If you ask a DFA to check if $a^n b^n$ has equal $a$'s and $b$'s for $n = 1,000,000$, the DFA crashes!
+
+* **A PDA is just a DFA with a Pringles Can (Stack) attached!**
+  * The stack has infinite depth.
+  * **$Z_0$**: A special marker sitting at the very bottom of the can so you know when it's empty.
+* **How PDA checks $a^n b^n$**:
+  1. Every time it sees an $a$ in the input, it drops a chip ($A$) into the can (**PUSH**).
+  2. When it starts seeing $b$'s, for every $b$, it takes one chip ($A$) out of the can (**POP**).
+  3. When the input finishes, if the can is back to only having $Z_0$ at the bottom, the number of $a$'s and $b$'s were equal $\implies$ **ACCEPT!**
+
+#### How to Read PDA Transition Notation:
+$$\delta(q_0, a, Z_0) = (q_0, A Z_0)$$
+In plain English:
+* *"I am currently in State $q_0$."*
+* *"I see input letter $a$."*
+* *"The top of the stack currently has $Z_0$."*
+* *"Action: Stay in state $q_0$, and replace $Z_0$ with $A Z_0$ (which effectively PUSHES $A$ on top of $Z_0$)."*
+
+$$\delta(q_1, b, A) = (q_1, \epsilon)$$
+In plain English:
+* *"I see input $b$, top of stack is $A$. Action: replace $A$ with $\epsilon$ (which effectively POPS $A$ off the stack!)."*
 
 ---
 
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
-| If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |
+| If Question Shows / Asks... | It Means This Exact Topic | Your Immediate Formula / Action |
 | :--- | :--- | :--- |
 | "Show the grammar is ambiguous" | **CFG Ambiguity Proof** | Pick ONE short string $w$. Draw **TWO distinct parse trees** OR write **TWO distinct leftmost derivations** for $w$. |
-| "Convert grammar to CNF" | **Chomsky Normal Form** | **Strict Order**: 1. Remove $\epsilon$-productions $\to$ 2. Remove Unit productions $\to$ 3. Remove Useless symbols $\to$ 4. Replace terminals & long RHS. Form: $A \to BC$ or $A \to a$. |
-| "Convert to GNF" | **Greibach Normal Form** | Eliminate left recursion ($A \to A\alpha$). Form: $A \to a \alpha$ (starts with exactly ONE terminal followed by $\ge 0$ variables). |
-| "Design a PDA for $L = \{a^n b^n\}$", $\{w w^R\}$ | **PDA Construction** | Define 7-tuple $M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$. Write explicit transition table $\delta(q, a, X) = \{(p, \gamma)\}$. |
-| "Acceptance by Empty Stack vs Final State" | **PDA Acceptance Modes** | Final State: ends in $q_f \in F$. Empty Stack: stack contains nothing ($\text{stack} = \epsilon$). Inter-conversion requires adding $q_{start}, Z_0'$ and $q_{dump}$. |
-| "Prove $L = \{a^n b^n c^n\}$ is not context-free" | **Pumping Lemma for CFL** | Assume CFL $\to$ Pick $s = a^p b^p c^p$ ($|s| \ge p$). Split $s = u v w x y$ with $|vwx| \le p, |vx| \ge 1$. Show $s' = u v^2 w x^2 y \notin L$. |
+| "Convert grammar to CNF" | **Chomsky Normal Form** | **Strict Order**: 1. Remove $\epsilon$-productions $\to$ 2. Remove Unit productions $\to$ 3. Remove Useless symbols $\to$ 4. Make all RHS binary variables or single terminals. |
+| "Design a PDA for $L = \{a^n b^n\}$", $\{w w^R\}$ | **PDA Construction** | Define 7-tuple $M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$. Write explicit transition table $\delta$. |
+| "Acceptance by Empty Stack vs Final State" | **PDA Acceptance Modes** | Final State: ends in $q_f \in F$. Empty Stack: stack is empty ($\epsilon$). Inter-conversion requires adding $q_{start}, Z_0'$ and $q_{dump}$. |
 
 ---
 
-## 🛠️ TIER 2: Deterministic Algorithmic Recipes
+## 🛠️ TIER 2: Step-by-Step Execution Recipes
 
-### Recipe 2.1: The 4-Step Chomsky Normal Form (CNF) Algorithm
-A grammar is in CNF if every production is of the form:
-$$A \to BC \quad \text{or} \quad A \to a$$
+### Recipe 1: The Strict 4-Step CNF Conversion Algorithm
+> ⚠️ **DO NOT SWAP STEPS 1 AND 2!** If you do unit productions before $\epsilon$, the $\epsilon$-elimination will create new unit productions!
 
-> ⚠️ **CRITICAL TRAP**: You **MUST** execute these 4 steps in this exact order. Swapping Step 1 and Step 2 will fail!
-
-#### Step 1: Eliminate $\epsilon$-productions ($A \to \epsilon$)
-1. Find all **nullable variables** (variables that can derive $\epsilon$ directly or indirectly):
+#### Step 1: Remove $\epsilon$-Productions ($A \to \epsilon$)
+1. Find all **nullable variables** (variables that can shrink into nothing):
    - If $A \to \epsilon$, $A$ is nullable.
-   - If $B \to A_1 A_2 \dots A_k$ and all $A_i$ are nullable, then $B$ is nullable.
-2. For every production containing nullable variables, write all combinations of presence and absence of those nullable variables (except creating $A \to \epsilon$).
+   - If $B \to A$ and $A$ is nullable, then $B$ is nullable.
+2. Rewrite rules: For any rule containing a nullable variable, create versions with that variable present AND versions with it missing. (Delete $A \to \epsilon$).
 
-#### Step 2: Eliminate Unit Productions ($A \to B$ where $B \in V$)
-1. Find all pairs $(A, B)$ such that $A \stackrel{*}{\implies} B$:
-   - Reflexive: $(A, A)$ for all $A$.
-   - If $A \to B$, then $(A, B)$.
-   - Transitive: If $(A, B)$ and $B \to C$, then $(A, C)$.
-2. For each pair $(A, B)$, if $B \to \alpha$ is a non-unit production, add $A \to \alpha$.
-3. Delete all unit productions $A \to B$.
+#### Step 2: Remove Unit Productions ($A \to B$ where $B$ is a single variable)
+1. If $A \to B$ and $B \to \alpha$, add $A \to \alpha$ directly to $A$.
+2. Delete the unit production $A \to B$.
 
-#### Step 3: Eliminate Useless & Unreachable Symbols
-1. **Eliminate Non-generating symbols**: Keep only symbols that can derive strings of terminals.
-2. **Eliminate Unreachable symbols**: Draw reachability graph from start symbol $S$. Delete symbols not reachable from $S$.
+#### Step 3: Remove Useless Symbols
+1. Remove non-generating symbols (symbols that never produce terminals).
+2. Remove unreachable symbols (symbols you can never reach starting from $S$).
 
-#### Step 4: Convert Remaining Productions to Binary Form
-1. For terminals mixed in RHS (e.g. $A \to a B$): Replace $a$ with a new variable $T_a$, and add production $T_a \to a$.
-2. For productions with RHS length $\ge 3$ (e.g. $A \to B C D$): Introduce intermediate variable $X_1$:
-   $$A \to B X_1, \quad X_1 \to C D$$
+#### Step 4: Convert RHS to Valid CNF
+1. For terminals mixed in RHS (e.g. $A \to a B$): Create variable $T_a \to a$, and rewrite as $A \to T_a B$.
+2. For long RHS (e.g. $A \to B C D$): Split with new variables: $A \to B X_1$, $X_1 \to C D$.
 
 ---
 
-### Recipe 2.2: Pushdown Automata (PDA) Design Cookbook
-A PDA is defined as $M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$:
-* $Q$: Finite set of states
-* $\Sigma$: Input alphabet (e.g. $\{a, b\}$)
-* $\Gamma$: Stack alphabet (e.g. $\{A, Z_0\}$)
-* $Z_0$: Initial stack symbol
-* $\delta(q, a, X) \to (p, \alpha)$ means: In state $q$, reading input $a$, with top of stack $X$, change state to $p$ and replace $X$ with string $\alpha$.
-
-#### Standard Stack Actions:
-* **Push $A$ on top of $X$**: $\delta(q, a, X) = (q, A X)$
-* **Pop top of stack $X$**: $\delta(q, a, X) = (q, \epsilon)$
-* **Keep top unchanged (Read-only)**: $\delta(q, a, X) = (q, X)$
-
-#### Master Transition Table for $L = \{a^n b^n \mid n \ge 1\}$:
-1. State $q_0$ (Push phase): For every input $a$, push $A$ onto stack:
-   $$\delta(q_0, a, Z_0) = (q_0, A Z_0)$$
-   $$\delta(q_0, a, A) = (q_0, A A)$$
-2. Transition on first $b$: Change state to $q_1$ and pop first $A$:
-   $$\delta(q_0, b, A) = (q_1, \epsilon)$$
-3. State $q_1$ (Pop phase): For every subsequent $b$, pop one $A$:
-   $$\delta(q_1, b, A) = (q_1, \epsilon)$$
-4. End of input ($\epsilon$): When input finishes and stack returns to $Z_0$, transition to final state $q_f$:
-   $$\delta(q_1, \epsilon, Z_0) = (q_f, Z_0)$$
+### Recipe 2: PDA Design Recipe for $L = \{w c w^R \mid w \in \{a, b\}^*\}$
+1. **Push Phase ($q_0$)**: As long as reading $w$ before $c$, push symbols into stack:
+   - Read $a$: $\delta(q_0, a, X) = (q_0, a X)$
+   - Read $b$: $\delta(q_0, b, X) = (q_0, b X)$
+2. **Center Marker ($c$)**: When read $c$, do not touch stack, transition to pop state $q_1$:
+   - $\delta(q_0, c, X) = (q_1, X)$
+3. **Pop Phase ($q_1$)**: Read $w^R$ and verify it matches the top of stack:
+   - Read $a$ and top is $a$: $\delta(q_1, a, a) = (q_1, \epsilon)$ (Match! Pop $a$).
+   - Read $b$ and top is $b$: $\delta(q_1, b, b) = (q_1, \epsilon)$ (Match! Pop $b$).
+4. **Acceptance ($q_f$)**: When input is finished ($\epsilon$) and stack is at $Z_0$:
+   - $\delta(q_1, \epsilon, Z_0) = (q_f, Z_0)$.
 
 ---
 
 ## 🚨 TIER 3: Faculty Trap Radar
 
-1. **The Leftmost Derivation Ambiguity Trap**: If you give one leftmost derivation and one *rightmost* derivation, faculties will **give 0 marks**! You must give **TWO DIFFERENT LEFTMOST DERIVATIONS** (or two different parse trees) for the SAME string.
-2. **DPDA vs NPDA Power Difference**: Unlike Finite Automata (where DFA $\equiv$ NFA), **NPDA is strictly MORE powerful than DPDA**! The language of even palindromes $\{w w^R\}$ cannot be recognized by any deterministic PDA (DPDA) because it requires non-deterministically guessing the midpoint!
-3. **Empty Stack to Final State PDA Conversion**:
-   - Given PDA $M_E$ (accepts by empty stack), to construct $M_F$ (accepts by final state):
-     - Add new start symbol $X_0$ and new start state $p_0$: $\delta(p_0, \epsilon, X_0) = (q_0, Z_0 X_0)$.
-     - Add a new final state $p_f$: For all $q \in Q$, $\delta(q, \epsilon, X_0) = (p_f, X_0)$.
-     - This prevents premature acceptance if stack temporarily empties.
+1. **One Leftmost + One Rightmost $\ne$ Ambiguity Proof**: If you give one leftmost derivation and one rightmost derivation, examiners give 0 marks! You MUST provide **TWO DIFFERENT LEFTMOST DERIVATIONS** for the exact same terminal string.
+2. **DPDA vs NPDA Difference**: A deterministic PDA (DPDA) cannot recognize even palindromes $\{w w^R\}$ because it has no way to know where the middle of the word is without guessing! Only an **NPDA (Non-deterministic PDA)** can recognize $\{w w^R\}$.
 
 ---
 
 ## 📝 TIER 4: Master Solved HOTS Archetypes
 
-### Archetype 1: Rigorous Grammar Ambiguity Proof
-**Question**: Show that the grammar with productions:
-$$E \to E + E \mid E * E \mid (E) \mid id$$
-is ambiguous. Provide two distinct parse trees and two distinct leftmost derivations for the string: $id + id * id$.
+### Archetype 1: Ambiguity Proof for $E \to E + E \mid E * E \mid id$
+**Question**: Prove that the expression grammar $E \to E + E \mid E * E \mid id$ is ambiguous.
 
-**Solution Template**:
-1. **Target String**: $w = id + id * id$.
-2. **Leftmost Derivation 1 (Addition first)**:
-   $$E \implies E + E \implies id + E \implies id + E * E \implies id + id * E \implies id + id * id$$
-3. **Leftmost Derivation 2 (Multiplication first)**:
+**Step-by-Step Solution**:
+1. Choose the test string: $w = id + id * id$.
+2. **Leftmost Derivation 1 (Tree 1 - Plus evaluated last)**:
    $$E \implies E * E \implies E + E * E \implies id + E * E \implies id + id * E \implies id + id * id$$
-4. **Parse Trees**:
-   * Tree 1: Root is $E$. Children are $E, +, E$. Right child $E$ branches into $E, *, E$. (Evaluates as $id + (id * id)$).
-   * Tree 2: Root is $E$. Children are $E, *, E$. Left child $E$ branches into $E, +, E$. (Evaluates as $(id + id) * id$).
-5. **Conclusion**: Since there exist two distinct leftmost derivations (and two distinct parse trees) for the identical string $w = id + id * id$, the grammar is **AMBIGUOUS ✅**.
-
----
-
-### Archetype 2: Full Chomsky Normal Form (CNF) Conversion
-**Question**: Convert the following grammar $G$ into Chomsky Normal Form (CNF):
-$$S \to a B \mid b A$$
-$$A \to a \mid a S \mid b A A$$
-$$B \to b \mid b S \mid a B B$$
-
-**Solution Template**:
-1. **Step 1 ($\epsilon$-productions)**: None exist.
-2. **Step 2 (Unit productions)**: None exist.
-3. **Step 3 (Useless symbols)**: All symbols generate terminals and are reachable from $S$.
-4. **Step 4 (Binary & Terminal Normalization)**:
-   - Introduce terminal variables: $T_a \to a$ and $T_b \to b$.
-   - Replace terminals in mixed productions:
-     * $S \to T_a B \mid T_b A$
-     * $A \to a \mid T_a S \mid T_b A A$
-     * $B \to b \mid T_b S \mid T_a B B$
-   - Break length $\ge 3$ productions:
-     * For $A \to T_b A A$: Introduce $X_1 \to A A \implies A \to T_b X_1$.
-     * For $B \to T_a B B$: Introduce $X_2 \to B B \implies B \to T_a X_2$.
-5. **Final CNF Grammar**:
-   $$S \to T_a B \mid T_b A$$
-   $$A \to a \mid T_a S \mid T_b X_1$$
-   $$B \to b \mid T_b S \mid T_a X_2$$
-   $$X_1 \to A A, \quad X_2 \to B B$$
-   $$T_a \to a, \quad T_b \to b$$
-   All productions are of the form $A \to B C$ or $A \to a \implies$ **In CNF ✅**.
+   *(Structure: $(id + id) * id$)*
+3. **Leftmost Derivation 2 (Tree 2 - Multiply evaluated last)**:
+   $$E \implies E + E \implies id + E \implies id + E * E \implies id + id * E \implies id + id * id$$
+   *(Structure: $id + (id * id)$)*
+4. **Conclusion**: Since there exist two distinct leftmost derivations (and two distinct parse trees) for the identical terminal string $w = id + id * id$, the grammar is **AMBIGUOUS ✅**.

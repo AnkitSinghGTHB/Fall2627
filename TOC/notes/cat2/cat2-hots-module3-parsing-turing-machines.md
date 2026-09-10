@@ -1,101 +1,133 @@
 # ⚡ CAT-2 HOTS Master Crib — Module 3 & 4: Parsing & Turing Machines
 **Course**: CSE2004 — Theory of Computation & Compiler Design  
-**Coverage**: LL(1), SLR(1) Parsing & Turing Machines | **Exam Mode**: Open Book / Notes Allowed  
-**Target Score**: 45+ / 50 (S-Grade Boundary)
+**Level**: Self-Contained / Zero-Assumption (From Bedrock Basics to HOTS)  
+**Exam Mode**: Open Book / Handwritten Notes Allowed | **Target Score**: 45+ / 50
+
+---
+
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if parsing tables look like alien hieroglyphics)*
+
+### 1. What on Earth is a Compiler Parser?
+When you write code like `int a = 5 + ;`, your compiler immediately throws a **Syntax Error**.
+How did it know? The **Parser** checked your code against the grammar of the programming language.
+* The parser's job is to read your stream of tokens ($id, +, *$) and construct a **Parse Tree**.
+
+---
+
+### 2. Top-Down vs Bottom-Up Parsing (The Two Philosophies)
+* **Top-Down Parsing (LL(1))**:
+  * Like an architect: Starts at the very top with the start symbol $S$, and tries to predict which child branches to build downwards to match the user's code words, looking ahead by **1 letter**.
+* **Bottom-Up Parsing (SLR(1) / LR(1))**:
+  * Like a bricklayer: Starts with the raw code words at the bottom ($id, +, id$) and groups them together into variables, working upwards until reaching $S$. (Much more powerful than Top-Down!).
+
+---
+
+### 3. What are FIRST and FOLLOW Sets in Plain English?
+Before building a parser, you must calculate two sets for every variable:
+
+#### A. $\text{FIRST}(A)$ (The Starting Letters):
+* If you start replacing variable $A$ using its grammar rules, **what are all the possible FIRST terminal letters that can ever appear?**
+* Example: If $A \to + T \mid * F \mid id$, then $\text{FIRST}(A) = \{+, *, id\}$.
+
+#### B. $\text{FOLLOW}(A)$ (The Immediate Right Neighbors):
+* Imagine all valid sentences in the programming language.
+* If variable $A$ is sitting in a sentence, **what terminal letters are allowed to sit IMMEDIATELY to its right?**
+* **The $\$ Rule$**: The start symbol $S$ always has **$\$$ (End of File)** in its $\text{FOLLOW}$ set, because nothing sits after the program except the end of the file!
+
+---
+
+### 4. What is Left Recursion & Why Does it Break Top-Down Parsers?
+* If a grammar has a rule like:
+  $$A \to A \alpha \mid \beta$$
+* A top-down parser trying to expand $A$ will call $A$ again, which calls $A$ again, which calls $A$ again...
+* **It gets stuck in an infinite recursion loop!**
+* **The Elimination Trick**:
+  $$A \to \beta A'$$
+  $$A' \to \alpha A' \mid \epsilon$$
+  *(Turns the dangerous left-recursion into safe right-recursion!).*
+
+---
+
+### 5. What is a Turing Machine (TM)?
+In CAT-1 you had DFA (No memory). In Module 2 you had PDA (Pringles Can stack memory).
+A **Turing Machine** is the ultimate mathematical model of a computer:
+* **The Tape**: An infinite paper strip divided into squares, carrying characters or blank spaces ($B$).
+* **The Head**: A pointer that can look at one square at a time.
+* At every step, the Turing Machine can do 3 simple things:
+  1. Read the symbol under the head.
+  2. Overwrite it with a new symbol.
+  3. Move the head **ONE square Left ($L$) or Right ($R$)**.
+* That's it! Every computer, smartphone, and supercomputer on Earth is computationally equivalent to a simple Turing Machine.
+
+#### How to Read TM Transition Notation:
+$$\delta(q_0, 0) = (q_1, X, R)$$
+In plain English:
+* *"I am currently in State $q_0$."*
+* *"The tape square currently has symbol $0$."*
+* *"Action: Change state to $q_1$, overwrite the square with $X$, and move the tape head ONE step to the Right ($R$)."*
 
 ---
 
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
-| If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |
+| If Question Shows / Asks... | It Means This Exact Topic | What You Do (In 5 Seconds) |
 | :--- | :--- | :--- |
-| "Compute FIRST and FOLLOW sets" | **First & Follow Algorithm** | First: first terminal generated. Follow: immediate terminal following variable across ALL RHS productions + add $\$$ to start variable! |
-| "Construct LL(1) parsing table", "Is it LL(1)?" | **Top-Down LL(1) Parsing** | For $A \to \alpha$: Place $A \to \alpha$ in $M[A, a]$ for all $a \in \text{First}(\alpha)$. If $\epsilon \in \text{First}(\alpha)$, place in $M[A, b]$ for all $b \in \text{Follow}(A)$. Grammar is LL(1) $\iff$ **NO cell has $>1$ entry**. |
-| "Left Recursion", "Left Factoring" | **LL(1) Pre-requisites** | Left Recursion ($A \to A\alpha \mid \beta$) causes infinite loop in top-down parser! Replace with $A \to \beta A'$, $A' \to \alpha A' \mid \epsilon$. |
-| "Construct LR(0) items", "SLR(1) Parsing Table" | **Bottom-Up SLR(1) Parsing** | Augmented grammar $S' \to S$. Form Canonical Items using $\text{CLOSURE}$ and $\text{GOTO}$. In table: Shift on terminals; Reduce $r_j$ ONLY in columns of $\text{Follow}(A)$! |
-| "Shift-Reduce / Reduce-Reduce conflict" | **Parsing Conflicts** | Cell contains both Shift and Reduce ($S_i / r_j$) or two Reduces ($r_i / r_j$). Proves grammar is **NOT SLR(1)**. |
-| "Design a Turing Machine for $0^n 1^n$", Instantaneous Description (ID) | **Turing Machine Design** | 7-tuple $M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)$. Transition: $\delta(q, X) = (p, Y, D)$ where $D \in \{L, R\}$. |
-| "Decidability", "Halting Problem", "Chomsky Hierarchy" | **Computability & Decidability** | Halting Problem is **Undecidable**. Regular $\subset$ CFL $\subset$ CSL $\subset$ Recursive $\subset$ Recursively Enumerable. |
+| "Compute FIRST and FOLLOW sets" | **First & Follow Algorithm** | First = first terminal generated. Follow = terminal immediately following variable + add $\$$ to start variable! |
+| "Construct LL(1) parsing table", "Is it LL(1)?" | **LL(1) Table Construction** | For rule $A \to \alpha$: put it in row $A$ under columns of $\text{First}(\alpha)$. If $\epsilon \in \text{First}$, put under columns of $\text{Follow}(A)$. |
+| Cell in table has 2 productions | **Grammar Conflict** | If ANY table cell has $>1$ entry $\implies$ **Grammar is NOT LL(1) ❌** (Ambiguous or not factored). |
+| "Construct LR(0) items", Canonical collection | **LR Items Closure & Goto** | Put a dot $\cdot$ in rules ($A \to \cdot \alpha$). Expand variables immediately after the dot using $\text{CLOSURE}$. |
+| "Design a Turing Machine for $0^n 1^n$" | **TM Design** | Cross off leftmost $0$ with $X \to$ move right to find matching $1 \to$ cross off with $Y \to$ move left back to next $0 \to$ repeat. |
 
 ---
 
-## 🛠️ TIER 2: Deterministic Algorithmic Recipes
+## 🛠️ TIER 2: Step-by-Step Execution Recipes
 
-### Recipe 3.1: FIRST and FOLLOW Master Calculation Rules
-To compute sets for variables in grammar $G$:
+### Recipe 1: FIRST & FOLLOW Calculation Rules
+#### Finding $\text{FIRST}(X)$:
+1. If $X$ is a terminal (small letter/symbol), $\text{FIRST}(X) = \{X\}$.
+2. If $X \to \epsilon$, add $\epsilon$ to $\text{FIRST}(X)$.
+3. If $X \to Y_1 Y_2 \dots Y_k$:
+   - Add everything from $\text{FIRST}(Y_1)$ (except $\epsilon$).
+   - If $\epsilon \in \text{FIRST}(Y_1)$, add $\text{FIRST}(Y_2)$. Continue down the line as long as each preceding variable can dissolve into $\epsilon$.
 
-#### Rules for $\text{FIRST}(X)$:
-1. If $X$ is a terminal, $\text{FIRST}(X) = \{X\}$.
-2. If $X \to \epsilon$ is a production, then add $\epsilon$ to $\text{FIRST}(X)$.
-3. If $X \to Y_1 Y_2 \dots Y_k$ is a production:
-   - Add all non-$\epsilon$ symbols from $\text{FIRST}(Y_1)$ to $\text{FIRST}(X)$.
-   - If $\epsilon \in \text{FIRST}(Y_1)$, add $\text{FIRST}(Y_2)$, and continue through $Y_k$ as long as each preceding $Y_i$ derives $\epsilon$.
-   - If all $Y_1, \dots, Y_k$ derive $\epsilon$, add $\epsilon$ to $\text{FIRST}(X)$.
-
-#### Rules for $\text{FOLLOW}(A)$ (Variables only):
-1. **Rule 1**: Add $\$$ (end-marker) to $\text{FOLLOW}(S)$, where $S$ is the start symbol.
-2. **Rule 2**: If there is a production $A \to \alpha B \beta$:
-   - Everything in $\text{FIRST}(\beta)$ (except $\epsilon$) is in $\text{FOLLOW}(B)$.
-3. **Rule 3 (The Propagation Rule)**: If there is a production $A \to \alpha B$, OR $A \to \alpha B \beta$ where $\epsilon \in \text{FIRST}(\beta)$:
-   - Everything in $\text{FOLLOW}(A)$ is also in $\text{FOLLOW}(B)$.
-   - *(Note: Follow sets NEVER contain $\epsilon$!)*
+#### Finding $\text{FOLLOW}(A)$ (Variables only):
+1. **Rule 1**: Add $\$$ to $\text{FOLLOW}(S)$ (Start Symbol).
+2. **Rule 2**: Look at the RIGHT HAND SIDE of all rules where $A$ appears:
+   - If you see $B \to \alpha A \beta$, add everything in $\text{FIRST}(\beta)$ (except $\epsilon$) to $\text{FOLLOW}(A)$.
+3. **Rule 3**: If you see $B \to \alpha A$, OR if you see $B \to \alpha A \beta$ where $\beta$ can dissolve into $\epsilon$:
+   - Add everything in $\text{FOLLOW}(B)$ to $\text{FOLLOW}(A)$!
+   - *(Note: Follow sets NEVER contain $\epsilon$!).*
 
 ---
 
-### Recipe 3.2: Constructing an SLR(1) Parsing Table
-Given grammar $G$:
-1. **Augment Grammar**: Add $S' \to S$. Number all productions $0, 1, 2, \dots, n$.
-2. **Canonical Collection of $LR(0)$ Items**:
-   - Item: A production with a dot $\cdot$ (e.g. $A \to \alpha \cdot \beta$).
-   - $\text{CLOSURE}(I)$: If $A \to \alpha \cdot B \beta \in I$, add $B \to \cdot \gamma$ for all productions of $B$.
-   - $\text{GOTO}(I, X)$: Shift dot over $X$ ($A \to \alpha X \cdot \beta$) and take closure.
-3. **Fill SLR(1) Parsing Table ($ACTION$ and $GOTO$)**:
-   - For state $I_i$:
-     - If $[A \to \alpha \cdot a \beta] \in I_i$ and $\text{GOTO}(I_i, a) = I_j$ (where $a$ is terminal):  
-       Set $ACTION[i, a] = \text{Shift } j$ ($S_j$).
-     - If $[A \to \alpha \cdot] \in I_i$ (where production $A \to \alpha$ is rule $k$):  
-       **Set $ACTION[i, a] = \text{Reduce } k$ ($r_k$) for all terminals $a \in \text{FOLLOW}(A)$!**
-     - If $[S' \to S \cdot] \in I_i$:  
-       Set $ACTION[i, \$] = \text{Accept}$.
-     - For variable $A$: If $\text{GOTO}(I_i, A) = I_j$, set $GOTO[i, A] = j$.
-
----
-
-### Recipe 3.3: Turing Machine Design for $L = \{0^n 1^n \mid n \ge 1\}$
-Strategy: Match leftmost $0$ by replacing it with $X$, move right past all $0$'s and $Y$'s to find matching $1$, replace with $Y$, move left back to next $0$, repeat.
-
-1. **State $q_0$**: Read $0$, overwrite with $X$, move Right $\to q_1$. (If read $Y$, move Right $\to q_3$ for acceptance check).
-2. **State $q_1$**: Skip all $0$'s and $Y$'s moving Right. When read first $1$, overwrite with $Y$, move Left $\to q_2$.
-3. **State $q_2$**: Skip all $Y$'s and $0$'s moving Left. When read $X$, move Right $\to q_0$.
-4. **State $q_3$**: Skip all $Y$'s moving Right. When read Blank $B$, move Right $\to q_4$ (Accepting State).
-
-#### Transition Function Table:
-$$\begin{array}{|c|c|c|c|c|c|} \hline \text{State} & 0 & 1 & X & Y & B \\ \hline q_0 & (q_1, X, R) & - & - & (q_3, Y, R) & - \\ q_1 & (q_1, 0, R) & (q_2, Y, L) & - & (q_1, Y, R) & - \\ q_2 & (q_2, 0, L) & - & (q_0, X, R) & (q_2, Y, L) & - \\ q_3 & - & - & - & (q_3, Y, R) & (q_4, B, R) \\ q_4 (\text{Final}) & - & - & - & - & - \\ \hline \end{array}$$
+### Recipe 2: Constructing an LL(1) Parsing Table
+1. Compute $\text{FIRST}$ and $\text{FOLLOW}$ for all variables.
+2. Draw a grid: Rows = Variables ($E, T, F$), Columns = Terminals ($+, *, id, (, ), \$$).
+3. For each production $A \to \alpha$:
+   - For every terminal $a \in \text{FIRST}(\alpha)$, place $A \to \alpha$ into cell $M[A, a]$.
+   - If $\epsilon \in \text{FIRST}(\alpha)$, for every terminal $b \in \text{FOLLOW}(A)$, place $A \to \alpha$ into cell $M[A, b]$.
+4. **The Verdict**: If every single cell has at most 1 production $\implies$ **LL(1) Grammar ✅**. If any cell has 2 productions $\implies$ **Conflict! NOT LL(1) ❌**.
 
 ---
 
 ## 🚨 TIER 3: Faculty Trap Radar
 
-1. **The SLR(1) Reduce Placement Trap**: In LR(0) parsing, reduce actions are placed in **all** terminal columns. In **SLR(1)**, reduce action $r_k$ is placed **ONLY** in the columns of $\mathbf{\text{FOLLOW}(A)}$! Placing reduce in all columns causes false conflicts and loses all marks!
-2. **Left-Factoring Necessity in LL(1)**: If a grammar has $A \to \alpha \beta_1 \mid \alpha \beta_2$, both productions have $\text{FIRST}$ starting with $\alpha$. They will collide in cell $M[A, \alpha]$. You **must left-factor** before making an LL(1) table:
-   $$A \to \alpha A', \quad A' \to \beta_1 \mid \beta_2$$
-3. **Turing Machine Acceptance vs Looping**: A TM can accept (enter $q_f$), reject (halt in non-accepting state with undefined transition), or **loop infinitely**. A language is **Decidable (Recursive)** $\iff$ the TM is guaranteed to halt on all inputs!
+1. **The SLR(1) Reduce Rule Trap**: In LR(0) parsing, reduce actions are placed across ALL terminal columns. In **SLR(1)**, reduce action $r_k$ is placed **ONLY under the columns belonging to $\mathbf{\text{FOLLOW}(A)}$!** Putting reduce in all columns causes fake conflicts and zeroes out your score.
+2. **The Missing $\$$ Trap**: If you forget to add $\$$ to $\text{FOLLOW}(S)$, your Follow sets will be incomplete and your entire parsing table will be corrupted!
 
 ---
 
 ## 📝 TIER 4: Master Solved HOTS Archetypes
 
-### Archetype 1: FIRST & FOLLOW Computation with LL(1) Table
+### Archetype 1: Complete LL(1) Parsing Table for Expression Grammar
 **Question**: For the grammar:
-$$E \to T E'$$
-$$E' \to + T E' \mid \epsilon$$
-$$T \to F T'$$
-$$T' \to * F T' \mid \epsilon$$
+$$E \to T E', \quad E' \to + T E' \mid \epsilon$$
+$$T \to F T', \quad T' \to * F T' \mid \epsilon$$
 $$F \to ( E ) \mid id$$
-1. Compute $\text{FIRST}$ and $\text{FOLLOW}$ for all variables.
-2. Construct the LL(1) parsing table and prove the grammar is LL(1).
+Compute FIRST & FOLLOW sets and construct the LL(1) parsing table.
 
-**Solution Template**:
+**Step-by-Step Solution**:
 1. **FIRST Sets**:
    * $\text{FIRST}(F) = \{(, id\}$
    * $\text{FIRST}(T') = \{*, \epsilon\}$
@@ -103,11 +135,11 @@ $$F \to ( E ) \mid id$$
    * $\text{FIRST}(E') = \{+, \epsilon\}$
    * $\text{FIRST}(E) = \text{FIRST}(T) = \{(, id\}$
 2. **FOLLOW Sets**:
-   * Start symbol: $\text{FOLLOW}(E) = \{\$, )\}$ (from rule $F \to ( E )$)
+   * Start symbol: $\text{FOLLOW}(E) = \{\$, )\}$
    * From $E \to T E'$: $\text{FOLLOW}(E') = \text{FOLLOW}(E) = \{\$, )\}$
    * From $E \to T E'$: $\text{FOLLOW}(T) = (\text{FIRST}(E') \setminus \{\epsilon\}) \cup \text{FOLLOW}(E') = \{+, \$, )\}$
    * From $T \to F T'$: $\text{FOLLOW}(T') = \text{FOLLOW}(T) = \{+, \$, )\}$
    * From $T \to F T'$: $\text{FOLLOW}(F) = (\text{FIRST}(T') \setminus \{\epsilon\}) \cup \text{FOLLOW}(T') = \{*, +, \$, )\}$
 3. **LL(1) Parsing Table $M[A, a]$**:
-   $$\begin{array}{|c|c|c|c|c|c|c|} \hline \text{Non-Term} & id & + & * & ( & ) & \$ \\ \hline E & E \to T E' & & & E \to T E' & & \\ E' & & E' \to + T E' & & & E' \to \epsilon & E' \to \epsilon \\ T & T \to F T' & & & T \to F T' & & \\ T' & & T' \to \epsilon & T' \to * F T' & & T' \to \epsilon & T' \to \epsilon \\ F & F \to id & & & F \to ( E ) & & \\ \hline \end{array}$$
-4. **Conclusion**: Every cell in table $M$ contains **at most ONE production**. Therefore, the grammar is **LL(1) ✅**.
+   $$\begin{array}{|c|c|c|c|c|c|c|} \hline \text{Variable} & id & + & * & ( & ) & \$ \\ \hline E & E \to T E' & & & E \to T E' & & \\ E' & & E' \to + T E' & & & E' \to \epsilon & E' \to \epsilon \\ T & T \to F T' & & & T \to F T' & & \\ T' & & T' \to \epsilon & T' \to * F T' & & T' \to \epsilon & T' \to \epsilon \\ F & F \to id & & & F \to ( E ) & & \\ \hline \end{array}$$
+4. **Conclusion**: Every cell contains at most one production rule $\implies$ **Grammar is LL(1) ✅**.
