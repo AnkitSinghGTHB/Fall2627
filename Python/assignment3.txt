@@ -1,0 +1,16 @@
+1.Write
+a python program to print area and perimeter of a polygons.
+2.Write
+a python program to compare two person based on their age.
+Person1- Name: Danny, Age: 30
+Person2- Name: Thomas, Age: 25
+3.Youare tasked with creating a Python class Book that represents a book in a
+library system. The class should include the following:
+Public
+Attribute: title
+Protected
+Attribute: author
+Private
+Attribute: isbn
+Protected
+Method: update author details

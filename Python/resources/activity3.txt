@@ -1,0 +1,4 @@
+1.Write a Python program to perform word-frequency analysis on a text file and store the result in another file.
+2. Write a Python program to read, process, and write student records using file handling.
+3. Write a Python program to demonstrate exception handling during file operations using try, except, and finally.
+4. Write a Python program to demonstrate file management operations such as creating, renaming, checking, and deleting a file using the os module.

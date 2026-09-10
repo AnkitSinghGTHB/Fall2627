@@ -1,20 +1,21 @@
-# 🚀 Technology Entrepreneurship (MGT2003)
+# 🎯 Technology Entrepreneurship
+
+> **The "consultant-grade business frameworks & startup execution" edition**  
+> Organized for VIT Bhopal Relative Grading — S-Grade Target (45+/50 in CAT-2)
 
 ---
 
-## ⚡ CAT-1 Master Exam Solved Papers (Slot A & Slot E)
+## ⚡ Quick Navigation
 
-| Topic | File | Time | Difficulty |
-|-------|------|:---:|:---:|
-| 🏆 **All 10 Questions from CAT-1 Official Papers (Slot A & E Fully Solved)** | [cat1-master-solved-papers.md](./cat1-master-solved-papers.md) | ⏱️ 20 min | 🔴 **MUST READ FOR EXAM TODAY** |
+* 📂 [resources/](../resources) — Course Textbook PDF, Lecture Presentations, and Question Sets.
+* 📂 [notes/cat1/](./cat1) — CAT-1 Fundamentals, Opportunities & Business Discovery.
+* 📂 [notes/cat2/](./cat2) — **CAT-2 Open-Book HOTS Master Sheets (Modules 3 & 4)**.
 
 ---
 
-## 🗺️ Module Map
+## 🔥 CAT-2 Master HOTS Exam Sheets (Modules 3 & 4)
+*Permitted in Exam Hall: Bring your own handwritten notes copied directly from these templates!*
 
-| # | Topic | File | Time | Difficulty |
-|---|-------|------|:---:|:---:|
-| 1 | **Understanding Entrepreneurship & Characteristics** | [01-understanding-entrepreneurship.md](./01-understanding-entrepreneurship.md) | ☕ 10 min | 🟢 Easy |
-| 2 | **Opportunity Identification & Feasibility Analysis** | [02-opportunity-and-feasibility.md](./02-opportunity-and-feasibility.md) | ☕ 10 min | 🟢 Easy |
-| 3 | **Business Models & Customer Discovery** | [03-business-models-and-discovery.md](./03-business-models-and-discovery.md) | ☕ 15 min | 🟡 Medium |
-| 📄 | **Master Cheatsheet** | [cheatsheet-tech-entre.md](./cheatsheet-tech-entre.md) | ⚡ 3 min | 🟢 Easy |
+| Topic | File | Exam HOTS Recipe |
+| :--- | :--- | :--- |
+| **Business Models, Customer Validation & Feasibility** | [cat2-hots-module3-4-entrepreneurship-master.md](./cat2/cat2-hots-module3-4-entrepreneurship-master.md) | • 9-Block Business Model Canvas (Airbnb)<br>• Customer Discovery 4-Step Validation<br>• 4 Pillars of Feasibility Analysis<br>• Willingness-to-Pay Smoke Tests & Van Westendorp |
