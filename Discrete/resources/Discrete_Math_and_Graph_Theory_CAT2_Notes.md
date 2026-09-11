@@ -107,7 +107,6 @@ The partial order relation is divisibility: $a \le b \iff a \mid b$ ($a$ divides
 
 For any $a, b \in D_{12}$:
 * $\text{GLB}(a, b) = a \wedge b = \gcd(a, b)$
-<<<<<<< HEAD
 * $\text{LUB}(a, b) = a \vee b = \text{lcm}(a, b)$
 
 #### Hasse Diagram for $D_{12}$:
@@ -120,19 +119,6 @@ graph BT
     n3 --> n6
     n4 --> n12["12 (Top)"]
     n6 --> n12
-=======
-* $\text{LUB}(a, b) = a \vee b = \operatorname{lcm}(a, b)$
-
-#### Hasse Diagram for $D_{12}$:
-```text
-          12
-         /  \
-        4    6
-        |  / |
-        2    3
-         \  /
-           1
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 
 #### Meet (GLB / $\gcd$) Operation Table:
@@ -145,11 +131,7 @@ graph BT
 |   **6**   |   1   |   2   |   3   |   2   |   6   |   6    |
 |  **12**   |   1   |   2   |   3   |   4   |   6   |   12   |
 
-<<<<<<< HEAD
 #### Join (LUB / $\text{lcm}$) Operation Table:
-=======
-#### Join (LUB / $\operatorname{lcm}$) Operation Table:
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 |  $\vee$  | **1** | **2** | **3** | **4** | **6** | **12** |
 |:---------:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
 |   **1**   |   1   |   2   |   3   |   4   |   6   |   12   |
@@ -159,11 +141,7 @@ graph BT
 |   **6**   |   6   |   6   |   6   |  12   |   6   |   12   |
 |  **12**   |  12   |  12   |  12   |  12   |  12   |   12   |
 
-<<<<<<< HEAD
 **Conclusion**: Since $\gcd(a, b) \in D_{12}$ and $\text{lcm}(a, b) \in D_{12}$ for every pair, $(D_{12}, \mid)$ is a **lattice**.
-=======
-**Conclusion**: Since $\gcd(a, b) \in D_{12}$ and $\operatorname{lcm}(a, b) \in D_{12}$ for every pair, $(D_{12}, \mid)$ is a **lattice**.
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 
 ---
 
@@ -172,7 +150,6 @@ graph BT
 Let $A = \{1, 2, 3, 4, 6, 8, 9, 12, 18, 24\}$ with relation $a \mid b$. Is $(A, \mid)$ a lattice?
 
 #### Hasse Diagram Analysis:
-<<<<<<< HEAD
 ```mermaid
 graph BT
     n1["1 (Bottom)"] --> n2["2"]
@@ -188,34 +165,14 @@ graph BT
     n8 --> n24["24 (Top)"]
     n12 --> n24
     n9 --> n18
-=======
-```text
-        24        18
-       /  \      /  \
-      8    12    /    9
-      |   /  \  /     |
-      4  /     6      |
-      | /     / \     |
-      2      /   3----+
-       \    /   /
-         \  /  /
-            1
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 
 #### Why $(A, \mid)$ is NOT a Lattice (Gap Filled):
 1. **Missing Least Upper Bound for $\{8, 9\}$**:
-<<<<<<< HEAD
    The common multiples of 8 and 9 must be multiples of $\text{lcm}(8, 9) = 72$. Since $72 \notin A$, the pair $\{8, 9\}$ has **no upper bound at all** in $A$. Therefore, $\text{LUB}(8, 9)$ does not exist.
 2. **Missing Least Upper Bound for $\{8, 12\}$**:
    Common multiples of 8 and 12 in $A$ are $\{24\}$. Here $\text{LUB}(8, 12) = 24$.
    However, for $\{12, 18\}$, common multiples require multiples of $\text{lcm}(12, 18) = 36 \notin A$. Neither 24 nor 18 is a common multiple of both. Thus $\text{LUB}(12, 18)$ does not exist.
-=======
-   The common multiples of 8 and 9 must be multiples of $\operatorname{lcm}(8, 9) = 72$. Since $72 \notin A$, the pair $\{8, 9\}$ has **no upper bound at all** in $A$. Therefore, $\text{LUB}(8, 9)$ does not exist.
-2. **Missing Least Upper Bound for $\{8, 12\}$**:
-   Common multiples of 8 and 12 in $A$ are $\{24\}$. Here $\text{LUB}(8, 12) = 24$.
-   However, for $\{12, 18\}$, common multiples require multiples of $\operatorname{lcm}(12, 18) = 36 \notin A$. Neither 24 nor 18 is a common multiple of both. Thus $\text{LUB}(12, 18)$ does not exist.
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 3. **Multiple Maximal Elements**:
    Elements $24$ and $18$ are both maximal, and there is no common top element.
 **Conclusion**: $(A, \mid)$ is **NOT a lattice**.
@@ -247,7 +204,6 @@ Since every pair of subsets has a GLB and LUB in $\mathcal{P}(S)$, $(\mathcal{P}
 * c) Determine LUB and GLB of all pairs.
 
 #### a) Hasse Diagram (Boolean Cubical Lattice):
-<<<<<<< HEAD
 ```mermaid
 graph BT
     d1["1 (Bottom)"] --> d2["2"]
@@ -262,16 +218,6 @@ graph BT
     d6 --> d30["30 (Top)"]
     d10 --> d30
     d15 --> d30
-=======
-```text
-               30
-            /   |   \
-          15    10    6
-         /  \  /  \  / \
-        5     3     2
-         \    |    /
-               1
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 * **Level 0**: $1$
 * **Level 1 (Primes)**: $2, 3, 5$
@@ -282,15 +228,9 @@ graph BT
 For any $a, b \in D_{30}$:
 * Let $x$ be an upper bound of $a$ and $b$:
   $$a \mid x \implies x = a \cdot k_1, \quad b \mid x \implies x = b \cdot k_2$$
-<<<<<<< HEAD
   Therefore, $\text{lcm}(a, b) \mid x$.
   Since $a \mid 30$ and $b \mid 30$, $\text{lcm}(a, b) \mid 30$, which guarantees $\text{lcm}(a, b) \in D_{30}$.
   Thus, $\text{LUB}(a, b) = \text{lcm}(a, b)$.
-=======
-  Therefore, $\operatorname{lcm}(a, b) \mid x$.
-  Since $a \mid 30$ and $b \mid 30$, $\operatorname{lcm}(a, b) \mid 30$, which guarantees $\operatorname{lcm}(a, b) \in D_{30}$.
-  Thus, $\text{LUB}(a, b) = \operatorname{lcm}(a, b)$.
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 * Let $y$ be a lower bound of $a$ and $b$:
   $$y \mid a \implies a = y \cdot k_1', \quad y \mid b \implies b = y \cdot k_2'$$
   Therefore, $y \mid \gcd(a, b)$.
@@ -329,7 +269,6 @@ A lattice $(L, \wedge, \vee)$ is called a **distributive lattice** if for all $a
 > 2. The **pentagon lattice** $N_5$ (the non-modular lattice)
 
 #### The Diamond Lattice $M_3$:
-<<<<<<< HEAD
 ```mermaid
 graph BT
     zero["0 (Bottom)"] --> a["a"]
@@ -338,14 +277,6 @@ graph BT
     a --> one["1 (Top)"]
     b --> one
     c --> one
-=======
-```text
-        1
-      / | \
-     a  b  c
-      \ | /
-        0
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 Let us verify the failure of distributivity on $M_3$:
 $$\text{LHS} = a \vee (b \wedge c) = a \vee 0 = a$$
@@ -362,7 +293,6 @@ Again, $a \ne 0$, confirming failure.
 ### Class Problems on Checking Distributivity
 
 #### Problem from Notes: Test the 10-Element Lattice
-<<<<<<< HEAD
 ```mermaid
 graph BT
     zero["0 (Bottom)"] --> a["a"]
@@ -377,18 +307,6 @@ graph BT
     f --> L
     c --> one["1 (Top)"]
     L --> one
-=======
-```text
-               1
-             /   \
-            c     L
-           / \   / \
-          b   d e   f
-           \ /   \ /
-            a     g
-             \   /
-               0
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 **Analysis**:
 Notice the sublattices:
@@ -443,7 +361,6 @@ Let $D_{18} = \{1, 2, 3, 6, 9, 18\}$.
 * Least element: $0 = 1$
 * Greatest element: $1 = 18$
 
-<<<<<<< HEAD
 #### Hasse Diagram for $D_{18}$:
 ```mermaid
 graph BT
@@ -458,10 +375,6 @@ graph BT
 
 #### Operation Tables:
 **Join ($\text{lcm}$) Table**:
-=======
-#### Operation Tables:
-**Join ($\operatorname{lcm}$) Table**:
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 | $\vee$ | **1** | **2** | **3** | **6** | **9** | **18** |
 |:-------:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|
 |  **1**  |   1   |   2   |   3   |   6   |   9   |   18   |
@@ -483,7 +396,6 @@ graph BT
 
 #### Complement Evaluation for Each Element:
 To find a complement $x$ of $a$, we require:
-<<<<<<< HEAD
 $$\gcd(a, x) = 1 \quad \text{and} \quad \text{lcm}(a, x) = 18$$
 * For $1$: $1' = 18$
 * For $18$: $18' = 1$
@@ -497,21 +409,6 @@ $$\gcd(a, x) = 1 \quad \text{and} \quad \text{lcm}(a, x) = 18$$
 * For $6$:
   - Coprime elements with $6$ in $D_{18}$ is only $\{1\}$.
   - $\text{lcm}(6, 1) = 6 \ne 18$.
-=======
-$$\gcd(a, x) = 1 \quad \text{and} \quad \operatorname{lcm}(a, x) = 18$$
-* For $1$: $1' = 18$
-* For $18$: $18' = 1$
-* For $2$: $\gcd(2, 9) = 1$ and $\operatorname{lcm}(2, 9) = 18 \implies 2' = 9$
-* For $9$: $9' = 2$
-* For $3$:
-  - Elements coprime to $3$ in $D_{18}$ are $\{1, 2\}$.
-  - $\operatorname{lcm}(3, 1) = 3 \ne 18$
-  - $\operatorname{lcm}(3, 2) = 6 \ne 18$
-  - Therefore, **no complement exists for $3$**.
-* For $6$:
-  - Coprime elements with $6$ in $D_{18}$ is only $\{1\}$.
-  - $\operatorname{lcm}(6, 1) = 6 \ne 18$.
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
   - Therefore, **no complement exists for $6$**.
 
 **Conclusion**: $(D_{18}, \mid)$ is a bounded lattice, but it is **NOT a complemented lattice**.
@@ -893,7 +790,6 @@ A bipartite graph with bipartition $(X, Y)$ such that every vertex of $X$ is adj
 ### Class Problem: Checking Bipartiteness
 **Problem from Notes**: Determine whether the given 13-vertex graph is bipartite.
 
-<<<<<<< HEAD
 ```mermaid
 graph TD
     v1((v1)) --- v2((v2))
@@ -916,17 +812,6 @@ graph TD
     v5 --- v7((v7))
     v5 --- v8
     v7 --- v8
-=======
-```text
-      v2 ----------------- v4 ---------- v5
-     /  \                 / \          / | \
-    v1   \               /   \        /  |  \
-     \    \             /     \      /   |   \
-      v12--v3 -------- v10-----v13--v6   |    v7
-        \  /             \     /     \   |   /
-         \/               \   /       \  |  /
-         v11               v9 --------- v8
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 
 #### Step-by-Step 2-Coloring Check (Gap Filled):
@@ -1233,7 +1118,6 @@ Since $f$ is bijective and preserves all adjacencies and non-adjacencies, $G_1 \
 ### Class Problem 2: 6-Vertex Prism/Wheel Graph Analysis
 **Problem from Notes**: Determine if the two 6-vertex graphs $G_1$ and $G_2$ are isomorphic:
 
-<<<<<<< HEAD
 ```mermaid
 graph TD
     subgraph G1 ["Graph G1 (6-Cycle with 3 Chords - NO Triangles)"]
@@ -1259,18 +1143,6 @@ graph TD
     u2 -.- u5
     u3 -.- u6
     end
-=======
-```text
-       Graph G1:                     Graph G2:
-           a                             1
-         / | \                         / | \
-        f  |  b                       6  |  2
-        |  |  |                       |  |  |
-        |  |  |                       |  |  |
-        e  |  c                       5  |  3
-         \ | /                         \ | /
-           d                             4
->>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 * **In Graph $G_1$**:
   - Outer cycle: $a - b - c - d - e - f - a$.
