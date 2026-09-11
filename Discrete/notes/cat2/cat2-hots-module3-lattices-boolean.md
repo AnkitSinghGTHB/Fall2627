@@ -1,6 +1,6 @@
 # ⚡ CAT-2 HOTS Master Crib — Module 3: Lattices & Boolean Algebra
 **Course**: MAT2002 — Discrete Mathematics & Graph Theory  
-**Level**: Self-Contained / Zero-Assumption (From Bedrock Basics to HOTS)  
+**Level**: Self-Contained & Fully Visual (From Bedrock Basics to Class Notes & HOTS)  
 **Exam Mode**: Open Book / Handwritten Notes Allowed | **Target Score**: 45+ / 50
 
 ---
@@ -11,96 +11,91 @@
 ### 1. What on Earth is a Hasse Diagram?
 A Hasse diagram is just a **ladder drawing** showing which element is "smaller" and which is "bigger":
 * If $a$ is connected to $b$ and $b$ is **higher up**, it means **$a \le b$** (or $a$ divides $b$, or $a \subseteq b$).
-* You **only walk UPWARDS** along the lines. Never walk down unless looking for lower things.
+* You **only walk UPWARDS** along the lines.
 
-```
-       30  <-- Highest element (Ceiling / Top / 1)
-      / | \
-     6 10  15
-     | X \ /
-     2   3 5
-      \ | /
-        1  <-- Lowest element (Floor / Bottom / 0)
+#### Visual Hasse Diagram of Divisor Lattice $D_{30}$:
+```mermaid
+graph BT
+    d1["1 (Bottom / Floor / 0)"] --> d2["2"]
+    d1 --> d3["3"]
+    d1 --> d5["5"]
+    d2 --> d6["6"]
+    d2 --> d10["10"]
+    d3 --> d6
+    d3 --> d15["15"]
+    d5 --> d10
+    d5 --> d15
+    d6 --> d30["30 (Top / Ceiling / 1)"]
+    d10 --> d30
+    d15 --> d30
 ```
 
 ---
 
 ### 2. What is Upper Bound, Lower Bound, LUB and GLB?
-Imagine two elements (dots) on the diagram, say $a$ and $b$.
+Imagine two dots on the diagram, say $2$ and $3$.
 
-#### A. Upper Bound (Common Roof):
-* Put one finger on $a$ and one finger on $b$.
-* Walk **UP** along the lines from both fingers until they meet at the same dot.
-* **ANY dot they can both reach going UP is an "Upper Bound" (Common Roof)**.
-
-#### B. LUB (Least Upper Bound / Join / written as $a \vee b$):
-* Among all the common roofs $a$ and $b$ can reach, **which one is the LOWEST down?**
-* That single lowest roof is the **LUB**.
-* *In divisor math ($D_n$)*: $\text{LUB}(a, b) = \text{lcm}(a, b)$ (Least Common Multiple).
-
-#### C. Lower Bound (Common Basement):
-* Put one finger on $a$ and one finger on $b$.
-* Walk **DOWN** along the lines until your fingers meet.
-* **ANY dot they can both reach going DOWN is a "Lower Bound" (Common Basement)**.
-
-#### D. GLB (Greatest Lower Bound / Meet / written as $a \wedge b$):
-* Among all common basements, **which one is HIGHEST up?**
-* That single highest basement is the **GLB**.
-* *In divisor math ($D_n$)*: $\text{GLB}(a, b) = \gcd(a, b)$ (Greatest Common Divisor).
+* **Upper Bound (Common Roof)**: Any dot you can reach going **UP** from both $2$ and $3$.
+  * Looking at the diagram above, going up from $2$ and $3$, you can reach $\{6, 30\}$.
+* **LUB (Least Upper Bound / Join / $2 \vee 3$)**:
+  * Among the roofs $\{6, 30\}$, which is lowest down? **$6$**!
+  * So $2 \vee 3 = \text{lcm}(2, 3) = \mathbf{6}$.
+* **Lower Bound (Common Basement)**: Any dot you can reach going **DOWN** from both $2$ and $3$.
+  * Going down from $2$ and $3$, they both reach $\{1\}$.
+* **GLB (Greatest Lower Bound / Meet / $2 \wedge 3$)**:
+  * The highest common basement is **$1$**.
+  * So $2 \wedge 3 = \gcd(2, 3) = \mathbf{1}$.
 
 ---
 
-### 3. What is a LATTICE? (The Whole Point of the Chapter)
-A drawing is a **LATTICE** if and only if:
-> **EVERY SINGLE PAIR of elements has EXACTLY ONE LUB and EXACTLY ONE GLB.**
+### 3. What is a LATTICE? (And Why Do Drawings Fail?)
+A drawing is a **LATTICE** $\iff$ **EVERY pair has a unique LUB and unique GLB**.
 
-#### How Does a Drawing FAIL to be a Lattice? (Exam Goldmine):
-It fails in only two common ways:
-1. **The "Two Separate Roofs" Fail (No unique LUB)**:
-   Suppose dots $a$ and $b$ both connect up to dot $c$ AND dot $d$. But $c$ and $d$ are side-by-side (neither is higher than the other).
-   * Which one is the lowest common roof? Neither! They are tied at the same level!
-   * Result: **No unique LUB $\implies$ NOT A LATTICE ❌**.
-2. **The "Two Separate Basements" Fail (No unique GLB)**:
-   Suppose dots $c$ and $d$ both connect down to $a$ and $b$, and $a$ and $b$ are side-by-side.
-   * Result: **No unique GLB $\implies$ NOT A LATTICE ❌**.
+#### The Two Visual Shapes that DESTROY a Lattice:
+```mermaid
+graph BT
+    subgraph FAIL_1 ["Fail 1: Two Separate Roofs (No Unique LUB)"]
+    a1["a"] --> c1["c (Roof 1)"]
+    a1 --> d1["d (Roof 2)"]
+    b1["b"] --> c1
+    b1 --> d1
+    end
 
----
-
-### 4. What is a "Bounded Lattice"?
-* **Bottom element (called 0)**: A single element that sits below EVERY other element in the whole diagram.
-* **Top element (called 1)**: A single element that sits above EVERY other element in the whole diagram.
-* If a diagram has two separate lowest points with no single bottom, it is **NOT bounded**.
-
----
-
-### 5. What is a "Complement" ($a'$)?
-In a bounded lattice (with Top $1$ and Bottom $0$), two elements $a$ and $b$ are **complements** of each other if:
-1. When you go **UP** to their LUB, you reach the absolute **Top ($1$)**: $a \vee b = 1$.
-2. When you go **DOWN** to their GLB, you reach the absolute **Bottom ($0$)**: $a \wedge b = 0$.
-
-*Example in $D_{30}$* (Bottom = $1$, Top = $30$):
-* What is the complement of $2$?
-  * Need $\text{lcm}(2, x) = 30$ AND $\gcd(2, x) = 1$.
-  * Look at $15$: $\text{lcm}(2, 15) = 30$ and $\gcd(2, 15) = 1$.
-  * Therefore, **$15$ is the complement of $2$** ($2' = 15$).
+    subgraph FAIL_2 ["Fail 2: Two Separate Basements (No Unique GLB)"]
+    c2["a (Basement 1)"]
+    d2["b (Basement 2)"]
+    c2 --> a2["c"]
+    d2 --> a2
+    c2 --> b2["d"]
+    d2 --> b2
+    end
+```
+* In Fail 1: Dots $a$ and $b$ meet at both $c$ and $d$. Since $c$ and $d$ are side-by-side, **neither is lower** $\implies$ **NOT A LATTICE ❌**.
 
 ---
 
-### 6. What is a "Distributive Lattice"?
-* Distributive means $\wedge$ and $\vee$ behave like normal multiplication and addition:
-  $$a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c)$$
-* **How to spot non-distributive immediately without doing algebra**:
-  Look at your Hasse diagram. If you can spot a **Diamond ($M_5$)** or a **Pentagon ($N_5$)** shape inside it, it is **AUTOMATICALLY NOT DISTRIBUTIVE** (Birkhoff's Theorem).
+### 4. What is a "Distributive Lattice"? (The Forbidden Sublattices)
+Birkhoff's Theorem: A lattice is distributive $\iff$ it contains **NO Diamond ($M_5$) or Pentagon ($N_5$) sublattices**!
 
----
+```mermaid
+graph BT
+    subgraph Diamond ["Diamond Lattice M5 (NOT Distributive)"]
+    zero1["0"] --> a["a"]
+    zero1 --> b["b"]
+    zero1 --> c["c"]
+    a --> one1["1"]
+    b --> one1
+    c --> one1
+    end
 
-### 7. What is a "Boolean Algebra"?
-A Boolean Algebra is just an elite lattice that has **ALL THREE**:
-1. **Bounded** (has top $1$ and bottom $0$).
-2. **Distributive** (no Diamond or Pentagon sublattices).
-3. **Complemented** (EVERY single element has a complement).
-* **The Magic Number Rule**: A Boolean Algebra **MUST have $2^k$ elements** ($2, 4, 8, 16, 32, 64\dots$).
-  * If a lattice has $5, 6, 7, 9, 10, 12$ elements $\implies$ **IMPOSSIBLE to be a Boolean Algebra!**
+    subgraph Pentagon ["Pentagon Lattice N5 (NOT Distributive)"]
+    zero2["0"] --> b2["b"]
+    zero2 --> c2["c"]
+    b2 --> a2["a"]
+    a2 --> one2["1"]
+    c2 --> one2
+    end
+```
 
 ---
 
@@ -110,114 +105,93 @@ A Boolean Algebra is just an elite lattice that has **ALL THREE**:
 | :--- | :--- | :--- |
 | A Hasse diagram and asks: *"Is this a lattice?"* | **Lattice Check** | Check non-adjacent side-by-side elements. Look for the "two roofs" or "two basements" trap! |
 | $(D_n, \mid)$ and asks: *"Is it a Boolean Algebra?"* | **Divisor Lattice Test** | Factor $n$. If $n$ has ANY squared prime factor ($p^2$ like $4, 9, 12, 18, 36$), say: **NO, $n$ is not square-free!** |
-| Hasse diagram and asks: *"Is it distributive?"* | **Distributivity Test** | Search for Pentagon ($N_5$) or Diamond ($M_5$) sub-shapes. If found, write down the 3 elements where $a \wedge (b \vee c) \ne (a \wedge b) \vee (a \wedge c)$. |
-| "Find complements of all elements" | **Complement Finding** | For each element $x$, find $y$ such that $x \wedge y = \text{bottom}$ and $x \vee y = \text{top}$. |
-| A circuit diagram with switches | **Switching Circuit** | Series = $(\cdot)$, Parallel = $(+)$. Write Boolean equation $\to$ simplify with Boolean rules $\to$ redraw with fewer switches. |
+| Hasse diagram and asks: *"Is it distributive?"* | **Distributivity Test** | Search for Pentagon ($N_5$) or Diamond ($M_5$) sub-shapes. Write down the 3 elements where $a \wedge (b \vee c) \ne (a \wedge b) \vee (a \wedge c)$. |
+| "Find PDNF and PCNF" for logic proposition | **Normal Forms** | Build truth table. PDNF = rows where $f=1$ (Minterms $\sum m$). PCNF = rows where $f=0$ (Maxterms $\prod M$). |
 
 ---
 
-## 🛠️ TIER 2: Step-by-Step Execution Recipes
+## 📝 TIER 4: Solved Classroom & Exam Archetypes (From Lecture Notes)
 
-### Recipe 1: How to Prove a Diagram is NOT a Lattice
-1. Scan the diagram for two dots $a$ and $b$ that are on the same level (incomparable).
-2. Look above them. Do they both connect to dot $c$ AND dot $d$?
-3. If neither $c \le d$ nor $d \le c$, write this exact sentence on your answer sheet:
-   > *"Elements $a$ and $b$ have two upper bounds $c$ and $d$, but neither $c \le d$ nor $d \le c$. Hence, $\text{LUB}(a, b)$ is not unique. Therefore, the POSET is NOT a lattice."*
-4. Full marks awarded in 2 lines.
+### Classroom Problem 1: Hasse Diagram of $D_{18}$ & Complements
+*(From Class Notes Page 8)*  
+**Question**: Draw the Hasse diagram for $D_{18} = \{1, 2, 3, 6, 9, 18\}$ and find complements of all elements.
 
----
+```mermaid
+graph BT
+    e1["1 (Bottom)"] --> e2["2"]
+    e1 --> e3["3"]
+    e2 --> e6["6"]
+    e3 --> e6
+    e3 --> e9["9"]
+    e6 --> e18["18 (Top)"]
+    e9 --> e18
+```
 
-### Recipe 2: The Instant Square-Free Rule for $(D_n, \mid)$
-When given positive divisors of $n$:
-1. Write prime factorization of $n$:
-   - $30 = 2^1 \times 3^1 \times 5^1 \implies$ All powers are $1 \implies$ **Square-Free ✅**.
-   - $12 = 2^2 \times 3^1 \implies$ Has $2^2 \implies$ **NOT Square-Free ❌**.
-2. **The Verdict**:
-   - If square-free $\implies (D_n, \mid)$ is a **Boolean Algebra** with $2^k$ elements.
-   - If NOT square-free $\implies$ Element with the squared prime (e.g. $2$ in $D_{12}$) has **NO complement**, so it is **NOT a Boolean Algebra**.
-
----
-
-### Recipe 3: Testing Distributivity Using the 3-Element Failure Test
-If you suspect a lattice is NOT distributive:
-1. Find three elements $a, b, c$ forming a Pentagon shape (where $b < a$ and $c$ is incomparable).
-2. Calculate LHS: $a \wedge (b \vee c)$.
-3. Calculate RHS: $(a \wedge b) \vee (a \wedge c)$.
-4. Show $\text{LHS} \ne \text{RHS}$.
-5. Write: *"Since $a \wedge (b \vee c) \ne (a \wedge b) \vee (a \wedge c)$, the distributive law does not hold. The lattice is NOT distributive."*
+**Step-by-Step Complement Evaluation**:
+* $1' = 18$ and $18' = 1$
+* For element $2$: $\gcd(2, 9) = 1$ and $\text{lcm}(2, 9) = 18 \implies \mathbf{2' = 9}$.
+* For element $3$: To get $\text{lcm}(3, x) = 18$, $x$ must be a multiple of $2$ and $9 \implies x \in \{18\}$. But $\gcd(3, 18) = 3 \ne 1$.
+  * **Element $3$ has NO COMPLEMENT ❌**.
+* **Verdict**: $D_{18}$ is **NOT a Boolean Algebra**!
 
 ---
 
-## 🚨 TIER 3: Faculty Trap Radar (Where Marks Get Lost)
+### Classroom Problem 2: Distributivity Check on the 10-Element Lattice
+*(From Class Notes Page 6)*  
+**Question**: Determine whether the 10-element lattice below is distributive:
 
-1. **"Every Hasse diagram is a lattice"**: NO! Most exam questions deliberately give a diagram that has two top peaks or two bottom valleys.
-2. **"Finding complement of Top or Bottom"**: The complement of Top ($1$) is ALWAYS Bottom ($0$), and complement of Bottom ($0$) is ALWAYS Top ($1$).
-3. **"Can 6 elements form a Boolean Algebra?"**: NEVER. Number of elements must be a power of 2 ($2, 4, 8, 16, 32 \dots$).
-4. **"Does every element have a complement in a distributive lattice?"**: NO. A lattice can be distributive without being complemented (e.g., $D_{12}$ is distributive, but element $2$ has no complement).
-
----
-
-## 📝 TIER 4: Master Solved HOTS Archetypes (Copy Directly into Exam Notebook)
-
-### Archetype 1: Complete Investigation of Divisor Lattice $D_{18}$
-**Question**: Let $D_{18}$ be the set of divisors of 18 ordered by divisibility.
-1. List the elements and draw the Hasse diagram.
-2. Find the LUB and GLB of $\{6, 9\}$.
-3. Is $D_{18}$ a bounded lattice? If so, state $0$ and $1$.
-4. Find the complements of each element.
-5. Is $D_{18}$ a Boolean Algebra? Justify.
+```mermaid
+graph BT
+    zero["0 (Bottom)"] --> a["a"]
+    zero --> g["g"]
+    a --> b["b"]
+    a --> d["d"]
+    g --> e["e"]
+    g --> f["f"]
+    b --> c["c"]
+    d --> c
+    e --> L["L"]
+    f --> L
+    c --> one["1 (Top)"]
+    L --> one
+```
 
 **Step-by-Step Solution**:
-1. **Elements**: $D_{18} = \{1, 2, 3, 6, 9, 18\}$. Total elements = $6$.
-2. **Hasse Diagram**:
-   * $1$ connects to $2$ and $3$.
-   * $2$ connects to $6$.
-   * $3$ connects to $6$ and $9$.
-   * $6$ and $9$ connect to $18$.
-3. **LUB and GLB of $\{6, 9\}$**:
-   * $\text{LUB}(6, 9) = \text{lcm}(6, 9) = \mathbf{18}$.
-   * $\text{GLB}(6, 9) = \gcd(6, 9) = \mathbf{3}$.
-4. **Boundedness**:
-   * Bottom element $0 = \mathbf{1}$ (divides all elements).
-   * Top element $1 = \mathbf{18}$ (all elements divide 18).
-   * Yes, $D_{18}$ is a **bounded lattice**.
-5. **Complements**:
-   * For element $1$: $1 \wedge 18 = 1$, $1 \vee 18 = 18 \implies 1' = \mathbf{18}$.
-   * For element $18$: $18' = \mathbf{1}$.
-   * For element $2$: We need $\text{lcm}(2, x) = 18$ and $\gcd(2, x) = 1$.
-     * Divisors with $\text{lcm}(2, x) = 18$ are $x = 9$ or $18$.
-     * Check $9$: $\gcd(2, 9) = 1$ and $\text{lcm}(2, 9) = 18 \implies 2' = \mathbf{9}$.
-   * For element $3$: We need $\text{lcm}(3, x) = 18$ and $\gcd(3, x) = 1$.
-     * To get $\text{lcm}(3, x) = 18$, $x$ must be a multiple of $2$ and $9$ $\implies x \in \{18\}$.
-     * But $\gcd(3, 18) = 3 \ne 1$.
-     * Thus, element $3$ has **NO COMPLEMENT**!
-6. **Is it a Boolean Algebra?**:
-   * **NO**, because:
-     1. Element $3$ has no complement (not complemented).
-     2. The number of elements is $|D_{18}| = 6$, which is not a power of $2$ ($6 \ne 2^k$).
-     3. $18 = 2 \times 3^2$ is not square-free.
+1. Select elements $b, d, g$:
+   - Join $d \vee g$: The lowest upper bound of $d$ and $g$ is the top element **$1$**.
+   - Compute LHS:
+     $$\text{LHS} = b \wedge (d \vee g) = b \wedge 1 = \mathbf{b}$$
+   - Meet $b \wedge d = \mathbf{a}$.
+   - Meet $b \wedge g = \mathbf{0}$.
+   - Compute RHS:
+     $$\text{RHS} = (b \wedge d) \vee (b \wedge g) = a \vee 0 = \mathbf{a}$$
+2. **Comparison**: $\text{LHS} = b \ne \text{RHS} = a$.
+3. **Verdict**: **The lattice is NOT distributive ❌**.
 
 ---
 
-### Archetype 2: Switching Circuit Simplification
-**Question**: Write the Boolean transmission function for a circuit containing:
-- Branch 1: $A$ in series with $B$
-- Branch 2: $A$ in series with $B'$
-- Branch 3: $A'$ in series with $C$
-all connected in parallel. Simplify the circuit and draw the minimized diagram.
+### Classroom Problem 3: Switching Circuit Simplification & Redraw
+**Question**: Simplify the circuit $T = (A \cdot B) + (A \cdot B') + (A' \cdot C)$ and redraw.
 
-**Step-by-Step Solution**:
-1. **Write Transmission Function $T$**:
-   * Parallel means OR ($+$). Series means AND ($\cdot$).
-   $$T = (A \cdot B) + (A \cdot B') + (A' \cdot C)$$
-2. **Apply Distributive Law to first two terms**:
-   $$A \cdot B + A \cdot B' = A \cdot (B + B')$$
-   Since $B + B' = 1$:
-   $$= A \cdot 1 = A$$
-3. **Substitute back**:
-   $$T = A + (A' \cdot C)$$
-4. **Apply Boolean Rule $(X + X'Y = X + Y)$**:
-   $$T = A + C$$
-5. **Result**:
-   * Original circuit: 6 switches.
-   * Minimized circuit: Just switch $A$ in parallel with switch $C$ (**2 switches**).
+#### Original Circuit (6 Switches):
+```mermaid
+graph LR
+    IN[Input] --> B1["Switch A + Switch B"]
+    IN --> B2["Switch A + Switch B'"]
+    IN --> B3["Switch A' + Switch C"]
+    B1 --> OUT[Output]
+    B2 --> OUT
+    B3 --> OUT
+```
+
+#### Minimized Circuit (2 Switches):
+* $A \cdot B + A \cdot B' = A(B + B') = A \cdot 1 = A$.
+* $T = A + A' C = \mathbf{A + C}$.
+
+```mermaid
+graph LR
+    IN[Input] --> B1["Switch A"]
+    IN --> B2["Switch C"]
+    B1 --> OUT[Output]
+    B2 --> OUT
+```

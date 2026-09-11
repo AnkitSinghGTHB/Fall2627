@@ -5,6 +5,49 @@
 
 ---
 
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if file operations or exception control flow confuse you)*
+
+### 1. Python Exception Handling: The Complete Lifecycle
+* `try`: Code that might blow up (e.g. file missing, zero division).
+* `except`: Runs ONLY if an error occurs.
+* `else`: Runs ONLY if **NO error** occurred!
+* `finally`: **ALWAYS runs**, no matter what (used for closing files/network sockets).
+
+```mermaid
+stateDiagram-v2
+    direction TB
+    [*] --> Try_Block: Enter 'try'
+    Try_Block --> Exception_Raised: Error occurs!
+    Try_Block --> No_Exception: Clean execution!
+
+    Exception_Raised --> Except_Block: Handled in 'except'
+    No_Exception --> Else_Block: Runs 'else' block
+
+    Except_Block --> Finally_Block: Always proceeds
+    Else_Block --> Finally_Block: Always proceeds
+
+    Finally_Block --> [*]: Exit / Continue program
+```
+
+---
+
+### 2. Python DB-API 2.0: Database Transaction Flow
+Every relational database in Python follows this exact 5-stage pipeline:
+
+```mermaid
+graph LR
+    C1["1. sqlite3.connect('app.db')"] --> C2["2. conn.cursor()"]
+    C2 --> C3["3. cursor.execute(query, params)"]
+    C3 --> C4{"Success?"}
+    C4 -->|YES| C5["4. conn.commit()"]
+    C4 -->|ERROR| C6["4. conn.rollback()"]
+    C5 --> C7["5. conn.close()"]
+    C6 --> C7
+```
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |

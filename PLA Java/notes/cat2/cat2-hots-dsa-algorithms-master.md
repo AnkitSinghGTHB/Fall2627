@@ -5,6 +5,55 @@
 
 ---
 
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if bit manipulation or hardware algorithms feel confusing)*
+
+### 1. What is a "Nibble Swap"?
+* A byte has **8 bits**.
+* A **nibble** is a chunk of **4 bits**. So 1 byte has an **Upper Nibble** ($b_7 b_6 b_5 b_4$) and a **Lower Nibble** ($b_3 b_2 b_1 b_0$).
+* "Swap nibbles" simply takes the lower 4 bits and puts them on the left, and takes the upper 4 bits and puts them on the right:
+
+```mermaid
+graph LR
+    subgraph Original_Byte ["Input Byte: 100 = 0110 0100"]
+    direction LR
+    U1["Upper Nibble: 0110 (6)"]
+    L1["Lower Nibble: 0100 (4)"]
+    end
+
+    subgraph Swapped_Byte ["Output Byte: 70 = 0100 0110"]
+    direction LR
+    U2["New Upper: 0100 (from lower << 4)"]
+    L2["New Lower: 0110 (from upper >> 4)"]
+    end
+
+    L1 -->|"Shift Left by 4 (<< 4)"| U2
+    U1 -->|"Shift Right by 4 (>> 4)"| L2
+```
+
+---
+
+### 2. Booth's Algorithm: The Step-by-Step Decision Loop
+Used for hardware signed binary multiplication ($M \times Q$). Look at the last bit of $Q$ ($Q_0$) and the extra bit $Q_{-1}$:
+
+```mermaid
+stateDiagram-v2
+    direction TB
+    [*] --> Check_Bits: Initialize A=0, Q-1=0, Count=n
+    Check_Bits --> Sub_M: Q0 Q-1 = 10 (A = A - M)
+    Check_Bits --> Add_M: Q0 Q-1 = 01 (A = A + M)
+    Check_Bits --> ARS: Q0 Q-1 = 00 or 11 (Do Nothing)
+
+    Sub_M --> ARS
+    Add_M --> ARS
+
+    ARS --> Decrement: Arithmetic Right Shift [A, Q, Q-1]
+    Decrement --> Check_Bits: Count > 0
+    Decrement --> [*]: Count == 0 (Answer in [A, Q]!)
+```
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Mentions / Asks... | It Means This Exact Topic | Your Immediate Formula / Action |

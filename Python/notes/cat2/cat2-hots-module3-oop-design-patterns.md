@@ -5,6 +5,42 @@
 
 ---
 
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if OOP concepts or design patterns feel abstract)*
+
+### 1. Visualizing Class Inheritance & Polymorphism
+* An **Abstract Base Class (ABC)** is a strict contract: It says *"Any child class MUST implement `withdraw()` and `deposit()`, or Python will refuse to create it!"*
+* Both `SavingsAccount` and `CurrentAccount` inherit common properties from `BankAccount`, but have different fee/interest behaviors.
+
+```mermaid
+graph TD
+    subgraph OOP_Hierarchy ["BankAccount Polymorphism Hierarchy"]
+    ABC["<< Abstract >> BankAccount<br>(Defines: deposit, withdraw, get_balance)"]
+    ABC --> SA["SavingsAccount<br>(Adds: interest_rate, min_balance)"]
+    ABC --> CA["CurrentAccount<br>(Adds: overdraft_limit)"]
+    end
+```
+
+---
+
+### 2. The Diamond Problem & Method Resolution Order (MRO)
+* In multiple inheritance, if class `D` inherits from both `B` and `C`, and both inherit from `A`: which `speak()` method runs?
+* Python uses the **C3 Linearization algorithm** to produce a deterministic search list (`D.__mro__`):
+  $$\text{MRO}(D) = [D \to B \to C \to A \to \text{object}]$$
+
+```mermaid
+graph BT
+    subgraph Diamond_Problem ["Python C3 Linearization (MRO)"]
+    D["Class D (Child)"] --> B["Class B"]
+    D --> C["Class C"]
+    B --> A["Class A (Grandparent)"]
+    C --> A
+    A --> OBJ["object"]
+    end
+```
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |

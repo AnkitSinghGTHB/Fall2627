@@ -5,6 +5,88 @@
 
 ---
 
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if you forgot everything or need crystal-clear visual intuition)*
+
+### 1. Bagging vs Boosting: How Do Ensembles Work?
+* **Ensemble Learning**: Don't rely on one smart expert; ask a committee of simple models.
+* **Bagging (Bootstrap Aggregating)**:
+  * Train 100 trees **in parallel** on random subsets with replacement.
+  * Combine by simple voting. **Goal: Kill Variance (Overfitting)**.
+* **Boosting (Adaptive Boosting / AdaBoost)**:
+  * Train models **one-by-one in series**.
+  * If Learner 1 makes a mistake on an example, **amplify that example's weight** so Learner 2 is forced to fix it.
+  * Combine by weighted voting ($\alpha_t$). **Goal: Kill Bias (Underfitting)**.
+
+```mermaid
+graph LR
+    subgraph Bagging ["Bagging (Random Forest - Parallel & Independent)"]
+    direction TB
+    D1["Dataset"] --> S1["Bootstrap Sample 1"] --> M1["Tree 1"]
+    D1 --> S2["Bootstrap Sample 2"] --> M2["Tree 2"]
+    D1 --> S3["Bootstrap Sample 3"] --> M3["Tree 3"]
+    M1 --> V1["Majority Vote / Average"]
+    M2 --> V1
+    M3 --> V1
+    end
+
+    subgraph Boosting ["Boosting (AdaBoost - Sequential & Adaptive)"]
+    direction TB
+    DB["Dataset (Equal weights)"] --> T1["Learner 1"]
+    T1 -->|"Increase weight of errors"| T2["Learner 2"]
+    T2 -->|"Focus on hard cases"| T3["Learner 3"]
+    T1 -.-> COMBO["Weighted Sum of Models"]
+    T2 -.-> COMBO
+    T3 -.-> COMBO
+    end
+```
+
+---
+
+### 2. How Does K-Means Find Clusters?
+Imagine dropping $k$ pins on a floor.
+1. Each dot runs to its closest pin.
+2. Each pin walks to the center (mean) of all dots that ran to it.
+3. Repeat until pins stop moving.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    s1: 1. Randomly Place K Centroids
+    s2: 2. Compute Distances to all Centroids
+    s3: 3. Assign each Point to Nearest Centroid
+    s4: 4. Recalculate Centroid = Mean of Cluster Points
+    s5: 5. Did Centroids Move?
+
+    [*] --> s1
+    s1 --> s2
+    s2 --> s3
+    s3 --> s4
+    s4 --> s5
+    s5 --> s2: YES (Keep Iterating)
+    s5 --> [*]: NO (Converged!)
+```
+
+---
+
+### 3. Hierarchical Clustering (Dendrogram)
+* **AGNES (Agglomerative)**: Bottom-Up. Every point starts as its own cluster. Most similar pairs merge repeatedly until 1 giant cluster remains.
+* **DIANA (Divisive)**: Top-Down. Starts with 1 giant cluster and repeatedly splits it into smaller groups.
+
+```mermaid
+graph BT
+    subgraph Dendrogram ["Agglomerative (AGNES) Bottom-Up Dendrogram"]
+    pA["Point A"] --> AB["Cluster (A, B)"]
+    pB["Point B"] --> AB
+    pC["Point C"] --> CD["Cluster (C, D)"]
+    pD["Point D"] --> CD
+    AB --> ROOT["Root Cluster (A, B, C, D)"]
+    CD --> ROOT
+    end
+```
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |

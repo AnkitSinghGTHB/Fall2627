@@ -1,6 +1,6 @@
 # ⚡ CAT-2 HOTS Master Crib — Module 4: Graphs & Matrix Representations
 **Course**: MAT2002 — Discrete Mathematics & Graph Theory  
-**Level**: Self-Contained / Zero-Assumption (From Bedrock Basics to HOTS)  
+**Level**: Self-Contained & Fully Visual (From Bedrock Basics to Class Notes & HOTS)  
 **Exam Mode**: Open Book / Handwritten Notes Allowed | **Target Score**: 45+ / 50
 
 ---
@@ -8,61 +8,81 @@
 ## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
 *(Read this first if you forgot everything about graphs)*
 
-### 1. What is a Graph, Vertex, and Edge?
-* **Vertex (plural: Vertices)**: Just a dot or node (like a city).
-* **Edge**: A line connecting two dots (like a road between two cities).
-* **Simple Graph**: No road connects a city to itself (no loops), and at most one road connects any two cities (no parallel edges).
+### 1. What is a Bipartite Graph? (The "Two Teams" Concept)
+Can you divide all dots into **TWO teams (Team Red and Team Blue)** such that **NO line connects two dots of the same team**?
+
+```mermaid
+graph LR
+    subgraph Team_Red ["Team Red (Partition V1)"]
+    r1["Vertex 1"]
+    r3["Vertex 3"]
+    r5["Vertex 5"]
+    end
+
+    subgraph Team_Blue ["Team Blue (Partition V2)"]
+    b2["Vertex 2"]
+    b4["Vertex 4"]
+    b6["Vertex 6"]
+    end
+
+    r1 --- b2
+    r1 --- b6
+    r3 --- b2
+    r3 --- b4
+    r5 --- b4
+    r5 --- b6
+    r3 --- b6
+```
+> Every single road connects a Red dot to a Blue dot! No Red connects to Red, no Blue connects to Blue. This is **BIPARTITE ✅**.
+
+#### The Forbidden Triangle (Why Odd Cycles Break Bipartiteness):
+```mermaid
+graph TD
+    v1["1 (Red)"] --- v2["2 (Blue)"]
+    v2 --- v3["3 (TRAPPED!)"]
+    v3 --- v1
+```
+* If Dot 1 is Red and Dot 2 is Blue, Dot 3 connects to **BOTH** 1 and 2. Whatever color you give Dot 3, it violates the rule $\implies$ **ODD CYCLES CAN NEVER BE BIPARTITE ❌!**
 
 ---
 
-### 2. What is Degree & The Handshaking Theorem?
-* **Degree of a vertex ($\deg(v)$)**: Count how many lines are sticking out of that dot.
-* **The Handshaking Rule**:
-  > Every time two people shake hands, **TWO hands are involved**.  
-  > So if you sum up all the degrees of all vertices, it **MUST EQUAL $2 \times \text{number of edges}$** ($\sum \deg(v) = 2|E|$).
-* **Exam Super-Trick**:
-  Because $\sum \deg(v) = 2|E|$ is always an EVEN number, **the number of vertices with ODD degrees MUST BE EVEN**.
-  * If a question gives you a sequence with an ODD number of odd numbers (like $3, 3, 3, 2$) $\implies$ **INSTANT IMPOSSIBILITY ❌**.
+### 2. Graph Isomorphism (The 6-Vertex Classroom Puzzle)
+Two graphs are isomorphic ($G_1 \cong G_2$) $\iff$ they are identical twins in disguise.
 
----
+#### The Classroom Counterexample: $G_1$ vs $G_2$
+Both graphs have 6 vertices, 9 edges, and all vertices have degree 3 (3-regular). Are they isomorphic?
 
-### 3. What is a "Degree Sequence" & What Does "Graphic" Mean?
-* A list of the degrees of all vertices, usually written from biggest to smallest: e.g., $(4, 3, 3, 2, 2)$.
-* **"Is it graphic?"** means: *Can you actually draw a real simple graph using these exact numbers?*
-* You test this using the **Havel-Hakimi Algorithm** (peeling off the biggest number and subtracting 1 from its neighbors).
+```mermaid
+graph TD
+    subgraph G1 ["Graph G1: 6-Cycle with 3 Chords (NO Triangles)"]
+    a((a)) --- b((b))
+    b --- c((c))
+    c --- d((d))
+    d --- e((e))
+    e --- f((f))
+    f --- a
+    a -.- d
+    b -.- e
+    c -.- f
+    end
 
----
+    subgraph G2 ["Graph G2: Triangular Prism (HAS 2 Triangles)"]
+    u1((1)) --- u2((2))
+    u2 --- u3((3))
+    u3 --- u1
+    u4((4)) --- u5((5))
+    u5 --- u6((6))
+    u6 --- u4
+    u1 -.- u4
+    u2 -.- u5
+    u3 -.- u6
+    end
+```
 
-### 4. What is a Bipartite Graph? (The "Two Teams" Concept)
-* Can you color all the dots using only **TWO colors (Red and Blue)** such that **NO line connects two dots of the same color**?
-* *Think of it like a dance*: Boys (Red) only dance with Girls (Blue). A boy never dances with a boy, and a girl never dances with a girl.
-* **The Triangle Rule**:
-  If a graph has a triangle ($3$ dots in a cycle) or ANY odd cycle ($5$ dots, $7$ dots), it is **IMPOSSIBLE to be bipartite!**
-  * *Why?* Try coloring a triangle with 2 colors: Dot 1 is Red, Dot 2 is Blue, Dot 3 touches both $\implies$ trapped!
-
----
-
-### 5. What is Graph Isomorphism? (Identical Twins in Disguise)
-* Two graphs $G_1$ and $G_2$ are **isomorphic ($G_1 \cong G_2$)** if they are the **exact same graph drawn differently** (like rotating or stretching a rubber band network).
-* How to prove they are the same: Give a 1-to-1 matching dictionary $f$ matching each dot in $G_1$ to its twin in $G_2$.
-
----
-
-### 6. What is an Adjacency Matrix & Why Multiply It ($A^k$)?
-* An $n \times n$ grid where row $i$ and column $j$ has a **$1$** if there's a line between dot $i$ and dot $j$, and **$0$** if there isn't.
-* **The Matrix Power Magic**:
-  * $A^1$: Shows direct 1-step roads.
-  * $A^2$: The number in cell $(i, j)$ of $A^2$ tells you **how many 2-step walks exist from city $i$ to city $j$!** (Which is just the number of common friends they share!).
-  * Cell $(i, i)$ on the diagonal of $A^2$ is simply the **degree of vertex $i$**!
-
----
-
-### 7. What is Euler vs Hamilton? (The Line vs Dot Challenge)
-* **Euler Path / Circuit**: Visits every **ROAD (Edge)** exactly once.
-  * *Rule*: If every dot has an **EVEN degree** $\implies$ **Euler Circuit** exists.
-  * *Rule*: If exactly **TWO dots have ODD degree** $\implies$ **Euler Path** exists (starts at one odd dot, ends at the other).
-* **Hamilton Path / Circuit**: Visits every **CITY (Vertex)** exactly once.
-  * *Rule (Dirac's Theorem)*: If every city has degree $\ge n/2$ $\implies$ Hamilton circuit is guaranteed.
+* **Visual Proof of Failure**:
+  * Look at $G_2$: It clearly has **TWO triangles** $\{1, 2, 3\}$ and $\{4, 5, 6\}$.
+  * Look at $G_1$: Opposite chords connect opposite sides. It has **ZERO triangles** (its shortest cycle has 4 edges!).
+  * Because $G_2$ has triangles and $G_1$ has no triangles, **$G_1$ and $G_2$ are NOT isomorphic ($G_1 \not\cong G_2$) ❌**.
 
 ---
 
@@ -70,105 +90,45 @@
 
 | If Question Shows... | It Means This Exact Problem | What You Do (In 5 Seconds) |
 | :--- | :--- | :--- |
+| "Registration number $q$ edges", "Minimum vertices $n$" | **Max Edge Inversion Formula** | Solve $\frac{n(n-1)}{2} \ge q \implies n^2 - n - 2q \ge 0$. Find smallest integer $n$. |
 | Numbers like $(5, 4, 3, 3, 2, 1)$, "Is it graphic?" | **Havel-Hakimi Algorithm** | Check sum $\to$ if odd, reject. If even $\to$ delete first number $d_1$, subtract 1 from next $d_1$ numbers. Repeat. |
-| "Is the graph bipartite?" | **Bipartite Check** | Start coloring with Red and Blue. If you ever need to color two connected dots the same color $\implies$ **NOT bipartite (odd cycle found)**. |
-| Two pictures of graphs, "Are they isomorphic?" | **Isomorphism Proof** | Count vertices, edges, and degree list. If all match $\to$ match unique vertices and write bijective table $f(u) = v$. |
-| Adjacency matrix $A$, "Find number of walks of length 2" | **Matrix Walks** | Entry $(i, j)$ of $A^2 = \text{Row } i \cdot \text{Column } j = \text{common neighbors of } i \text{ and } j$. |
-| Weighted map with distances, "Shortest path" | **Dijkstra's Algorithm** | Use the distance update table. Box the smallest unvisited dot at each turn. |
+| Two 6-vertex graphs, "Are they isomorphic?" | **Isomorphism Proof/Disproof** | Check degree sequence $\to$ if identical, **count triangles ($C_3$)**! If one has triangles and other has none $\implies$ NOT isomorphic. |
+| Adjacency matrix $A$, "Walks of length 2 between $v_i, v_j$" | **Matrix Walks Shortcut** | Take dot product of Row $i$ and Row $j$ of $A$ (Counts common neighbors!). |
 
 ---
 
-## 🛠️ TIER 2: Step-by-Step Execution Recipes
+## 📝 TIER 4: Solved Classroom Archetypes (From Lecture Notes)
 
-### Recipe 1: Havel-Hakimi Graphic Test (The Subtraction Dance)
-1. **Sum Check**: Add up all the numbers in the sequence. If the sum is **ODD**, stop and write: *"Sum of degrees is odd, violates Handshaking Theorem, NOT graphic ❌."*
-2. **Sort**: Put numbers in descending order (e.g. $4, 3, 3, 2, 2$).
-3. **Drop and Subtract**:
-   - Take the first number, say $d_1 = 4$.
-   - Cross it off.
-   - Subtract $1$ from the next $4$ numbers.
-4. **Re-sort**: Put the new list in descending order.
-5. **Repeat** until:
-   - All numbers are $0 \implies$ **GRAPHIC ✅** (It can be drawn!).
-   - Any number becomes negative OR you need to subtract from more numbers than exist $\implies$ **NOT GRAPHIC ❌**.
-
----
-
-### Recipe 2: 2-Coloring Test for Bipartite Graphs
-1. Pick any dot, label it **R (Red)**.
-2. Label all its immediate neighbors **B (Blue)**.
-3. Label all neighbors of Blue dots as **R (Red)**.
-4. If at any step, two connected dots are forced to have the same color:
-   - STOP! Trace the dots that caused the conflict.
-   - Write: *"The graph contains an odd-length cycle [list vertices, e.g., $v_1-v_2-v_3-v_1$]. By Konig's Theorem, a graph is bipartite $\iff$ it has no odd cycles. Therefore, NOT bipartite ❌."*
-5. If you finish coloring all dots with no conflicts:
-   - Write: *"Graph is bipartite with partitions $V_1 = \{\text{Red dots}\}$ and $V_2 = \{\text{Blue dots}\}$ ✅."*
-
----
-
-### Recipe 3: Calculating Walks of Length 2 Without Doing Big Matrix Multiplication
-If an exam asks for walks of length 2 between vertex $v_i$ and vertex $v_j$:
-* **Do NOT multiply the entire $n \times n$ matrix!** That takes 15 minutes.
-* Instead, simply calculate the **dot product of Row $i$ and Row $j$** of $A$:
-  $$(A^2)_{ij} = \sum_{k=1}^n A_{ik} \times A_{jk}$$
-* *Plain English Meaning*: Just count how many vertices are connected to **BOTH $v_i$ AND $v_j$**! Each common friend gives exactly one 2-step walk ($v_i \to \text{friend} \to v_j$).
-
----
-
-## 🚨 TIER 3: Faculty Trap Radar
-
-1. **"Does degree sequence check prove isomorphism?"**: NO! Two graphs can have the exact same degree sequence (e.g. two separate triangles vs one 6-cycle $C_6$; both have degrees $2, 2, 2, 2, 2, 2$) but are **NOT isomorphic** (one has triangles, the other doesn't!).
-2. **"Does an Euler path start anywhere?"**: NO! If a graph has two odd-degree vertices, the Euler path **MUST start at one odd vertex and end at the OTHER odd vertex**. Starting at an even vertex will get you stuck!
-3. **"Dirac's Theorem Failure"**: If a vertex has degree $< n/2$, it does **NOT** mean the graph is not Hamiltonian. Dirac's theorem is a *one-way guarantee*, not a disqualifier.
-
----
-
-## 📝 TIER 4: Master Solved HOTS Archetypes
-
-### Archetype 1: Havel-Hakimi Test on $(5, 3, 3, 3, 2, 2)$
-**Question**: Can a simple graph exist with degree sequence $S = (5, 3, 3, 3, 2, 2)$?
+### Classroom Problem 1: The Registration Number Graph Problem
+*(From Class Notes Page 14)*  
+**Question**: Take the last 3 digits of your registration number as the number of edges $q$ (e.g., $q = 242$). What is the minimum number of vertices $n$ required to construct a simple undirected graph?
 
 **Step-by-Step Solution**:
-1. **Sum Check**: $5 + 3 + 3 + 3 + 2 + 2 = 18$ (Even $\implies$ pass).
-2. **Iteration 1**:
-   * Sequence: $(5, 3, 3, 3, 2, 2)$.
-   * Drop $5$. Subtract 1 from the next 5 numbers:
-     $$(3-1, 3-1, 3-1, 2-1, 2-1) = (2, 2, 2, 1, 1)$$
-3. **Iteration 2**:
-   * Sequence is already sorted: $(2, 2, 2, 1, 1)$.
-   * Drop $2$. Subtract 1 from next 2 numbers:
-     $$(2-1, 2-1, 1, 1) = (1, 1, 1, 1)$$
-4. **Iteration 3**:
-   * Sequence: $(1, 1, 1, 1)$.
-   * Drop $1$. Subtract 1 from next 1 number:
-     $$(1-1, 1, 1) = (0, 1, 1)$$
-   * Re-sort: $(1, 1, 0)$.
-5. **Iteration 4**:
-   * Drop $1$. Subtract 1 from next 1 number:
-     $$(1-1, 0) = (0, 0)$$
-6. **Conclusion**: All remaining elements are $0$. By the Havel-Hakimi Theorem, the degree sequence is **GRAPHIC ✅**. A simple graph with these degrees exists!
+1. In any simple graph with $n$ vertices, the maximum possible number of edges occurs in the complete graph $K_n$:
+   $$|E|_{max} = \frac{n(n-1)}{2}$$
+2. For a graph to have $q = 242$ edges:
+   $$\frac{n(n-1)}{2} \ge 242 \implies n(n-1) \ge 484$$
+3. Test values of $n$:
+   - For $n = 21$: $21 \times 20 = 420 < 484$ ❌
+   - For $n = 22$: $22 \times 21 = 462 < 484$ ❌
+   - For $n = 23$: $23 \times 22 = 506 \ge 484$ ✅
+4. **Conclusion**:
+   The minimum number of vertices required is **$n = 23$**.
 
 ---
 
-### Archetype 2: 2-Coloring Bipartite Proof with Odd-Cycle Trap
-**Question**: Determine whether the graph $G$ with vertices $\{1, 2, 3, 4, 5, 6\}$ and edges $(1,2), (2,3), (3,4), (4,5), (5,6), (6,1)$ and additional edge $(2,5)$ is bipartite.
+### Classroom Problem 2: Graph Construction for Graphic Sequence $(3, 3, 3, 3, 2)$
+*(From Class Notes Page 16)*  
+We previously proved $(3, 3, 3, 3, 2)$ is graphic via Havel-Hakimi. Here is the constructed graph on 5 vertices $\{v_1, v_2, v_3, v_4, v_5\}$:
 
-**Step-by-Step Solution**:
-1. **Attempt 2-Coloring**:
-   * Color vertex $1$: **RED**.
-   * Neighbors of $1$ are $2$ and $6 \implies$ Color $2$: **BLUE**, Color $6$: **BLUE**.
-   * Look at neighbor of $2$: vertex $3 \implies$ Color $3$: **RED**.
-   * Look at neighbor of $3$: vertex $4 \implies$ Color $4$: **BLUE**.
-   * Look at neighbor of $4$: vertex $5 \implies$ Color $5$: **RED**.
-2. **Conflict Check on Cross-Edge $(2, 5)$**:
-   * Look at the edge $(2, 5)$:
-     * Vertex $2$ is **BLUE**.
-     * Vertex $5$ is **RED**. (Different colors $\implies$ edge $(2, 5)$ is valid).
-   * Now look at neighbor of $5$: vertex $6$:
-     * Vertex $5$ is **RED**.
-     * Vertex $6$ was already colored **BLUE**. (Different colors $\implies$ edge $(5, 6)$ is valid).
-3. **Partitions**:
-   * Partition $V_1 = \{1, 3, 5\}$ (All RED).
-   * Partition $V_2 = \{2, 4, 6\}$ (All BLUE).
-   * Every edge connects a vertex in $V_1$ to a vertex in $V_2$.
-4. **Conclusion**: The graph is **BIPARTITE ✅** with partitions $\{1, 3, 5\}$ and $\{2, 4, 6\}$.
+```mermaid
+graph TD
+    v1((v1: deg 3)) --- v2((v2: deg 3))
+    v2 --- v3((v3: deg 3))
+    v3 --- v4((v4: deg 3))
+    v4 --- v1
+    v1 --- v5((v5: deg 2))
+    v3 --- v5
+```
+* $\deg(v_1) = 3$, $\deg(v_2) = 2+1=3$, $\deg(v_3) = 3$, $\deg(v_4) = 3$, $\deg(v_5) = 2$.
+* Total degree sum $= 3+3+3+3+2 = 14 = 2 \times 7$ edges ✅.

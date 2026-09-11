@@ -5,6 +5,69 @@
 
 ---
 
+## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
+*(Read this first if probability or graphs confuse you)*
+
+### 1. What Makes Naïve Bayes "Naïve"?
+* Normal Bayes requires knowing how every feature affects every other feature (e.g. how temperature interacts with humidity and wind). That requires millions of probabilities!
+* **The "Naïve" Trick**: We pretend all features are completely **independent of each other**, given the class!
+* Each feature connects **only** to the Class label:
+
+```mermaid
+graph TD
+    subgraph Naive_Topology ["Naïve Bayes: Star Topology (Features Independent Given Class)"]
+    C["Target Class C (e.g., Play = Yes / No)"] --> X1["Feature X1 (Outlook)"]
+    C --> X2["Feature X2 (Temperature)"]
+    C --> X3["Feature X3 (Humidity)"]
+    C --> X4["Feature X4 (Windy)"]
+    end
+```
+
+---
+
+### 2. D-Separation in Bayesian Networks: Are A and C Independent?
+Think of information flowing like water through a pipe from $A$ to $C$:
+
+```mermaid
+graph LR
+    subgraph Serial ["1. Serial Connection: A -> B -> C"]
+    direction LR
+    sa["A"] --> sb["B (If B is KNOWN: Pipe is BLOCKED ❌)"] --> sc["C"]
+    end
+
+    subgraph Diverging ["2. Diverging Connection: A <- B -> C"]
+    direction LR
+    db["B (If B is KNOWN: Pipe is BLOCKED ❌)"] --> da["A"]
+    db --> dc["C"]
+    end
+
+    subgraph Converging ["3. Converging (V-Structure): A -> B <- C"]
+    direction LR
+    ca["A"] --> cb["B (If B is UNKNOWN: Pipe is BLOCKED ❌)"]
+    cc["C"] --> cb
+    end
+```
+* **Summary Rules**:
+  * For **Serial** ($A \to B \to C$) & **Diverging** ($A \leftarrow B \to C$): Knowing $B$ **BLOCKS** the path $\implies A \perp C \mid B$ (Conditionally Independent).
+  * For **V-Structure** ($A \to B \leftarrow C$): Knowing $B$ (or its child) **OPENS** the path (Explaining Away effect)! If $B$ is unobserved, path is naturally **BLOCKED**.
+
+---
+
+### 3. How Does the Apriori Algorithm Save Time?
+* **Golden Rule (Anti-Monotonicity)**: If an itemset is **INFREQUENT**, all of its supersets are **GUARANTEED TO BE INFREQUENT**!
+* You never need to scan the database for $\{A, B, C\}$ if $\{A, C\}$ already failed to meet minimum support!
+
+```mermaid
+graph TD
+    subgraph Lattice ["Apriori Pruning: Infrequent Subsets Kill All Supersets"]
+    L1["1-Itemsets: {A}, {B}, {C}"] --> C2["Candidate 2-Itemsets: {A,B}, {A,C}, {B,C}"]
+    C2 -->|"Suppose {A,C} is INFREQUENT ❌"| PRUNE["Pruning Rule: Kill all supersets of {A, C}"]
+    PRUNE --> DEAD["{A, B, C} is PRUNED WITHOUT SCANNING DATABASE! ✂️"]
+    end
+```
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Mentions / Shows... | It Means This Exact Topic | Your Immediate Formula / Action |
