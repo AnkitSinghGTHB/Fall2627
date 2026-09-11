@@ -1,76 +1,187 @@
-# ⚡ CAT-2 HOTS Master Crib — Module 4: Asynchronous & Synchronous Counters
+# ⚡ CAT-2 HOTS Master Crib — Module 4: Asynchronous & Synchronous Counters & FSMs
 **Course**: ECE2002 — Digital Logic Design  
-**Level**: Self-Contained & Fully Visual (From Bedrock Basics to Class Homework & HOTS)  
+**Level**: Self-Contained & Fully Visual (Zero-Assumption Bedrock Basics to Circuit Schematics)  
 **Exam Mode**: Open Book / Handwritten Notes Allowed | **Target Score**: 45+ / 50
 
 ---
 
 ## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
-*(Read this first if you forgot everything about counters)*
+*(Read this first if counter circuits look like chaotic spaghetti wiring)*
 
-### 1. Ripple Counter Wiring (How Up vs Down Works Visually)
+### 1. What is a Counter? (Ripple vs. Synchronous)
+A counter is a circuit that cycles through a set sequence of binary numbers on every clock pulse:
+* **Asynchronous (Ripple) Counter**:
+  * External clock is connected **ONLY to the first flip-flop (LSB)**.
+  * Each flip-flop's output triggers the clock of the NEXT flip-flop!
+  * Like falling dominoes, the clock **ripples** down the line $\implies$ **Slow! Accumulates delay ($n \times t_{pd}$)**.
+* **Synchronous Counter**:
+  * External clock connects **SIMULTANEOUSLY to ALL flip-flops**!
+  * All flip-flops update at the exact same instant $\implies$ **Blazing fast! Delay is only 1 flip-flop ($t_{pd}$)**.
+
+```mermaid
+graph TD
+    subgraph Asynch_Ripple ["Asynchronous Ripple: Domino Clocking (Slow)"]
+    CLK_EXT1["External Clock"] --> FFA["FF0 (LSB)"]
+    FFA -->|"Q0 acts as Clock"| FFB["FF1"]
+    FFB -->|"Q1 acts as Clock"| FFC["FF2 (MSB)"]
+    end
+
+    subgraph Synch_Clock ["Synchronous Counter: Unified Clock (Ultra Fast)"]
+    CLK_EXT2["External Clock"] --> FF0_S["FF0"]
+    CLK_EXT2 --> FF1_S["FF1"]
+    CLK_EXT2 --> FF2_S["FF2"]
+    end
+```
+
+---
+
+### 2. Asynchronous (Ripple) Counter Circuit Schematics
+
+#### The 4 Golden Rules of Ripple Direction:
+* If flip-flops trigger on **Negative Edge ($\downarrow$)**:
+  * Clock from normal output **$Q \implies$ UP Counter** ($0 \to 1 \to 2 \dots$).
+  * Clock from inverted output **$Q' \implies$ DOWN Counter** ($7 \to 6 \to 5 \dots$).
+* If flip-flops trigger on **Positive Edge ($\uparrow$)**:
+  * Clock from normal output **$Q \implies$ DOWN Counter**.
+  * Clock from inverted output **$Q' \implies$ UP Counter**.
+
+#### A. 3-Bit Asynchronous UP Counter (Negative-Edge Triggered T FFs):
+* All $T$ inputs are tied to Logic HIGH ($1$) so they operate in **TOGGLE mode**.
+* External clock connects to FF0 ($Q_0$). Output $Q_0$ clocks FF1. Output $Q_1$ clocks FF2.
 
 ```mermaid
 graph LR
-    subgraph UP_Counter ["Negative-Edge UP Counter (Clock from Q)"]
-    direction LR
-    CLK1["External Clock"] --> FF0_U["FF0 (LSB)"]
-    FF0_U -->|"Q0 acts as CLK"| FF1_U["FF1"]
-    FF1_U -->|"Q1 acts as CLK"| FF2_U["FF2 (MSB)"]
-    end
-
-    subgraph DOWN_Counter ["Negative-Edge DOWN Counter (Clock from Q')"]
-    direction LR
-    CLK2["External Clock"] --> FF0_D["FF0 (LSB)"]
-    FF0_D -->|"Q0' acts as CLK"| FF1_D["FF1"]
-    FF1_D -->|"Q1' acts as CLK"| FF2_D["FF2 (MSB)"]
+    subgraph Ripple_UP ["3-Bit Negative-Edge Ripple UP Counter Circuit"]
+    VCC["Logic 1 (VCC)"] --> T0["T0"]
+    VCC --> T1["T1"]
+    VCC --> T2["T2"]
+    
+    EXT_CLK["Clock In (Neg-Edge)"] --> FF0["FF0 (LSB)"]
+    T0 --> FF0
+    FF0 -->|"Q0 (Normal)"| CLK1["Clock input of FF1"]
+    FF0 --> Q0_OUT["Output Q0 (LSB)"]
+    
+    CLK1 --> FF1["FF1"]
+    T1 --> FF1
+    FF1 -->|"Q1 (Normal)"| CLK2["Clock input of FF2"]
+    FF1 --> Q1_OUT["Output Q1"]
+    
+    CLK2 --> FF2["FF2 (MSB)"]
+    T2 --> FF2
+    FF2 --> Q2_OUT["Output Q2 (MSB)"]
     end
 ```
 
 ---
 
-### 2. State Diagram: Mealy Overlapping Sequence Detector (`1011`)
+#### B. 3-Bit Asynchronous DOWN Counter:
+* To count downwards ($7 \to 6 \to 5 \dots$), we simply take the clock for the next stage from the **inverted output $Q'$**!
 
 ```mermaid
-stateDiagram-v2
-    direction LR
-    [*] --> S0: Reset / Power ON
-    S0 --> S0: x=0 / Y=0
-    S0 --> S1: x=1 / Y=0 (Got '1')
-    S1 --> S2: x=0 / Y=0 (Got '10')
-    S1 --> S1: x=1 / Y=0 (Holds on '1')
-    S2 --> S0: x=0 / Y=0 (Resets)
-    S2 --> S3: x=1 / Y=0 (Got '101')
-    S3 --> S2: x=0 / Y=0 ('1010' ends in '10')
-    S3 --> S1: x=1 / Y=1 (MATCH '1011'! Last '1' matches S1)
+graph LR
+    subgraph Ripple_DOWN ["3-Bit Negative-Edge Ripple DOWN Counter Circuit"]
+    VCC["Logic 1 (VCC)"] --> T0["T0"]
+    VCC --> T1["T1"]
+    VCC --> T2["T2"]
+    
+    EXT_CLK["Clock In (Neg-Edge)"] --> FF0["FF0 (LSB)"]
+    T0 --> FF0
+    FF0 -->|"Q0' (Inverted)"| CLK1["Clock input of FF1"]
+    FF0 --> Q0_OUT["Output Q0 (LSB)"]
+    
+    CLK1 --> FF1["FF1"]
+    T1 --> FF1
+    FF1 -->|"Q1' (Inverted)"| CLK2["Clock input of FF2"]
+    FF1 --> Q1_OUT["Output Q1"]
+    
+    CLK2 --> FF2["FF2 (MSB)"]
+    T2 --> FF2
+    FF2 --> Q2_OUT["Output Q2 (MSB)"]
+    end
 ```
 
 ---
 
-### 3. State Diagram: 3-Bit Synchronous Gray Code Counter (Homework 2)
+#### C. Truncated Mod-N Ripple Counter (Mod-6 Counter with Reset):
+* A 3-bit counter naturally counts 8 states ($0 \dots 7$).
+* To make a **Mod-6 counter** (counts $0, 1, 2, 3, 4, 5$ and resets on $6$):
+  * Binary of $6$ is $Q_2 Q_1 Q_0 = \mathbf{1 1 0_2}$.
+  * Connect $Q_2$ and $Q_1$ into a **NAND gate**.
+  * The NAND output connects to the active-low **CLEAR / RESET** pins of all flip-flops!
+  * The instant $6$ appears, NAND output becomes $0$, instantly clearing all flip-flops back to $000$!
 
 ```mermaid
-stateDiagram-v2
-    direction LR
-    s000: 000
-    s001: 001
-    s011: 011
-    s010: 010
-    s110: 110
-    s111: 111
-    s101: 101
-    s100: 100
-
-    s000 --> s001
-    s001 --> s011
-    s011 --> s010
-    s010 --> s110
-    s110 --> s111
-    s111 --> s101
-    s101 --> s100
-    s100 --> s000
+graph LR
+    subgraph Mod6_Reset ["Mod-6 Truncated Counter with NAND Reset"]
+    FF2_Q["Q2 (MSB)"] --> NAND["NAND Gate (Detects Q2=1 and Q1=1)"]
+    FF1_Q["Q1"] --> NAND
+    NAND -->|"Clear Pulse (Active-Low)"| CLR0["Clear Pin FF0"]
+    NAND --> CLR1["Clear Pin FF1"]
+    NAND --> CLR2["Clear Pin FF2"]
+    end
 ```
-> Notice: Between every single consecutive state, **only ONE bit flips**!
+
+---
+
+### 3. Synchronous Binary Counter Circuit Schematics
+
+In a synchronous counter, every flip-flop gets the master clock simultaneously. A flip-flop should toggle **only when ALL previous lower-order bits are 1**!
+* $T_0 = \mathbf{1}$ (Toggles every single clock pulse).
+* $T_1 = \mathbf{Q_0}$ (Toggles when $Q_0 = 1$).
+* $T_2 = \mathbf{Q_0 \cdot Q_1}$ (Toggles when both $Q_0$ and $Q_1$ are 1!).
+* $T_3 = \mathbf{Q_0 \cdot Q_1 \cdot Q_2}$ (Toggles when $Q_0, Q_1, Q_2$ are all 1!).
+
+```mermaid
+graph LR
+    subgraph Sync_Counter ["3-Bit Synchronous Binary UP Counter"]
+    CLK["Master Clock Pulse"] --> FF0["FF0"]
+    CLK --> FF1["FF1"]
+    CLK --> FF2["FF2"]
+    
+    ONE["Logic 1"] --> T0["T0 Input"]
+    T0 --> FF0
+    FF0 --> Q0["Q0 (LSB)"]
+    
+    Q0 --> T1["T1 Input"]
+    T1 --> FF1
+    FF0 --> AND1["AND Gate 1"]
+    FF1 --> Q1["Q1"]
+    Q1 --> AND1
+    
+    AND1 --> T2["T2 Input"]
+    T2 --> FF2
+    FF2 --> Q2["Q2 (MSB)"]
+    end
+```
+
+---
+
+### 4. Finite State Machines (Mealy vs. Moore Block Diagrams)
+
+* **Moore Machine**:
+  * Output depends **ONLY on the Present State** ($Y = f(Q)$).
+  * Safe against input noise/glitches, but responds 1 clock cycle later.
+  * Outputs are written **INSIDE the state bubbles** (e.g. `S0 / 0`).
+* **Mealy Machine**:
+  * Output depends on **BOTH Present State AND Current Input** ($Y = f(Q, x)$).
+  * Reacts instantly to inputs within the same clock cycle, but prone to input glitches!
+  * Outputs are written **ON the transition arrows** (e.g. `x=1 / Y=1`).
+
+```mermaid
+graph LR
+    subgraph Moore_Arch ["Moore Machine (Output depends ONLY on State)"]
+    IN_M["Input x"] --> MEM_M["State Memory (Flip-Flops)"]
+    MEM_M --> OUT_M["Output Logic"]
+    OUT_M --> Y_M["Output Y = f(Q)"]
+    end
+
+    subgraph Mealy_Arch ["Mealy Machine (Output depends on State + Input)"]
+    IN_ME["Input x"] --> MEM_ME["State Memory (Flip-Flops)"]
+    IN_ME --> OUT_ME["Output Logic"]
+    MEM_ME --> OUT_ME
+    OUT_ME --> Y_ME["Output Y = f(Q, x)"]
+    end
+```
 
 ---
 
@@ -78,17 +189,37 @@ stateDiagram-v2
 
 | If Question Shows / Asks... | It Means This Exact Topic | What You Do (In 5 Seconds) |
 | :--- | :--- | :--- |
-| "Design Mod-10 synchronous counter using JK" | **BCD Synchronous Counter** | 4 JK FFs ($Q_D Q_C Q_B Q_A$). Don't cares for states $10 \dots 15$. K-Maps give $J_A=K_A=1, J_B=K_B=Q_A Q_D', J_C=K_C=Q_A Q_B, J_D=Q_A Q_B Q_C, K_D=Q_A$. |
+| "Design Mod-10 synchronous counter using JK" | **BCD Synchronous Counter** | 4 JK FFs ($Q_D Q_C Q_B Q_A$). Don't cares for states $10 \dots 15$. K-Maps: $J_A=K_A=1, J_B=K_B=Q_A Q_D', J_C=K_C=Q_A Q_B, J_D=Q_A Q_B Q_C, K_D=Q_A$. |
 | "Design 3-bit Gray code counter using T FF" | **Gray Code Counter** | Sequence: $000 \to 001 \to 011 \to 010 \to 110 \to 111 \to 101 \to 100 \to 000$. All 8 states used! $T_i = Q_i \oplus Q_i^+$. |
-| "Arbitrary sequence $000 \to 110 \dots$" | **Custom State Loop** | List sequence $\to$ treat missing states as Don't Cares ($X$) $\to$ K-Map $\to$ Verify self-starting! |
+| "Arbitrary sequence $000 \to 110 \dots$" | **Custom Counter + Lockout** | List sequence $\to$ treat unused states as Don't Cares ($X$) $\to$ K-Map $\to$ Verify unused states return to valid loop! |
+| "Design a sequence detector for 1011" | **FSM Sequence Detector** | Draw states: $S_0$ (Start), $S_1$ (Got '1'), $S_2$ (Got '10'), $S_3$ (Got '101'). If overlapping, from $S_3$ on '1' go to $S_1$ with $Y=1$. |
 
 ---
 
-## 📝 TIER 4: Solved Classroom Archetypes (From Class Notes)
+## 📝 TIER 4: Solved Classroom & Exam Archetypes
 
 ### Classroom Homework 1: Mod-10 Synchronous UP Counter using JK Flip-Flops
 *(From Class Notes Module 4 Homework 1)*  
-**Equations**:
+**Goal**: Design a BCD counter that counts $0 \to 1 \to 2 \dots \to 9 \to 0$.
+
+#### 1. State Table with JK Excitations:
+$$\begin{array}{|c|cccc|cccc|cc|cc|cc|cc|}
+\hline
+\textbf{State} & Q_D & Q_C & Q_B & Q_A & Q_D^+ & Q_C^+ & Q_B^+ & Q_A^+ & J_D & K_D & J_C & K_C & J_B & K_B & J_A & K_A \\ \hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & X & 0 & X & 0 & X & 1 & X \\
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & X & 0 & X & 1 & X & X & 1 \\
+2 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & X & 0 & X & X & 0 & 1 & X \\
+3 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & X & 1 & X & X & 1 & X & 1 \\
+4 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & X & X & 0 & 0 & X & 1 & X \\
+5 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & X & X & 0 & 1 & X & X & 1 \\
+6 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & X & X & 0 & X & 0 & 1 & X \\
+7 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & X & X & 1 & X & 1 & X & 1 \\
+8 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & X & 0 & 0 & X & 0 & X & 1 & X \\
+9 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & X & 1 & 0 & X & 0 & X & X & 1 \\ \hline
+\end{array}$$
+*(Unused states $10 \dots 15$ are filled with Don't Cares $X$ in K-Maps!)*
+
+#### 2. Minimized Input Equations:
 * $\mathbf{J_A = 1, \quad K_A = 1}$
 * $\mathbf{J_B = K_B = Q_A \cdot Q_D'}$
 * $\mathbf{J_C = K_C = Q_A \cdot Q_B}$
@@ -98,7 +229,34 @@ stateDiagram-v2
 
 ### Classroom Homework 2: 3-Bit Synchronous Gray Code Counter using T Flip-Flops
 *(From Class Notes Module 4 Homework 2)*  
-**Equations**:
-* $\mathbf{T_2 = Q_1 Q_0'}$
+**Gray Sequence**: $000 \to 001 \to 011 \to 010 \to 110 \to 111 \to 101 \to 100 \to 000$
+
+#### 1. Transition & Excitation Table ($T_i = Q_i \oplus Q_i^+$):
+$$\begin{array}{|c|ccc|ccc|c|c|c|}
+\hline
+\textbf{Step} & Q_2 & Q_1 & Q_0 & Q_2^+ & Q_1^+ & Q_0^+ & T_2 & T_1 & T_0 \\ \hline
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 \\
+2 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\
+3 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+4 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 1 \\
+5 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 \\
+6 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\
+7 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline
+\end{array}$$
+
+#### 2. Minimized T Equations from K-Maps:
+* $\mathbf{T_0 = Q_1' Q_2' + Q_1 Q_2 = \overline{Q_1 \oplus Q_2}}$ (XNOR Gate!)
 * $\mathbf{T_1 = Q_2' Q_0}$
-* $\mathbf{T_0 = (Q_2 \oplus Q_1)'}$
+* $\mathbf{T_2 = Q_1' Q_0'}$
+
+---
+
+### Classroom Problem 3: Arbitrary Sequence Counter & Lockout Prevention
+**Sequence**: $000 \to 110 \to 010 \to 011 \to 101 \to 000$ (5 valid states; 3 unused states: $001, 100, 111$).
+
+#### Why Lockout Verification is Mandatory in CAT-2:
+* If noise pushes the counter into an unused state (e.g. $001$), **will it return to the main loop, or get trapped forever in a dead-end cycle?**
+* **Self-Starting Check**:
+  * Analyze next state for all 3 unused states using the derived equations.
+  * If $001 \to 010$, $100 \to 000$, $111 \to 011$ (all lead into valid states) $\implies$ **SELF-STARTING & LOCKOUT FREE ✅**!
