@@ -16,6 +16,7 @@ A Hasse diagram is just a **ladder drawing** showing which element is "smaller" 
 #### Visual Hasse Diagram of Divisor Lattice $D_{30}$:
 ```mermaid
 graph BT
+<<<<<<< HEAD
     d1["1 (Bottom / Floor / 0)"] --> d2["2"]
     d1 --> d3["3"]
     d1 --> d5["5"]
@@ -28,6 +29,20 @@ graph BT
     d6 --> d30["30 (Top / Ceiling / 1)"]
     d10 --> d30
     d15 --> d30
+=======
+    1["1 (Bottom / Floor / 0)"] --> 2["2"]
+    1 --> 3["3"]
+    1 --> 5["5"]
+    2 --> 6["6"]
+    2 --> 10["10"]
+    3 --> 6
+    3 --> 15["15"]
+    5 --> 10
+    5 --> 15
+    6 --> 30["30 (Top / Ceiling / 1)"]
+    10 --> 30
+    15 --> 30
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 
 ---
@@ -118,6 +133,7 @@ graph BT
 
 ```mermaid
 graph BT
+<<<<<<< HEAD
     e1["1 (Bottom)"] --> e2["2"]
     e1 --> e3["3"]
     e2 --> e6["6"]
@@ -125,12 +141,26 @@ graph BT
     e3 --> e9["9"]
     e6 --> e18["18 (Top)"]
     e9 --> e18
+=======
+    1["1 (Bottom)"] --> 2["2"]
+    1 --> 3["3"]
+    2 --> 6["6"]
+    3 --> 6
+    3 --> 9["9"]
+    6 --> 18["18 (Top)"]
+    9 --> 18
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 
 **Step-by-Step Complement Evaluation**:
 * $1' = 18$ and $18' = 1$
+<<<<<<< HEAD
 * For element $2$: $\gcd(2, 9) = 1$ and $\text{lcm}(2, 9) = 18 \implies \mathbf{2' = 9}$.
 * For element $3$: To get $\text{lcm}(3, x) = 18$, $x$ must be a multiple of $2$ and $9 \implies x \in \{18\}$. But $\gcd(3, 18) = 3 \ne 1$.
+=======
+* For element $2$: $\gcd(2, 9) = 1$ and $\operatorname{lcm}(2, 9) = 18 \implies \mathbf{2' = 9}$.
+* For element $3$: To get $\operatorname{lcm}(3, x) = 18$, $x$ must be a multiple of $2$ and $9 \implies x \in \{18\}$. But $\gcd(3, 18) = 3 \ne 1$.
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
   * **Element $3$ has NO COMPLEMENT ❌**.
 * **Verdict**: $D_{18}$ is **NOT a Boolean Algebra**!
 
@@ -176,9 +206,15 @@ graph BT
 #### Original Circuit (6 Switches):
 ```mermaid
 graph LR
+<<<<<<< HEAD
     IN[Input] --> B1["Switch A + Switch B"]
     IN --> B2["Switch A + Switch B'"]
     IN --> B3["Switch A' + Switch C"]
+=======
+    IN[Input] --> B1["[ A ] --- [ B ]"]
+    IN --> B2["[ A ] --- [ B' ]"]
+    IN --> B3["[ A' ] --- [ C ]"]
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
     B1 --> OUT[Output]
     B2 --> OUT
     B3 --> OUT
@@ -190,8 +226,13 @@ graph LR
 
 ```mermaid
 graph LR
+<<<<<<< HEAD
     IN[Input] --> B1["Switch A"]
     IN --> B2["Switch C"]
+=======
+    IN[Input] --> B1["[ A ]"]
+    IN --> B2["[ C ]"]
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
     B1 --> OUT[Output]
     B2 --> OUT
 ```

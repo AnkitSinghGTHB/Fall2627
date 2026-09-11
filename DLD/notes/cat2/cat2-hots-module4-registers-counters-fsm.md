@@ -52,6 +52,7 @@ stateDiagram-v2
 ```mermaid
 stateDiagram-v2
     direction LR
+<<<<<<< HEAD
     s000: 000
     s001: 001
     s011: 011
@@ -69,6 +70,16 @@ stateDiagram-v2
     s111 --> s101
     s101 --> s100
     s100 --> s000
+=======
+    000 --> 001
+    001 --> 011
+    011 --> 010
+    010 --> 110
+    110 --> 111
+    111 --> 101
+    101 --> 100
+    100 --> 000
+>>>>>>> c8bb71ee524e261f526d08168feaf936ef9118fd
 ```
 > Notice: Between every single consecutive state, **only ONE bit flips**!
 
