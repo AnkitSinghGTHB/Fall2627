@@ -296,6 +296,65 @@ graph LR
 
 ---
 
+#### F. 4-Bit Universal Shift Register (IC 74LS194 Architecture):
+The most versatile register architecture. It can hold data, shift right, shift left, or load parallel data based on two mode select lines ($S_1, S_0$):
+* Uses **one 4:1 Multiplexer per Flip-Flop stage**:
+
+| $S_1$ | $S_0$ | **Operating Mode** | **Action at each stage $i$** |
+| :---: | :---: | :--- | :--- |
+| **0** | **0** | **Hold (No Change)** | $D_i = Q_i$ (Connects flip-flop output back to its own input) |
+| **0** | **1** | **Shift Right** | $D_i = Q_{i+1}$ (Takes output from stage to the left; Stage 3 takes Serial In $SR$) |
+| **1** | **0** | **Shift Left** | $D_i = Q_{i-1}$ (Takes output from stage to the right; Stage 0 takes Serial In $SL$) |
+| **1** | **1** | **Parallel Load** | $D_i = I_i$ (Loads independent parallel inputs $I_3, I_2, I_1, I_0$) |
+
+```mermaid
+graph LR
+    subgraph USR_Stage ["Single Stage i of Universal Shift Register (IC 74LS194)"]
+    direction LR
+    S_LINES["Select Lines (S1, S0)"] --> MUX4["4:1 MUX"]
+    IN_HOLD["Q_i (Hold)"] --> MUX4
+    IN_R["Q_(i+1) (Shift Right)"] --> MUX4
+    IN_L["Q_(i-1) (Shift Left)"] --> MUX4
+    IN_PAR["I_i (Parallel Load)"] --> MUX4
+    
+    MUX4 -->|"Selected Output"| D_IN["D Input of FF_i"]
+    D_IN --> FF_STAGE["D Flip-Flop i"]
+    CLK_LINE["Common Clock Pulse"] --> FF_STAGE
+    FF_STAGE --> Q_OUT["Output Q_i"]
+    Q_OUT -.->|"Feedback"| IN_HOLD
+    end
+```
+
+---
+
+### 6. State Reduction & State Assignment (FSM Optimization)
+
+#### A. State Reduction (Implication Table / Partitioning Method)
+Why reduce states? **Fewer states = Fewer flip-flops and cheaper combinational logic!**
+* Two states $S_a$ and $S_b$ are **equivalent ($S_a \equiv S_b$)** $\iff$ For every possible input $x$:
+  1. They produce the **exact same output** ($Y_a = Y_b$).
+  2. Their next states are either identical, or themselves equivalent!
+
+#### The Implication Table Method (Step-by-Step):
+1. Construct a triangular grid with all pairs of states $(S_i, S_j)$.
+2. If outputs for any input differ $\implies$ Immediately **cross out with an 'X'** (non-equivalent).
+3. If outputs are identical $\implies$ Write down the **required next-state pairs** that must be equivalent.
+4. Pass through the table: If a required pair is crossed out, cross out this cell too!
+5. Any squares remaining without an 'X' are **equivalent states** and can be merged into a single state!
+
+---
+
+#### B. State Assignment Rules (Encoding States into Binary)
+For $m$ states, the number of flip-flops $n$ required satisfies:
+$$2^{n-1} < m \le 2^n \implies n = \lceil \log_2 m \rceil$$
+
+* **Binary / Gray Encoding**: Uses minimum number of flip-flops ($n$). Assign adjacent states bit patterns that differ by only 1 bit to minimize K-Map groupings.
+* **One-Hot Encoding**: Uses **1 flip-flop per state** ($n = m$ flip-flops, e.g. State 0 = `0001`, State 1 = `0010`, State 2 = `0100`, State 3 = `1000`).
+  * *Advantage*: Zero decoding logic needed! State is read directly from flip-flop outputs. Ideal for high-speed FPGAs.
+  * *Disadvantage*: Requires more flip-flops.
+
+---
+
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
 | If Question Shows / Asks... | It Means This Exact Topic | What You Do (In 5 Seconds) |
@@ -303,7 +362,8 @@ graph LR
 | "Convert Flip-Flop A to Flip-Flop B" | **Universal FF Conversion** | Write Target truth table $\to$ add Excitation columns for Available FF $\to$ solve K-Maps for inputs. |
 | "Explain Race-Around condition & solution" | **Master-Slave JK Flip-Flop** | State condition $t_p > t_{pd}$ with $J=K=1$. Draw Master-Slave block diagram with clock inverter. |
 | "Load 1111 into 4-bit SISO/SIPO", clock trace | **Shift Register Timing Table** | Table: Clock $1 \dots 7$. Trace shift of bits stage by stage. SISO takes 7 pulses, SIPO takes 4. |
-| "Compare Ring vs Johnson counter" | **Shift Register Counters** | Ring: $N$ states, normal feedback $D=Q_{out}$. Johnson: $2N$ states, inverted feedback $D=Q_{out}'$. |
+| "Universal Shift Register (IC 74LS194)" | **Bidirectional Shift Register** | Mode select $S_1 S_0$: $00$ Hold, $01$ Shift Right, $10$ Shift Left, $11$ Parallel Load. Draw 4:1 MUX stage. |
+| "Reduce states using implication chart" | **State Reduction** | Triangular table $\to$ cross out pairs with different outputs $\to$ test remaining pairs for next-state equivalence. |
 | "Analysis of sequential circuit given logic diagram" | **Sequential Circuit Analysis** | Write input equations $\to$ substitute into characteristic equation for $Q^+ \to$ build State Table $\to$ draw State Diagram. |
 
 ---
@@ -373,3 +433,79 @@ J & K & Q & Q^+ & \textbf{Required } S & \textbf{Required } R \\ \hline
 
 #### Step 3: Hardware Schematic
 Connect a 2-input AND gate feeding into $S$ with inputs $J$ and $Q'$. Connect a 2-input AND gate feeding into $R$ with inputs $K$ and $Q$!
+
+---
+
+### Classroom Problem 4: Assignment 4 Q1 — SR Flip-Flop Input Pulses & Invalid State Analysis
+*(From Assignment-4 Problem 1)*  
+**Question**: An SR flip-flop is initially in RESET state ($Q_0 = 0$). The following inputs are applied for 5 consecutive clock pulses:
+* CP 1: $S=1, R=0$
+* CP 2: $S=0, R=0$
+* CP 3: $S=0, R=1$
+* CP 4: $S=1, R=1$ (Forbidden input!)
+* CP 5: $S=0, R=0$
+
+#### Step-by-Step State Trace:
+$$\begin{array}{|c|c|c|c|c|l|}
+\hline
+\textbf{Clock Pulse} & S & R & Q_{prev} & Q_{next} & \textbf{Action / Physical Explanation} \\ \hline
+\text{Initial} & - & - & - & 0 & \text{Reset State} \\
+\text{CP 1} & 1 & 0 & 0 & \mathbf{1} & \text{SET operation: Output transitions to 1} \\
+\text{CP 2} & 0 & 0 & 1 & \mathbf{1} & \text{HOLD operation: Output retains previous value (1)} \\
+\text{CP 3} & 0 & 1 & 1 & \mathbf{0} & \text{RESET operation: Output transitions to 0} \\
+\text{CP 4} & 1 & 1 & 0 & \mathbf{0^*} & \textbf{INVALID STATE: In NOR latch, both } Q=0 \text{ and } Q'=0! \\
+\text{CP 5} & 0 & 0 & 0^* & \mathbf{?} & \textbf{METASTABLE RACE: Unpredictable final state!} \\ \hline
+\end{array}$$
+
+#### Physical Analysis of the Invalid Condition ($S=1, R=1$):
+1. In a NOR-gate latch, when $S=1$ and $R=1$, both outputs are physically forced to **$Q = 0$ and $Q' = 0$**. This violates the complementary property ($Q' = \overline{Q}$).
+2. When the inputs switch simultaneously from $11 \to 00$ (CP 5), both NOR gates try to switch to 1 at the same time. Whichever gate has a fractionally shorter propagation delay will win the race.
+3. The latch enters **metastability** (unpredictable oscillation or random latching to 0 or 1). That is why $S=1, R=1$ is strictly forbidden!
+
+---
+
+### Classroom Problem 5: Assignment 4 Q2 — Positive Edge-Triggered T Flip-Flop Using NAND Gates Only
+*(From Assignment-4 Problem 2)*  
+**Goal**: Draw the logic diagram using ONLY NAND gates and trace the output waveform $Q(t)$ when initially HIGH ($Q_0 = 1$).
+
+#### 1. Logic Diagram using NAND Gates:
+A positive edge-triggered T flip-flop consists of a steering pulse stage followed by cross-coupled NAND latch with feedback:
+* Cross-couple outputs $Q$ and $Q'$ back to input NAND gates.
+* When $T=1$, the clock pulse passes through the input gate connected to the opposite state, causing the output to toggle on every rising edge ($\uparrow$).
+
+```mermaid
+graph LR
+    subgraph T_NAND ["Edge-Triggered T Flip-Flop using NAND Gates Only"]
+    T_SIG["Input T"] --> NAND1["NAND 1"]
+    T_SIG --> NAND2["NAND 2"]
+    CLK_SIG["CLK (Positive Edge)"] --> NAND1
+    CLK_SIG --> NAND2
+    
+    Q_OUT["Q"] -.->|"Feedback Q"| NAND2
+    QBAR_OUT["Q'"] -.->|"Feedback Q'"| NAND1
+    
+    NAND1 --> LATCH_NAND1["NAND 3 (Latch)"]
+    NAND2 --> LATCH_NAND2["NAND 4 (Latch)"]
+    
+    LATCH_NAND1 --> Q_OUT
+    LATCH_NAND2 --> QBAR_OUT
+    Q_OUT --> LATCH_NAND2
+    QBAR_OUT --> LATCH_NAND1
+    end
+```
+
+#### 2. 6-Clock Pulse Transition Trace (Initially $Q_0 = 1$):
+Assume $T = [1, 0, 1, 1, 0, 1]$ applied across 6 positive clock edges:
+$$\begin{array}{|c|c|c|c|l|}
+\hline
+\textbf{Clock Edge } (\uparrow) & T & Q_{prev} & Q_{next} & \textbf{Behavior} \\ \hline
+\text{Initial} & - & - & \mathbf{1} & \text{Given initially HIGH} \\
+1\uparrow & 1 & 1 & \mathbf{0} & T=1 \implies \text{Toggle: } 1 \to 0 \\
+2\uparrow & 0 & 0 & \mathbf{0} & T=0 \implies \text{Hold: remains } 0 \\
+3\uparrow & 1 & 0 & \mathbf{1} & T=1 \implies \text{Toggle: } 0 \to 1 \\
+4\uparrow & 1 & 1 & \mathbf{0} & T=1 \implies \text{Toggle: } 1 \to 0 \\
+5\uparrow & 0 & 0 & \mathbf{0} & T=0 \implies \text{Hold: remains } 0 \\
+6\uparrow & 1 & 0 & \mathbf{1} & T=1 \implies \text{Toggle: } 0 \to 1 \\ \hline
+\end{array}$$
+* **Waveform Description**: Output $Q(t)$ stays constant during the clock low/high periods, and transitions **only at the instant of the positive clock edge** if $T=1$. Frequency of $Q(t)$ is half of the clock frequency when $T$ is held continuously at 1 (Divide-by-2 frequency divider!).
+

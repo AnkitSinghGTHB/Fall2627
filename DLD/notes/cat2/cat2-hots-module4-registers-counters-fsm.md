@@ -177,11 +177,59 @@ graph LR
 
     subgraph Mealy_Arch ["Mealy Machine (Output depends on State + Input)"]
     IN_ME["Input x"] --> MEM_ME["State Memory (Flip-Flops)"]
-    IN_ME --> OUT_ME["Output Logic"]
-    MEM_ME --> OUT_ME
     OUT_ME --> Y_ME["Output Y = f(Q, x)"]
     end
 ```
+
+---
+
+### 5. Synchronous UP / DOWN Counter with Mode Control ($M$)
+A single counter that counts UP when $M=1$, and counts DOWN when $M=0$:
+* **UP Counting ($M=1$)**: A stage toggles when all previous **normal outputs $Q_k = 1$**.
+* **DOWN Counting ($M=0$)**: A stage toggles when all previous **inverted outputs $Q_k' = 1$**.
+* **Steering Logic for Stage $i$**:
+  $$T_i = (M \cdot Q_0 \dots Q_{i-1}) + (M' \cdot Q_0' \dots Q_{i-1}')$$
+  * $T_0 = \mathbf{1}$
+  * $T_1 = M \cdot Q_0 + M' \cdot Q_0'$
+  * $T_2 = M \cdot (Q_0 Q_1) + M' \cdot (Q_0' Q_1')$
+
+```mermaid
+graph LR
+    subgraph Up_Down_Logic ["Mode Steering Logic for Stage i"]
+    direction LR
+    M_SIG["Mode M (1=UP, 0=DOWN)"] --> AND_UP["AND (M * Q_prev)"]
+    Q_PREV["Q_(i-1)"] --> AND_UP
+    
+    M_SIG --> NOT_M["NOT Gate"] --> AND_DN["AND (M' * Q'_prev)"]
+    QBAR_PREV["Q'_(i-1)"] --> AND_DN
+    
+    AND_UP --> OR_COMB["OR Gate"]
+    AND_DN --> OR_COMB
+    OR_COMB --> T_INPUT["T Input of Stage i"]
+    end
+```
+
+---
+
+### 6. Maximum Operating Clock Frequency ($f_{max}$) Calculation
+In HOTS questions, you will be given timing parameters and asked: *"What is the maximum clock frequency at which this counter can operate reliably?"*
+
+#### The Key Timing Parameters:
+* $t_{cq}$ (or $t_{pd}$): Flip-flop clock-to-output propagation delay.
+* $t_{comb}$: Delay through combinational logic gates (e.g. AND carry gates).
+* $t_{su}$: Flip-flop setup time (data must be stable before the clock edge).
+
+#### A. For Synchronous Counters:
+All flip-flops update in parallel, but the carry must ripple through the AND gates before the next clock:
+$$T_{clk} \ge t_{cq} + t_{comb} + t_{su}$$
+$$\mathbf{f_{max} = \frac{1}{T_{clk}} = \frac{1}{t_{cq} + t_{comb} + t_{su}}}$$
+*(Notice: $f_{max}$ is independent of the number of flip-flops $n$ if carry lookahead is used!)*
+
+#### B. For Asynchronous (Ripple) Counters:
+The clock signal must ripple through all $n$ flip-flops consecutively:
+$$T_{clk} \ge (n \times t_{cq}) + t_{su}$$
+$$\mathbf{f_{max} = \frac{1}{n \cdot t_{cq} + t_{su}}}$$
+*(Notice: As bit-width $n$ increases, $f_{max}$ drops drastically!)*
 
 ---
 
@@ -190,8 +238,11 @@ graph LR
 | If Question Shows / Asks... | It Means This Exact Topic | What You Do (In 5 Seconds) |
 | :--- | :--- | :--- |
 | "Design Mod-10 synchronous counter using JK" | **BCD Synchronous Counter** | 4 JK FFs ($Q_D Q_C Q_B Q_A$). Don't cares for states $10 \dots 15$. K-Maps: $J_A=K_A=1, J_B=K_B=Q_A Q_D', J_C=K_C=Q_A Q_B, J_D=Q_A Q_B Q_C, K_D=Q_A$. |
+| "Design decade asynchronous counter using T FF" | **Decade Ripple Counter** | 4 T FFs in toggle mode ($T=1$). Reset on state $10$ (`1010`) using a NAND gate on $Q_3$ and $Q_1$ connected to $\overline{\text{CLR}}$. |
 | "Design 3-bit Gray code counter using T FF" | **Gray Code Counter** | Sequence: $000 \to 001 \to 011 \to 010 \to 110 \to 111 \to 101 \to 100 \to 000$. All 8 states used! $T_i = Q_i \oplus Q_i^+$. |
-| "Arbitrary sequence $000 \to 110 \dots$" | **Custom Counter + Lockout** | List sequence $\to$ treat unused states as Don't Cares ($X$) $\to$ K-Map $\to$ Verify unused states return to valid loop! |
+| "Arbitrary sequence counter using D FFs" | **Custom Synchronous Counter** | List Present $\to$ Next states. Since $D_i = Q_i^+$, K-Maps for $D_i$ are read directly from next-state columns! |
+| "Synchronous UP/DOWN counter with mode M" | **Mode-Controlled Counter** | $T_i = M \cdot (\text{carry from } Q) + M' \cdot (\text{borrow from } Q')$. |
+| "Calculate maximum clock frequency f_max" | **Timing Delay Analysis** | Synchronous: $f_{max} = 1 / (t_{cq} + t_{comb} + t_{su})$. Ripple: $f_{max} = 1 / (n \cdot t_{cq} + t_{su})$. |
 | "Design a sequence detector for 1011" | **FSM Sequence Detector** | Draw states: $S_0$ (Start), $S_1$ (Got '1'), $S_2$ (Got '10'), $S_3$ (Got '101'). If overlapping, from $S_3$ on '1' go to $S_1$ with $Y=1$. |
 
 ---
@@ -260,3 +311,99 @@ $$\begin{array}{|c|ccc|ccc|c|c|c|}
 * **Self-Starting Check**:
   * Analyze next state for all 3 unused states using the derived equations.
   * If $001 \to 010$, $100 \to 000$, $111 \to 011$ (all lead into valid states) $\implies$ **SELF-STARTING & LOCKOUT FREE ✅**!
+
+---
+
+### Classroom Problem 4: Assignment 4 Q4 — 3-Bit Synchronous Counter ($0 \to 4 \to 6 \to 1 \to 3 \to 7 \to 2 \to 5 \to 0$) using D Flip-Flops
+*(From Assignment-4 Problem 4)*  
+**Goal**: Design a 3-bit synchronous counter that traverses all 8 states in the specified non-binary sequence using D flip-flops.
+
+#### 1. Transition Table & D Excitations ($D_i = Q_i^+$):
+$$\begin{array}{|c|ccc|ccc|c|c|c|}
+\hline
+\textbf{Decimal} & Q_2 & Q_1 & Q_0 & Q_2^+ & Q_1^+ & Q_0^+ & D_2 & D_1 & D_0 \\ \hline
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+4 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+6 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+3 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+7 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 \\
+2 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\
+5 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+\end{array}$$
+
+#### 2. K-Map Minimization for D Inputs:
+* **For $D_2(Q_2, Q_1, Q_0)$**: Minterms $m(0, 2, 3, 4)$
+  * Group $(0, 2) \implies Q_2' Q_0'$
+  * Group $(2, 3) \implies Q_2' Q_1$
+  * Group $(0, 4) \implies Q_1' Q_0'$
+  * $\mathbf{D_2 = Q_2' Q_0' + Q_2' Q_1 + Q_1' Q_0'}$
+* **For $D_1(Q_2, Q_1, Q_0)$**: Minterms $m(1, 3, 4, 7)$
+  * Group $(1, 3) \implies Q_2' Q_0$
+  * Group $(3, 7) \implies Q_1 Q_0$
+  * Minterm $4 \implies Q_2 Q_1' Q_0'$
+  * $\mathbf{D_1 = Q_2' Q_0 + Q_1 Q_0 + Q_2 Q_1' Q_0'}$
+* **For $D_0(Q_2, Q_1, Q_0)$**: Minterms $m(1, 2, 3, 6)$
+  * Group $(1, 3) \implies Q_2' Q_0$
+  * Group $(2, 3, 6 \text{ wait: } 2, 3 \implies Q_2' Q_1; 2, 6 \implies Q_1 Q_0')$
+  * $\mathbf{D_0 = Q_2' Q_0 + Q_1 Q_0'}$
+
+```mermaid
+graph LR
+    subgraph D_Counter_Circuit ["3-Bit Synchronous Counter (Assignment 4 Q4)"]
+    CLK_COMMON["Common Clock Pulse"] --> FF2["D2 Flip-Flop"]
+    CLK_COMMON --> FF1["D1 Flip-Flop"]
+    CLK_COMMON --> FF0["D0 Flip-Flop"]
+    
+    KMAP2["Logic: Q2'Q0' + Q2'Q1 + Q1'Q0'"] --> FF2
+    KMAP1["Logic: Q2'Q0 + Q1Q0 + Q2Q1'Q0'"] --> FF1
+    KMAP0["Logic: Q2'Q0 + Q1Q0'"] --> FF0
+    
+    FF2 --> Q2_OUT["Q2 Output"]
+    FF1 --> Q1_OUT["Q1 Output"]
+    FF0 --> Q0_OUT["Q0 Output"]
+    end
+```
+
+---
+
+### Classroom Problem 5: Assignment 4 Q5 — Design Decade Asynchronous Counter using T Flip-Flops
+*(From Assignment-4 Problem 5)*  
+**Goal**: Design a BCD asynchronous (ripple) counter that counts $0 \dots 9$ (`0000` to `1001`) and resets to zero on the 10th count (`1010`).
+
+#### 1. Counter Requirements:
+* Modulus: $\text{MOD} = 10$.
+* Number of Flip-Flops: $2^{n-1} < 10 \le 2^n \implies \mathbf{n = 4\text{ Flip-Flops}}$ ($Q_3, Q_2, Q_1, Q_0$).
+* Connect all $T$ inputs to $1$ ($T_3 = T_2 = T_1 = T_0 = 1$) so each flip-flop toggles.
+* Clocking: Negative-edge triggered ripple UP counter $\implies$ Output $Q_i$ connects to clock input of stage $i+1$.
+
+#### 2. Reset Logic Formulation:
+* Natural count continues up to $15$. To stop at $10$:
+  $$\text{Binary of } 10_{10} = Q_3 Q_2 Q_1 Q_0 = \mathbf{1 0 1 0_2}$$
+* We need to detect when **$Q_3 = 1$ AND $Q_1 = 1$**.
+* Use a **2-input NAND gate** with inputs $Q_3$ and $Q_1$:
+  $$\text{Reset Signal } \overline{R} = \overline{Q_3 \cdot Q_1}$$
+* The NAND output connects directly to the **active-low $\overline{\text{CLEAR}}$ inputs** of all 4 flip-flops!
+
+```mermaid
+graph LR
+    subgraph BCD_Ripple ["Decade Asynchronous (Ripple) Counter with T FFs"]
+    VCC["Logic 1"] --> T_ALL["T3 = T2 = T1 = T0 = 1"]
+    
+    EXT_CLK["External Clock Pulse"] --> FF0["FF0 (LSB)"]
+    FF0 -->|"Q0"| FF1["FF1"]
+    FF1 -->|"Q1"| FF2["FF2"]
+    FF2 -->|"Q2"| FF3["FF3 (MSB)"]
+    
+    FF3 -->|"Q3"| NAND_GATE["2-Input NAND Gate"]
+    FF1 -->|"Q1"| NAND_GATE
+    
+    NAND_GATE -->|"Active-Low Clear Pulse"| CLR0["CLR FF0"]
+    NAND_GATE --> CLR1["CLR FF1"]
+    NAND_GATE --> CLR2["CLR FF2"]
+    NAND_GATE --> CLR3["CLR FF3"]
+    end
+```
+
+* **Transient Glitch Analysis**: The state $1010$ ($10$) exists for only a few nanoseconds (the propagation delay of the NAND gate plus the internal clear delay of the flip-flops), after which the counter immediately resets to $0000$. Hence, only states $0 \dots 9$ are seen externally!
+
