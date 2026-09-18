@@ -1,0 +1,60 @@
+P0: FacePrep  |  VIT Bhopal University
+P1: Internal Assessment — Advanced DSA & Algorithmic Problem Solving
+P2: Instructions: Attempt all five questions. Each question is set at a LeetCode-Hard difficulty level and draws on the algorithmic techniques covered in class. Submit working, tested code (any language) along with a brief note on time and space complexity for each solution. Partial credit is given for correct approach and complexity analysis even if the implementation is incomplete.
+P3: Question 1: Maximum Weighted Palindromic Substring
+P4: Concepts tested: Palindromic strings, Manacher's Algorithm, weighted substrings
+P5: Problem Statement: You are given a string s of lowercase English letters (|s| up to 10^6) and an integer array weight[26], where weight[i] is the score of the i-th letter of the alphabet (values can be negative). Define the score of a substring as the sum of the weights of its characters. Find the maximum score achievable by any palindromic substring of s. Your algorithm must run in O(n) or O(n log n) time — an O(n^2) brute force will not pass on the given constraints, so you are expected to adapt the expand-around-center idea used in Manacher's Algorithm to also track a running weighted sum for each palindrome radius, rather than just its length.
+P6: Constraints:
+P7: 1 ≤ |s| ≤ 10^6, s consists of lowercase English letters only
+P8: -1000 ≤ weight[i] ≤ 1000
+P9: It is guaranteed at least one character has a non-negative weight
+P10: Expected time complexity: O(n); expected auxiliary space: O(n)
+P11: Example:
+P12: s = "abaccb", weight = [3,-1,2,0,...,0] (a=3, b=-1, c=2) → the palindrome "aba" scores 3-1+3 = 5, while "cc" scores 2+2 = 4, so the answer is 5.
+P13: [Marks: 3]
+P14: Question 2: Queens on a Broken Board
+P15: Concepts tested: N-Queens (backtracking / bitmasking)
+P16: Problem Statement: You are given an n x n chessboard (1 ≤ n ≤ 12) along with a list of m cells that are permanently broken and cannot hold a queen or be passed over as a safe square. Count the total number of distinct ways to place n non-attacking queens on the board such that no queen occupies a broken cell, and no queen attacks another along a row, column, or diagonal. Since the count can be large, return it modulo 1,000,000,007. You must extend the classic N-Queens backtracking/bitmask approach to prune broken cells directly from the available-column bitmask at each row, rather than filtering solutions after the fact.
+P17: Constraints:
+P18: 1 ≤ n ≤ 12
+P19: 0 ≤ m ≤ n*n, broken cells given as (row, col) pairs, 0-indexed
+P20: It is possible that zero valid placements exist — return 0 in that case
+P21: Expected approach: bitmask backtracking, O(n * 2^n) or better
+P22: Example:
+P23: n = 4, broken = [(0,1)] → the standard 2 solutions for 4-Queens are checked against the broken cell; only placements avoiding row 0, column 1 survive.
+P24: [Marks: 3]
+P25: Question 3: The Rotating Elimination Queue
+P26: Concepts tested: Josephus Problem, Circular Queue, order-statistics design
+P27: Problem Statement: Design a data structure ElimQueue that simulates a generalized Josephus elimination game and answers queries efficiently. It is initialized with n people (numbered 1 to n) seated in a circle (a circular queue). It must support: eliminate(k) — starting from the current pointer, count k people around the circle (wrapping as needed) and eliminate the k-th one, moving the pointer to the next surviving person; and survivorAt(rank) — return the rank-th person (1-indexed, in original numbering) among those still remaining, without altering the state. Up to 2 x 10^5 calls of either type may be made in total, and k can be as large as 10^9 per call, so a plain circular-queue simulation that walks k steps one at a time will time out — you need an order-statistics structure (e.g., a Fenwick/BIT over 'alive' status or a balanced BST) to jump directly to the k-th alive person in O(log n).
+P28: Constraints:
+P29: 1 ≤ n ≤ 2 x 10^5
+P30: Total operations ≤ 2 x 10^5, 1 ≤ k ≤ 10^9 for each eliminate call
+P31: eliminate(k) is never called when 0 people remain
+P32: Expected time per operation: O(log n)
+P33: Example:
+P34: n = 5, eliminate(2) removes person 2 (pointer starts at 1, counts 1,2); eliminate(3) then counts 3 more starting after the last removal among {1,3,4,5} and removes accordingly; survivorAt(1) at any point returns the smallest-numbered person still alive.
+P35: [Marks: 3]
+P36: Question 4: Scheduled Merge Cost (Huffman under Time Windows)
+P37: Concepts tested: Huffman Coding, Activity Selection Problem, greedy + priority queues
+P38: Problem Statement: You have n piles of stones with sizes given in array stones[], and you may only merge two existing piles into one during a fixed set of m available time slots, each slot given as [start, end) — think of this as an activity-selection constraint layered on top of Huffman-style merging. Each merge takes exactly one full time slot to complete (a slot can be used only once), costs an amount equal to the sum of the sizes of the two piles being merged (as in Huffman coding), and produces a new pile of that combined size available for later slots. You must schedule merges into a subset of non-overlapping, sufficiently spaced slots (respecting slot order and availability) so that all n piles are eventually merged into a single pile, while minimizing total merge cost. If it is impossible to fully merge all piles given the available slots, return -1.
+P39: Constraints:
+P40: 1 ≤ n ≤ 1000, 1 ≤ stones[i] ≤ 10^4
+P41: 0 ≤ m ≤ 2000 time slots, each [start, end) with start < end
+P42: At least n-1 merges are required; each slot performs at most one merge and slots cannot overlap in usage
+P43: Expected approach: greedy priority-queue merging (Huffman) combined with feasibility/activity-selection style slot assignment
+P44: Example:
+P45: stones = [4,3,2,6] with 3 usable non-overlapping slots → merge smallest pair first each time (2+3=5, then 4+5=9, then 9+6=15) for minimum total cost 5+9+15=29, provided 3 valid slots exist; otherwise return -1.
+P46: [Marks: 3]
+P47: Question 5: Repairing a Cyclic Bracket List
+P48: Concepts tested: Linked Lists (reverse, cycle detection/removal, merge), Balanced Parentheses (stack), Next Greater Element
+P49: Problem Statement: You are given the head of a singly linked list where each node stores a single character, either a lowercase letter or one of '(', ')'. The list may contain a cycle. First, detect whether a cycle exists and, if so, remove it so the list becomes a proper singly linked list (do this in O(1) extra space beyond the pointers). Next, reverse the resulting list in place. Then, using a stack-based approach similar to solving balanced parentheses and finding the next greater element, compute the minimum number of bracket characters that must be deleted from the reversed list to make its bracket characters form a valid (balanced) sequence, treating the letters as transparent. Finally, you are given a second, separately sorted (ascending, by an integer 'removal cost' field) singly linked list of the same length as the number of bracket characters in the first list; merge the two lists' relevant cost values (classic merge-two-sorted-lists) to report the total minimum cost of the deletions you identified, where the cost of deleting the i-th bracket character (in left-to-right order of the final reversed list) is the i-th smallest value from the second list.
+P50: Constraints:
+P51: 1 ≤ number of nodes ≤ 10^5
+P52: The list may or may not contain a cycle; if present, it must be detected and removed without extra memory (Floyd's algorithm)
+P53: The second list is already sorted ascending and has length equal to the number of bracket characters in the first list
+P54: Expected time complexity: O(n) for cycle handling and reversal, O(n) for the stack-based bracket pass, O(n) for the merge/cost step
+P55: Example:
+P56: List: a -> ( -> b -> ) -> ) -> c -> ( (with a cycle from the last node back to "b" that must first be removed) → after cycle removal and reversal, run the stack-based pass to find the minimum bracket deletions needed for balance, then pair each deleted bracket with the corresponding smallest available cost from the second sorted list to get the total minimum cost.
+P57: [Marks: 3]
+P58: Note: Questions are inspired by, but not identical to, standard problems — read each statement carefully before coding, as constraints and required extensions differ from the textbook versions.
+Total Marks: 15 | Questions: 5 (3 marks each) | Deadline: Sunday, 06/09/2026
