@@ -16,6 +16,9 @@
 ## 🔥 CAT-2 Master HOTS Exam Sheets (Modules 3 & 4)
 *Permitted in Exam Hall: Bring your own handwritten notes copied directly from these templates!*
 
-| Topic | File | Exam HOTS Recipe |
+| Module / Topic | File | Exam HOTS Recipe |
 | :--- | :--- | :--- |
-| **DSA & Algorithms Master Suite** | [cat2-hots-dsa-algorithms-master.md](./cat2/cat2-hots-dsa-algorithms-master.md) | • Time & Space Complexity Loop Analysis<br>• Sieve of Eratosthenes vs Naive Comparison<br>• Bitwise Nibble Swap & Palindrome Trace<br>• Booth's Multiplication Algorithm Step-by-Step |
+| **Module 3: Linear DSA, Sliding Window & Advanced Queues** | [cat2-hots-module3-linear-dsa-sliding-window.md](./cat2/cat2-hots-module3-linear-dsa-sliding-window.md) | • Sliding Window Maximum (LC 239 with Monotonic Deque)<br>• Manacher's Weighted Substrings (FacePrep IA Q1)<br>• Josephus Elimination Queue with BIT (FacePrep IA Q3)<br>• Floyd's Cycle Detection & Stack Bracket Balancing (FacePrep IA Q5) |
+| **Module 4: Backtracking, Bitmasking & Greedy Scheduling** | [cat2-hots-module4-greedy-backtracking-trees.md](./cat2/cat2-hots-module4-greedy-backtracking-trees.md) | • Queens on a Broken Board with Bitmasking (FacePrep IA Q2)<br>• Scheduled Merge Cost & Huffman Merging (FacePrep IA Q4)<br>• Activity Selection & Interval Scheduling ($O(m \log m)$)<br>• Classic N-Queens Bitmask Solver |
+| **CAT-2 Master Quick Crib Suite** | [cat2-hots-dsa-algorithms-master.md](./cat2/cat2-hots-dsa-algorithms-master.md) | • Rapid Exam Keyword Identifier<br>• Formula & Recurrence Cheat Sheet<br>• Fast Lookup Master Navigation |
+
