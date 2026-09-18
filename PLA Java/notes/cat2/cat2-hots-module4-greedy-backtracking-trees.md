@@ -1,311 +1,452 @@
-# ⚡ CAT-2 HOTS Master Crib — Module 4: Backtracking, Bitmasking & Greedy Algorithms
+# ⚡ CAT-2 HOTS Master Crib — Module 4: Maneuvering, Backtracking & Greedy Algorithms
 **Course**: Competitive Coding Practices (PLA1006 / PLA1004) — VIT Bhopal  
-**Coverage**: Bitmask N-Queens on Broken Board, Huffman Merging under Time Windows, Activity Selection & Interval Scheduling  
-**Source Alignment**: FacePrep Internal Assessment (LeetCode Hard), VIT CAT-2 Syllabus  
+**Coverage**: Maneuvering (Cave Grid Paths), N-Queens (Classic & Broken Board), Activity Selection, Huffman Coding, Sorted Unique Permutations, Combinations, Rat in a Maze, Warnsdorff's Knight's Tour  
+**Source Alignment**: Official VIT Bhopal / FacePrep Lecture PPTs (L31, L32, L33, L35, L36, L37, L38, HuffmanCoding) & Internal Assessment  
 **Exam Mode**: Open Book / Notes Allowed | **Target**: S-Grade (45+ / 50)
 
 ---
 
 ## 🧱 TIER 0: The "Explain Like I'm 5" Bedrock Basics
-*(Read this first if recursion trees, bitmasks, or greedy scheduling feel difficult)*
 
-### 1. Backtracking: "The Breadcrumb Trail in a Maze"
-Imagine walking through a dark hedge maze:
-1. You make a choice at an intersection and leave a colored breadcrumb (**Try a placement**).
-2. You explore deeper into the maze (**Recurse to next row**).
-3. If you hit a dead end or a broken floor, you walk back to the intersection and **pick up your breadcrumb** (**Undo choice / Backtrack**).
-4. You try the next open hallway. You never visit forbidden or dead paths twice.
-
-```mermaid
-graph TD
-    Root["Row 0: Try Col 0"] -->|"Valid"| R1["Row 1: Try Col 2"]
-    R1 -->|"Valid"| R2["Row 2: Dead End (All Attacks)"]
-    R2 -->|"Backtrack (Undo R2)"| R1
-    R1 -->|"Try Col 3"| R1_alt["Row 1: Col 3"]
-    R1_alt -->|"Valid"| R2_new["Row 2: Col 1"]
-```
+### 1. Maneuvering in a Cave: "The Only Right and Down Rule"
+You are trapped at the top-left cell $(0, 0)$ of an $m \times n$ cave and must reach the exit at bottom-right $(m-1, n-1)$.
+* **Constraint**: You can **only move Right or Down**.
+* **Why does recursion work?** To reach cell $(m, n)$, you *must* have arrived either from the cell above $(m-1, n)$ or from the cell to the left $(m, n-1)$:
+  $$\text{Paths}(m, n) = \text{Paths}(m-1, n) + \text{Paths}(m, n-1)$$
+* **The Instant Combinatorics Shortcut**: Total steps needed $= (m - 1) \text{ Down} + (n - 1) \text{ Right} = m + n - 2$ total steps. You just need to choose which $m - 1$ steps are Down:
+  $$\text{Total Paths} = \binom{m + n - 2}{m - 1} = \frac{(m + n - 2)!}{(m - 1)! (n - 1)!}$$
 
 ---
 
-### 2. Bitmasking: "The Light Switch Bank"
-Instead of carrying heavy `boolean[]` arrays to check if a column or diagonal is attacked:
-* An integer in Java has **32 bits**. Think of it as a row of 32 physical light switches.
-* If switch $c$ is **ON** (`1`), column $c$ is under attack. If **OFF** (`0`), it is safe.
-* **Check if Column $c$ is occupied**: `(colMask & (1 << c)) != 0`
-* **Occupy Column $c$**: `colMask | (1 << c)`
-* **The Magic Formula (Find all safe spots instantly)**:
-  $$\text{SafeBits} = ((1 \ll n) - 1) \ \& \ \sim(\text{cols} \mid \text{diag1} \mid \text{diag2} \mid \text{broken})$$
-* **Extract Lowest Available Bit**: `p = SafeBits & (-SafeBits)`
-* **Clear Lowest Bit**: `SafeBits &= SafeBits - 1`
-This turns a slow $O(n)$ row-scan into an instant $O(1)$ CPU hardware operation!
-
-```mermaid
-graph LR
-    subgraph Mask_Operations ["Bitwise Safety Check for n = 4"]
-        direction TB
-        C["cols:   0 0 1 0 (Col 1 under attack)"]
-        D1["diag1:  0 1 0 0 (Diag1 under attack)"]
-        D2["diag2:  0 0 0 1 (Diag2 under attack)"]
-        B["broken: 0 0 0 0 (No broken cells)"]
-        OR["Combined Attacks (OR): 0 1 1 1"]
-        INV["Safe Columns (~):     1 0 0 0 (Only Col 3 is Safe!)"]
-    end
-    C --> OR
-    D1 --> OR
-    D2 --> OR
-    B --> OR
-    OR --> INV
-```
+### 2. N-Queens: "The Safe Placement Rule"
+Place $N$ non-attacking queens on an $N \times N$ chessboard.
+* A queen attacks along its row, column, and two diagonals.
+* Since each row must have exactly 1 queen, we place row-by-row.
+* **Bitmask Supercharger**: An integer bitmask tracks occupied columns and diagonals in $O(1)$ CPU operations.
 
 ---
 
-### 3. Greedy Activity Selection: "The Earliest Deadline First Rule"
-You have $m$ competing events that overlap. How do you fit the maximum number of non-overlapping events into a single room?
-* **The Golden Rule**: **Always pick the event that FINISHES EARLIEST!**
-* **Why?** Finishing early leaves the maximum possible remaining time for future events.
-* **Algorithm**:
-  1. Sort all intervals $[start, end)$ in ascending order of their **end times**.
-  2. Pick the first interval.
-  3. For every subsequent interval, if its $start \ge \text{last picked } end$, select it and update last picked end.
+### 3. Activity Selection: "Earliest Finish Time Wins"
+Given tasks with $[start, finish)$ times, how do you perform the maximum number of tasks without overlap?
+* **Greedy Rule**: **Always pick the activity that finishes first!**
+* Finishing earlier frees up the maximum remaining time for subsequent activities.
+
+---
+
+### 4. Huffman Coding: "The Greedy Tree Builder"
+Data compression algorithm assigning shorter bit codes to frequent characters.
+* Always merge the **two lowest frequency nodes** into a parent node. Repeat using a min-heap (`PriorityQueue`) until 1 tree remains.
 
 ---
 
 ## 🧭 TIER 1: The Problem Symptom & Keyword Decoder
 
-| If the Question Mentions... | It Means This Exact HOTS Technique | Time / Space Target | Key Java Idiom / Structure |
+| If the Exam Question Asks... | Use This Exact Topic & Method | Time & Space Complexity | Key Formula / Code Logic |
 | :--- | :--- | :--- | :--- |
-| "Place n queens", "broken / forbidden cells", $n \le 12$ | **Bitmask Backtracking (FacePrep IA Q2)** | $O(n \cdot 2^n)$ time, $O(n)$ space | Bitwise masks: `cols, d1, d2, broken` |
-| "Merge piles of stones with time slots", "Huffman scheduling" | **Greedy Huffman + Activity Selection (FacePrep IA Q4)** | $O(m \log m + n \log n)$ time | `PriorityQueue<Long>`, Interval sort by `end` |
-| "Maximize non-overlapping tasks", "Meeting rooms I" | **Activity Selection Problem** | $O(m \log m)$ time, $O(1)$ space | `Arrays.sort(intervals, (a,b)->a[1]-b[1])` |
-| "Optimal prefix code", "Minimum cost to connect sticks" | **Huffman Coding / Greedy Pair Merge** | $O(n \log n)$ time, $O(n)$ space | `PriorityQueue<Long> pq` |
+| "Count paths from top-left to bottom-right (Maneuvering)" | **Combinatorics / 2D DP** | $O(\min(m, n))$ Math / $O(m \cdot n)$ DP | $\binom{m+n-2}{m-1}$ or `dp[i][j] = dp[i-1][j] + dp[i][j-1]` |
+| "Place N non-attacking queens" | **Backtracking / Bitmasking** | $O(N!)$ Time, $O(N)$ Space | `available = fullMask & ~(cols \| d1 \| d2)` |
+| "Queens on a broken board (obstacles)" | **Bitmask with Broken Mask** | $O(N \cdot 2^N)$ Time, $O(N)$ Space | `available = fullMask & ~(cols \| d1 \| d2 \| brokenMask[r])` |
+| "Select maximum activities without overlap" | **Activity Selection (Greedy)** | $O(n \log n)$ Time, $O(1)$ Space | Sort by `finish` time; pick if `start >= lastFinish` |
+| "Construct Huffman codes / prefix tree" | **Huffman Greedy PriorityQueue** | $O(n \log n)$ Time, $O(n)$ Space | Poll two smallest, combine frequencies, re-insert |
+| "Distinct sorted permutations (with duplicates)" | **Backtracking with Set Pruning** | $O(n \cdot n!)$ Time, $O(n)$ Space | Sort string first; use `Set<Character>` at each level |
+| "Compute combinations nCr" | **Factorial / Multiplicative Formula** | $O(r)$ Time, $O(1)$ Space | $\binom{n}{r} = \frac{n \times (n-1) \dots (n-r+1)}{r \times (r-1) \dots 1}$ |
+| "Find path in maze (Rat in a Maze)" | **Matrix Backtracking** | $O(2^{N^2})$ Time, $O(N^2)$ Space | Move (D, R); mark visited, backtrack on dead end |
+| "Knight's tour on NxN board" | **Warnsdorff's Algorithm** | $O(N^2)$ Heuristic Time | Greedily move to unvisited neighbor with **minimum degree** |
 
 ---
 
-## 🛠️ TIER 2: Master Exam Solutions & Code Templates
+## 🛠️ TIER 2: Master Code Templates (Lecture PPT & Exam Aligned)
 
-### 1. Classic N-Queens Bitmask Solver ($O(n!)$ Fast Counting)
+### 1. Maneuvering a Cave Problem (`L32-Maneuvering.pptx`)
+> **Problem**: Count all possible paths from top-left $(0, 0)$ to bottom-right $(m-1, n-1)$ in an $m \times n$ matrix, moving only Right or Down.  
+> **Example**: $m = 2, n = 2 \implies 2$ paths; $m = 3, n = 3 \implies 6$ paths.
+
 ```java
-public class NQueensBitmask {
-    private int count = 0;
-    private int allQueensPlacedMask;
-
-    public int totalNQueens(int n) {
-        count = 0;
-        allQueensPlacedMask = (1 << n) - 1; // n ones: for n=4 => 1111 (15)
-        solve(0, 0, 0);
-        return count;
-    }
-
-    // cols: vertical attacks, d1: main diagonal (\), d2: anti-diagonal (/)
-    private void solve(int cols, int d1, int d2) {
-        if (cols == allQueensPlacedMask) {
-            count++; // All n queens placed successfully!
-            return;
-        }
-
-        // Available safe positions for current row (1 means safe)
-        int availablePositions = allQueensPlacedMask & ~(cols | d1 | d2);
-
-        while (availablePositions != 0) {
-            // Extract lowest set bit (first safe column)
-            int p = availablePositions & -availablePositions;
-            // Clear lowest set bit
-            availablePositions &= availablePositions - 1;
-
-            // Recurse to next row:
-            // d1 shifts right by 1 (extends \ diagonal), d2 shifts left by 1 (extends / diagonal)
-            solve(cols | p, (d1 | p) >> 1, (d2 | p) << 1);
-        }
-    }
-}
-```
-
----
-
-### 2. Activity Selection / Interval Scheduling Template ($O(m \log m)$)
-```java
-import java.util.Arrays;
-
-public class ActivitySelection {
-    public static int maxNonOverlappingIntervals(int[][] intervals) {
-        if (intervals == null || intervals.length == 0) return 0;
-
-        // Step 1: Sort by end time ascending
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
-
-        int count = 1;
-        int lastEnd = intervals[0][1];
-
-        // Step 2: Greedily pick next compatible interval
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] >= lastEnd) {
-                count++;
-                lastEnd = intervals[i][1];
-            }
-        }
-        return count;
-    }
-}
-```
-
----
-
-## 🎯 TIER 3: FacePrep Internal Assessment Solved Master Problems
-
-### Problem 4.1 (FacePrep IA Q2): Queens on a Broken Board
-> **Exam Question**: Given an $n \times n$ chessboard ($1 \le n \le 12$) with $m$ broken cells that cannot hold queens. Count total distinct non-attacking queen placements modulo $1,000,000,007$. Prune broken cells directly from available-column bitmask at each row in $O(n \cdot 2^n)$ or better.
-
-#### Intuition & Why Post-Filtering Fails:
-* If you generate all $N$-Queens solutions first and then check if they hit broken cells, you waste massive CPU cycles generating invalid board states.
-* **The Bitmask Pruning Trick**:
-  - Represent broken cells for each row as a precomputed bitmask: `brokenMask[row]`. If cell `(row, col)` is broken, set bit `col` in `brokenMask[row]`: `brokenMask[row] |= (1 << col)`.
-  - When deciding which columns are safe for row `r`, combine vertical attacks, diagonal attacks, **and broken cells**:
-    $$\text{available} = \text{fullMask} \ \& \ \sim(\text{cols} \mid \text{d1} \mid \text{d2} \mid \text{brokenMask}[r])$$
-  - Any column that hits a broken square is instantly zeroed out and never explored!
-
-#### Full Java Implementation:
-```java
-public class BrokenBoardNQueens {
-    private static final int MOD = 1_000_000_007;
-
-    public static int countPlacements(int n, int[][] brokenCells) {
-        if (n <= 0 || n > 12) return 0;
-
-        // Step 1: Precompute broken cell bitmasks for each row
-        int[] brokenMask = new int[n];
-        if (brokenCells != null) {
-            for (int[] cell : brokenCells) {
-                int r = cell[0];
-                int c = cell[1];
-                if (r >= 0 && r < n && c >= 0 && c < n) {
-                    brokenMask[r] |= (1 << c);
-                }
-            }
-        }
-
-        int fullMask = (1 << n) - 1;
-        return solve(0, 0, 0, 0, n, fullMask, brokenMask);
-    }
-
-    private static int solve(int row, int cols, int d1, int d2, int n, int fullMask, int[] brokenMask) {
-        // Base case: All n queens placed successfully
-        if (row == n) {
+public class ManeuveringCave {
+    // 1. Recursive Method (Direct from Faculty PPT Slide 3)
+    public static int numberOfPathsRecursive(int m, int n) {
+        if (m == 1 || n == 1) {
             return 1;
         }
+        return numberOfPathsRecursive(m - 1, n) + numberOfPathsRecursive(m, n - 1);
+    }
 
-        // Available safe columns for this row:
-        // Exclude occupied columns, diagonals, AND broken cells
-        int available = fullMask & ~(cols | d1 | d2 | brokenMask[row]);
-        int totalWays = 0;
-
-        while (available != 0) {
-            // Extract lowest set bit (next valid column)
-            int p = available & -available;
-            // Clear lowest set bit
-            available &= available - 1;
-
-            // Recurse to next row
-            int ways = solve(row + 1, cols | p, (d1 | p) >> 1, (d2 | p) << 1, n, fullMask, brokenMask);
-            totalWays = (totalWays + ways) % MOD;
+    // 2. Dynamic Programming Method: O(m * n) Time, O(n) Space
+    public static int numberOfPathsDP(int m, int n) {
+        int[] dp = new int[n];
+        java.util.Arrays.fill(dp, 1); // Base row: only 1 path (all Right)
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[j] = dp[j] + dp[j - 1]; // from top + from left
+            }
         }
+        return dp[n - 1];
+    }
 
-        return totalWays;
+    // 3. Mathematical Formula (Combinatorics): O(min(m, n)) Time, O(1) Space
+    // Formula: C(m + n - 2, m - 1)
+    public static long numberOfPathsMath(int m, int n) {
+        long totalPaths = 1;
+        int N = m + n - 2;
+        int R = Math.min(m - 1, n - 1);
+        for (int i = 1; i <= R; i++) {
+            totalPaths = totalPaths * (N - i + 1) / i;
+        }
+        return totalPaths;
     }
 
     public static void main(String[] args) {
-        int n = 4;
-        int[][] broken = {{0, 1}}; // Row 0, Col 1 is broken
-        // Standard 4-queens has 2 solutions: (row 0 at col 1) and (row 0 at col 2).
-        // The one starting at (0, 1) is pruned, leaving exactly 1 valid placement!
-        System.out.println("Valid Placements: " + countPlacements(n, broken)); // Output: 1
+        System.out.println("Paths for 3x3: " + numberOfPathsRecursive(3, 3)); // Output: 6
+        System.out.println("Paths for 3x3 (Math): " + numberOfPathsMath(3, 3)); // Output: 6
     }
 }
 ```
-* **Complexity**: Time $O(n \cdot 2^n)$ or faster due to aggressive bitmask pruning. Space $O(n)$ recursion call stack. For $n \le 12$, runs in under $0.05$ seconds!
 
 ---
 
-### Problem 4.2 (FacePrep IA Q4): Scheduled Merge Cost (Huffman under Time Windows)
-> **Exam Question**: You have $n$ stone piles with sizes in `stones[]`. You may merge two piles into one only during a set of $m$ available time slots $[start, end)$. Each merge takes 1 full slot, cannot overlap, and costs sum of the two piles merged. Find minimum total cost to merge all piles into 1 pile, or return $-1$ if impossible.
+### 2. N-Queens Problem (`L36-N Queens.pptx` & Bitmask Optimization)
+> **Problem**: Place $N$ non-attacking queens on an $N \times N$ chessboard.
 
-#### Step-by-Step Algorithmic Decomposition:
-1. **Feasibility Check (Activity Selection)**:
-   - To merge $n$ separate piles down to a single pile, we need exactly **$n - 1$ merge operations**.
-   - Since merges cannot overlap, we must determine if there exist at least $n - 1$ mutually non-overlapping time slots among the $m$ available intervals.
-   - Run the greedy **Activity Selection algorithm** (sort intervals by $end$ time).
-   - If the maximum number of compatible slots $< n - 1$, it is mathematically impossible $\implies$ return **`-1`**.
-2. **Optimal Cost Minimization (Huffman Merging)**:
-   - Does which slot executes which merge change the cost? **No!** The problem states: *"costs an amount equal to the sum of the sizes of the two piles being merged (as in Huffman coding)"*. The slots are simply a binary resource constraint (either enough non-overlapping slots exist, or they do not).
-   - To minimize total merge cost, we use the standard **Huffman / Minimum Cost to Connect Sticks** greedy strategy:
-     - Insert all stone sizes into a min-heap (`PriorityQueue`).
-     - At each step, extract the two smallest piles, sum them, add the sum to `totalCost`, and re-insert the sum back into the min-heap.
-     - Repeat $n - 1$ times.
+```java
+public class NQueensSolver {
+    // Approach 1: Classic Backtracking (Direct from Faculty PPT)
+    public static boolean solveNQ(int n) {
+        int[][] board = new int[n][n];
+        if (!solveNQUtil(board, 0, n)) {
+            System.out.println("Solution does not exist");
+            return false;
+        }
+        printSolution(board, n);
+        return true;
+    }
 
-#### Full Java Implementation:
+    private static boolean isSafe(int[][] board, int row, int col, int n) {
+        // Check left side of current row
+        for (int i = 0; i < col; i++) if (board[row][i] == 1) return false;
+        // Check upper left diagonal (\)
+        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) if (board[i][j] == 1) return false;
+        // Check lower left diagonal (/)
+        for (int i = row, j = col; j >= 0 && i < n; i++, j--) if (board[i][j] == 1) return false;
+        return true;
+    }
+
+    private static boolean solveNQUtil(int[][] board, int col, int n) {
+        if (col >= n) return true; // All queens placed
+        for (int i = 0; i < n; i++) {
+            if (isSafe(board, i, col, n)) {
+                board[i][col] = 1;
+                if (solveNQUtil(board, col + 1, n)) return true;
+                board[i][col] = 0; // Backtrack
+            }
+        }
+        return false;
+    }
+
+    // Approach 2: Bitmask High-Speed Counter (O(N!) Time, O(N) Space)
+    public static int totalNQueensBitmask(int n) {
+        int fullMask = (1 << n) - 1;
+        return countPlacements(0, 0, 0, fullMask);
+    }
+
+    private static int countPlacements(int cols, int d1, int d2, int fullMask) {
+        if (cols == fullMask) return 1;
+        int available = fullMask & ~(cols | d1 | d2);
+        int total = 0;
+        while (available != 0) {
+            int p = available & -available; // Lowest set bit
+            available &= available - 1;     // Clear bit
+            total += countPlacements(cols | p, (d1 | p) >> 1, (d2 | p) << 1, fullMask);
+        }
+        return total;
+    }
+
+    private static void printSolution(int[][] board, int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) System.out.print(board[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+### 3. Activity Selection Problem (`L38-Activity Selection.pptx`)
+> **Problem**: Given start times `s[]` and finish times `f[]` of $n$ activities, find maximum non-overlapping activities.  
+> **Faculty PPT Example 1**: `s = {2, 4, 3, 7}`, `f = {5, 6, 8, 9}` $\to$ Output: `0 1 3` (Activities at index 0, 1, and 3).  
+> **Faculty PPT Example 2**: `s = {1, 3, 5, 6, 8}`, `f = {2, 4, 7, 9, 10}` $\to$ Output: `0 1 3 4`.
+
 ```java
 import java.util.*;
 
-public class ScheduledMergeCost {
-    public static long minScheduledMergeCost(int[] stones, int[][] slots) {
-        if (stones == null || stones.length <= 1) return 0;
-        int n = stones.length;
-        int mergesNeeded = n - 1;
+public class ActivitySelectionMaster {
+    static class ActivityItem {
+        int id, start, finish;
+        ActivityItem(int id, int start, int finish) {
+            this.id = id;
+            this.start = start;
+            this.finish = finish;
+        }
+    }
 
-        // Step 1: Check feasibility using Activity Selection
-        if (slots == null || slots.length < mergesNeeded) {
-            return -1;
+    // Greedy Activity Selection: O(n log n) Time, O(n) Space
+    public static List<Integer> selectMaxActivities(int[] s, int[] f) {
+        int n = s.length;
+        ActivityItem[] activities = new ActivityItem[n];
+        for (int i = 0; i < n; i++) {
+            activities[i] = new ActivityItem(i, s[i], f[i]);
         }
 
-        // Sort time slots by end time ascending
-        Arrays.sort(slots, (a, b) -> Integer.compare(a[1], b[1]));
+        // Step 1: Sort activities by finish time ascending
+        Arrays.sort(activities, (a, b) -> Integer.compare(a.finish, b.finish));
 
-        int availableNonOverlappingSlots = 0;
-        int lastEnd = Integer.MIN_VALUE;
+        List<Integer> selected = new ArrayList<>();
+        // Step 2: First activity always selected
+        selected.add(activities[0].id);
+        int lastFinishTime = activities[0].finish;
 
-        for (int[] slot : slots) {
-            if (slot[0] >= lastEnd) {
-                availableNonOverlappingSlots++;
-                lastEnd = slot[1];
+        // Step 3: Iterate through sorted activities
+        for (int i = 1; i < n; i++) {
+            if (activities[i].start >= lastFinishTime) {
+                selected.add(activities[i].id);
+                lastFinishTime = activities[i].finish;
             }
         }
-
-        // If we don't have enough non-overlapping slots to perform n - 1 merges, impossible!
-        if (availableNonOverlappingSlots < mergesNeeded) {
-            return -1;
-        }
-
-        // Step 2: Calculate minimum merge cost using Min-Heap (Huffman Coding)
-        PriorityQueue<Long> minHeap = new PriorityQueue<>();
-        for (int stone : stones) {
-            minHeap.offer((long) stone);
-        }
-
-        long totalMergeCost = 0;
-
-        while (minHeap.size() > 1) {
-            long firstSmallest = minHeap.poll();
-            long secondSmallest = minHeap.poll();
-            long combinedSize = firstSmallest + secondSmallest;
-
-            totalMergeCost += combinedSize;
-            minHeap.offer(combinedSize);
-        }
-
-        return totalMergeCost;
+        return selected;
     }
 
     public static void main(String[] args) {
-        int[] stones = {4, 3, 2, 6};
-        int[][] slots = {
-            {1, 3}, {3, 5}, {5, 7} // 3 non-overlapping slots: [1,3), [3,5), [5,7)
-        };
-        // Merges:
-        // 1. (2 + 3) = 5 (Cost: 5), remaining: [4, 5, 6]
-        // 2. (4 + 5) = 9 (Cost: 9), remaining: [9, 6]
-        // 3. (6 + 9) = 15 (Cost: 15), remaining: [15]
-        // Total Cost: 5 + 9 + 15 = 29
-        System.out.println("Minimum Total Cost: " + minScheduledMergeCost(stones, slots)); // Output: 29
+        // Slide Example 1
+        int[] s1 = {2, 4, 3, 7};
+        int[] f1 = {5, 6, 8, 9};
+        System.out.println("Selected Activities (Ex 1): " + selectMaxActivities(s1, f1)); // Output: [0, 1, 3]
+
+        // Slide Example 2
+        int[] s2 = {1, 3, 5, 6, 8};
+        int[] f2 = {2, 4, 7, 9, 10};
+        System.out.println("Selected Activities (Ex 2): " + selectMaxActivities(s2, f2)); // Output: [0, 1, 3, 4]
     }
 }
 ```
-* **Complexity**: Time $O(m \log m + n \log n)$, Space $O(n)$ for min-heap. Perfectly handles $n \le 1000$ and $m \le 2000$ within 10 milliseconds.
+
+---
+
+### 4. Huffman Coding (`HuffmanCoding.pptx`)
+> **Problem**: Build optimal variable-length prefix codes based on character frequencies.  
+> **Worked Example from Slide 4**: `'ABRACADABRA'` ($A=5, B=2, R=2, C=1, D=1$).
+
+```java
+import java.util.*;
+
+public class HuffmanCodingMaster {
+    static class HuffmanNode implements Comparable<HuffmanNode> {
+        char data;
+        int freq;
+        HuffmanNode left, right;
+
+        HuffmanNode(char data, int freq) {
+            this.data = data;
+            this.freq = freq;
+        }
+
+        @Override
+        public int compareTo(HuffmanNode o) {
+            return Integer.compare(this.freq, o.freq);
+        }
+    }
+
+    // Build Huffman Tree and generate binary codes
+    public static Map<Character, String> buildHuffmanCodes(String text) {
+        // 1. Calculate frequencies
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (char c : text.toCharArray()) freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+
+        // 2. Insert into Min-Heap PriorityQueue
+        PriorityQueue<HuffmanNode> pq = new PriorityQueue<>();
+        for (var entry : freqMap.entrySet()) {
+            pq.offer(new HuffmanNode(entry.getKey(), entry.getValue()));
+        }
+
+        // 3. Build tree by repeatedly combining 2 smallest nodes
+        while (pq.size() > 1) {
+            HuffmanNode left = pq.poll();
+            HuffmanNode right = pq.poll();
+            HuffmanNode parent = new HuffmanNode('-', left.freq + right.freq);
+            parent.left = left;
+            parent.right = right;
+            pq.offer(parent);
+        }
+
+        HuffmanNode root = pq.peek();
+        Map<Character, String> huffmanCodes = new HashMap<>();
+        generateCodes(root, "", huffmanCodes);
+        return huffmanCodes;
+    }
+
+    private static void generateCodes(HuffmanNode node, String code, Map<Character, String> map) {
+        if (node == null) return;
+        if (node.left == null && node.right == null) {
+            map.put(node.data, code);
+            return;
+        }
+        generateCodes(node.left, code + "0", map);
+        generateCodes(node.right, code + "1", map);
+    }
+
+    public static void main(String[] args) {
+        String text = "ABRACADABRA";
+        Map<Character, String> codes = buildHuffmanCodes(text);
+        System.out.println("Huffman Codes for ABRACADABRA:");
+        codes.forEach((k, v) -> System.out.println(k + " : " + v));
+    }
+}
+```
+
+---
+
+### 5. Sorted Unique Permutations (`L31-Sorted Unique Permutation.pptx`)
+> **Problem**: Print all distinct permutations of a string in sorted order, where input may contain duplicate characters.  
+> **Example**: `"AAB"` $\to$ `"AAB"`, `"ABA"`, `"BAA"`.
+
+```java
+import java.util.*;
+
+public class SortedUniquePermutations {
+    public static void distinctPermutations(String input) {
+        char[] chars = input.toCharArray();
+        Arrays.sort(chars); // Sort initially
+        permute(chars, 0);
+    }
+
+    private static void permute(char[] chars, int index) {
+        if (index == chars.length - 1) {
+            System.out.println(String.valueOf(chars));
+            return;
+        }
+
+        Set<Character> used = new HashSet<>(); // Avoid duplicate swaps at current level
+        for (int i = index; i < chars.length; i++) {
+            if (used.contains(chars[i])) continue;
+            used.add(chars[i]);
+
+            swap(chars, index, i);
+            permute(chars, index + 1);
+            swap(chars, index, i); // Backtrack
+        }
+    }
+
+    private static void swap(char[] chars, int i, int j) {
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
+}
+```
+
+---
+
+### 6. Rat in a Maze (`L35-Maze Solving.pptx`)
+> **Problem**: Find a path from $(0, 0)$ to $(N-1, N-1)$ in an $N \times N$ maze. $1 =$ open path, $0 =$ wall / dead end.
+
+```java
+public class RatInAMaze {
+    public static boolean solveMaze(int[][] maze, int N) {
+        int[][] sol = new int[N][N];
+        if (!solveMazeUtil(maze, 0, 0, sol, N)) {
+            System.out.println("No Path Exists");
+            return false;
+        }
+        printSolution(sol, N);
+        return true;
+    }
+
+    private static boolean solveMazeUtil(int[][] maze, int x, int y, int[][] sol, int N) {
+        if (x == N - 1 && y == N - 1 && maze[x][y] == 1) {
+            sol[x][y] = 1;
+            return true;
+        }
+
+        if (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1) {
+            if (sol[x][y] == 1) return false; // Already visited
+
+            sol[x][y] = 1;
+            // Try moving Down
+            if (solveMazeUtil(maze, x + 1, y, sol, N)) return true;
+            // Try moving Right
+            if (solveMazeUtil(maze, x, y + 1, sol, N)) return true;
+
+            sol[x][y] = 0; // Backtrack
+            return false;
+        }
+        return false;
+    }
+
+    private static void printSolution(int[][] sol, int N) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) System.out.print(sol[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+```
+
+---
+
+### 7. Warnsdorff’s Algorithm for Knight's Tour (`L37-Warnsdorff’s Algorithm.pptx`)
+> **Problem**: Visit every square of an $N \times N$ chessboard exactly once with a knight.  
+> **Warnsdorff’s Heuristic**: Always move the knight to an adjacent unvisited cell that has the **minimum degree** (minimum number of onward unvisited moves).
+
+```java
+public class WarnsdorffKnightTour {
+    public static final int N = 8;
+    // 8 possible L-shaped moves of a knight
+    public static final int[] cx = {1, 1, 2, 2, -1, -1, -2, -2};
+    public static final int[] cy = {2, -2, 1, -1, 2, -2, 1, -1};
+
+    static boolean isSafe(int x, int y, int[] board) {
+        return (x >= 0 && y >= 0 && x < N && y < N && board[y * N + x] < 0);
+    }
+
+    // Count available unvisited neighbors (degree)
+    static int getDegree(int[] board, int x, int y) {
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            if (isSafe(x + cx[i], y + cy[i], board)) count++;
+        }
+        return count;
+    }
+
+    public static boolean knightTour() {
+        int[] board = new int[N * N];
+        java.util.Arrays.fill(board, -1);
+
+        int sx = 0, sy = 0; // Start at (0, 0)
+        board[sy * N + sx] = 1;
+
+        for (int step = 2; step <= N * N; step++) {
+            int minDeg = 9, minIdx = -1;
+            int nx = -1, ny = -1;
+
+            for (int i = 0; i < 8; i++) {
+                int tx = sx + cx[i];
+                int ty = sy + cy[i];
+                if (isSafe(tx, ty, board)) {
+                    int deg = getDegree(board, tx, ty);
+                    if (deg < minDeg) {
+                        minDeg = deg;
+                        minIdx = i;
+                        nx = tx;
+                        ny = ty;
+                    }
+                }
+            }
+
+            if (minIdx == -1) return false; // Dead end
+            board[ny * N + nx] = step;
+            sx = nx;
+            sy = ny;
+        }
+        return true;
+    }
+}
+```
