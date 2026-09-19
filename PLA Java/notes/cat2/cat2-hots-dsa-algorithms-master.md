@@ -6,6 +6,19 @@
 
 ---
 
+## 🏆 Official Sample Papers Solved (Fall 2026–27)
+
+* 📄 **[Official Sample Paper I Complete Solved Guide (50 Marks + Bonus)](./cat2-pla1004-sample-paper-1-solved.md)**:
+  - **Q1 [10M]**: In-Place Hyphen Shifting on `"sys-log-v3-err"` under zero-allocation hardware constraints ($O(n)$ time, $O(1)$ space).
+  - **Q2 [10M]**: Mars Satellite Huffman Prefix Coding ($S:32, F:23, T:10, P:10, E:5$), 200 telemetry codes bit length (420 bits vs 600 fixed bits, 30.0% savings).
+  - **Q3 [10M]**: Microservices Logical Circular Heartbeat Ring Josephus recurrence $J(n, 3)$ derivation & exact survivor table for $n=1..8$ (Surviving Node 6).
+  - **Q4 [10M]**: Hardware Min Stack $O(1)$ space via $(2x - \min)$ modified value encoding with execution trace on $[8, 5, 4, 10]$ + Pop.
+  - **Q5(a) [5M]**: Autonomous Delivery Drone $3 \times 3$ state-space grid backtracking with hazards.
+  - **Q5(b) [5M]**: Singly Linked List: One-Pass Removal of $N$-th Node from End ($N=2$ on `101 -> 102 -> 103 -> 104 -> 105`) using Two-Pointer Fixed-Gap strategy.
+  - **Bonus [Image]**: Greedy Activity Selection on `start = [1, 3, 0, 5]` and `finish = [2, 4, 6, 7]` (Selected: $A_0, A_1, A_3 \to 3$ activities).
+
+---
+
 ## 🧭 Master Topic Navigation Table (All 18 Topics)
 
 | # | Topic | Primary Note File | Source PPT | Key Formula / Core Logic |

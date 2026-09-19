@@ -330,6 +330,31 @@ public class LinkedListMaster {
         tail.next = (l1 != null) ? l1 : l2;
         return dummy.next;
     }
+
+    // 4. Remove N-th Node From End of List - One Pass (O(n) time, O(1) space)
+    // Direct solution to Sample Paper 1 Question 5(b)
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        // Advance fast by n + 1 steps to create gap
+        for (int i = 0; i <= n; i++) {
+            if (fast == null) return head;
+            fast = fast.next;
+        }
+
+        // Move both until fast reaches end
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // Delete target node
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
 }
 ```
 

@@ -1,0 +1,35 @@
+=== Page 1 ===
+  Reg.  No.:   Name      :   
+ SAMPLE  PAPER  I  –  Sept  &  Oct  2026  Programme  :  B.Tech.,  Integrated  M.Tech  Semester  :  Fall  2026-27  Course  Title  :  Competitive  Coding  Practices  Course  Code  :  PLA1004  Faculty  :   Slot  :   Time      :  1  ½  hours  Max.  Marks  :  50  
+Note:  Calculators  of  any  kind  are  not  allowed.  
+Answer  all  the  Questions   
+ 
+Q.  No.  
+Sub.  Sec.  
+Question  Description  Marks  
+1   
+A  high-throughput  network  adapter  processes  incoming  telemetry  byte  streams.  Telemetry  frames  frequently  arrive  polluted  with  idle  padding  bytes  marked  as  hyphen  characters  ('-').  Downstream  hardware  parsers  require  all  padding  bytes  to  be  clustered  at  the  very  start  of  the  frame  payload  before  reading  actual  data.  However,  due  to  severe  hardware  latency  constraints:  You  cannot  allocate  any  temporary  arrays,  strings,  or  dynamic  memory  buffers.  You  must  complete  the  reordering  in  a  single  pass  over  the  payload  string.  The  relative  temporal  order  of  all  non-padding  data  characters  must  be  perfectly  preserved.  Diagnose  the  algorithmic  approach  that  meets  all  three  hardware  constraints.  Provide  the  step-by-step  memory  pointer  trace  when  processing  the  payload  "sys-log-v3-err".  
+10  
+2   
+A  satellite  orbiting  Mars  transmits  environmental  status  codes  to  Earth  using  variable-length  binary  encoding  based  on  telemetry  symbol  frequencies:  Dust_Storm  (S):  32,  Solar_Flare  (F):  23,  Normal_Temp  (T):  10,  Low_Power  (P):  10,  Sensor_Fault  (E):  5  Calculate  the  total  bit  length  required  to  transmit  200  telemetry  codes  matching  this  frequency  distribution  using  your  prefix  codes  compared  to  a  standard  fixed  3-bit  encoding  scheme.  Calculate  the  exact  bandwidth  percentage  saved.  
+10  
+3   
+A  cluster  of  8  microservices  (0-7)  is  organized  in  a  logical  circular  heartbeat  ring.  During  a  network  partition  event,  the  cluster  coordinator  executes  a  deterministic  failover  protocol:  it  repeatedly  skips  2  active  nodes  and  permanently  terminates  the  3rd  active  node  (K  =  3)  in  the  circular  sequence  until  only  one  resilient  node  remains  to  assume  leadership.  Without  simulating  the  step-by-step  node  deletion  using  a  circular  list  structure,  derive  the  direct  mathematical  recurrence  formula  for  this  elimination  pattern.  Compute  the  exact  0-based  index  of  the  surviving  leader  node  from  n  =  1  up  to  n  =  8.  
+10  
+4   
+A  high-speed  telemetry  engine  stores  a  stream  of  core  temperature  metrics  into  a  stack  structure.  An  auditing  thread  must  retrieve  the  minimum  temperature  recorded  so  far  in  O1  time.  Due  to  severe  RAM  constraints,  allocating  a  second  auxiliary  tracking  stack  of  equal  size  is  strictly  prohibited.  Explain  how  storing  modified  encoded  values  (2x-min)  on  the  stack  maintains  accurate  historical  minimums  across  both  push  and  pop  operations.  Trace  the  internal  stack  storage  and  min  variable  for  the  insertion  sequence  ,8  5,  4,  10  followed  by  one  pop.  
+10  
+5  
+(a)  
+An  autonomous  delivery  drone  navigates  a  3*3  grid  field  from  top-left  (0,0)  to  bottom-right  (2,2).  Certain  grid  coordinates  contain  permanent  high-voltage  hazards  that  make  them  completely  impassable.  Design  the  state-space  exploration  framework  (including  base  termination  conditions,  cell  validation  logic,  and  state-reversal  steps)  required  to  systematically  discover  and  record  all  safe  paths  across  the  terrain  without  getting  trapped  in  infinite  loops.  
+5  
+Page  1  of  2  
+
+=== Page 2 ===
+(b)  
+  A  high-speed  memory  cache  holds  user  session  tokens  in  a  singly  linked  list:  Head  ->  [101]  ->  [102]  ->  [103]  ->  [104]  ->  [105]  ->  Null.  To  maintain  a  target  memory  ceiling,  a  background  garbage  collection  thread  must  remove  the  Nth  token  from  the  end  of  the  list  (e.g.,  if  N  =  2,  target  token  [104])  in  a  single  linear  pass.  Formulate  a  two-pointer  positional  strategy  that  locates  and  disconnects  the  target  token  without  pre-calculating  the  total  list  length.  Trace  the  exact  pointer  locations  across  the  list  for  N  =  2.  
+5  
+ 
+ 
+  
+    
