@@ -198,3 +198,183 @@ def load_account_pickle(filepath: str) -> BankAccount:
 ### 2. Limitations of Operator Overloading
 * **Readability / Principle of Least Astonishment**: Overloading operators with non-intuitive meanings (e.g. using `*` to send an email) degrades code maintainability.
 * **Type Symmetry**: In `a + b`, if `a` does not know how to add `b`, Python attempts `b.__radd__(a)`. If neither handles the type, a `TypeError` must be raised cleanly by returning `NotImplemented`.
+
+---
+
+## 🎯 TIER 5: Assignment 3 & Lab Experiments Master Solutions (Direct Exam Copy)
+
+### 1. Assignment 3 — Question 1: Polygons Area & Perimeter (OOP Hierarchy)
+```python
+import math
+from abc import ABC, abstractmethod
+
+class Polygon(ABC):
+    """Abstract Base Class defining the contract for all 2D shapes."""
+    @abstractmethod
+    def area(self) -> float:
+        pass
+
+    @abstractmethod
+    def perimeter(self) -> float:
+        pass
+
+class Rectangle(Polygon):
+    def __init__(self, width: float, height: float):
+        if width <= 0 or height <= 0:
+            raise ValueError("Dimensions must be positive!")
+        self.width = width
+        self.height = height
+
+    def area(self) -> float:
+        return self.width * self.height
+
+    def perimeter(self) -> float:
+        return 2 * (self.width + self.height)
+
+class Triangle(Polygon):
+    def __init__(self, a: float, b: float, c: float):
+        # Triangle inequality check
+        if a + b <= c or a + c <= b or b + c <= a:
+            raise ValueError("Invalid triangle side lengths!")
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def perimeter(self) -> float:
+        return self.a + self.b + self.c
+
+    def area(self) -> float:
+        # Heron's Formula
+        s = self.perimeter() / 2.0
+        return math.sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
+
+# Demonstration
+if __name__ == "__main__":
+    rect = Rectangle(10, 5)
+    print(f"Rectangle -> Area: {rect.area():.2f}, Perimeter: {rect.perimeter():.2f}")
+
+    tri = Triangle(3, 4, 5)
+    print(f"Triangle  -> Area: {tri.area():.2f}, Perimeter: {tri.perimeter():.2f}")
+```
+
+---
+
+### 2. Assignment 3 — Question 2: Comparing Persons Based on Age (Operator Overloading)
+```python
+class Person:
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+
+    # Greater than: person1 > person2
+    def __gt__(self, other) -> bool:
+        if isinstance(other, Person):
+            return self.age > other.age
+        return NotImplemented
+
+    # Less than: person1 < person2
+    def __lt__(self, other) -> bool:
+        if isinstance(other, Person):
+            return self.age < other.age
+        return NotImplemented
+
+    # Equal to: person1 == person2
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Person):
+            return self.age == other.age
+        return False
+
+    def __str__(self) -> str:
+        return f"Person(Name='{self.name}', Age={self.age})"
+
+# Demonstration for Danny and Thomas
+if __name__ == "__main__":
+    p1 = Person("Danny", 30)
+    p2 = Person("Thomas", 25)
+
+    print(f"{p1} vs {p2}:")
+    if p1 > p2:
+        print(f"{p1.name} ({p1.age}) is older than {p2.name} ({p2.age}).")
+    elif p1 < p2:
+        print(f"{p1.name} ({p1.age}) is younger than {p2.name} ({p2.age}).")
+    else:
+        print(f"{p1.name} and {p2.name} are the same age.")
+```
+
+---
+
+### 3. Assignment 3 — Question 3: Library Book Class (Public, Protected & Private Attributes)
+```python
+class Book:
+    """Demonstrates Public, Protected, and Private access modifiers in Python."""
+    def __init__(self, title: str, author: str, isbn: str):
+        self.title = title          # Public: Accessible anywhere
+        self._author = author        # Protected: Accessible within class & subclasses (convention)
+        self.__isbn = isbn          # Private: Name-mangled to _Book__isbn
+
+    # Protected method to update author details
+    def _update_author_details(self, new_author: str) -> None:
+        """Protected helper to update author."""
+        print(f"[LOG] Updating author from '{self._author}' to '{new_author}'")
+        self._author = new_author
+
+    # Public getters to demonstrate clean encapsulation
+    @property
+    def author(self) -> str:
+        return self._author
+
+    @property
+    def isbn(self) -> str:
+        # Mask ISBN for security (shows only last 4 digits)
+        return f"***-***-{self.__isbn[-4:]}"
+
+    def update_author(self, new_author: str) -> None:
+        """Public API calling protected updater."""
+        self._update_author_details(new_author)
+
+    def __str__(self) -> str:
+        return f"Book Title: '{self.title}' | Author: '{self._author}' | ISBN: {self.isbn}"
+
+# Demonstration
+if __name__ == "__main__":
+    book = Book("Python Mastery", "Guido van Rossum", "978-0134076423")
+    print(book)
+
+    # Accessing attributes according to their scope:
+    print(f"Public Title: {book.title}")          # Allowed
+    print(f"Protected Author: {book._author}")     # Works by convention, but discouraged outside
+    # print(book.__isbn)                          # Raises AttributeError (Private!)
+    print(f"Accessing Private via Mangled Name: {book._Book__isbn}") # Demonstrates name-mangling
+
+    # Updating author via protected method
+    book.update_author("Modern Python Community")
+    print(book)
+```
+
+---
+
+### 4. Suggested Experiments 9 & 10: Basic Class & Function Calling
+```python
+# Experiment 9: Class definition, object creation, and calling print method
+class Greeter:
+    def __init__(self, greeting_message: str):
+        self.message = greeting_message
+
+    def display(self) -> None:
+        """Simple print function defined in class."""
+        print(f"Class Print Output: {self.message}")
+
+# Experiment 10: Standalone function with single string parameter
+def print_string_parameter(param: str) -> None:
+    """Takes a single string parameter and prints it."""
+    print(f"Function Parameter Output: {param}")
+
+if __name__ == "__main__":
+    # Test Experiment 9
+    obj = Greeter("Hello from VIT Bhopal Python Class!")
+    obj.display()
+
+    # Test Experiment 10
+    print_string_parameter("Testing single string parameter passing.")
+```
+
