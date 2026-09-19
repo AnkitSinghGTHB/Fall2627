@@ -1,0 +1,64 @@
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Maze Solving
+Introduction
+Consider the maze to be a black and white image, with black pixels representing walls, and white pixels representing a path. Two white pixels are special, one being the entry to the maze and another exit.
+Given such a maze, we want to find a path from entry to the exit.
+Modelling the Maze
+0 -> Road
+1 -> Wall
+2 -> Maze entry
+3 -> Maze exit
+4 -> Cell part of the path from entry to exit
+--- Slide 3 ---
+Gray blocks are dead ends (value = 0).
+binary matrix representation of the above maze.
+{ 1, 0, 0, 0}
+{1, 1, 0, 1}
+{0, 1, 0, 0}
+{1, 1, 1, 1}
+--- Slide 4 ---
+--- Slide 5 ---
+public class RatMaze {
+final int N = 4;
+void printSolution(int sol[][]){
+for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++)
+System.out.print(" " + sol[i][j] + " ");
+System.out.println();
+}}
+boolean isSafe(int maze[][], int x, int y){
+return (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1);
+}
+{
+int sol[][] = { { 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 } };
+if (solveMazeUtil(maze, 0, 0, sol) == false) {
+System.out.print("Solution doesn't exist");
+return false;
+}
+printSolution(sol);
+return true;
+}
+boolean solveMazeUtil(int maze[][], int x, int y,int sol[][]){
+if (x == N - 1 && y == N - 1) {
+sol[x][y] = 1;
+return true;
+}
+if (isSafe(maze, x, y) == true) {
+sol[x][y] = 1;
+if (solveMazeUtil(maze, x + 1, y, sol))
+return true;
+if (solveMazeUtil(maze, x, y + 1, sol))
+return true;
+--- Slide 6 ---
+sol[x][y] = 0;            return false;        }         return false;    }     public static void main(String args[]){        RatMaze rat = new RatMaze();        int maze[][] = { { 1, 0, 0, 0 },                         { 1, 1, 0, 1 },                         { 0, 1, 0, 0 },                         { 1, 1, 1, 1 } };        rat.solveMaze(maze);    }}
+Output:       1  0  0  0        1  1  0  0        0  1  0  0        0  1  1  1
+maze[][]={ {1, 1, 1, 1, 1},		{0, 0, 1, 0, 1},		{1, 1, 1, 1, 0},		{1, 0, 0, 0, 1},		{1, 1, 1, 1, 1}   };
+--- Slide 7 ---
+THANK YOU
+
+

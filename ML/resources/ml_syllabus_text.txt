@@ -1,0 +1,110 @@
+=== Page 1 ===
+Course Code 
+CSE4005 
+ 
+Machine Learning 
+Course 
+Type 
+  LT 
+Credits 
+     3 
+Course Objectives: 
+ To introduces theoretical foundations, algorithms, methodologies 
+ To introduce the various applications of Machine Learning 
+ To provide basic knowledge for handling and analyzing data sets covering a variety of real-world 
+applications. 
+Course Outcomes: 
+At the end of the course, students should able to 
+ Recognize the characteristics of machine learning that make it useful to solve real-world 
+problems. 
+ Identify real-world applications of machine learning. 
+ Identify and apply appropriate machine  learning  algorithms for analyzing the data for 
+variety of problems. 
+ Implement different machine learning algorithms for analyzing the data 
+ Design test procedures in order to evaluate a model 
+ Combine several models in order to gain better results 
+ Make choices for a model for new machine learning tasks based on reasoned argument 
+Student Outcomes (SO): a,b,c,l 
+a. An ability to apply the knowledge of mathematics, science and computing appropriate  to the discipline 
+b. An ability to analyze a problem, identify and define the computing requirements appropriate to its 
+solution. 
+c. An ability to design, implement and evaluate a system / computer‐based system, process, component or  
+program to meet desired needs 
+l. An ability to apply mathematical foundations, algorithmic principles and computer science theory in the 
+modelling and design of computer-based systems (CS) 
+Unit 
+No. 
+Unit Content No. of 
+hours 
+SOs 
+1 INTRODUCTION TO MACHINE LEARNING 
+Introduction, Examples of Various Learning Paradigms, Perspectives and 
+Issues, Version Spaces, Finite and Infinite Hypothesis Spaces, PAC 
+Learning, VC Dimension. 
+ 
+ 
+9 
+ 
+ 
+a,b,c 
+2 Supervised Learning 
+Decision Trees: ID3, Classification and Regression Trees, Regression: 
+Linear Regression, Multiple Linear Regression, Logistic Regression, 
+Neural Networks: Introduction, Perceptron, Multilayer Perceptron, Support 
+vector machines: Linear and Non -Linear, Kern el Functions, K - Nearest 
+Neighbors 
+ 
+9 
+ 
+a,b,c 
+=== Page 2 ===
+3 Ensemble Learning 
+Model Combination Schemes, Voting, Error -Correcting Output Codes, 
+Bagging: Random Forest Trees, Boosting: Adaboost, Stacking 
+Unsupervised Learning 
+Introduction to clustering, Hierarchical: AGNES, DIANA, Partitional: 
+K-means clustering, K-Mode Clustering, Expectation Maximization, 
+Gaussian Mixture Models 
+ 
+ 
+9 
+ 
+ 
+a,b,l 
+4 Probabilistic Learning 
+Bayesian Learning, Bayes Optimal Classifier, Naïve Bayes  Classifier, 
+Bayesian Belief Networks 
+Learning Association Rules 
+Mining Frequent Patterns - basic concepts -Apriori algorithm, FP - Growth 
+algorithm, Association-based Decision Trees 
+ 
+9 
+ 
+a,b,l 
+5 Machine Learning in Practice 
+Design, Analysis and Evaluation of Machine Learning Experiments, Other 
+Issues: Handling imbalanced data sets – Recent Trends 
+ 
+ 
+       9 
+ 
+ 
+a,b,c 
+6 Guest Lecture on Contemporary Topics       
+ Total Hours:       45 
+Mode of Teaching and Learning : Flipped Class Room, Activity Based Teaching/Learning, 
+Digital/Computer based models, wherever possible to augment lecture for practice/tutorial and minimum 2 
+hours lectures by industry experts on contemporary topics                  
+Mode of Evaluation and assessment:  
+The assessment and ev aluation components may consist of unannounced open book examinations, 
+quizzes, student’s portfolio  generation and  assessment, and any other innovative assessment practices 
+followed by faculty, in addition to the Continuous Assessment Tests and  Term End Examinations.  
+Reference Books:  
+1. Ethem Alpaydin,"Introduction to Machine Learning”, MIT Press, Prentice Hall of India, Third 
+Edition 2014. 
+2. Mehryar Mohri, Afshin Rostamizadeh, Ameet Talwalkar "Foundations of Machine Learning”, MIT 
+Press, 2012. 
+3.  Tom Mitchell, “Machine Learning”, McGraw Hill, 3rd Edition,1997. 
+4. Charu C. Aggarwal, “Data Classification Algorithms and Applications”, CRC Press, 2014. 
+ 
+ 

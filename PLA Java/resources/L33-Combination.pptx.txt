@@ -1,0 +1,44 @@
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Combination
+Permutation and Combination are two important concepts.
+Permutation is the different arrangements of the set elements. The arrangements can be made by taking one element at a time, some element at a time and all elements at a time.
+Combination is the different selections of the set of elements taken one by one, or some, or all at a time. In Java, the definition of Permutation and Combination is the same.
+--- Slide 3 ---
+Combination is the different selections of the set of elements taken one by one, or some, or all at a time.
+In Java, the definition of Permutation and Combination is the same.
+For example, if we have a set having only two elements, X and Y.
+Combination value is very easy in Java but to get all the combination of array, list, and set elements is more difficult than getting permutations. For getting the combination value programmatically in Java, we use the following formula:
+Combination = fact(n) / (fact(r) * fact(n-r));
+--- Slide 4 ---
+--- Slide 5 ---
+import java.util.*;
+public class CombinationExample {
+static int fact(int number) {
+int f = 1;
+int j = 1;
+while(j <= number) {
+f = f * j;
+j++;
+}
+return f;
+}
+public static void main(String args[]) {
+List<Integer> numbers = new ArrayList<Integer>();
+numbers.add(9);
+numbers.add(12);
+numbers.add(19);
+numbers.add(61);
+numbers.add(19);
+int n = numbers.size();
+int r = 2;  int result;
+result = fact(n) / (fact(r) * fact(n-r));
+System.out.println("The combination value for the numbers list is: " + result);
+}
+}
+--- Slide 6 ---
+--- Slide 7 ---
+THANK YOU
+
+

@@ -1,0 +1,2180 @@
+========================================
+=== PPT: L28- Weightes substring.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Weighted substring
+Every character has a weight. The weight of an English uppercase alphabet A-Z is given below. A=1 B=2*A+A C=3*B+B D=4*C+C . . . Y=25*X+X Z=26*Y+Y The weight of any string made up of these characters is the summation of weights of each character. Given a total string weight, determine shortest string of that given weight. If there is more than one solution, return the lexicographically smallest of them. For example, given weight = 25, and the weights of the first few characters of the alphabet are A=1, B=3, C=12, D=60 it is certain that no letter larger than C is required. Some of the strings with a total weight equal to the largest are ABBBBC, ACC, and AAAAAAABBBBBB. The shortest of these is ACC. While any permutation of these characters will have the same weight, this is the lexicographically smallest of them. Function Description Complete the function smallestString in the editor below.
+--- Slide 3 ---
+Weighted substring
+The function must return the shortest string of the target weight. If there are multiple answers, return the lexicographically smallest of them. smallestString has the following parameter(s): weight: a long integer that denotes the target weight.
+Input Format
+Input consists of a string s.
+Output Format
+Output should be in the form of integer.
+Constraints
+1<=weight<=1016
+--- Slide 4 ---
+Weighted substring
+Sample Input:
+Sample Output:
+AABBC
+20
+--- Slide 5 ---
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class Main {
+static int[] values = new int[26];
+public static void main(String[] args) {
+insertValues();
+Scanner scanner = new Scanner(System.in);
+int n = scanner.nextInt();
+List<Character> s = new ArrayList<>();
+formedString(s, n);
+}
+static void insertValues() {
+values[0] = 1;
+int prev = 1;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+for (int i = 1; i < 26; i++) {
+values[i] = (i + 1) * prev + prev;
+prev = values[i];
+// System.out.println(prev);
+}
+}
+static void formedString(List<Character> s, int k) {
+int low = 0;
+int high = 25;
+while (k != 0) {
+int ind = findFloor(k, low, high);
+s.add((char) (ind + 'A'));
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+--- Slide 6 ---
+k = k - values[ind];
+// System.out.println(k);
+}
+for (int i = s.size() - 1; i >= 0; i--)
+System.out.print(s.get(i));
+}
+static int findFloor(int k, int low, int high) {
+int ans = -1;
+while (low <= high) {
+int mid = (low + high) / 2;
+if (values[mid] <= k) {
+ans = mid;
+low = mid + 1;
+}
+else {
+high = mid - 1;
+}
+}
+// System.out.println(ans);
+return ans;
+}
+}
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+--- Slide 7 ---
+THANK YOU
+
+
+========================================
+=== PPT: L29-Move hyphen to beginning.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Move hyphen to beginning
+Move Hyphen to Beginning: Moving the hyphen to the beginning refers to the task of repositioning a hyphen in a given string so thaat it appears at the beginning. For example, transforming “face-prep" into "-faceprep".
+public class MoveHyphenToBeginning {
+public static void main(String[] args) {
+String originalString = "face-prep";
+String transformedString = moveHyphenToBeginning(originalString);
+System.out.println(transformedString);
+}
+public static String moveHyphenToBeginning(String string) {
+if (string.contains("-")) {
+int hyphenIndex = string.indexOf("-");
+return "-" + string.substring(0, hyphenIndex) + string.substring(hyphenIndex + 1);
+} else {
+return string;
+}
+}
+}
+--- Slide 3 ---
+THANK YOU
+
+
+========================================
+=== PPT: L30-Manacher_s Algorithm.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Manacher's Algorithm
+What is Manacher's algorithm?
+Manacher's algorithm is used to find the longest palindromic substring in any given string. This algorithm is faster than the brute force approach, as it exploits the idea of a palindrome happening inside another palindrome.
+Manacher's algorithm is designed to find the palindromic substrings with odd lengths only. To use it for even lengths also, we tweak the input string by inserting the character "#" at the beginning and each alternate position after that (changing "abcaac" to "#a#b#c#a#a#c#").
+In the case of an odd length palindrome, the middle character will be a character of the original string, surrounded by "#".
+--- Slide 3 ---
+Steps of the Manacher's algorithm are as follows:
+Create an array or a list (sCharssChars) of length strLenstrLen which is 2 * n + 32∗n+3 (nn being the length of the given string), to modify the given string.
+Assign the first and last element of sCharssChars to be "@" and "$", respectively.
+Fill the blank spaces in sCharssChars by characters of the given string and "#" alternatively.
+Declare variables
+Implicating maximum detected length of palindrome substring maxLen = 0maxLen=0
+Position from where to start searching start = 0start=0
+Highest position of the extreme right character of all detected palindromes maxRight = 0maxRight=0
+Center of the detected palindrome center = 0center=0.
+Create an array or a list pp to record the width of each palindrome about their center, center being the corresponding characters in sCharssChars.
+--- Slide 4 ---
+7.Create a for loop iterating from 11 to strLen - 1strLen−1, with ii incrementing in each iteration.
+8.In each iteration, check if i < maxRighti<maxRight, if yes, then assign minimum of maxRight - imaxRight−i and p[2 * center - i]p[2∗center−i] to p[i]p[i].
+9.Nest a while loop inside the for loop, to count with width along the center, condition being, sChars[i + p[i] + 1]sChars[i+p[i]+1] is equal to sChars[i - p[i] - 1]sChars[i−p[i]−1], if yes, increment p[i]p[i] by 1.
+10.To update center, check if i + p[i]i+p[i] is greater than maxRightmaxRight, if yes, assign centercenter to be 11, and maxRightmaxRight to be i + p[i]i+p[i].
+11.For updating the Maximum length detected, check if p[i]p[i] is greater than maxLenmaxLen, if yes, then assign startstart to be (i - p[i] - 1) / 2(i−p[i]−1)/2, and maxLenmaxLen to be p[i]p[i].
+12.Come out of the for loop, and print the substring in the given string, starting from startstart and ending at start + maxLen - 1start+maxLen−1.
+--- Slide 5 ---
+import java.util.*;
+class Prep
+{
+static void findLongestPalindromicString(String text)
+{
+int N = text.length();
+if (N == 0)
+return;
+N = 2 * N + 1; // Position count
+int[] L = new int[N + 1]; // LPS Length Array
+L[0] = 0;
+L[1] = 1;
+int C = 1; // centerPosition
+int R = 2; // centerRightPosition
+int i = 0; // currentRightPosition
+int iMirror; // currentLeftPosition
+int maxLPSLength = 0;
+int maxLPSCenterPosition = 0;
+int start = -1;
+int end = -1;
+int diff = -1;
+for (i = 2; i < N; i++)
+{
+iMirror = 2 * C - i;
+L[i] = 0;
+diff = R - i;
+if (diff > 0)
+L[i] = Math.min(L[iMirror], diff);
+while (((i + L[i]) + 1 < N && (i - L[i]) > 0) &&
+(((i + L[i] + 1) % 2 == 0) ||
+(text.charAt((i + L[i] + 1) / 2) ==
+text.charAt((i - L[i] - 1) / 2))))
+{
+L[i]++;
+}
+--- Slide 6 ---
+THANK YOU
+
+
+========================================
+=== PPT: L31-Sorted Unique Permutation.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Sorted Unique Permutation
+Print distinct sorted permutations with duplicates allowed in input
+Write a program to print all distinct permutations of a given string in sorted order. Note that the input string may contain duplicate characters.In mathematics, the notion of permutation relates to the act of arranging all the members of a set into some sequence or order, or if the set is already ordered, rearranging (reordering) its elements, a process called permuting.
+Examples:
+Input : BAC Output : ABC ACB BAC BCA CAB CBAInput : AAB Output : AAB ABA BAAInput : DBCA Output: ABCD ABDC ACBD ACDB ADBC ADCB BACD BADC BCAD BCDA BDAC BDCA CABD CADB CBAD CBDA CDAB CDBA DABC DACB DBAC DBCA DCAB DCBA
+--- Slide 3 ---
+sorted Permutations
+Concept Used: The number of Strings generated by a string of distinct characters of length ‘n’ is equal to ‘n!’. Sorting any given string and generating the lexicographically next bigger string until we reach the largest lexicographically string from those characters.
+Different permutations of word “geeks” Length of string = 5 Character ‘e’ repeats 2 times. Result = 5!/2! = 60.
+--- Slide 4 ---
+Sorted Permutations
+Steps:
+Example: Consider a string “ABCD”.Step 1: Sort the string. Step 2: Obtain the total number of permutations which can be formed from that string. Step 3: Print the sorted string and then loop for the number of (permutations-1) times as 1st string is already printed. Step 4: Find the next greater string.
+--- Slide 5 ---
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+public class Permutations {
+public static void main(String[] args) {
+String input = "BAC";
+distinctPermutations(input);
+}
+public static void distinctPermutations(String input) {
+char[] chars = input.toCharArray();
+Arrays.sort(chars);
+input = new String(chars);
+permute(input.toCharArray(), 0);
+}
+public static void permute(char[] chars, int index) {
+if (index == chars.length - 1) {
+System.out.println(String.valueOf(chars));
+return;
+}
+Set<Character> used = new HashSet<>();
+for (int i = index; i < chars.length; i++) {
+if (used.contains(chars[i]))
+continue;
+used.add(chars[i]);
+swap(chars, index, i);
+permute(chars, index + 1);
+swap(chars, index, i);
+}
+}
+public static void swap(char[] chars, int i, int j) {
+char temp = chars[i];
+chars[i] = chars[j];
+chars[j] = temp;
+}
+}
+--- Slide 6 ---
+THANK YOU
+
+
+========================================
+=== PPT: L32-Maneuvering.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Maneuvering
+Maneuvering a Cave Problem
+Problem:
+The task is to count all the possible paths from top left to bottom right of a m x n matrix with the constraints that from each cell you can either move only to right or down.
+Examples :
+Input : m = 2, n = 2;
+Output : 2
+There are two paths
+(0, 0) -> (0, 1) -> (1, 1)
+(0, 0) -> (1, 0) -> (1, 1)
+--- Slide 3 ---
+Let NumberOfPaths(m, n) be the count of paths to reach row number m and column number n in the matrix, NumberOfPaths(m, n) can be recursively written as following.
+class Main {
+static int numberOfPaths(int m, int n){
+if (m == 1 || n == 1)
+return 1;
+return numberOfPaths(m-1,n)+numberOfPaths(m,n-1);
+// + numberOfPaths(m-1, n-1);
+}
+public static void main(String args[])
+{
+System.out.println(numberOfPaths(3, 3));
+}
+}
+--- Slide 4 ---
+THANK YOU
+
+
+========================================
+=== PPT: L33-Combination.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Combination
+Permutation and Combination are two important concepts.
+Permutation is the different arrangements of the set elements. The arrangements can be made by taking one element at a time, some element at a time and all elements at a time.
+Combination is the different selections of the set of elements taken one by one, or some, or all at a time. In Java, the definition of Permutation and Combination is the same.
+--- Slide 3 ---
+Combination is the different selections of the set of elements taken one by one, or some, or all at a time.
+In Java, the definition of Permutation and Combination is the same.
+For example, if we have a set having only two elements, X and Y.
+Combination value is very easy in Java but to get all the combination of array, list, and set elements is more difficult than getting permutations. For getting the combination value programmatically in Java, we use the following formula:
+Combination = fact(n) / (fact(r) * fact(n-r));
+--- Slide 4 ---
+--- Slide 5 ---
+import java.util.*;
+public class CombinationExample {
+static int fact(int number) {
+int f = 1;
+int j = 1;
+while(j <= number) {
+f = f * j;
+j++;
+}
+return f;
+}
+public static void main(String args[]) {
+List<Integer> numbers = new ArrayList<Integer>();
+numbers.add(9);
+numbers.add(12);
+numbers.add(19);
+numbers.add(61);
+numbers.add(19);
+int n = numbers.size();
+int r = 2;  int result;
+result = fact(n) / (fact(r) * fact(n-r));
+System.out.println("The combination value for the numbers list is: " + result);
+}
+}
+--- Slide 6 ---
+--- Slide 7 ---
+THANK YOU
+
+
+========================================
+=== PPT: L34-Josephus trap.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Josephus trap
+In computer science and mathematics, the Josephus Problem (or Josephus permutation) is a theoretical problem.
+The problem statement:
+There are n people standing in a circle waiting to be executed. The counting out begins at some point in the circle and proceeds around the circle in a fixed direction.
+How is the Josephus problem solved?
+The Josephus problem can be solved using recursion. For each iteration, recursively delete the Kth position until only one person is left.
+--- Slide 3 ---
+Example Diagram
+--- Slide 4 ---
+import java.io.*;
+class Main {
+static int josephus(int n, int k){
+if (n == 1)
+return 1;
+else
+return (josephus(n - 1, k) + k - 1) % n + 1;
+}
+public static void main(String[] args){
+int n = 14;
+int k = 2;
+System.out.println("The chosen place is "
++ josephus(n, k));
+}
+}
+Output
+The chosen place is 13
+--- Slide 5 ---
+THANK YOU
+
+
+========================================
+=== PPT: L35-Maze Solving.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Maze Solving
+Introduction
+Consider the maze to be a black and white image, with black pixels representing walls, and white pixels representing a path. Two white pixels are special, one being the entry to the maze and another exit.
+Given such a maze, we want to find a path from entry to the exit.
+Modelling the Maze
+0 -> Road
+1 -> Wall
+2 -> Maze entry
+3 -> Maze exit
+4 -> Cell part of the path from entry to exit
+--- Slide 3 ---
+Gray blocks are dead ends (value = 0).
+binary matrix representation of the above maze.
+{ 1, 0, 0, 0}
+{1, 1, 0, 1}
+{0, 1, 0, 0}
+{1, 1, 1, 1}
+--- Slide 4 ---
+--- Slide 5 ---
+public class RatMaze {
+final int N = 4;
+void printSolution(int sol[][]){
+for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++)
+System.out.print(" " + sol[i][j] + " ");
+System.out.println();
+}}
+boolean isSafe(int maze[][], int x, int y){
+return (x >= 0 && x < N && y >= 0 && y < N && maze[x][y] == 1);
+}
+{
+int sol[][] = { { 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 } };
+if (solveMazeUtil(maze, 0, 0, sol) == false) {
+System.out.print("Solution doesn't exist");
+return false;
+}
+printSolution(sol);
+return true;
+}
+boolean solveMazeUtil(int maze[][], int x, int y,int sol[][]){
+if (x == N - 1 && y == N - 1) {
+sol[x][y] = 1;
+return true;
+}
+if (isSafe(maze, x, y) == true) {
+sol[x][y] = 1;
+if (solveMazeUtil(maze, x + 1, y, sol))
+return true;
+if (solveMazeUtil(maze, x, y + 1, sol))
+return true;
+--- Slide 6 ---
+sol[x][y] = 0;            return false;        }         return false;    }     public static void main(String args[]){        RatMaze rat = new RatMaze();        int maze[][] = { { 1, 0, 0, 0 },                         { 1, 1, 0, 1 },                         { 0, 1, 0, 0 },                         { 1, 1, 1, 1 } };        rat.solveMaze(maze);    }}
+Output:       1  0  0  0        1  1  0  0        0  1  0  0        0  1  1  1
+maze[][]={ {1, 1, 1, 1, 1},		{0, 0, 1, 0, 1},		{1, 1, 1, 1, 0},		{1, 0, 0, 0, 1},		{1, 1, 1, 1, 1}   };
+--- Slide 7 ---
+THANK YOU
+
+
+========================================
+=== PPT: L36-N Queens.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+N Queens
+The N Queen is the problem of placing N chess queens on an N×N chessboard so that no two queens attack each other.
+Example
+The following is a solution for 4 Queen problem. The expected output is a binary matrix which has 1s for the blocks where queens are placed.
+--- Slide 3 ---
+What is Backtracking?
+In backtracking, we start with one pos­si­ble move out of many avail­able moves. We then try to solve the prob­lem.
+What is the N-Queens Problem?
+How can N queens be placed on an NxN chessboard so that no two of them attack each other?
+This problem is commonly seen for N=4 and N=8.
+Let’s look at an example where N=4
+N Queens Problem
+--- Slide 4 ---
+Before solving the problem, you need to know about the movement of the queen in chess.
+A queen can move any number of steps in any direction. The only constraint is that it can’t change its direction while it’s moving.
+One thing that is clear by looking at the queen’s movement is that no two queens can be in the same row or column.
+That allows us to place only one queen in each row and each column.
+When N=4, the solution looks like :
+N Queens Problem-Movement of Queen
+--- Slide 5 ---
+Solution to the N-Queens Problem
+The way we try to solve this is by placing a queen at a position and trying to rule out the possibility of it being under attack. We place one queen in each row/column.
+If we see that the queen is under attack at its chosen position, we try the next position.
+If a queen is under attack at all the positions in a row, we backtrack and change the position of the queen placed prior to the current position.
+We repeat this process of placing a queen and backtracking until all the N queens are placed successfully.
+Queen solution
+N Queens Problem-Movement of Queen
+--- Slide 6 ---
+The step by step backtracking is shown as follows:
+Start
+No place for queen 3, so we backtrack
+--- Slide 7 ---
+After backtracking we are not able to place queen 4, so again we backtrack.
+This time we backtrack all the way to the first queen.
+--- Slide 8 ---
+First three queens placed successfully after backtracking.
+All the queens placed
+--- Slide 9 ---
+public class NQueenProblem {
+final int N = 4;
+void printSolution(int board[][]){
+for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++)
+System.out.print(" " + board[i][j]
++ " ");
+System.out.println();        }
+}
+boolean isSafe(int board[][], int row, int col){
+int i, j;
+for (i = 0; i < col; i++)
+if (board[row][i] == 1)
+return false;
+for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
+if (board[i][j] == 1)
+return false;
+for (i = row, j = col; j >= 0 && i < N; i++, j--)
+if (board[i][j] == 1)
+return false;
+return true;
+}
+boolean solveNQUtil(int board[][], int col){
+if (col >= N)
+return true;
+for (int i = 0; i < N; i++) {
+if (isSafe(board, i, col)) {
+board[i][col] = 1;
+--- Slide 10 ---
+if (solveNQUtil(board, col + 1) == true)
+return true;
+board[i][col] = 0; // BACKTRACK
+}        }
+return false;
+}
+boolean solveNQ()
+{
+int board[][] = { { 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 },
+{ 0, 0, 0, 0 } };
+if (solveNQUtil(board, 0) == false) {
+System.out.print("Solution does not exist");
+return false;
+}
+printSolution(board);
+return true;
+}
+public static void main(String args[]){
+NQueenProblem Queen = new NQueenProblem();
+Queen.solveNQ();
+}}
+Output:
+0  0  1  0
+1  0  0  0
+0  0  0  1
+0  1  0  0
+--- Slide 11 ---
+THANK YOU
+
+
+========================================
+=== PPT: L37-Warnsdorff’s Algorithm.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+--- Slide 3 ---
+import java.util.concurrent.ThreadLocalRandom;
+class GFG{
+public static final int N = 8;
+public static final int cx[] = {1, 1, 2, 2, -1, -1, -2, -2};
+public static final int cy[] = {2, -2, 1, -1, 2, -2, 1, -1};
+boolean limits(int x, int y)   {
+return ((x >= 0 && y >= 0) &&
+(x < N && y < N));
+}
+boolean isempty(int a[], int x, int y)   {
+return (limits(x, y)) && (a[y * N + x] < 0);
+}
+int getDegree(int a[], int x, int y)    {
+int count = 0;
+for (int i = 0; i < N; ++i)
+if (isempty(a, (x + cx[i]),
+(y + cy[i])))
+count++;
+return count;    }
+Cell nextMove(int a[], Cell cell)    {
+int min_deg_idx = -1, c,
+min_deg = (N + 1), nx, ny;
+int start = ThreadLocalRandom.current().nextInt(1000) % N;
+for (int count = 0; count < N; ++count)       {
+Warnsdorff’s Algorithm –Knight’s Tour Problem
+--- Slide 4 ---
+Warnsdorff’s Algorithm –Knight’s Tour Problem
+int i = (start + count) % N;
+nx = cell.x + cx[i];
+ny = cell.y + cy[i];
+if ((isempty(a, nx, ny)) &&
+(c = getDegree(a, nx, ny)) < min_deg)
+{
+min_deg_idx = i;
+min_deg = c;            }      }
+if (min_deg_idx == -1)
+return null;
+nx = cell.x + cx[min_deg_idx];
+ny = cell.y + cy[min_deg_idx];
+a[ny * N + nx] = a[(cell.y) * N +
+(cell.x)] + 1;
+cell.x = nx;
+cell.y = ny;
+return cell;    }
+void print(int a[]) {
+for (int i = 0; i < N; ++i) {
+for (int j = 0; j < N; ++j)
+System.out.printf("%d\t", a[j * N + i]);
+System.out.printf("\n");        }    }
+boolean neighbour(int x, int y, int xx, int yy) {
+for (int i = 0; i < N; ++i)
+if (((x + cx[i]) == xx) &&
+((y + cy[i]) == yy))
+return true;
+return false;    }
+boolean findClosedTour()    {
+// Filling up the chessboard matrix with -1's
+int a[] = new int[N * N];
+for (int i = 0; i < N * N; ++i)
+a[i] = -1;
+--- Slide 5 ---
+int sx = 3;
+int sy = 2;
+Cell cell = new Cell(sx, sy);
+a[cell.y * N + cell.x] = 1; // Mark first move.
+Cell ret = null;
+for (int i = 0; i < N * N - 1; ++i)     {
+ret = nextMove(a, cell);
+if (ret == null)
+return false;        } if (!neighbour(ret.x, ret.y, sx, sy))
+return false;
+print(a);
+return true;    }
+public static void main(String[] args)  {
+while (!new GFG().findClosedTour())      {
+;
+}    }     }
+class Cell{
+int x;
+int y
+public Cell(int x, int y){
+this.x = x;
+this.y = y;    }
+}
+Output:
+59    14    63    32    1    16    19    34
+62    31    60    15    56    33    2    17
+13    58    55    64    49    18    35    20
+30    61    42    57    54    51    40    3
+43    12    53    50    41    48    21    36
+26    29    44    47    52    39    4    7
+11    46    27    24    9    6    37    22
+28    25    10    45    38    23    8    5
+--- Slide 6 ---
+THANK YOU
+
+
+========================================
+=== PPT: L38-Activity Selection.pptx ===
+========================================
+--- Slide 1 ---
+--- Slide 2 ---
+Topic/Course
+Activity Selection Problem
+Problem Statement
+You are given `n` activities with their start and finish times. Select the maximum number of activities that can be performed by a single person, assuming that a person can only work on a single activity at a time.
+Example 1
+Input:
+`start[] = {2, 4, 3, 7}`
+`finish[] = {5, 6, 8, 9}`
+Output: `0 1 3`
+Explanation: A person can perform at most three activities. The maximum set of activities that can be executed is `{0, 1, 3}` (These are indexes in `start[]` and `finish[]`).
+--- Slide 3 ---
+Topic/Course
+Example 2
+Input:
+`start[] = {1, 3, 5, 6, 8}`
+`finish[] = {2, 4, 7, 9, 10}`
+Output: `0 1 3 4`
+Explanation: A person can perform at most four activities. The maximum set of activities that can be executed is `{0, 1, 3, 4}` (These are indexes in `start[]` and `finish[]`).
+--- Slide 4 ---
+import java.lang.*;
+class Activity
+{
+public static void printMaxActivities(int s[], int f[],int n)
+{
+int i, j;
+System.out.println("Following activities are 				selected");
+i = 0;
+System.out.print(i + " ");
+for (j = 1; j < n; j++) {
+if (s[j] >= f[i]) {
+System.out.print(j + " ");
+i = j;
+}
+}
+}
+public static void main(String[] args)
+{
+int s[] = { 1, 3, 0, 5, 8, 5 };
+int f[] = { 2, 4, 6, 7, 9, 9 };
+int n = s.length;
+printMaxActivities(s, f, n);
+}
+}
+--- Slide 5 ---
+Topic/Course
+Time Complexity
+The typical Activity Selection problem solution involves sorting the activities by their finish times before applying this greedy algorithm. Sorting has a time complexity of O(nlog⁡n). However, since the code you provided assumes the activities are already sorted by their finish times, the time complexity of the code itself is O(n).
+--- Slide 6 ---
+THANK YOU
+
+
+========================================
+=== PPT: CircularQueue_SlidingWindow.pptx ===
+========================================
+--- Slide 1 ---
+Data Structures Mastery
+Circular Queue & Sliding Window Maximum
+Complete Java Implementation with Algorithms
+--- Slide 2 ---
+Agenda
+Part 1: Circular Queue
+• Concept & Use Cases
+• Algorithm Explanation
+• Complete Java Implementation
+Part 2: Sliding Window Maximum
+• Problem Statement
+• Algorithm with Deque
+• Java Code & Examples
+--- Slide 3 ---
+Circular Queue - Concept
+A Circular Queue is a linear data structure where:
+• Elements are arranged in a circular fashion
+• The last element connects back to the first element
+• Eliminates wasted space in linear queues
+• Efficient use of array/memory space
+Key Characteristics:
+• FIFO (First-In-First-Out) principle
+• Two pointers: front and rear
+• Fixed size array representation
+• Wrap-around when reaching end
+Advantages:
+✓ Memory efficient
+✓ No wasted space
+✓ O(1) operations
+--- Slide 4 ---
+Circular Queue - Operations
+Enqueue (Insert)
+Add element at rear, wrap if needed
+Dequeue (Delete)
+Remove element from front, wrap if needed
+Display
+Print all elements from front to rear
+isFull()
+Check if queue is full: (rear+1)%n == front
+isEmpty()
+Check if queue is empty: front == -1
+--- Slide 5 ---
+Circular Queue - Class Structure
+class CircularQueue {
+private int[] queue;
+private int front, rear;
+private int size;
+public CircularQueue(int capacity) {
+queue = new int[capacity];
+front = -1;
+rear = -1;
+size = capacity;
+}
+public boolean isFull() {
+return (rear + 1) % size == front;
+}
+public boolean isEmpty() {
+return front == -1;
+}
+--- Slide 6 ---
+Circular Queue - Enqueue Operation
+public void enqueue(int element) {
+if (isFull()) {
+System.out.println("Queue is full!");
+return;
+}
+if (front == -1) {
+front = 0;  // First element
+}
+rear = (rear + 1) % size;
+queue[rear] = element;
+System.out.println(element + " enqueued");
+}
+--- Slide 7 ---
+Circular Queue - Dequeue Operation
+public int dequeue() {
+if (isEmpty()) {
+System.out.println("Queue is empty!");
+return -1;
+}
+int element = queue[front];
+if (front == rear) {
+front = -1;  // Last element removed
+rear = -1;
+} else {
+front = (front + 1) % size;
+}
+return element;
+}
+--- Slide 8 ---
+Circular Queue - Complete Example
+public class CircularQueueDemo {
+public static void main(String[] args) {
+CircularQueue cq = new CircularQueue(5);
+cq.enqueue(10);  // 10 enqueued
+cq.enqueue(20);  // 20 enqueued
+cq.enqueue(30);  // 30 enqueued
+System.out.println(cq.dequeue());  // 10
+System.out.println(cq.dequeue());  // 20
+cq.enqueue(40);  // 40 enqueued
+cq.enqueue(50);  // 50 enqueued
+}
+}
+--- Slide 9 ---
+Sliding Window Maximum - Problem Statement
+Given an array of integers and a window size k, find the
+maximum element in each sliding window.
+Example:
+Array: [1, 3, 1, 2, 0, 5]
+Window Size: 3
+Output: [3, 3, 2, 5]
+Explanation:
+Window [1, 3, 1]    → max = 3
+Window [3, 1, 2]    → max = 3
+Window [1, 2, 0]    → max = 2
+Window [2, 0, 5]    → max = 5
+--- Slide 10 ---
+Sliding Window Maximum - Naive Approach
+Brute Force Solution (O(n * k))
+public int[] maxSlidingWindow(int[] nums, int k) {
+int[] result = new int[nums.length - k + 1];
+for (int i = 0; i <= nums.length - k; i++) {
+int max = nums[i];
+// Find max in current window
+for (int j = i; j < i + k; j++) {
+max = Math.max(max, nums[j]);
+}
+result[i] = max;
+}
+return result;  // Time: O(n*k), Space: O(n)
+}
+--- Slide 11 ---
+Deque (Double-Ended Queue)
+A Deque (Double-Ended Queue) allows insertion and
+deletion from both ends.
+Key Operations:
+• addFirst(x)     - Add to front
+• addLast(x)      - Add to rear
+• removeFirst()   - Remove from front
+• removeLast()    - Remove from rear
+• getFirst()      - Get first element
+• getLast()       - Get last element
+Why Deque for Sliding Window?
+✓ O(1) insertion and deletion from both ends
+✓ Maintains maximum elements in decreasing order
+✓ Optimal time complexity: O(n)
+--- Slide 12 ---
+Sliding Window Maximum - Algorithm (Deque)
+1. Use a Deque to store indices (not values)
+2. Maintain indices in decreasing order of their values
+3. Remove elements outside current window from front
+4. Remove smaller elements from rear before adding new element
+5. Add current index to rear
+6. The front element is the maximum of current window
+Time Complexity: O(n)  | Space Complexity: O(k)
+--- Slide 13 ---
+Sliding Window Maximum - Implementation (Part 1)
+import java.util.*;
+public class SlidingWindowMaximum {
+public static int[] maxSlidingWindow(int[] nums, int k) {
+if (nums == null || nums.length == 0) {
+return new int[0];
+}
+int[] result = new int[nums.length - k + 1];
+Deque<Integer> deque = new LinkedList<>();
+int resultIndex = 0;
+--- Slide 14 ---
+Sliding Window Maximum - Implementation (Part 2)
+for (int i = 0; i < nums.length; i++) {
+// Remove indices outside current window
+while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+deque.pollFirst();
+}
+// Remove smaller elements from rear
+// Maintain decreasing order
+while (!deque.isEmpty() &&
+nums[deque.peekLast()] <= nums[i]) {
+deque.pollLast();
+}
+// Add current element's index
+deque.addLast(i);
+// Store max when window is complete
+if (i >= k - 1) {
+result[resultIndex++] = nums[deque.peekFirst()];
+}
+}
+return result;
+}
+}
+--- Slide 15 ---
+Sliding Window Maximum - Complete Example
+public class Main {
+public static void main(String[] args) {
+int[] nums = {1, 3, 1, 2, 0, 5};
+int k = 3;
+SlidingWindowMaximum swm = new SlidingWindowMaximum();
+int[] result = swm.maxSlidingWindow(nums, k);
+System.out.print("Output: ");
+for (int max : result) {
+System.out.print(max + " ");  // Output: 3 3 2 5
+}
+}
+}
+--- Slide 16 ---
+Trace: Array [1, 3, 1, 2, 0, 5], k=3
+Step 1: i=0, deque=[0], window not complete
+Step 2: i=1, deque=[1], window not complete
+Step 3: i=2, deque=[1,2], window=[1,3,1], max=3 ✓
+Step 4: i=3, deque=[3,2], window=[3,1,2], max=3 ✓
+Step 5: i=4, deque=[3,4], window=[1,2,0], max=2 ✓
+Step 6: i=5, deque=[5], window=[2,0,5], max=5 ✓
+Final Result: [3, 3, 2, 5]
+Key Insight:
+• Deque stores indices in decreasing order of VALUES
+• Front always contains index of maximum element
+• Each element enters and leaves deque exactly once
+--- Slide 17 ---
+Approach Comparison
+Approach
+Time
+Space
+Pros
+Cons
+Brute Force
+O(n * k)
+O(n)
+Simple
+Slow
+Deque
+O(n)
+O(k)
+Optimal
+Complex logic
+--- Slide 18 ---
+Key Takeaways
+✓ Circular Queue: Memory-efficient FIFO data structure
+✓ Use modulo operator for wrap-around indexing
+✓ Sliding Window Maximum: Find max in each window efficiently
+✓ Deque maintains elements in optimal order: O(n) solution
+✓ Each element enters and leaves deque exactly once
+✓ Understanding algorithms beats brute force every time!
+--- Slide 19 ---
+Thank You!
+Questions?
+Practice both problems to master queues and deques!
+
+
+========================================
+=== PPT: HuffmanCoding.pptx ===
+========================================
+--- Slide 1 ---
+Huffman Coding
+A Complete Guide — Introduction · Algorithm · Java Implementation · Applications
+Data Compression
+Greedy Algorithm
+Binary Trees
+Java Code
+Computer Science  |  Data Structures & Algorithms  |  Compression Techniques
+--- Slide 2 ---
+Table of Contents
+01
+Introduction
+What is Huffman Coding? Why does it matter?
+02
+Core Concepts
+Frequency, Priority Queue, Binary Tree
+03
+Algorithm Steps
+Step-by-step construction of Huffman Tree
+04
+Worked Example
+Building codes for 'ABRACADABRA'
+05
+Java Implementation
+Full code with explanation
+06
+Applications
+File compression, JPEG, MP3 and more
+--- Slide 3 ---
+01  |  Introduction to Huffman Coding
+"What if shorter codes were assigned to characters that appear more often?"
+What?
+Huffman Coding is a lossless data compression algorithm invented by David A. Huffman in 1952. It compresses data by assigning shorter binary codes to frequently occurring characters and longer codes to rare ones.
+Who invented it?
+David Huffman, an MIT student, invented it as a term paper assignment. It became one of the most widely used compression techniques in history.
+Key Idea
+In standard ASCII, every character takes 8 bits — whether it appears once or a million times. Huffman Coding breaks this rule using variable-length codes.
+Result?
+Files can be reduced by 20–90% in size, depending on character frequency distribution. This saves storage and speeds up data transfer.
+--- Slide 4 ---
+Why Huffman? — Fixed vs Variable Length Codes
+Character | Frequency | Fixed (3 bits) | Huffman Code | Savings
+A | 5 | 000 | 0 | 5×2 = 10 bits saved
+B | 4 | 001 | 10 | 4×1 = 4 bits saved
+C | 3 | 010 | 110 | 3×0 = 0 bits saved
+D | 2 | 011 | 1110 | 2×1 = 2 bits extra
+E | 1 | 100 | 1111 | 1×2 = 2 bits extra
+🔑  Key Insight: Fixed-length encoding uses 15×3 = 45 bits. Huffman uses only 5×1+4×2+3×3+2×4+1×4 = 36 bits — a 20% reduction on this tiny example alone!
+--- Slide 5 ---
+02  |  Core Concepts You Must Know
+Frequency / Weight
+How many times a character appears in the input. Characters with higher frequency get shorter codes.
+Priority Queue (Min-Heap)
+A data structure that always gives us the element with the LOWEST frequency first. This drives the tree building process.
+Binary Tree
+A tree where each node has at most 2 children. In Huffman, left = 0 and right = 1. Leaf nodes hold actual characters.
+Prefix-Free Codes
+No code is a prefix of another code. This ensures unambiguous decoding — we always know when one character ends and the next begins.
+Lossless Compression
+The original data can be perfectly restored after decompression — no information is lost, unlike lossy formats like JPEG.
+Entropy
+A measure of information content. Huffman coding approaches the theoretical limit (entropy) of compression for symbol-based data.
+--- Slide 6 ---
+03  |  The Huffman Algorithm — Step by Step
+1
+Count Frequencies
+Scan the input text. Count how many times each character appears. Store as (character, frequency) pairs.
+2
+Build Min-Heap
+Insert all characters into a Min-Priority Queue (Min-Heap). The character with the lowest frequency has the highest priority.
+3
+Build the Tree
+Repeat until 1 node remains:
+• Extract 2 nodes with lowest frequencies
+• Create a new parent node with frequency = sum of both
+• Insert parent back into the queue
+4
+Assign Codes
+Traverse the tree from root to each leaf:
+• Going LEFT adds a '0' to the code
+• Going RIGHT adds a '1' to the code
+Leaf nodes = actual characters
+5
+Encode the Data
+Replace each character in the original input with its Huffman code. Write the encoded bits to the output file.
+6
+Decode
+Use the same Huffman tree. Read bits one at a time, traverse the tree. When you reach a leaf — that's the character!
+--- Slide 7 ---
+04  |  Worked Example — 'ABRACADABRA'
+Step 1: Count Character Frequencies
+Char | A | B | R | C | D
+Freq | 5 | 2 | 2 | 1 | 1
+Step 2–3: Build the Huffman Tree (Bottom-Up)
+Initial Min-Heap (sorted by frequency):   C:1   D:1   B:2   R:2   A:5
+Iteration 1: Combine C(1) + D(1) → CD(2)      Heap: B:2  R:2  CD:2  A:5
+Iteration 2: Combine B(2) + R(2) → BR(4)      Heap: CD:2  A:5  BR:4
+Iteration 3: Combine CD(2) + BR(4) → BCDР(6)  Heap: A:5  BCDR:6
+Iteration 4: Combine A(5) + BCDR(6) → ROOT(11)
+ROOT(11)
+/        \
+A(5)       BCDR(6)
+0               1
+/     \
+CD(2)   BR(4)
+/   \   /    \
+C(1) D(1) B(2) R(2)
+--- Slide 8 ---
+04  |  Generated Codes & Encoding Result
+Step 4: Assign Huffman Codes (Left = 0, Right = 1)
+Character | Frequency | Huffman Code | Code Length | Bits Used (freq × len)
+A | 5 | 0 | 1 | 5
+B | 2 | 110 | 3 | 6
+R | 2 | 111 | 3 | 6
+C | 1 | 100 | 3 | 3
+D | 1 | 101 | 3 | 3
+TOTAL |  |  |  | 23 bits
+Result: ABRACADABRA (11 chars × 8 bits = 88 bits with ASCII)  →  Only 23 bits with Huffman!
+Compression Ratio: 73.8% reduction in space! Prefix-free → unambiguous decoding guaranteed.
+--- Slide 9 ---
+05  |  Java — Part 1: Node Class & Frequency Map
+HuffmanNode.java
+// Each node in the Huffman Tree
+class HuffmanNode {
+char data;     // character
+int freq;      // frequency
+HuffmanNode left;   // left child
+HuffmanNode right;  // right child
+// Constructor
+HuffmanNode(char data, int freq) {
+this.data = data;
+this.freq  = freq;
+this.left  = null;
+this.right = null;
+}
+}
+Frequency Map + Priority Queue
+// Step 1: Count frequencies
+Map<Character,Integer> freqMap
+= new HashMap<>();
+for (char c : text.toCharArray()) {
+freqMap.put(c,
+freqMap.getOrDefault(c,0)+1);
+}
+// Step 2: Min-Heap (lowest freq first)
+PriorityQueue<HuffmanNode> pq
+= new PriorityQueue<>(
+(a, b) -> a.freq - b.freq
+);
+for (var entry : freqMap.entrySet()) {
+pq.add(new HuffmanNode(
+entry.getKey(),
+entry.getValue()));
+}
+--- Slide 10 ---
+05  |  Java — Part 2: Build Tree & Generate Codes
+buildTree()  — Greedy Construction
+static HuffmanNode buildTree(
+PriorityQueue<HuffmanNode> pq) {
+// Keep combining until 1 node left
+while (pq.size() > 1) {
+// Extract 2 smallest nodes
+HuffmanNode left  = pq.poll();
+HuffmanNode right = pq.poll();
+// New parent = sum of both
+HuffmanNode parent =
+new HuffmanNode('\0',
+left.freq + right.freq);
+parent.left  = left;
+parent.right = right;
+pq.add(parent); // re-insert
+}
+return pq.poll(); // root node
+}
+generateCodes()  — Tree Traversal
+static Map<Character, String> codes
+= new HashMap<>();
+// Recursively traverse tree
+static void generateCodes(
+HuffmanNode node, String code) {
+if (node == null) return;
+// Leaf node = actual character
+if (node.left==null && node.right==null) {
+codes.put(node.data, code);
+System.out.println(node.data
++ " : " + code);
+return;
+}
+// Left child → append '0'
+generateCodes(node.left,  code+"0");
+// Right child → append '1'
+generateCodes(node.right, code+"1");
+}
+--- Slide 11 ---
+05  |  Java — Part 3: Encode & Main Method
+HuffmanCoding.java — main() + encode()
+// ── Encode the text ─────────────────────────────────────────────────────────────
+static String encode(String text) {
+StringBuilder sb = new StringBuilder();
+for (char c : text.toCharArray()) {
+sb.append(codes.get(c));   // look up each char's Huffman code
+}
+return sb.toString();
+}
+// ── Main method — puts it all together ──────────────────────────────────────────
+public static void main(String[] args) {
+String text = "ABRACADABRA";
+System.out.println("Input: " + text);
+Map<Character,Integer> freqMap = buildFreqMap(text);  // Step 1
+PriorityQueue<HuffmanNode> pq = buildPQ(freqMap);     // Step 2
+HuffmanNode root = buildTree(pq);                     // Step 3
+generateCodes(root, "");                               // Step 4
+String encoded = encode(text);                        // Step 5
+System.out.println("Encoded: " + encoded);
+System.out.println("Bits used: " + encoded.length());
+}
+--- Slide 12 ---
+05  |  Algorithm Complexity Analysis
+Phase | Time Complexity | Space Complexity | Notes
+Frequency Count | O(n) | O(k) | n = total characters, k = unique chars
+Build Min-Heap | O(k log k) | O(k) | Inserting k nodes into heap
+Build Tree | O(k log k) | O(k) | k-1 merge operations
+Generate Codes | O(k) | O(k) | Tree traversal (DFS)
+Encode Text | O(n) | O(n) | n characters to encode
+Decode Text | O(n) | O(k) | Traverse tree per bit
+TOTAL | O(n + k log k) | O(n+k) | Overall algorithm
+💡  k ≤ 256 for ASCII text, so k log k is essentially constant → Overall complexity is O(n) in practice!
+--- Slide 13 ---
+06  |  Real-World Applications of Huffman Coding
+📦  ZIP / GZIP Files
+ZIP format uses a variant of Huffman coding (via DEFLATE algorithm) to compress files. Every time you zip a folder, Huffman is at work!
+🖼  JPEG Image Compression
+After the DCT transform, JPEG uses Huffman coding to compress the resulting frequency data, making image files much smaller.
+🎵  MP3 Audio Compression
+MP3 uses Huffman coding to compress audio frequency data after psychoacoustic modelling — that's why music files are small.
+📄  PDF Files
+PDF documents internally use Huffman and other compression to store text, images, and graphics efficiently.
+🌐  Network Protocols
+HTTP/2 and many other network protocols use Huffman coding to compress HTTP headers, reducing bandwidth usage significantly.
+🏥  Medical Imaging (DICOM)
+Medical image formats like DICOM use Huffman-based lossless compression for X-rays and MRI scans where accuracy is critical.
+--- Slide 14 ---
+Advantages & Disadvantages
+✅  Advantages
+Lossless — original data fully recovered
+Optimal for symbol-by-symbol coding
+Simple and efficient algorithm O(n log n)
+Widely supported in many standards
+Prefix-free → unambiguous decoding
+Adapts to input data frequency profile
+No quality loss unlike JPEG, MP3 lossy modes
+❌  Disadvantages
+Requires full frequency scan before encoding
+Tree (or code table) must be stored/sent with data
+Not effective on already-compressed data
+Not ideal for small files (overhead too large)
+Beaten by Arithmetic Coding in compression ratio
+Static Huffman can't adapt to changing frequencies
+Two-pass algorithm — slower for streaming data
+--- Slide 15 ---
+Summary — Key Takeaways
+1
+Frequency-Based Encoding
+Characters appearing more often get shorter binary codes — this is the core insight behind Huffman Coding.
+2
+Greedy Algorithm
+At each step, always combine the two nodes with lowest frequency. This greedy choice produces the globally optimal tree.
+3
+Prefix-Free Property
+No code is a prefix of another. This guarantees that encoded data can always be uniquely decoded without ambiguity.
+4
+Tree Structure is Key
+The Huffman Tree determines all the codes. Left edge = 0, Right edge = 1. Leaf nodes represent characters.
+5
+Widely Used in Practice
+ZIP, JPEG, MP3, HTTP/2 headers, PDF, and DICOM all rely on Huffman Coding at some layer.
+6
+Lossless & Efficient
+Unlike lossy compression, Huffman coding can perfectly restore the original data. Complexity is O(n + k log k).
+--- Slide 16 ---
+Thank You!
+Huffman Coding — A Timeless Algorithm from 1952 Still Powering Modern Technology
+📧 Practice on LeetCode #1167
+📖 Book: CLRS Chapter 16.3
+🔗 Try: huffman.ooz.ie (visualizer)
+Questions? Let's discuss!
+
+
+========================================
+=== PPT: LinkedList_Problems.pptx ===
+========================================
+--- Slide 1 ---
+Linked List Problems
+Reverse • Detect/Remove Loop • Merge Sorted Lists
+--- Slide 2 ---
+1. Reverse a Linked List
+Overview:
+• Reverse the direction of all pointers in a linked list
+• Convert: 1 → 2 → 3 → 4 → null
+To: 4 → 3 → 2 → 1 → null
+Two Approaches:
+1. Iterative: Using three pointers to reverse links
+2. Recursive: Using call stack to reverse in reverse order
+Time Complexity: O(n) for both
+Space Complexity: O(1) iterative, O(n) recursive (call stack)
+--- Slide 3 ---
+Reverse LL - Iterative Algorithm
+Algorithm Steps:
+1. Initialize three pointers:
+• prev = null (previous node)
+• curr = head (current node)
+• next = null (next node)
+2. Traverse the linked list:
+• Save next node: next = curr.next
+• Reverse the link: curr.next = prev
+• Move prev to current: prev = curr
+• Move curr to next: curr = next
+3. Return prev as new head
+Example:
+Initial: null ← 1 ← 2 ← 3 ← 4 (arrows point backward)
+Process each node, reversing pointers one by one
+Final: 4 ← 3 ← 2 ← 1, null
+--- Slide 4 ---
+Reverse LL - Iterative Java Code
+class ListNode {
+int val;
+ListNode next;
+ListNode(int val) { this.val = val; }
+}
+public ListNode reverseListIterative(ListNode head) {
+ListNode prev = null;
+ListNode curr = head;
+while (curr != null) {
+// Store next node before reversing
+ListNode next = curr.next;
+// Reverse the pointer
+curr.next = prev;
+// Move prev and curr one step
+prev = curr;
+curr = next;
+}
+return prev; // new head
+}
+--- Slide 5 ---
+Reverse LL - Recursive Algorithm
+Algorithm Steps:
+1. Base Case: If head is null or head.next is null, return head
+(single node or empty list is already reversed)
+2. Recursive Case:
+• Recursively reverse the rest of the list
+• Store the new head from recursion
+• Reverse the pointer from next to current:
+curr.next.next = curr
+• Set current's next to null: curr.next = null
+3. Return the new head
+Example:
+Reverse(1→2→3→null):
+Reverse(2→3→null):
+Reverse(3→null):
+Reverse(null) = 3 (base case)
+Reverse link: 3.next = 2, return 3
+Reverse link: 2.next = 1, return 3
+3←2←1, null
+--- Slide 6 ---
+Reverse LL - Recursive Java Code
+public ListNode reverseListRecursive(ListNode head) {
+// Base case: empty list or single node
+if (head == null || head.next == null) {
+return head;
+}
+// Recursively reverse the rest
+ListNode newHead = reverseListRecursive(head.next);
+// Reverse the pointer
+// head.next is the node that points to head
+// Make it point backwards
+head.next.next = head;
+// Set current node's next to null
+head.next = null;
+return newHead;
+}
+--- Slide 7 ---
+Reverse LL - Iterative vs Recursive
+Iterative Approach:
+✓ Time: O(n) | Space: O(1)
+✓ No stack overflow risk
+✓ More efficient for large lists
+✓ Generally preferred in interviews
+Recursive Approach:
+✓ Time: O(n) | Space: O(n) call stack
+✗ Risk of stack overflow for very large lists
+✗ Uses extra space
+✓ More elegant and easier to understand
+✓ Good for demonstrating recursion
+Trade-off Decision:
+Use iterative for production code & large datasets
+Use recursive for learning & if stack size is adequate
+--- Slide 8 ---
+2. Detect and Remove Loop in LL
+Overview:
+• A loop occurs when a node's next pointer points to a
+previous node in the list (circular reference)
+Example:
+1 → 2 → 3 → 4 ↓
+↑_____↓
+Tasks:
+1. Detect if a loop exists
+2. Find the start node of the loop
+3. Remove the loop (break the cycle)
+Approach: Floyd's Cycle Detection Algorithm (Tortoise & Hare)
+--- Slide 9 ---
+Detect Loop - Floyd's Algorithm
+Algorithm (Cycle Detection):
+1. Initialize two pointers:
+• slow = head (moves 1 step at a time)
+• fast = head (moves 2 steps at a time)
+2. Traverse the list:
+• Move slow one step: slow = slow.next
+• Move fast two steps: fast = fast.next.next
+• If slow == fast, a loop exists
+3. Why it works:
+In a circular list, fast will eventually catch slow
+because fast moves faster in the same circle
+Time: O(n) | Space: O(1)
+--- Slide 10 ---
+Find Loop Start - After Detection
+Algorithm (Find Loop Start):
+After detecting a loop with slow == fast:
+1. Move one pointer to head: slow = head
+2. Keep other pointer at meeting point: fast unchanged
+3. Move both pointers one step at a time:
+• slow = slow.next
+• fast = fast.next
+4. When slow == fast again, that node is the loop start
+Why it works:
+• Distance from head to loop start =
+Distance from meeting point to loop start
+• This mathematical property ensures they meet at start
+Time: O(n) | Space: O(1)
+--- Slide 11 ---
+Detect & Find Loop - Java Code
+// Detect if loop exists
+public boolean hasLoop(ListNode head) {
+if (head == null) return false;
+ListNode slow = head;
+ListNode fast = head;
+while (fast != null && fast.next != null) {
+slow = slow.next;
+fast = fast.next.next;
+if (slow == fast) return true;
+}
+return false;
+}
+// Find loop start node
+public ListNode findLoopStart(ListNode head) {
+if (head == null) return null;
+ListNode slow = head;
+ListNode fast = head;
+// Detect loop
+while (fast != null && fast.next != null) {
+slow = slow.next;
+fast = fast.next.next;
+if (slow == fast) break;
+}
+if (fast == null || fast.next == null)
+return null; // No loop
+// Find loop start
+slow = head;
+while (slow != fast) {
+slow = slow.next;
+fast = fast.next;
+}
+return slow; // Loop start
+}
+--- Slide 12 ---
+Remove Loop - Java Code
+// Remove loop from linked list
+public void removeLoop(ListNode head) {
+if (head == null) return;
+ListNode slow = head;
+ListNode fast = head;
+// Detect loop
+while (fast != null && fast.next != null) {
+slow = slow.next;
+fast = fast.next.next;
+if (slow == fast) break;
+}
+// No loop found
+if (fast == null || fast.next == null) return;
+// Find loop start
+slow = head;
+while (slow.next != fast.next) {
+slow = slow.next;
+fast = fast.next;
+}
+// Remove loop by breaking the cycle
+fast.next = null;
+}
+// Complete solution: Detect, Find & Remove
+public ListNode removeLoopFull(ListNode head) {
+removeLoop(head);
+return head;
+}
+--- Slide 13 ---
+Loop Detection - Visual Explanation
+Example: 1 → 2 → 3 → 4 → 5 → 3 (loop at node 3)
+Step-by-step with Slow & Fast pointers:
+Step 0: slow=1, fast=1
+Step 1: slow=2, fast=3
+Step 2: slow=3, fast=5
+Step 3: slow=4, fast=4  ← COLLISION!
+Meeting at node 4. Now find loop start:
+Reset slow=1, keep fast=4
+Move both one step at a time:
+slow=2, fast=5
+slow=3, fast=3  ← LOOP START FOUND!
+Loop starts at node 3
+To remove: Set the node before 3 (which is 5).next = null
+--- Slide 14 ---
+3. Merge Two Sorted Linked Lists
+Overview:
+• Given two sorted linked lists, merge them into one sorted list
+• Keep the sorted order intact
+Example:
+List1: 1 → 3 → 5 → null
+List2: 2 → 4 → 6 → null
+Result: 1 → 2 → 3 → 4 → 5 → 6 → null
+Approach: Two-pointer technique
+• Compare nodes from both lists
+• Pick the smaller one and advance
+• Continue until both lists are exhausted
+Time: O(n + m) | Space: O(1) if not counting output
+--- Slide 15 ---
+Merge Sorted Lists - Algorithm
+Algorithm Steps:
+1. Create a dummy node to simplify logic
+(avoids special case for head)
+2. Initialize pointers:
+• curr = dummy (to build result list)
+• p1 = head1 (pointer to first list)
+• p2 = head2 (pointer to second list)
+3. Compare and merge:
+While both p1 and p2 are not null:
+• If p1.val <= p2.val:
+- curr.next = p1
+- p1 = p1.next
+• Else:
+- curr.next = p2
+- p2 = p2.next
+• Move curr forward: curr = curr.next
+4. Attach remaining nodes:
+• If p1 has remaining: curr.next = p1
+• If p2 has remaining: curr.next = p2
+5. Return dummy.next (actual head)
+--- Slide 16 ---
+Merge Sorted Lists - Java Code
+public ListNode mergeTwoLists(
+ListNode list1, ListNode list2) {
+// Create dummy node
+ListNode dummy = new ListNode(0);
+ListNode curr = dummy;
+// Compare and merge
+while (list1 != null && list2 != null) {
+if (list1.val <= list2.val) {
+curr.next = list1;
+list1 = list1.next;
+} else {
+curr.next = list2;
+list2 = list2.next;
+}
+curr = curr.next;
+}
+// Attach remaining nodes
+if (list1 != null) {
+curr.next = list1;
+} else {
+curr.next = list2;
+}
+return dummy.next;
+}
+--- Slide 17 ---
+Merge Sorted Lists - Complexity
+Time Complexity: O(n + m)
+• n = length of list1
+• m = length of list2
+• We visit each node exactly once
+• Single pass through both lists
+Space Complexity: O(1)
+• Only using constant extra space
+• Dummy node and three pointers
+• Not counting the output list
+Example Walkthrough:
+list1: 1 → 3 → 5
+list2: 2 → 4 → 6
+Merge process:
+1. 1 ≤ 2 → take 1
+2. 3 > 2 → take 2
+3. 3 ≤ 4 → take 3
+4. 5 > 4 → take 4
+5. 5 ≤ 6 → take 5
+6. No more in list1 → take 6
+Result: 1 → 2 → 3 → 4 → 5 → 6
+--- Slide 18 ---
+Merge Sorted Lists - Recursive Approach
+Recursive Algorithm:
+Base Cases:
+• If list1 is null, return list2
+• If list2 is null, return list1
+Recursive Case:
+• If list1.val ≤ list2.val:
+- list1.next = merge(list1.next, list2)
+- Return list1
+• Else:
+- list2.next = merge(list1, list2.next)
+- Return list2
+Why it works:
+• Recursively find the correct node to pick
+• Link it and continue with remaining nodes
+• Base cases handle list exhaustion
+Time: O(n + m)
+Space: O(n + m) due to recursion stack
+--- Slide 19 ---
+Merge Sorted Lists - Recursive Java
+public ListNode mergeTwoListsRecursive(
+ListNode list1, ListNode list2) {
+// Base cases
+if (list1 == null) return list2;
+if (list2 == null) return list1;
+// Recursive case
+if (list1.val <= list2.val) {
+list1.next = mergeTwoListsRecursive(
+list1.next, list2);
+return list1;
+} else {
+list2.next = mergeTwoListsRecursive(
+list1, list2.next);
+return list2;
+}
+}
+// Helper class
+class ListNode {
+int val;
+ListNode next;
+ListNode(int val) { this.val = val; }
+}
+--- Slide 20 ---
+All Three Problems - Quick Summary
+Problem 1: Reverse Linked List
+✓ Iterative (preferred): O(n) time, O(1) space
+✓ Recursive: O(n) time, O(n) space
+Problem 2: Detect & Remove Loop
+✓ Floyd's Cycle Detection: O(n) time, O(1) space
+✓ Use slow/fast pointers for detection
+✓ Reset slow to find loop start
+✓ Break link to remove loop
+Problem 3: Merge Sorted Lists
+✓ Iterative (preferred): O(n+m) time, O(1) space
+✓ Recursive: O(n+m) time, O(n+m) space
+✓ Use dummy node to simplify logic
+✓ Compare and attach nodes in order
+Key Techniques:
+• Two/Three pointer manipulation
+• Dummy nodes for simplifying edge cases
+• Cycle detection algorithm
+• Recursion and iteration tradeoffs
+--- Slide 21 ---
+Practice & Master!
+Implement these problems to master linked list manipulation
+
+
+========================================
+=== PPT: Stack_Problems.pptx ===
+========================================
+--- Slide 1 ---
+Stack Problems
+Balanced Parentheses • Next Greater Element • Min Stack
+--- Slide 2 ---
+1. Valid Parentheses
+Overview:
+• Determine if a string of parentheses is balanced
+• All opening brackets must have matching closing brackets
+• Brackets must close in the correct order
+Examples:
+✓ "()" → Valid
+✓ "()[]{}" → Valid
+✓ "({[]})" → Valid
+✗ "([)]" → Invalid (wrong order)
+✗ "([)" → Invalid (missing close)
+Approach: Using Stack
+• Push opening brackets
+• Pop and match closing brackets
+• Stack must be empty at end
+Time: O(n) | Space: O(n)
+--- Slide 3 ---
+Balanced Parentheses - Algorithm
+Algorithm Steps:
+1. Create an empty stack
+2. Create mapping of closing → opening brackets:
+')' → '('
+'}' → '{'
+']' → '['
+3. Iterate through each character:
+• If opening bracket '(', '{', '[':
+- Push to stack
+• If closing bracket ')', '}', ']':
+- If stack is empty, return false (unmatched close)
+- Pop from stack
+- If popped != expected opening, return false
+4. After iteration:
+• If stack is empty, return true (valid)
+• If stack has elements, return false (unmatched open)
+Example: "{[]}"
+'{' → push
+'[' → push
+']' → pop '[', matches ']' ✓
+'}' → pop '{', matches '}' ✓
+Stack empty → Valid!
+--- Slide 4 ---
+Balanced Parentheses - Java Code
+public boolean isValid(String s) {
+Stack<Character> stack = new Stack<>();
+// Mapping of closing to opening brackets
+Map<Character, Character> map =
+new HashMap<>();
+map.put(')', '(');
+map.put('}', '{');
+map.put(']', '[');
+for (char c : s.toCharArray()) {
+if (c == '(' || c == '{' || c == '[') {
+// Opening bracket
+stack.push(c);
+} else {
+// Closing bracket
+if (stack.isEmpty()) return false;
+char top = stack.pop();
+if (top != map.get(c))
+return false;
+}
+}
+return stack.isEmpty();
+}
+--- Slide 5 ---
+Balanced Parentheses - Detailed Example
+Trace: "({[]})"
+Index  Char  Action              Stack
+────────────────────────────────────────
+0      (     Push (              [(]
+1      {     Push {              [{,(]
+2      [     Push [              [,[,{,(]
+3      ]     Pop [, match ✓      [{,(]
+4      }     Pop {, match ✓      [(]
+5      )     Pop (, match ✓      []
+Result: Valid! Stack is empty
+Trace: "([)]"
+Index  Char  Action              Stack
+────────────────────────────────────────
+0      (     Push (              [(]
+1      [     Push [              [,[,(]
+2      )     Pop [, want (       FAIL!
+Result: Invalid! Wrong closing bracket order
+--- Slide 6 ---
+Balanced Parentheses - Edge Cases
+Edge Cases to Consider:
+1. Empty string ""
+→ Valid (no brackets to match)
+2. Single bracket "("
+→ Invalid (unmatched opening)
+3. Only closing ")"
+→ Invalid (no opening)
+4. Mixed valid/invalid "({[}])"
+→ Invalid (order matters)
+5. Multiple nesting "((()))"
+→ Valid (correct nesting)
+Key Points:
+✓ Order matters - "{[}]" is invalid
+✓ Each open must have corresponding close
+✓ Closing before opening is invalid
+✓ Empty stack at end is necessary condition
+--- Slide 7 ---
+2. Next Greater Element
+Overview:
+• For each element, find the next greater element
+• "Next" means to the right in the array
+• If no greater element exists, use -1
+Example:
+Array: [1, 8, 4, 6, 0, 3]
+Output: [8, -1, 6, -1, 3, -1]
+Explanation:
+1 → 8 (next greater)
+8 → -1 (no greater element)
+4 → 6 (next greater)
+6 → -1 (no greater element)
+0 → 3 (next greater)
+3 → -1 (no greater element)
+Naive Approach: O(n²) - check each element
+Optimal Approach: Stack - O(n)
+--- Slide 8 ---
+Next Greater Element - Algorithm (Optimal)
+Algorithm Steps (Monotonic Stack):
+1. Create result array with -1
+2. Create a stack (monotonically decreasing)
+3. Traverse array from RIGHT to LEFT:
+• While stack not empty AND top < current:
+- Pop from stack
+- Set result[popped_index] = current
+• Push current element to stack
+4. Return result array
+Why Right to Left?
+• When we pop from stack, we push current
+• Elements to the right are already processed
+• Current element is the next greater for pops
+Why Monotonic Stack?
+• We maintain decreasing order
+• When we find an element > top, it's the answer
+• Eliminates redundant comparisons
+--- Slide 9 ---
+Next Greater Element - Step by Step
+Array: [1, 8, 4, 6, 0, 3]
+Indices: 0 1 2 3 4 5
+Process Right to Left:
+Step 1: i=5, val=3
+Stack empty, push 5
+Stack: [5]
+Step 2: i=4, val=0
+0 < 3, push 4
+Stack: [5, 4]
+result[4] = -1
+Step 3: i=3, val=6
+6 > 0, pop 4, result[4] = 6
+6 > 3, pop 5, result[5] = -1
+Push 3
+Stack: [3]
+Step 4: i=2, val=4
+4 > 0, but wait... push 2
+Process continues...
+Result: [8, -1, 6, -1, 6, -1]
+--- Slide 10 ---
+Next Greater Element - Java Code
+public int[] nextGreaterElement(int[] arr) {
+int n = arr.length;
+int[] result = new int[n];
+Stack<Integer> stack = new Stack<>();
+// Fill result with -1 initially
+Arrays.fill(result, -1);
+// Traverse from right to left
+for (int i = n - 1; i >= 0; i--) {
+// Pop smaller elements
+while (!stack.isEmpty() &&
+arr[stack.peek()] < arr[i]) {
+int idx = stack.pop();
+result[idx] = arr[i];
+}
+// Push current index
+stack.push(i);
+}
+return result;
+}
+// Alternative: Store elements in stack
+public int[] nextGreaterElementV2(int[] arr) {
+int n = arr.length;
+int[] result = new int[n];
+Stack<Integer> stack = new Stack<>();
+for (int i = n - 1; i >= 0; i--) {
+while (!stack.isEmpty() &&
+stack.peek() <= arr[i]) {
+stack.pop();
+}
+result[i] = stack.isEmpty() ? -1 :
+stack.peek();
+stack.push(arr[i]);
+}
+return result;
+}
+--- Slide 11 ---
+Next Greater Element - Complexity Analysis
+Time Complexity: O(n)
+• Each element is pushed once
+• Each element is popped once
+• Total operations: 2n = O(n)
+Space Complexity: O(n)
+• Stack can store up to n elements
+• Result array: O(n)
+Comparison with Naive:
+Naive Approach: O(n²)
+For each element, check all right elements
+Inefficient for large arrays
+Stack Approach: O(n)
+Each element processed once
+Monotonic stack eliminates redundant checks
+Example Performance:
+Array size 10⁶:
+Naive: ~10¹² operations (too slow)
+Stack: ~10⁶ operations (instant)
+--- Slide 12 ---
+Next Greater Element - Variations
+Variation 1: Next Greater (Circular Array)
+• Elements wrap around to start
+• Process twice or use modulo
+Variation 2: Next Smaller Element
+• Same algorithm but pop if > instead of <
+• Maintain increasing stack
+Variation 3: Previous Greater Element
+• Traverse left to right instead of right to left
+• Rest of logic remains same
+Variation 4: Closest Greater (in 2D)
+• Use 2D stack
+• Compare row and column distances
+Real-world Applications:
+✓ Stock span problems
+✓ Histogram max rectangle
+✓ Temperature increases
+✓ Game elimination rounds
+✓ Building heights visibility
+--- Slide 13 ---
+3. Min Stack
+Overview:
+• Design a stack that supports all standard operations
+• Additionally, track the minimum element
+• All operations should work in O(1) time
+Operations:
+• push(x): Add element to top
+• pop(): Remove and return top element
+• top(): Return top element
+• getMin(): Return minimum element
+Example:
+push(5)  → min = 5
+push(3)  → min = 3
+push(7)  → min = 3
+pop()    → removed 7, min = 3
+pop()    → removed 3, min = 5
+getMin() → returns 5
+Constraint: All operations in O(1) time
+--- Slide 14 ---
+Min Stack - Approach 1: Extra Stack
+Algorithm Using Two Stacks:
+1. Maintain two stacks:
+• mainStack: stores all elements
+• minStack: stores minimum at each level
+2. push(x):
+• Add x to mainStack
+• If minStack empty or x <= min:
+- Add x to minStack
+3. pop():
+• Remove from mainStack
+• If popped element == minStack top:
+- Remove from minStack too
+4. top():
+• Return mainStack.top()
+5. getMin():
+• Return minStack.top()
+Why It Works:
+• minStack always has minimum at each level
+• When we pop minimum, minStack pops too
+• getMin() always O(1)
+Space: O(2n) = O(n)
+--- Slide 15 ---
+Min Stack - Approach 1: Two Stacks
+class MinStack {
+private Stack<Integer> mainStack;
+private Stack<Integer> minStack;
+public MinStack() {
+mainStack = new Stack<>();
+minStack = new Stack<>();
+}
+public void push(int val) {
+mainStack.push(val);
+// Update min stack
+if (minStack.isEmpty() ||
+val <= minStack.peek()) {
+minStack.push(val);
+}
+}
+public void pop() {
+int removed = mainStack.pop();
+// Update min stack if removed is min
+if (removed == minStack.peek()) {
+minStack.pop();
+}
+}
+public int top() {
+return mainStack.peek();
+}
+public int getMin() {
+return minStack.peek();
+}
+}
+--- Slide 16 ---
+Min Stack - Approach 2: Optimal Space
+Algorithm Using Single Stack (Space Optimized):
+Key Idea:
+• Store encoded value in single stack
+• Encode: (current value, min at that point)
+Implementation:
+• Use Pair<Integer, Integer> or custom class
+• Stack stores pairs of (value, minSoFar)
+push(x):
+• If stack empty, min = x
+• Else min = min(x, currentMin)
+• Push (x, min) to stack
+pop():
+• Simply pop from stack
+top():
+• Return stack.peek().value
+getMin():
+• Return stack.peek().min
+Advantages:
+✓ Single stack instead of two
+✓ Space: O(n) vs O(2n)
+✓ Fewer object allocations
+Disadvantage:
+✗ Slightly more space per element
+✗ Need to create Pair objects
+--- Slide 17 ---
+Min Stack - Approach 2: Single Stack
+class MinStack {
+private Stack<Pair<Integer, Integer>>
+stack;
+public MinStack() {
+stack = new Stack<>();
+}
+public void push(int val) {
+int currentMin;
+if (stack.isEmpty()) {
+currentMin = val;
+} else {
+currentMin = Math.min(val,
+stack.peek().second);
+}
+stack.push(new Pair(val, currentMin));
+}
+public void pop() {
+stack.pop();
+}
+public int top() {
+return stack.peek().first;
+}
+public int getMin() {
+return stack.peek().second;
+}
+}
+class Pair<A, B> {
+A first;
+B second;
+Pair(A a, B b) {
+first = a; second = b;
+}
+}
+--- Slide 18 ---
+Min Stack - Execution Trace
+Operations:
+push(3), push(2), push(1), pop(),
+push(4), pop(), getMin()
+Using Approach 1 (Two Stacks):
+Op        mainStack  minStack  Result
+────────────────────────────────────
+push(3)   [3]        [3]
+push(2)   [3,2]      [3,2]
+push(1)   [3,2,1]    [3,2,1]
+pop()     [3,2]      [3,2]       1
+push(4)   [3,2,4]    [3,2]
+pop()     [3,2]      [3,2]       4
+getMin()  [3,2]      [3,2]       2
+Verification:
+✓ After each op, minStack has min
+✓ getMin returns 2 (correct!)
+✓ All ops in O(1) time
+--- Slide 19 ---
+Min Stack - Approach Comparison
+Approach 1: Two Stacks
+Time Complexity: O(1) all operations
+Space Complexity: O(2n) = O(n)
+Pros:
+✓ Simple logic
+✓ Easy to understand
+✓ Straightforward implementation
+Cons:
+✗ Uses more space
+✗ Two stacks to maintain
+Approach 2: Single Stack with Pairs
+Time Complexity: O(1) all operations
+Space Complexity: O(n)
+Pros:
+✓ Better space efficiency
+✓ Single data structure
+✓ More elegant
+Cons:
+✗ Slightly more complex
+✗ Object creation overhead
+Recommendation:
+• Use Approach 1 for clarity
+• Use Approach 2 for interviews
+• Both are equally valid
+--- Slide 20 ---
+All Three Problems - Quick Summary
+Problem 1: Valid Parentheses
+✓ Data Structure: Stack
+✓ Algorithm: Check matching pairs
+✓ Time: O(n) | Space: O(n)
+✓ Key: Mapping of brackets, order matters
+Problem 2: Next Greater Element
+✓ Data Structure: Monotonic Stack
+✓ Algorithm: Maintain decreasing stack
+✓ Time: O(n) | Space: O(n)
+✓ Key: Process right-to-left, pop smaller
+Problem 3: Min Stack
+✓ Data Structure: Stack (1 or 2)
+✓ Algorithm: Track minimum at each level
+✓ Time: O(1) all ops | Space: O(n)
+✓ Key: Pair values with minimum
+Common Themes:
+• All use Stack data structure
+• All achieve O(1) or O(n) efficiency
+• All require clever algorithm design
+• All have real-world applications
+--- Slide 21 ---
+Real-world Applications
+Balanced Parentheses:
+✓ Compiler syntax checking
+✓ Expression evaluation
+✓ HTML/XML validation
+✓ JSON parsing
+✓ Code formatter
+Next Greater Element:
+✓ Stock prices (find next higher price)
+✓ Temperature analysis
+✓ Daily stock span
+✓ Histogram max rectangle
+✓ Rainfall water trapping
+Min Stack:
+✓ Algorithm problems (history tracking)
+✓ Database query optimization
+✓ Cache implementation
+✓ Undo/Redo functionality
+✓ Real-time minimum tracking
+--- Slide 22 ---
+Interview Tips & Best Practices
+Before Coding:
+✓ Ask clarifying questions
+✓ Discuss time/space complexity
+✓ Walk through examples
+✓ Mention edge cases
+While Coding:
+✓ Start with brute force, then optimize
+✓ Use clear variable names
+✓ Add comments for non-obvious logic
+✓ Test with examples
+Edge Cases to Test:
+1. Empty input
+2. Single element
+3. All same elements
+4. Duplicates
+5. Large input
+Common Mistakes:
+✗ Not handling empty stack
+✗ Checking condition after pop (NPE)
+✗ Forgetting to initialize
+✗ Off-by-one errors
+✗ Wrong order of operations
+--- Slide 23 ---
+Master Stack Problems!
+Practice these problems to become confident with stack-based solutions
+
+
