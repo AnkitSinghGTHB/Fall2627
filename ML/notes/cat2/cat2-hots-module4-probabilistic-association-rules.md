@@ -183,3 +183,34 @@ Calculate the Support, Confidence, and Lift for the rule: $\text{Bread} \implies
 4. **Business Interpretation**:
    * A Lift of $1.25 > 1$ indicates a **positive association**.
    * Customers who purchase Bread are **$1.25$ times more likely** to purchase Butter compared to the average customer.
+
+---
+
+### Archetype 3: FP-Growth (Frequent Pattern Tree) Execution Blueprint
+> **Core Advantage over Apriori**: Scans the transaction database **only twice**; uses a compact prefix tree and **never generates costly candidate itemsets ($C_k$)**.
+
+1. **Step 1 (First Scan — Build Header Table)**:
+   - Scan database once to find support of single items.
+   - Filter items where $\text{support} \ge s_{\min}$.
+   - Sort frequent items in **descending order of frequency** (e.g. $f:4, c:4, a:3, b:3, m:3, p:3$).
+2. **Step 2 (Second Scan — Construct FP-Tree)**:
+   - Root is labelled `null`.
+   - For each transaction, reorder its items according to the sorted Header Table.
+   - Insert transaction as a branch into tree. If an item prefix already exists, increment node count; otherwise, create a new child branch.
+   - Maintain horizontal node-links connecting identical items across different branches.
+3. **Step 3 (Mining the FP-Tree Bottom-Up)**:
+   - Start from the least frequent item in Header Table (e.g. $p$).
+   - **Conditional Pattern Base**: Extract all prefix paths in the tree ending at $p$ (e.g., $(f:c:a:m: 2), (c:b: 1)$).
+   - **Conditional FP-Tree**: Accumulate counts for items along these prefix paths and build a mini-tree filtering items with count $\ge s_{\min}$.
+   - Concatenate $p$ with the frequent itemsets discovered from the conditional tree to yield all frequent itemsets containing $p$.
+
+---
+
+### Archetype 4: Association-Based Decision Trees (CBA / CARs)
+* **Concept**: Integrates association rule mining with classification by generating **Class Association Rules (CARs)** of the form:
+  $$\text{Feature Condition } (X_1 = v_1 \wedge X_2 = v_2) \implies \text{Class } C_k$$
+* **Rule Ordering Rule**:
+  1. Rank rules primarily by **Confidence** (higher is better).
+  2. If tied, rank by **Support** (higher is better).
+  3. If tied, rank by **Rule Length** (shorter condition is preferred for Occam's Razor).
+* **Classification**: To classify an unseen query, find the first rule in the ranked list whose condition matches the query. If no rule matches, classify using the default majority class.

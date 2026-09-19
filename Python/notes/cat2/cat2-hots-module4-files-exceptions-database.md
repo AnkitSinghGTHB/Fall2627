@@ -209,3 +209,115 @@ def init_and_query_database(db_name: str = "students.db"):
             conn.close()
             print("Database connection closed cleanly.")
 ```
+
+---
+
+### Recipe 4.5: MySQL Workbench Connector (`mysql.connector`)
+*(Direct solution from `MYSQL TRIAL.docx`)*
+```python
+import mysql.connector
+
+def test_mysql_connection():
+    """Demonstrates connecting to MySQL Server, table creation, insertion, and query."""
+    con = None
+    try:
+        con = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="YOUR_PASSWORD",  # Replace with your MySQL password
+            database="college"
+        )
+        print("Connected to MySQL successfully!")
+        cursor = con.cursor()
+
+        # Create Table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS student (
+                id INT PRIMARY KEY,
+                name VARCHAR(50),
+                marks INT
+            )
+        """)
+
+        # Parameterized Insert
+        insert_query = "INSERT INTO student (id, name, marks) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE marks=VALUES(marks)"
+        records = [(1, 'Rahul', 85), (2, 'Priya', 92)]
+        cursor.executemany(insert_query, records)
+        con.commit()
+
+        # Query Table
+        cursor.execute("SELECT * FROM student")
+        for row in cursor.fetchall():
+            print(f"ID: {row[0]}, Name: {row[1]}, Marks: {row[2]}")
+
+    except mysql.connector.Error as err:
+        print(f"MySQL Error: {err}")
+    finally:
+        if con and con.is_connected():
+            con.close()
+            print("MySQL connection closed.")
+```
+
+---
+
+### Recipe 4.6: Practice Questions Suite (Direct Solutions from `Practice Questions.docx`)
+
+```python
+import os
+
+# 1. Count Lines, Words, and Characters in a Text File
+def count_file_statistics(filepath: str):
+    """Counts lines, words, and characters in a file."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            line_count = len(lines)
+            word_count = sum(len(line.split()) for line in lines)
+            char_count = sum(len(line) for line in lines)
+
+        print(f"Lines: {line_count}, Words: {word_count}, Characters: {char_count}")
+        return line_count, word_count, char_count
+    except FileNotFoundError:
+        print(f"Error: File '{filepath}' does not exist.")
+
+# 2. Safe File Copy with Exception Handling (input.txt -> backup.txt)
+def safe_copy_file(source_file: str, backup_file: str):
+    """Copies content from source to backup with try-except."""
+    try:
+        with open(source_file, 'r', encoding='utf-8') as src:
+            content = src.read()
+        with open(backup_file, 'w', encoding='utf-8') as dest:
+            dest.write(content)
+        print(f"Successfully backed up '{source_file}' to '{backup_file}'.")
+    except FileNotFoundError:
+        print(f"Error: Source file '{source_file}' not found.")
+    except PermissionError:
+        print("Error: Permission denied.")
+
+# 3. Directory Management with os Module
+def directory_management_demo():
+    """Demonstrates mkdir, getcwd, rename, and rmdir."""
+    # Display Current Working Directory
+    print("Current Working Directory:", os.getcwd())
+
+    # Create 'College' Directory
+    if not os.path.exists("College"):
+        os.mkdir("College")
+        print("Directory 'College' created.")
+
+    # Create and Rename 'OldFolder' -> 'NewFolder'
+    if not os.path.exists("OldFolder") and not os.path.exists("NewFolder"):
+        os.mkdir("OldFolder")
+        print("Directory 'OldFolder' created.")
+    if os.path.exists("OldFolder"):
+        os.rename("OldFolder", "NewFolder")
+        print("Renamed 'OldFolder' to 'NewFolder'.")
+
+    # Delete empty directory 'TempFolder'
+    if not os.path.exists("TempFolder"):
+        os.mkdir("TempFolder")
+    if os.path.exists("TempFolder"):
+        os.rmdir("TempFolder")
+        print("Deleted empty directory 'TempFolder'.")
+```
+

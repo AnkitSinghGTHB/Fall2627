@@ -205,3 +205,28 @@ Given dataset $D = \{p_1, p_2, \dots, p_N\}$ and $k$ initial centroids $\{C_1, C
 3. **Recompute New Centroids**:
    * $C_1^{\text{new}} = \frac{2 + 3}{2} = \mathbf{2.5}$
    * $C_2^{\text{new}} = \frac{4 + 10 + 11 + 12 + 20 + 25 + 30}{7} = \frac{112}{7} = \mathbf{16.0}$
+
+---
+
+### Archetype 3: Error-Correcting Output Codes (ECOC) & Stacking
+1. **Error-Correcting Output Codes (ECOC)**:
+   * **Problem**: Solving a $K$-class problem using $L$ binary classifiers ($L > K$).
+   * **Codeword Matrix $M \in \{-1, +1\}^{K \times L}$**: Each class $k$ is assigned a unique $L$-bit code row.
+   * **Decoding**: An unseen instance is classified by each of the $L$ binary classifiers to produce vector $\hat{y} \in \{-1, +1\}^L$.
+   * **Hamming Distance Assignment**: Assign instance to the class $k$ whose codeword minimizes Hamming distance:
+     $$d_H(\hat{y}, M_k) = \sum_{l=1}^L \frac{1 - \hat{y}_l M_{kl}}{2}$$
+   * **Error Correction Capability**: If the minimum Hamming distance between any pair of class codewords is $d_{\min}$, ECOC is guaranteed to correct up to:
+     $$\text{Max Errors Corrected} = \left\lfloor \frac{d_{\min} - 1}{2} \right\rfloor$$
+
+2. **Stacking (Stacked Generalization)**:
+   * **Architecture**: 2-Tier ensemble using heterogeneous base learners.
+   * **Level-0 (Base Learners)**: Train diverse models (e.g. SVM, Decision Tree, Logistic Regression) using $K$-Fold Cross Validation to prevent target leakage.
+   * **Level-1 (Meta-Learner)**: Takes the out-of-fold probability predictions of the Level-0 models as input features and learns the optimal combination weights to make the final prediction.
+
+---
+
+### Archetype 4: K-Modes Clustering for Categorical Data
+* **When to use**: When data attributes are categorical (e.g., Blood Group, Color, Education Level) where Euclidean distance and arithmetic means are mathematically invalid.
+* **Simple Matching Dissimilarity**:
+  $$d(X, Y) = \sum_{j=1}^m \delta(x_j, y_j) \quad \text{where } \delta(x_j, y_j) = \begin{cases} 0 & \text{if } x_j = y_j \\ 1 & \text{if } x_j \ne y_j \end{cases}$$
+* **Cluster Mode Calculation**: The mode vector $Q = [q_1, q_2, \dots, q_m]$ of cluster $C$ minimizes total dissimilarity, where $q_j$ is the **most frequent category** among all objects in cluster $C$ for attribute $j$.
