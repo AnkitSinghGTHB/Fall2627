@@ -361,7 +361,7 @@ graph TD
     S2 -->|X=1 / Z=0| S3
 
     S3 -->|X=1 / Z=0| S1
-    S3 -->|X=0 / Z=1 (MATCH!)| S2
+    S3 -->|X=0 / Z=1 MATCH| S2
 ```
 
 ---
