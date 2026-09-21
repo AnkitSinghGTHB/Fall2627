@@ -133,51 +133,6 @@ Let us verify where the unused states $\{0, 1, 4, 6\}$ transition under these eq
 ![Prime Counter T Flip-Flop Logic Circuit](circuits/circuit_a5_q1_prime_counter.png)
 *Vector format: [circuit_a5_q1_prime_counter.svg](circuits/circuit_a5_q1_prime_counter.svg)*
 
-```text
-       Clock -------------------+--------------------+--------------------+
-                                |                    |                    |
-                             +--v---+             +--v---+             +--v---+
-       T2 = Q1 * Q0 -------->|T    Q|--- Q2       |T    Q|--- Q1       |T    Q|--- Q0
-                             | FF 2 |             | FF 1 |             | FF 0 |
-                             +------+             +------+             +------+
-                                                     ^                    ^
-       T1 = (Q2 * Q1)' * Q0 -------------------------+                    |
-       T0 = Q1 * (Q0' + Q2) ----------------------------------------------+
-```
-
-```mermaid
-graph LR
-    subgraph T2_Gate["T2 Excitation Logic"]
-        AND_T2["2-Input AND Gate: Q1 * Q0"]
-    end
-
-    subgraph T1_Gates["T1 Excitation Logic"]
-        NAND_T1["2-Input NAND Gate: (Q2 * Q1)'"]
-        AND_T1["2-Input AND Gate: NAND_T1 * Q0"]
-        NAND_T1 --> AND_T1
-    end
-
-    subgraph T0_Gates["T0 Excitation Logic"]
-        OR_T0["2-Input OR Gate: Q0_bar + Q2"]
-        AND_T0["2-Input AND Gate: Q1 * OR_T0"]
-        OR_T0 --> AND_T0
-    end
-
-    subgraph T_FlipFlops["Synchronous T Flip-Flop Register"]
-        FF2["T Flip-Flop 2 (MSB)<br>Input: T2<br>Outputs: Q2, Q2_bar"]
-        FF1["T Flip-Flop 1<br>Input: T1<br>Outputs: Q1, Q1_bar"]
-        FF0["T Flip-Flop 0 (LSB)<br>Input: T0<br>Outputs: Q0, Q0_bar"]
-    end
-
-    AND_T2 -->|T2| FF2
-    AND_T1 -->|T1| FF1
-    AND_T0 -->|T0| FF0
-
-    CLK["Master Clock Bus"] --> FF2
-    CLK --> FF1
-    CLK --> FF0
-```
-
 ---
 
 ## 📝 QUESTION 2: Toy Robot 4-State Machine (D Flip-Flop Implementation)
@@ -282,59 +237,6 @@ graph TD
 ![Toy Robot State Machine D Flip-Flop Circuit](circuits/circuit_a5_q2_toy_robot_fsm.png)
 *Vector format: [circuit_a5_q2_toy_robot_fsm.svg](circuits/circuit_a5_q2_toy_robot_fsm.svg)*
 
-```text
-                +-------------+
-         X ---->|             |
-                | XOR Gate 0  |----------------------------------> D0 (FF 0)
-        Q0 ---->|             |
-                +------+------+
-                       |
-                       v
-                +------+------+
-         X ---->|   AND Gate  |
-                +------+------+
-                       | (Q0 * X)
-                       v
-                +------+------+
-                |             |
-                | XOR Gate 1  |----------------------------------> D1 (FF 1)
-        Q1 ---->|             |
-                +-------------+
-```
-
-```mermaid
-graph LR
-    X_BTN["Button Switch (Input X)"]
-    CLK_BUS["System Clock (CLK)"]
-
-    subgraph D0_Circuit["D0 Excitation Circuit"]
-        XOR0["XOR Gate 0: Q0 XOR X"]
-    end
-
-    subgraph D1_Circuit["D1 Excitation Circuit"]
-        AND_ENABLE["AND Gate: Q0 * X"]
-        XOR1["XOR Gate 1: Q1 XOR (Q0 * X)"]
-        AND_ENABLE --> XOR1
-    end
-
-    subgraph D_StateRegister["2-Bit D Flip-Flop State Register"]
-        FF1["D Flip-Flop 1 (MSB)<br>Input: D1<br>Outputs: Q1, Q1_bar"]
-        FF0["D Flip-Flop 0 (LSB)<br>Input: D0<br>Outputs: Q0, Q0_bar"]
-    end
-
-    X_BTN --> XOR0
-    FF0 -->|Q0 feedback| XOR0
-    XOR0 -->|D0 = Q0 XOR X| FF0
-
-    FF0 -->|Q0 feedback| AND_ENABLE
-    X_BTN --> AND_ENABLE
-    FF1 -->|Q1 feedback| XOR1
-    XOR1 -->|D1 = Q1 XOR (Q0*X)| FF1
-
-    CLK_BUS --> FF1
-    CLK_BUS --> FF0
-```
-
 ---
 
 ## 📝 QUESTION 3: 4-Bit Serial-In Serial-Out (SISO) Shift Register 6-Pulse Trace
@@ -353,30 +255,6 @@ $$Q_0^+ = Q_1, \quad Q_1^+ = Q_2, \quad Q_2^+ = Q_3, \quad Q_3^+ = \text{Serial 
 
 ![4-Bit SISO Shift Register Circuit](circuits/circuit_a5_q3_siso_shift_register.png)
 *Vector format: [circuit_a5_q3_siso_shift_register.svg](circuits/circuit_a5_q3_siso_shift_register.svg)*
-
-```mermaid
-graph LR
-    SER_IN["Serial Input (D_in)"]
-    CLK_LINE["Common Shift Clock"]
-
-    subgraph SISO_Register["4-Bit Shift Register Stages"]
-        FF3["FF 3 (MSB)<br>D3 <- D_in<br>Output: Q3"]
-        FF2["FF 2<br>D2 <- Q3<br>Output: Q2"]
-        FF1["FF 1<br>D1 <- Q2<br>Output: Q1"]
-        FF0["FF 0 (LSB)<br>D0 <- Q1<br>Output: Q0"]
-    end
-
-    SER_IN --> FF3
-    FF3 -->|Q3 shifts right| FF2
-    FF2 -->|Q2 shifts right| FF1
-    FF1 -->|Q1 shifts right| FF0
-    FF0 --> SER_OUT["Serial Output (D_out = Q0)"]
-
-    CLK_LINE --> FF3
-    CLK_LINE --> FF2
-    CLK_LINE --> FF1
-    CLK_LINE --> FF0
-```
 
 ---
 
@@ -415,15 +293,6 @@ A 4-bit Ring Counter is driven by a clock signal of frequency $f_{\text{clk}} = 
 
 ![4-Bit Ring Counter Frequency Division Circuit](circuits/circuit_a5_q4_ring_counter.png)
 *Vector format: [circuit_a5_q4_ring_counter.svg](circuits/circuit_a5_q4_ring_counter.svg)*
-
-```mermaid
-graph LR
-    CLK["CLK: f_clk"] --> FF3["FF 3 (Q3)"]
-    FF3 -->|Shift| FF2["FF 2 (Q2)"]
-    FF2 -->|Shift| FF1["FF 1 (Q1)"]
-    FF1 -->|Shift| FF0["FF 0 (Q0)"]
-    FF0 -->|Feedback Q0 to D3| FF3
-```
 
 1. **Number of Distinct States in Ring Counter**:
    * For an $N$-bit Ring Counter, a single circulating `'1'` shifts through $N$ flip-flops:
@@ -559,69 +428,6 @@ Let the state flip-flops be $A$ and $B$:
 
 ![1010 Mealy Sequence Detector Circuit](circuits/circuit_a5_q5_mealy_sequence_detector.png)
 *Vector format: [circuit_a5_q5_mealy_sequence_detector.svg](circuits/circuit_a5_q5_mealy_sequence_detector.svg)*
-
-```text
-       Clock -------------------+--------------------+
-                                |                    |
-                             +--v---+             +--v---+
-       TA ------------------>|T    Q|--- A        |T    Q|--- B
-                             | FF A |             | FF B |
-                             +------+             +------+
-                                                     ^
-       TB = B XOR X ---------------------------------+
-
-       Output Z = A * B * X'
-```
-
-```mermaid
-graph LR
-    X_IN["Input Stream X"]
-    CLK_LINE["System Clock (CLK)"]
-
-    subgraph GateLogic["Combinational Gates for TA, TB, and Z"]
-        XOR_AB["XOR Gate: A XOR B"]
-        INV_X["NOT Gate: X_bar"]
-        AND_TA1["AND Gate: (A XOR B) * X_bar"]
-        AND_TA2["3-Input AND Gate: A * B * X"]
-        OR_TA["OR Gate: T_A"]
-        XOR_TB["XOR Gate: B XOR X"]
-        AND_Z["3-Input AND Gate: Output Z"]
-
-        XOR_AB --> AND_TA1
-        INV_X --> AND_TA1
-        AND_TA1 --> OR_TA
-        AND_TA2 --> OR_TA
-
-        INV_X --> AND_Z
-    end
-
-    subgraph FlipFlopMemory["State Variables (T Flip-Flops)"]
-        FFA["FF A (MSB State Bit)<br>Input: T_A<br>Output: A"]
-        FFB["FF B (LSB State Bit)<br>Input: T_B<br>Output: B"]
-    end
-
-    OR_TA -->|T_A| FFA
-    XOR_TB -->|T_B| FFB
-
-    FFA -->|A| XOR_AB
-    FFB -->|B| XOR_AB
-
-    FFA -->|A| AND_TA2
-    FFB -->|B| AND_TA2
-    X_IN --> AND_TA2
-
-    FFB -->|B| XOR_TB
-    X_IN --> XOR_TB
-
-    X_IN --> INV_X
-    FFA -->|A| AND_Z
-    FFB -->|B| AND_Z
-
-    AND_Z --> Z_OUT["Mealy Output Z = A * B * X_bar<br>(Pulses HIGH on '1010' match)"]
-
-    CLK_LINE --> FFA
-    CLK_LINE --> FFB
-```
 
 ---
 

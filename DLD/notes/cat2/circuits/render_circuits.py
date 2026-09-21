@@ -341,6 +341,83 @@ def gen_a4_q2():
     plt.close()
     print("Gen a4_q2")
 
+def gen_a4_q2_waveform():
+    """Assignment 4 - Q2: Output Waveform Q(t) for 6 Positive Clock Edges"""
+    fig, ax = plt.subplots(figsize=(13, 7), dpi=300)
+    ax.set_xlim(-0.5, 7.5)
+    ax.set_ylim(-0.5, 9.5)
+    ax.axis('off')
+
+    ax.text(3.5, 9.0, "Positive Edge-Triggered T Flip-Flop: 6-Clock-Edge Waveform Analysis", ha='center', fontsize=13, fontweight='bold', color="#0f172a")
+    ax.text(3.5, 8.5, "Assignment 4 - Question 2 | Initial Q = 1 | T toggles Q when T = 1 at positive clock edge", ha='center', fontsize=9.5, color="#64748b")
+
+    # Grid vertical lines for clock edges
+    for i in range(1, 7):
+        ax.axvline(i, color="#cbd5e1", ls="--", lw=1.2, zorder=1)
+        ax.text(i, 7.9, f"Edge {i}\n(↑)", ha='center', va='center', fontsize=8, fontweight='bold', color="#475569",
+                bbox=dict(boxstyle='round,pad=0.2', fc='#f1f5f9', ec='#cbd5e1'))
+
+    # 1. Clock Waveform
+    clk_x = [0.0]
+    clk_y = [5.5]
+    for i in range(1, 7):
+        clk_x.extend([i - 0.5, i, i, i + 0.5, i + 0.5])
+        clk_y.extend([5.5, 5.5, 6.7, 6.7, 5.5])
+    clk_x.append(7.0)
+    clk_y.append(5.5)
+    ax.plot(clk_x, clk_y, color="#1e293b", lw=2.2, zorder=3)
+    ax.text(-0.3, 6.1, "CLK", fontsize=10, fontweight='bold', ha='right', va='center', color="#1e293b")
+
+    for i in range(1, 7):
+        ax.annotate('', xy=(i, 6.75), xytext=(i, 5.45),
+                    arrowprops=dict(arrowstyle="->", color="#ef4444", lw=2))
+
+    # 2. Input T Waveform
+    t_pts = [
+        (0.0, 3.0), (1.6, 3.0), (1.6, 4.2), (2.4, 4.2), (2.4, 3.0),
+        (4.4, 3.0), (4.4, 4.2), (7.0, 4.2)
+    ]
+    tx = [p[0] for p in t_pts]
+    ty = [p[1] for p in t_pts]
+    ax.step(tx, ty, where='post', color="#2563eb", lw=2.2, zorder=3)
+    ax.text(-0.3, 3.6, "Input T", fontsize=10, fontweight='bold', ha='right', va='center', color="#2563eb")
+
+    t_levels = [("T=0", 0), ("T=1", 1), ("T=0", 0), ("T=0", 0), ("T=1", 1), ("T=1", 1)]
+    for idx, (lbl, val) in enumerate(t_levels, start=1):
+        y_pos = 4.4 if val == 1 else 3.3
+        c_bg = "#dbeafe" if val == 1 else "#f1f5f9"
+        ax.text(idx, y_pos, lbl, ha='center', va='bottom', fontsize=8, fontweight='bold', color="#1d4ed8",
+                bbox=dict(boxstyle='square,pad=0.15', fc=c_bg, ec='none', alpha=0.9))
+
+    # 3. Output Q(t) Waveform
+    q_pts = [
+        (0.0, 1.7), (2.0, 1.7), (2.0, 0.5), (5.0, 0.5),
+        (5.0, 1.7), (6.0, 1.7), (6.0, 0.5), (7.0, 0.5)
+    ]
+    qx = [p[0] for p in q_pts]
+    qy = [p[1] for p in q_pts]
+    ax.step(qx, qy, where='post', color="#059669", lw=2.5, zorder=3)
+    ax.text(-0.3, 1.1, "Output Q(t)", fontsize=10, fontweight='bold', ha='right', va='center', color="#059669")
+
+    states = [
+        (0.5, "Q = 1\n(Initial)", "#10b981", "#ecfdf5"),
+        (1.5, "Q = 1\n(HOLD)", "#10b981", "#ecfdf5"),
+        (2.5, "Q = 0\n(TOGGLE)", "#ef4444", "#fef2f2"),
+        (3.5, "Q = 0\n(HOLD)", "#64748b", "#f8fafc"),
+        (4.5, "Q = 0\n(HOLD)", "#64748b", "#f8fafc"),
+        (5.5, "Q = 1\n(TOGGLE)", "#10b981", "#ecfdf5"),
+        (6.5, "Q = 0\n(TOGGLE)", "#ef4444", "#fef2f2"),
+    ]
+    for x_pos, text, b_col, f_col in states:
+        ax.text(x_pos, -0.2, text, ha='center', va='center', fontsize=7.5, fontweight='bold', color=b_col,
+                bbox=dict(boxstyle='round,pad=0.25', fc=f_col, ec=b_col, lw=1.2))
+
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUT_DIR, "circuit_a4_q2_waveform.png"), dpi=300)
+    plt.savefig(os.path.join(OUT_DIR, "circuit_a4_q2_waveform.svg"))
+    plt.close()
+    print("Gen a4_q2_waveform")
+
 def gen_a4_q3():
     """Assignment 4 - Q3: Sequential Circuit Analysis (Fig 3.3.4 a)"""
     fig, ax = plt.subplots(figsize=(12, 7.5), dpi=300)
@@ -905,6 +982,7 @@ def gen_a5_q5():
 if __name__ == "__main__":
     gen_a4_q1()
     gen_a4_q2()
+    gen_a4_q2_waveform()
     gen_a4_q3()
     gen_a4_q4()
     gen_a4_q5()
@@ -913,4 +991,4 @@ if __name__ == "__main__":
     gen_a5_q3()
     gen_a5_q4()
     gen_a5_q5()
-    print("ALL 10 CIRCUITS SUCCESSFULLY RE-RENDERED WITH PERFECT ORTHOGONAL ROUTING!")
+    print("ALL CIRCUITS AND WAVEFORMS SUCCESSFULLY RE-RENDERED WITH PERFECT QUALITY!")

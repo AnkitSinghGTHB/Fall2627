@@ -80,20 +80,6 @@ An SR flip-flop is initially in the **RESET state** ($Q_0 = 0$). The following i
 
 ### (iv) Physical Impact: Invalid ($S=1, R=1$) vs. Hold ($S=0, R=0$)
 
-```mermaid
-graph LR
-    subgraph HoldState["HOLD State: S=0, R=0"]
-        H1["Feedback Active"] --> H2["Q maintains stable previous state"]
-        H2 --> H3["Q and Q_bar strictly complementary (1 and 0)"]
-    end
-    
-    subgraph InvalidState["INVALID State: S=1, R=1"]
-        I1["Both inputs active"] --> I2["In NAND Latch: Both Q and Q_bar forced to 0<br>In NOR Latch: Both Q and Q_bar forced to 1"]
-        I2 --> I3["Complementation Broken: Q = Q_bar"]
-        I3 --> I4["Transition to 0,0 causes Metastability & Race Condition"]
-    end
-```
-
 1. **Logical Complementation Breakdown**:
    * Under normal hold ($S=0, R=0$), cross-coupled feedback ensures $Q = \overline{Q'}$.
    * Under $S=1, R=1$, both active inputs override the feedback. In a NOR-based latch, both $Q$ and $\bar{Q}$ are forced to logic $0$. In a NAND-based latch, both $Q$ and $\bar{Q}$ are forced to logic $1$. This **violates the fundamental postulate that outputs are complementary**.
@@ -116,76 +102,6 @@ Draw the logic diagram of a positive edge-triggered T Flip-Flop using **NAND gat
 *Vector format: [circuit_a4_q2_nand_t_ff.svg](circuits/circuit_a4_q2_nand_t_ff.svg)*
 
 A positive edge-triggered T flip-flop is realized using a **Master-Slave structure with negative feedback** ($Q$ tied to Master $K$, $\bar{Q}$ tied to Master $J$, with $J = K = T$):
-
-```text
-               +-------------------------------------------------------------+
-               |                                                             |
-               |       +----------+                                          |
-               |       | NAND 1   |                                          |
-         T ----+------>|          |----+                                     |
-                       |          |    |   +----------+                      |
-      CLK -------------|          |    +-->| NAND 3   |                      |
-      (Active-High)    +----------+        |          |----+                 |
-                       | NAND 2   |    +-->| (Master) |    |                 |
-         T ----+------>|          |----+   +----+-----+    |   +----------+  |
-               |       |          |             |          +-->| NAND 5   |  |
-               |       +----+-----+             +----+         |          |--+--> Q (Output)
-               |            ^                        |     +-->| (Slave)  |  |
-               |            |                        |     |   +----+-----+  |
-               |            |                        |     |        |        |
-               |            |              CLK_bar --+     |        +----+   |
-               |            |              (Inverted)      |             |   |
-               |            |                              |   +---------+--+|
-               |            |                              +-->| NAND 6   | ||
-               |            |                                  |          |-++--> Q_bar
-               |            +----------------------------------| (Slave)  |
-               +-----------------------------------------------|          |
-                                                               +----------+
-```
-
-```mermaid
-graph LR
-    subgraph MasterStage["Master Stage (Samples on CLK = 1)"]
-        G1["NAND 1 (Input Steering)"]
-        G2["NAND 2 (Input Steering)"]
-        G3["NAND 3 (Master Latch Gate)"]
-        G4["NAND 4 (Master Latch Gate)"]
-    end
-    
-    subgraph SlaveStage["Slave Stage (Latches on CLK = 0)"]
-        G5["NAND 5 (CLK Inverter)"]
-        G6["NAND 6 (Slave Steering)"]
-        G7["NAND 7 (Slave Steering)"]
-        G8["NAND 8 (Slave Latch Output)"]
-        G9["NAND 9 (Slave Latch Output)"]
-    end
-
-    T_IN["Input T"] --> G1
-    T_IN --> G2
-    CLK_IN["Clock (CLK)"] --> G1
-    CLK_IN --> G2
-    CLK_IN --> G5
-    G5 -->|CLK_bar| G6
-    G5 -->|CLK_bar| G7
-
-    G1 --> G3
-    G2 --> G4
-    G3 -->|Cross Feedback| G4
-    G4 -->|Cross Feedback| G3
-
-    G3 --> G6
-    G4 --> G7
-    G6 --> G8
-    G7 --> G9
-    G8 -->|Cross Feedback| G9
-    G9 -->|Cross Feedback| G8
-
-    G8 --> OUT_Q["Output Q"]
-    G9 --> OUT_Q_bar["Output Q_bar"]
-
-    OUT_Q_bar -->|Feedback Loop| G1
-    OUT_Q -->|Feedback Loop| G2
-```
 
 * **Components Required**: Exactly **9 NAND gates** (or 8 NAND gates + 1 NAND inverter for clock inversion).
 
@@ -222,13 +138,8 @@ graph LR
 * **At Edge 5**: $T = 1 \implies Q$ **rises to HIGH** ($1$).
 * **At Edge 6**: $T = 1 \implies Q$ **falls to LOW** ($0$).
 
-```text
-CLK:   __--__--__--__--__--__--__--__--__--__--__--__
-           ^1    ^2    ^3    ^4    ^5    ^6
-T:     ____-------________________-------------
-Q(t):  ---------\________________/-----------\_______
-       [  1  ]  [  0  ] [  0  ] [  0  ] [  1  ] [  0  ]
-```
+![Positive Edge-Triggered T Flip-Flop 6-Clock-Edge Output Waveform](circuits/circuit_a4_q2_waveform.png)
+*Vector format: [circuit_a4_q2_waveform.svg](circuits/circuit_a4_q2_waveform.svg)*
 
 ---
 
@@ -255,52 +166,6 @@ From the schematic:
 
 ![Sequential Circuit Schematic Fig. 3.3.4](circuits/circuit_a4_q3_sequential_circuit.png)
 *Vector format: [circuit_a4_q3_sequential_circuit.svg](circuits/circuit_a4_q3_sequential_circuit.svg)*
-
-```mermaid
-graph LR
-    subgraph Inputs
-        X_IN["Input X"]
-        CLK_IN["Clock Signal (CLK)"]
-    end
-
-    subgraph Gates["Logic Gates"]
-        INV["Inverter (NOT Gate)"]
-        AND_KA["AND Gate: B * X_bar"]
-        XOR_KB["XOR Gate 1: A XOR X"]
-        XOR_F["XOR Gate 2: A XOR B"]
-    end
-
-    subgraph FFA["Flip-Flop A (JK)"]
-        JA["J_A"]
-        KA["K_A"]
-        QA["Q_A Output (A)"]
-    end
-
-    subgraph FFB["Flip-Flop B (JK)"]
-        JB["J_B"]
-        KB["K_B"]
-        QB["Q_B Output (B)"]
-    end
-
-    X_IN --> INV
-    INV -->|X_bar| AND_KA
-    INV -->|X_bar| JB
-
-    QB -->|B line| JA
-    QB -->|B line| AND_KA
-    AND_KA -->|K_A = B * X_bar| KA
-
-    QA -->|A line| XOR_KB
-    X_IN -->|X line| XOR_KB
-    XOR_KB -->|K_B = A XOR X| KB
-
-    QA -->|A line| XOR_F
-    QB -->|B line| XOR_F
-    XOR_F --> OUT_F["Circuit Output F = A XOR B"]
-
-    CLK_IN --> FFA
-    CLK_IN --> FFB
-```
 
 ---
 
@@ -472,60 +337,6 @@ Let the state bits be $Q_2, Q_1, Q_0$ (with $Q_2$ as MSB and $Q_0$ as LSB):
 ![3-Bit Synchronous Counter Logic Circuit](circuits/circuit_a4_q4_3bit_counter.png)
 *Vector format: [circuit_a4_q4_3bit_counter.svg](circuits/circuit_a4_q4_3bit_counter.svg)*
 
-```text
-       Clock ---------------------+-------------------+-------------------+
-                                  |                   |                   |
-                               +--v--+             +--v--+             +--v--+
-   D2 = Q1'*Q0' + Q2'*Q1 ----->|D   Q|--- Q2       |D   Q|--- Q1       |D   Q|--- Q0
-                               |FF 2 |             |FF 1 |             |FF 0 |
-                               |     |             |     |             |     |
-   D1 = (Q2'+Q1)*Q0 + Q2*Q1'*Q0'                   +-----+             +-----+
-   D0 = Q1*Q0' + Q2'*Q0
-```
-
-```mermaid
-graph LR
-    subgraph D2_Gates["D2 Excitation Gate Network"]
-        AND_D2A["AND Gate: Q1_bar * Q0_bar"]
-        AND_D2B["AND Gate: Q2_bar * Q1"]
-        OR_D2["OR Gate: D2 = (Q1_bar * Q0_bar) + (Q2_bar * Q1)"]
-        AND_D2A --> OR_D2
-        AND_D2B --> OR_D2
-    end
-
-    subgraph D1_Gates["D1 Excitation Gate Network"]
-        AND_D1A["AND Gate: Q2_bar * Q0"]
-        AND_D1B["AND Gate: Q1 * Q0"]
-        AND_D1C["3-Input AND Gate: Q2 * Q1_bar * Q0_bar"]
-        OR_D1["3-Input OR Gate: D1"]
-        AND_D1A --> OR_D1
-        AND_D1B --> OR_D1
-        AND_D1C --> OR_D1
-    end
-
-    subgraph D0_Gates["D0 Excitation Gate Network"]
-        AND_D0A["AND Gate: Q1 * Q0_bar"]
-        AND_D0B["AND Gate: Q2_bar * Q0"]
-        OR_D0["OR Gate: D0 = (Q1 * Q0_bar) + (Q2_bar * Q0)"]
-        AND_D0A --> OR_D0
-        AND_D0B --> OR_D0
-    end
-
-    subgraph D_FlipFlops["Synchronous D Flip-Flops"]
-        FF2["FF 2 (MSB)<br>Input: D2<br>Outputs: Q2, Q2_bar"]
-        FF1["FF 1<br>Input: D1<br>Outputs: Q1, Q1_bar"]
-        FF0["FF 0 (LSB)<br>Input: D0<br>Outputs: Q0, Q0_bar"]
-    end
-
-    OR_D2 -->|D2| FF2
-    OR_D1 -->|D1| FF1
-    OR_D0 -->|D0| FF0
-
-    CLK["Master Clock Bus"] --> FF2
-    CLK --> FF1
-    CLK --> FF0
-```
-
 * **Self-Starting Property**: Since all 8 states ($0$ through $7$) are included in the primary sequence, **no unused states exist**, guaranteeing $100\%$ lockout immunity!
 
 ---
@@ -560,62 +371,8 @@ Design an asynchronous (ripple) **Decade / Mod-10 counter** using **T flip-flops
 
 ### Step 3: Complete Circuit Logic Schematic
 
-### Logic Gate Diagram: Mod-10 Asynchronous Ripple Counter
-
 ![Decade Asynchronous Ripple Counter Circuit](circuits/circuit_a4_q5_decade_ripple.png)
 *Vector format: [circuit_a4_q5_decade_ripple.svg](circuits/circuit_a4_q5_decade_ripple.svg)*
-
-```text
- 1 (Vcc) -----+--------------+--------------+--------------+
-              |              |              |              |
-           +--+---+       +--+---+       +--+---+       +--+---+
-           |T    Q|--Q0---|T    Q|--Q1---|T    Q|--Q2---|T    Q|--Q3 (MSB)
- CLK ----->|>     |       |>     |  |    |>     |       |>     |  |
-           |  _CLR|       |  _CLR|  |    |  _CLR|       |  _CLR|  |
-           +---+--+       +---+--+  |    +---+--+       +---+--+  |
-               ^              ^     |        ^              ^     |
-               |              |     |        |              |     |
-               +--------------+-----+--------+--------------+     |
-                              |     |                             |
-                              |   +-v-----+                       |
-                              +---| NAND  |<----------------------+
-                                  +-------+
-```
-
-```mermaid
-graph LR
-    VCC["Logic 1 (V_CC)"]
-    CLK_IN["External Clock (CLK)"]
-
-    subgraph RippleStages["4 Cascaded Toggle Flip-Flop Stages"]
-        FF0["Stage 0 (LSB)<br>T0 = 1<br>Clock: External CLK<br>Output: Q0"]
-        FF1["Stage 1<br>T1 = 1<br>Clock: Driven by Q0<br>Output: Q1"]
-        FF2["Stage 2<br>T2 = 1<br>Clock: Driven by Q1<br>Output: Q2"]
-        FF3["Stage 3 (MSB)<br>T3 = 1<br>Clock: Driven by Q2<br>Output: Q3"]
-    end
-
-    subgraph ResetDetection["Mod-10 Reset Logic Gate"]
-        NAND_CLR["2-Input NAND Gate<br>Inputs: Q3 and Q1<br>Output: Active-Low CLR_bar"]
-    end
-
-    VCC --> FF0
-    VCC --> FF1
-    VCC --> FF2
-    VCC --> FF3
-
-    CLK_IN --> FF0
-    FF0 -->|Q0 ripple clock| FF1
-    FF1 -->|Q1 ripple clock| FF2
-    FF2 -->|Q2 ripple clock| FF3
-
-    FF3 -->|Q3 (Bit 3)| NAND_CLR
-    FF1 -->|Q1 (Bit 1)| NAND_CLR
-
-    NAND_CLR -->|CLR_bar| FF0
-    NAND_CLR -->|CLR_bar| FF1
-    NAND_CLR -->|CLR_bar| FF2
-    NAND_CLR -->|CLR_bar| FF3
-```
 
 ---
 
