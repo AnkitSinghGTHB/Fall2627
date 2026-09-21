@@ -18,20 +18,8 @@ A counter is a circuit that cycles through a set sequence of binary numbers on e
   * External clock connects **SIMULTANEOUSLY to ALL flip-flops**!
   * All flip-flops update at the exact same instant $\implies$ **Blazing fast! Delay is only 1 flip-flop ($t_{pd}$)**.
 
-```mermaid
-graph TD
-    subgraph Asynch_Ripple ["Asynchronous Ripple: Domino Clocking (Slow)"]
-    CLK_EXT1["External Clock"] --> FFA["FF0 (LSB)"]
-    FFA -->|"Q0 acts as Clock"| FFB["FF1"]
-    FFB -->|"Q1 acts as Clock"| FFC["FF2 (MSB)"]
-    end
-
-    subgraph Synch_Clock ["Synchronous Counter: Unified Clock (Ultra Fast)"]
-    CLK_EXT2["External Clock"] --> FF0_S["FF0"]
-    CLK_EXT2 --> FF1_S["FF1"]
-    CLK_EXT2 --> FF2_S["FF2"]
-    end
-```
+![Asynchronous Ripple vs Synchronous Counter Architecture](circuits/circuit_m4_asynch_vs_synch.png)
+*(Figure 4.1: Clocking Architecture Comparison — Asynchronous domino cascading ($T_{total} = n \cdot t_{pd}$) vs Synchronous simultaneous master clocking ($T_{total} = t_{pd}$))*
 
 ---
 
@@ -49,56 +37,13 @@ graph TD
 * All $T$ inputs are tied to Logic HIGH ($1$) so they operate in **TOGGLE mode**.
 * External clock connects to FF0 ($Q_0$). Output $Q_0$ clocks FF1. Output $Q_1$ clocks FF2.
 
-```mermaid
-graph LR
-    subgraph Ripple_UP ["3-Bit Negative-Edge Ripple UP Counter Circuit"]
-    VCC["Logic 1 (VCC)"] --> T0["T0"]
-    VCC --> T1["T1"]
-    VCC --> T2["T2"]
-    
-    EXT_CLK["Clock In (Neg-Edge)"] --> FF0["FF0 (LSB)"]
-    T0 --> FF0
-    FF0 -->|"Q0 (Normal)"| CLK1["Clock input of FF1"]
-    FF0 --> Q0_OUT["Output Q0 (LSB)"]
-    
-    CLK1 --> FF1["FF1"]
-    T1 --> FF1
-    FF1 -->|"Q1 (Normal)"| CLK2["Clock input of FF2"]
-    FF1 --> Q1_OUT["Output Q1"]
-    
-    CLK2 --> FF2["FF2 (MSB)"]
-    T2 --> FF2
-    FF2 --> Q2_OUT["Output Q2 (MSB)"]
-    end
-```
+![3-Bit Asynchronous UP and DOWN Ripple Counters](circuits/circuit_m4_ripple_up_down.png)
+*(Figure 4.2: 3-Bit Asynchronous Ripple Counters using negative-edge triggered T flip-flops: Normal output $Q \to \text{CLK}$ counts UP ($0 \to 7$); Inverted output $\overline{Q} \to \text{CLK}$ counts DOWN ($7 \to 0$))*
 
 ---
 
 #### B. 3-Bit Asynchronous DOWN Counter:
-* To count downwards ($7 \to 6 \to 5 \dots$), we simply take the clock for the next stage from the **inverted output $Q'$**!
-
-```mermaid
-graph LR
-    subgraph Ripple_DOWN ["3-Bit Negative-Edge Ripple DOWN Counter Circuit"]
-    VCC["Logic 1 (VCC)"] --> T0["T0"]
-    VCC --> T1["T1"]
-    VCC --> T2["T2"]
-    
-    EXT_CLK["Clock In (Neg-Edge)"] --> FF0["FF0 (LSB)"]
-    T0 --> FF0
-    FF0 -->|"Q0' (Inverted)"| CLK1["Clock input of FF1"]
-    FF0 --> Q0_OUT["Output Q0 (LSB)"]
-    
-    CLK1 --> FF1["FF1"]
-    T1 --> FF1
-    FF1 -->|"Q1' (Inverted)"| CLK2["Clock input of FF2"]
-    FF1 --> Q1_OUT["Output Q1"]
-    
-    CLK2 --> FF2["FF2 (MSB)"]
-    T2 --> FF2
-    FF2 --> Q2_OUT["Output Q2 (MSB)"]
-    end
-```
+* To count downwards ($7 \to 6 \to 5 \dots$), we simply take the clock for the next stage from the **inverted output $\overline{Q}$** (see Figure 4.2 bottom panel)!
 
 ---
 
@@ -110,16 +55,8 @@ graph LR
   * The NAND output connects to the active-low **CLEAR / RESET** pins of all flip-flops!
   * The instant $6$ appears, NAND output becomes $0$, instantly clearing all flip-flops back to $000$!
 
-```mermaid
-graph LR
-    subgraph Mod6_Reset ["Mod-6 Truncated Counter with NAND Reset"]
-    FF2_Q["Q2 (MSB)"] --> NAND["NAND Gate (Detects Q2=1 and Q1=1)"]
-    FF1_Q["Q1"] --> NAND
-    NAND -->|"Clear Pulse (Active-Low)"| CLR0["Clear Pin FF0"]
-    NAND --> CLR1["Clear Pin FF1"]
-    NAND --> CLR2["Clear Pin FF2"]
-    end
-```
+![Mod-6 Truncated Ripple Counter with NAND Reset](circuits/circuit_m4_mod6_ripple.png)
+*(Figure 4.3: Mod-6 Truncated Asynchronous Counter — NAND gate detects state $6$ ($110_2$, $Q_2=1, Q_1=1$) to assert active-low $\overline{\text{CLR}}$, producing 6 stable states $0 \dots 5$)*
 
 ---
 
@@ -131,28 +68,8 @@ In a synchronous counter, every flip-flop gets the master clock simultaneously. 
 * $T_2 = \mathbf{Q_0 \cdot Q_1}$ (Toggles when both $Q_0$ and $Q_1$ are 1!).
 * $T_3 = \mathbf{Q_0 \cdot Q_1 \cdot Q_2}$ (Toggles when $Q_0, Q_1, Q_2$ are all 1!).
 
-```mermaid
-graph LR
-    subgraph Sync_Counter ["3-Bit Synchronous Binary UP Counter"]
-    CLK["Master Clock Pulse"] --> FF0["FF0"]
-    CLK --> FF1["FF1"]
-    CLK --> FF2["FF2"]
-    
-    ONE["Logic 1"] --> T0["T0 Input"]
-    T0 --> FF0
-    FF0 --> Q0["Q0 (LSB)"]
-    
-    Q0 --> T1["T1 Input"]
-    T1 --> FF1
-    FF0 --> AND1["AND Gate 1"]
-    FF1 --> Q1["Q1"]
-    Q1 --> AND1
-    
-    AND1 --> T2["T2 Input"]
-    T2 --> FF2
-    FF2 --> Q2["Q2 (MSB)"]
-    end
-```
+![3-Bit Synchronous Binary UP Counter Schematic](circuits/circuit_m4_sync_up_counter.png)
+*(Figure 4.4: 3-Bit Synchronous Binary UP Counter — Unified clock with carry lookahead steering $T_0 = 1, T_1 = Q_0, T_2 = Q_0 \cdot Q_1$)*
 
 ---
 
@@ -167,19 +84,8 @@ graph LR
   * Reacts instantly to inputs within the same clock cycle, but prone to input glitches!
   * Outputs are written **ON the transition arrows** (e.g. `x=1 / Y=1`).
 
-```mermaid
-graph LR
-    subgraph Moore_Arch ["Moore Machine (Output depends ONLY on State)"]
-    IN_M["Input x"] --> MEM_M["State Memory (Flip-Flops)"]
-    MEM_M --> OUT_M["Output Logic"]
-    OUT_M --> Y_M["Output Y = f(Q)"]
-    end
-
-    subgraph Mealy_Arch ["Mealy Machine (Output depends on State + Input)"]
-    IN_ME["Input x"] --> MEM_ME["State Memory (Flip-Flops)"]
-    OUT_ME --> Y_ME["Output Y = f(Q, x)"]
-    end
-```
+![Moore vs Mealy Machine FSM Architectural Models](circuits/circuit_m4_fsm_mealy_moore.png)
+*(Figure 4.5: FSM Architectural Comparison — Moore Machine ($Y = g(Q)$, state-only, glitch-free) vs Mealy Machine ($Y = g(Q, x)$, state and direct input feedthrough, fast response))*
 
 ---
 
@@ -193,21 +99,8 @@ A single counter that counts UP when $M=1$, and counts DOWN when $M=0$:
   * $T_1 = M \cdot Q_0 + M' \cdot Q_0'$
   * $T_2 = M \cdot (Q_0 Q_1) + M' \cdot (Q_0' Q_1')$
 
-```mermaid
-graph LR
-    subgraph Up_Down_Logic ["Mode Steering Logic for Stage i"]
-    direction LR
-    M_SIG["Mode M (1=UP, 0=DOWN)"] --> AND_UP["AND (M * Q_prev)"]
-    Q_PREV["Q_(i-1)"] --> AND_UP
-    
-    M_SIG --> NOT_M["NOT Gate"] --> AND_DN["AND (M' * Q'_prev)"]
-    QBAR_PREV["Q'_(i-1)"] --> AND_DN
-    
-    AND_UP --> OR_COMB["OR Gate"]
-    AND_DN --> OR_COMB
-    OR_COMB --> T_INPUT["T Input of Stage i"]
-    end
-```
+![Synchronous UP/DOWN Mode Steering Logic](circuits/circuit_m4_up_down_steering.png)
+*(Figure 4.6: Mode steering circuit for stage $i$ — AND-OR multiplexer implements $T_i = M \cdot Q_{i-1} + \overline{M} \cdot \overline{Q_{i-1}}$ for bidirectional counting)*
 
 ---
 
@@ -348,22 +241,8 @@ $$\begin{array}{|c|ccc|ccc|c|c|c|}
   * Group $(2, 3, 6 \text{ wait: } 2, 3 \implies Q_2' Q_1; 2, 6 \implies Q_1 Q_0')$
   * $\mathbf{D_0 = Q_2' Q_0 + Q_1 Q_0'}$
 
-```mermaid
-graph LR
-    subgraph D_Counter_Circuit ["3-Bit Synchronous Counter (Assignment 4 Q4)"]
-    CLK_COMMON["Common Clock Pulse"] --> FF2["D2 Flip-Flop"]
-    CLK_COMMON --> FF1["D1 Flip-Flop"]
-    CLK_COMMON --> FF0["D0 Flip-Flop"]
-    
-    KMAP2["Logic: Q2'Q0' + Q2'Q1 + Q1'Q0'"] --> FF2
-    KMAP1["Logic: Q2'Q0 + Q1Q0 + Q2Q1'Q0'"] --> FF1
-    KMAP0["Logic: Q2'Q0 + Q1Q0'"] --> FF0
-    
-    FF2 --> Q2_OUT["Q2 Output"]
-    FF1 --> Q1_OUT["Q1 Output"]
-    FF0 --> Q0_OUT["Q0 Output"]
-    end
-```
+![3-Bit Arbitrary Synchronous Counter with D Flip-Flops](circuits/circuit_a4_q4_3bit_counter.png)
+*(Figure 4.7: Complete logic gate schematic for 3-bit synchronous counter traversing $0 \to 4 \to 6 \to 1 \to 3 \to 7 \to 2 \to 5 \to 0$ using D flip-flops and K-Map minimized SOP gating)*
 
 ---
 
@@ -385,25 +264,8 @@ graph LR
   $$\text{Reset Signal } \overline{R} = \overline{Q_3 \cdot Q_1}$$
 * The NAND output connects directly to the **active-low $\overline{\text{CLEAR}}$ inputs** of all 4 flip-flops!
 
-```mermaid
-graph LR
-    subgraph BCD_Ripple ["Decade Asynchronous (Ripple) Counter with T FFs"]
-    VCC["Logic 1"] --> T_ALL["T3 = T2 = T1 = T0 = 1"]
-    
-    EXT_CLK["External Clock Pulse"] --> FF0["FF0 (LSB)"]
-    FF0 -->|"Q0"| FF1["FF1"]
-    FF1 -->|"Q1"| FF2["FF2"]
-    FF2 -->|"Q2"| FF3["FF3 (MSB)"]
-    
-    FF3 -->|"Q3"| NAND_GATE["2-Input NAND Gate"]
-    FF1 -->|"Q1"| NAND_GATE
-    
-    NAND_GATE -->|"Active-Low Clear Pulse"| CLR0["CLR FF0"]
-    NAND_GATE --> CLR1["CLR FF1"]
-    NAND_GATE --> CLR2["CLR FF2"]
-    NAND_GATE --> CLR3["CLR FF3"]
-    end
-```
+![Decade Asynchronous BCD Ripple Counter](circuits/circuit_a4_q5_decade_ripple.png)
+*(Figure 4.8: BCD Decade Asynchronous Counter ($0 \dots 9$) using 4 negative-edge T flip-flops with NAND reset detecting state $10$ ($1010_2$, $Q_3=1, Q_1=1$))*
 
 * **Transient Glitch Analysis**: The state $1010$ ($10$) exists for only a few nanoseconds (the propagation delay of the NAND gate plus the internal clear delay of the flip-flops), after which the counter immediately resets to $0000$. Hence, only states $0 \dots 9$ are seen externally!
 

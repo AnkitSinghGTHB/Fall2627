@@ -25,19 +25,8 @@ A **sequential circuit** has **memory**: it remembers past states!
   * $S=0, R=0 \implies$ **HOLD** (No change, $Q^+=Q$).
   * $S=1, R=1 \implies$ **INVALID / FORBIDDEN!** Both $Q$ and $Q'$ try to become 0 simultaneously, violating the rule that $Q' = \overline{Q}$.
 
-```mermaid
-graph LR
-    subgraph SR_Logic ["SR Flip-Flop Logic Symbol & Internal Structure"]
-    S_in["S (Set)"] --> G1["NAND Gate 1"]
-    R_in["R (Reset)"] --> G2["NAND Gate 2"]
-    CLK["Clock Edge"] --> G1
-    CLK --> G2
-    G1 --> L1["Cross-Coupled Latch"]
-    G2 --> L1
-    L1 --> Q["Q (Normal Output)"]
-    L1 --> Qbar["Q' (Inverted Output)"]
-    end
-```
+![Clocked SR Flip-Flop Logic Circuit](circuits/circuit_a4_q1_sr_latch.png)
+*(Figure 3.1: Clocked SR Flip-Flop using NAND steering gates and cross-coupled latch with S=1, R=1 metastability protection)*
 
 * **Characteristic Equation**: $\mathbf{Q^+ = S + R' Q}$ (with constraint $S \cdot R = 0$).
 * **Excitation Table (How to force transitions)**:
@@ -49,23 +38,8 @@ graph LR
 * **The Breakthrough**: In SR, $S=1, R=1$ caused a crash. In JK, we feed $Q$ and $Q'$ back to the inputs!
 * When $J=1, K=1$, the output **TOGGLES** (inverts: $0 \to 1$ and $1 \to 0$)! No invalid state exists!
 
-```mermaid
-graph LR
-    subgraph JK_Schematic ["JK Flip-Flop with Cross-Coupled Feedback"]
-    J_in["J (Set input)"] --> A1["AND Gate 1"]
-    K_in["K (Reset input)"] --> A2["AND Gate 2"]
-    CLK["Clock Pulse"] --> A1
-    CLK --> A2
-    
-    Qbar_out["Q'"] -.->|"Feedback Q'"| A1
-    Q_out["Q"] -.->|"Feedback Q"| A2
-    
-    A1 --> SR["Internal SR Cell"]
-    A2 --> SR
-    SR --> Q_out
-    SR --> Qbar_out
-    end
-```
+![Clocked JK Flip-Flop Logic Circuit](circuits/circuit_m3_jk_ff.png)
+*(Figure 3.2: Clocked JK Flip-Flop with cross-coupled feedback loops from $Q$ and $\overline{Q}$ to steering gates, solving the forbidden state through toggle mode $Q^+ = \overline{Q}$)*
 
 * **Characteristic Equation**: $\mathbf{Q^+ = J Q' + K' Q}$
 * **JK Truth Table & Modes**:
@@ -79,17 +53,8 @@ graph LR
 * **Concept**: Takes whatever single bit is on input $D$ and transfers it to output $Q$ on the next clock edge.
 * **Circuit**: Made from an SR or JK flip-flop by connecting an **inverter (NOT gate)** between inputs ($K = \overline{J}$).
 
-```mermaid
-graph LR
-    subgraph D_Circuit ["D Flip-Flop Built from JK + Inverter"]
-    D_in["Data In (D)"] --> J_term["J Input"]
-    D_in --> NOT1["NOT Gate"] --> K_term["K Input"]
-    J_term --> JK_Core["JK Flip-Flop Cell"]
-    K_term --> JK_Core
-    CLK["Clock"] --> JK_Core
-    JK_Core --> Q_out["Output Q (Q+ = D)"]
-    end
-```
+![D and T Flip-Flop Derivations from JK Core](circuits/circuit_m3_d_and_t_ff.png)
+*(Figure 3.3: D Flip-Flop built from JK core with inverter $K = \overline{D}$, ensuring $Q^+ = D$; and T Flip-Flop built by tying inputs $J = K = T$ for toggle operation $Q^+ = T \oplus Q$)*
 
 * **Characteristic Equation**: $\mathbf{Q^+ = D}$
 * **Excitation Table**: $D = Q^+$ (Whatever next state you want, set $D$ to that value!).
@@ -100,19 +65,7 @@ graph LR
 * **Concept**: Has 1 control input $T$.
   * If $T = 0 \implies$ Hold state ($Q^+ = Q$).
   * If $T = 1 \implies$ Toggle state ($Q^+ = Q'$).
-* **Circuit**: Made from JK by **tying inputs J and K together** ($J = K = T$).
-
-```mermaid
-graph LR
-    subgraph T_Circuit ["T Flip-Flop Built by Tying J and K Together"]
-    T_in["Toggle Input (T)"] --> J_term["J Input"]
-    T_in --> K_term["K Input"]
-    J_term --> JK_Core["JK Flip-Flop"]
-    K_term --> JK_Core
-    CLK["Clock"] --> JK_Core
-    JK_Core --> Q_out["Output Q"]
-    end
-```
+* **Circuit**: Made from JK by **tying inputs J and K together** ($J = K = T$) (see Figure 3.3 right panel).
 
 * **Characteristic Equation**: $\mathbf{Q^+ = T \oplus Q = T Q' + T' Q}$
 * **Excitation Table**: $\mathbf{T = Q \oplus Q^+}$
@@ -134,24 +87,8 @@ graph LR
   2. **Slave Stage**: Clocked by inverted clock ($\overline{\text{CLK}}$). When $\text{CLK}$ drops to $0$, Master shuts off, and Slave copies Master's output to $Q$!
 * Because Master and Slave are **never active at the same instant**, feedback during a single clock pulse is physically impossible!
 
-```mermaid
-graph LR
-    subgraph Master_Slave ["Master-Slave JK Flip-Flop Architecture"]
-    J_in["J"] --> Master["MASTER FLIP-FLOP"]
-    K_in["K"] --> Master
-    CLK["Clock Pulse"] --> Master
-    CLK --> INV["NOT Gate (Inverter)"]
-    INV -->|"Inverted Clock"| Slave["SLAVE FLIP-FLOP"]
-    
-    Master -->|"Internal QM"| Slave
-    Master -->|"Internal QM'"| Slave
-    Slave --> Q["Final Q"]
-    Slave --> Qbar["Final Q'"]
-    
-    Q -.->|"Isolated Feedback"| K_in
-    Qbar -.->|"Isolated Feedback"| J_in
-    end
-```
+![Master-Slave JK Flip-Flop Architecture](circuits/circuit_m3_master_slave_jk.png)
+*(Figure 3.4: Master-Slave JK Flip-Flop architecture eliminating the race-around condition via dual-stage inverted clocking $\text{CLK}$ and $\overline{\text{CLK}}$)*
 
 ---
 
@@ -163,17 +100,8 @@ To convert an **Available Flip-Flop** (e.g. JK) into a **Target Flip-Flop** (e.g
 3. Solve K-Maps for Available FF inputs in terms of Target inputs and $Q$.
 4. Draw the combinational steering circuit!
 
-```mermaid
-graph LR
-    subgraph FF_Conversion ["Universal Flip-Flop Conversion Schematic"]
-    TARGET_IN["Target Inputs (e.g., D or T)"] --> LOGIC["Combinational Logic (Derived from K-Maps)"]
-    FB_Q["Present State Q"] -.-> LOGIC
-    LOGIC -->|"Excitation J"| AV_FF["Available Flip-Flop (JK)"]
-    LOGIC -->|"Excitation K"| AV_FF
-    CLK["Clock"] --> AV_FF
-    AV_FF --> OUT_Q["Output Q"]
-    end
-```
+![Universal Flip-Flop Conversion Blueprint](circuits/circuit_m3_ff_conversion.png)
+*(Figure 3.5: Universal Flip-Flop Conversion Architecture — Target inputs and present state $Q$ enter combinational steering gates derived from K-Maps to drive the available flip-flop)*
 
 #### Solved Conversion: Convert JK to D Flip-Flop
 $$\begin{array}{|c|c|c|c|c|} \hline \textbf{Target Input } D & Q & Q^+ & \textbf{Required } J & \textbf{Required } K \\ \hline 0 & 0 & 0 & 0 & X \\ 0 & 1 & 0 & X & 1 \\ 1 & 0 & 1 & 1 & X \\ 1 & 1 & 1 & X & 0 \\ \hline \end{array}$$
@@ -191,21 +119,8 @@ Data enters serially at FF3, shifts right on each clock edge, and leaves seriall
 * **Clock pulses to unload 4 bits**: $N - 1 = 3$.
 * **Total pulses**: $2N - 1 = \mathbf{7\text{ pulses}}$.
 
-```mermaid
-graph LR
-    subgraph SISO ["4-Bit SISO Shift Register"]
-    SI["Serial In"] --> D3["FF3 (D3)"]
-    D3 -->|"Q3"| D2["FF2 (D2)"]
-    D2 -->|"Q2"| D1["FF1 (D1)"]
-    D1 -->|"Q1"| D0["FF0 (D0)"]
-    D0 --> SO["Serial Out (Q0)"]
-    
-    CLK["Common Clock"] --> D3
-    CLK --> D2
-    CLK --> D1
-    CLK --> D0
-    end
-```
+![4-Bit SISO Shift Register Circuit](circuits/circuit_a5_q3_siso_shift_register.png)
+*(Figure 3.6: 4-Bit Serial-In Serial-Out (SISO) Shift Register — Serial data cascades across 4 D flip-flops; total latency = $2N - 1 = 7$ clock pulses)*
 
 ---
 
@@ -213,20 +128,8 @@ graph LR
 Data enters serially, but all flip-flop outputs ($Q_3, Q_2, Q_1, Q_0$) are available simultaneously.
 * **Clock pulses to load & read**: Exactly $\mathbf{N = 4\text{ pulses}}$ (0 pulses to read).
 
-```mermaid
-graph LR
-    subgraph SIPO ["4-Bit SIPO Shift Register"]
-    SI["Serial In"] --> D3["FF3"]
-    D3 -->|"Q3"| D2["FF2"]
-    D2 -->|"Q2"| D1["FF1"]
-    D1 -->|"Q1"| D0["FF0"]
-    
-    D3 --> O3["Parallel Out Q3"]
-    D2 --> O2["Parallel Out Q2"]
-    D1 --> O1["Parallel Out Q1"]
-    D0 --> O0["Parallel Out Q0"]
-    end
-```
+![4-Bit SIPO Shift Register Circuit](circuits/circuit_m3_sipo_register.png)
+*(Figure 3.7: 4-Bit Serial-In Parallel-Out (SIPO) Shift Register — 4 pulses to load serially, 0 pulses to read all 4 bits in parallel simultaneously)*
 
 ---
 
@@ -236,16 +139,8 @@ Requires a **$\text{Shift} / \overline{\text{Load}}$** control line to select be
 * When $\text{Shift} / \overline{\text{Load}} = 1$: Data shifts right towards the serial output.
 * **Steering Logic per Stage**: $D_i = (\text{Shift} \cdot Q_{i+1}) + (\overline{\text{Shift}} \cdot X_i)$
 
-```mermaid
-graph LR
-    subgraph PISO ["PISO Stage Logic with 2:1 Steering MUX"]
-    X_in["Parallel Input X_i"] --> MUX["2:1 MUX"]
-    Q_prev["Previous Q_(i+1)"] --> MUX
-    SEL["Shift / Load' Control"] --> MUX
-    MUX --> D_ff["D Input of FF_i"]
-    D_ff --> Q_curr["Output Q_i"]
-    end
-```
+![4-Bit PISO Shift Register Circuit](circuits/circuit_m3_piso_register.png)
+*(Figure 3.8: 4-Bit Parallel-In Serial-Out (PISO) Shift Register with 2:1 multiplexers steered by $\text{Shift}/\overline{\text{Load}}$ control line)*
 
 ---
 
@@ -253,39 +148,15 @@ graph LR
 Highest throughput: Loads all bits in parallel on 1 clock pulse, and reads them all in parallel on 1 clock pulse.
 * **Total clock pulses**: **1 pulse**!
 
-```mermaid
-graph LR
-    subgraph PIPO ["4-Bit PIPO Shift Register"]
-    P3["Parallel In X3"] --> FF3["FF3"] --> Q3["Parallel Out Q3"]
-    P2["Parallel In X2"] --> FF2["FF2"] --> Q2["Parallel Out Q2"]
-    P1["Parallel In X1"] --> FF1["FF1"] --> Q1["Parallel Out Q1"]
-    P0["Parallel In X0"] --> FF0["FF0"] --> Q0["Parallel Out Q0"]
-    
-    CLK["Common Clock Pulse"] --> FF3
-    CLK --> FF2
-    CLK --> FF1
-    CLK --> FF0
-    end
-```
+![4-Bit PIPO Shift Register Circuit](circuits/circuit_m3_pipo_register.png)
+*(Figure 3.9: 4-Bit Parallel-In Parallel-Out (PIPO) Register — Instant 1-clock load ($N=1$) and 0-clock parallel read for maximum data throughput)*
 
 ---
 
 #### E. Ring Counter vs. Johnson Counter Feedback Loops
 
-```mermaid
-graph LR
-    subgraph Ring ["4-Bit Ring Counter (N = 4 Unique States)"]
-    direction LR
-    R3["FF3"] --> R2["FF2"] --> R1["FF1"] --> R0["FF0"]
-    R0 -->|"Direct Normal Feedback (Q0)"| R3
-    end
-
-    subgraph Johnson ["4-Bit Johnson Counter (2N = 8 Unique States)"]
-    direction LR
-    J3["FF3"] --> J2["FF2"] --> J1["FF1"] --> J0["FF0"]
-    J0 -->|"Inverted Feedback (Q0')"| J3
-    end
-```
+![Ring Counter vs Johnson Counter Feedback Topologies](circuits/circuit_m3_ring_johnson_counters.png)
+*(Figure 3.10: Shift Register Counter Topologies — 4-bit Ring Counter ($Q_0 \to D_3$, $\text{MOD}=N=4$) vs 4-bit Johnson Twisted-Ring Counter ($\overline{Q_0} \to D_3$, $\text{MOD}=2N=8$))*
 
 * **Ring Counter**:
   * Modulus: $\text{MOD} = N = 4$ states: $\text{1000} \to \text{0100} \to \text{0010} \to \text{0001} \to \text{1000}$.
@@ -307,23 +178,8 @@ The most versatile register architecture. It can hold data, shift right, shift l
 | **1** | **0** | **Shift Left** | $D_i = Q_{i-1}$ (Takes output from stage to the right; Stage 0 takes Serial In $SL$) |
 | **1** | **1** | **Parallel Load** | $D_i = I_i$ (Loads independent parallel inputs $I_3, I_2, I_1, I_0$) |
 
-```mermaid
-graph LR
-    subgraph USR_Stage ["Single Stage i of Universal Shift Register (IC 74LS194)"]
-    direction LR
-    S_LINES["Select Lines (S1, S0)"] --> MUX4["4:1 MUX"]
-    IN_HOLD["Q_i (Hold)"] --> MUX4
-    IN_R["Q_(i+1) (Shift Right)"] --> MUX4
-    IN_L["Q_(i-1) (Shift Left)"] --> MUX4
-    IN_PAR["I_i (Parallel Load)"] --> MUX4
-    
-    MUX4 -->|"Selected Output"| D_IN["D Input of FF_i"]
-    D_IN --> FF_STAGE["D Flip-Flop i"]
-    CLK_LINE["Common Clock Pulse"] --> FF_STAGE
-    FF_STAGE --> Q_OUT["Output Q_i"]
-    Q_OUT -.->|"Feedback"| IN_HOLD
-    end
-```
+![Universal Shift Register IC 74LS194 Single Stage](circuits/circuit_m3_usr_stage.png)
+*(Figure 3.11: Single stage $i$ of 4-Bit Universal Shift Register (IC 74LS194) steered by 4:1 multiplexer with mode lines $S_1, S_0$ for Hold, Shift Right, Shift Left, and Parallel Load)*
 
 ---
 
@@ -473,26 +329,11 @@ A positive edge-triggered T flip-flop consists of a steering pulse stage followe
 * Cross-couple outputs $Q$ and $Q'$ back to input NAND gates.
 * When $T=1$, the clock pulse passes through the input gate connected to the opposite state, causing the output to toggle on every rising edge ($\uparrow$).
 
-```mermaid
-graph LR
-    subgraph T_NAND ["Edge-Triggered T Flip-Flop using NAND Gates Only"]
-    T_SIG["Input T"] --> NAND1["NAND 1"]
-    T_SIG --> NAND2["NAND 2"]
-    CLK_SIG["CLK (Positive Edge)"] --> NAND1
-    CLK_SIG --> NAND2
-    
-    Q_OUT["Q"] -.->|"Feedback Q"| NAND2
-    QBAR_OUT["Q'"] -.->|"Feedback Q'"| NAND1
-    
-    NAND1 --> LATCH_NAND1["NAND 3 (Latch)"]
-    NAND2 --> LATCH_NAND2["NAND 4 (Latch)"]
-    
-    LATCH_NAND1 --> Q_OUT
-    LATCH_NAND2 --> QBAR_OUT
-    Q_OUT --> LATCH_NAND2
-    QBAR_OUT --> LATCH_NAND1
-    end
-```
+![Positive Edge-Triggered T Flip-Flop NAND Logic](circuits/circuit_a4_q2_nand_t_ff.png)
+*(Figure 3.12: Positive Edge-Triggered T Flip-Flop implemented strictly with 2-input and 3-input NAND gates)*
+
+![T Flip-Flop 6-Clock Cycle Waveform Timing](circuits/circuit_a4_q2_waveform.png)
+*(Figure 3.13: Ideal timing diagram showing 6-clock-edge transition trace with initial state $Q_0 = 1$)*
 
 #### 2. 6-Clock Pulse Transition Trace (Initially $Q_0 = 1$):
 Assume $T = [1, 0, 1, 1, 0, 1]$ applied across 6 positive clock edges:
