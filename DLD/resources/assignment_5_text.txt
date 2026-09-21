@@ -1,0 +1,8 @@
+Assignment-5
+Design a Synchronous Up-counter using T flip-flops capable of counting prime numbers from 1 to 10. Show all steps, tables, equations, and diagrams.
+A toy robot is operated by an external button switch. On operating the switch at every state, it changes its state from standing, walking, tumbling and finally clapping.
+i)    Draw the state table and state diagram for this state machine and
+ii)    Implement using D flipflop and logic gates as required.
+A 4-bit Serial-In Serial-Out (SISO) shift register is initially loaded with Q3Q2Q1Q0=1100. The serial input sequence applied to the register at successive positive clock edges is: 1, 1, 0, 0, 1, 1. The register shifts from Q3 towards Q0, with the serial input entering Q3. Determine the contents of the register after each of the six clock pulses and hence find the value stored in the register after the 6th clock pulse.
+A 4-bit Ring Counter is driven by a clock signal of frequency 12 kHz. The counter is initially loaded with the state 1000. (i) How many distinct states will the counter generate? (ii) Determine the frequency of the waveform obtained at output Q3. (iii) If the clock frequency is increased to 20 kHz, what will be the new frequency of Q3?
+Design 1010 Mealy type sequence detector using T-flip-flops
