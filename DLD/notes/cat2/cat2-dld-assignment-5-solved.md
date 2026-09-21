@@ -130,6 +130,9 @@ Let us verify where the unused states $\{0, 1, 4, 6\}$ transition under these eq
 
 ### Step 6: Logic Circuit Schematic
 
+![Prime Counter T Flip-Flop Logic Circuit](circuits/circuit_a5_q1_prime_counter.png)
+*Vector format: [circuit_a5_q1_prime_counter.svg](circuits/circuit_a5_q1_prime_counter.svg)*
+
 ```text
        Clock -------------------+--------------------+--------------------+
                                 |                    |                    |
@@ -276,6 +279,9 @@ graph TD
 
 ### Step 5: Hardware Logic Implementation
 
+![Toy Robot State Machine D Flip-Flop Circuit](circuits/circuit_a5_q2_toy_robot_fsm.png)
+*Vector format: [circuit_a5_q2_toy_robot_fsm.svg](circuits/circuit_a5_q2_toy_robot_fsm.svg)*
+
 ```text
                 +-------------+
          X ---->|             |
@@ -345,6 +351,9 @@ The register shifts right from $Q_3$ towards $Q_0$, with serial input entering $
 At each positive clock edge:
 $$Q_0^+ = Q_1, \quad Q_1^+ = Q_2, \quad Q_2^+ = Q_3, \quad Q_3^+ = \text{Serial In}$$
 
+![4-Bit SISO Shift Register Circuit](circuits/circuit_a5_q3_siso_shift_register.png)
+*Vector format: [circuit_a5_q3_siso_shift_register.svg](circuits/circuit_a5_q3_siso_shift_register.svg)*
+
 ```mermaid
 graph LR
     SER_IN["Serial Input (D_in)"]
@@ -403,6 +412,9 @@ A 4-bit Ring Counter is driven by a clock signal of frequency $f_{\text{clk}} = 
 ---
 
 ### Theoretical Analysis:
+
+![4-Bit Ring Counter Frequency Division Circuit](circuits/circuit_a5_q4_ring_counter.png)
+*Vector format: [circuit_a5_q4_ring_counter.svg](circuits/circuit_a5_q4_ring_counter.svg)*
 
 ```mermaid
 graph LR
@@ -544,6 +556,9 @@ Let the state flip-flops be $A$ and $B$:
 ---
 
 ### Step 5: Logic Circuit Diagram Summary
+
+![1010 Mealy Sequence Detector Circuit](circuits/circuit_a5_q5_mealy_sequence_detector.png)
+*Vector format: [circuit_a5_q5_mealy_sequence_detector.svg](circuits/circuit_a5_q5_mealy_sequence_detector.svg)*
 
 ```text
        Clock -------------------+--------------------+

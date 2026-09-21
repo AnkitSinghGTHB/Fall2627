@@ -36,6 +36,11 @@ An SR flip-flop is initially in the **RESET state** ($Q_0 = 0$). The following i
 
 ---
 
+### Logic Gate Diagram: Clocked NAND SR Flip-Flop Circuit
+
+![Clocked SR Flip-Flop Circuit Schematic](circuits/circuit_a4_q1_sr_latch.png)
+*Vector format: [circuit_a4_q1_sr_latch.svg](circuits/circuit_a4_q1_sr_latch.svg)*
+
 ### (i) SR Flip-Flop Characteristic Table
 
 | $S$ | $R$ | $Q_n$ (Present State) | $Q_{n+1}$ (Next State) | Operating Mode / Description |
@@ -106,6 +111,9 @@ Draw the logic diagram of a positive edge-triggered T Flip-Flop using **NAND gat
 ---
 
 ### Logic Diagram: Positive Edge-Triggered T Flip-Flop (NAND-Only)
+
+![Positive Edge-Triggered T Flip-Flop NAND Schematic](circuits/circuit_a4_q2_nand_t_ff.png)
+*Vector format: [circuit_a4_q2_nand_t_ff.svg](circuits/circuit_a4_q2_nand_t_ff.svg)*
 
 A positive edge-triggered T flip-flop is realized using a **Master-Slave structure with negative feedback** ($Q$ tied to Master $K$, $\bar{Q}$ tied to Master $J$, with $J = K = T$):
 
@@ -244,6 +252,9 @@ From the schematic:
   * $F = A \oplus B$ (Output of XOR gate with inputs $A$ and $B$)
 
 #### Exact Circuit Logic Gate Schematic (Fig. 3.3.4):
+
+![Sequential Circuit Schematic Fig. 3.3.4](circuits/circuit_a4_q3_sequential_circuit.png)
+*Vector format: [circuit_a4_q3_sequential_circuit.svg](circuits/circuit_a4_q3_sequential_circuit.svg)*
 
 ```mermaid
 graph LR
@@ -458,6 +469,9 @@ Let the state bits be $Q_2, Q_1, Q_0$ (with $Q_2$ as MSB and $Q_0$ as LSB):
 
 ### Step 4: Logic Circuit Schematic Summary
 
+![3-Bit Synchronous Counter Logic Circuit](circuits/circuit_a4_q4_3bit_counter.png)
+*Vector format: [circuit_a4_q4_3bit_counter.svg](circuits/circuit_a4_q4_3bit_counter.svg)*
+
 ```text
        Clock ---------------------+-------------------+-------------------+
                                   |                   |                   |
@@ -545,6 +559,11 @@ Design an asynchronous (ripple) **Decade / Mod-10 counter** using **T flip-flops
 ---
 
 ### Step 3: Complete Circuit Logic Schematic
+
+### Logic Gate Diagram: Mod-10 Asynchronous Ripple Counter
+
+![Decade Asynchronous Ripple Counter Circuit](circuits/circuit_a4_q5_decade_ripple.png)
+*Vector format: [circuit_a4_q5_decade_ripple.svg](circuits/circuit_a4_q5_decade_ripple.svg)*
 
 ```text
  1 (Vcc) -----+--------------+--------------+--------------+
