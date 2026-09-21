@@ -38,6 +38,14 @@
 | "Min Stack in O(1) time" | **Two Stacks OR $2x - min$ Math** | $O(1)$ Ops, $O(1)$ Extra Space | Store $2x - min$ when new min is pushed |
 | "Implement Circular Queue" | **Modulo Circular Array** | $O(1)$ Ops, $O(N)$ Space | `front`, `rear`, `(rear + 1) % N == front` (full check) |
 | "Maximum in each sliding window of size k" | **Monotonic Deque (LC 239)** | $O(n)$ Time, $O(k)$ Space | Pop smaller from back, pop expired from front |
+| "Longest substring without repeating characters" | **Flexible Sliding Window (LC 3)** | $O(n)$ Time, $O(\min(m, n))$ Space | `left = Math.max(left, lastSeen[c] + 1); maxLen = Math.max(...)` |
+| "Smallest subarray with sum >= S" | **Dynamic Sliding Window (LC 209)** | $O(n)$ Time, $O(1)$ Space | Expand right; while `sum >= S`: `minLen = min(...)`, shrink left |
+| "Longest substring with at most K distinct characters" | **Flexible Frequency Window** | $O(n)$ Time, $O(K)$ Space | Expand right; while `distinct > K`: decrement `left`, shrink |
+| "Max consecutive 1s after flipping at most K zeros" | **Flexible Zero-Count Window (LC 1004)** | $O(n)$ Time, $O(1)$ Space | While `zeroCount > K`: if `nums[left] == 0` `zeroCount--`, `left++` |
+| "Reverse linked list in K-groups" | **K-Group Iterative Reversal (LC 25)** | $O(n)$ Time, $O(1)$ Space | Verify $K$ nodes exist; reverse $K$ links; connect `prevGroup.next` |
+| "Check if linked list is palindrome in O(1) space" | **Fast/Slow + In-Place Reversal** | $O(n)$ Time, $O(1)$ Space | Find middle with fast/slow; reverse 2nd half; compare halves |
+| "Intersection point of two linked lists (Y-shape)" | **Two-Pointer Head Swap Trick** | $O(A + B)$ Time, $O(1)$ Space | `pA = (pA == null) ? headB : pA.next` (meet at intersection) |
+| "Reorder linked list (L0 -> Ln -> L1 -> Ln-1)" | **Split + Reverse + Interleave** | $O(n)$ Time, $O(1)$ Space | Find mid, reverse 2nd half, alternately weave nodes |
 | "Josephus execution circle", $n$ people, step $k$ | **Josephus Recurrence** | $O(n)$ Time, $O(1)$ Space | $J(n, k) = (J(n-1, k) + k - 1) \pmod n + 1$ (1-indexed) |
 
 ---
@@ -358,6 +366,160 @@ public class LinkedListMaster {
 }
 ```
 
+#### 5.1 High-Yield Linked List Variations for CAT-2
+
+```java
+import java.util.*;
+
+public class LinkedListVariationsMaster {
+    public static class ListNode {
+        public int val;
+        public ListNode next;
+        public ListNode(int val) { this.val = val; }
+    }
+
+    // VARIATION A: Reverse Nodes in k-Group (LeetCode 25)
+    // Reverses nodes in chunks of k. Leaves remaining < k nodes untouched.
+    // Complexity: O(n) Time, O(1) Auxiliary Space
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || k <= 1) return head;
+
+        // Step 1: Check if there are at least k nodes remaining
+        ListNode curr = head;
+        int count = 0;
+        while (curr != null && count < k) {
+            curr = curr.next;
+            count++;
+        }
+        if (count < k) return head; // Base case: fewer than k nodes remain
+
+        // Step 2: Reverse first k nodes
+        ListNode prev = null;
+        curr = head;
+        for (int i = 0; i < k; i++) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // Step 3: head is now the tail of this reversed group; connect to next group
+        head.next = reverseKGroup(curr, k);
+        return prev; // prev is the new head of this reversed k-group
+    }
+
+    // VARIATION B: Check If Linked List is a Palindrome in O(1) Space
+    // Complexity: O(n) Time, O(1) Space
+    public static boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) return true;
+
+        // Step 1: Find middle using Slow and Fast pointers
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 2: Reverse second half starting from slow.next
+        ListNode secondHalfHead = reverseList(slow.next);
+
+        // Step 3: Compare first half and reversed second half
+        ListNode p1 = head, p2 = secondHalfHead;
+        boolean palindrome = true;
+        while (p2 != null) {
+            if (p1.val != p2.val) {
+                palindrome = false;
+                break;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+
+        // Step 4: Restore original list structure
+        slow.next = reverseList(secondHalfHead);
+        return palindrome;
+    }
+
+    private static ListNode reverseList(ListNode node) {
+        ListNode prev = null, curr = node;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    // VARIATION C: Intersection Point of Two Linked Lists (Y-Shaped List)
+    // Elegant Two-Pointer Trick: Pointer A traverses A then B; Pointer B traverses B then A.
+    // Both travel exactly Length(A) + Length(B) steps, meeting at intersection or null!
+    // Complexity: O(m + n) Time, O(1) Space
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        ListNode pA = headA, pB = headB;
+
+        while (pA != pB) {
+            pA = (pA == null) ? headB : pA.next;
+            pB = (pB == null) ? headA : pB.next;
+        }
+        return pA; // Either points to intersection node or null (no intersection)
+    }
+
+    // VARIATION D: Reorder List (Fold List: L0 -> Ln -> L1 -> Ln-1 -> L2 ...)
+    // Complexity: O(n) Time, O(1) Space
+    public static void reorderList(ListNode head) {
+        if (head == null || head.next == null) return;
+
+        // 1. Split list into two halves
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode second = slow.next;
+        slow.next = null; // Sever connection
+
+        // 2. Reverse second half
+        second = reverseList(second);
+
+        // 3. Merge alternately
+        ListNode first = head;
+        while (second != null) {
+            ListNode temp1 = first.next;
+            ListNode temp2 = second.next;
+            first.next = second;
+            second.next = temp1;
+            first = temp1;
+            second = temp2;
+        }
+    }
+
+    // VARIATION E: Merge K Sorted Linked Lists
+    // Complexity: O(N log k) Time where N is total nodes, O(k) Space for Min-Heap
+    public static ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
+
+        for (ListNode node : lists) {
+            if (node != null) pq.offer(node);
+        }
+
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (!pq.isEmpty()) {
+            ListNode smallest = pq.poll();
+            tail.next = smallest;
+            tail = tail.next;
+            if (smallest.next != null) {
+                pq.offer(smallest.next);
+            }
+        }
+        return dummy.next;
+    }
+}
+```
+
 ---
 
 ### 6. Stack Problems Suite (`Stack_Problems.pptx`)
@@ -524,6 +686,129 @@ public class QueueAndSlidingWindow {
             if (i >= k - 1) res[ri++] = nums[dq.peekFirst()];
         }
         return res;
+    }
+}
+```
+
+#### 7.1 High-Yield Flexible (Variable-Size) Sliding Window Suite for CAT-2
+
+> **Fixed vs. Flexible Window**: While fixed sliding window (like LC 239) has a constant size $K$, **Flexible Sliding Window** expands dynamically with a `right` pointer and conditionally shrinks with a `left` pointer to find the longest/shortest subarray satisfying a constraint.
+
+```java
+import java.util.*;
+
+public class FlexibleSlidingWindowMaster {
+
+    // ARCHETYPE 1: Longest Substring Without Repeating Characters (LeetCode 3)
+    // Dynamic window: expand right; if duplicate seen, jump left past its previous position.
+    // Complexity: O(n) Time, O(1) Space (ASCII 128 array)
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) return 0;
+        int[] lastSeen = new int[128];
+        Arrays.fill(lastSeen, -1);
+
+        int maxLen = 0;
+        int left = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+            char c = s.charAt(right);
+            if (lastSeen[c] >= left) {
+                // Duplicate found within current window: jump left past previous occurrence
+                left = lastSeen[c] + 1;
+            }
+            lastSeen[c] = right;
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+
+    // ARCHETYPE 2: Minimum Size Subarray Sum >= S (LeetCode 209)
+    // Dynamic window: expand right until sum >= target, then shrink left to find MINIMUM length.
+    // Complexity: O(n) Time, O(1) Space
+    public static int minSubArrayLen(int target, int[] nums) {
+        int n = nums.length;
+        int minLen = Integer.MAX_VALUE;
+        int currentSum = 0;
+        int left = 0;
+
+        for (int right = 0; right < n; right++) {
+            currentSum += nums[right];
+
+            // Contract window as much as possible while sum >= target
+            while (currentSum >= target) {
+                minLen = Math.min(minLen, right - left + 1);
+                currentSum -= nums[left++];
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+    }
+
+    // ARCHETYPE 3: Longest Substring with At Most K Distinct Characters
+    // Dynamic window: expand right, tracking character frequency counts.
+    // Shrink left whenever unique character count exceeds K.
+    // Complexity: O(n) Time, O(K) Auxiliary Map Space
+    public static int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if (s == null || s.length() == 0 || k <= 0) return 0;
+        Map<Character, Integer> freq = new HashMap<>();
+        int maxLen = 0;
+        int left = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+            char in = s.charAt(right);
+            freq.put(in, freq.getOrDefault(in, 0) + 1);
+
+            // Constraint violated: more than K distinct characters in window
+            while (freq.size() > k) {
+                char out = s.charAt(left);
+                freq.put(out, freq.get(out) - 1);
+                if (freq.get(out) == 0) {
+                    freq.remove(out);
+                }
+                left++;
+            }
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+
+    // ARCHETYPE 4: Max Consecutive Ones III / At Most K Zero Flips (LeetCode 1004)
+    // Dynamic window: expand right; count zeroes; shrink left if zero count > K.
+    // Complexity: O(n) Time, O(1) Space
+    public static int longestOnes(int[] nums, int k) {
+        int left = 0;
+        int maxLen = 0;
+        int zeroCount = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] == 0) zeroCount++;
+
+            // Shrink window from left until zeroes <= k
+            while (zeroCount > k) {
+                if (nums[left] == 0) zeroCount--;
+                left++;
+            }
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+        return maxLen;
+    }
+
+    // ARCHETYPE 5: Count Subarrays with Product Less Than K (LeetCode 713)
+    // Key Insight: Every valid window [left, right] contributes exactly (right - left + 1) subarrays!
+    // Complexity: O(n) Time, O(1) Space
+    public static int numSubarrayProductLessThanK(int[] nums, int k) {
+        if (k <= 1) return 0;
+        int product = 1;
+        int count = 0;
+        int left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            product *= nums[right];
+            while (product >= k && left <= right) {
+                product /= nums[left++];
+            }
+            count += (right - left + 1);
+        }
+        return count;
     }
 }
 ```

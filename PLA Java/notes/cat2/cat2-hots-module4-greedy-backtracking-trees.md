@@ -44,10 +44,17 @@ Data compression algorithm assigning shorter bit codes to frequent characters.
 | If the Exam Question Asks... | Use This Exact Topic & Method | Time & Space Complexity | Key Formula / Code Logic |
 | :--- | :--- | :--- | :--- |
 | "Count paths from top-left to bottom-right (Maneuvering)" | **Combinatorics / 2D DP** | $O(\min(m, n))$ Math / $O(m \cdot n)$ DP | $\binom{m+n-2}{m-1}$ or `dp[i][j] = dp[i-1][j] + dp[i][j-1]` |
+| "Maneuvering with obstacles / blocked cells" | **Obstacle Grid 1D DP** | $O(m \cdot n)$ Time, $O(n)$ Space | If cell is obstacle, `dp[j] = 0`; else `dp[j] += dp[j-1]` |
+| "Maneuvering with diagonal moves allowed" | **Delannoy Recurrence / DP** | $O(m \cdot n)$ Time, $O(n)$ Space | $Paths(m, n) = Paths(m-1, n) + Paths(m, n-1) + Paths(m-1, n-1)$ |
+| "Print all maneuvering path strings (D, R)" | **DFS Path Backtracking** | $O(\binom{m+n-2}{m-1})$ Time, $O(m+n)$ Space | Recurse with `path + "D"` and `path + "R"`, collect on exit |
+| "Minimum / Maximum path sum in grid" | **Grid Dynamic Programming** | $O(m \cdot n)$ Time, $O(n)$ Space | `dp[j] = grid[i][j] + min(dp[j], dp[j-1])` |
 | "Place N non-attacking queens" | **Backtracking / Bitmasking** | $O(N!)$ Time, $O(N)$ Space | `available = fullMask & ~(cols \| d1 \| d2)` |
 | "Queens on a broken board (obstacles)" | **Bitmask with Broken Mask** | $O(N \cdot 2^N)$ Time, $O(N)$ Space | `available = fullMask & ~(cols \| d1 \| d2 \| brokenMask[r])` |
+| "Super-Queens / Maharaja (Queen + Knight moves)" | **Dual Attack Vector Backtracking** | $O(N!)$ Time, $O(N)$ Space | Queen attack check + 8 knight jump attack checks |
 | "Select maximum activities without overlap" | **Activity Selection (Greedy)** | $O(n \log n)$ Time, $O(1)$ Space | Sort by `finish` time; pick if `start >= lastFinish` |
 | "Construct Huffman codes / prefix tree" | **Huffman Greedy PriorityQueue** | $O(n \log n)$ Time, $O(n)$ Space | Poll two smallest, combine frequencies, re-insert |
+| "Decode / Decompress Huffman bitstream" | **Prefix Tree Traversal** | $O(\text{Bits})$ Time, $O(1)$ Extra Space | Walk left on `'0'`, right on `'1'`; on leaf, append char |
+| "Minimum cost to connect all ropes / merge files" | **Greedy Min-Heap (Huffman Cost)** | $O(n \log n)$ Time, $O(n)$ Space | Total Cost $= \sum \text{all internal node values}$ |
 | "Distinct sorted permutations (with duplicates)" | **Backtracking with Set Pruning** | $O(n \cdot n!)$ Time, $O(n)$ Space | Sort string first; use `Set<Character>` at each level |
 | "Compute combinations nCr" | **Factorial / Multiplicative Formula** | $O(r)$ Time, $O(1)$ Space | $\binom{n}{r} = \frac{n \times (n-1) \dots (n-r+1)}{r \times (r-1) \dots 1}$ |
 | "Find path in maze (Rat in a Maze)" | **Matrix Backtracking** | $O(2^{N^2})$ Time, $O(N^2)$ Space | Move (D, R); mark visited, backtrack on dead end |
@@ -98,6 +105,105 @@ public class ManeuveringCave {
     public static void main(String[] args) {
         System.out.println("Paths for 3x3: " + numberOfPathsRecursive(3, 3)); // Output: 6
         System.out.println("Paths for 3x3 (Math): " + numberOfPathsMath(3, 3)); // Output: 6
+    }
+}
+```
+
+#### 1.1 High-Yield Maneuvering Variations for CAT-2
+
+```java
+import java.util.*;
+
+public class ManeuveringVariationsMaster {
+
+    // VARIATION A: Maneuvering with Obstacles / Blocked Cells (Unique Paths II)
+    // Constraint: 1 represents an obstacle, 0 represents free passage.
+    // Complexity: O(m * n) Time, O(n) Space (Optimized 1D DP)
+    public static int numberOfPathsWithObstacles(int[][] obstacleGrid) {
+        if (obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0][0] == 1) {
+            return 0;
+        }
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[] dp = new int[n];
+        dp[0] = 1;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    dp[j] = 0; // Impassable cell: zero incoming paths
+                } else if (j > 0) {
+                    dp[j] += dp[j - 1]; // Paths from top (dp[j]) + paths from left (dp[j-1])
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+
+    // VARIATION B: Maneuvering with Diagonal Moves Allowed (Delannoy Numbers)
+    // Allowed Moves: Down (+1, 0), Right (0, +1), Diagonal (+1, +1)
+    // Recurrence: D(m, n) = D(m-1, n) + D(m, n-1) + D(m-1, n-1)
+    // Complexity: O(m * n) Time, O(n) Space
+    public static int numberOfPathsWithDiagonal(int m, int n) {
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+
+        for (int i = 1; i < m; i++) {
+            int prevDiagonal = 1; // Holds dp[i-1][j-1]
+            for (int j = 1; j < n; j++) {
+                int temp = dp[j];
+                dp[j] = dp[j] + dp[j - 1] + prevDiagonal;
+                prevDiagonal = temp; // Save for next column
+            }
+        }
+        return dp[n - 1];
+    }
+
+    // VARIATION C: Path Reconstruction (Print All Direction Strings 'D' and 'R')
+    // Complexity: O(C(m+n-2, m-1)) Time, O(m + n) Auxiliary Call Stack
+    public static List<String> getAllManeuveringPaths(int m, int n) {
+        List<String> result = new ArrayList<>();
+        backtrackPaths(0, 0, m, n, new StringBuilder(), result);
+        return result;
+    }
+
+    private static void backtrackPaths(int r, int c, int m, int n, StringBuilder path, List<String> result) {
+        if (r == m - 1 && c == n - 1) {
+            result.add(path.toString());
+            return;
+        }
+        // Try Down move
+        if (r + 1 < m) {
+            path.append('D');
+            backtrackPaths(r + 1, c, m, n, path, result);
+            path.deleteCharAt(path.length() - 1); // Backtrack
+        }
+        // Try Right move
+        if (c + 1 < n) {
+            path.append('R');
+            backtrackPaths(r, c + 1, m, n, path, result);
+            path.deleteCharAt(path.length() - 1); // Backtrack
+        }
+    }
+
+    // VARIATION D: Minimum Path Sum in Grid
+    // Cost to move through grid[i][j]: find path minimizing total accumulated weight.
+    // Recurrence: cost[i][j] = grid[i][j] + min(cost[i-1][j], cost[i][j-1])
+    public static int minPathSum(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n];
+
+        dp[0] = grid[0][0];
+        for (int j = 1; j < n; j++) dp[j] = dp[j - 1] + grid[0][j];
+
+        for (int i = 1; i < m; i++) {
+            dp[0] += grid[i][0];
+            for (int j = 1; j < n; j++) {
+                dp[j] = grid[i][j] + Math.min(dp[j], dp[j - 1]);
+            }
+        }
+        return dp[n - 1];
     }
 }
 ```
@@ -164,6 +270,127 @@ public class NQueensSolver {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) System.out.print(board[i][j] + " ");
             System.out.println();
+        }
+    }
+}
+```
+
+#### 2.1 High-Yield N-Queens Variations for CAT-2
+
+```java
+import java.util.*;
+
+public class NQueensVariationsMaster {
+
+    // VARIATION A: N-Queens on Broken Board (Obstacles / Forbidden Cells - FacePrep IA Q2)
+    // blockedMask[r] has bit c set if (r, c) is a broken/forbidden square.
+    // Complexity: O(N * 2^N) with bitmask pruning
+    public static int solveNQueensBrokenBoard(int n, int[] blockedMask) {
+        int fullMask = (1 << n) - 1;
+        return countBrokenPlacements(0, 0, 0, 0, n, fullMask, blockedMask);
+    }
+
+    private static int countBrokenPlacements(int row, int cols, int d1, int d2, int n, int fullMask, int[] blockedMask) {
+        if (row == n) return 1;
+        // Available positions: not attacked by cols/d1/d2 AND not on a broken square
+        int available = fullMask & ~(cols | d1 | d2 | blockedMask[row]);
+        int count = 0;
+        while (available != 0) {
+            int p = available & -available; // Lowest set bit
+            available &= available - 1;
+            count += countBrokenPlacements(row + 1, cols | p, (d1 | p) >> 1, (d2 | p) << 1, n, fullMask, blockedMask);
+        }
+        return count;
+    }
+
+    // VARIATION B: Super-Queens / Maharaja (Queen + Knight Combined Attack Vectors)
+    // A piece attacks as BOTH a standard Queen (row, col, diagonals) AND a Knight (8 L-shapes).
+    public static int countSuperQueens(int n) {
+        int[] queenCols = new int[n]; // queenCols[r] = c
+        return solveSuperQueens(0, n, queenCols);
+    }
+
+    private static int solveSuperQueens(int row, int n, int[] queenCols) {
+        if (row == n) return 1;
+        int count = 0;
+        for (int col = 0; col < n; col++) {
+            if (isSafeSuperQueen(row, col, queenCols)) {
+                queenCols[row] = col;
+                count += solveSuperQueens(row + 1, n, queenCols);
+            }
+        }
+        return count;
+    }
+
+    private static boolean isSafeSuperQueen(int row, int col, int[] queenCols) {
+        for (int r = 0; r < row; r++) {
+            int c = queenCols[r];
+            // 1. Standard Queen Attack Check (Column & Diagonals)
+            if (c == col || Math.abs(r - row) == Math.abs(c - col)) return false;
+            // 2. Knight Jump Attack Check: (|dr| == 1 && |dc| == 2) || (|dr| == 2 && |dc| == 1)
+            int dr = Math.abs(r - row);
+            int dc = Math.abs(c - col);
+            if ((dr == 1 && dc == 2) || (dr == 2 && dc == 1)) return false;
+        }
+        return true;
+    }
+
+    // VARIATION C: Return All Board String Configurations (LeetCode 51 Format)
+    public static List<List<String>> solveNQueensAllBoards(int n) {
+        List<List<String>> solutions = new ArrayList<>();
+        char[][] board = new char[n][n];
+        for (char[] row : board) Arrays.fill(row, '.');
+        dfsBoards(0, n, 0, 0, 0, board, solutions);
+        return solutions;
+    }
+
+    private static void dfsBoards(int row, int n, int cols, int d1, int d2, char[][] board, List<List<String>> res) {
+        if (row == n) {
+            List<String> current = new ArrayList<>();
+            for (char[] r : board) current.add(new String(r));
+            res.add(current);
+            return;
+        }
+        int fullMask = (1 << n) - 1;
+        int available = fullMask & ~(cols | d1 | d2);
+        while (available != 0) {
+            int p = available & -available;
+            int col = Integer.numberOfTrailingZeros(p);
+            available &= available - 1;
+
+            board[row][col] = 'Q';
+            dfsBoards(row + 1, n, cols | p, (d1 | p) >> 1, (d2 | p) << 1, board, res);
+            board[row][col] = '.'; // Backtrack
+        }
+    }
+
+    // VARIATION D: Maximum Weighted N-Queens Placement
+    // Given score matrix points[n][n], place N non-attacking queens to maximize total score.
+    public static int maxWeightedNQueens(int[][] points, int n) {
+        int[] maxScore = new int[]{Integer.MIN_VALUE};
+        int[] queenCols = new int[n];
+        findMaxWeighted(0, n, queenCols, 0, points, maxScore);
+        return maxScore[0] == Integer.MIN_VALUE ? 0 : maxScore[0];
+    }
+
+    private static void findMaxWeighted(int row, int n, int[] queenCols, int currentScore, int[][] points, int[] maxScore) {
+        if (row == n) {
+            maxScore[0] = Math.max(maxScore[0], currentScore);
+            return;
+        }
+        for (int col = 0; col < n; col++) {
+            boolean safe = true;
+            for (int r = 0; r < row; r++) {
+                int c = queenCols[r];
+                if (c == col || Math.abs(r - row) == Math.abs(c - col)) {
+                    safe = false;
+                    break;
+                }
+            }
+            if (safe) {
+                queenCols[row] = col;
+                findMaxWeighted(row + 1, n, queenCols, currentScore + points[row][col], points, maxScore);
+            }
         }
     }
 }
@@ -301,6 +528,93 @@ public class HuffmanCodingMaster {
     }
 }
 ```
+
+#### 4.1 High-Yield Huffman Variations for CAT-2
+
+```java
+import java.util.*;
+
+public class HuffmanVariationsMaster {
+
+    // VARIATION A: Huffman Decoding / Bitstream Decompression
+    // Given the root of the Huffman Tree and a binary bitstream string (e.g., "110011110"),
+    // reconstruct the original uncompressed message string.
+    // Complexity: O(Bits) Time, O(1) Auxiliary Memory
+    public static String decodeHuffmanStream(HuffmanCodingMaster.HuffmanNode root, String binaryStream) {
+        if (root == null || binaryStream == null || binaryStream.length() == 0) return "";
+        StringBuilder decoded = new StringBuilder();
+        HuffmanCodingMaster.HuffmanNode curr = root;
+
+        for (int i = 0; i < binaryStream.length(); i++) {
+            char bit = binaryStream.charAt(i);
+            curr = (bit == '0') ? curr.left : curr.right;
+
+            // Check if current node is a leaf (contains original character)
+            if (curr.left == null && curr.right == null) {
+                decoded.append(curr.data);
+                curr = root; // Reset traversal to root for next character
+            }
+        }
+        return decoded.toString();
+    }
+
+    // VARIATION B: Minimum Cost to Connect Ropes / Merge Files (Greedy Internal Node Sum)
+    // Connecting two ropes of length A and B costs (A + B).
+    // Theorem: Minimum total cost equals the sum of all non-leaf (internal) nodes in Huffman tree!
+    // Complexity: O(n log n) Time, O(n) Space
+    public static long minCostToConnectRopes(int[] ropeLengths) {
+        if (ropeLengths == null || ropeLengths.length <= 1) return 0;
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        for (int len : ropeLengths) pq.offer((long) len);
+
+        long totalMergeCost = 0;
+        while (pq.size() > 1) {
+            long first = pq.poll();
+            long second = pq.poll();
+            long mergedCost = first + second;
+            totalMergeCost += mergedCost;
+            pq.offer(mergedCost); // Re-insert internal node
+        }
+        return totalMergeCost;
+    }
+
+    // VARIATION C: Ternary Huffman Coding (K = 3 Children per Internal Node)
+    // Critical Exam Condition: A full K-ary tree requires (N - 1) % (K - 1) == 0.
+    // If (N - 1) % (K - 1) != 0, we must append dummy symbols with frequency 0!
+    public static long minCostTernaryHuffman(int[] frequencies) {
+        int n = frequencies.length;
+        int K = 3;
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        for (int f : frequencies) pq.offer((long) f);
+
+        // Add dummy nodes with frequency 0 until (size - 1) % (K - 1) == 0
+        while ((pq.size() - 1) % (K - 1) != 0) {
+            pq.offer(0L);
+        }
+
+        long totalCost = 0;
+        while (pq.size() > 1) {
+            long groupSum = 0;
+            for (int i = 0; i < K && !pq.isEmpty(); i++) {
+                groupSum += pq.poll();
+            }
+            totalCost += groupSum;
+            pq.offer(groupSum);
+        }
+        return totalCost;
+    }
+}
+```
+
+##### 📊 Master Huffman Compression & Bandwidth Formula Reference
+* **Average Bit Length per Symbol**:
+  $$L_{\text{avg}} = \frac{\sum_{i=1}^n f_i \cdot L_i}{\sum_{i=1}^n f_i} \quad \text{(bits/symbol)}$$
+* **Standard Fixed-Length Encoding Comparison**:
+  $$\text{Bits}_{\text{fixed}} = \lceil \log_2(\text{Unique Symbols}) \rceil$$
+* **Exact Bandwidth Percentage Saved**:
+  $$\text{Bandwidth Saved} = \frac{\text{Fixed Bits} - \text{Huffman Bits}}{\text{Fixed Bits}} \times 100\%$$
+* **Theoretical Minimum Limit (Shannon Entropy)**:
+  $$H(X) = -\sum_{i=1}^n P_i \log_2(P_i) \le L_{\text{avg}} < H(X) + 1$$
 
 ---
 

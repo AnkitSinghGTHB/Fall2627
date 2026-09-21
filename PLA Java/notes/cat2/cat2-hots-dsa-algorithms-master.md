@@ -19,6 +19,48 @@
 
 ---
 
+## 🎯 Faculty Exam Focus Alert: The 5 High-Yield Variations for CAT-2
+*Per direct faculty guidance, these 5 specific variation suites are prioritized for the exam:*
+
+1. **Variations of Maneuvering (Cave Grid Paths)**:
+   - 📄 [Maneuvering Variations Master](./cat2-hots-module4-greedy-backtracking-trees.md#11-high-yield-maneuvering-variations-for-cat-2)
+   - **Variation A (Obstacles)**: Obstacle grid 1D DP (`dp[j] = 0` if blocked, else `dp[j] += dp[j-1]`).
+   - **Variation B (Diagonal Moves)**: Delannoy numbers recurrence: $D(m, n) = D(m-1, n) + D(m, n-1) + D(m-1, n-1)$.
+   - **Variation C (Path String Printing)**: Backtracking DFS generating strings like `"DDRR"`, `"RDRD"`.
+   - **Variation D (Minimum Path Sum)**: Cost accumulation $dp[j] = grid[i][j] + \min(dp[j], dp[j-1])$.
+
+2. **Flexible (Variable-Size) Sliding Window**:
+   - 📄 [Flexible Sliding Window Master](./cat2-hots-module3-linear-dsa-sliding-window.md#71-high-yield-flexible-variable-size-sliding-window-suite-for-cat-2)
+   - **Archetype 1 (No Duplicates - LC 3)**: `left = Math.max(left, lastSeen[c] + 1); maxLen = Math.max(...)`.
+   - **Archetype 2 (Min Size Subarray Sum $\ge S$ - LC 209)**: Expand right; shrink left while `sum >= S`, update `minLen`.
+   - **Archetype 3 (At Most $K$ Distinct Characters)**: Expand right; shrink left while `freq.size() > K`.
+   - **Archetype 4 (At Most $K$ Zeros Flipped - LC 1004)**: Expand right; shrink left while `zeroCount > K`.
+   - **Archetype 5 (Product $< K$ - LC 713)**: Add `(right - left + 1)` valid subarrays per window.
+
+3. **N-Queens Variations**:
+   - 📄 [N-Queens Variations Master](./cat2-hots-module4-greedy-backtracking-trees.md#21-high-yield-n-queens-variations-for-cat-2)
+   - **Variation A (Broken Board / Obstacles)**: `available = fullMask & ~(cols | d1 | d2 | blockedMask[r])`.
+   - **Variation B (Super-Queens / Maharaja)**: Combined Queen (row, col, diag) + Knight (8 L-shaped jumps) attacks.
+   - **Variation C (All Board String Configurations)**: Generates `List<List<String>>` with `.` and `Q`.
+   - **Variation D (Weighted N-Queens)**: Backtracking maximizing total cell score $\sum points[r][col]$.
+
+4. **Linked List Variations**:
+   - 📄 [Linked List Variations Master](./cat2-hots-module3-linear-dsa-sliding-window.md#51-high-yield-linked-list-variations-for-cat-2)
+   - **Variation A (Reverse in $K$-Groups - LC 25)**: Verify $K$ nodes $\to$ reverse $K$ links $\to$ recursively chain next group.
+   - **Variation B (Palindrome Linked List in $O(1)$ Space)**: Slow/fast middle $\to$ reverse second half $\to$ compare values.
+   - **Variation C (Intersection Point - Y Shape)**: Two pointers swap heads on null; both travel $L_A + L_B$ steps to meet.
+   - **Variation D (Reorder List - Fold $L_0 \to L_n \to L_1 \dots$)**: Split middle $\to$ reverse second half $\to$ interleave merge.
+   - **Variation E (Merge $K$ Sorted Lists)**: Min-heap `PriorityQueue<ListNode>` in $O(N \log K)$ time.
+
+5. **Huffman Coding Variations**:
+   - 📄 [Huffman Variations Master](./cat2-hots-module4-greedy-backtracking-trees.md#41-high-yield-huffman-variations-for-cat-2)
+   - **Variation A (Bitstream Decoding / Decompression)**: Walk left on `'0'`, right on `'1'`; on leaf, append character.
+   - **Variation B (Minimum Cost to Connect Ropes / Merge Files)**: Total Cost $= \sum \text{all internal node values}$.
+   - **Variation C (Ternary / $K$-ary Huffman)**: Merge $K=3$ nodes; pad with dummy 0-frequency nodes until $(N-1) \pmod{K-1} == 0$.
+   - **Variation D (Master Formula Sheet)**: Average length $L_{\text{avg}}$, Fixed bits $\lceil \log_2 N \rceil$, Bandwidth saved $\%$, Shannon entropy $H(X)$.
+
+---
+
 ## 🧭 Master Topic Navigation Table (All 18 Topics)
 
 | # | Topic | Primary Note File | Source PPT | Key Formula / Core Logic |
