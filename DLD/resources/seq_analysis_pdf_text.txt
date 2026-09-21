@@ -1,0 +1,6 @@
+Total pages: 68
+=== Page 1 ===
+Analysis and Design Procedure of Sequential 
+Machines -State Diagram, State Reduction & State 
+Assignment
+

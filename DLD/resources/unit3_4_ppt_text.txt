@@ -1,0 +1,383 @@
+=== Slide 1 ===
+Unit – 3 and 4
+SEQUENTIAL CIRCUITS
+
+=== Slide 2 ===
+Syllabus
+UNIT IV SEQUENTIAL CIRCUITS
+Introduction to Sequential circuits – Flip flops – SR, JK,
+D and T flip flops, Master Slave flip flop, Characteristic
+and excitation table – Realization of one flip flop with
+other flip flops – Registers – Shift registers – Counters –
+Synchronous and Asynchronous counters – Modulus
+counters – Ring Counter – Johnson Counter – State
+diagram, State table, State minimization – Hazards
+
+=== Slide 3 ===
+Sequential Circuits
+The outputs of sequential circuit depends not only on the combination of
+present inputs but also on the previous outputs.
+
+=== Slide 4 ===
+Types of Sequential Circuits
+• Asynchronous sequential circuits : In
+asynchronous sequential circuits change in
+input signals can affect memory element at
+any instant of time.
+• Synchronous sequential circuits : In
+Synchronous sequential circuits, signals can
+affect the memory elements only at discrete
+instants of time.
+
+=== Slide 5 ===
+The Comparison Between Combinational and Sequential Circuits
+
+=== Slide 6 ===
+Classification of Logic Circuits
+
+=== Slide 7 ===
+Comparison Between Synchronous 
+and Asynchronous Sequential Circuits
+
+=== Slide 8 ===
+Clock Signal
+• A clock signal is a particular type of signal that
+oscillates between a high and a low state. It is
+produced by clock generator.
+Types of Triggering
+• Level triggering
+• Edge triggering
+
+=== Slide 9 ===
+Level triggering
+• Positive level triggering- If the sequential circuit is
+operated with the clock signal when it is in Logic High, then
+that type of triggering is known as Positive level triggering
+• Negative level triggering- If the sequential circuit is 
+operated with the clock signal when it is in Logic Low, then 
+that type of triggering is known as Negative level triggering.
+
+=== Slide 10 ===
+Edge triggering
+• Positive edge triggering - If the sequential circuit is 
+operated with the clock signal that is transitioning from Logic 
+Low to Logic High, then this is known as Positive edge 
+triggering
+• Negative edge triggering - If the sequential circuit is 
+operated with the clock signal that is transitioning from Logic 
+High to Logic Low, then this is known as Negative edge 
+triggering
+
+=== Slide 11 ===
+LATCHESand FLIP FLOPS
+• A flip-flop or latch is a circuit that has two stable states and
+can be used to store one bit either 0 or 1.
+• The main difference between latches and flip-flops is that,
+latches operate with enable signal, which is level sensitive
+whereas, flip-flops are edge sensitive.
+Types of latchs/flipflop
+SR, D, JK AND T
+
+=== Slide 12 ===
+LATCHES
+A latch is a basic memory element used in digital electronics to store one bit of
+information (0 or 1). Unlike combinational circuits, whose outputs depend only on
+the present inputs, a latch has memory—its output depends on both the current
+inputs and its previous state.
+Key Features of a Latch
+• Stores 1 bit of binary information.
+• It is a sequential logic circuit.
+• It has two stable states: 0 and 1.
+• The output changes according to the input when the latch is
+enabled.
+• When the latch is disabled, it retains its previous state.
+• Latches are generally level-sensitive.
+
+=== Slide 15 ===
+SR LATCH WITH ENABLED INPUT
+
+=== Slide 18 ===
+SR Flipflop (Set-Reset Flipflop)
+Logic Symbol Logic Diagram
+
+=== Slide 19 ===
+Clocked SR Flipflop Working
+Case1: When S=R=0, clk=1,Qn=0, Case1: When S=R=0, clk=1,Qn=1,
+Qn+1=0 same as previous output Qn+1=1 same as previous output
+
+=== Slide 20 ===
+Clocked SR Flipflop Working Contd..
+Case2: When S=0; R=1, clk=1, Qn=0, Case 2: When S=0; R=1, clk=1, Qn=1
+Qn+1= 0 Reset Qn+1 = 0 Reset
+
+=== Slide 21 ===
+Clocked SR Flipflop Working Cont..
+Case 3: When S=1; R=0, clk=1, Qn=0, Case 3: When S=1; R=0, clk=1, Qn=1
+Qn+1= 1 Set Qn+1 = 1 Set
+
+=== Slide 22 ===
+Clocked SR Flipflop Working Cont..
+Case 4: When S=1; R=1, clk=1, Qn=0, Case 4: When S=1; R=1, clk=1, Qn=1
+Qn+1= 1 & Q’n+1 is also one which 
+is an indeterminate state
+Qn+1= 1 & Q’n+1 is also one which 
+is an indeterminate state
+
+=== Slide 23 ===
+Clocked SR Flipflop Working Contd..
+• Case 1: If S=R=0 and the clock pulse is applied, 
+the output do not change, Qn+1 = Qn
+• Case 2: If S= 0, R=1 and the clock pulse is applied, 
+Qn+1= 0
+• Case 3: If S= 1, R=0 and the clock pulse is applied, 
+Qn+1= 1
+• Case4: If S= 1, R=1 and the clock pulse is applied, 
+the state of the flipflop is undefined.
+
+=== Slide 24 ===
+Clocked SR Flipflop Working Contd..
+Qn+1 = S+ R’Qn
+Characteristic Equation
+
+=== Slide 25 ===
+D Flipflop
+• The modified SR flipflop is known as delay 
+flipflop (D Flipflop).
+• D input is connected to S input and complement 
+of D input is connected to R input of SR flipflop.
+Logic symbol
+
+=== Slide 26 ===
+D Flipflop working cont…
+Characteristic table
+( i) When D=1, S=1 and R=0 ; the output is set
+(ii) When D=0, S=0 and R=1 ; the output is reset
+Logic Diagram
+Excitation table
+State diagram
+Characteristic Equation
+Qn+1 = D
+
+=== Slide 27 ===
+JK Flipflop
+• JK flipflop is also a modification of SR flipflop.
+• The uncertainity in the state of an SR flipflop 
+when S=R=1 is being eliminated in JK flipflop.
+Logic symbol
+
+=== Slide 28 ===
+JK Flipflop working cont…
+Logic Diagram J input is ANDed with Q’ to obtain S input and K input is ANDed 
+with Q to obtain R input.
+Thus S= J.Q’ and R= K.Q.
+Case 4: J=1 and K=1
+Q=0, Q’=1 : When J=1 ,K=1 and Q=0; S=1 and R=0 then Qn+1=1.
+Q=1, Q’=0 : When J=1 ,K=1 and Q=1; S=0 and R=1 then Qn+1=0 
+Hence, when J=1 and K=1 ; Qn+1= Qn’(Toggle)
+Case 3: J=1 and K=0
+Q=0, Q’=1 : When J=1 ,K=0 and Q=0; S=1 and R=0 then Qn+1=1. 
+Q=1, Q’=0 : When J=1 ,K=0 and Q=1; S=0 and R=0 then Qn+1=1.
+Hence, when J=1 and K=0 ; Qn+1= 1 (Set)
+Case 2: J=0 and K=1
+Q=0, Q’=1 : When J=0 ,K=1 and Q=0; S=0 and R=0 then Qn+1=0.
+Q=1, Q’=0 : When J=0 ,K=1 and Q=1; S=0 and R=1 then Qn+1=0.
+Hence, when J=0 and K=1; Qn+1= 0(Reset)
+Case 1: J=K=0
+When J=K=0, S=R=0 and according to truth table of SR flipflop, 
+output does not change. Hence,
+when J=K=0; Qn+1= Qn (no output change)
+
+=== Slide 29 ===
+JK Flipflop working cont…
+Characteristic table
+Excitation tableState diagramCharacteristic Equation
+Qn+1 = JQn’ +K’Qn
+
+=== Slide 30 ===
+T Flipflop
+• T Flipflop is also known as toggle flipflop. It is a 
+modification of JK flipflop
+• T Flipflop is obtained from a JK flipflop by 
+connecting both inputs, J and K together
+Logic symbol
+
+=== Slide 31 ===
+T Flipflop working contd…
+Characteristic table
+(i) When T=0, J=K=0 and hence
+Qn+1= Qn (no output change)
+(ii)When T=1, J=K=1 and hence Qn+1= Qn’ (toggles)
+Logic Diagram
+Excitation tableState diagramCharacteristic Equation
+Qn+1 = TQn’ +T’Qn
+
+=== Slide 32 ===
+Master slave Flipflop
+•
+ In master slave JK flip flop, it consists of clocked JK flipflop as a master and
+clocked SR flipflop as a slave.
+• The output of master flipflop is fed as an input to the slave flipflop.
+• Clock signal is directly connected to the master flipflop and it is connected
+through inverter to the slave flipflop
+• During the positive clock pulse, the information present at the J & K inputs is 
+transmited to the output of master flipflop and it is held there until the 
+negative clock pulse occurs.
+• After which it is allowed to pass through the output of slave flipflop.
+Logic Diagram
+Logic symbol
+
+=== Slide 33 ===
+Master slave Flipflop
+•When J=0, K=0,output of master remains same at the positive clock and the output of
+slave also remains same at the negative clock.
+•When J=0, K=1,output of master resets at the positive clock and the output of slave 
+also resets at the negative clock.
+•When J=1, K=0,output of master sets at the positive clock and the output of slave also
+sets at the negative clock.
+•When J=1, K=1,output of master toggles at the positive clock and the slave then copies
+the output of master at the negative clock. This prevents race around condition.
+• [In JK flip flop as long as clock is high for the input conditions J&K equals to the
+output changes or complements its output from 1–>0 and 0–>1.This is known as 
+race around condition.]
+Logic Diagram Truth Table
+
+=== Slide 34 ===
+Realization of One Flip - Flop using Other Flip - Flops
+
+=== Slide 41 ===
+Excitation Table or Application Table
+
+=== Slide 42 ===
+Registers
+• Registers are groups of flip-flops , where each flip-flop is
+capable of storing one bit of information. An n-
+bit register is a group of n flip-flops. The basic function of
+a register is to hold information in a digital system and
+make it available to the logic elements for the computing
+process.
+• A register consists of a collection of binary storage cells,
+each implemented by a flip-flop. The number of cells
+determines the length of the register and, therefore, the
+length of the binary word stored within the register.
+
+=== Slide 43 ===
+Types of Registers in CPU
+• Accumulator ( Acc) : This is the most frequently used register used to store
+data taken from memory.
+• Memory Address Registers (MAR): It holds the address of the location to be
+accessed from memory.
+• Memory Data Registers (MDR): A register used for holding information
+(either program words or data words) that is in the process of being
+transferred from the memory to the central processor,or vice versa.
+• General Purpose Registers ( GPS) : The general purpose registers are used to
+store temporary data in the time of different operations in microprocessor.
+• Program Counter (PC): A program counter is a register in a computer
+processor that contains the address (location) of the instruction being
+executed at the current time.
+• Instruction Register (IR): In computing, the instruction register (IR) or
+current instruction register (CIR) is the part of a CPU's control unit that holds
+the instruction currently being executed or decoded.
+
+=== Slide 44 ===
+Shift Registers
+Shift Registers are used for data storage or for the
+movement of data and are therefore
+commonly used inside calculators or computers to
+store data such as two binary numbers before they are
+added together, or to convert the data from either a
+serial to parallel or parallel to serial format.
+
+=== Slide 45 ===
+Shift Registers Cont..
+
+=== Slide 46 ===
+Shift Registers cont..
+
+=== Slide 47 ===
+Type of Shifting Operation in Shift Registers
+
+=== Slide 48 ===
+Mode of operation in Shift Registers
+
+=== Slide 49 ===
+Types of Shift Registers
+
+=== Slide 57 ===
+Counters
+
+=== Slide 58 ===
+Types of Counters
+
+=== Slide 59 ===
+Comparison Between Asynchronous and 
+Synchronous Counters
+
+=== Slide 61 ===
+Cont..
+
+=== Slide 62 ===
+Cont..
+
+=== Slide 63 ===
+Cont..
+
+=== Slide 64 ===
+Cont..
+Cont..
+
+=== Slide 66 ===
+Cont..
+
+=== Slide 69 ===
+Cont..
+Operation
+
+=== Slide 71 ===
+Operation
+Cont...
+
+=== Slide 76 ===
+MOD ( Modulus) Counter
+Flip-Flops can be connected together to perform counting
+operations. Such a group of Flip- Flops is a counter. The number of
+Flip-Flops used and the way in which they are connected determine
+the number of states (called the modulus) and also the specific
+sequence of states that the counter goes through during each
+complete cycle.
+
+=== Slide 78 ===
+Design of Asynchronous MOD Counter
+Procedure
+
+=== Slide 79 ===
+Asynchronous BCD counter or MOD- 10 counter
+• Count from 0 – 9 ( 0000 – 1001)
+• From 10 – 15 ( 1010 – 1111) Reset
+
+=== Slide 80 ===
+BCD counter or MOD- 10 counter
+
+=== Slide 81 ===
+Design of Synchronous MOD Counter
+
+=== Slide 82 ===
+Design of Synchronous MOD Counter Cont..
+Step 4: Simplification using K - Map
+
+=== Slide 83 ===
+Design of Synchronous MOD Counter Cont..
+Step 5: Draw the Logic diagram
+
+=== Slide 84 ===
+Ring Counter
+6 – bit Ring Counter circuit Diagram
+Truth Table State Diagram
+Count = Number of flipflops
+Used to identify the active state with Logic 1
+
+=== Slide 85 ===
+Johnson Counter
+Circuit Diagram Truth Table
+Count = Number of Flipflops * 2
+Reduce the Number of Flipflops
+

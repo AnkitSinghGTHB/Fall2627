@@ -1,0 +1,40 @@
+=== Module-3 Notes.pdf ===
+--- Page 1 ---
+Module-3Lattices and Boolean algebra •Lattice as POSET, Complemented Lattice, Distributive Lattice, Boolean Algebra as Lattice, Laws of Boolean Algebra, Boolean Functions- Normal Forms, Application of Boolean Algebra to Switching Circuits.
+--- Page 2 ---
+LatticeDef: A POSET is a Lattice if every pair of elements has a LUB and GLB
+--- Page 3 ---
+Let A={1,2,3,4,6,8,9,12,18,24} with the relation divides is a Lattice or not?
+--- Page 4 ---
+NOTE:Let L be a poset under an ordering ≤, let 𝑎,𝑏∈𝐿, we define𝑎∧𝑏(read “𝑎meet 𝑏”)  as the greatest lower bound of 𝑎and 𝑏𝑎∨𝑏(read “a join 𝑏”) as the least upper bound of 𝑎and 𝑏.Def:A lattice is a poset(𝐿, ≤), in which every pair of elements has a  lub and glb.Since 𝐿is an algebraic system with binary operations ∨and ∧, it is denoted by (𝐿,∨,∧)or (𝐿,≤,∨,∧).
+--- Page 5 ---
+Example:1.Let 𝑆be any nonempty set, and (𝑃𝑆, ⊆)be a poset. Show that (𝑃𝑆, ⊆)is a lattice.2.Let 𝐷ଷ଴= {1,2,3,5,6,10,15,30}and let the relation "𝑎|𝑏“(divides) be the partial ordering on 𝐷ଷ଴.a) Draw the Hasse diagram of b) Check the poset is a lattice or notc) Determine the lub and glb of all pairs of elements when it exists.
+=== Module-4,5-Graph theory.pdf ===
+--- Page 1 ---
+Graph Theory
+Dr. Suresh Dara
+suresh.dara@gmail.com
+Dr . Suresh Dara (VITB) Graph Theory 1 / 59
+--- Page 2 ---
+In 1736, a Swiss Mathematician Leonhard Euler (1707-1783) solved the well known
+K¨onigsberg Bridge Problem. The method he used to solve it is considered by many to
+be the birth of Graph Theory.
+It was posed by the townsfolk of K¨onigsberg, Prussia (now known as Kaliningrad,
+Russia) early 1700’s.
+The city of K¨onigsberg was located on the Pregel River in Prussia. The city occupied
+two islands plus areas on both banks. These regions were linked by seven bridges.
+Dr . Suresh Dara (VITB) Graph Theor
+--- Page 3 ---
+Figure 1: Map of K¨onigsberg in Euler’s time showing the actual layout of the seven
+bridges
+Dr . Suresh Dara (VITB) Graph Theory 3 / 59
+--- Page 4 ---
+The citizens wondered whether they could leave home, cross every bridge exactly
+once, and return home.
+He considered the island as well as the banks and the promontory could be represented
+with single points and the bridges represented with curves.
+Figure 2: Map of K¨onigsberg in Euler’s time showing the actual layout of the seven
+bridges
+Dr . Suresh Dara (VITB) Graph Theory 4 / 59
+--- Page 5 ---
+Dr . Suresh Dara (VITB) Graph Theory 5 / 59
