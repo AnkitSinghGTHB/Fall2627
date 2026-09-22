@@ -80,23 +80,7 @@ $$E(\overline{H}) = \{(v_1, v_3), (v_1, v_4), (v_1, v_5), (v_4, v_2), (v_4, v_6)
 
 #### Step 3: Visual Structure / Drawings of $\overline{G}$ and $\overline{H}$
 
-```
-        COMPLEMENT G-BAR                             COMPLEMENT H-BAR
-       ------------------                           ------------------
-
-         u1 -------- u4                                     v1
-        /  \        /  \                                  / | \
-       /    \      /    \                                /  |  \
-      u3 -- u5    u2 -- u6                             v3   |   v5
-                                                       |    |   |
-  (Two disjoint triangles:                             v6   |   v2
-   {u1, u3, u5} and {u2, u4, u6},                       \   |   /
-   connected by the bridge edge (u1, u4))                \  |  /
-                                                            v4
-
-                                               (A 6-cycle v1-v3-v6-v4-v2-v5-v1
-                                                plus one chord (v1, v4))
-```
+![Quiz 2 Question 1 Graph Complements](img/quiz2_q1_complements.png)
 
 ---
 
@@ -249,49 +233,14 @@ Draw the 3-regular graph with more than 5 vertices.
 
 ---
 
-#### 2. Construction 1: Complete Bipartite Graph $K_{3,3}$ (Utility Graph)
-* **Order**: $n = 6$ vertices.
-* **Partition**: $V = V_1 \cup V_2$ where $V_1 = \{u_1, u_2, u_3\}$ and $V_2 = \{v_1, v_2, v_3\}$.
-* **Edges**: Every vertex in $V_1$ is connected to every vertex in $V_2$:
-  $$E = \{(u_i, v_j) \mid i, j \in \{1, 2, 3\}\}$$
-  $$\text{Total Edges } e = 3 \times 3 = 9$$
-* **Degree**: $\deg(u_i) = 3$ and $\deg(v_j) = 3$ for all vertices $\implies$ **3-regular**.
+#### 2. Construction of 3-Regular Graphs on 6 Vertices ($K_{3,3}$ and $Y_3$)
 
-```
-          u1 ------------ u2 ------------ u3       (Set V1)
-          |  \          / | \          /  |
-          |    \      /   |   \      /    |
-          |      \  /     |     \  /      |
-          |       /\      |      /\       |
-          |     /    \    |    /    \     |
-          |   /        \  |  /        \   |
-          v1 ------------ v2 ------------ v3       (Set V2)
-```
+* **Complete Bipartite Graph $K_{3,3}$ (Utility Graph)**: Order $n = 6$, size $m = 9$, 3-regular, bipartite (contains no odd cycles).
+* **Triangular Prism Graph $Y_3$ ($K_3 \times K_2$)**: Order $n = 6$, size $m = 9$, 3-regular, planar (contains two disjoint triangles connected by matching edges).
 
----
+![3-Regular Graphs K3,3 and Triangular Prism Y3](img/quiz2_q4_regular_graphs.png)
 
-#### 3. Construction 2: 3-Prism Graph $Y_3$ ($K_3 \times K_2$)
-* **Order**: $n = 6$ vertices.
-* **Structure**: Two disjoint triangles (3-cycles) connected by 3 matching vertical edges:
-  * Triangle 1: $\{u_1, u_2, u_3\}$ with edges $(u_1, u_2), (u_2, u_3), (u_3, u_1)$.
-  * Triangle 2: $\{v_1, v_2, v_3\}$ with edges $(v_1, v_2), (v_2, v_3), (v_3, v_1)$.
-  * Vertical Matching: $(u_1, v_1), (u_2, v_2), (u_3, v_3)$.
-* **Total Edges**: $3 + 3 + 3 = 9$.
-* **Degree**: Each vertex has 2 edges in its triangle $+ 1$ matching edge $= 3$.
-
-```
-               u1
-              /  \
-             /    \
-            u2 -- u3
-            |      |
-            |  v1  |
-            | /  \ |
-            |/    \|
-            v2 -- v3
-```
-
-*(Both $K_{3,3}$ and $Y_3$ are valid 3-regular graphs on 6 vertices. $K_{3,3}$ is bipartite; $Y_3$ is planar).*
+*(Both $K_{3,3}$ and $Y_3$ are valid 3-regular graphs on 6 vertices).*
 
 ---
 
@@ -480,16 +429,7 @@ Construct two graphs $G_1$ and $G_2$ with $n = 6$ vertices and $e = 6$ edges:
    * Degree sequence: $(2, 2, 2, 2, 2, 2)$
    * Number of connected components: $c(G_2) = 2$ (Disconnected).
 
-```
-         GRAPH G1 (C6)                       GRAPH G2 (2 C3)
-        ---------------                     -----------------
-             1 --- 2                             a           d
-            /       \                           / \         / \
-           6         3                         b---c       e---f
-            \       /
-             5 --- 4                     (Two disjoint triangles)
-          (One single loop)
-```
+![Non-Isomorphic Graphs C6 vs 2C3](img/quiz2_q8_c6_vs_2c3.png)
 
 ##### Justification:
 * Both graphs have identical order: $|V(G_1)| = |V(G_2)| = 6$.
@@ -515,13 +455,7 @@ Construct two graphs $G_1$ and $G_2$ with $n = 6$ vertices and $e = 6$ edges:
    * Degree sequence: $(3, 1, 1, 1)$.
    * Maximum degree: $\Delta = 3$.
 
-```
-         PATH P4                             STAR K1,3
-       -----------                          -----------
-                                                 l1
-                                                 |
-       1 --- 2 --- 3 --- 4                  l2 - c - l3
-```
+![Non-Isomorphic Trees P4 vs K1,3](img/quiz2_q8_p4_vs_k13.png)
 
 ##### Justification:
 * Both have $|V| = 4$ and $|E| = 3$.

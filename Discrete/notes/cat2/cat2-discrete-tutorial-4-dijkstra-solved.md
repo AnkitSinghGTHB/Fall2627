@@ -156,23 +156,8 @@ Find the shortest path from the vertex $S$ to all the other vertices using Dijks
 | **$e$** | **4** | $s \to a \to d \to e$ *(or $s \to a \to c \to e$)* | $1 + 1 + 2 = 4$ |
 
 #### 5. Shortest Path Tree Representation
-```
-                     (s) [d=0]
-                      |
-                     (1)
-                      v
-                     (a) [d=1]
-                    / | \
-                  (2) | (1)
-                  /   |   \
-                 v    v    v
-              [d=3] [d=3] [d=2]
-               (b)   (c)   (d)
-                            |
-                           (2)
-                            v
-                           (e) [d=4]
-```
+
+![Dijkstra Shortest Path Tree from Source S](img/tutorial4_p1_shortest_tree.png)
 
 ---
 
@@ -294,20 +279,8 @@ Find the shortest path from the vertex $1$ to all the other vertices using Dijks
 | **$5$** | **$\infty$** | **No path exists** | N/A | **Unreachable** |
 
 #### 5. Shortest Path Tree Representation
-```
-                     (1) [d=0]
-                      |
-                     (3)
-                      v
-                     (4) [d=3]
-                    /   \
-                  (1)   (1)
-                  /       \
-                 v         v
-              (2) [d=4]   (3) [d=4]
 
-              (5) [d=inf] (Isolated / Unreachable Component)
-```
+![Dijkstra Shortest Path Tree from Source 1](img/tutorial4_p2_shortest_tree.png)
 
 > **Exam Note on Vertex 5**:
 > State clearly in your answer script: "Since vertex 5 has in-degree $\deg^-(5) = 0$, there are no directed edges entering vertex 5 from any vertex in the graph. Therefore, vertex 5 is unreachable from the source vertex 1, and its shortest distance is strictly $\infty$."

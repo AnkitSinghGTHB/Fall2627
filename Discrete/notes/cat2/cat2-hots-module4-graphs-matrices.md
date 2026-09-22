@@ -114,16 +114,8 @@ A graph $G = (V, E)$ is **bipartite** if its vertex set $V$ can be partitioned i
 ### 3.2 Kőnig's Theorem (Fundamental Characterization)
 > **Theorem**: A graph $G$ is bipartite if and only if it contains **NO odd cycles** (all cycles in $G$ have even length).
 
-```
-         BIPARTITE GRAPH                       ODD CYCLE (NON-BIPARTITE)
-       (V1 Red, V2 Blue)                           (3-Cycle Triangle)
-       -----------------                       -------------------------
-         v1(R) --- u1(B)                                 1(R)
-           \        /                                   /    \
-            \      /                                   /      \
-             \    /                                  2(B) --- 3(Conflict!)
-         v2(R) --- u2(B)
-```
+![Bipartite Graph vs Odd Cycle Chromatic Conflict](img/module4_bipartite_vs_odd_cycle.png)
+
 
 #### Verification Algorithm:
 Use **2-Coloring (Breadth-First Search / BFS)**:

@@ -292,17 +292,8 @@ To draw the Hasse diagram, determine the **immediate covering relations** $a \pr
 * $6 \prec 12$
 
 ##### Visual Hasse Diagram:
-```
-                    12 (Top / Greatest / 1)
-                   /  \
-                  4    6
-                  |   / \
-                  |  /   \
-                  2       3
-                   \     /
-                    \   /
-                      1 (Bottom / Least / 0)
-```
+
+![Hasse Diagram of Divisor Lattice D12](img/tutorial2_q4_d12_hasse.png)
 
 ---
 

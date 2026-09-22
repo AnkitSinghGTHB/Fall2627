@@ -52,20 +52,7 @@ A **Hasse diagram** is an undirected visual representation of a finite poset whe
 3. If $a < b$, vertex $b$ is placed **strictly higher vertically** than vertex $a$.
 4. An edge connects $a$ and $b$ if and only if $b$ **covers** $a$ ($a \prec b$), meaning $a < b$ and no element $c$ satisfies $a < c < b$.
 
-```
-       Hasse Diagram of D30 = {1, 2, 3, 5, 6, 10, 15, 30}
-       ----------------------------------------------------
-                            30 (Top / 1)
-                           / | \
-                          /  |  \
-                         6   10  15
-                        / \ /  \ / \
-                       /   X    X   \
-                      2       3      5
-                       \      |     /
-                        \     |    /
-                          1 (Bottom / 0)
-```
+![Hasse Diagram of D30](img/module3_d30_hasse.png)
 
 ---
 
@@ -119,16 +106,8 @@ A finite poset fails to be a lattice if any pair of elements has:
 1. **No upper bound** or **multiple minimal upper bounds** (no unique lowest roof).
 2. **No lower bound** or **multiple maximal lower bounds** (no unique highest floor).
 
-```
-   FAIL 1: Two Separate Roofs               FAIL 2: Two Separate Basements
-   --------------------------               ------------------------------
-             c     d                                    c     d
-              \   /                                      \   /
-               \ /                                        \ /
-                a                                          a
-              (LUB(a,b) does not exist!                 (GLB(c,d) does not exist!
-               Both c and d are minimal upper bounds)    Both a and b are maximal lower bounds)
-```
+![Lattice Fail Conditions: Two Separate Roofs and Basements](img/module3_lattice_fails.png)
+
 
 ---
 
@@ -146,19 +125,8 @@ A lattice $(L, \vee, \wedge)$ is **Distributive** if meet distributes over join 
 > 1. The **Diamond Lattice $M_3$** (5-element non-distributive modular lattice).
 > 2. The **Pentagon Lattice $N_5$** (5-element non-distributive non-modular lattice).
 
-```
-        DIAMOND LATTICE M3                       PENTAGON LATTICE N5
-      (Non-Distributive, Modular)           (Non-Distributive, Non-Modular)
-      ---------------------------           -------------------------------
-                   1                                       1
-                 / | \                                    / \
-                /  |  \                                  /   \
-               a   b   c                                b     \
-                \  |  /                                 |      c
-                 \ | /                                  a     /
-                   0                                     \   /
-                                                           0
-```
+![Diamond M3 and Pentagon N5 Lattices](img/module3_m3_n5_lattices.png)
+
 
 ##### Algebraic Counterexample on $M_3$:
 * $a \wedge (b \vee c) = a \wedge 1 = \mathbf{a}$.
@@ -290,13 +258,8 @@ In switching theory (Shannon's application of Boolean algebra):
 * **Parallel Connection**: Current flows $\iff$ switch $A$ OR switch $B$ is closed $\implies \mathbf{A + B}$ (Disjunction).
 * **Inverted Switch**: Normally closed switch operated by relay $\implies \mathbf{A'}$ (NOT).
 
-```
-   SERIES (AND: A * B)                  PARALLEL (OR: A + B)
-   -------------------                  --------------------
-       A         B                               +--- A ---+
-   o--[ ]-------[ ]--o                       o---|         |---o
-                                                 +--- B ---+
-```
+![Series and Parallel Switching Contact Networks](img/module3_switching_circuits.png)
+
 
 ---
 
