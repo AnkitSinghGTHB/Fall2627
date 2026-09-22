@@ -264,51 +264,81 @@ def markdown_to_print_html(md_text, base_dir):
 
     return HTML_TEMPLATE.replace("{content_html}", html)
 
-def export_tm_pdf():
-    md_file = os.path.join(BASE_DIR, "cat2-turing-machine-even0-odd1-solved.md")
-    with open(md_file, "r", encoding="utf-8") as f:
-        md_text = f.read()
+DOCUMENTS = [
+    {
+        "file": "cat2-actual-paper-sep2026-solved.md",
+        "pdf": "TOC_CAT2_Actual_Paper_Sep2026_Solved.pdf",
+        "banner_title": "VIT BHOPAL CAT-II OFFICIAL PAPER (SEP 2026, SLOT C14) — COMPLETE SOLUTIONS",
+        "banner_sub": "All 5 Compulsory Questions Solved: Left Factoring, FIRST/FOLLOW, SLR(1) S/R Conflict, Unary Addition TM, a^n b^(2n) TM, and CLR(1) Parsing Table"
+    },
+    {
+        "file": "cat2-turing-machine-even0-odd1-solved.md",
+        "pdf": "TOC_CAT2_Turing_Machine_Even0_Odd1_Solved.pdf",
+        "banner_title": "TURING MACHINE MASTER SOLUTION: EVEN 0s & ODD 1s (AND VICE VERSA)",
+        "banner_sub": "Formal Language Descriptions + Parity State Logic + 7-Tuples + Transition Tables + State Diagram + ID Validations"
+    }
+]
 
-    html_content = markdown_to_print_html(md_text, BASE_DIR)
-    out_pdf = os.path.join(PDF_OUT_DIR, "TOC_CAT2_Turing_Machine_Even0_Odd1_Solved.pdf")
-
+def export_all_toc_pdfs():
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        page.set_content(html_content, wait_until="networkidle")
-        page.wait_for_timeout(1500)
 
-        header_template = """
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
-            <span><strong>CSE2004: Theory of Computation & Compiler Design</strong> — Turing Machine Construction</span>
-            <span>CAT-2 Master Solution</span>
-        </div>
-        """
+        for doc in DOCUMENTS:
+            md_file = os.path.join(BASE_DIR, doc["file"])
+            if not os.path.exists(md_file):
+                print(f"Skipping {doc['file']} (Not found)")
+                continue
 
-        footer_template = """
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7.2pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
-            <span>Module 4: Turing Machines & Computability</span>
-            <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
-        </div>
-        """
+            with open(md_file, "r", encoding="utf-8") as f:
+                md_text = f.read()
 
-        page.pdf(
-            path=out_pdf,
-            format="A4",
-            print_background=True,
-            display_header_footer=True,
-            header_template=header_template,
-            footer_template=footer_template,
-            margin={
-                "top": "14mm",
-                "bottom": "14mm",
-                "left": "14mm",
-                "right": "14mm"
-            }
-        )
+            banner_html = f"""
+            <div class="exam-banner">
+                <h1>{doc['banner_title']}</h1>
+                <p><strong>Course:</strong> CSE2004 — Theory of Computation & Compiler Design | <strong>Exam:</strong> CAT-2 (Open Book Master Reference)</p>
+                <p><strong>Coverage:</strong> {doc['banner_sub']}</p>
+            </div>
+            """
+            html_content = markdown_to_print_html(md_text, BASE_DIR)
+            # Insert banner
+            html_content = html_content.replace('<div class="exam-banner">', banner_html + '<!-- replaced -->', 1)
+            out_pdf = os.path.join(PDF_OUT_DIR, doc["pdf"])
+
+            page.set_content(html_content, wait_until="networkidle")
+            page.wait_for_timeout(1500)
+
+            header_template = f"""
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
+                <span><strong>CSE2004: Theory of Computation & Compiler Design</strong> — {doc['banner_title'][:45]}...</span>
+                <span>CAT-2 Open-Book Master Solution</span>
+            </div>
+            """
+
+            footer_template = """
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7.2pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
+                <span>Modules 3 & 4 (Syntax Analysis, Parsing & Turing Machines)</span>
+                <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
+            </div>
+            """
+
+            page.pdf(
+                path=out_pdf,
+                format="A4",
+                print_background=True,
+                display_header_footer=True,
+                header_template=header_template,
+                footer_template=footer_template,
+                margin={
+                    "top": "14mm",
+                    "bottom": "14mm",
+                    "left": "14mm",
+                    "right": "14mm"
+                }
+            )
+            print("Generated PDF:", out_pdf)
+
         browser.close()
 
-    print("Generated PDF:", out_pdf)
-
 if __name__ == "__main__":
-    export_tm_pdf()
+    export_all_toc_pdfs()
