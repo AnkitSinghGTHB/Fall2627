@@ -1,0 +1,314 @@
+import os
+import re
+import sys
+import base64
+import markdown_it
+from playwright.sync_api import sync_playwright
+
+sys.stdout.reconfigure(encoding='utf-8')
+
+BASE_DIR = r"c:\Users\ankit\Fall2627\TOC\notes\cat2"
+PDF_OUT_DIR = os.path.join(BASE_DIR, "pdf")
+os.makedirs(PDF_OUT_DIR, exist_ok=True)
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSE2004 TOC & Compiler Design: Turing Machine Master Solutions</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 14mm 12mm 14mm;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 8.8pt;
+    line-height: 1.42;
+    color: #0f172a;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 14pt;
+    color: #1e3a8a;
+    border-bottom: 2px solid #1e3a8a;
+    padding-bottom: 3px;
+    margin-top: 10pt;
+    margin-bottom: 4pt;
+    page-break-after: avoid;
+  }
+
+  h2 {
+    font-size: 11.5pt;
+    color: #1e293b;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 2px;
+    margin-top: 10pt;
+    margin-bottom: 4pt;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    color: #1e3a8a;
+    margin-top: 8pt;
+    margin-bottom: 3pt;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 3pt 0 4.5pt 0;
+  }
+
+  ul, ol {
+    margin: 2pt 0 4pt 15pt;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 2pt;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 8pt 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.2pt;
+    margin: 5pt 0 7pt 0;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 3.5pt 5pt;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  /* Images */
+  .img-container {
+    text-align: center;
+    margin: 8pt 0 6pt 0;
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 90%;
+    max-height: 250px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .caption {
+    font-size: 7.8pt;
+    color: #475569;
+    font-style: italic;
+    margin-top: 2pt;
+    margin-bottom: 4pt;
+    text-align: center;
+    page-break-after: avoid;
+  }
+
+  /* Math rendering */
+  .katex {
+    font-size: 1.04em;
+  }
+
+  .math-display {
+    text-align: center;
+    margin: 4pt 0;
+    page-break-inside: avoid;
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    background: #f1f5f9;
+    padding: 1px 3pt;
+    border-radius: 3px;
+    font-size: 8pt;
+    border: 1px solid #e2e8f0;
+  }
+
+  blockquote {
+    border-left: 3.5px solid #2563eb;
+    background: #eff6ff;
+    padding: 5pt 8pt;
+    margin: 5pt 0;
+    border-radius: 0 3px 3px 0;
+    page-break-inside: avoid;
+  }
+
+  .exam-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 10pt 14pt;
+    border-radius: 4px;
+    margin-bottom: 10pt;
+  }
+
+  .exam-banner h1 {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    margin-top: 0;
+    padding-bottom: 3pt;
+    font-size: 13pt;
+  }
+
+  .exam-banner p {
+    margin: 2pt 0;
+    font-size: 8.5pt;
+    color: #e2e8f0;
+  }
+</style>
+</head>
+<body>
+<div class="exam-banner">
+    <h1>CSE2004: Theory of Computation & Compiler Design — Turing Machine Master Solution</h1>
+    <p><strong>Topic:</strong> Construction of Turing Machine for Even Number of 0s and Odd Number of 1s (and Vice Versa)</p>
+    <p><strong>Coverage:</strong> Language Description + Design Logic + 7-Tuples + Transition Table + State Diagram + ID Validations</p>
+</div>
+
+{content_html}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ],
+        throwOnError: false
+    });
+});
+</script>
+</body>
+</html>
+"""
+
+def markdown_to_print_html(md_text, base_dir):
+    math_blocks = []
+
+    def save_display(m):
+        idx = len(math_blocks)
+        math_blocks.append(('display', m.group(1)))
+        return f"XQDMATH{idx}MQX"
+
+    def save_inline(m):
+        idx = len(math_blocks)
+        math_blocks.append(('inline', m.group(1)))
+        return f"XQIMATH{idx}MQX"
+
+    def replace_md_img(match):
+        alt = match.group(1)
+        src = match.group(2)
+        if src.startswith("file:///"):
+            clean_path = src[8:].replace('/', '\\')
+        elif not os.path.isabs(src):
+            clean_path = os.path.normpath(os.path.join(base_dir, src))
+        else:
+            clean_path = src
+
+        if os.path.exists(clean_path):
+            ext = os.path.splitext(clean_path)[1].lower()
+            mime = "image/png" if ext == ".png" else "image/svg+xml" if ext == ".svg" else "image/jpeg"
+            with open(clean_path, "rb") as f:
+                b64 = base64.b64encode(f.read()).decode('utf-8')
+            return f'\n\n<div class="img-container"><img src="data:{mime};base64,{b64}" alt="{alt}"><div class="caption">{alt}</div></div>\n\n'
+        else:
+            print(f"Warning: Image not found at {clean_path}")
+            return match.group(0)
+
+    md_text = re.sub(r'!\[(.*?)\]\((.*?)\)', replace_md_img, md_text)
+    protected = re.sub(r'\$\$(.*?)\$\$', save_display, md_text, flags=re.DOTALL)
+    protected = re.sub(r'\$([^\$\n]+?)\$', save_inline, protected)
+
+    md_parser = markdown_it.MarkdownIt('commonmark').enable('table')
+    html = md_parser.render(protected)
+
+    for idx, (mtype, raw) in enumerate(math_blocks):
+        if mtype == 'display':
+            html = html.replace(f"XQDMATH{idx}MQX", f'<div class="math-display">$${raw}$$</div>')
+        else:
+            html = html.replace(f"XQIMATH{idx}MQX", f'<span class="math-inline">${raw}$</span>')
+
+    return HTML_TEMPLATE.replace("{content_html}", html)
+
+def export_tm_pdf():
+    md_file = os.path.join(BASE_DIR, "cat2-turing-machine-even0-odd1-solved.md")
+    with open(md_file, "r", encoding="utf-8") as f:
+        md_text = f.read()
+
+    html_content = markdown_to_print_html(md_text, BASE_DIR)
+    out_pdf = os.path.join(PDF_OUT_DIR, "TOC_CAT2_Turing_Machine_Even0_Odd1_Solved.pdf")
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+        page.set_content(html_content, wait_until="networkidle")
+        page.wait_for_timeout(1500)
+
+        header_template = """
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
+            <span><strong>CSE2004: Theory of Computation & Compiler Design</strong> — Turing Machine Construction</span>
+            <span>CAT-2 Master Solution</span>
+        </div>
+        """
+
+        footer_template = """
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7.2pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
+            <span>Module 4: Turing Machines & Computability</span>
+            <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
+        </div>
+        """
+
+        page.pdf(
+            path=out_pdf,
+            format="A4",
+            print_background=True,
+            display_header_footer=True,
+            header_template=header_template,
+            footer_template=footer_template,
+            margin={
+                "top": "14mm",
+                "bottom": "14mm",
+                "left": "14mm",
+                "right": "14mm"
+            }
+        )
+        browser.close()
+
+    print("Generated PDF:", out_pdf)
+
+if __name__ == "__main__":
+    export_tm_pdf()

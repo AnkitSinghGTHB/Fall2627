@@ -1,0 +1,1 @@
+Construct the Turing machine for even number of zeros and odd number of once and vice versha. make the transition diagram and table.
