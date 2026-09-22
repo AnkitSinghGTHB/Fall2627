@@ -266,6 +266,12 @@ def markdown_to_print_html(md_text, base_dir):
 
 DOCUMENTS = [
     {
+        "file": "TOC_CAT2_FOOLPROOF_SOLVE_BOOKLET.md",
+        "pdf": "TOC_CAT2_FOOLPROOF_SOLVE_BOOKLET.pdf",
+        "banner_title": "CSE2004: TOC & COMPILER DESIGN — CAT-II FOOLPROOF SOLVE BOOKLET",
+        "banner_sub": "100% Syllabus Coverage: Left Recursion, Left Factoring, FIRST/FOLLOW, LL(1) Stack Parser, SLR(1) S/R Conflict Proof, LALR(1) R/R Conflict Proof, & 7 Turing Machine Archetypes"
+    },
+    {
         "file": "cat2-actual-paper-sep2026-solved.md",
         "pdf": "TOC_CAT2_Actual_Paper_Sep2026_Solved.pdf",
         "banner_title": "VIT BHOPAL CAT-II OFFICIAL PAPER (SEP 2026, SLOT C14) — COMPLETE SOLUTIONS",
