@@ -4,6 +4,22 @@
 
 ---
 
+## 🎯 Question Language to Topic Selection Guide (Exam Hall Lookup)
+
+| If Exam Question Asks... | Identified Syllabus Topic | Instant Decision Rule / Formula |
+| :--- | :--- | :--- |
+| *"Can a simple graph have degree sequence $(d_1, \dots, d_n)$?"* | **Handshaking Lemma** | 1. Sum $\sum d_i$ must be **EVEN**. 2. Max degree $\Delta \le n - 1$. 3. Count of odd vertices must be **EVEN**. |
+| *"Determine whether sequence is graphic..."* | **Havel-Hakimi Algorithm** | Sort descending $\to$ delete $d_1 \to$ subtract 1 from next $d_1$ terms $\to$ re-sort descending $\to$ repeat until all 0s (graphic) or negative (non-graphic). |
+| *"Determine whether two graphs are isomorphic..."* | **Graph Isomorphism** | Check order $|V|$, size $|E|$, degree sequence, cycle spectrum. If isomorphic: write bijection table $f(u_i) = v_j$. If non-isomorphic: state 1 failing invariant! |
+| *"Prove self-complementary graph order..."* | **Self-Complementary Graphs** | Total edges $|E| = \frac{n(n-1)}{4} \implies 4 \mid n(n-1) \implies \mathbf{n \equiv 0 \text{ or } 1 \pmod 4}$. |
+| *"Determine whether graph is bipartite..."* | **Kőnig's Odd Cycle Theorem** | Bipartite $\iff$ contains **NO odd cycles** ($\iff$ 2-colorable). Run BFS 2-coloring. Same color edge $\implies$ odd cycle! |
+| *"Find number of walks of length $k$..."* | **Adjacency Matrix Powers** | Number of walks of length $k$ between $v_i$ and $v_j$ is given by entry $(A^k)_{ij}$. |
+| *"Find shortest path from source $S$..."* | **Dijkstra's Algorithm** | Set up iteration table with settled set $S_V$, permanent labels $d[u]$, and tentative distance updates $d[v] = \min(d[v], d[u] + w(u, v))$. |
+
+> 📖 **Full Questionnaire & 18 Exam Problem Solutions**: See [CAT-2 Question-Language Decoder](./cat2-exam-questionnaire-decoder.md), [Quiz-2 Solved](./cat2-discrete-quiz-2-solved.md), and [Module 4 HOTS Notes](./cat2-hots-module4-graphs-matrices.md).
+
+---
+
 ## 1️⃣ What is a Graph?
 
 A graph G = (V, E) where:

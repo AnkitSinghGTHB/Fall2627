@@ -4,6 +4,21 @@
 
 ---
 
+## 🎯 Question Language to Topic Selection Guide (Exam Hall Lookup)
+
+| If Exam Question Asks... | Identified Syllabus Topic | Instant Decision Rule / Formula |
+| :--- | :--- | :--- |
+| *"Determine whether $(A, \mid)$ is a lattice..."* | **Lattice Verification** | Poset is a lattice $\iff$ every pair has $\text{LUB} = \text{lcm}(a,b) \in A$ and $\text{GLB} = \gcd(a,b) \in A$. If $\text{lcm} \notin A \implies$ NOT a lattice. |
+| *"Is $(D_n, \mid)$ a Boolean algebra?"* | **Square-Free Criterion** | $(D_n, \mid)$ is Boolean $\iff n$ is **square-free** (no $p^2 \mid n$). E.g., $D_{30} = 2 \cdot 3 \cdot 5$ is Boolean; $D_{12} = 2^2 \cdot 3$ is NOT. |
+| *"Determine if lattice is distributive / modular..."* | **Birkhoff's Forbidden Sublattices** | Distributive $\iff$ NO sublattice isomorphic to Diamond $M_3$ or Pentagon $N_5$. Counterexample: $a \wedge (b \vee c) \ne (a \wedge b) \vee (a \wedge c)$. |
+| *"Find complements of all elements in lattice..."* | **Complemented Lattice** | Complement $x'$ satisfies $x \wedge x' = 0$ (bottom) and $x \vee x' = 1$ (top). In $D_n$, $\gcd(x, x') = 1$ and $\text{lcm}(x, x') = n$. |
+| *"Find PDNF and PCNF for expression $f$..."* | **Principal Normal Forms** | $\text{PDNF} = \sum m(\text{rows where } f=1)$; $\text{PCNF} = \prod M(\text{rows where } f=0)$. Shorthands are complementary! |
+| *"Design series/parallel contact network..."* | **Switching Circuits** | Series $= A \cdot B$ (AND); Parallel $= A + B$ (OR); Inverted $= A'$ (NOT). |
+
+> 📖 **Full Questionnaire & 18 Exam Problem Solutions**: See [CAT-2 Question-Language Decoder](./cat2-exam-questionnaire-decoder.md) and [Module 3 HOTS Notes](./cat2-hots-module3-lattices-boolean.md).
+
+---
+
 ## 1️⃣ What is a Lattice?
 
 A POSET becomes a **lattice** if:

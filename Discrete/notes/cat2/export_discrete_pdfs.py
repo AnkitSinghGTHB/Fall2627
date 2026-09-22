@@ -363,6 +363,13 @@ def export_html_to_pdf(page, html_content, output_pdf_path, header_title="MAT200
 
 DOCUMENTS = [
     {
+        "id": "decoder",
+        "file": "cat2-exam-questionnaire-decoder.md",
+        "pdf_name": "Discrete_CAT2_Questionnaire_Exam_Decoder.pdf",
+        "title": "EXAM QUESTION-LANGUAGE DECODER & QUESTIONNAIRE BANK",
+        "banner_sub": "Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Common Traps"
+    },
+    {
         "id": "quiz2",
         "file": "cat2-discrete-quiz-2-solved.md",
         "pdf_name": "Discrete_CAT2_Quiz2_Solved.pdf",
@@ -418,7 +425,7 @@ def run_export():
         browser = p.chromium.launch()
         page = browser.new_page()
 
-        # 1. Export 5 Standalone PDFs
+        # 1. Export 6 Standalone PDFs
         for doc in DOCUMENTS:
             md_path = os.path.join(BASE_DIR, doc["file"])
             if not os.path.exists(md_path):
@@ -446,7 +453,7 @@ def run_export():
             </div>
             <div style="margin-top: 20pt; font-size: 9.5pt; color: #475569; line-height: 1.6;">
                 <strong>Faculty Reference:</strong> Dr. Suresh Dara<br>
-                <strong>Contents:</strong> Complete Solved Assignments (Quiz 2, Tutorial 4, Tutorial 2) + Exhaustive HOTS Master Notes<br>
+                <strong>Contents:</strong> Question-Language Decoder & Questionnaire + Solved Assignments (Quiz 2, Tutorial 4, Tutorial 2) + HOTS Notes<br>
                 <strong>Exam Usage:</strong> Approved for Open-Book Hall Direct Copying & Quick Formula Lookup
             </div>
         </div>
@@ -454,12 +461,13 @@ def run_export():
         <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 14pt 18pt; margin-bottom: 25pt;">
             <h3 style="margin-top: 0; color: #1e3a8a;">Table of Contents & Quick Topic Index</h3>
             <table style="margin-top: 8pt;">
-                <tr><th style="width: 25%;">Section</th><th style="width: 45%;">Core Content</th><th style="width: 30%;">Exam Importance</th></tr>
-                <tr><td><strong>Section 1: Quiz-2 Solved</strong></td><td>8 Problems: Graph Complements, Havel-Hakimi, Non-Isomorphism, 3-Regular Graphs, Degree Formula</td><td>Direct Class Quiz Problems (Exact exam repeats)</td></tr>
-                <tr><td><strong>Section 2: Tutorial-4 Solved</strong></td><td>Dijkstra Algorithm: 6-Vertex Graph ($S \to A,B,C,D,E$) & 5-Vertex Graph ($1 \to 2,3,4,5$, Unreachable Vertex 5)</td><td>Shortest Path Direct Exam Traces</td></tr>
-                <tr><td><strong>Section 3: Tutorial-2 Solved</strong></td><td>Lexicographical Poset on $\\mathbb{R}^2$, Relations $S \\circ R$, $R^{-1}$, and $D_{12}$ Lattice Properties</td><td>Posets, Relations & Hasse Diagram Questions</td></tr>
-                <tr><td><strong>Section 4: Module 3 HOTS</strong></td><td>Posets, Distributive ($N_5, M_3$), Complements, Boolean Algebra, PDNF/PCNF Algorithms & Circuits</td><td>CO3 Complete Theoretical Mastery</td></tr>
-                <tr><td><strong>Section 5: Module 4 HOTS</strong></td><td>Handshaking, Bipartite & Kőnig, Isomorphism Theorem 3, Self-Complementary $p \\equiv 0,1 \\pmod 4$, Adjacency/Incidence Matrices</td><td>CO4 Complete Theoretical Mastery</td></tr>
+                <tr><th style="width: 28%;">Section</th><th style="width: 44%;">Core Content</th><th style="width: 28%;">Exam Importance</th></tr>
+                <tr><td><strong>Section 1: Question-Language Decoder</strong></td><td>Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Traps</td><td><strong>Primary Hall Index: Match question phrasing in 5 seconds</strong></td></tr>
+                <tr><td><strong>Section 2: Quiz-2 Solved</strong></td><td>8 Problems: Graph Complements, Havel-Hakimi, Non-Isomorphism, 3-Regular Graphs, Degree Formula</td><td>Direct Class Quiz Problems (Exact exam repeats)</td></tr>
+                <tr><td><strong>Section 3: Tutorial-4 Solved</strong></td><td>Dijkstra Algorithm: 6-Vertex Graph ($S \to A,B,C,D,E$) & 5-Vertex Graph ($1 \to 2,3,4,5$, Unreachable Vertex 5)</td><td>Shortest Path Direct Exam Traces</td></tr>
+                <tr><td><strong>Section 4: Tutorial-2 Solved</strong></td><td>Lexicographical Poset on $\\mathbb{R}^2$, Relations $S \\circ R$, $R^{-1}$, and $D_{12}$ Lattice Properties</td><td>Posets, Relations & Hasse Diagram Questions</td></tr>
+                <tr><td><strong>Section 5: Module 3 HOTS</strong></td><td>Posets, Distributive ($N_5, M_3$), Complements, Boolean Algebra, PDNF/PCNF Algorithms & Circuits</td><td>CO3 Complete Theoretical Mastery</td></tr>
+                <tr><td><strong>Section 6: Module 4 HOTS</strong></td><td>Handshaking, Bipartite & Kőnig, Isomorphism Theorem 3, Self-Complementary $p \\equiv 0,1 \\pmod 4$, Adjacency/Incidence Matrices</td><td>CO4 Complete Theoretical Mastery</td></tr>
             </table>
         </div>
         <div class="page-break"></div>
