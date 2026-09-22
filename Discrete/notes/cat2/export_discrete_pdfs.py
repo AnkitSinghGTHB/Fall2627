@@ -366,8 +366,8 @@ DOCUMENTS = [
         "id": "decoder",
         "file": "cat2-exam-questionnaire-decoder.md",
         "pdf_name": "Discrete_CAT2_Questionnaire_Exam_Decoder.pdf",
-        "title": "EXAM QUESTION-LANGUAGE DECODER & QUESTIONNAIRE BANK",
-        "banner_sub": "Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Common Traps"
+        "title": "EXAM QUESTION-LANGUAGE DECODER & 10 UNIVERSAL PARAMETRIC BLUEPRINTS",
+        "banner_sub": "30-Second Exam-Hall Action Protocol + 10 Universal Algorithmic Solvers + Instant Keyword Matrix + 18 Problem Archetypes & Traps"
     },
     {
         "id": "actual_paper",
@@ -459,7 +459,7 @@ def run_export():
                 Strict CAT-2 Syllabus Scope: Module 3 (Lattices & Boolean Algebra) + Module 4 (Graphs & Matrices)
             </div>
             <div style="margin-top: 20pt; font-size: 9.5pt; color: #475569; line-height: 1.6;">
-                <strong>Included Papers:</strong> Official CAT-II Paper (Sept 2026) Solved + Dr. Suresh Dara's Quiz 2, Tutorial 4, Tutorial 2 + HOTS Notes<br>
+                <strong>Included Papers:</strong> Official CAT-II Paper (Sept 2026) Solved + 10 Universal Parametric Blueprints + Dr. Suresh Dara's Quiz 2, Tutorials 2 & 4 + HOTS Notes<br>
                 <strong>Exam Usage:</strong> Approved for Open-Book Hall Direct Copying, Quick Matching & Step-by-Step Template Lookup
             </div>
         </div>
@@ -468,7 +468,7 @@ def run_export():
             <h3 style="margin-top: 0; color: #1e3a8a;">Table of Contents & Quick Topic Index</h3>
             <table style="margin-top: 8pt;">
                 <tr><th style="width: 28%;">Section</th><th style="width: 44%;">Core Content</th><th style="width: 28%;">Exam Importance</th></tr>
-                <tr><td><strong>Section 1: Question-Language Decoder</strong></td><td>Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Traps</td><td><strong>Primary Hall Index: Match question phrasing in 5 seconds</strong></td></tr>
+                <tr><td><strong>Section 1: Question-Language Decoder & 10 Universal Blueprints</strong></td><td>30-Sec Action Protocol + Instant Keyword Trigger Matrix + 10 Universal Parametric Blueprints + 18 Exam Problem Archetypes & Traps</td><td><strong>Primary Hall Index: Match question phrasing in 5 seconds & copy parametric solution</strong></td></tr>
                 <tr><td><strong>Section 2: Official CAT-II Paper (Sep 2026)</strong></td><td>All 5 Questions Solved: Median Identity, Tuple PDNF/PCNF, $D_{12}$ Complements, Handshaking Partition, $C_6$ Isomorphism & Floyd-Warshall</td><td><strong>Exact 2026 Exam Paper Full Marks Solution</strong></td></tr>
                 <tr><td><strong>Section 3: Quiz-2 Solved</strong></td><td>8 Problems: Graph Complements, Havel-Hakimi, Non-Isomorphism, 3-Regular Graphs, Degree Formula</td><td>Direct Class Quiz Problems (Exact exam repeats)</td></tr>
                 <tr><td><strong>Section 4: Tutorial-4 Solved</strong></td><td>Dijkstra Algorithm: 6-Vertex Graph ($S \to A,B,C,D,E$) & 5-Vertex Graph ($1 \to 2,3,4,5$, Unreachable Vertex 5)</td><td>Shortest Path Direct Exam Traces</td></tr>

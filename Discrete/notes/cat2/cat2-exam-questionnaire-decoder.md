@@ -1,34 +1,520 @@
-# 🎯 MAT2002: CAT-2 Question-Language Decoder & Master Questionnaire
+# 🎯 MAT2002: CAT-2 Question-Language Decoder & Master Universal Solver
 ## Module 3 (Lattices & Boolean Algebra) & Module 4 (Graphs & Matrix Representations)
-> **Open-Book Exam Hall Strategy**: When you read an exam problem, **DO NOT** guess the topic or read textbook theory. Find the **exact question phrasing** in the Question-Language Matrix below, identify the required theorem/algorithm, and copy-paste the step-by-step solution template.
+> **Open-Book Exam Hall Strategy**: When you receive your question paper, do not guess or read textbook theory.
+> 1. **Identify** the question pattern in the **Rapid Topic Selection Matrix (Part I)**.
+> 2. **Turn** to the matching **Universal Algorithmic Blueprint in Part II (Solvers 1 to 10)**.
+> 3. **Plug in** your exam paper's specific numbers/variables into the pre-formatted tables, cite the required theorems/axioms, and write the full-credit concluding sentences.
+> 4. For exact worked examples, refer to the **Questionnaire Banks (Parts III & IV)** or the **Actual September 2026 Paper** in Section 2.
+
+---
+
+# ⏱️ 30-SECOND EXAM-HALL MASTER ACTION PROTOCOL
+
+When the invigilator says "You may begin writing":
+1. **Locate Question Type**: Skim the first 5 words of each exam question. Compare with the **Question-Language Matrix (Part I)** below.
+2. **Match the Universal Blueprint**:
+   * *Proving an equation with meets ($\wedge$) and joins ($\vee$)* $\implies$ Go to **Blueprint 1** (Lattice Identity Engine).
+   * *Constructing truth table / finding PDNF / PCNF from verbal conditions* $\implies$ Go to **Blueprint 2** (Boolean Normal Forms Engine).
+   * *Divisor posets $(D_n, \mid)$, zero/unit elements, complements, or Boolean algebra check* $\implies$ Go to **Blueprint 3** (Divisor Lattice Evaluator).
+   * *Degree partition equation (e.g. $|V_1| = 2|V_2|$), edge count, graph feasibility* $\implies$ Go to **Blueprint 4** (Handshaking Degree Solver).
+   * *Testing if two graphs $G_1$ and $G_2$ are isomorphic* $\implies$ Go to **Blueprint 5** (2-Graph Isomorphism Decision Engine).
+   * *Testing if a degree sequence is graphic (e.g. $(5, 4, 3, 3, 2, 2, 1)$)* $\implies$ Go to **Blueprint 6** (Havel-Hakimi Table Generator).
+   * *Finding all-pairs shortest paths on directed graph (matrices $D^{(0)} \dots D^{(n)}$)* $\implies$ Go to **Blueprint 7** (Floyd-Warshall Matrix Blueprint).
+   * *Finding single-source shortest path from vertex $S$* $\implies$ Go to **Blueprint 8** (Dijkstra Shortest Path Engine).
+   * *Testing if graph is bipartite / finding odd cycle* $\implies$ Go to **Blueprint 9** (Bipartite 2-Coloring Engine).
+   * *Planar graphs, face count, $v - e + f = 2$, or non-planarity ($K_5, K_{3,3}$)* $\implies$ Go to **Blueprint 10** (Planarity & Polyhedral Formulas).
+3. **Copy-Paste Execution**: Open the corresponding blueprint, write down the formula, copy the table column structure, perform the simple arithmetic, and write the standard closing proof sentence.
 
 ---
 
 # PART I: QUESTION-LANGUAGE TO TOPIC SELECTION MATRIX
 
-Use this rapid lookup table during the exam to convert the exam question prompt into the exact topic, test condition, and solution strategy:
+Use this rapid lookup table during the exam to convert the exam question prompt into the exact topic, test condition, and universal blueprint:
 
-| Exact Question Language / Phrasing | Identified Syllabus Topic | Instant Decision Rule / Condition | Direct Solution Action |
+| Exact Question Language / Phrasing | Syllabus Topic | Instant Decision Rule / Condition | Direct Exam Action & Blueprint |
 | :--- | :--- | :--- | :--- |
-| *"Can a simple graph have degree sequence $(d_1, \dots, d_n)$?"* / *"Show that no graph exists with..."* | **Handshaking Lemma & Degree Parity** (Mod 4) | 1. Sum of degrees $\sum d_i$ must be **EVEN**.<br>2. Max degree $\Delta \le n - 1$.<br>3. Count of odd-degree vertices must be **EVEN**. | If sum is odd or odd vertices are odd $\implies$ Write 2-line impossibility proof using Handshaking Theorem. |
-| *"Determine whether the sequence is graphic..."* / *"Construct a graph with degrees..."* | **Havel-Hakimi Algorithm** (Mod 4) | Sequence is graphic $\iff$ after recursive reduction (delete $d_1$, subtract 1 from next $d_1$ terms, re-sort), all terms reach non-negative integers or zeros. | Set up the standard 4-column reduction table (Step, Sorted Sequence, Reduction, Status). |
-| *"Prove that in any group of $n \ge 2$ people, at least two have the same number of friends."* | **Pigeonhole Principle & Handshaking** (Mod 4) | Degree set for simple graph on $n$ vertices cannot contain both $0$ and $n-1$. Degree values must map to $\{0, \dots, n-2\}$ or $\{1, \dots, n-1\}$ ($n-1$ pigeonholes for $n$ pigeons). | Apply PHP: $n$ vertices into $\le n-1$ possible degree values $\implies$ at least 2 vertices have identical degree. |
-| *"Determine whether the two graphs $G_1$ and $G_2$ are isomorphic..."* | **Graph Isomorphism & Invariants** (Mod 4) | If isomorphic: $|V_1|=|V_2|$, $|E_1|=|E_2|$, degree sequences match, cycle spectrum matches, complement isomorphic.<br>If non-isomorphic: find **ONE** invariant that differs. | If isomorphic: provide table mapping $f(u_i) = v_j$ and show $(u, v) \in E_1 \iff (f(u), f(v)) \in E_2$.<br>If non-isomorphic: state invariant counterexample (e.g., $c(G)$ or count of $C_3$). |
-| *"Show that a simple graph is self-complementary ($G \cong \overline{G}$) only if..."* | **Self-Complementary Graphs** (Mod 4) | Total edges in $K_n$ is $\frac{n(n-1)}{2}$. Since $|E(G)| = |E(\overline{G})|$, $|E(G)| = \frac{n(n-1)}{4}$. Thus $n(n-1)$ must be divisible by 4. | Conclude $n \equiv 0 \pmod 4$ or $n \equiv 1 \pmod 4$. Provide example $P_4$ ($n=4$) or $C_5$ ($n=5$). |
-| *"Determine whether graph $G$ is bipartite..."* / *"Check if $G$ has an odd cycle..."* | **Bipartite Graphs & Kőnig's Theorem** (Mod 4) | A graph is bipartite $\iff$ it contains **NO odd cycles** ($\iff$ 2-colorable). | Run BFS 2-coloring (Red/Blue). If neighbor gets same color $\implies$ odd cycle found $\implies$ NOT bipartite. |
-| *"Find the number of edges in an $r$-regular graph with $n$ vertices..."* | **Regular Graphs & Handshaking** (Mod 4) | $2|E| = \sum \deg(v) = n \cdot r \implies |E| = \frac{n \cdot r}{2}$. | Check that $n \cdot r$ is even. If odd, state such a regular graph cannot exist. |
-| *"Find the shortest path from vertex $S$ to all other vertices..."* | **Dijkstra's Algorithm** (Mod 4) | Greedy shortest path on non-negative weighted directed/undirected graph. Maintain permanent set $S$ and tentative labels $d[v]$. | Draw standard iteration table with columns $[k, u^*, d[A], \dots, d[E]]$. State final shortest path tree. |
-| *"Draw the Hasse diagram for the divisor poset $(D_n, \mid)$..."* | **Divisor Posets & Hasse Diagrams** (Mod 3) | Elements are divisors of $n$. Vertex $a$ is below $b$ if $a \mid b$. Edge exists if $b$ covers $a$ ($b/a$ is prime). | Draw bottom-to-top layers: Layer 0 ($1$), Layer 1 (primes), Layer 2 (products of 2 primes), ..., Top ($n$). |
-| *"Is $(D_n, \mid)$ a Boolean algebra?"* | **Boolean Algebra Criterion** (Mod 3) | $(D_n, \mid)$ is a Boolean algebra $\iff n$ is **square-free** (product of distinct primes, no $p^2 \mid n$). | Factor $n = p_1^{a_1} \cdots p_k^{a_k}$. If any $a_i \ge 2$, state non-square-free $\implies$ prime power lacks complement. |
-| *"Determine whether the lattice is distributive..."* | **Distributive Lattices & Birkhoff's Theorem** (Mod 3) | A lattice is distributive $\iff$ it contains **NO sublattice isomorphic to Diamond $M_3$ or Pentagon $N_5$**. | Search Hasse diagram for $M_3$ (3 intermediate incomparable elements) or $N_5$ (chain of 2 incomparable to 1). Write algebraic counterexample $a \wedge (b \vee c) \ne (a \wedge b) \vee (a \wedge c)$. |
-| *"Find all complements of element $x$ in lattice $L$..."* | **Complemented Lattices** (Mod 3) | $y$ is a complement of $x \iff x \wedge y = 0$ (bottom) AND $x \vee y = 1$ (top). | For $x$, test each candidate $y$. Compute meet (gcd or intersection) and join (lcm or union). State whether unique or non-existent. |
-| *"Express the Boolean expression $f$ in PDNF and PCNF..."* | **Normal Forms (Minterms & Maxterms)** (Mod 3) | $\text{PDNF} = \sum m(\text{minterms where } f=1)$.<br>$\text{PCNF} = \prod M(\text{maxterms where } f=0)$. | Method A: Truth table $\to$ read rows.<br>Method B: Algebraic expansion using $x = x \wedge (y \vee y')$. |
-| *"Design / Simplify a switching contact network for..."* | **Switching Circuits** (Mod 3) | Series $= \text{AND} \; (A \cdot B)$; Parallel $= \text{OR} \; (A + B)$; Normally closed $= \text{NOT} \; (A')$. | Simplify expression via Boolean laws, then draw series-parallel contact boxes from input terminal to output terminal. |
+| *"Prove that in a distributive lattice: $x = y$..."* / *"Show that $(a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = \dots$"* | **Distributive Lattice Identities** (Mod 3) | Distributive laws hold both ways. Group terms, factor out common variables, apply absorption $u \wedge (u \vee v) = u$. | Go to **Blueprint 1** (Lattice Identity Engine). Cite the 5 governing axioms at each step. |
+| *"Prove that complement of an element in a distributive lattice is unique..."* / *"Prove cancellation law..."* | **Lattice Theorems** (Mod 3) | If $a \wedge b = 0, a \vee b = 1$ and $a \wedge c = 0, a \vee c = 1$, then $b = b \wedge (a \vee c) = \dots = c$. | Go to **Blueprint 1 (Templates 1.2 & 1.3)**. Copy the algebraic proof word-for-word. |
+| *"Construct truth table and find PDNF and PCNF of $f$ which takes value 1 if..."* | **Boolean Function Normal Forms** (Mod 3) | $\text{PDNF} = \sum m(\text{rows where } f=1)$.<br>$\text{PCNF} = \prod M(\text{rows where } f=0)$. | Go to **Blueprint 2** (Boolean Normal Forms Engine). Fill the universal 8-row table. |
+| *"Find zero and unit elements of $(D_n, \mid)$..."* / *"Is $(D_n, \mid)$ a complemented lattice / Boolean algebra?"* | **Divisor Posets & Lattices** (Mod 3) | Zero $= 1$, Unit $= n$. Complemented $\iff n$ is **square-free** (no repeated prime factors). | Go to **Blueprint 3** (Divisor Lattice Evaluator). Read prime factors, find complements or state counterexample $p_i$. |
+| *"A graph has vertices partitioned into $V_1, V_2$ with degrees $d_1, d_2$ and $m$ edges. Can it exist?"* | **Handshaking Lemma & Degree Partition** (Mod 4) | Equate $2|E| = \sum |V_i| d_i$. Solve for $k$. Check: (1) $k \in \mathbb{Z}^+$, (2) odd vertices even, (3) $\Delta \le |V|-1$. | Go to **Blueprint 4** (Degree Partition Solver). Run the 4-Gate Impossibility Test. |
+| *"Determine whether graphs $G_1$ and $G_2$ are isomorphic..."* | **Graph Isomorphism** (Mod 4) | If non-isomorphic: find 1 failing invariant (triangles, components). If isomorphic: write explicit bijection $f(u_i) = v_j$. | Go to **Blueprint 5** (2-Graph Isomorphism Engine). Draw 5-invariant table, then write bijection. |
+| *"Determine whether the degree sequence is graphic..."* / *"Apply Havel-Hakimi theorem..."* | **Havel-Hakimi Algorithm** (Mod 4) | Delete $d_1$, subtract 1 from next $d_1$ elements, re-sort descending. All zeros $\implies$ graphic. | Go to **Blueprint 6** (Havel-Hakimi Table Generator). Set up standard 4-column reduction table. |
+| *"Find all-pairs shortest paths using Floyd-Warshall algorithm..."* | **Floyd-Warshall Algorithm** (Mod 4) | $d_{ij}^{(k)} = \min(d_{ij}^{(k-1)}, d_{ik}^{(k-1)} + d_{kj}^{(k-1)})$. Row $k$ and Col $k$ never change at step $k$. | Go to **Blueprint 7** (Floyd-Warshall Matrix Blueprint). Fill matrices $D^{(0)} \dots D^{(4)}$ with zero error. |
+| *"Find shortest path from vertex $S$ to all other vertices..."* | **Dijkstra's Algorithm** (Mod 4) | Greedy relaxation of tentative labels $d[v] = \min(d[v], d[u^*] + w(u^*, v))$. | Go to **Blueprint 8** (Dijkstra Shortest Path Engine). Draw standard iteration table. |
+| *"Determine whether graph $G$ is bipartite..."* / *"Check if $G$ has an odd cycle..."* | **Bipartite Graphs & Kőnig's Theorem** (Mod 4) | Bipartite $\iff$ 2-colorable $\iff$ contains **NO odd cycles**. | Go to **Blueprint 9** (Bipartite 2-Coloring Engine). Execute BFS 2-coloring (Red/Blue). |
+| *"Find number of faces in a connected planar graph with $v$ vertices and $e$ edges..."* | **Euler's Formula & Planarity** (Mod 4) | $v - e + f = 2 \implies f = e - v + 2$. Planar simple graph has $e \le 3v - 6$. | Go to **Blueprint 10** (Planarity & Polyhedral Formulas). |
+| *"Prove that a simple graph is self-complementary only if $n \equiv 0, 1 \pmod 4$..."* | **Self-Complementary Graphs** (Mod 4) | $|E(G)| = \frac{n(n-1)}{4} \in \mathbb{Z}^+ \implies 4 \mid n(n-1) \implies n \equiv 0, 1 \pmod 4$. | Refer to **Section 1 Q10** or **Section 7 (Module 4 HOTS)**. Copy 4-line proof. |
+| *"Prove that in any group of $n \ge 2$ people, at least two have the same number of friends..."* | **Pigeonhole Principle & Handshaking** (Mod 4) | Degrees in simple graph cannot contain both $0$ and $n-1$. Degree values map to $\le n-1$ pigeonholes for $n$ vertices. | Refer to **Section 1 Q15** or **Section 7 (Module 4 HOTS)**. Copy PHP proof. |
+
+---
+# PART II: 10 UNIVERSAL COPY-PASTE ALGORITHMIC BLUEPRINTS (PARAMETRIC SOLVERS)
 
 ---
 
-# PART II: MODULE 3 QUESTIONNAIRE (Lattices & Boolean Algebra)
+## 🏛️ BLUEPRINT 1: Distributive & Boolean Lattice Identity Proof Engine
 
+### Applicable Question Archetypes:
+* *"Prove that in a distributive lattice $L$, $(a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = (a \vee b) \wedge (b \vee c) \wedge (c \vee a)$."*
+* *"Prove that the complement of an element in a distributive lattice, if it exists, is unique."*
+* *"Prove the Cancellation Laws: $a \wedge x = a \wedge y$ and $a \vee x = a \vee y \implies x = y$."*
+* *"State and prove De Morgan's laws in a Boolean lattice."*
+* *"Prove that every distributive lattice is modular: $a \le c \implies a \vee (b \wedge c) = (a \vee b) \wedge c$."*
+* *"Prove the Isotonicity property: $a \le b \implies a \wedge c \le b \wedge c$ and $a \vee c \le b \vee c$."*
+
+### The 5 Foundational Lattice Laws (Write this first to secure 2 marks):
+In any lattice $(L, \wedge, \vee)$, the following axioms hold identically $\forall u, v, w \in L$:
+1. **Idempotent Laws**: $u \wedge u = u$ and $u \vee u = u$.
+2. **Commutative Laws**: $u \wedge v = v \wedge u$ and $u \vee v = v \vee u$.
+3. **Associative Laws**: $(u \wedge v) \wedge w = u \wedge (v \wedge w)$ and $(u \vee v) \vee w = u \vee (v \vee w)$.
+4. **Absorption Laws**: $u \wedge (u \vee v) = u$ and $u \vee (u \wedge v) = u$.
+5. **Distributive Laws** (in a Distributive Lattice):
+   * *Meet over Join*: $u \wedge (v \vee w) = (u \wedge v) \vee (u \wedge w)$
+   * *Join over Meet*: $u \vee (v \wedge w) = (u \vee v) \wedge (u \vee w)$
+6. **Bridge Theorem**: $u \le v \iff u \wedge v = u \iff u \vee v = v$.
+
+---
+
+### Master Template 1.1: Proving the Median Self-Dual Identity
+**Goal**: Prove $(a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = (a \vee b) \wedge (b \vee c) \wedge (c \vee a)$.
+
+**Model Solution to Copy into Answer Sheet**:
+1. Let the Left-Hand Side be $x = (a \wedge b) \vee (b \wedge c) \vee (c \wedge a)$ and Right-Hand Side be $y = (a \vee b) \wedge (b \vee c) \wedge (c \vee a)$.
+2. Consider the first two factors of $y$:
+   $$T = (a \vee b) \wedge (b \vee c) = (b \vee a) \wedge (b \vee c) \quad [\text{Commutative Law}]$$
+   Applying the **second distributive law** (factoring out $b$):
+   $$T = b \vee (a \wedge c)$$
+3. Substitute $T$ back into $y$:
+   $$y = [b \vee (a \wedge c)] \wedge (c \vee a)$$
+4. Apply the **first distributive law** to distribute $\wedge (c \vee a)$ over the join:
+   $$y = \Big( b \wedge (c \vee a) \Big) \vee \Big( (a \wedge c) \wedge (c \vee a) \Big)$$
+5. Simplify the two bracketed terms separately:
+   * **Term 1**: $b \wedge (c \vee a) = (b \wedge c) \vee (b \wedge a) = (a \wedge b) \vee (b \wedge c)$ $[By Distributive & Commutative Laws]$
+   * **Term 2**: Let $u = a \wedge c$. Notice that $u \wedge (a \vee c) = u = a \wedge c = c \wedge a$ $[By Absorption Law, since  \wedge c \le a \le a \vee c$]$
+6. Recombining:
+   $$y = \Big[ (a \wedge b) \vee (b \wedge c) \Big] \vee (c \wedge a) = (a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = x$$
+7. $\mathbf{\therefore x = y \quad \forall a, b, c \in L. \quad \blacksquare}$
+
+---
+
+### Master Template 1.2: Uniqueness of Complements in Distributive Lattices
+**Theorem**: In a bounded distributive lattice $(L, \wedge, \vee, 0, 1)$, if an element $a$ has a complement, it is **unique**.
+
+**Model Solution to Copy into Answer Sheet**:
+1. **Hypothesis**: Let $b$ and $c$ both be complements of $a \in L$. By definition of complement:
+   $$a \wedge b = 0, \quad a \vee b = 1$$
+   $$a \wedge c = 0, \quad a \vee c = 1$$
+2. **Proof that $b = c$**:
+   $$\begin{aligned}
+   b &= b \wedge 1 & & [\text{Identity of } 1] \\\\
+   &= b \wedge (a \vee c) & & [\text{Substitute } 1 = a \vee c] \\\\
+   &= (b \wedge a) \vee (b \wedge c) & & [\text{Distributive Law of } \wedge \text{ over } \vee] \\\\
+   &= (a \wedge b) \vee (b \wedge c) & & [\text{Commutative Law}] \\\\
+   &= 0 \vee (b \wedge c) & & [\text{Substitute } a \wedge b = 0] \\\\
+   &= (a \wedge c) \vee (b \wedge c) & & [\text{Substitute } 0 = a \wedge c] \\\\
+   &= (a \vee b) \wedge c & & [\text{Distributive Law, factoring out } c] \\\\
+   &= 1 \wedge c & & [\text{Substitute } a \vee b = 1] \\\\
+   &= c & & [\text{Identity of } 1]
+   \end{aligned}$$
+3. $\mathbf{\therefore b = c. \text{ The complement of } a \text{ is strictly unique.} \quad \blacksquare}$
+
+---
+
+### Master Template 1.3: Cancellation Law in Distributive Lattices
+**Theorem**: If $L$ is a distributive lattice, then $a \wedge x = a \wedge y$ and $a \vee x = a \vee y \implies x = y$.
+
+**Model Solution to Copy into Answer Sheet**:
+$$\begin{aligned}
+x &= x \wedge (x \vee a) & & [\text{Absorption Law}] \\\\
+&= x \wedge (a \vee x) & & [\text{Commutative Law}] \\\\
+&= x \wedge (a \vee y) & & [\text{Given: } a \vee x = a \vee y] \\\\
+&= (x \wedge a) \vee (x \wedge y) & & [\text{Distributive Law}] \\\\
+&= (a \wedge x) \vee (x \wedge y) & & [\text{Commutative Law}] \\\\
+&= (a \wedge y) \vee (x \wedge y) & & [\text{Given: } a \wedge x = a \wedge y] \\\\
+&= (y \wedge a) \vee (y \wedge x) & & [\text{Commutative Law}] \\\\
+&= y \wedge (a \vee x) & & [\text{Distributive Law}] \\\\
+&= y \wedge (a \vee y) & & [\text{Given: } a \vee x = a \vee y] \\\\
+&= y & & [\text{Absorption Law}]
+\end{aligned}$$
+$\mathbf{\therefore x = y. \quad \blacksquare}$
+
+---
+
+### Master Template 1.4: De Morgan's Laws in Boolean Lattices
+**Theorem**: In any Boolean lattice $(B, \wedge, \vee, ', 0, 1)$, $(a \vee b)' = a' \wedge b'$ and $(a \wedge b)' = a' \vee b'$.
+
+**Model Solution to Copy into Answer Sheet**:
+To prove $(a \vee b)' = a' \wedge b'$, we must verify the two complement axioms: (i) $(a \vee b) \vee (a' \wedge b') = 1$, and (ii) $(a \vee b) \wedge (a' \wedge b') = 0$.
+1. **Join Condition**:
+   $$\begin{aligned}
+   (a \vee b) \vee (a' \wedge b') &= \big[ (a \vee b) \vee a' \big] \wedge \big[ (a \vee b) \vee b' \big] & & [\text{Distributive Law}] \\\\
+   &= \big[ (a \vee a') \vee b \big] \wedge \big[ a \vee (b \vee b') \big] & & [\text{Associative \\& Commutative}] \\\\
+   &= (1 \vee b) \wedge (a \vee 1) = 1 \wedge 1 = 1 & & [\text{Complement Law } a \vee a' = 1]
+   \end{aligned}$$
+2. **Meet Condition**:
+   $$\begin{aligned}
+   (a \vee b) \wedge (a' \wedge b') &= \big( a \wedge (a' \wedge b') \big) \vee \big( b \wedge (a' \wedge b') \big) & & [\text{Distributive Law}] \\\\
+   &= \big( (a \wedge a') \wedge b' \big) \vee \big( (b \wedge b') \wedge a' \big) & & [\text{Associative \\& Commutative}] \\\\
+   &= (0 \wedge b') \vee (0 \wedge a') = 0 \vee 0 = 0 & & [\text{Complement Law } a \wedge a' = 0]
+   \end{aligned}$$
+By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a' \wedge b'}$. The dual identity $(a \wedge b)' = a' \vee b'$ follows by lattice duality. $\blacksquare$
+
+---
+
+## ⚡ BLUEPRINT 2: Arbitrary Verbal Boolean Rule $\to$ Truth Table $\to$ PDNF & PCNF Factory
+
+### Applicable Question Archetypes:
+* *"Construct the truth table and find the PDNF and PCNF of the Boolean function $f(x, y, z)$ which takes the value 1 if the number of 1s in the tuple $(x, y', z)$ is greater than the number of 0s."*
+* *"Find the PDNF and PCNF of the majority voting function $M(x, y, z)$."*
+* *"Find the PDNF and PCNF of the parity check function $P(x, y, z)$ (odd/even parity)."*
+* *"Find the PDNF and PCNF of the threshold function $T(x, y, z) = 1 \iff x + y + z \ge 2$."*
+
+### Step-by-Step Universal Algorithm:
+1. **Set Up Standard 8-Row Binary Ordering**: $000, 001, 010, 011, 100, 101, 110, 111$.
+2. **Evaluate Tuple Transformations**:
+   * If question specifies tuple $(x, y', z)$, invert $y$ (i.e. $0 \to 1, 1 \to 0$).
+   * If question specifies $(x', y, z')$, invert $x$ and $z$.
+3. **Count and Evaluate Condition**:
+   * *Majority / More 1s than 0s*: In a 3-variable tuple, more 1s than 0s means $\ge 2$ ones (i.e. Count of 1s $\in \\{2, 3\\}$).
+   * *Odd Parity*: Count of 1s is 1 or 3.
+   * *Even Parity*: Count of 1s is 0 or 2.
+   * *Threshold $k$*: Sum of input bits $\ge k$.
+4. **Draw the Universal 8-Row Standardized Table**:
+
+| Row $i$ | $x$ | $y$ | $z$ | Evaluated Tuple | Evaluation Condition | $f(x, y, z)$ | Minterm $m_i$ ($f=1$) | Maxterm $M_i$ ($f=0$) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0** | 0 | 0 | 0 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $x'y'z'$ | $(x + y + z)$ |
+| **1** | 0 | 0 | 1 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $x'y'z$ | $(x + y + z')$ |
+| **2** | 0 | 1 | 0 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $x'yz'$ | $(x + y' + z)$ |
+| **3** | 0 | 1 | 1 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $x'yz$ | $(x + y' + z')$ |
+| **4** | 1 | 0 | 0 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $xy'z'$ | $(x' + y + z)$ |
+| **5** | 1 | 0 | 1 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $xy'z$ | $(x' + y + z')$ |
+| **6** | 1 | 1 | 0 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $xyz'$ | $(x' + y' + z)$ |
+| **7** | 1 | 1 | 1 | $(t_1, t_2, t_3)$ | True / False | $0$ or $1$ | $xyz$ | $(x' + y' + z')$ |
+
+5. **Writing Full Marks PDNF & PCNF**:
+   * **PDNF (Sum of Minterms)**:
+     $$\text{PDNF} = \sum m(i_1, i_2, \dots) = m_{i_1} \vee m_{i_2} \vee \dots$$
+     *(Literal rule: $1 \to$ unprimed variable, $0 \to$ primed variable, combined by $\wedge$)*.
+   * **PCNF (Product of Maxterms)**:
+     $$\text{PCNF} = \prod M(j_1, j_2, \dots) = M_{j_1} \wedge M_{j_2} \wedge \dots$$
+     *(Literal rule: $0 \to$ unprimed variable, $1 \to$ primed variable, combined by $\vee$)*.
+6. **Duality Sanity Check (Write this to impress the professor)**:
+   $$\\{i \mid f(i) = 1\\} \cup \\{j \mid f(j) = 0\\} = \\{0, 1, 2, 3, 4, 5, 6, 7\\} \quad \text{and} \quad \\{i\\} \cap \\{j\\} = \emptyset$$
+
+### Pre-Computed Standard Verbal Problem Answers:
+* **Majority on $(x, y, z)$**: $\text{PDNF} = \sum m(3, 5, 6, 7)$; $\text{PCNF} = \prod M(0, 1, 2, 4)$.
+* **Majority on $(x, y', z)$** *(Actual Sep 2026 Paper)*: $\text{PDNF} = \sum m(1, 4, 5, 7)$; $\text{PCNF} = \prod M(0, 2, 3, 6)$.
+* **Odd Parity (XOR $x \oplus y \oplus z$)**: $\text{PDNF} = \sum m(1, 2, 4, 7)$; $\text{PCNF} = \prod M(0, 3, 5, 6)$.
+* **Even Parity (XNOR)**: $\text{PDNF} = \sum m(0, 3, 5, 6)$; $\text{PCNF} = \prod M(1, 2, 4, 7)$.
+
+---
+
+## 💎 BLUEPRINT 3: Divisor Lattice $(D_n, \mid)$ Complete Instant Evaluator
+
+### Applicable Question Archetypes:
+* *"Let $D_n$ be the set of all positive divisors of $n$ under divisibility relation. Find the zero and unit elements."*
+* *"Determine whether $(D_n, \mid)$ is a complemented lattice. Find complements of all elements."*
+* *"Is $(D_n, \mid)$ a Boolean algebra? Justify."*
+
+### Step-by-Step Universal Algorithm for ANY integer $n$:
+1. **Prime Factorization**:
+   $$n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$$
+2. **Total Divisor Count**:
+   $$|D_n| = \tau(n) = (e_1 + 1)(e_2 + 1) \cdots (e_k + 1)$$
+3. **Zero and Unit Elements (Always the same!)**:
+   * **Least / Zero Element ($0_L$)**: $\mathbf{0_L = 1}$ (since $1 \mid x$ for all $x \in D_n$).
+   * **Greatest / Unit Element ($1_L$)**: $\mathbf{1_L = n}$ (since $x \mid n$ for all $x \in D_n$).
+4. **Lattice Operations**:
+   * Meet (Infimum / GLB): $a \wedge b = \gcd(a, b)$.
+   * Join (Supremum / LUB): $a \vee b = \text{lcm}(a, b)$.
+5. **Complementation Formula & Testing**:
+   * An element $y$ is a complement of $x \iff x \wedge y = 1$ (i.e. $\gcd(x, y) = 1$) and $x \vee y = n$ (i.e. $\text{lcm}(x, y) = n$).
+   * Since $\gcd(x, y) \cdot \text{lcm}(x, y) = x \cdot y$, we MUST have $1 \cdot n = x \cdot y \implies \mathbf{y = \frac{n}{x}}$.
+   * **Golden Test**: The element $x$ has a complement $\iff \mathbf{\gcd\left(x, \frac{n}{x}\right) = 1}$.
+     * If $\gcd(x, n/x) = 1$, then $y = n/x$ is its unique complement.
+     * If $\gcd(x, n/x) > 1$, then $x$ has **NO COMPLEMENT**!
+6. **The Master Square-Free Theorem (Instant 10/10 Marks)**:
+   > **Theorem**: The divisor lattice $(D_n, \mid)$ is a **Boolean algebra** if and only if $n$ is **square-free** (i.e. $n$ is a product of distinct primes, with all exponents $e_i = 1$).
+   * **If $n$ has any prime squared ($e_i \ge 2$)**: It is **NOT** a complemented lattice, and therefore **NOT** a Boolean algebra.
+   * **Standard Counterexample to Write**: Choose element $x = p_i$. Candidate is $y = n/p_i$. Since $p_i \mid (n/p_i)$, $\gcd(p_i, n/p_i) = p_i > 1 \ne 1$. Hence element $p_i$ has no complement in $D_n$.
+
+### Rapid Lookup Cheat Sheet for Standard Exam Values of $n$:
+
+| Poset | Prime Factorization | $|D_n|$ | Zero | Unit | Complemented? | Boolean Algebra? | Failing Element(s) Without Complement |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **$D_6$** | $2 \times 3$ | 4 | 1 | 6 | **YES** | **YES** ($B_2$) | None (All have unique complements: $1\leftrightarrow 6, 2\leftrightarrow 3$) |
+| **$D_8$** | $2^3$ | 4 | 1 | 8 | **NO** | **NO** (Chain) | $2$ (candidate $4$, $\gcd(2,4)=2$), $4$ (candidate $2$) |
+| **$D_{12}$** | $2^2 \times 3$ | 6 | 1 | 12 | **NO** | **NO** | $2$ (candidate $6$, $\gcd(2,6)=2$), $6$ (candidate $2$) |
+| **$D_{18}$** | $2 \times 3^2$ | 6 | 1 | 18 | **NO** | **NO** | $3$ (candidate $6$, $\gcd(3,6)=3$), $6$ (candidate $3$) |
+| **$D_{20}$** | $2^2 \times 5$ | 6 | 1 | 20 | **NO** | **NO** | $2$ (candidate $10$, $\gcd(2,10)=2$), $10$ (candidate $2$) |
+| **$D_{24}$** | $2^3 \times 3$ | 8 | 1 | 24 | **NO** | **NO** | $2, 4, 6, 12$ have no complements |
+| **$D_{30}$** | $2 \times 3 \times 5$ | 8 | 1 | 30 | **YES** | **YES** ($B_3$, 3-cube) | None ($1\leftrightarrow 30, 2\leftrightarrow 15, 3\leftrightarrow 10, 5\leftrightarrow 6$) |
+| **$D_{36}$** | $2^2 \times 3^2$ | 9 | 1 | 36 | **NO** | **NO** | $2, 3, 6, 12, 18$ have no complements |
+| **$D_{42}$** | $2 \times 3 \times 7$ | 8 | 1 | 42 | **YES** | **YES** ($B_3$) | None ($1\leftrightarrow 42, 2\leftrightarrow 21, 3\leftrightarrow 14, 6\leftrightarrow 7$) |
+| **$D_{70}$** | $2 \times 5 \times 7$ | 8 | 1 | 70 | **YES** | **YES** ($B_3$) | None ($1\leftrightarrow 70, 2\leftrightarrow 35, 5\leftrightarrow 14, 7\leftrightarrow 10$) |
+| **$D_{210}$** | $2 \times 3 \times 5 \times 7$ | 16 | 1 | 210 | **YES** | **YES** ($B_4$, 4-cube) | None (All 16 elements complemented) |
+
+---
+
+## 📐 BLUEPRINT 4: Handshaking Lemma & Vertex Partition Degree Equation Solver
+
+### Applicable Question Archetypes:
+* *"Can a graph exist with vertices partitioned into $V_1$ and $V_2$ such that $|V_1| = 2|V_2|$, each vertex in $V_1$ has degree 2, each vertex in $V_2$ has degree 4, and $|E| = 15$?"*
+* *"A simple graph has $n$ vertices, half of degree 3 and half of degree 4, with $m$ edges. Is this graph possible?"*
+* *"Can a simple bipartite graph have partition sizes $n_1=5, n_2=6$ where every vertex in $V_1$ has degree 4 and $V_2$ has degree 3?"*
+
+### Step-by-Step Universal Algorithm:
+1. **Set Up the Parameter $k$**:
+   * Express the vertex subset sizes in terms of integer variable $k$:
+     $$|V_2| = k, \quad |V_1| = c \cdot k \implies |V| = (c + 1)k$$
+2. **Apply Euler's Handshaking Theorem**:
+   $$\sum_{v \in V} \deg(v) = 2|E|$$
+   $$\sum_{i} |V_i| \cdot d_i = 2|E|$$
+3. **Solve for $k$**:
+   * Example: $(2k)(2) + (k)(4) = 2(15) \implies 8k = 30 \implies k = 3.75$.
+4. **Execute the 4-Gate Impossibility / Feasibility Checklist**:
+   * **Gate 1 (Integrality Test)**:
+     * Condition: $k \in \mathbb{Z}^+$ (must be a positive whole integer).
+     * If $k$ is fractional: **STOP**. Write:
+       * *"By Euler's Handshaking theorem, $\sum \deg(v) = 2|E| \implies 8k = 30 \implies k = 3.75 \notin \mathbb{Z}^+$. Since the number of vertices in any graph must be a non-negative integer, no such graph can exist. $\blacksquare$"*
+   * **Gate 2 (Degree Parity Corollary)**:
+     * Condition: The count of vertices of **odd degree** must be **EVEN**.
+     * If odd-degree vertex count is odd: **STOP**. Write:
+       * *"The graph contains an odd number of odd-degree vertices, directly violating the Handshaking Corollary. Therefore, no such graph can exist. $\blacksquare$"*
+   * **Gate 3 (Maximum Degree Constraint for Simple Graph)**:
+     * Condition: $\Delta = \max(d_i) \le |V| - 1$.
+     * If $\Delta \ge |V|$: **STOP**. Write:
+       * *"In a simple graph of $|V|$ vertices, no vertex can have degree greater than $|V|-1$ (no self-loops or parallel edges). Here $\Delta = \dots \ge |V|$, which is impossible. $\blacksquare$"*
+   * **Gate 4 (Edge Density Constraint)**:
+     * Condition: $|E| \le \binom{|V|}{2} = \frac{|V|(|V|-1)}{2}$. For bipartite graphs, $|E| \le |V_1| \cdot |V_2|$.
+     * If $|E|$ exceeds maximum allowed: **STOP**. Write density impossibility proof.
+
+---
+
+## 🔍 BLUEPRINT 5: 2-Graph Isomorphism Decision & Proof Engine
+
+### Applicable Question Archetypes:
+* *"Determine whether the two given graphs $G_1$ and $G_2$ are isomorphic."*
+* *"Show that the two graphs are non-isomorphic by exhibiting a graph invariant that differs."*
+* *"Verify graph isomorphism by providing an explicit vertex bijection and verifying edge preservation."*
+
+### Phase 1: Draw the 5-Invariant Elimination Table First!
+Before doing anything else, draw this exact table in your exam sheet:
+
+| Invariant | Graph $G_1$ Value | Graph $G_2$ Value | Status |
+| :--- | :---: | :---: | :---: |
+| **1. Number of Vertices ($|V|$)** | $n_1$ | $n_2$ | Match $\checkmark$ / Differs $\times$ |
+| **2. Number of Edges ($|E|$)** | $m_1$ | $m_2$ | Match $\checkmark$ / Differs $\times$ |
+| **3. Degree Sequence (Sorted Descending)** | $(d_1, d_2, \dots)$ | $(d'_1, d'_2, \dots)$ | Match $\checkmark$ / Differs $\times$ |
+| **4. Connected Components ($c(G)$)** | $c(G_1)$ | $c(G_2)$ | Match $\checkmark$ / Differs $\times$ |
+| **5. Cycle Spectrum ($C_3$ Triangles, $C_4$ 4-Cycles)** | Count of $C_3, C_4$ | Count of $C_3, C_4$ | Match $\checkmark$ / Differs $\times$ |
+| **6. Complement Graph Size ($|\overline{E}|$)** | $\binom{n}{2} - m_1$ | $\binom{n}{2} - m_2$ | Match $\checkmark$ / Differs $\times$ |
+
+---
+
+### Decision Branch A: If ANY Invariant Differs $\implies$ NON-ISOMORPHIC (Instant 1-Line Proof)
+**Model Text to Write**:
+> *"The two graphs $G_1$ and $G_2$ are **NOT isomorphic** ($G_1 \not\cong G_2$).  
+> **Proof**: A graph invariant is a property preserved under all graph isomorphisms. Here, the invariant **[Insert Failing Invariant, e.g. Number of 3-Cycles $C_3$]** differs between $G_1$ and $G_2$:  
+> - $G_1$ contains [e.g. 2 triangles: $(u_1, u_2, u_3)$ and $(u_4, u_5, u_6)$].  
+> - $G_2$ contains [e.g. 0 triangles, as it is bipartite].  
+> Since any isomorphism must map $k$-cycles to $k$-cycles, no edge-preserving bijection can exist between $V(G_1)$ and $V(G_2)$. Hence $G_1 \not\cong G_2$. $\blacksquare$"*
+
+---
+
+### Decision Branch B: If All Invariants Match $\implies$ ISOMORPHIC (Full-Credit Proof Protocol)
+*(Remember: Matching invariants is necessary but NOT sufficient. You MUST write the explicit bijection table to get 10/10 marks!)*
+
+1. **Step 1: Structural Cycle / Path Tracing**:
+   * Trace the primary cycle in $G_1$: e.g. $u_1 - u_2 - u_3 - u_4 - u_5 - u_6 - u_1$.
+   * Trace the corresponding cycle in $G_2$: e.g. $v_1 - v_3 - v_5 - v_2 - v_4 - v_6 - v_1$.
+2. **Step 2: Construct the Vertex Bijection Table $f: V(G_1) \to V(G_2)$**:
+
+| Vertex in $G_1$ ($u_i$) | Mapped Vertex in $G_2$ ($f(u_i)$) | $\deg(u_i)$ | $\deg(f(u_i))$ | Neighbor Set in $G_1$ | Image Neighbor Set in $G_2$ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| $u_1$ | $v_1$ | 2 | 2 | $\\{u_2, u_6\\}$ | $\\{f(u_2), f(u_6)\\} = \\{v_3, v_6\\}$ |
+| $u_2$ | $v_3$ | 2 | 2 | $\\{u_1, u_3\\}$ | $\\{f(u_1), f(u_3)\\} = \\{v_1, v_5\\}$ |
+| $u_3$ | $v_5$ | 2 | 2 | $\\{u_2, u_4\\}$ | $\\{f(u_2), f(u_4)\\} = \\{v_3, v_2\\}$ |
+| $u_4$ | $v_2$ | 2 | 2 | $\\{u_3, u_5\\}$ | $\\{f(u_3), f(u_5)\\} = \\{v_5, v_4\\}$ |
+| $u_5$ | $v_4$ | 2 | 2 | $\\{u_4, u_6\\}$ | $\\{f(u_4), f(u_6)\\} = \\{v_2, v_6\\}$ |
+| $u_6$ | $v_6$ | 2 | 2 | $\\{u_5, u_1\\}$ | $\\{f(u_5), f(u_1)\\} = \\{v_4, v_1\\}$ |
+
+3. **Step 3: Edge-Preservation Verification Table**:
+   Show that $(u_i, u_j) \in E(G_1) \iff (f(u_i), f(u_j)) \in E(G_2)$ for every edge:
+
+| Edge in $G_1$ | Image Edge in $G_2$ | Present in $E(G_2)$? |
+| :---: | :---: | :---: |
+| $(u_1, u_2)$ | $(v_1, v_3)$ | Yes $\checkmark$ |
+| $(u_2, u_3)$ | $(v_3, v_5)$ | Yes $\checkmark$ |
+| $(u_3, u_4)$ | $(v_5, v_2)$ | Yes $\checkmark$ |
+| $(u_4, u_5)$ | $(v_2, v_4)$ | Yes $\checkmark$ |
+| $(u_5, u_6)$ | $(v_4, v_6)$ | Yes $\checkmark$ |
+| $(u_6, u_1)$ | $(v_6, v_1)$ | Yes $\checkmark$ |
+
+4. **Step 4: Formal Concluding Sentence**:
+   > *"Since $f: V(G_1) \to V(G_2)$ is a 1-to-1 and onto mapping (bijection) that preserves adjacency and non-adjacency across all pairs of vertices, the graphs $G_1$ and $G_2$ are **ISOMORPHIC** ($G_1 \cong G_2$). $\blacksquare$"*
+
+---
+
+## 🔢 BLUEPRINT 6: Havel-Hakimi Graphic Sequence Table Generator
+
+### Applicable Question Archetypes:
+* *"Determine whether the given degree sequence $S = (d_1, d_2, \dots, d_n)$ is graphic using the Havel-Hakimi algorithm."*
+* *"Can a simple graph be constructed with degree sequence $(d_1, \dots, d_n)$?"*
+
+### Havel-Hakimi Equivalence Theorem:
+> A non-increasing sequence of non-negative integers $S = (d_1, d_2, \dots, d_n)$ with $d_1 \le n-1$ is **graphic** if and only if the modified sequence:
+> $$S' = (d_2 - 1, d_3 - 1, \dots, d_{d_1 + 1} - 1, d_{d_1 + 2}, \dots, d_n)$$
+> (obtained by deleting $d_1$ and subtracting 1 from the next $d_1$ terms) is graphic when re-sorted in non-increasing order.
+
+### Step-by-Step Universal Algorithm:
+1. **Pre-Screening Gate (Instant Disqualification)**:
+   * Compute degree sum $\sum d_i$. If ODD $\implies$ NOT GRAPHIC (by Handshaking Lemma).
+   * Check maximum degree $d_1$. If $d_1 \ge n$ $\implies$ NOT GRAPHIC (max degree in simple graph is $n-1$).
+   * Check if any $d_i < 0$ $\implies$ NOT GRAPHIC.
+2. **Execute the Standard 4-Column Table**:
+
+| Step $k$ | Current Sequence (Sorted Non-Increasing) | Reduction Operation (Delete $d_1$, subtract 1 from next $d_1$ terms) | Resulting Sequence | Re-sorted Sequence $S^{(k+1)}$ |
+| :---: | :--- | :--- | :--- | :--- |
+| **0** | $(d_1, d_2, \dots, d_n)$ | $d_1 = \dots$; Subtract 1 from next $d_1$ terms | $(\dots)$ | $(\dots)$ |
+| **1** | $(\dots)$ | $d_1 = \dots$; Subtract 1 from next $d_1$ terms | $(\dots)$ | $(\dots)$ |
+| **2** | $(\dots)$ | $d_1 = \dots$; Subtract 1 from next $d_1$ terms | $(\dots)$ | $(\dots)$ |
+
+3. **Termination Rules (Crucial!)**:
+   * **Rule A (Graphic)**: If the sequence reduces to a sequence of all zeros (e.g. $(0, 0, \dots, 0)$), this represents an empty/null graph $N_k$ with $k$ isolated vertices (trivially graphic). Conclude:
+     > *"At Step $k$, the sequence reduces to all zeros, which is trivially graphic (null graph). By the Havel-Hakimi Theorem, the original sequence $S$ is **GRAPHIC**. $\blacksquare$"*
+   * **Rule B (Not Graphic)**: If at any step, a negative number appears (e.g. subtracting 1 from 0 yields $-1$) or there are fewer than $d_1$ remaining terms to subtract from, the sequence is **NOT GRAPHIC**. Conclude:
+     > *"At Step $k$, subtraction produces a negative degree (or insufficient terms), which cannot occur in any simple graph. By the Havel-Hakimi Theorem, the original sequence $S$ is **NOT GRAPHIC**. $\blacksquare$"*
+
+---
+
+## 📊 BLUEPRINT 7: Floyd-Warshall All-Pairs Shortest Path Matrix Execution Blueprint
+
+### Applicable Question Archetypes:
+* *"Find all-pairs shortest paths for the given directed graph using Floyd-Warshall algorithm. Show all matrices $D^{(0)}, D^{(1)}, D^{(2)}, D^{(3)}, D^{(4)}$."*
+
+### Mathematical Recurrence:
+$$d_{ij}^{(k)} = \min\left( d_{ij}^{(k-1)}, \quad d_{ik}^{(k-1)} + d_{kj}^{(k-1)} \right)$$
+$$k \in \\{1, 2, \dots, n\\}, \quad i, j \in \\{1, 2, \dots, n\\}$$
+
+### Predecessor Update Rule:
+$$\pi_{ij}^{(k)} = \begin{cases} \pi_{kj}^{(k-1)} & \text{if } d_{ik}^{(k-1)} + d_{kj}^{(k-1)} < d_{ij}^{(k-1)} \\\\ \pi_{ij}^{(k-1)} & \text{otherwise} \end{cases}$$
+
+### The 4 Golden Speed Shortcuts (Never make an arithmetic mistake!):
+1. **Row $k$ and Column $k$ NEVER Change**: When computing matrix $D^{(k)}$, Row $k$ and Column $k$ are identical to $D^{(k-1)}$. Copy them directly!
+2. **Diagonal Entries are ALWAYS Zero**: $d_{ii}^{(k)} = 0$ for all $k$.
+3. **Infinity Free Pass**: If entry $d_{ik}^{(k-1)} = \infty$ or $d_{kj}^{(k-1)} = \infty$, the candidate path length is $\infty$. The cell $(i, j)$ CANNOT change! Copy $d_{ij}^{(k)} = d_{ij}^{(k-1)}$ directly.
+4. **Active Cell Filter**: In an $n=4$ matrix, typically only 2 to 4 cells have finite entries in both row $k$ and column $k$. Only compute those specific candidate sums!
+
+### Universal Execution Walkthrough:
+* **Initial Matrix $D^{(0)}$**:
+  * Set $d_{ii} = 0$.
+  * Set $d_{ij} = w(i, j)$ if directed edge $i \to j$ exists.
+  * Set $d_{ij} = \infty$ if no direct edge exists.
+* **Initial Matrix $\Pi^{(0)}$**:
+  * Set $\pi_{ij} = i$ if $i \ne j$ and $w(i, j) < \infty$.
+  * Set $\pi_{ij} = \text{NIL}$ if $i = j$ or $w(i, j) = \infty$.
+* **Iterations**:
+  * **$k=1$ (via Vertex 1)**: Keep Row 1 and Col 1 unchanged. Test cells $(i, j)$ where both $d_{i1} < \infty$ and $d_{1j} < \infty$.
+  * **$k=2$ (via Vertex 2)**: Keep Row 2 and Col 2 unchanged. Test cells where $d_{i2} < \infty$ and $d_{2j} < \infty$.
+  * **$k=3$ (via Vertex 3)**: Keep Row 3 and Col 3 unchanged. Test cells where $d_{i3} < \infty$ and $d_{3j} < \infty$.
+  * **$k=4$ (via Vertex 4)**: Keep Row 4 and Col 4 unchanged. Test cells where $d_{i4} < \infty$ and $d_{4j} < \infty$.
+* **Reconstructing the Shortest Path from $\Pi$**:
+  * To find path from $i$ to $j$: start at $j$, read predecessor $p_1 = \pi_{ij}$. Then read $p_2 = \pi_{i, p_1}$, until reaching $i$. Reverse sequence $\implies i \to \dots \to j$.
+
+---
+
+## 🛣️ BLUEPRINT 8: Dijkstra Single-Source Shortest Path Blueprint
+
+### Applicable Question Archetypes:
+* *"Apply Dijkstra's algorithm to find the shortest path from source vertex $S$ to all other vertices."*
+
+### Standard 5-Column Iteration Table Layout:
+When solving on your exam paper, always format Dijkstra as follows:
+
+| Step $k$ | Settled Vertex $u^*$ | Settled Set $S$ | Candidate Vertices Evaluated | Distance Vector $\big[ d(A), d(B), d(C), d(D), d(E) \big]$ |
+| :---: | :---: | :---: | :---: | :--- |
+| **Init** | - | $\emptyset$ | Initialize Source $S \to 0$, others $\to \infty$ | $[0_S, \infty, \infty, \infty, \infty]$ |
+| **1** | $S$ | $\\{S\\}$ | Relax neighbors of $S$ | $[0_S, w(S,A)_S, w(S,B)_S, \dots]$ |
+| **2** | $u_1^*$ (min $d$) | $\\{S, u_1^*\\}$ | Relax neighbors of $u_1^*$ | $[\dots]$ |
+| **3** | $u_2^*$ | $\\{S, u_1^*, u_2^*\\}$ | Relax neighbors of $u_2^*$ | $[\dots]$ |
+
+### Shortest Path Schedule Summary Table (Write this at the end):
+
+| Destination Vertex | Shortest Distance from $S$ | Predecessor Chain / Full Path |
+| :---: | :---: | :---: |
+| **$A$** | $d[A]$ | $S \to \dots \to A$ |
+| **$B$** | $d[B]$ | $S \to \dots \to B$ |
+| **$C$** | $d[C]$ | $S \to \dots \to C$ |
+| **$D$** | $d[D]$ | $S \to \dots \to D$ |
+
+---
+
+## 🔴🔵 BLUEPRINT 9: Bipartite Graph Detection & Kőnig's 2-Coloring Engine
+
+### Applicable Question Archetypes:
+* *"State Kőnig's theorem. Determine whether graph $G$ is bipartite."*
+* *"Show that graph $G$ contains an odd cycle and hence is not 2-colorable."*
+
+### Theorem Statement:
+> **Kőnig's Theorem**: An undirected graph $G$ is **bipartite** if and only if it contains **NO odd cycles** (i.e. every cycle in $G$ has even length $\ge 4$). Equivalently, $G$ is **2-colorable** ($\chi(G) \le 2$).
+
+### BFS 2-Coloring Algorithm Execution:
+1. Choose an arbitrary starting vertex $v_1$ and assign Color **RED**.
+2. Assign Color **BLUE** to all neighbors of $v_1$.
+3. For each newly colored vertex, assign the opposite color to all its unvisited neighbors.
+4. **Outcome Evaluation**:
+   * **Case A: No Conflict Occurs**:
+     * Partition vertices into $V_1 = \\{\text{All RED vertices}\\}$ and $V_2 = \\{\text{All BLUE vertices}\\}$.
+     * Verify that every edge in $E(G)$ has one endpoint in $V_1$ and one in $V_2$.
+     * Conclude: *"Graph $G$ is 2-colorable with no internal monochromatic edges. By Kőnig's Theorem, $G$ is **BIPARTITE** with bipartition $(V_1, V_2)$. $\blacksquare$"*
+   * **Case B: Chromatic Conflict Occurs (Edge between two vertices of same color)**:
+     * Identify the conflicting edge $(u, v)$ where $\text{Color}(u) = \text{Color}(v)$.
+     * Trace back to their lowest common ancestor in the BFS tree $\implies$ Extract the odd cycle:
+       $$u - \dots - w - \dots - v - u \quad (\text{Length } 2k+1)$$
+     * Conclude: *"Edge $(u, v)$ connects two vertices of the same color, producing an odd cycle of length $2k+1$. By Kőnig's Theorem, a graph is bipartite if and only if it contains no odd cycles. Therefore, $G$ is **NOT BIPARTITE**. $\blacksquare$"*
+
+---
+
+## 🌐 BLUEPRINT 10: Planar Graph Polyhedral Formulas ($v - e + f = 2$)
+
+### Applicable Question Archetypes:
+* *"A connected planar graph has $v$ vertices and $e$ edges. How many faces does it divide the plane into?"*
+* *"Prove using Euler's formula that $K_5$ (complete graph on 5 vertices) is non-planar."*
+* *"Prove that $K_{3,3}$ (complete bipartite utility graph) is non-planar."*
+
+### Core Formulas & Theorems:
+1. **Euler's Polyhedral Formula**: For any connected planar graph $G = (V, E)$ with $v = |V|$ vertices, $e = |E|$ edges, and $f$ faces (including the unbounded outer face):
+   $$\mathbf{v - e + f = 2} \implies \mathbf{f = e - v + 2}$$
+2. **Face Degree Handshaking**: Each edge borders exactly two faces (or two sides of the same face):
+   $$\sum_{i=1}^f \deg(f_i) = 2e$$
+3. **Edge Upper Bound for Simple Planar Graphs**:
+   * Since every face in a simple graph has at least 3 boundary edges ($\deg(f_i) \ge 3$):
+     $$2e = \sum \deg(f_i) \ge 3f = 3(e - v + 2) = 3e - 3v + 6 \implies \mathbf{e \le 3v - 6} \quad (\forall v \ge 3)$$
+4. **Edge Upper Bound for Triangle-Free / Bipartite Simple Planar Graphs**:
+   * Since there are no triangles, every face has at least 4 boundary edges ($\deg(f_i) \ge 4$):
+     $$2e = \sum \deg(f_i) \ge 4f = 4(e - v + 2) = 4e - 4v + 8 \implies 2e \le 4v - 8 \implies \mathbf{e \le 2v - 4}$$
+
+### Ready-to-Copy Non-Planarity Proofs:
+* **Proof that $K_5$ is Non-Planar**:
+  For $K_5$: $v = 5$, $e = \binom{5}{2} = 10$.  
+  If $K_5$ were planar, it must satisfy $e \le 3v - 6$.  
+  $3v - 6 = 3(5) - 6 = 15 - 6 = 9$.  
+  Since $e = 10 > 9$, the inequality is violated.  
+  $\mathbf{\therefore K_5 \text{ is strictly NON-PLANAR.} \quad \blacksquare}$
+* **Proof that $K_{3,3}$ is Non-Planar**:
+  $K_{3,3}$ is a bipartite graph, so it contains no odd cycles (no triangles). Hence every face has $\deg(f) \ge 4$.  
+  For $K_{3,3}$: $v = 3 + 3 = 6$, $e = 3 \times 3 = 9$.  
+  If $K_{3,3}$ were planar, it must satisfy $e \le 2v - 4$.  
+  $2v - 4 = 2(6) - 4 = 12 - 4 = 8$.  
+  Since $e = 9 > 8$, the inequality is violated.  
+  $\mathbf{\therefore K_{3,3} \text{ is strictly NON-PLANAR.} \quad \blacksquare}$
+
+---
+# PART III: MODULE 3 QUESTIONNAIRE BANK (Lattices & Boolean Algebra)
+
+---
 ---
 
 ### Question 1: Divisor Poset Lattice Verification
@@ -205,8 +691,11 @@ Use this rapid lookup table during the exam to convert the exam question prompt 
 
 ---
 
-# PART III: MODULE 4 QUESTIONNAIRE (Graphs & Matrix Representations)
+---
 
+# PART IV: MODULE 4 QUESTIONNAIRE BANK (Graphs & Matrix Representations)
+
+---
 ---
 
 ### Question 7: Handshaking Lemma & Feasibility of Degree Sequences
@@ -586,8 +1075,11 @@ Use this rapid lookup table during the exam to convert the exam question prompt 
 
 ---
 
-# PART IV: COMMON EXAM TRAPS & PROFESSOR MARKING CRITERIA
+---
 
+# PART V: COMMON EXAM TRAPS & PROFESSOR MARKING CRITERIA
+
+---
 ### ⚠️ Where Students Lose Marks (Dr. Suresh Dara's Evaluation Style):
 1. **Havel-Hakimi Sorting**:
    * *Common Mistake*: Forgetting to **re-sort** the sequence in descending order after each subtraction step. If you subtract and do not re-sort before deleting the next term, the algorithm will yield false conclusions and marks will be halved.
