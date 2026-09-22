@@ -15,14 +15,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CSE2004 TOC & Compiler Design: Turing Machine Master Solutions</title>
+<title>CSE2004 TOC & Compiler Design: CAT-II Master Reference</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
   @page {
     size: A4;
-    margin: 12mm 14mm 12mm 14mm;
+    margin: 11mm 12mm 11mm 12mm;
   }
   
   *, *::before, *::after {
@@ -31,8 +31,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 8.8pt;
-    line-height: 1.42;
+    font-size: 8.6pt;
+    line-height: 1.40;
     color: #0f172a;
     background: #ffffff;
     margin: 0;
@@ -40,64 +40,73 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
 
   h1 {
-    font-size: 14pt;
+    font-size: 13pt;
     color: #1e3a8a;
     border-bottom: 2px solid #1e3a8a;
-    padding-bottom: 3px;
-    margin-top: 10pt;
+    padding-bottom: 2px;
+    margin-top: 9pt;
     margin-bottom: 4pt;
     page-break-after: avoid;
   }
 
   h2 {
-    font-size: 11.5pt;
+    font-size: 11pt;
     color: #1e293b;
     border-bottom: 1px solid #cbd5e1;
     padding-bottom: 2px;
-    margin-top: 10pt;
-    margin-bottom: 4pt;
-    page-break-after: avoid;
-  }
-
-  h3 {
-    font-size: 10pt;
-    color: #1e3a8a;
     margin-top: 8pt;
     margin-bottom: 3pt;
     page-break-after: avoid;
   }
 
+  h3 {
+    font-size: 9.6pt;
+    color: #1e3a8a;
+    margin-top: 7pt;
+    margin-bottom: 2.5pt;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-size: 8.8pt;
+    color: #334155;
+    margin-top: 5pt;
+    margin-bottom: 2pt;
+    font-weight: 700;
+    page-break-after: avoid;
+  }
+
   p {
-    margin: 3pt 0 4.5pt 0;
+    margin: 2.5pt 0 3.5pt 0;
   }
 
   ul, ol {
-    margin: 2pt 0 4pt 15pt;
+    margin: 2pt 0 3.5pt 14pt;
     padding: 0;
   }
 
   li {
-    margin-bottom: 2pt;
+    margin-bottom: 1.5pt;
   }
 
   hr {
     border: none;
     border-top: 1px solid #e2e8f0;
-    margin: 8pt 0;
+    margin: 6pt 0;
   }
 
   /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8.2pt;
-    margin: 5pt 0 7pt 0;
+    font-size: 8.0pt;
+    margin: 4pt 0 6pt 0;
     page-break-inside: avoid;
   }
 
   th, td {
     border: 1px solid #cbd5e1;
-    padding: 3.5pt 5pt;
+    padding: 3pt 4.5pt;
     text-align: left;
     vertical-align: middle;
   }
@@ -115,13 +124,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   /* Images */
   .img-container {
     text-align: center;
-    margin: 8pt 0 6pt 0;
+    margin: 6pt 0 4pt 0;
     page-break-inside: avoid;
   }
 
   img {
-    max-width: 90%;
-    max-height: 250px;
+    max-width: 95%;
+    max-height: 220px;
     height: auto;
     object-fit: contain;
     border: 1px solid #cbd5e1;
@@ -130,23 +139,23 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
 
   .caption {
-    font-size: 7.8pt;
+    font-size: 7.5pt;
     color: #475569;
     font-style: italic;
     margin-top: 2pt;
-    margin-bottom: 4pt;
+    margin-bottom: 3pt;
     text-align: center;
     page-break-after: avoid;
   }
 
   /* Math rendering */
   .katex {
-    font-size: 1.04em;
+    font-size: 1.02em;
   }
 
   .math-display {
     text-align: center;
-    margin: 4pt 0;
+    margin: 2.5pt 0;
     page-break-inside: avoid;
     overflow-x: auto;
   }
@@ -156,15 +165,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     background: #f1f5f9;
     padding: 1px 3pt;
     border-radius: 3px;
-    font-size: 8pt;
+    font-size: 7.8pt;
     border: 1px solid #e2e8f0;
   }
 
   blockquote {
     border-left: 3.5px solid #2563eb;
     background: #eff6ff;
-    padding: 5pt 8pt;
-    margin: 5pt 0;
+    padding: 4pt 7pt;
+    margin: 4pt 0;
     border-radius: 0 3px 3px 0;
     page-break-inside: avoid;
   }
@@ -172,32 +181,28 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .exam-banner {
     background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
     color: #ffffff;
-    padding: 10pt 14pt;
+    padding: 8pt 12pt;
     border-radius: 4px;
-    margin-bottom: 10pt;
+    margin-bottom: 8pt;
   }
 
   .exam-banner h1 {
     color: #ffffff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     margin-top: 0;
-    padding-bottom: 3pt;
-    font-size: 13pt;
+    padding-bottom: 2pt;
+    font-size: 12pt;
   }
 
   .exam-banner p {
-    margin: 2pt 0;
-    font-size: 8.5pt;
+    margin: 1.5pt 0;
+    font-size: 8.2pt;
     color: #e2e8f0;
   }
 </style>
 </head>
 <body>
-<div class="exam-banner">
-    <h1>CSE2004: Theory of Computation & Compiler Design — Turing Machine Master Solution</h1>
-    <p><strong>Topic:</strong> Construction of Turing Machine for Even Number of 0s and Odd Number of 1s (and Vice Versa)</p>
-    <p><strong>Coverage:</strong> Language Description + Design Logic + 7-Tuples + Transition Table + State Diagram + ID Validations</p>
-</div>
+{banner_html}
 
 {content_html}
 
@@ -216,7 +221,10 @@ document.addEventListener("DOMContentLoaded", function() {
 </html>
 """
 
-def markdown_to_print_html(md_text, base_dir):
+def markdown_to_print_html(md_text, base_dir, banner_html):
+    # Step 1: Protect escaped dollars so they don't break math delimiters
+    clean_text = md_text.replace(r"\$", "@@@ESCDOLLAR@@@")
+
     math_blocks = []
 
     def save_display(m):
@@ -249,20 +257,33 @@ def markdown_to_print_html(md_text, base_dir):
             print(f"Warning: Image not found at {clean_path}")
             return match.group(0)
 
-    md_text = re.sub(r'!\[(.*?)\]\((.*?)\)', replace_md_img, md_text)
-    protected = re.sub(r'\$\$(.*?)\$\$', save_display, md_text, flags=re.DOTALL)
+    # Replace local image references with base64 data URIs
+    protected = re.sub(r'!\[(.*?)\]\((.*?)\)', replace_md_img, clean_text)
+
+    # Protect display math ($$ ... $$)
+    protected = re.sub(r'\$\$(.*?)\$\$', save_display, protected, flags=re.DOTALL)
+
+    # Protect inline math ($ ... $)
     protected = re.sub(r'\$([^\$\n]+?)\$', save_inline, protected)
 
+    # Restore escaped dollar inside plain text before markdown parsing
+    protected = protected.replace("@@@ESCDOLLAR@@@", "&#36;")
+
+    # Parse markdown to HTML
     md_parser = markdown_it.MarkdownIt('commonmark').enable('table')
     html = md_parser.render(protected)
 
+    # Re-inject math with KaTeX delimiters, restoring escaped dollar signs inside LaTeX
     for idx, (mtype, raw) in enumerate(math_blocks):
+        restored_math = raw.replace("@@@ESCDOLLAR@@@", r"\$")
         if mtype == 'display':
-            html = html.replace(f"XQDMATH{idx}MQX", f'<div class="math-display">$${raw}$$</div>')
+            html = html.replace(f"XQDMATH{idx}MQX", f'<div class="math-display">$${restored_math}$$</div>')
         else:
-            html = html.replace(f"XQIMATH{idx}MQX", f'<span class="math-inline">${raw}$</span>')
+            html = html.replace(f"XQIMATH{idx}MQX", f'<span class="math-inline">${restored_math}$</span>')
 
-    return HTML_TEMPLATE.replace("{content_html}", html)
+    full_html = HTML_TEMPLATE.replace("{banner_html}", banner_html)
+    full_html = full_html.replace("{content_html}", html)
+    return full_html
 
 DOCUMENTS = [
     {
@@ -306,23 +327,22 @@ def export_all_toc_pdfs():
                 <p><strong>Coverage:</strong> {doc['banner_sub']}</p>
             </div>
             """
-            html_content = markdown_to_print_html(md_text, BASE_DIR)
-            # Insert banner
-            html_content = html_content.replace('<div class="exam-banner">', banner_html + '<!-- replaced -->', 1)
+
+            html_content = markdown_to_print_html(md_text, BASE_DIR, banner_html)
             out_pdf = os.path.join(PDF_OUT_DIR, doc["pdf"])
 
             page.set_content(html_content, wait_until="networkidle")
-            page.wait_for_timeout(1500)
+            page.wait_for_timeout(2500)
 
             header_template = f"""
-            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
-                <span><strong>CSE2004: Theory of Computation & Compiler Design</strong> — {doc['banner_title'][:45]}...</span>
-                <span>CAT-2 Open-Book Master Solution</span>
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 6.8pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 12mm;">
+                <span><strong>CSE2004: Theory of Computation & Compiler Design</strong> — {doc['banner_title'][:48]}...</span>
+                <span>CAT-2 Open-Book Master Reference</span>
             </div>
             """
 
             footer_template = """
-            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7.2pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 14mm;">
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 7.0pt; color: #64748b; width: 100%; display: flex; justify-content: space-between; padding: 0 12mm;">
                 <span>Modules 3 & 4 (Syntax Analysis, Parsing & Turing Machines)</span>
                 <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
             </div>
@@ -336,13 +356,13 @@ def export_all_toc_pdfs():
                 header_template=header_template,
                 footer_template=footer_template,
                 margin={
-                    "top": "14mm",
-                    "bottom": "14mm",
-                    "left": "14mm",
-                    "right": "14mm"
+                    "top": "13mm",
+                    "bottom": "13mm",
+                    "left": "12mm",
+                    "right": "12mm"
                 }
             )
-            print("Generated PDF:", out_pdf)
+            print("Successfully Generated PDF:", out_pdf)
 
         browser.close()
 
