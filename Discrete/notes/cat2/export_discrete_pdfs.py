@@ -370,6 +370,13 @@ DOCUMENTS = [
         "banner_sub": "Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Common Traps"
     },
     {
+        "id": "actual_paper",
+        "file": "cat2-actual-paper-sep2026-solved.md",
+        "pdf_name": "Discrete_CAT2_Actual_Paper_Sep2026_Solved.pdf",
+        "title": "VIT BHOPAL CAT-II OFFICIAL PAPER (SEP 2026) — COMPLETE SOLUTIONS",
+        "banner_sub": "All 5 Compulsory Questions Solved: Distributive Median Proof, Boolean Tuple PDNF/PCNF, D12, Handshaking Partition, C6 Isomorphism & Floyd-Warshall"
+    },
+    {
         "id": "quiz2",
         "file": "cat2-discrete-quiz-2-solved.md",
         "pdf_name": "Discrete_CAT2_Quiz2_Solved.pdf",
@@ -425,7 +432,7 @@ def run_export():
         browser = p.chromium.launch()
         page = browser.new_page()
 
-        # 1. Export 6 Standalone PDFs
+        # 1. Export 7 Standalone PDFs
         for doc in DOCUMENTS:
             md_path = os.path.join(BASE_DIR, doc["file"])
             if not os.path.exists(md_path):
@@ -445,16 +452,15 @@ def run_export():
         print("Compiling All-in-One Master Exam Booklet...")
         master_cover = """
         <div style="text-align: center; padding: 40pt 20pt 30pt 20pt; border-bottom: 3px double #1e3a8a; margin-bottom: 25pt;">
-            <div style="font-size: 13pt; font-weight: bold; color: #64748b; letter-spacing: 2px; text-transform: uppercase;">Vellore Institute of Technology</div>
+            <div style="font-size: 13pt; font-weight: bold; color: #64748b; letter-spacing: 2px; text-transform: uppercase;">Vellore Institute of Technology — VIT Bhopal</div>
             <div style="font-size: 24pt; font-weight: 800; color: #1e3a8a; margin: 12pt 0 6pt 0;">MAT2002: Discrete Mathematics & Graph Theory</div>
             <div style="font-size: 16pt; font-weight: 600; color: #0f172a; margin-bottom: 12pt;">CAT-2 Complete Master Exam Booklet (Modules 3 & 4)</div>
             <div style="display: inline-block; background: #eff6ff; border: 1.5px solid #2563eb; padding: 6pt 16pt; border-radius: 20pt; font-size: 10pt; color: #1e40af; font-weight: 600;">
                 Strict CAT-2 Syllabus Scope: Module 3 (Lattices & Boolean Algebra) + Module 4 (Graphs & Matrices)
             </div>
             <div style="margin-top: 20pt; font-size: 9.5pt; color: #475569; line-height: 1.6;">
-                <strong>Faculty Reference:</strong> Dr. Suresh Dara<br>
-                <strong>Contents:</strong> Question-Language Decoder & Questionnaire + Solved Assignments (Quiz 2, Tutorial 4, Tutorial 2) + HOTS Notes<br>
-                <strong>Exam Usage:</strong> Approved for Open-Book Hall Direct Copying & Quick Formula Lookup
+                <strong>Included Papers:</strong> Official CAT-II Paper (Sept 2026) Solved + Dr. Suresh Dara's Quiz 2, Tutorial 4, Tutorial 2 + HOTS Notes<br>
+                <strong>Exam Usage:</strong> Approved for Open-Book Hall Direct Copying, Quick Matching & Step-by-Step Template Lookup
             </div>
         </div>
 
@@ -463,11 +469,12 @@ def run_export():
             <table style="margin-top: 8pt;">
                 <tr><th style="width: 28%;">Section</th><th style="width: 44%;">Core Content</th><th style="width: 28%;">Exam Importance</th></tr>
                 <tr><td><strong>Section 1: Question-Language Decoder</strong></td><td>Instant Keyword Trigger Matrix + 18 Exam Problem Archetypes with Plug-and-Play Solution Templates & Traps</td><td><strong>Primary Hall Index: Match question phrasing in 5 seconds</strong></td></tr>
-                <tr><td><strong>Section 2: Quiz-2 Solved</strong></td><td>8 Problems: Graph Complements, Havel-Hakimi, Non-Isomorphism, 3-Regular Graphs, Degree Formula</td><td>Direct Class Quiz Problems (Exact exam repeats)</td></tr>
-                <tr><td><strong>Section 3: Tutorial-4 Solved</strong></td><td>Dijkstra Algorithm: 6-Vertex Graph ($S \to A,B,C,D,E$) & 5-Vertex Graph ($1 \to 2,3,4,5$, Unreachable Vertex 5)</td><td>Shortest Path Direct Exam Traces</td></tr>
-                <tr><td><strong>Section 4: Tutorial-2 Solved</strong></td><td>Lexicographical Poset on $\\mathbb{R}^2$, Relations $S \\circ R$, $R^{-1}$, and $D_{12}$ Lattice Properties</td><td>Posets, Relations & Hasse Diagram Questions</td></tr>
-                <tr><td><strong>Section 5: Module 3 HOTS</strong></td><td>Posets, Distributive ($N_5, M_3$), Complements, Boolean Algebra, PDNF/PCNF Algorithms & Circuits</td><td>CO3 Complete Theoretical Mastery</td></tr>
-                <tr><td><strong>Section 6: Module 4 HOTS</strong></td><td>Handshaking, Bipartite & Kőnig, Isomorphism Theorem 3, Self-Complementary $p \\equiv 0,1 \\pmod 4$, Adjacency/Incidence Matrices</td><td>CO4 Complete Theoretical Mastery</td></tr>
+                <tr><td><strong>Section 2: Official CAT-II Paper (Sep 2026)</strong></td><td>All 5 Questions Solved: Median Identity, Tuple PDNF/PCNF, $D_{12}$ Complements, Handshaking Partition, $C_6$ Isomorphism & Floyd-Warshall</td><td><strong>Exact 2026 Exam Paper Full Marks Solution</strong></td></tr>
+                <tr><td><strong>Section 3: Quiz-2 Solved</strong></td><td>8 Problems: Graph Complements, Havel-Hakimi, Non-Isomorphism, 3-Regular Graphs, Degree Formula</td><td>Direct Class Quiz Problems (Exact exam repeats)</td></tr>
+                <tr><td><strong>Section 4: Tutorial-4 Solved</strong></td><td>Dijkstra Algorithm: 6-Vertex Graph ($S \to A,B,C,D,E$) & 5-Vertex Graph ($1 \to 2,3,4,5$, Unreachable Vertex 5)</td><td>Shortest Path Direct Exam Traces</td></tr>
+                <tr><td><strong>Section 5: Tutorial-2 Solved</strong></td><td>Lexicographical Poset on $\\mathbb{R}^2$, Relations $S \\circ R$, $R^{-1}$, and $D_{12}$ Lattice Properties</td><td>Posets, Relations & Hasse Diagram Questions</td></tr>
+                <tr><td><strong>Section 6: Module 3 HOTS</strong></td><td>Posets, Distributive ($N_5, M_3$), Complements, Boolean Algebra, PDNF/PCNF Algorithms & Circuits</td><td>CO3 Complete Theoretical Mastery</td></tr>
+                <tr><td><strong>Section 7: Module 4 HOTS</strong></td><td>Handshaking, Bipartite & Kőnig, Isomorphism Theorem 3, Self-Complementary $p \\equiv 0,1 \\pmod 4$, Adjacency/Incidence Matrices</td><td>CO4 Complete Theoretical Mastery</td></tr>
             </table>
         </div>
         <div class="page-break"></div>
