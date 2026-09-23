@@ -180,6 +180,10 @@ When an exam problem shows a circuit diagram with flip-flops and logic gates and
 ![Sequential Circuit Analysis Schematic](circuits/circuit_a4_q3_sequential_circuit.png)
 *(Figure 2.1: Analyzed Sequential Circuit Schematic with JK Flip-Flops and Feedback Logic)*
 
+#### Step 5: State Transition Diagram (Moore Machine)
+![Sequential Circuit Moore State Diagram](circuits/state_diag_moore_circuit_a4_q3.png)
+*(Figure 2.2: State Transition Diagram for Analyzed Sequential Circuit — Circles Show State and Output F = A ⊕ B)*
+
 ---
 
 ## 2.2 State Reduction / Minimization (Implication Table Method)
@@ -366,8 +370,11 @@ Let us test the 4 unused states under these simplified equations:
 * **State 6 (110):** $T_2 = 0, T_1 = 0, T_0 = 1 \implies \text{Next State} = \mathbf{111_2\ (7)}$. (Enters valid cycle in 1 pulse!).
 * **Conclusion:** The counter is **100% self-starting and free of lockout!** $\blacksquare$
 
-![Prime Number Synchronous Counter](circuits/circuit_a5_q1_prime_counter.png)
-*(Figure 4.2: Synchronous Prime Number Counter Schematic with T Flip-Flops)*
+![Prime Counter Lockout & State Transition Diagram](circuits/state_diag_prime_counter_lockout.png)
+*(Figure 4.2: Prime Counter Complete State Transition & Self-Starting Lockout Recovery Diagram)*
+
+![Prime Number Synchronous Counter Schematic](circuits/circuit_a5_q1_prime_counter.png)
+*(Figure 4.3: Synchronous Prime Number Counter Schematic with T Flip-Flops)*
 
 ---
 
@@ -381,7 +388,7 @@ Let us test the 4 unused states under these simplified equations:
   $$\mathbf{D_0 = \bar{Q}_0}$$
 
 ![3-Bit Arbitrary Counter](circuits/circuit_a4_q4_3bit_counter.png)
-*(Figure 4.3: 3-Bit Arbitrary Synchronous Counter Schematic with D Flip-Flops)*
+*(Figure 4.4: 3-Bit Arbitrary Synchronous Counter Schematic with D Flip-Flops)*
 
 ---
 
@@ -420,7 +427,11 @@ For a target sequence of length $k$ (e.g. `1010`, $k = 4$):
 ### Worked Exam Problem: Design a `1010` Mealy Sequence Detector using T Flip-Flops (Assignment 5 Q5)
 
 #### Step 1: State Diagram
-* $S_0 = 00$, $S_1 = 01$, $S_2 = 10$, $S_3 = 11$.
+* **States:** $S_0(00) = \text{Reset / No match}$, $S_1(01) = \text{Got '1'}$, $S_2(10) = \text{Got '10'}$, $S_3(11) = \text{Got '101'}$.
+* **Target Sequence:** Overlapping `1010`. When at $S_3$ and input $X=0$ arrives $\implies$ Output $\mathbf{Z = 1}$ (Pattern Found!) and transition back to $S_2$ (suffix `10` matches $S_2$).
+
+![1010 Overlapping Mealy Sequence Detector State Diagram](circuits/state_diag_mealy_1010.png)
+*(Figure 5.2: Complete State Transition Diagram for 1010 Overlapping Mealy Sequence Detector — Transitions Labeled X / Z)*
 
 #### Step 2: State Transition Table
 | Present State ($A B$) | Next State for $X = 0$ ($A^+ B^+$) | Output for $X = 0$ ($Z$) | Next State for $X = 1$ ($A^+ B^+$) | Output for $X = 1$ ($Z$) |
@@ -450,20 +461,25 @@ For a target sequence of length $k$ (e.g. `1010`, $k = 4$):
 * **$T_B$ K-Map ($A, B, X$):**
   $$\mathbf{T_B = \bar{A} \bar{B} X + \bar{A} B \bar{X} + A \bar{B} X + A B \bar{X} = \bar{B}X + B\bar{X} = B \oplus X}$$
 
-![Mealy Sequence Detector](circuits/circuit_a5_q5_mealy_sequence_detector.png)
-*(Figure 5.2: Complete 1010 Mealy Sequence Detector Schematic with T Flip-Flops)*
+![Mealy Sequence Detector Schematic](circuits/circuit_a5_q5_mealy_sequence_detector.png)
+*(Figure 5.3: Complete 1010 Mealy Sequence Detector Schematic with T Flip-Flops)*
 
 ---
 
 ## 5.3 Real-World FSM Problem: Toy Robot State Machine (Assignment 5 Q2)
 * **Problem:** Toy robot operated by button $X$. Each press cycles: $\text{Standing} \to \text{Walking} \to \text{Tumbling} \to \text{Clapping} \to \text{Standing}$.
 * **State Assignment:** $S_0(00) = \text{Standing}, S_1(01) = \text{Walking}, S_2(10) = \text{Tumbling}, S_3(11) = \text{Clapping}$.
+* **Transition Rule:** If $X = 1 \implies$ advance to next action ($S_0 \to S_1 \to S_2 \to S_3 \to S_0$). If $X = 0 \implies$ hold current action (self-loop).
+
+![Toy Robot FSM State Transition Diagram](circuits/state_diag_toy_robot_fsm.png)
+*(Figure 5.4: Toy Robot 4-State Cyclic FSM Transition Diagram)*
+
 * **D Flip-Flop Equations:**
   $$\mathbf{D_1 = A \oplus (B \cdot X)}$$
   $$\mathbf{D_0 = B \oplus X}$$
 
-![Toy Robot FSM](circuits/circuit_a5_q2_toy_robot_fsm.png)
-*(Figure 5.3: Toy Robot State Machine Schematic with D Flip-Flops and XOR Steering)*
+![Toy Robot FSM Schematic](circuits/circuit_a5_q2_toy_robot_fsm.png)
+*(Figure 5.5: Toy Robot State Machine Schematic with D Flip-Flops and XOR Steering)*
 
 ---
 
