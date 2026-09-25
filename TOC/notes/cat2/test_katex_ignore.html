@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ],
+            ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+            ignoredClasses: ["katex-ignore"],
+            throwOnError: false
+        });
+    });
+</script>
+</head>
+<body>
+<p id="t1">Test 1: Put <span class="katex-ignore">$</span> in $\text{FOLLOW}(S)$, where $S$ is the start symbol (<span class="katex-ignore">$</span> is the input endmarker).</p>
+<p id="t2">Test 2: Put `$` in $\text{FOLLOW}(S)$, where $S$ is the start symbol (`$` is the input endmarker).</p>
+<p id="t3">Test 3: $\text{FOLLOW}(S) = \{\$\}$</p>
+<p id="t4">Table: | State | `c` | `d` | <span class="katex-ignore">$</span> | $S$ | $C$ |</p>
+</body>
+</html>

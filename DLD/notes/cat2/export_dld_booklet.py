@@ -129,8 +129,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
 
   img {
-    max-width: 92%;
-    max-height: 200px;
+    max-width: 95%;
+    max-height: 225px;
     height: auto;
     object-fit: contain;
     border: 1px solid #cbd5e1;

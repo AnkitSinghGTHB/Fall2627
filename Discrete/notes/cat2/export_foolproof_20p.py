@@ -32,8 +32,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 8.6pt;
-    line-height: 1.38;
+    font-size: 8.3pt;
+    line-height: 1.33;
     color: #0f172a;
     background: #ffffff;
     margin: 0;
@@ -41,72 +41,72 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
 
   h1 {
-    font-size: 13.5pt;
+    font-size: 12.8pt;
     color: #1e3a8a;
     border-bottom: 2px solid #1e3a8a;
-    padding-bottom: 3px;
-    margin-top: 12pt;
-    margin-bottom: 5pt;
-    page-break-after: avoid;
-  }
-
-  h2 {
-    font-size: 11.2pt;
-    color: #1e293b;
-    border-bottom: 1.2px solid #cbd5e1;
     padding-bottom: 2px;
     margin-top: 10pt;
     margin-bottom: 4pt;
     page-break-after: avoid;
   }
 
-  h3 {
-    font-size: 9.8pt;
-    color: #1e3a8a;
+  h2 {
+    font-size: 10.8pt;
+    color: #1e293b;
+    border-bottom: 1.2px solid #cbd5e1;
+    padding-bottom: 2px;
     margin-top: 8pt;
     margin-bottom: 3pt;
     page-break-after: avoid;
   }
 
+  h3 {
+    font-size: 9.4pt;
+    color: #1e3a8a;
+    margin-top: 7pt;
+    margin-bottom: 2pt;
+    page-break-after: avoid;
+  }
+
   h4 {
-    font-size: 9pt;
+    font-size: 8.8pt;
     color: #475569;
-    margin-top: 6pt;
+    margin-top: 5pt;
     margin-bottom: 2pt;
     page-break-after: avoid;
   }
 
   p {
-    margin: 3pt 0 4.5pt 0;
+    margin: 2.5pt 0 3.5pt 0;
   }
 
   ul, ol {
-    margin: 2pt 0 4pt 15pt;
+    margin: 2pt 0 3pt 14pt;
     padding: 0;
   }
 
   li {
-    margin-bottom: 2pt;
+    margin-bottom: 1.8pt;
   }
 
   hr {
     border: none;
     border-top: 1px solid #e2e8f0;
-    margin: 8pt 0;
+    margin: 6pt 0;
   }
 
   /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 8pt;
-    margin: 5pt 0 7pt 0;
+    font-size: 7.6pt;
+    margin: 3.5pt 0 5pt 0;
     page-break-inside: avoid;
   }
 
   th, td {
     border: 1px solid #cbd5e1;
-    padding: 3pt 5pt;
+    padding: 2.2pt 3.5pt;
     text-align: left;
     vertical-align: middle;
   }
@@ -124,13 +124,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   /* Images */
   .img-container {
     text-align: center;
-    margin: 7pt 0 5pt 0;
+    margin: 5pt 0 4pt 0;
     page-break-inside: avoid;
   }
 
   img {
-    max-width: 85%;
-    max-height: 200px;
+    max-width: 82%;
+    max-height: 170px;
     height: auto;
     object-fit: contain;
     border: 1px solid #cbd5e1;
@@ -139,7 +139,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
 
   .caption {
-    font-size: 7.5pt;
+    font-size: 7.2pt;
     color: #475569;
     font-style: italic;
     margin-top: 2pt;

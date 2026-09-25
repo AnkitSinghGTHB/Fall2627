@@ -54,6 +54,9 @@ Use this rapid lookup table during the exam to convert the exam question prompt 
 
 ## 🏛️ BLUEPRINT 1: Distributive & Boolean Lattice Identity Proof Engine
 
+![Posets Failing to be Lattices](img/module3_lattice_fails.png)
+*Figure B1.1: Common Poset Structures that Fail to be Lattices (Multiple Upper Bounds without a Unique LUB).*
+
 ### Applicable Question Archetypes:
 * *"Prove that in a distributive lattice $L$, $(a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = (a \vee b) \wedge (b \vee c) \wedge (c \vee a)$."*
 * *"Prove that the complement of an element in a distributive lattice, if it exists, is unique."*
@@ -76,6 +79,10 @@ In any lattice $(L, \wedge, \vee)$, the following axioms hold identically $\fora
 ---
 
 ### Master Template 1.1: Proving the Median Self-Dual Identity
+
+![M3 and N5 Lattices](img/module3_m3_n5_lattices.png)
+*Figure B1.2: The Diamond Lattice $M_3$ (Modular, Non-Distributive) and Pentagon Lattice $N_5$ (Non-Modular, Non-Distributive).*
+
 **Goal**: Prove $(a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = (a \vee b) \wedge (b \vee c) \wedge (c \vee a)$.
 
 **Model Solution to Copy into Answer Sheet**:
@@ -89,8 +96,8 @@ In any lattice $(L, \wedge, \vee)$, the following axioms hold identically $\fora
 4. Apply the **first distributive law** to distribute $\wedge (c \vee a)$ over the join:
    $$y = \Big( b \wedge (c \vee a) \Big) \vee \Big( (a \wedge c) \wedge (c \vee a) \Big)$$
 5. Simplify the two bracketed terms separately:
-   * **Term 1**: $b \wedge (c \vee a) = (b \wedge c) \vee (b \wedge a) = (a \wedge b) \vee (b \wedge c)$ $[By Distributive & Commutative Laws]$
-   * **Term 2**: Let $u = a \wedge c$. Notice that $u \wedge (a \vee c) = u = a \wedge c = c \wedge a$ $[By Absorption Law, since  \wedge c \le a \le a \vee c$]$
+   * **Term 1**: $b \wedge (c \vee a) = (b \wedge c) \vee (b \wedge a) = (a \wedge b) \vee (b \wedge c)$ [Distributive and Commutative Laws].
+   * **Term 2**: Let $u = a \wedge c$. Notice that $u \wedge (a \vee c) = u = a \wedge c = c \wedge a$ [Absorption Law, since $a \wedge c \le a \le a \vee c$].
 6. Recombining:
    $$y = \Big[ (a \wedge b) \vee (b \wedge c) \Big] \vee (c \wedge a) = (a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = x$$
 7. $\mathbf{\therefore x = y \quad \forall a, b, c \in L. \quad \blacksquare}$
@@ -148,20 +155,26 @@ To prove $(a \vee b)' = a' \wedge b'$, we must verify the two complement axioms:
 1. **Join Condition**:
    $$\begin{aligned}
    (a \vee b) \vee (a' \wedge b') &= \big[ (a \vee b) \vee a' \big] \wedge \big[ (a \vee b) \vee b' \big] & & [\text{Distributive Law}] \\\\
-   &= \big[ (a \vee a') \vee b \big] \wedge \big[ a \vee (b \vee b') \big] & & [\text{Associative \\& Commutative}] \\\\
-   &= (1 \vee b) \wedge (a \vee 1) = 1 \wedge 1 = 1 & & [\text{Complement Law } a \vee a' = 1]
+   &= \big[ (a \vee a') \vee b \big] \wedge \big[ a \vee (b \vee b') \big] & & [\text{Associative and Commutative Laws}] \\\\
+   &= (1 \vee b) \wedge (a \vee 1) = 1 \wedge 1 = 1 & & [\text{Complement Law: } a \vee a' = 1]
    \end{aligned}$$
 2. **Meet Condition**:
    $$\begin{aligned}
    (a \vee b) \wedge (a' \wedge b') &= \big( a \wedge (a' \wedge b') \big) \vee \big( b \wedge (a' \wedge b') \big) & & [\text{Distributive Law}] \\\\
-   &= \big( (a \wedge a') \wedge b' \big) \vee \big( (b \wedge b') \wedge a' \big) & & [\text{Associative \\& Commutative}] \\\\
-   &= (0 \wedge b') \vee (0 \wedge a') = 0 \vee 0 = 0 & & [\text{Complement Law } a \wedge a' = 0]
+   &= \big( (a \wedge a') \wedge b' \big) \vee \big( (b \wedge b') \wedge a' \big) & & [\text{Associative and Commutative Laws}] \\\\
+   &= (0 \wedge b') \vee (0 \wedge a') = 0 \vee 0 = 0 & & [\text{Complement Law: } a \wedge a' = 0]
    \end{aligned}$$
 By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a' \wedge b'}$. The dual identity $(a \wedge b)' = a' \vee b'$ follows by lattice duality. $\blacksquare$
 
 ---
 
 ## ⚡ BLUEPRINT 2: Arbitrary Verbal Boolean Rule $\to$ Truth Table $\to$ PDNF & PCNF Factory
+
+![Switching Circuits](img/module3_switching_circuits.png)
+*Figure B2.1: Series-Parallel Switching Circuits, Contact Networks, and the Wheatstone Bridge Configuration.*
+
+![Simplified Circuit](img/cat2_slot_c14_q2_circuit.png)
+*Figure B2.2: Algebraic Simplification of Switching Network down to 3 Switches $(r+s)\cdot t$.*
 
 ### Applicable Question Archetypes:
 * *"Construct the truth table and find the PDNF and PCNF of the Boolean function $f(x, y, z)$ which takes the value 1 if the number of 1s in the tuple $(x, y', z)$ is greater than the number of 0s."*
@@ -212,6 +225,9 @@ By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a'
 
 ## 💎 BLUEPRINT 3: Divisor Lattice $(D_n, \mid)$ Complete Instant Evaluator
 
+![D30 Cube Hasse](img/module3_d30_hasse.png)
+*Figure B3.1: Hasse Diagram of the Boolean Divisor Lattice $(D_{30}, \mid)$ Showing 3-Cube Isomorphism $B_3$.*
+
 ### Applicable Question Archetypes:
 * *"Let $D_n$ be the set of all positive divisors of $n$ under divisibility relation. Find the zero and unit elements."*
 * *"Determine whether $(D_n, \mid)$ is a complemented lattice. Find complements of all elements."*
@@ -241,7 +257,7 @@ By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a'
 
 ### Rapid Lookup Cheat Sheet for Standard Exam Values of $n$:
 
-| Poset | Prime Factorization | $|D_n|$ | Zero | Unit | Complemented? | Boolean Algebra? | Failing Element(s) Without Complement |
+| Poset | Prime Factorization | $\lvert D_n \rvert$ | Zero | Unit | Complemented? | Boolean Algebra? | Failing Element(s) Without Complement |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **$D_6$** | $2 \times 3$ | 4 | 1 | 6 | **YES** | **YES** ($B_2$) | None (All have unique complements: $1\leftrightarrow 6, 2\leftrightarrow 3$) |
 | **$D_8$** | $2^3$ | 4 | 1 | 8 | **NO** | **NO** (Chain) | $2$ (candidate $4$, $\gcd(2,4)=2$), $4$ (candidate $2$) |
@@ -258,6 +274,9 @@ By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a'
 ---
 
 ## 📐 BLUEPRINT 4: Handshaking Lemma & Vertex Partition Degree Equation Solver
+
+![Multigraph Degrees](img/cat2_slot_c14_q3b_graph.png)
+*Figure B4.1: Multigraph Degree Counting — Self-Loops Count +2 and Parallel Edges Count Independently.*
 
 ### Applicable Question Archetypes:
 * *"Can a graph exist with vertices partitioned into $V_1$ and $V_2$ such that $|V_1| = 2|V_2|$, each vertex in $V_1$ has degree 2, each vertex in $V_2$ has degree 4, and $|E| = 15$?"*
@@ -293,6 +312,15 @@ By uniqueness of complements in distributive lattices, $\mathbf{(a \vee b)' = a'
 ---
 
 ## 🔍 BLUEPRINT 5: 2-Graph Isomorphism Decision & Proof Engine
+
+![Cycle Isomorphism](img/cat2_actual_q4_isomorphism.png)
+*Figure B5.1: 6-Vertex Simple Cycle $C_6$ and its Isomorphic Permutation Graph $G_2$.*
+
+![P4 vs K13](img/quiz2_q8_p4_vs_k13.png)
+*Figure B5.2: Path $P_4$ vs Star $K_{1,3}$ — Identical Edge Counts but Differing Degree Sequences.*
+
+![5-Vertex Isomorphism](img/cat2_slot_c14_q4_isomorphism.png)
+*Figure B5.3: 5-Vertex Isomorphic Pair $G_1 \cong G_2$ with Adjacency Preservation.*
 
 ### Applicable Question Archetypes:
 * *"Determine whether the two given graphs $G_1$ and $G_2$ are isomorphic."*
@@ -391,6 +419,9 @@ Before doing anything else, draw this exact table in your exam sheet:
 
 ## 📊 BLUEPRINT 7: Floyd-Warshall All-Pairs Shortest Path Matrix Execution Blueprint
 
+![Floyd-Warshall Digraph](img/cat2_actual_q5_graph.png)
+*Figure B7.1: Directed Weighted Graph Used in Floyd-Warshall All-Pairs Shortest Path Execution.*
+
 ### Applicable Question Archetypes:
 * *"Find all-pairs shortest paths for the given directed graph using Floyd-Warshall algorithm. Show all matrices $D^{(0)}, D^{(1)}, D^{(2)}, D^{(3)}, D^{(4)}$."*
 
@@ -427,6 +458,12 @@ $$\pi_{ij}^{(k)} = \begin{cases} \pi_{kj}^{(k-1)} & \text{if } d_{ik}^{(k-1)} + 
 
 ## 🛣️ BLUEPRINT 8: Dijkstra Single-Source Shortest Path Blueprint
 
+![Dijkstra Graph](img/cat2_slot_c14_q5_dijkstra.png)
+*Figure B8.1: 7-Vertex Weighted Network for Dijkstra Execution and Edge Sensitivity Analysis.*
+
+![Unreachable Node](img/tutorial4_p2_shortest_tree.png)
+*Figure B8.2: Directed Graph with an Unreachable Node ($d[5] = \infty$).*
+
 ### Applicable Question Archetypes:
 * *"Apply Dijkstra's algorithm to find the shortest path from source vertex $S$ to all other vertices."*
 
@@ -453,6 +490,9 @@ When solving on your exam paper, always format Dijkstra as follows:
 
 ## 🔴🔵 BLUEPRINT 9: Bipartite Graph Detection & Kőnig's 2-Coloring Engine
 
+![Bipartite vs Odd Cycle](img/module4_bipartite_vs_odd_cycle.png)
+*Figure B9.1: Bipartite 2-Coloring vs Odd-Cycle Chromatic Conflict ($C_3$ Triangle).*
+
 ### Applicable Question Archetypes:
 * *"State Kőnig's theorem. Determine whether graph $G$ is bipartite."*
 * *"Show that graph $G$ contains an odd cycle and hence is not 2-colorable."*
@@ -478,6 +518,9 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ## 🌐 BLUEPRINT 10: Planar Graph Polyhedral Formulas ($v - e + f = 2$)
+
+![K5 and K33 Planarity](img/blueprint10_k5_k33_planarity.png)
+*Figure B10.1: Non-Planarity Proofs for $K_5$ ($e > 3v-6$) and $K_{3,3}$ ($e > 2v-4$).*
 
 ### Applicable Question Archetypes:
 * *"A connected planar graph has $v$ vertices and $e$ edges. How many faces does it divide the plane into?"*
@@ -543,6 +586,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 2: Hasse Diagram Construction & Extremal Elements
+
+![D12 Hasse Diagram](img/tutorial2_q4_d12_hasse.png)
+*Figure Q2.1: Hasse Diagram of Divisibility Poset $(D_{12}, \mid)$ Demonstrating Covering Relations and Complementation Failure for Elements 2 and 6.*
+
 **Exam Question Language**:
 > *"Draw the Hasse diagram for the divisor poset $(D_{12}, \mid)$ where $D_{12} = \{1, 2, 3, 4, 6, 12\}$. Find all maximal, minimal, greatest, and least elements. Is it a bounded lattice?"*
 
@@ -602,6 +649,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 4: Distributive Lattice & Birkhoff's Representation Theorem
+
+![M3 and N5 Lattices](img/module3_m3_n5_lattices.png)
+*Figure Q4.1: Sublattices $M_3$ and $N_5$ Forbidden by Birkhoff's Distributivity Theorem.*
+
 **Exam Question Language**:
 > *"State Birkhoff's theorem on distributive lattices. Using algebraic counterexamples, prove why the Diamond lattice $M_3$ and the Pentagon lattice $N_5$ are non-distributive."*
 
@@ -629,6 +680,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 5: Boolean Algebra Criterion for Divisor Lattices $(D_n, \mid)$
+
+![D30 Hasse Cube](img/module3_d30_hasse.png)
+*Figure Q5.1: 3-Cube Boolean Algebra Hasse Diagram for Square-Free Divisor Lattice $(D_{30}, \mid)$.*
+
 **Exam Question Language**:
 > *"Show that $(D_{30}, \mid)$ is a Boolean algebra, but $(D_{18}, \mid)$ is not. State the general condition on $n$ for $(D_n, \mid)$ to be a Boolean algebra."*
 
@@ -760,6 +815,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 9: Graph Isomorphism Proof & Preserved Invariants
+
+![C6 vs 2C3](img/quiz2_q8_c6_vs_2c3.png)
+*Figure Q9.1: Connected 6-Cycle $C_6$ vs Disconnected Two Triangles $2C_3$.*
+
 **Exam Question Language**:
 > *"Determine whether the 6-cycle $C_6$ and the disjoint union of two triangles $2C_3$ are isomorphic. State at least three preserved invariants that match and one that fails."*
 
@@ -790,6 +849,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 10: Self-Complementary Graph Order Proof
+
+![Graph Complements](img/quiz2_q1_complements.png)
+*Figure Q10.1: Graph Complementation Pairing $G$ and $\overline{G}$ with Total Edges $\binom{n}{2}$.*
+
 **Exam Question Language**:
 > *"Define a self-complementary graph. Prove that if a simple graph $G$ with $n$ vertices is self-complementary ($G \cong \overline{G}$), then $n \equiv 0 \pmod 4$ or $n \equiv 1 \pmod 4$."*
 
@@ -820,6 +883,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 11: Bipartite Graph Verification (2-Coloring Algorithm)
+
+![Question 11 Odd Cycle](img/questionnaire_q11_odd_cycle_graph.png)
+*Figure Q11.1: 5-Cycle with Chord $(1,3)$ Showing 2-Coloring Conflict on Monochromatic Edge $(2,3)$.*
+
 **Exam Question Language**:
 > *"State Kőnig's theorem for bipartite graphs. Using the 2-coloring algorithm, test whether the graph with edge set $E = \{(1,2), (2,3), (3,4), (4,5), (5,1), (1,3)\}$ is bipartite."*
 
@@ -850,6 +917,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 12: Dijkstra's Shortest Path Algorithm on Directed Graphs
+
+![Tutorial 4 P1 Shortest Tree](img/tutorial4_p1_shortest_tree.png)
+*Figure Q12.1: Shortest Path Tree Reconstructed from Dijkstra Predecessor Vector.*
+
 **Exam Question Language**:
 > *"Apply Dijkstra's algorithm to compute the shortest path from source vertex $S$ to all other vertices in the directed graph with vertices $\{S, A, B, C, D, E\}$ and edge weights: $(S, A)=2, (S, C)=5, (A, B)=3, (A, C)=2, (C, B)=1, (B, D)=4, (C, D)=2, (C, E)=7, (D, E)=1$. Show the complete iteration table."*
 
@@ -883,6 +954,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 | **$E$** | **7** | $D$ | $S \to A \to C \to D \to E$ |
 
 ### Question 13: Graph Matrix Representations (Adjacency Matrix, Incidence Matrix & Path Counting)
+
+![Question 13 Walks Graph](img/questionnaire_q13_walks_graph.png)
+*Figure Q13.1: 4-Vertex Graph with Diagonal Chord $(1,3)$ for Matrix Representation and Walk Counting.*
+
 **Exam Question Language**:
 > *"Write down the adjacency matrix $A(G)$ and incidence matrix $M(G)$ for the graph with vertices $\{1, 2, 3, 4\}$ and edges $e_1=(1,2), e_2=(2,3), e_3=(3,4), e_4=(4,1), e_5=(1,3)$. Using matrix multiplication, determine the number of distinct walks of length 2 and length 3 between vertex 1 and vertex 3."*
 
@@ -929,6 +1004,10 @@ When solving on your exam paper, always format Dijkstra as follows:
 ---
 
 ### Question 14: Regular Graphs & Non-Isomorphic 3-Regular Graphs
+
+![Regular Graphs](img/quiz2_q4_regular_graphs.png)
+*Figure Q14.1: Pairwise Non-Isomorphic 3-Regular Graphs on 6 Vertices: $K_{3,3}$ (0 Triangles) vs $Y_3$ Triangular Prism (2 Triangles).*
+
 **Exam Question Language**:
 > *"Find all distinct, non-isomorphic 3-regular (cubic) simple graphs on 6 vertices. Prove why they are pairwise non-isomorphic."*
 

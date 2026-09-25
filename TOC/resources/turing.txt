@@ -1,1 +1,6 @@
 Construct the Turing machine for even number of zeros and odd number of once and vice versha. make the transition diagram and table.
+a^n b^n | n>=1
+a^2n b^n | n>=1
+a^n b^2n | n>=1
+a^n b^n c^n  | n>=1
+transition diagram and table

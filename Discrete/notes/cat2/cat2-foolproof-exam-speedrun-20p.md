@@ -1,40 +1,45 @@
 # 🏛️ VIT Bhopal University — MAT2002: Discrete Mathematics & Graph Theory
-## CAT-2 FOOLPROOF EXAM-HALL SPEED-RUN BOOKLET (20-PAGE COMPLETE CRIB)
+## CAT-2 FOOLPROOF EXAM-HALL SPEED-RUN BOOKLET (20-PAGE COMPLETE MASTER CRIB)
 > **Course Code**: MAT2002 | **Format**: Complete Step-by-Step Copy-Paste Answers for Open-Book Hall  
-> **Target Audience**: Designed for instant visual matching — see any question on the question paper, find the matching section in 10 seconds, copy the exact working, and score full marks!  
+> **Target Audience**: Designed for instant visual matching — see any question on the question paper, find the matching story or phrasing in 10 seconds, copy the exact working, and score full marks!  
 > **Syllabus Coverage**: Module 3 (Lattices & Boolean Algebra) & Module 4 (Graphs & Matrix Representations)
 
 ---
 
-# SECTION 1: 10-SECOND QUESTION-TO-PAGE RADAR
+# SECTION 1: 10-SECOND QUESTION-LANGUAGE & STORY DECODER
 
-Use this master index as soon as you open your exam question paper. Find the matching keywords below and jump directly to that page!
+Use this master index the very second you receive your exam paper. Scan the question keywords or story phrasing, identify the underlying mathematical model, and jump straight to the page!
 
-| When You See This Question Wording... | Syllabus Topic | Turn To | What You Will Copy Directly |
-| :--- | :--- | :---: | :--- |
-| **"Median identity", $(a \wedge b) \vee (b \wedge c) \dots$** | Distributive Lattice | **Page 3** | Full 6-step algebraic proof factoring $T = b \vee (a \wedge c)$ and absorption. |
-| **"Truth table", "PDNF", "PCNF", $f(x, y, z)$** | Canonical Forms | **Page 4** | Complete 8-row table, $\sum m$ minterm list, and $\prod M$ maxterm list. |
-| **"Divisibility poset $D_{12}$", "complements"** | Divisor Lattice | **Page 5** | Least/greatest bounds, coprimality rule, proof that 2 and 6 have no complements. |
-| **"Degree partition", "11 vertices...", "can a graph exist"** | Handshaking Lemma | **Page 5** | Degree sum equation $\sum \deg = 24$, even odd-degree vertices, Havel-Hakimi steps. |
-| **"Isomorphic or not", 6-vertex cycle $C_6 \cong G_2$** | Graph Isomorphism | **Page 6** | 4 invariant checks, explicit bijection table $f(A)=1 \dots$, 6-edge preservation table. |
-| **"Floyd-Warshall", "All pairs shortest path"** | Floyd-Warshall Matrix | **Page 7** | Dynamic programming formula, all 5 complete matrices $D^{(0)}, D^{(1)}, D^{(2)}, D^{(3)}, D^{(4)}$. |
-| **"Divisibility poset $D_{70}$", "Cayley tables"** | Meet/Join Tables | **Page 8** | Complete $8 \times 8$ Meet table ($\gcd$), $8 \times 8$ Join table ($\text{lcm}$), Boolean algebra proof. |
-| **"Switching circuit", "simplified circuit"** | Contact Network | **Page 9** | Boolean formula derivation, step-by-step reduction to $(r+s)\cdot t$, simplified drawing. |
-| **"Disjunctive normal form of $xy' + z$"** | DNF / PDNF Expansion | **Page 10** | Missing variable expansions $(z+z')$ and $(x+x')(y+y')$, $\sum m(1,3,4,5,7)$, truth table. |
-| **"Multigraph with loops", "verify handshaking"** | Multigraph & Degrees | **Page 10** | Order $5$, Size $8$, Loop rule ($+2$ to degree), Handshaking check $\sum \deg = 16 = 2 \times 8$. |
-| **"Isomorphic or not", 5-vertex $G_1 \cong G_2$** | Graph Isomorphism | **Page 11** | Invariant check $(4,3,3,2,2)$, bijection $f(B)=b, f(D)=d \dots$, 7-edge verification table. |
-| **"Dijkstra's algorithm", "edge increased by 3"** | Shortest Path & Sensitivity | **Page 12** | 7-step iteration table, optimal path $A \to C \to F \to E \to G = 74$, 4 sensitivity cases. |
-| **"Complement of a graph $\overline{G}$", "20 vertices, 30 edges"** | Graph Complements | **Page 13** | Edge formula $|E(\overline{G})| = \binom{n}{2} - |E(G)|$, degree formula $\deg_{\overline{G}}(v) = n-1-\deg_G(v)$. |
-| **"Self-complementary graph", $G \cong \overline{G}$** | Graph Theory Proof | **Page 13** | Edge count $n(n-1)/4$, divisibility proof why $n \equiv 0$ or $1 \pmod 4$. |
-| **"Havel-Hakimi algorithm", "is sequence graphic"** | Degree Realizability | **Page 14** | Non-increasing sort, delete first element $d_1$, subtract 1 from next $d_1$, repeat test. |
-| **"Non-isomorphic graphs", $C_6$ vs $2C_3$, $P_4$ vs $K_{1,3}$** | Isomorphism Counterexample | **Page 14** | Disproving isomorphism using connected components, maximum degree, or cycle length. |
-| **"Dijkstra on directed graph" (Tutorial 4 Problems)** | Dijkstra Algorithm | **Page 15** | Full step table for $S \to A,B,C,D,E$ and 5-vertex graph with unreachable node ($d=\infty$). |
-| **"Lexicographical order on $\mathbb{R}^2$ is poset"** | Poset Axioms Proof | **Page 16** | 3-step proof: Reflexivity, Antisymmetry, Transitivity of dictionary order. |
-| **"Relation composition $S \circ R$, inverse $R^{-1}$"** | Binary Relations | **Page 16** | Ordered pair evaluation, zero-one matrix multiplication method for relation composition. |
-| **"Bipartite graph test", "Kőnig theorem", "2-coloring"** | Bipartite Graphs | **Page 17** | Odd-cycle detection ($C_3, C_5$), BFS 2-coloring algorithm, maximum edges $\lfloor n^2/4 \rfloor$. |
-| **"Universal Dijkstra blank template"** | Shortest Path Template | **Page 18** | Blank fill-in grid for ANY graph the teacher gives. |
-| **"If they change the numbers in $D_n$"** | Poset Parameter Changer | **Page 19** | Square-free rule for Boolean algebra ($D_{30}, D_{42}, D_{70}$ vs $D_{12}, D_{18}, D_{24}$). |
-| **"Universal Boolean simplification rules & K-Maps"** | Boolean Algebra Vault | **Page 20** | All 12 Boolean theorems, consensus law, absorption, redundancy $x + x'y = x + y$. |
+| Exam Question Phrasing / Story Analogy | Underlying Model | 5-Second First Move (Write This First!) | Jump To |
+| :--- | :--- | :--- | :---: |
+| **"Median identity", $(a \wedge b) \vee (b \wedge c) \dots$** | Distributive Lattice | Write: Let $T = (b \vee a) \wedge (b \vee c) = b \vee (a \wedge c)$ by Distributivity. | **Page 3** |
+| **"Unique complement in distributive lattice"** | Lattice Uniqueness Theorem | Write: Assume $a \wedge b = 0, a \vee b = 1$ and $a \wedge c = 0, a \vee c = 1$. Show $b = c$. | **Page 3** |
+| **"Cancellation laws in lattice", $a \wedge x = a \wedge y$** | Lattice Algebraic Proof | Use identity $x = x \wedge (x \vee a) = x \wedge (y \vee a)$ and distribute. | **Page 3** |
+| **"Truth table", "PDNF", "PCNF", $f(x,y,z)$** | Boolean Normal Forms | Draw 8-row truth table. $\text{PDNF} = \sum m(f=1)$, $\text{PCNF} = \prod M(f=0)$. | **Page 4** |
+| **"Divisibility poset $D_{12}$", "complements"** | Divisor Lattice Complementation | State: $0 = 1, 1 = 12$. Elements 2 and 6 have NO complement since $2^2 \mid 12$. | **Page 5** |
+| **"Degree partition", "11 vertices...", "can a graph exist"** | Handshaking & Realizability | Equate $\sum \deg(v) = 2|E| = 24 \implies |E|=12$. Count odd vertices ($=8$, even). Run Havel-Hakimi. | **Page 5** |
+| **"Isomorphic or not", 6-vertex cycle $C_6 \cong G_2$** | Cycle Graph Isomorphism | Check 4 invariants. Map cycle traversal $A-B-C-D-E-F \to 1-6-2-4-3-5$. | **Page 6** |
+| **"Floyd-Warshall", "All-pairs shortest path", 4 nodes** | Dynamic Programming Matrix | Use $D^{(k)}[i,j] = \min(D^{(k-1)}[i,j], D^{(k-1)}[i,k] + D^{(k-1)}[k,j])$. Write $D^{(0)} \dots D^{(4)}$. | **Page 7** |
+| **"Divisibility poset $D_{70}$", "Cayley tables"** | Meet/Join Tables & Boolean Lattice | Write $D_{70} = \{1, 2, 5, 7, 10, 14, 35, 70\}$. Fill $8 \times 8$ Meet ($\gcd$) and Join ($\text{lcm}$) tables. | **Page 8** |
+| **"Switching circuit", "simplified circuit"** | Contact Network Reduction | Write series as $\cdot$, parallel as $+$. Factor $t$ out, simplify $r + r's = r + s$. | **Page 9** |
+| **"Disjunctive normal form of $xy' + z$"** | Algebraic PDNF Expansion | Expand missing variables: $xy'(z+z')$ and $z(x+x')(y+y')$. Minterms: $\sum m(1,3,4,5,7)$. | **Page 10** |
+| **"Multigraph with loops", "verify handshaking"** | Multigraph Degree Counting | Note: EACH SELF-LOOP ADDS $+2$ TO DEGREE! $\sum \deg(v) = 16 = 2 \times 8$. | **Page 10** |
+| **"Isomorphic or not", 5-vertex $G_1 \cong G_2$** | 5-Vertex Graph Isomorphism | Degree sequence $(4,3,3,2,2)$. Map degree 4: $B \to b$. Map degree 2: $A \to a, E \to e$. | **Page 11** |
+| **"Dijkstra algorithm", "edge increased by 3"** | Shortest Path & Sensitivity | Fill 7-step iteration table. Shortest path $A-C-F-E-G = 74$. Apply 4-case sensitivity analysis. | **Page 12** |
+| **"Non-square-free $D_n$ ($D_{18}, D_{36}, D_{24}$)"** | Prime Power Complement Failure | Theorem: $p^2 \mid n \implies$ prime $p$ cannot have complement since $\text{lcm}(p, x') \ne n$. | **Page 13** |
+| **"Modular vs Distributive", $M_3$ and $N_5$** | Sublattice Characterization | Draw Diamond $M_3$ (modular, non-distributive) and Pentagon $N_5$ (non-modular). | **Page 13** |
+| **"Wheatstone bridge switching circuit"** | Bridge Contact Network | Apply path tracing: $T = x_1 x_2 + x_3 x_4 + x_1 x_5 x_4 + x_3 x_5 x_2$. | **Page 14** |
+| **"Two 3-regular graphs with 6 vertices"** | Isomorphism Trap ($K_{3,3}$ vs $Y_3$) | Trap alert! $K_{3,3}$ has 0 triangles (bipartite). Prism $Y_3$ has 2 triangles. NOT ISOMORPHIC. | **Page 14** |
+| **"$C_6$ vs $2C_3$" or "$P_4$ vs $K_{1,3}$"** | Invariant Disproof | $C_6$ has 1 connected component; $2C_3$ has 2 components. $P_4$ has $\Delta=2$; $K_{1,3}$ has $\Delta=3$. | **Page 15** |
+| **"Complement of a graph $\overline{G}$", "20 vertices, 30 edges"** | Graph Complement Edge Count | Formula: $|E(\overline{G})| = \binom{n}{2} - |E(G)| = \frac{20 \times 19}{2} - 30 = 160$ edges. | **Page 15** |
+| **"Self-complementary graph", $G \cong \overline{G}$** | Graph Theory Proof | Equate $2|E| = \binom{n}{2} \implies |E| = \frac{n(n-1)}{4}$. Divisibility forces $n \equiv 0, 1 \pmod 4$. | **Page 15** |
+| **"Havel-Hakimi test", e.g. $(6,6,5,5,4,4,3,3)$** | Degree Sequence Realizability | Sort descending. Pop $d_1$, subtract 1 from next $d_1$ elements, re-sort. Repeat to $(0,\dots,0)$. | **Page 16** |
+| **"Bipartite graph test", "2-coloring", "odd cycle"** | Bipartite Characterization | Theorem: Bipartite $\iff$ NO odd cycles. Run BFS 2-coloring. Max edges $= \lfloor n^2/4 \rfloor$. | **Page 16** |
+| **"Dijkstra on directed graph" (Tutorial 4)** | Digraph Shortest Path Execution | Setup source $S=0$, others $\infty$. Unreachable nodes remain at distance $\infty$. | **Page 17** |
+| **"Lexicographical order on $\mathbb{R}^2$ is poset"** | Partial Order Axioms Proof | Prove: 1. Reflexive: $(x,y) \le (x,y)$. 2. Antisymmetric: $a \le b \land b \le a \implies a = b$. 3. Transitive. | **Page 18** |
+| **"Relation composition $S \circ R$, inverse $R^{-1}$"** | Binary Relations & Matrices | Match inner elements: $(a,b) \in R \land (b,c) \in S \implies (a,c) \in S \circ R$. $R^{-1}$ flips pairs. | **Page 18** |
+| **"Universal Boolean algebra simplification laws"** | Redundancy & Consensus Laws | $x + x'y = x + y$, $x(x'+y) = xy$, $xy + x'z + yz = xy + x'z$. | **Page 19** |
+| **"Universal Dijkstra blank fill-in template"** | Exam-Hall Execution Template | Fill-in table with vertices, permanent sets, and path backtrack pointer. | **Page 20** |
 
 ---
 
@@ -47,7 +52,7 @@ $$x = (a \wedge b) \vee (b \wedge c) \vee (c \wedge a), \quad y = (a \vee b) \we
 Prove that $x = y$ holds identically.
 
 #### Copy-Paste Solution:
-1. **Given Axioms of Distributive Lattice**:
+1. **Governing Distributive Lattice Axioms**:
    * Distributive Law 1: $u \wedge (v \vee w) = (u \wedge v) \vee (u \wedge w)$
    * Distributive Law 2: $u \vee (v \wedge w) = (u \vee v) \wedge (u \vee w)$
    * Commutative Laws: $u \wedge v = v \wedge u$ and $u \vee v = v \vee u$
@@ -79,6 +84,12 @@ Prove that $x = y$ holds identically.
    By associativity of join:
    $$y = (a \wedge b) \vee (b \wedge c) \vee (c \wedge a) = x$$
    $$\mathbf{\therefore x = y \quad \forall a, b, c \in L. \quad \blacksquare}$$
+
+#### Related Exam Variation: Uniqueness of Complements in Distributive Lattices
+* **Theorem**: In a bounded distributive lattice $(L, \wedge, \vee, 0, 1)$, if an element $a$ has a complement, it is strictly **unique**.
+* **Proof**: Suppose $b$ and $c$ are both complements of $a$. Then $a \wedge b = 0, a \vee b = 1$ and $a \wedge c = 0, a \vee c = 1$.
+  $$b = b \wedge 1 = b \wedge (a \vee c) = (b \wedge a) \vee (b \wedge c) = 0 \vee (b \wedge c) = (a \wedge c) \vee (b \wedge c) = (a \vee b) \wedge c = 1 \wedge c = c$$
+  $$\mathbf{\therefore b = c. \quad \blacksquare}$$
 
 ---
 
@@ -112,6 +123,8 @@ Prove that $x = y$ holds identically.
 
 ### 🟢 Q3(a) (5 Marks): Divisibility Poset $D_{12}$ Boundedness & Complementation
 
+![Tutorial 2 Q4 D12 Hasse](img/tutorial2_q4_d12_hasse.png)
+
 **Question Statement**: Consider the divisibility poset $(D_{12}, \mid)$. Find the least element (0) and greatest element (1). Check whether $(D_{12}, \mid)$ is a complemented lattice. Justify your answer.
 
 #### Copy-Paste Solution:
@@ -144,11 +157,10 @@ Prove that $x = y$ holds identically.
 
 #### Copy-Paste Solution:
 1. **Sum of Degrees Calculation**:
-   $$\sum_{v \in V} \deg(v) = (2 \times 4) + (3 \times 3) + (1 \times 2) + (5 \times 1)$$
-   $$\sum_{v \in V} \deg(v) = 8 + 9 + 2 + 5 = \mathbf{24}$$
+   $$\sum_{v \in V} \deg(v) = (2 \times 4) + (3 \times 3) + (1 \times 2) + (5 \times 1) = 8 + 9 + 2 + 5 = \mathbf{24}$$
 2. **Euler's Handshaking Theorem Check**:
    * Theorem: $\sum_{v \in V} \deg(v) = 2|E|$.
-   * $2|E| = 24 \implies |E| = 12$. This is an even integer, which satisfies Handshaking.
+   * $2|E| = 24 \implies |E| = 12$. This is an integer, satisfying Handshaking $\checkmark$.
    * Corollary: The number of vertices of odd degree must be even.
    * Odd degree vertices: 3 vertices of degree 3 and 5 vertices of degree 1 $\implies 3 + 5 = \mathbf{8}$ vertices (even number $\checkmark$).
 3. **Havel-Hakimi Graphical Realizability Test**:
@@ -162,7 +174,7 @@ Prove that $x = y$ holds identically.
      $$(0, 0, 1, 1, 1, 1, 1, 1) \xrightarrow{\text{Sort}} S_3 = (1, 1, 1, 1, 1, 1, 0, 0)$$
    * Delete first 1, subtract 1 from next 1 term:
      $$(0, 1, 1, 1, 1, 0, 0) \xrightarrow{\text{Sort}} S_4 = (1, 1, 1, 1, 0, 0, 0)$$
-   * Continuing this process produces only non-negative integers that terminate at all zeros.
+   * Continuing this process produces only non-negative integers terminating at all zeros.
 4. **Final Conclusion**:
    $$\mathbf{\text{YES, such a simple graph EXISTS with } |V| = 11 \text{ and } |E| = 12. \quad \blacksquare}$$
 
@@ -217,23 +229,23 @@ Prove that $x = y$ holds identically.
 
 * **Matrix $D^{(1)}$ (Intermediate Vertex $\le 1$)**:
   Check paths through vertex 1: Row 1 and Column 1 remain unchanged.
-  No entries decrease because $\infty + x$ offers no shorter path.
+  No off-diagonal entries decrease because $\infty + x$ offers no shorter path.
   $$D^{(1)} = \begin{pmatrix} 0 & 3 & \infty & 5 \\ 2 & 0 & \infty & 4 \\ \infty & 1 & 0 & \infty \\ \infty & \infty & 2 & 0 \end{pmatrix}$$
 
 * **Matrix $D^{(2)}$ (Intermediate Vertices $\le 2$)**:
-  Check paths through vertex 2:
+  Check paths through vertex 2 (Row 2 and Col 2 fixed):
   * $D^{(2)}[3, 1] = \min(\infty, D^{(1)}[3,2] + D^{(1)}[2,1]) = \min(\infty, 1 + 2) = \mathbf{3}$ [UPDATED]
   * $D^{(2)}[3, 4] = \min(\infty, D^{(1)}[3,2] + D^{(1)}[2,4]) = \min(\infty, 1 + 4) = \mathbf{5}$ [UPDATED]
   $$D^{(2)} = \begin{pmatrix} 0 & 3 & \infty & 5 \\ 2 & 0 & \infty & 4 \\ 3 & 1 & 0 & 5 \\ \infty & \infty & 2 & 0 \end{pmatrix}$$
 
 * **Matrix $D^{(3)}$ (Intermediate Vertices $\le 3$)**:
-  Check paths through vertex 3:
+  Check paths through vertex 3 (Row 3 and Col 3 fixed):
   * $D^{(3)}[4, 1] = \min(\infty, D^{(2)}[4,3] + D^{(2)}[3,1]) = \min(\infty, 2 + 3) = \mathbf{5}$ [UPDATED]
   * $D^{(3)}[4, 2] = \min(\infty, D^{(2)}[4,3] + D^{(2)}[3,2]) = \min(\infty, 2 + 1) = \mathbf{3}$ [UPDATED]
   $$D^{(3)} = \begin{pmatrix} 0 & 3 & \infty & 5 \\ 2 & 0 & \infty & 4 \\ 3 & 1 & 0 & 5 \\ 5 & 3 & 2 & 0 \end{pmatrix}$$
 
 * **Matrix $D^{(4)}$ (Intermediate Vertices $\le 4$) — FINAL RESULT**:
-  Check paths through vertex 4:
+  Check paths through vertex 4 (Row 4 and Col 4 fixed):
   * $D^{(4)}[1, 3] = \min(\infty, D^{(3)}[1,4] + D^{(3)}[4,3]) = \min(\infty, 5 + 2) = \mathbf{7}$ [UPDATED]
   * $D^{(4)}[2, 3] = \min(\infty, D^{(3)}[2,4] + D^{(3)}[4,3]) = \min(\infty, 4 + 2) = \mathbf{6}$ [UPDATED]
   $$\mathbf{D^{(4)} = \begin{pmatrix} 0 & 3 & 7 & 5 \\ 2 & 0 & 6 & 4 \\ 3 & 1 & 0 & 5 \\ 5 & 3 & 2 & 0 \end{pmatrix} \quad \blacksquare}$$
@@ -427,69 +439,199 @@ Prove that $x = y$ holds identically.
 
 ---
 
-# SECTION 4: DR. SURESH DARA'S CLASS QUIZ & TUTORIAL REPEATS
+# SECTION 4: MODULE 3 UNFAMILIAR TRAPS & MASTER SOLVERS
 
-### 🔶 Problem 1: Graph Complements Edge Count
-**Question**: If a simple graph $G$ has 20 vertices and 30 edges, find the number of edges in its complement $\overline{G}$.
-* **Formula**: $|E(\overline{G})| = \binom{n}{2} - |E(G)| = \frac{n(n-1)}{2} - |E(G)|$
-* **Calculation**:
-  $$|E(\overline{G})| = \frac{20 \times 19}{2} - 30 = 190 - 30 = \mathbf{160 \text{ edges. } \blacksquare}$$
+### ⚠️ Unfamiliar Trap 1: Non-Square-Free Divisor Lattices ($D_{12}, D_{18}, D_{36}, D_{24}$)
+
+![D30 Cube Hasse](img/module3_d30_hasse.png)
+
+#### Mathematical Theorem:
+> A divisibility lattice $(D_n, \mid)$ is a Boolean algebra (and therefore complemented) if and only if $n$ is **square-free** (i.e. $n = p_1 p_2 \cdots p_k$ with no prime factor repeated).
+
+#### Rigorous Algebraic Proof that Non-Square-Free implies Complementation Failure:
+1. Let $n$ have a repeated prime factor, so $p^2 \mid n$ for some prime $p$.
+2. In $(D_n, \mid)$, the zero element is $0 = 1$ and the unit element is $1 = n$.
+3. For an element $x'$ to be a complement of the prime $p$, it must satisfy:
+   $$p \wedge x' = \gcd(p, x') = 1 \quad \text{and} \quad p \vee x' = \text{lcm}(p, x') = n$$
+4. Since $\gcd(p, x') = 1$, the prime $p$ cannot divide $x'$. Thus, the exponent of $p$ in the prime factorization of $x'$ is **0**.
+5. Consequently, the exponent of $p$ in $\text{lcm}(p, x')$ is $\max(1, 0) = \mathbf{1}$.
+6. However, the exponent of $p$ in $n$ is at least **2** (since $p^2 \mid n$).
+7. Thus, $\text{lcm}(p, x')$ can NEVER equal $n$.
+8. Contradiction! Therefore, the prime element $p$ has **NO COMPLEMENT** in $D_n$.
+9. Hence, $(D_n, \mid)$ is **NEVER a complemented lattice** whenever $n$ is not square-free. $\blacksquare$
+
+#### Quick Poset Parameter Lookup Table:
+
+| Divisor Set | Prime Factorization | Square-Free? | Atoms | Bounded [0, 1] | Complemented? | Boolean Algebra? |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $D_{30}$ | $2 \times 3 \times 5$ | **Yes** | $\{2, 3, 5\}$ | $[1, 30]$ | **Yes** | **Yes ($B_3$, 8 elements)** |
+| $D_{70}$ | $2 \times 5 \times 7$ | **Yes** | $\{2, 5, 7\}$ | $[1, 70]$ | **Yes** | **Yes ($B_3$, 8 elements)** |
+| $D_{42}$ | $2 \times 3 \times 7$ | **Yes** | $\{2, 3, 7\}$ | $[1, 42]$ | **Yes** | **Yes ($B_3$, 8 elements)** |
+| $D_{12}$ | $2^2 \times 3$ | **No** ($2^2$) | $\{2, 3\}$ | $[1, 12]$ | **No** (2 and 6 fail) | **No** |
+| $D_{18}$ | $2 \times 3^2$ | **No** ($3^2$) | $\{2, 3\}$ | $[1, 18]$ | **No** (3 and 6 fail) | **No** |
+| $D_{36}$ | $2^2 \times 3^2$ | **No** ($2^2, 3^2$) | $\{2, 3\}$ | $[1, 36]$ | **No** (2, 3, 6, 18 fail) | **No** |
 
 ---
 
-### 🔶 Problem 2: Self-Complementary Graph Condition
-**Question**: Prove that if a graph $G$ on $n$ vertices is self-complementary ($G \cong \overline{G}$), then $n \equiv 0 \pmod 4$ or $n \equiv 1 \pmod 4$.
+### ⚠️ Unfamiliar Trap 2: Posets That Fail to Be Lattices
+
+![Lattice Fails](img/module3_lattice_fails.png)
+
+#### Definition of a Lattice:
+A poset $(P, \le)$ is a **lattice** if and only if **every pair** of elements $\{a, b\}$ has a **unique Least Upper Bound (LUB / Join $a \vee b$)** and a **unique Greatest Lower Bound (GLB / Meet $a \wedge b$)**.
+
+#### 3 Classic Examiner Failure Patterns:
+1. **Multiple Minimal Upper Bounds (No LUB)**: Elements $a$ and $b$ are both bounded above by $c$ and $d$, but $c$ and $d$ are incomparable ($c \not\le d$ and $d \not\le c$). Hence, no single *least* upper bound exists.
+2. **Multiple Maximal Lower Bounds (No GLB)**: Elements $c$ and $d$ have lower bounds $a$ and $b$ that are incomparable.
+3. **Disconnected Components**: Poset has two disjoint subgraphs with no common bounds.
+
+---
+
+### ⚠️ Unfamiliar Trap 3: Modular ($M_3$) vs Distributive ($N_5$) Lattices
+
+![M3 and N5 Lattices](img/module3_m3_n5_lattices.png)
+
+#### Fundamental Definitions & Classic Theorems:
+* **Modular Law**: A lattice $L$ is modular if:
+  $$a \le c \implies a \vee (b \wedge c) = (a \vee b) \wedge c \quad \forall a, b, c \in L$$
+* **Dedekind's Theorem**: A lattice $L$ is modular $\iff$ it contains **NO sublattice isomorphic to the Pentagon lattice $N_5$**.
+* **Birkhoff's Theorem**: A lattice $L$ is distributive $\iff$ it contains **NO sublattice isomorphic to either $M_3$ or $N_5$**.
+
+#### Contrast Summary Table:
+
+| Property | Diamond Lattice $M_3$ | Pentagon Lattice $N_5$ |
+| :--- | :--- | :--- |
+| **Structure** | 5 elements $\{0, a, b, c, 1\}$ with $a, b, c$ pairwise incomparable. | 5 elements $\{0, a, b, c, 1\}$ with $a < c$, and $b$ incomparable to $a, c$. |
+| **Modularity** | **MODULAR** (satisfies modular law everywhere). | **NON-MODULAR** ($a < c$, but $a \vee (b \wedge c) = a \vee 0 = a$, while $(a \vee b) \wedge c = 1 \wedge c = c \ne a$). |
+| **Distributivity** | **NON-DISTRIBUTIVE** ($a \wedge (b \vee c) = a \wedge 1 = a \ne (a \wedge b) \vee (a \wedge c) = 0$). | **NON-DISTRIBUTIVE** (fails distributivity). |
+| **Complements** | Complements are **NOT unique** (e.g. $b$ and $c$ are both complements of $a$). | Complements are **NOT unique** ($b$ has multiple complements). |
+
+---
+
+### ⚠️ Unfamiliar Trap 4: Switching Circuits & Bridge Contact Networks
+
+![Switching Circuits](img/module3_switching_circuits.png)
+
+#### 1. Fundamental Rules of Contact Networks:
+* **Series Switches**: $x$ and $y$ in series $\implies x \cdot y$ (closed only when both are closed).
+* **Parallel Switches**: $x$ and $y$ in parallel $\implies x + y$ (closed when either is closed).
+* **Normally Closed Switch**: denoted $x'$ (closed when control $x = 0$, open when $x = 1$).
+
+#### 2. The Bridge Network (Wheatstone Bridge) Reduction:
+In a 5-contact bridge network with contacts $x_1, x_2, x_3, x_4$ forming a diamond and bridge switch $x_5$ connecting the midpoints:
+* Path 1: $x_1 \cdot x_2$ (top branch)
+* Path 2: $x_3 \cdot x_4$ (bottom branch)
+* Path 3: $x_1 \cdot x_5 \cdot x_4$ (cross top-to-bottom)
+* Path 4: $x_3 \cdot x_5 \cdot x_2$ (cross bottom-to-top)
+$$\mathbf{T_{\text{bridge}} = x_1 x_2 + x_3 x_4 + x_1 x_5 x_4 + x_3 x_5 x_2}$$
+
+---
+
+# SECTION 5: MODULE 4 UNFAMILIAR TRAPS & GRAPH THEORY MASTER SOLVERS
+
+### ⚠️ Unfamiliar Trap 5: Identical Degree Sequences ($K_{3,3}$ vs Triangular Prism $Y_3$)
+
+![Regular Graphs Trap](img/quiz2_q4_regular_graphs.png)
+
+#### The Problem:
+Examiner gives two graphs and asks whether they are isomorphic. Both graphs have 6 vertices and 9 edges, and both are **3-regular** with degree sequence $(3, 3, 3, 3, 3, 3)$.
+
+#### Invariant Comparison:
+
+| Graph Invariant | Complete Bipartite Graph $K_{3,3}$ | Triangular Prism Graph $Y_3$ | Match? |
+| :--- | :---: | :---: | :---: |
+| **Vertices $|V|$** | 6 | 6 | $\checkmark$ Identical |
+| **Edges $|E|$** | 9 | 9 | $\checkmark$ Identical |
+| **Degree Sequence** | $(3, 3, 3, 3, 3, 3)$ | $(3, 3, 3, 3, 3, 3)$ | $\checkmark$ Identical |
+| **Bipartite?** | **YES** (Partitions $V_1 = \{1,2,3\}, V_2 = \{4,5,6\}$) | **NO** (Contains odd cycles $C_3$) | ❌ **MISMATCH!** |
+| **Number of Triangles ($C_3$)** | **0 triangles** (Contains no 3-cycles) | **2 triangles** (Top and bottom faces) | ❌ **MISMATCH!** |
+| **Number of 4-Cycles ($C_4$)** | 9 cycles of length 4 | 3 cycles of length 4 | ❌ **MISMATCH!** |
+| **Girth (Shortest Cycle)** | 4 | 3 | ❌ **MISMATCH!** |
+
+#### Concluding Answer to Write:
+> "Although $K_{3,3}$ and $Y_3$ share identical vertex counts ($|V|=6$), edge counts ($|E|=9$), and degree sequences $(3,3,3,3,3,3)$, they are **NOT ISOMORPHIC**. $Y_3$ contains triangles ($C_3$), whereas $K_{3,3}$ is bipartite and has no triangles (girth 4). Since subgraph cycle structure is a preserved graph invariant, $\mathbf{K_{3,3} \not\cong Y_3}$." $\blacksquare$
+
+---
+
+### ⚠️ Unfamiliar Trap 6: Disconnected Components & Star Traps
+
+| Counterexample Pair | Comparison Diagram | Proof of Non-Isomorphism |
+| :--- | :---: | :--- |
+| **$C_6$ vs $2C_3$** | ![C6 vs 2C3](img/quiz2_q8_c6_vs_2c3.png) | Both have $|V|=6, |E|=6$, degree sequence $(2,2,2,2,2,2)$. But $C_6$ has **1 connected component**, while $2C_3$ has **2 connected components**. Hence $C_6 \not\cong 2C_3$. |
+| **$P_4$ vs $K_{1,3}$** | ![P4 vs K13](img/quiz2_q8_p4_vs_k13.png) | Both have $|V|=4, |E|=3$. But $P_4$ has degree sequence $(2,2,1,1)$ with $\Delta=2$, while $K_{1,3}$ has degree sequence $(3,1,1,1)$ with $\Delta=3$. Hence $P_4 \not\cong K_{1,3}$. |
+
+---
+
+### ⚠️ Unfamiliar Trap 7: Graph Complements & Self-Complementary Graphs
+
+![Graph Complements](img/quiz2_q1_complements.png)
+
+#### 1. Complement Edge Count Formula:
+For any simple graph $G$ on $n$ vertices:
+$$|E(\overline{G})| = \binom{n}{2} - |E(G)| = \frac{n(n-1)}{2} - |E(G)|$$
+* Complement Degree Formula: $\deg_{\overline{G}}(v) = (n - 1) - \deg_G(v)$.
+
+#### 2. Self-Complementary Graph Condition ($G \cong \overline{G}$):
+* **Theorem**: If $G$ is self-complementary on $n$ vertices, then $n \equiv 0 \pmod 4$ or $n \equiv 1 \pmod 4$.
 * **Proof**:
-  1. If $G \cong \overline{G}$, then $|E(G)| = |E(\overline{G})|$.
-  2. The total edges in $K_n$ is $|E(G)| + |E(\overline{G})| = \frac{n(n-1)}{2}$.
-  3. Therefore:
-     $$2|E(G)| = \frac{n(n-1)}{2} \implies |E(G)| = \frac{n(n-1)}{4}$$
-  4. Since $|E(G)|$ must be an integer, $n(n - 1)$ must be divisible by 4.
-  5. Either $n$ or $n - 1$ must be a multiple of 4:
-     * If $4 \mid n \implies \mathbf{n \equiv 0 \pmod 4}$
-     * If $4 \mid (n - 1) \implies \mathbf{n \equiv 1 \pmod 4} \quad \blacksquare$
+  1. $G \cong \overline{G} \implies |E(G)| = |E(\overline{G})|$.
+  2. Total edges in $K_n$: $|E(G)| + |E(\overline{G})| = \frac{n(n-1)}{2}$.
+  3. Therefore: $2|E(G)| = \frac{n(n-1)}{2} \implies |E(G)| = \frac{n(n-1)}{4}$.
+  4. Since $|E(G)|$ is an integer, $4 \mid n(n - 1)$.
+  5. Since $\gcd(n, n-1) = 1$, 4 must divide either $n$ or $n-1$:
+     * If $4 \mid n \implies \mathbf{n \equiv 0 \pmod 4}$ (e.g. $n = 4, 8, 12$).
+     * If $4 \mid (n - 1) \implies \mathbf{n \equiv 1 \pmod 4}$ (e.g. $n = 5, 9, 13$).
+  6. For $n = 6$: $|E| = \frac{6 \times 5}{4} = 7.5 \notin \mathbb{Z} \implies$ **IMPOSSIBLE for $n=6$**. $\blacksquare$
 
 ---
 
-### 🔶 Problem 3: Havel-Hakimi Test Examples
-**Example A**: Is $(5, 4, 3, 2, 2, 2)$ graphical?
-1. $n = 6$. Sum $= 5 + 4 + 3 + 2 + 2 + 2 = 18$ (even $\checkmark$).
-2. Remove $5$, subtract 1 from next 5 terms:
-   $$(3, 2, 1, 1, 1)$$
-3. Remove $3$, subtract 1 from next 3 terms:
-   $$(1, 0, 0, 1) \xrightarrow{\text{Sort}} (1, 1, 0, 0)$$
-4. Remove $1$, subtract 1 from next 1 term:
-   $$(0, 0, 0)$$
-5. All zeros reached! **YES, GRAPHICAL $\checkmark$**.
+### ⚠️ Unfamiliar Trap 8: Havel-Hakimi Degree Reduction Engine
 
-**Example B**: Is $(6, 5, 5, 4, 3, 3, 2, 2)$ graphical?
-1. $n = 8$. Sum $= 30$ (even $\checkmark$).
+#### Algorithm:
+1. Sort sequence in descending order $S = (d_1, d_2, \dots, d_n)$.
+2. Remove $d_1$. Subtract 1 from the next $d_1$ elements.
+3. If any element becomes negative or remaining sequence length $< d_1$, sequence is **NOT GRAPHICAL**.
+4. Re-sort descending. Repeat until either all zeros (GRAPHICAL) or negative appears (NOT GRAPHICAL).
+
+#### Worked Example: Quiz 2 Degree Sequence $S = (6, 6, 5, 5, 4, 4, 3, 3)$
+1. $n = 8$, Sum $= 36$ (even $\checkmark$).
 2. Remove $6$, subtract 1 from next 6 terms:
-   $$(4, 4, 3, 2, 2, 1, 2) \xrightarrow{\text{Sort}} (4, 4, 3, 2, 2, 2, 1)$$
-3. Remove $4$, subtract 1 from next 4 terms:
-   $$(3, 2, 1, 1, 2, 1) \xrightarrow{\text{Sort}} (3, 2, 2, 1, 1, 1)$$
+   $$(5, 4, 4, 3, 3, 2, 3) \xrightarrow{\text{Sort}} (5, 4, 4, 3, 3, 3, 2)$$
+3. Remove $5$, subtract 1 from next 5 terms:
+   $$(3, 3, 2, 2, 2, 2) \xrightarrow{\text{Sort}} (3, 3, 2, 2, 2, 2)$$
 4. Remove $3$, subtract 1 from next 3 terms:
-   $$(1, 1, 0, 1, 1) \xrightarrow{\text{Sort}} (1, 1, 1, 1, 0)$$
-5. Remove $1$, subtract 1: $(0, 1, 1, 0) \to (1, 1, 0, 0) \to (0, 0, 0)$. **YES, GRAPHICAL $\checkmark$**.
+   $$(2, 1, 1, 2, 2) \xrightarrow{\text{Sort}} (2, 2, 2, 1, 1)$$
+5. Remove $2$, subtract 1: $(1, 1, 1, 1) \xrightarrow{\text{Remove } 1} (0, 1, 1) \xrightarrow{\text{Sort}} (1, 1, 0) \xrightarrow{\text{Remove } 1} (0, 0)$.
+6. All zeros reached! **YES, THIS DEGREE SEQUENCE IS GRAPHICAL $\checkmark$**.
 
 ---
 
-### 🔶 Problem 4: Non-Isomorphic Graphs Proofs
-* **Case 1: $C_6$ vs $2 C_3$ (Two disjoint triangles)**:
-  * Both have $|V| = 6, |E| = 6$, degree sequence $(2, 2, 2, 2, 2, 2)$.
-  * **Proof of Non-Isomorphism**: $C_6$ is **connected** (1 component), whereas $2C_3$ is **disconnected** (2 components). Connectedness is a graph invariant. Hence $C_6 \not\cong 2 C_3$.
-* **Case 2: $P_4$ (Path of 4 vertices) vs $K_{1,3}$ (Star graph)**:
-  * Both have $|V| = 4, |E| = 3$.
-  * In $P_4$, degree sequence is $(2, 2, 1, 1)$ (maximum degree = 2).
-  * In $K_{1,3}$, degree sequence is $(3, 1, 1, 1)$ (maximum degree = 3).
-  * Since degree sequences do not match, $P_4 \not\cong K_{1,3}$.
+### ⚠️ Unfamiliar Trap 9: Bipartite Graphs & Kőnig's Theorem
+
+![Bipartite vs Odd Cycle](img/module4_bipartite_vs_odd_cycle.png)
+
+#### Fundamental Theorem (Kőnig, 1936):
+> A graph $G$ is bipartite if and only if it contains **NO ODD CYCLES** (i.e. no cycles of length 3, 5, 7, ...).
+
+#### 2-Coloring BFS Algorithm:
+1. Assign Color 1 (Red) to arbitrary start node.
+2. Assign Color 2 (Blue) to all its unvisited neighbors.
+3. Continue BFS. If any edge connects two vertices of the **SAME COLOR**, graph has an odd cycle and is **NOT BIPARTITE**.
+4. If entire graph is colored with 2 colors without conflict, graph is **BIPARTITE**.
+
+#### Maximum Edges in Bipartite Graph (Turán's Theorem):
+* In a simple bipartite graph with $n$ vertices, $|E| \le \lfloor \frac{n^2}{4} \rfloor$.
+* For $n = 6$, max edges $= \lfloor 36/4 \rfloor = 9$ (achieved by $K_{3,3}$).
 
 ---
 
-# SECTION 5: TUTORIAL 4 — DIJKSTRA'S ALGORITHM MASTER EXECUTIONS
+# SECTION 6: TUTORIAL 4 — DIJKSTRA'S ALGORITHM MASTER EXECUTIONS
 
 ### 🔷 Tutorial 4 Problem 1: 6-Vertex Directed Graph ($S \to A, B, C, D, E$)
-Edges: $(S, A)=10, (S, C)=5, (A, B)=1, (A, C)=2, (C, A)=3, (C, B)=9, (C, D)=2, (B, D)=4, (B, E)=6, (D, E)=2, (D, S)=7, (E, A)=7$.
+
+![Tutorial 4 P1 Shortest Tree](img/tutorial4_p1_shortest_tree.png)
+
+**Edges**: $(S, A)=10, (S, C)=5, (A, B)=1, (A, C)=2, (C, A)=3, (C, B)=9, (C, D)=2, (B, D)=4, (B, E)=6, (D, E)=2, (D, S)=7, (E, A)=7$.
 
 | Step | Settled $u$ | $d(S)$ | $d(A)$ | $d(B)$ | $d(C)$ | $d(D)$ | $d(E)$ | Settled Set $S$ |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -502,25 +644,52 @@ Edges: $(S, A)=10, (S, C)=5, (A, B)=1, (A, C)=2, (C, A)=3, (C, B)=9, (C, D)=2, (
 | 6 | **$E$** ($9$) | [0] | [8] | [9] | [5] | [7] | **[9]** | $\{S, C, D, A, B, E\}$ |
 
 * **Final Shortest Distances**: $d(A)=8, d(B)=9, d(C)=5, d(D)=7, d(E)=9$.
-* **Paths**: $S \to C \to A$ (8); $S \to C \to A \to B$ (9); $S \to C \to D$ (7); $S \to C \to D \to E$ (9).
+* **Paths**: $S \to C \to A$ (cost 8); $S \to C \to A \to B$ (cost 9); $S \to C \to D$ (cost 7); $S \to C \to D \to E$ (cost 9).
 
 ---
 
 ### 🔷 Tutorial 4 Problem 2: 5-Vertex Digraph with Unreachable Node
-Source node: $1$. Vertex $5$ has no incoming edges.
+
+![Tutorial 4 P2 Shortest Tree](img/tutorial4_p2_shortest_tree.png)
+
+* Source node: $1$. Digraph has edges: $(1,2)=3, (1,4)=5, (2,3)=4, (4,3)=2$. Vertex $5$ has no incoming edges.
 * At termination: $d(1)=0, d(2)=3, d(3)=7, d(4)=5, \mathbf{d(5) = \infty}$.
-* **Exam Conclusion to write**: "Vertex 5 remains at distance $\infty$ because there is no directed path from source 1 to vertex 5."
+* **Exam Conclusion**: "Vertex 5 remains at label $\infty$ because no directed path exists from source 1 to vertex 5."
 
 ---
 
-# SECTION 6: TUTORIAL 2 — POSETS, RELATIONS & HASSE DIAGRAMS
+### 🔷 Dijkstra Edge Weight Sensitivity Analysis: 4-Case Decision Flowchart
+
+When the examiner asks: *"If the weight of edge $e = (u, v)$ is changed by $\Delta w$, does the shortest path change?"*
+
+```
+                         [ Edge e changed by Δw ]
+                                    |
+          +-------------------------+-------------------------+
+          |                                                   |
+    e is ON Path P*                                     e is NOT on Path P*
+          |                                                   |
+    +-----+-----+                                       +-----+-----+
+    |           |                                       |           |
+Δw > 0        Δw < 0                                  Δw > 0        Δw < 0
+(Cost rises)  (Cost falls)                            (Cost rises)  (Cost falls)
+    |           |                                       |           |
+Compare with  P* strictly                             Shortest      Check if:
+second best   remains shortest                        path totally  d(u) + w_new + dist(v, dest)
+path P2*      (Cost drops by |Δw|)                    UNAFFECTED    < d(P*)
+If Δw < Gap:  Route unchanged.                                      If YES: Route switches!
+Route stays!                                                        If NO: Route stays.
+```
+
+---
+
+# SECTION 7: TUTORIAL 2 — POSETS, RELATIONS & MASTER FORMULA VAULT
 
 ### 🔶 Problem 1: Lexicographical Order on $\mathbb{R}^2$ is a Poset
 **Question**: Prove that $(x_1, y_1) \le (x_2, y_2) \iff (x_1 < x_2) \text{ or } (x_1 = x_2 \text{ and } y_1 \le y_2)$ is a partial ordering relation.
 1. **Reflexive**: For any $(x, y)$, since $x = x$ and $y \le y$, $(x, y) \le (x, y)$ holds $\checkmark$.
 2. **Antisymmetric**: Let $(x_1, y_1) \le (x_2, y_2)$ and $(x_2, y_2) \le (x_1, y_1)$.
-   * If $x_1 < x_2$, we cannot have $(x_2, y_2) \le (x_1, y_1)$ because $x_2 > x_1$.
-   * Thus we must have $x_1 = x_2$.
+   * If $x_1 < x_2$, we cannot have $(x_2, y_2) \le (x_1, y_1)$ because $x_2 > x_1$. Thus $x_1 = x_2$.
    * Then $y_1 \le y_2$ and $y_2 \le y_1 \implies y_1 = y_2$.
    * Hence $(x_1, y_1) = (x_2, y_2) \checkmark$.
 3. **Transitive**: Let $(x_1, y_1) \le (x_2, y_2)$ and $(x_2, y_2) \le (x_3, y_3)$.
@@ -543,45 +712,30 @@ Let $A = \{1, 2, 3\}$. Given $R = \{(1, 1), (1, 2), (2, 3)\}$ and $S = \{(2, 1),
 
 ---
 
-# SECTION 7: UNIVERSAL FORMULAS & "IF NUMBERS CHANGE" SOLVERS
-
-### 🛠️ Solver A: When Poset Divisor Number $n$ Changes ($D_n$)
-* **General Rule**: Divisor lattice $D_n$ is a Boolean algebra $\iff n$ is **square-free** ($n = p_1 \cdot p_2 \cdots p_k$, no repeated prime factor).
-  * If $n = 30 = 2 \cdot 3 \cdot 5 \implies$ Square-free $\implies$ **Boolean Algebra ($B_3$, 8 elements)**.
-  * If $n = 70 = 2 \cdot 5 \cdot 7 \implies$ Square-free $\implies$ **Boolean Algebra ($B_3$, 8 elements)**.
-  * If $n = 42 = 2 \cdot 3 \cdot 7 \implies$ Square-free $\implies$ **Boolean Algebra ($B_3$, 8 elements)**.
-  * If $n = 12 = 2^2 \cdot 3 \implies$ Repeated factor $2^2 \implies$ **NOT Complemented (NOT Boolean Algebra)**.
-  * If $n = 18 = 2 \cdot 3^2 \implies$ Repeated factor $3^2 \implies$ **NOT Complemented**.
-  * If $n = 24 = 2^3 \cdot 3 \implies$ Repeated factor $2^3 \implies$ **NOT Complemented**.
-
----
-
-### 🛠️ Solver B: Universal Graph Isomorphism 5-Step Checklist
-When examiner gives two arbitrary graphs $G_1$ and $G_2$:
-1. **Step 1: Vertices**: Count $|V(G_1)|$ and $|V(G_2)|$. If not equal $\implies$ **NOT ISOMORPHIC**.
-2. **Step 2: Edges**: Count $|E(G_1)|$ and $|E(G_2)|$. If not equal $\implies$ **NOT ISOMORPHIC**.
-3. **Step 3: Degree Sequence**: List degrees in descending order. If sequences differ $\implies$ **NOT ISOMORPHIC**.
-4. **Step 4: Subgraphs & Cycles**: Count triangles ($C_3$) and squares ($C_4$). If $G_1$ has a triangle but $G_2$ does not $\implies$ **NOT ISOMORPHIC**.
-5. **Step 5: Write Bijection Table**: If all invariants match, map unique vertices to unique vertices, write the mapping table $f$, and verify $(u, v) \in E_1 \iff (f(u), f(v)) \in E_2$.
-
----
-
-### 🛠️ Solver C: Bipartite Graph Detection
-* **Criterion**: $G$ is bipartite $\iff$ it has **NO ODD CYCLES** ($C_3, C_5, C_7$).
-* Trees, even cycles ($C_4, C_6, C_8$), and grid meshes are ALWAYS bipartite.
-* Triangles ($K_3$) and complete graphs $K_n$ for $n \ge 3$ are NEVER bipartite.
-* **Maximum edges in simple bipartite graph on $n$ vertices**: $\lfloor n^2 / 4 \rfloor$.
-
----
-
-### 🛠️ Solver D: Boolean Algebra Master Theorems Cheat-Sheet
+### 🛠️ Universal Boolean Algebra Laws & K-Map Cheat Sheet
 * **Redundancy / Elimination**:
   $$x + x' y = x + y, \quad x(x' + y) = x y, \quad x' + x y = x' + y$$
 * **Consensus Theorem**:
-  $$x y + x' z + y z = x y + x' z$$
+  $$x y + x' z + y z = x y + x' z \quad \text{and} \quad (x + y)(x' + z)(y + z) = (x + y)(x' + z)$$
 * **De Morgan's Laws**:
   $$(x + y + z)' = x' y' z', \quad (x y z)' = x' + y' + z'$$
 * **Switching Circuits**:
-  * Switches in parallel $\implies +$ (OR)
-  * Switches in series $\implies \cdot$ (AND)
-  * Normally open $\implies x$; Normally closed $\implies x'$
+  * Parallel $\implies +$ | Series $\implies \cdot$
+  * Normally open $\implies x$ | Normally closed $\implies x'$
+
+---
+
+### 📋 Universal Dijkstra Blank Fill-In Template for Exam Hall
+
+| Step | Settled $u^*$ | $d(V_1)$ | $d(V_2)$ | $d(V_3)$ | $d(V_4)$ | $d(V_5)$ | $d(V_6)$ | Settled Set $S$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Init | — | $0$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\infty$ | $\emptyset$ |
+| 1 | | | | | | | | |
+| 2 | | | | | | | | |
+| 3 | | | | | | | | |
+| 4 | | | | | | | | |
+| 5 | | | | | | | | |
+| 6 | | | | | | | | |
+
+* **Final Path Reversal**: Start at Target $\to$ trace back via predecessor labels $\to$ Source.
+* **Full-Credit Concluding Sentence**: *"The algorithm terminates after $|V|$ iterations with optimal tree cost $\mathbf{W^*}$."*

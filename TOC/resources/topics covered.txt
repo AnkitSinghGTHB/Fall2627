@@ -1,0 +1,7 @@
+cat 2
+clr(1) parser
+slr parser (this is guaranteed), lalr parser no need to do
+check string is valid using lmd
+check ll(1) grammar validity
+ll(1) parser, remove left recursion
+calculate first and follow
