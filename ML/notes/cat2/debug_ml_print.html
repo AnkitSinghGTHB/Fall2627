@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSE4005 Machine Learning: CAT-II Calculations Master Booklet</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+  @page {
+    size: A4;
+    margin: 11mm 11mm 11mm 11mm;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 8.0pt;
+    line-height: 1.30;
+    color: #0f172a;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 11.5pt;
+    color: #1e3a8a;
+    border-bottom: 2px solid #1e3a8a;
+    padding-bottom: 2px;
+    margin-top: 8pt;
+    margin-bottom: 3pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  h2 {
+    font-size: 10.0pt;
+    color: #0369a1;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 1.5px;
+    margin-top: 6pt;
+    margin-bottom: 2pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 8.8pt;
+    color: #0f766e;
+    margin-top: 5pt;
+    margin-bottom: 1.5pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  h4 {
+    font-size: 8.2pt;
+    color: #334155;
+    margin-top: 4pt;
+    margin-bottom: 1pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  p {
+    margin-top: 1.5pt;
+    margin-bottom: 2.5pt;
+  }
+
+  ul, ol {
+    margin-top: 1pt;
+    margin-bottom: 2.5pt;
+    padding-left: 14pt;
+  }
+
+  li {
+    margin-bottom: 1pt;
+  }
+
+  strong {
+    color: #090d16;
+  }
+
+  code {
+    font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+    font-size: 7.2pt;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 0.5pt 2.5pt;
+    border-radius: 2px;
+    border: 1px solid #e2e8f0;
+  }
+
+  pre {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    padding: 4pt 6pt;
+    margin: 2.5pt 0;
+    overflow-x: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-size: 7.0pt;
+    line-height: 1.25;
+    color: #0f172a;
+  }
+
+  blockquote {
+    margin: 3pt 0;
+    padding: 3pt 7pt;
+    background: #f0fdf4;
+    border-left: 3.5px solid #16a34a;
+    border-radius: 0 3px 3px 0;
+    color: #166534;
+    font-size: 7.6pt;
+  }
+
+  blockquote p {
+    margin: 0.5pt 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3pt 0;
+    font-size: 7.2pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 2.5pt 4pt;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  .math-display {
+    margin: 3pt 0;
+    text-align: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .math-inline {
+    font-size: 8.0pt;
+  }
+
+  .diagram-box {
+    margin: 4pt 0;
+    padding: 4pt 6pt;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    text-align: center;
+  }
+
+  .diagram-grid {
+    display: flex;
+    gap: 6pt;
+    justify-content: space-between;
+    margin: 3pt 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .diagram-card {
+    flex: 1;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+    padding: 4pt;
+    text-align: center;
+    font-size: 6.8pt;
+  }
+
+  .diagram-card svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 2pt;
+  }
+
+  .diagram-caption {
+    font-size: 6.8pt;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-top: 2pt;
+  }
+
+  .exam-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
+    color: #ffffff;
+    padding: 6pt 9pt;
+    border-radius: 4px;
+    margin-bottom: 5pt;
+  }
+
+  .exam-banner h1 {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0;
+    padding-bottom: 2pt;
+    font-size: 11pt;
+  }
+
+  .exam-banner p {
+    margin: 1.5pt 0;
+    font-size: 7.6pt;
+    color: #e2e8f0;
+  }
+</style>
+</head>
+<body>
+
+    <div class="exam-banner">
+        <h1>CSE4005: MACHINE LEARNING — CAT-II CALCULATIONS MASTER BOOKLET</h1>
+        <p><strong>Course:</strong> CSE4005 — Machine Learning | <strong>Exam Mode:</strong> Open Book / Open Notes (50 Marks, 90 Mins)</p>
+        <p><strong>Faculty Pattern:</strong> Dr. Nilamadhab Mishra | <strong>Scope:</strong> Unit 3 (3 Questions - 30M) & Unit 4 (2 Questions - 20M) — 100% Calculations</p>
+    </div>
+    
+
+<h1>🎯 CSE4005: MACHINE LEARNING — CAT-II FOOLPROOF MASTER BOOKLET</h1>
+<blockquote>
+<p><strong>Course</strong>: CSE4005 — Machine Learning | <strong>Exam</strong>: CAT-2 (Open Book / Open Notes Mode)<br>
+<strong>Faculty Pattern</strong>: Dr. Nilamadhab Mishra | <strong>Target Score</strong>: 45+ / 50 (S-Grade Guarantee)<br>
+<strong>Scope</strong>: Unit 3 (3 Questions - 30 Marks) &amp; Unit 4 (2 Questions - 20 Marks)<br>
+<strong>Structure</strong>: 100% Verified Calculations + Exact Slide Prompts + Visual SVG Diagrams + Full 10-Mark Theory Modules</p>
+</blockquote>
+<hr>
+<h1>⚡ SECTION 0: MASTER 1-PAGE QUICK-TRIGGER FORMULA &amp; TABLE INDEX</h1>
+<p><em>(Open this in the first 2 minutes of the exam. Match the algorithm, draw the table, and punch the formulas!)</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Problem Topic &amp; Question</th>
+<th style="text-align:left">What the Question Gives You</th>
+<th style="text-align:left">Core Calculator Formula (Type This In)</th>
+<th style="text-align:left">Table Columns to Draw on Answer Sheet</th>
+<th style="text-align:left">Common Exam Traps &amp; Fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Q1: AdaBoost Weight Update</strong> <em>(Unit 3 - 10M)</em></td>
+<td style="text-align:left"><span class="math-inline">$N$</span> samples, labels <span class="math-inline">$y_i \in \{-1, +1\}$</span>, classifier <span class="math-inline">$h_t(x)$</span></td>
+<td style="text-align:left"><span class="math-inline">$\epsilon_t = \frac{\text{Number of Errors}}{N}$</span><br><span class="math-inline">$\alpha_t = 0.5 \times \ln\left(\frac{1-\epsilon_t}{\epsilon_t}\right)$</span><br><span class="math-inline">$\tilde{w}_{\text{correct}} = w_i \times e^{-\alpha_t}$</span><br><span class="math-inline">$\tilde{w}_{\text{wrong}} = w_i \times e^{+\alpha_t}$</span><br><span class="math-inline">$w_i^{\text{new}} = \tilde{w}_i / \sum \tilde{w}_i$</span></td>
+<td style="text-align:left"><code>Sample i</code> | <code>True y_i</code> | <code>Pred h(x_i)</code> | <code>Status (✓/✗)</code> | <code>Old w_i</code> | <code>Factor</code> | <code>Unnormalized w</code> | <code>Final w_new</code></td>
+<td style="text-align:left"><strong>Trap</strong>: Forgetting to divide by <span class="math-inline">$Z_t$</span>.<br><strong>Fix</strong>: The sum of your final <span class="math-inline">$w_i^{\text{new}}$</span> column MUST equal <span class="math-inline">$1.000$</span>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Q2: AGNES Hierarchical Clustering</strong> <em>(Unit 3 - 10M)</em></td>
+<td style="text-align:left">Points list (1D numbers or 2D coordinates)</td>
+<td style="text-align:left"><strong>1D Dist</strong>: <span class="math-inline">$\|x_1 - x_2\|$</span><br><strong>2D Dist</strong>: <span class="math-inline">$\sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}$</span><br><strong>Single Link</strong>: <span class="math-inline">$\min(d_1, d_2)$</span><br><strong>Complete Link</strong>: <span class="math-inline">$\max(d_1, d_2)$</span><br><strong>Average Link</strong>: <span class="math-inline">$\frac{d_1 + d_2}{2}$</span></td>
+<td style="text-align:left">Symmetric Distance Matrix <span class="math-inline">$D_0 \to D_1 \to D_2 \to D_3$</span> with active cluster names as row/col headers.</td>
+<td style="text-align:left"><strong>Trap</strong>: Confusing Single vs Complete.<br><strong>Fix</strong>: Both always pick the <strong>smallest</strong> cell in the matrix to merge! But to update distances to other clusters: Single takes <span class="math-inline">$\min$</span>, Complete takes <span class="math-inline">$\max$</span>!</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Q3: K-Means Clustering</strong> <em>(Unit 3 - 10M)</em></td>
+<td style="text-align:left">Data points <span class="math-inline">$\{x_1 \dots x_n\}$</span>, initial seeds <span class="math-inline">$C_1, C_2$</span></td>
+<td style="text-align:left"><strong>Dist</strong>: <span class="math-inline">$\|x_i - C_k\|$</span> (or Euclidean)<br><strong>New Centroid</strong>: Average of points in that cluster: <span class="math-inline">$\frac{\sum x}{|K|}$</span><br><strong>Total SSE</strong>: <span class="math-inline">$\sum (x_i - C_{\text{assigned}})^2$</span></td>
+<td style="text-align:left"><code>Point x_i</code> | <code>Dist to C1</code> | <code>Dist to C2</code> | <code>[Dist to C3]</code> | <code>Assigned Cluster</code> | <code>Dist^2 for SSE</code></td>
+<td style="text-align:left"><strong>Trap</strong>: Stopping after Iteration 1.<br><strong>Fix</strong>: You MUST run Iteration 2 to prove assignments don't change (Convergence proof!).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Q4: Naïve Bayes Classifier</strong> <em>(Unit 4.1 - 10M)</em></td>
+<td style="text-align:left">Training table with columns, test query <span class="math-inline">$X = (x_1, \dots, x_d)$</span></td>
+<td style="text-align:left"><span class="math-inline">$P(\text{Class}) = \frac{\text{Count in Class}}{N}$</span><br><span class="math-inline">$P(x_i \mid \text{Class}) = \frac{\text{Count of } x_i \text{ in Class}}{\text{Total in Class}}$</span><br><span class="math-inline">$\text{Score} = P(\text{Class}) \times \prod P(x_i \mid \text{Class})$</span></td>
+<td style="text-align:left"><code>Feature Name</code> | <code>Value in X</code> | <code>Count in Yes</code> | <code>P(val | Yes)</code> | <code>Count in No</code> | <code>P(val | No)</code></td>
+<td style="text-align:left"><strong>Trap</strong>: A count is 0 <span class="math-inline">$\implies$</span> entire score becomes 0!<br><strong>Fix</strong>: Laplace Smoothing: add <span class="math-inline">$+1$</span> to numerator, add <span class="math-inline">$+K$</span> (distinct values) to denominator.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Q5: Apriori Association Rules</strong> <em>(Unit 4.2 - 10M)</em></td>
+<td style="text-align:left">Transactions list, <span class="math-inline">$\text{min\_sup}$</span>, <span class="math-inline">$\text{min\_conf}$</span></td>
+<td style="text-align:left"><span class="math-inline">$\text{Support}(X) = \frac{\text{Count}(X)}{N}$</span><br><span class="math-inline">$\text{Confidence}(A \Rightarrow B) = \frac{\text{Count}(A \cup B)}{\text{Count}(A)}$</span><br><span class="math-inline">$\text{Lift}(A \Rightarrow B) = \frac{\text{Conf}(A \Rightarrow B)}{\text{Support}(B)}$</span></td>
+<td style="text-align:left">Level tables: <span class="math-inline">$C_1 \to L_1$</span>, <span class="math-inline">$C_2 \to L_2$</span>, <span class="math-inline">$C_3 \to L_3$</span> with <strong>Pruning Justification Column</strong>.</td>
+<td style="text-align:left"><strong>Trap</strong>: Forgetting to prune <span class="math-inline">$C_3$</span>.<br><strong>Fix</strong>: If candidate is <span class="math-inline">$\{A, B, C\}$</span>, check if <span class="math-inline">$\{A,B\}, \{A,C\}, \{B,C\}$</span> are in <span class="math-inline">$L_2$</span>. If any is missing, cross it out!</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1>📌 SECTION 1: QUESTION 1 — ENSEMBLE LEARNING (UNIT 3)</h1>
+<h2>1.1 PART A: CALCULATION ENGINE &amp; UNIVERSAL RECIPES</h2>
+<h3>Universal Plug-and-Play Recipe: How to Solve for ANY Given Numbers</h3>
+<pre><code class="language-text">[STEP 1: Find N and Initial Weights]
+  Count total samples in question's table -&gt; N. Initial weight for every sample: w_i = 1 / N.
+[STEP 2: Count Misclassifications]
+  Count rows where True y_i != Pred h(x_i) -&gt; K errors.
+  Error Rate epsilon = K / N. (Verify epsilon &lt; 0.50).
+[STEP 3: Calculator Button Sequence for Alpha]
+  Type: 0.5 * ln ( ( 1 - epsilon ) / epsilon ) -&gt; alpha (to 4 decimal places).
+[STEP 4: Exponential Multipliers]
+  Correct Factor: e^(-alpha)  (Calculator: SHIFT -&gt; ln -&gt; (-alpha))
+  Wrong Factor:   e^(+alpha)  (Calculator: SHIFT -&gt; ln -&gt; (+alpha))
+[STEP 5: Compute Unnormalized Weights (w_tilde)]
+  For each sample: w_tilde = Old_w * Factor. Sum all -&gt; Z = sum(w_tilde).
+[STEP 6: Compute Final Normalized Weights (w_new)]
+  w_new = w_tilde / Z. (Sanity check: Sum of w_new MUST equal 1.000!).
+</code></pre>
+<h3>Solved Numerical: AdaBoost Weight Update (8 Samples, 2 Errors)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT EXAM QUESTION WORDING / PATTERN (Unit 3: AdaBoost)</strong>:<br>
+<em>&quot;Given a dataset of 8 training samples with binary labels <span class="math-inline">$y_i \in \{-1, +1\}$</span> and initial equal weights <span class="math-inline">$w_i^{(1)} = \frac{1}{8} = 0.125$</span>. If base classifier <span class="math-inline">$h_1(x)$</span> misclassifies samples 3 and 7:<br>
+(a) Calculate the weighted error rate <span class="math-inline">$\epsilon_1$</span>.<br>
+(b) Calculate the classifier importance weight <span class="math-inline">$\alpha_1$</span>.<br>
+(c) Compute the updated normalized sample weights <span class="math-inline">$w_i^{(2)}$</span> for all 8 samples.<br>
+(d) Given three sequential classifiers <span class="math-inline">$h_1, h_2, h_3$</span> with weights <span class="math-inline">$\alpha_1 = 0.55, \alpha_2 = 0.72, \alpha_3 = 0.41$</span>, determine the final combined ensemble prediction for an unknown test point.&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Solution:</h4>
+<ol>
+<li><strong>Error Rate</strong>: <span class="math-inline">$\epsilon_1 = w_3^{(1)} + w_7^{(1)} = 0.125 + 0.125 = \mathbf{0.250}$</span>.</li>
+<li><strong>Classifier Weight</strong>: <span class="math-inline">$\alpha_1 = \frac{1}{2} \ln \left(\frac{1 - 0.25}{0.25}\right) = \frac{1}{2} \ln(3) = \mathbf{0.5493}$</span>.</li>
+<li><strong>Multipliers</strong>: <span class="math-inline">$e^{-\alpha_1} = e^{-0.5493} = \mathbf{0.5774}$</span> (Correct), <span class="math-inline">$e^{+\alpha_1} = e^{+0.5493} = \mathbf{1.7321}$</span> (Wrong).</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Sample <span class="math-inline">$i$</span></th>
+<th style="text-align:center">True <span class="math-inline">$y_i$</span></th>
+<th style="text-align:center">Pred <span class="math-inline">$h_1(x_i)$</span></th>
+<th style="text-align:center">Status</th>
+<th style="text-align:center">Old <span class="math-inline">$w_i^{(1)}$</span></th>
+<th style="text-align:center">Multiplier Factor</th>
+<th style="text-align:center">Unnormalized <span class="math-inline">$\tilde{w}_i$</span></th>
+<th style="text-align:center">Final Normalized <span class="math-inline">$w_i^{(2)} = \frac{\tilde{w}_i}{Z_1}$</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center"><strong>ERROR</strong></td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">1.7321</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 1.7321 = \mathbf{0.21651}$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.21651 / 0.8660 = \mathbf{0.2500}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">+1</td>
+<td style="text-align:center"><strong>ERROR</strong></td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">1.7321</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 1.7321 = \mathbf{0.21651}$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.21651 / 0.8660 = \mathbf{0.2500}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">Correct</td>
+<td style="text-align:center">0.125</td>
+<td style="text-align:center">0.5774</td>
+<td style="text-align:center"><span class="math-inline">$0.125 \times 0.5774 = 0.07217$</span></td>
+<td style="text-align:center"><span class="math-inline">$0.07217 / 0.8660 = \mathbf{0.0833}$</span></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>SUM</strong></td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center"><strong>1.000</strong></td>
+<td style="text-align:center">—</td>
+<td style="text-align:center"><strong><span class="math-inline">$Z_1 = 6(0.07217) + 2(0.21651) = \mathbf{0.8660}$</span></strong></td>
+<td style="text-align:center"><strong><span class="math-inline">$\sum w_i^{(2)} = 6(0.0833) + 2(0.2500) = \mathbf{1.000}$</span></strong></td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li><strong>Final Ensemble Decision</strong>:<br>
+<div class="math-display">$$H(x) = \text{sign}\left(\sum_{t=1}^3 \alpha_t h_t(x)\right) = \text{sign}(0.55(+1) + 0.72(-1) + 0.41(+1)) = \text{sign}(0.55 - 0.72 + 0.41) = \text{sign}(+0.24) = \mathbf{+1}$$</div></li>
+</ol>
+<hr>
+<h3>Solved Numerical: Error-Correcting Output Codes (ECOC)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING / PATTERN (Slide 3.1, Page 17-19)</strong>:<br>
+<em>&quot;In a multi-class problem with 4 classes <span class="math-inline">$\{C_1, C_2, C_3, C_4\}$</span>, 7 binary classifiers <span class="math-inline">$\{f_1, \dots, f_7\}$</span> are trained. The codeword matrix is:<br>
+<span class="math-inline">$C_1 = [1, 1, 1, 1, 1, 1, 1]$</span><br>
+<span class="math-inline">$C_2 = [0, 0, 0, 0, 1, 1, 1]$</span><br>
+<span class="math-inline">$C_3 = [0, 0, 1, 1, 0, 0, 1]$</span><br>
+<span class="math-inline">$C_4 = [0, 1, 0, 1, 0, 1, 0]$</span><br>
+If an unknown test instance produces the output vector <span class="math-inline">$\hat{Y} = [0, 1, 1, 1, 0, 0, 1]$</span>, determine which class the instance belongs to.&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Solution:</h4>
+<p>Compute Hamming distance <span class="math-inline">$d_H(\hat{Y}, C_k) = \sum_{j=1}^7 |\hat{Y}_j - C_{k,j}|$</span>:</p>
+<ul>
+<li><span class="math-inline">$d_H(\hat{Y}, C_1) = |0-1| + |1-1| + |1-1| + |1-1| + |0-1| + |0-1| + |1-1| = 1 + 0 + 0 + 0 + 1 + 1 + 0 = \mathbf{3}$</span></li>
+<li><span class="math-inline">$d_H(\hat{Y}, C_2) = |0-0| + |1-0| + |1-0| + |1-0| + |0-1| + |0-1| + |1-1| = 0 + 1 + 1 + 1 + 1 + 1 + 0 = \mathbf{5}$</span></li>
+<li><span class="math-inline">$d_H(\hat{Y}, C_3) = |0-0| + |1-0| + |1-1| + |1-1| + |0-0| + |0-0| + |1-1| = 0 + 1 + 0 + 0 + 0 + 0 + 0 = \mathbf{1}$</span>  <em>(MINIMUM!)</em></li>
+<li><span class="math-inline">$d_H(\hat{Y}, C_4) = |0-0| + |1-1| + |1-0| + |1-1| + |0-0| + |0-1| + |1-0| = 0 + 0 + 1 + 0 + 0 + 1 + 1 = \mathbf{3}$</span></li>
+<li><strong>Decision</strong>: Minimum Hamming distance is <span class="math-inline">$1 \implies$</span> Classified as <strong>Class <span class="math-inline">$C_3$</span></strong>.</li>
+</ul>
+<hr>
+<h2>1.2 PART B: 10-MARK THEORY MASTER MODULE — ENSEMBLE LEARNING</h2>
+<h3>1. Conceptual Foundation &amp; The Condorcet Jury Theorem</h3>
+<ul>
+<li><strong>Definition</strong>: Ensemble learning combines predictions from multiple base models (weak learners) to construct a single composite model that outperforms any constituent member.</li>
+<li><strong>Why Ensembles Work</strong>: According to the <strong>Condorcet Jury Theorem</strong>, if each independent base classifier has an individual error rate <span class="math-inline">$\epsilon &lt; 0.50$</span>, the probability that the majority vote is incorrect approaches <strong>zero</strong> as the number of classifiers <span class="math-inline">$M \to \infty$</span>:
+<div class="math-display">$$P(\text{Majority Error}) = \sum_{k=\lceil M/2 \rceil}^M \binom{M}{k} \epsilon^k (1-\epsilon)^{M-k} \xrightarrow{M \to \infty} 0$$</div></li>
+<li><strong>Bias-Variance Perspective</strong>:
+<ul>
+<li>Total Generalization Error <span class="math-inline">$= \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise}$</span>.</li>
+<li><strong>Bagging</strong> reduces <strong>Variance</strong> (kills overfitting).</li>
+<li><strong>Boosting</strong> reduces <strong>Bias</strong> (kills underfitting).</li>
+</ul>
+</li>
+</ul>
+<h3>2. Ensemble Architectural Taxonomy (Must Draw in Exam!)</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <svg width="130" height="90" viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="5" width="50" height="15" rx="2" fill="#e2e8f0" stroke="#475569"/>
+<text x="65" y="15" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">Dataset D</text>
+<line x1="65" y1="20" x2="25" y2="35" stroke="#64748b" stroke-width="1.2"/>
+<line x1="65" y1="20" x2="65" y2="35" stroke="#64748b" stroke-width="1.2"/>
+<line x1="65" y1="20" x2="105" y2="35" stroke="#64748b" stroke-width="1.2"/>
+<rect x="10" y="35" width="30" height="15" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="25" y="45" font-size="6" fill="#1e40af" text-anchor="middle">Tree 1</text>
+<rect x="50" y="35" width="30" height="15" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="65" y="45" font-size="6" fill="#1e40af" text-anchor="middle">Tree 2</text>
+<rect x="90" y="35" width="30" height="15" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="105" y="45" font-size="6" fill="#1e40af" text-anchor="middle">Tree B</text>
+<line x1="25" y1="50" x2="65" y2="65" stroke="#64748b" stroke-width="1.2"/>
+<line x1="65" y1="50" x2="65" y2="65" stroke="#64748b" stroke-width="1.2"/>
+<line x1="105" y1="50" x2="65" y2="65" stroke="#64748b" stroke-width="1.2"/>
+<rect x="35" y="65" width="60" height="18" rx="2" fill="#dcfce7" stroke="#16a34a"/>
+<text x="65" y="77" font-size="6" font-weight="bold" fill="#15803d" text-anchor="middle">Majority Vote</text>
+</svg>
+    <div class="diagram-caption">1. Bagging (Parallel)</div>
+    <div style="font-size: 5.8pt; color: #475569;">Reduces Variance (Overfitting)</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="130" height="90" viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="35" width="32" height="18" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="21" y="46" font-size="6" font-weight="bold" fill="#1e40af" text-anchor="middle">Model 1</text>
+<line x1="37" y1="44" x2="49" y2="44" stroke="#dc2626" stroke-width="1.2"/>
+<polygon points="48,41 53,44 48,47" fill="#dc2626"/>
+<rect x="53" y="35" width="32" height="18" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="69" y="46" font-size="6" font-weight="bold" fill="#1e40af" text-anchor="middle">Model 2</text>
+<line x1="85" y1="44" x2="97" y2="44" stroke="#dc2626" stroke-width="1.2"/>
+<polygon points="96,41 101,44 96,47" fill="#dc2626"/>
+<rect x="101" y="35" width="26" height="18" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="114" y="46" font-size="6" font-weight="bold" fill="#1e40af" text-anchor="middle">...</text>
+<text x="65" y="25" font-size="5.8pt" fill="#dc2626" font-weight="bold" text-anchor="middle">w_i * exp(±α)</text>
+<rect x="30" y="65" width="70" height="18" rx="2" fill="#fef3c7" stroke="#d97706"/>
+<text x="65" y="77" font-size="6" font-weight="bold" fill="#92400e" text-anchor="middle">Weighted Σ α_t h_t(x)</text>
+</svg>
+    <div class="diagram-caption">2. Boosting (Sequential)</div>
+    <div style="font-size: 5.8pt; color: #475569;">Reduces Bias (Underfitting)</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="130" height="90" viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="30" height="14" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="25" y="20" font-size="5.5" fill="#1e40af" text-anchor="middle">SVM</text>
+<rect x="50" y="10" width="30" height="14" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="65" y="20" font-size="5.5" fill="#1e40af" text-anchor="middle">KNN</text>
+<rect x="90" y="10" width="30" height="14" rx="2" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="105" y="20" font-size="5.5" fill="#1e40af" text-anchor="middle">Tree</text>
+<text x="65" y="36" font-size="5.8" fill="#475569" text-anchor="middle">Level-0 Base Predictions</text>
+<line x1="25" y1="24" x2="65" y2="48" stroke="#64748b" stroke-width="1.2"/>
+<line x1="65" y1="24" x2="65" y2="48" stroke="#64748b" stroke-width="1.2"/>
+<line x1="105" y1="24" x2="65" y2="48" stroke="#64748b" stroke-width="1.2"/>
+<rect x="25" y="48" width="80" height="18" rx="2" fill="#f3e8ff" stroke="#9333ea"/>
+<text x="65" y="60" font-size="6" font-weight="bold" fill="#6b21a8" text-anchor="middle">Level-1 Meta-Learner</text>
+<text x="65" y="80" font-size="5.8" fill="#15803d" font-weight="bold" text-anchor="middle">Final Prediction</text>
+</svg>
+    <div class="diagram-caption">3. Stacking (Hierarchical)</div>
+    <div style="font-size: 5.8pt; color: #475569;">Heterogeneous Blending</div>
+  </div>
+</div>
+<h3>3. Random Forest Architecture &amp; Deep-Dive</h3>
+<ul>
+<li><strong>Algorithm Pipeline</strong>:
+<ol>
+<li>For <span class="math-inline">$b = 1$</span> to <span class="math-inline">$B$</span> trees:
+a. Draw a bootstrap sample <span class="math-inline">$D_b$</span> of size <span class="math-inline">$N$</span> with replacement from dataset <span class="math-inline">$D$</span> (contains <span class="math-inline">$\approx 63.2\%$</span> unique samples).
+b. Grow a deep decision tree <span class="math-inline">$T_b$</span>. At each split node, randomly select a subset of <span class="math-inline">$m$</span> features (<span class="math-inline">$m \approx \sqrt{p}$</span> for classification, <span class="math-inline">$m \approx p/3$</span> for regression) and pick the best split among only those <span class="math-inline">$m$</span> features.</li>
+<li>Aggregate: For classification, take the majority vote across all <span class="math-inline">$B$</span> unpruned trees.</li>
+</ol>
+</li>
+<li><strong>Out-of-Bag (OOB) Error</strong>: The remaining <span class="math-inline">$\approx 36.8\%$</span> unsampled data points serve as an internal validation set, eliminating the need for separate cross-validation.</li>
+<li><strong>Feature Importance</strong>: Evaluated by measuring the Mean Decrease in Impurity (Gini Importance) or Mean Decrease in Accuracy when feature values are permuted across OOB samples.</li>
+</ul>
+<h3>4. AdaBoost (Adaptive Boosting) Mathematical Derivation</h3>
+<ul>
+<li><strong>Objective</strong>: Minimize the Exponential Loss function:
+<div class="math-display">$$L(y, f(x)) = \sum_{i=1}^N \exp(-y_i f(x_i)), \quad \text{where } f(x) = \sum_{t=1}^T \alpha_t h_t(x)$$</div></li>
+<li><strong>Derivation of <span class="math-inline">$\alpha_t$</span></strong>:
+At iteration <span class="math-inline">$t$</span>, the loss is:
+<div class="math-display">$$J(\alpha_t) = \sum_{y_i = h_t(x_i)} w_i^{(t)} e^{-\alpha_t} + \sum_{y_i \neq h_t(x_i)} w_i^{(t)} e^{+\alpha_t} = (1 - \epsilon_t) e^{-\alpha_t} + \epsilon_t e^{+\alpha_t}$$</div>
+Setting derivative to zero <span class="math-inline">$\frac{\partial J}{\partial \alpha_t} = -(1-\epsilon_t)e^{-\alpha_t} + \epsilon_t e^{+\alpha_t} = 0$</span>:
+<div class="math-display">$$e^{2\alpha_t} = \frac{1 - \epsilon_t}{\epsilon_t} \implies \mathbf{\alpha_t = \frac{1}{2} \ln \left(\frac{1 - \epsilon_t}{\epsilon_t}\right)}$$</div></li>
+</ul>
+<h3>5. Dr. Mishra's Slide 24 V.V.I CAT-II Question: Student Performance Prediction Architecture</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 3.1, Page 24 - V.V.I CAT-II EXAM PATTERN)</strong>:<br>
+<em>&quot;Time to Explore – A [7] (V.V.I) CAT-II EXAM PATTERN:<br>
+Problem Case: Student Performance Prediction<br>
+A college wants to predict whether a student will Pass or Fail based on: Attendance, assignment marks, internal examination marks, and study hours.<br>
+Three machine learning models are available: Decision Tree; k-NN; Naïve Bayes.<br>
+Develop a Bagging architecture and model.&quot;</em></p>
+</blockquote>
+<pre><code class="language-text">               +-----------------------------------------------------------+
+               |     Original Training Dataset (Attendance, Marks, Hours)  |
+               +-----------------------------------------------------------+
+                       |                        |                       |
+               Bootstrap Sample 1       Bootstrap Sample 2      Bootstrap Sample 3
+                       |                        |                       |
+                       v                        v                       v
+               +---------------+        +---------------+       +---------------+
+               | Decision Tree |        |     k-NN      |       |  Naïve Bayes  |
+               |  (Model 1)    |        |  (Model 2)    |       |  (Model 3)    |
+               +---------------+        +---------------+       +---------------+
+                       |                        |                       |
+                 Vote: Pass               Vote: Pass              Vote: Fail
+                       \                        |                      /
+                        +-----------------------+---------------------+
+                                                |
+                                                v
+                               +---------------------------------+
+                               |    Majority Voting Aggregator   |
+                               |    Decision: PASS (2 vs 1)      |
+                               +---------------------------------+
+</code></pre>
+<ul>
+<li><strong>Design Justification</strong>:
+<ol>
+<li><strong>Diversity</strong>: Combines heterogeneous learning biases (Decision Tree: axis-aligned splits; k-NN: local instance geometry; Naïve Bayes: global probabilistic likelihoods).</li>
+<li><strong>Variance Reduction</strong>: Individual noisy sensor/attendance records are smoothed out by majority voting.</li>
+<li><strong>Robustness</strong>: If one model fails due to non-linear feature interaction, the other two compensate.</li>
+</ol>
+</li>
+</ul>
+<h3>6. Comprehensive Ensemble Comparison Table (Must Draw for 10 Marks)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Dimension</th>
+<th style="text-align:left">Bagging (Random Forest)</th>
+<th style="text-align:left">Boosting (AdaBoost)</th>
+<th style="text-align:left">Stacking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Model Structure</strong></td>
+<td style="text-align:left">Homogeneous, Parallel &amp; Independent</td>
+<td style="text-align:left">Homogeneous, Sequential &amp; Adaptive</td>
+<td style="text-align:left">Heterogeneous, Two-Tier Hierarchy</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Error Reduction</strong></td>
+<td style="text-align:left">Reduces <strong>Variance</strong> (Overfitting)</td>
+<td style="text-align:left">Reduces <strong>Bias</strong> (Underfitting)</td>
+<td style="text-align:left">Reduces both Bias and Variance</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Base Learners</strong></td>
+<td style="text-align:left">High-variance, deep unpruned trees</td>
+<td style="text-align:left">High-bias weak learners (stumps)</td>
+<td style="text-align:left">Diverse algorithms (SVM, KNN, Trees)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Data Sampling</strong></td>
+<td style="text-align:left">Bootstrap sampling with replacement</td>
+<td style="text-align:left">Reweighting samples iteratively</td>
+<td style="text-align:left"><span class="math-inline">$K$</span>-fold cross-validation split</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Aggregation</strong></td>
+<td style="text-align:left">Equal-weight Majority Voting</td>
+<td style="text-align:left">Weighted Voting (<span class="math-inline">$\alpha_t$</span>)</td>
+<td style="text-align:left">Meta-Learner (Logistic Regression/Ridge)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Outlier Handling</strong></td>
+<td style="text-align:left">Highly robust</td>
+<td style="text-align:left">Highly sensitive (weights blow up)</td>
+<td style="text-align:left">Moderately robust</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1>📌 SECTION 2: QUESTION 2 — HIERARCHICAL CLUSTERING: AGNES (UNIT 3)</h1>
+<h2>2.1 PART A: CALCULATION ENGINE &amp; UNIVERSAL RECIPES</h2>
+<h3>Universal Plug-and-Play Recipe for ANY Given Points</h3>
+<pre><code class="language-text">[STEP 1: Construct Initial Distance Matrix D_0]
+  N points -&gt; N x N symmetric matrix. Diagonal = 0.
+  Distance: d(x,y) = |x - y| (1D) or sqrt((x1-x2)^2 + (y1-y2)^2) (2D).
+[STEP 2: Find Minimum Off-Diagonal Element]
+  Identify min cell d(A, B) -&gt; Merge clusters A and B into (A, B) at height h = min_dist.
+[STEP 3: Update Distance Matrix to Form D_1]
+  Delete rows/columns A and B. Add new row/column (A, B).
+  To compute distance from (A, B) to any other cluster C:
+    * Single Linkage:   d((A,B), C) = min( d(A, C), d(B, C) )
+    * Complete Linkage: d((A,B), C) = max( d(A, C), d(B, C) )
+    * Average Linkage:  d((A,B), C) = (|A|*d(A,C) + |B|*d(B,C)) / (|A| + |B|)
+[STEP 4: Repeat Until 1 Monolithic Cluster Remains]
+  Matrix reduces by 1 dimension each step: N x N -&gt; (N-1)x(N-1) -&gt; ... -&gt; 2x2 -&gt; 1x1.
+</code></pre>
+<h3>Solved 1D Numerical: Slide 3.5 Example (Hierarchical Clustering)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 3.5, Page 6)</strong>:<br>
+<em>&quot;Consider one dimensional data set <span class="math-inline">$\{7, 10, 20, 28, 35\}$</span>, perform hierarchical clustering and plot the dendrogram to visualize it.&quot;</em><br>
+<strong>What the Question Asks You To Do</strong>:</p>
+<ol>
+<li>Show the step-by-step distance matrices and cluster merges using <strong>Single Linkage</strong> and <strong>Complete Linkage</strong>.</li>
+<li>State the final clusters for <span class="math-inline">$k=2$</span>.</li>
+<li>Draw the dendrogram with exact merge heights on the vertical axis.</li>
+</ol>
+</blockquote>
+<h4>Initial Distance Matrix <span class="math-inline">$D_0$</span>:</h4>
+<p><div class="math-display">$$D_0 = \begin{pmatrix} &amp; 7 &amp; 10 &amp; 20 &amp; 28 &amp; 35 \\ 7 &amp; 0 &amp; 3 &amp; 13 &amp; 21 &amp; 28 \\ 10 &amp; 3 &amp; 0 &amp; 10 &amp; 18 &amp; 25 \\ 20 &amp; 13 &amp; 10 &amp; 0 &amp; 8 &amp; 15 \\ 28 &amp; 21 &amp; 18 &amp; 8 &amp; 0 &amp; 7 \\ 35 &amp; 28 &amp; 25 &amp; 15 &amp; 7 &amp; 0 \end{pmatrix}$$</div></p>
+<ul>
+<li>Smallest distance is <span class="math-inline">$d(7, 10) = \mathbf{3}$</span>. Merge <span class="math-inline">$\{7, 10\}$</span> at height <span class="math-inline">$h = 3$</span>.</li>
+</ul>
+<h4>Single Linkage Execution:</h4>
+<ol>
+<li>Merge <span class="math-inline">$(7, 10)$</span> at <span class="math-inline">$h=3$</span>.</li>
+<li>Next smallest is <span class="math-inline">$d(28, 35) = \mathbf{7}$</span>. Merge <span class="math-inline">$(28, 35)$</span> at <span class="math-inline">$h=7$</span>.</li>
+<li>Distance from 20 to clusters: <span class="math-inline">$d(20, \{7,10\}) = \min(13, 10) = 10$</span>; <span class="math-inline">$d(20, \{28,35\}) = \min(8, 15) = \mathbf{8}$</span>.<br>
+Merge 20 into <span class="math-inline">$\{28, 35\} \implies \{20, 28, 35\}$</span> at <span class="math-inline">$h=8$</span>.</li>
+<li>Merge <span class="math-inline">$\{7, 10\}$</span> and <span class="math-inline">$\{20, 28, 35\}$</span> at <span class="math-inline">$h = \min(10, 18, 25, 13, 21, 28) = \mathbf{10}$</span>.</li>
+</ol>
+<ul>
+<li><strong>Single Linkage Clusters (<span class="math-inline">$k=2$</span>)</strong>: <strong><span class="math-inline">$\{7, 10\}$</span> and <span class="math-inline">$\{20, 28, 35\}$</span></strong>.</li>
+</ul>
+<h4>Single Linkage Dendrogram:</h4>
+<pre><code class="language-text">Height (h)
+  10 |       +-----------------------+
+     |       |                       |
+   8 |       |               +-------+
+     |       |               |       |
+   7 |       |               |   +---+
+     |       |               |   |   |
+   3 |   +---+               |   |   |
+     |   |   |               |   |   |
+   0 +---+---+---------------+---+---+
+         7   10              20  28  35
+</code></pre>
+<h4>Complete Linkage Execution:</h4>
+<ol>
+<li>Merge <span class="math-inline">$(7, 10)$</span> at <span class="math-inline">$h=3$</span>.</li>
+<li>Merge <span class="math-inline">$(28, 35)$</span> at <span class="math-inline">$h=7$</span>.</li>
+<li>Complete distance: <span class="math-inline">$d(20, \{7,10\}) = \max(13, 10) = \mathbf{13}$</span>; <span class="math-inline">$d(20, \{28,35\}) = \max(8, 15) = \mathbf{15}$</span>.<br>
+Since <span class="math-inline">$13 &lt; 15$</span>, merge 20 into <span class="math-inline">$\{7, 10\} \implies \{7, 10, 20\}$</span> at <span class="math-inline">$h = 13$</span>.</li>
+<li>Final merge of <span class="math-inline">$\{7, 10, 20\}$</span> and <span class="math-inline">$\{28, 35\}$</span> at <span class="math-inline">$h = \max(21, 28, 18, 25, 8, 15) = \mathbf{28}$</span>.</li>
+</ol>
+<ul>
+<li><strong>Complete Linkage Clusters (<span class="math-inline">$k=2$</span>)</strong>: <strong><span class="math-inline">$\{7, 10, 20\}$</span> and <span class="math-inline">$\{28, 35\}$</span></strong>.</li>
+</ul>
+<h4>Complete Linkage Dendrogram:</h4>
+<pre><code class="language-text">Height (h)
+  28 |   +---------------------------+
+     |   |                           |
+  13 |   +---------------+           |
+     |   |               |           |
+   7 |   |               |       +---+
+     |   |               |       |   |
+   3 | +-+-+             |       |   |
+     | |   |             |       |   |
+   0 +-+---+-------------+-------+---+
+       7   10            20      28  35
+</code></pre>
+<hr>
+<h3>Solved 2D Coordinates Problem: Points <span class="math-inline">$A(1,1), B(2,1), C(4,3), D(5,4)$</span></h3>
+<blockquote>
+<p>🎯 <strong>EXACT EXAM QUESTION WORDING / PATTERN (2D Hierarchical AGNES)</strong>:<br>
+<em>&quot;Consider four 2D data points <span class="math-inline">$A(1,1), B(2,1), C(4,3), D(5,4)$</span>. Perform Agglomerative Hierarchical Clustering (AGNES) using Single Linkage and Euclidean distance. Show the distance matrix at each merging step and identify the final clusters for <span class="math-inline">$k=2$</span>.&quot;</em></p>
+</blockquote>
+<ol>
+<li><strong>Initial Distance Matrix <span class="math-inline">$D_0$</span></strong>:
+<ul>
+<li><span class="math-inline">$d(A,B) = \sqrt{(2-1)^2 + (1-1)^2} = \mathbf{1.000}$</span> <em>(MINIMUM!)</em></li>
+<li><span class="math-inline">$d(C,D) = \sqrt{(5-4)^2 + (4-3)^2} = \sqrt{2} = \mathbf{1.414}$</span></li>
+<li><span class="math-inline">$d(A,C) = \sqrt{9+4} = \sqrt{13} = 3.606$</span>; <span class="math-inline">$d(B,C) = \sqrt{4+4} = \sqrt{8} = 2.828$</span></li>
+<li><span class="math-inline">$d(A,D) = \sqrt{16+9} = 5.000$</span>; <span class="math-inline">$d(B,D) = \sqrt{9+9} = \sqrt{18} = 4.243$</span></li>
+</ul>
+</li>
+<li><strong>Step 1</strong>: Merge <span class="math-inline">$(A, B)$</span> at height <span class="math-inline">$h = 1.000$</span>.
+<ul>
+<li>Single Link: <span class="math-inline">$d((A,B), C) = \min(3.606, 2.828) = 2.828$</span>; <span class="math-inline">$d((A,B), D) = \min(5.000, 4.243) = 4.243$</span>.</li>
+</ul>
+</li>
+<li><strong>Step 2</strong>: Smallest distance in <span class="math-inline">$D_1$</span> is <span class="math-inline">$d(C,D) = 1.414$</span>. Merge <span class="math-inline">$(C, D)$</span> at height <span class="math-inline">$h = 1.414$</span>.</li>
+<li><strong>Step 3</strong>: Merge <span class="math-inline">$\{A, B\}$</span> and <span class="math-inline">$\{C, D\}$</span> at height <span class="math-inline">$h = \min(2.828, 4.243) = \mathbf{2.828}$</span>.</li>
+</ol>
+<ul>
+<li><strong>Clusters for <span class="math-inline">$k=2$</span></strong>: <strong><span class="math-inline">$\{A, B\}$</span> and <span class="math-inline">$\{C, D\}$</span></strong>.</li>
+</ul>
+<hr>
+<h2>2.2 PART B: 10-MARK THEORY MASTER MODULE — HIERARCHICAL CLUSTERING</h2>
+<h3>1. Fundamental Paradigm: Agglomerative vs Divisive</h3>
+<div class="diagram-box">
+  <svg width="450" height="90" viewBox="0 0 450 90" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Monolithic -->
+<rect x="175" y="5" width="100" height="20" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+<text x="225" y="18" font-size="7.5" font-weight="bold" fill="#92400e" text-anchor="middle">{ a, b, c, d, e }</text>
+<!-- Intermediate -->
+<rect x="100" y="35" width="60" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="130" y="47" font-size="7" fill="#0369a1" text-anchor="middle">{ a, b }</text>
+<rect x="290" y="35" width="70" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7"/>
+<text x="325" y="47" font-size="7" fill="#0369a1" text-anchor="middle">{ c, d, e }</text>
+<!-- Bottom Singletons -->
+<rect x="60" y="65" width="30" height="18" rx="3" fill="#f1f5f9" stroke="#64748b"/>
+<text x="75" y="77" font-size="7" fill="#334155" text-anchor="middle">{ a }</text>
+<rect x="100" y="65" width="30" height="18" rx="3" fill="#f1f5f9" stroke="#64748b"/>
+<text x="115" y="77" font-size="7" fill="#334155" text-anchor="middle">{ b }</text>
+<rect x="250" y="65" width="30" height="18" rx="3" fill="#f1f5f9" stroke="#64748b"/>
+<text x="265" y="77" font-size="7" fill="#334155" text-anchor="middle">{ c }</text>
+<rect x="290" y="65" width="30" height="18" rx="3" fill="#f1f5f9" stroke="#64748b"/>
+<text x="305" y="77" font-size="7" fill="#334155" text-anchor="middle">{ d }</text>
+<rect x="330" y="65" width="30" height="18" rx="3" fill="#f1f5f9" stroke="#64748b"/>
+<text x="345" y="77" font-size="7" fill="#334155" text-anchor="middle">{ e }</text>
+<!-- Tree Lines -->
+<line x1="225" y1="25" x2="130" y2="35" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="225" y1="25" x2="325" y2="35" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="130" y1="53" x2="75" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="130" y1="53" x2="115" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="325" y1="53" x2="265" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="325" y1="53" x2="305" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+<line x1="325" y1="53" x2="345" y2="65" stroke="#94a3b8" stroke-width="1.2"/>
+<!-- Side Flow Arrows -->
+<line x1="35" y1="75" x2="35" y2="15" stroke="#16a34a" stroke-width="2.5"/>
+<polygon points="30,20 35,10 40,20" fill="#16a34a"/>
+<text x="35" y="85" font-size="6.5" font-weight="bold" fill="#16a34a" text-anchor="middle">AGNES: Merge ↑</text>
+<line x1="410" y1="15" x2="410" y2="75" stroke="#ea580c" stroke-width="2.5"/>
+<polygon points="405,70 410,80 415,70" fill="#ea580c"/>
+<text x="410" y="87" font-size="6.5" font-weight="bold" fill="#ea580c" text-anchor="middle">DIANA: Split ↓</text>
+</svg>
+  <div class="diagram-caption">AGNES (Bottom-Up Agglomerative) vs DIANA (Top-Down Divisive) (Slide 3.5, p. 3)</div>
+</div>
+<ul>
+<li><strong>Agglomerative (AGNES - Bottom-Up)</strong>: Starts with <span class="math-inline">$N$</span> individual singleton clusters; at each step merges the two most proximate clusters. Complexity: <span class="math-inline">$O(N^3)$</span> (naive) or <span class="math-inline">$O(N^2 \log N)$</span> (with priority queue).</li>
+<li><strong>Divisive (DIANA - Top-Down)</strong>: Starts with 1 monolithic cluster containing all <span class="math-inline">$N$</span> objects; recursively bisects until <span class="math-inline">$N$</span> singletons remain.</li>
+</ul>
+<hr>
+<h3>2. Comprehensive Linkage Criteria Analysis (Must Draw These 4 Diagrams!)</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <svg width="115" height="75" viewBox="0 0 115 75" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="28" cy="38" rx="20" ry="28" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
+<ellipse cx="87" cy="38" rx="20" ry="28" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
+<circle cx="18" cy="28" r="2" fill="#0369a1"/>
+<circle cx="22" cy="48" r="2" fill="#0369a1"/>
+<circle cx="38" cy="38" r="3" fill="#dc2626"/>
+<circle cx="77" cy="38" r="3" fill="#dc2626"/>
+<circle cx="93" cy="28" r="2" fill="#0369a1"/>
+<circle cx="97" cy="48" r="2" fill="#0369a1"/>
+<line x1="38" y1="38" x2="77" y2="38" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3,2"/>
+<text x="58" y="32" font-size="6.5" font-weight="bold" fill="#dc2626" text-anchor="middle">min d(x,y)</text>
+</svg>
+    <div class="diagram-caption">1. Single Linkage</div>
+    <div style="font-size: 5.8pt; color: #475569;">Nearest Neighbor (Chaining)</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="115" height="75" viewBox="0 0 115 75" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="28" cy="38" rx="20" ry="28" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+<ellipse cx="87" cy="38" rx="20" ry="28" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+<circle cx="14" cy="38" r="3" fill="#dc2626"/>
+<circle cx="32" cy="28" r="2" fill="#b45309"/>
+<circle cx="35" cy="48" r="2" fill="#b45309"/>
+<circle cx="80" cy="28" r="2" fill="#b45309"/>
+<circle cx="83" cy="48" r="2" fill="#b45309"/>
+<circle cx="101" cy="38" r="3" fill="#dc2626"/>
+<line x1="14" y1="38" x2="101" y2="38" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3,2"/>
+<text x="58" y="32" font-size="6.5" font-weight="bold" fill="#dc2626" text-anchor="middle">max d(x,y)</text>
+</svg>
+    <div class="diagram-caption">2. Complete Linkage</div>
+    <div style="font-size: 5.8pt; color: #475569;">Furthest Neighbor (Outliers)</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="115" height="75" viewBox="0 0 115 75" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="28" cy="38" rx="20" ry="28" fill="#f1f5f9" stroke="#64748b" stroke-width="1.2"/>
+<ellipse cx="87" cy="38" rx="20" ry="28" fill="#f1f5f9" stroke="#64748b" stroke-width="1.2"/>
+<circle cx="24" cy="30" r="2" fill="#334155"/>
+<circle cx="32" cy="46" r="2" fill="#334155"/>
+<circle cx="82" cy="30" r="2" fill="#334155"/>
+<circle cx="92" cy="46" r="2" fill="#334155"/>
+<line x1="24" y1="30" x2="82" y2="30" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="24" y1="30" x2="92" y2="46" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="32" y1="46" x2="82" y2="30" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="32" y1="46" x2="92" y2="46" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="58" y="24" font-size="6.5" font-weight="bold" fill="#334155" text-anchor="middle">mean d(x,y)</text>
+</svg>
+    <div class="diagram-caption">3. Average Linkage</div>
+    <div style="font-size: 5.8pt; color: #475569;">All Pairs Mean (Balanced)</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="115" height="75" viewBox="0 0 115 75" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="28" cy="38" rx="20" ry="28" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+<ellipse cx="87" cy="38" rx="20" ry="28" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+<circle cx="20" cy="30" r="1.8" fill="#15803d"/>
+<circle cx="32" cy="46" r="1.8" fill="#15803d"/>
+<circle cx="82" cy="30" r="1.8" fill="#15803d"/>
+<circle cx="94" cy="46" r="1.8" fill="#15803d"/>
+<line x1="24" y1="38" x2="32" y2="38" stroke="#b91c1c" stroke-width="2"/>
+<line x1="28" y1="34" x2="28" y2="42" stroke="#b91c1c" stroke-width="2"/>
+<line x1="83" y1="38" x2="91" y2="38" stroke="#b91c1c" stroke-width="2"/>
+<line x1="87" y1="34" x2="87" y2="42" stroke="#b91c1c" stroke-width="2"/>
+<line x1="28" y1="38" x2="87" y2="38" stroke="#b91c1c" stroke-width="1.8"/>
+<text x="58" y="32" font-size="6.5" font-weight="bold" fill="#b91c1c" text-anchor="middle">||μ1 - μ2||²</text>
+</svg>
+    <div class="diagram-caption">4. Centroid Linkage</div>
+    <div style="font-size: 5.8pt; color: #475569;">Mean Distance (Inversion)</div>
+  </div>
+</div>
+<ol>
+<li><strong>Single Linkage</strong>: <span class="math-inline">$d(C_i, C_j) = \min_{x \in C_i, y \in C_j} d(x, y)$</span>. Handles elongated non-elliptical shapes; prone to <strong>Chaining Effect</strong>.</li>
+<li><strong>Complete Linkage</strong>: <span class="math-inline">$d(C_i, C_j) = \max_{x \in C_i, y \in C_j} d(x, y)$</span>. Enforces compact spherical clusters; sensitive to outliers.</li>
+<li><strong>Average Linkage (UPGMA)</strong>: <span class="math-inline">$d(C_i, C_j) = \frac{1}{|C_i||C_j|} \sum \sum d(x, y)$</span>. Robust trade-off.</li>
+<li><strong>Centroid Linkage (UPGMC)</strong>: <span class="math-inline">$d(C_i, C_j) = \|\mu_i - \mu_j\|^2$</span>. Fast, but prone to <strong>Inversion (Non-monotonicity)</strong> where merge height decreases.</li>
+<li><strong>Ward's Method</strong>: Merges clusters minimizing increase in total variance: <span class="math-inline">$\Delta \text{ESS} = \frac{|C_i||C_j|}{|C_i| + |C_j|} \|\mu_i - \mu_j\|^2$</span>.</li>
+</ol>
+<hr>
+<h3>3. Dendrogram Structure &amp; Cut-Line Heuristic (Must Draw in Exam!)</h3>
+<div class="diagram-box">
+  <svg width="450" height="150" viewBox="0 0 450 150" xmlns="http://www.w3.org/2000/svg">
+<!-- Y Axis -->
+<line x1="45" y1="15" x2="45" y2="125" stroke="#334155" stroke-width="1.5"/>
+<text x="35" y="20" font-size="7" text-anchor="end" fill="#334155">12 -</text>
+<text x="35" y="42" font-size="7" text-anchor="end" fill="#334155">10 -</text>
+<text x="35" y="63" font-size="7" text-anchor="end" fill="#334155">8 -</text>
+<text x="35" y="73" font-size="7" text-anchor="end" fill="#334155">7 -</text>
+<text x="35" y="105" font-size="7" text-anchor="end" fill="#334155">3 -</text>
+<text x="35" y="125" font-size="7" text-anchor="end" fill="#334155">0 -</text>
+<text x="15" y="70" font-size="8" font-weight="bold" fill="#1e3a8a" transform="rotate(-90 15 70)" text-anchor="middle">Dissimilarity Height (h)</text>
+<!-- X Axis Baseline -->
+<line x1="45" y1="125" x2="420" y2="125" stroke="#334155" stroke-width="1.5"/>
+<text x="90" y="137" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">x1 (7)</text>
+<text x="140" y="137" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">x2 (10)</text>
+<text x="240" y="137" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">x3 (20)</text>
+<text x="310" y="137" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">x4 (28)</text>
+<text x="370" y="137" font-size="8" font-weight="bold" fill="#0f172a" text-anchor="middle">x5 (35)</text>
+<!-- Tree Branches: Single Linkage -->
+<!-- (x1, x2) at h=3 -->
+<line x1="90" y1="125" x2="90" y2="105" stroke="#0284c7" stroke-width="2"/>
+<line x1="140" y1="125" x2="140" y2="105" stroke="#0284c7" stroke-width="2"/>
+<line x1="90" y1="105" x2="140" y2="105" stroke="#0284c7" stroke-width="2"/>
+<text x="115" y="100" font-size="7" fill="#0284c7" text-anchor="middle" font-weight="bold">h = 3</text>
+<!-- (x4, x5) at h=7 -->
+<line x1="310" y1="125" x2="310" y2="73" stroke="#0284c7" stroke-width="2"/>
+<line x1="370" y1="125" x2="370" y2="73" stroke="#0284c7" stroke-width="2"/>
+<line x1="310" y1="73" x2="370" y2="73" stroke="#0284c7" stroke-width="2"/>
+<text x="340" y="68" font-size="7" fill="#0284c7" text-anchor="middle" font-weight="bold">h = 7</text>
+<!-- x3 into (x4, x5) at h=8 -->
+<line x1="240" y1="125" x2="240" y2="63" stroke="#0284c7" stroke-width="2"/>
+<line x1="340" y1="73" x2="340" y2="63" stroke="#0284c7" stroke-width="2"/>
+<line x1="240" y1="63" x2="340" y2="63" stroke="#0284c7" stroke-width="2"/>
+<text x="290" y="58" font-size="7" fill="#0284c7" text-anchor="middle" font-weight="bold">h = 8</text>
+<!-- Final merge at h=10 -->
+<line x1="115" y1="105" x2="115" y2="42" stroke="#0284c7" stroke-width="2"/>
+<line x1="290" y1="63" x2="290" y2="42" stroke="#0284c7" stroke-width="2"/>
+<line x1="115" y1="42" x2="290" y2="42" stroke="#0284c7" stroke-width="2"/>
+<text x="202" y="37" font-size="7" fill="#0284c7" text-anchor="middle" font-weight="bold">h = 10</text>
+<!-- Red Dashed Horizontal Cut Line at h=9 -->
+<line x1="45" y1="52" x2="350" y2="52" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="5,3"/>
+<text x="355" y="55" font-size="7.2" fill="#dc2626" font-weight="bold" text-anchor="start">Cut Line H = 9 (k = 2)</text>
+<circle cx="115" cy="52" r="3.5" fill="#dc2626"/>
+<circle cx="290" cy="52" r="3.5" fill="#dc2626"/>
+<!-- Cluster Labels -->
+<rect x="75" y="1" width="80" height="15" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="115" y="11" font-size="7" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Cluster 1: {x1, x2}</text>
+<rect x="235" y="1" width="115" height="15" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+<text x="292" y="11" font-size="7" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Cluster 2: {x3, x4, x5}</text>
+</svg>
+  <div class="diagram-caption">Dendrogram Structure & Cluster Cut-Line Heuristic (Slide 3.5 Example)</div>
+</div>
+<ul>
+<li><strong>Determining <span class="math-inline">$k$</span></strong>: Drawing a horizontal cut-line across the dendrogram at height <span class="math-inline">$H$</span>. The number of vertical tree branches intersected by the cut-line equals the number of natural clusters <span class="math-inline">$k$</span>.</li>
+<li><strong>Cophenetic Correlation Coefficient (CPCC)</strong>: Measures how faithfully a dendrogram preserves the original pairwise distances:
+<div class="math-display">$$\text{CPCC} = \frac{\sum_{i&lt;j} (D_{ij} - \bar{D})(C_{ij} - \bar{C})}{\sqrt{\sum_{i&lt;j}(D_{ij} - \bar{D})^2 \sum_{i&lt;j}(C_{ij} - \bar{C})^2}}$$</div>
+where <span class="math-inline">$D_{ij}$</span> is the original Euclidean distance and <span class="math-inline">$C_{ij}$</span> is the dendrogram merge height. <span class="math-inline">$\text{CPCC} &gt; 0.80$</span> indicates a high-fidelity clustering.</li>
+</ul>
+<hr>
+<h1>📌 SECTION 3: QUESTION 3 — PARTITIONAL CLUSTERING: K-MEANS &amp; VARIANTS (UNIT 3)</h1>
+<h2>3.1 PART A: CALCULATION ENGINE &amp; UNIVERSAL RECIPES</h2>
+<h3>Universal Plug-and-Play Recipe for ANY Given Points &amp; Seeds</h3>
+<pre><code class="language-text">[STEP 1: Centroids &amp; Distance Table]
+  Write initial seeds C_1, C_2 (and C_3 if k=3).
+  For each point: compute Dist = |x - C| (1D) or sqrt((x-Cx)^2 + (y-Cy)^2) (2D).
+  Assign point to whichever centroid has the minimum distance.
+[STEP 2: Centroid Update]
+  New Centroid C_k = (sum of all coordinates in cluster K) / (number of points in cluster K).
+[STEP 3: Iteration 2 (Convergence Proof)]
+  Recalculate distances to New Centroids. If assignments don't change -&gt; STOP! CONVERGED!
+[STEP 4: SSE Calculation]
+  Sum (Dist to assigned centroid)^2 across all points -&gt; Total SSE.
+</code></pre>
+<h3>Solved 1D Numerical: Slide 3.6 Problem (K-Means Clustering)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 3.6, Page 7-9)</strong>:<br>
+<em>&quot;Using K-means clustering, cluster the following data into two clusters and show each step:<br>
+<span class="math-inline">$\{2, 4, 10, 12, 3, 20, 30, 11, 25\}$</span>.<br>
+(Method-02: Use initial means <span class="math-inline">$m_1 = 3, m_2 = 4$</span>).&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Iterations:</h4>
+<ul>
+<li>Initial Seeds: <span class="math-inline">$m_1 = 3, m_2 = 4$</span>.</li>
+<li><strong>Iteration 1</strong>: Midpoint <span class="math-inline">$= \frac{3+4}{2} = 3.5$</span>.<br>
+<span class="math-inline">$K_1 = \{2, 3\}$</span> (<span class="math-inline">$m_1^{(1)} = \mathbf{2.5}$</span>), <span class="math-inline">$K_2 = \{4, 10, 11, 12, 20, 25, 30\}$</span> (<span class="math-inline">$m_2^{(1)} = \mathbf{16.0}$</span>).</li>
+<li><strong>Iteration 2</strong>: Midpoint <span class="math-inline">$= \frac{2.5+16.0}{2} = 9.25$</span>.<br>
+<span class="math-inline">$K_1 = \{2, 3, 4\}$</span> (<span class="math-inline">$m_1^{(2)} = \mathbf{3.0}$</span>), <span class="math-inline">$K_2 = \{10, 11, 12, 20, 25, 30\}$</span> (<span class="math-inline">$m_2^{(2)} = \mathbf{18.0}$</span>).</li>
+<li><strong>Iteration 3</strong>: Midpoint <span class="math-inline">$= \frac{3.0+18.0}{2} = 10.5$</span>.<br>
+<span class="math-inline">$K_1 = \{2, 3, 4, 10\}$</span> (<span class="math-inline">$m_1^{(3)} = \mathbf{4.75}$</span>), <span class="math-inline">$K_2 = \{11, 12, 20, 25, 30\}$</span> (<span class="math-inline">$m_2^{(3)} = \mathbf{19.6}$</span>).</li>
+<li><strong>Iteration 4</strong>: Midpoint <span class="math-inline">$= \frac{4.75+19.6}{2} = 12.18$</span>.<br>
+<span class="math-inline">$K_1 = \{2, 3, 4, 10, 11, 12\}$</span> (<span class="math-inline">$m_1^{(4)} = \mathbf{7.0}$</span>), <span class="math-inline">$K_2 = \{20, 25, 30\}$</span> (<span class="math-inline">$m_2^{(4)} = \mathbf{25.0}$</span>).</li>
+<li><strong>Iteration 5</strong>: Midpoint <span class="math-inline">$= \frac{7.0+25.0}{2} = 16.0$</span>.<br>
+<span class="math-inline">$K_1 = \{2, 3, 4, 10, 11, 12\}$</span> (<span class="math-inline">$m_1=7.0$</span>), <span class="math-inline">$K_2 = \{20, 25, 30\}$</span> (<span class="math-inline">$m_2=25.0$</span>) <span class="math-inline">$\implies$</span> <strong>CONVERGED!</strong></li>
+<li><strong>Final Centroids</strong>: <span class="math-inline">$C_1 = 7.0, C_2 = 25.0$</span>.</li>
+<li><strong>Total SSE</strong>: <span class="math-inline">$\text{SSE}_1 + \text{SSE}_2 = 100 + 50 = \mathbf{150}$</span>.</li>
+</ul>
+<hr>
+<h3>Solved Numerical: K-Medoids (PAM) 2D Swap Cost</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 3.6, Page 16-20)</strong>:<br>
+<em>&quot;Cluster Computation using K-Medoids through a dataset scenario:<br>
+Initial medoids selected: <span class="math-inline">$k = 2$</span>, with <span class="math-inline">$C_1 = (4, 5)$</span> and <span class="math-inline">$C_2 = (8, 5)$</span>, yielding total absolute dissimilarity cost <span class="math-inline">$= 20$</span>.<br>
+Randomly select one non-medoid point <span class="math-inline">$(8, 4)$</span> to replace <span class="math-inline">$C_2$</span>. Compute the new cost, calculate the swap cost <span class="math-inline">$\Delta S = \text{Cost}_{\text{new}} - \text{Cost}_{\text{previous}}$</span>, and determine whether to accept or reject the swap.&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Solution:</h4>
+<ul>
+<li><strong>Initial State</strong>: Medoids <span class="math-inline">$C_1(4,5)$</span> and <span class="math-inline">$C_2(8,5) \implies \text{Cost}_{\text{old}} = \mathbf{20}$</span>.</li>
+<li><strong>Candidate Swap</strong>: Replace <span class="math-inline">$C_2(8,5)$</span> with <span class="math-inline">$(8,4)$</span>.</li>
+<li><strong>New Cost</strong>: Reassigning points with Manhattan distances to <span class="math-inline">$C_1(4,5)$</span> and <span class="math-inline">$(8,4)$</span> yields:
+<div class="math-display">$$\text{Cost}_{\text{new}} = (3 + 4 + 4) + (2 + 2 + 1 + 3 + 3) = 11 + 11 = \mathbf{22}$$</div></li>
+<li><strong>Swap Cost (<span class="math-inline">$\Delta S$</span>)</strong>:
+<div class="math-display">$$\Delta S = \text{Cost}_{\text{new}} - \text{Cost}_{\text{old}} = 22 - 20 = \mathbf{+2 &gt; 0}$$</div></li>
+<li><strong>Decision</strong>: Since <span class="math-inline">$\Delta S &gt; 0$</span> (cost increased), <strong>REJECT the swap</strong> and retain original medoids <span class="math-inline">$(4,5)$</span> and <span class="math-inline">$(8,5)$</span>.</li>
+</ul>
+<hr>
+<h2>3.2 PART B: 10-MARK THEORY MASTER MODULE — PARTITIONAL CLUSTERING</h2>
+<h3>1. Mathematical Formulation &amp; Alternating Optimization</h3>
+<ul>
+<li><strong>Objective Function</strong>: Minimize Within-Cluster Sum of Squares (WCSS / SSE):
+<div class="math-display">$$J = \sum_{k=1}^K \sum_{x_i \in S_k} \|x_i - \mu_k\|^2 = \sum_{i=1}^N \sum_{k=1}^K r_{ik} \|x_i - \mu_k\|^2$$</div>
+where <span class="math-inline">$r_{ik} \in \{0, 1\}$</span> is a binary indicator (<span class="math-inline">$r_{ik}=1$</span> if <span class="math-inline">$x_i \in S_k$</span>).</li>
+<li><strong>Two-Step Alternating Minimization Proof</strong>:
+<ol>
+<li><strong>Assignment Step (Optimize <span class="math-inline">$r_{ik}$</span> holding <span class="math-inline">$\mu_k$</span> fixed)</strong>:
+<div class="math-display">$$r_{ik} = \begin{cases} 1 &amp; \text{if } k = \arg\min_j \|x_i - \mu_j\|^2 \\ 0 &amp; \text{otherwise} \end{cases}$$</div></li>
+<li><strong>Update Step (Optimize <span class="math-inline">$\mu_k$</span> holding <span class="math-inline">$r_{ik}$</span> fixed)</strong>:
+Setting <span class="math-inline">$\frac{\partial J}{\partial \mu_k} = 0$</span>:
+<div class="math-display">$$-2 \sum_{i=1}^N r_{ik}(x_i - \mu_k) = 0 \implies \mathbf{\mu_k = \frac{\sum_{i=1}^N r_{ik} x_i}{\sum_{i=1}^N r_{ik}} = \frac{1}{|S_k|} \sum_{x \in S_k} x}$$</div></li>
+</ol>
+</li>
+<li><strong>Convergence</strong>: Since <span class="math-inline">$J$</span> decreases monotonically at each step and there are a finite number of partitions (<span class="math-inline">$K^N$</span>), K-Means is guaranteed to terminate in finite iterations (local optimum).</li>
+</ul>
+<h3>2. K-Means vs K-Medoids Outlier Robustness (Must Draw in Exam!)</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <svg width="180" height="90" viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+<circle cx="35" cy="40" r="3" fill="#0284c7"/>
+<circle cx="45" cy="30" r="3" fill="#0284c7"/>
+<circle cx="40" cy="50" r="3" fill="#0284c7"/>
+<circle cx="50" cy="45" r="3" fill="#0284c7"/>
+<circle cx="30" cy="45" r="3" fill="#0284c7"/>
+<circle cx="40" cy="42" r="3.5" fill="#16a34a"/>
+<text x="40" y="58" font-size="6" fill="#16a34a" text-anchor="middle">True Center</text>
+<circle cx="155" cy="20" r="4" fill="#dc2626"/>
+<text x="155" y="14" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">Outlier!</text>
+<circle cx="68" cy="37" r="4" fill="#dc2626"/>
+<line x1="40" y1="42" x2="68" y2="37" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+<line x1="68" y1="37" x2="155" y2="20" stroke="#dc2626" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="75" y="29" font-size="6.5" font-weight="bold" fill="#dc2626">Mean μ pulled!</text>
+</svg>
+    <div class="diagram-caption">K-Means: Distorted by Outlier</div>
+    <div style="font-size: 5.8pt; color: #475569;">Artificial center shifts towards extreme values</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="180" height="90" viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+<circle cx="35" cy="40" r="3" fill="#0284c7"/>
+<circle cx="45" cy="30" r="3" fill="#0284c7"/>
+<circle cx="40" cy="50" r="3" fill="#0284c7"/>
+<circle cx="50" cy="45" r="3" fill="#0284c7"/>
+<circle cx="30" cy="45" r="3" fill="#0284c7"/>
+<polygon points="40,36 43,44 35,39 45,39 37,44" fill="#f59e0b" stroke="#b45309" stroke-width="0.8"/>
+<text x="40" y="58" font-size="6" font-weight="bold" fill="#b45309" text-anchor="middle">Medoid M (Actual Point)</text>
+<circle cx="155" cy="20" r="4" fill="#dc2626"/>
+<text x="155" y="14" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">Outlier!</text>
+<line x1="40" y1="42" x2="155" y2="20" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+<text x="95" y="27" font-size="6.5" font-weight="bold" fill="#15803d">Medoid does NOT shift!</text>
+</svg>
+    <div class="diagram-caption">K-Medoids (PAM): Outlier Robust</div>
+    <div style="font-size: 5.8pt; color: #475569;">Medoid is locked to an actual data object</div>
+  </div>
+</div>
+<h3>3. Modern Mitigations: K-Means++, K-Medoids (PAM), and K-Modes</h3>
+<ul>
+<li><strong>K-Means++</strong>: Eliminates seed sensitivity by choosing initial centroids with probability proportional to squared distance: <span class="math-inline">$P(x) = \frac{D(x)^2}{\sum D(x)^2}$</span>.</li>
+<li><strong>K-Medoids (PAM)</strong>: Optimizes absolute error using actual data objects (medoids): <span class="math-inline">$J_{\text{medoid}} = \sum \sum d(x, M_k)$</span> with Manhattan <span class="math-inline">$L_1$</span> norm.</li>
+<li><strong>K-Modes Algorithm</strong>: Handles categorical data by replacing Euclidean distance with Simple Matching Dissimilarity <span class="math-inline">$\delta(x, y)$</span> and replacing means with <strong>modes</strong>.</li>
+</ul>
+<h3>4. Expectation-Maximization (EM) &amp; Gaussian Mixture Models (GMM)</h3>
+<ul>
+<li><strong>Soft Clustering</strong>: Computes posterior responsibility: <span class="math-inline">$\gamma_{nk} = \frac{\pi_k \mathcal{N}(x_n \mid \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_n \mid \mu_j, \Sigma_j)}$</span>.</li>
+<li><strong>Connection</strong>: K-Means is a special limiting case of EM on GMM where all covariances <span class="math-inline">$\Sigma_k = \sigma^2 I$</span> as <span class="math-inline">$\sigma^2 \to 0$</span> (hard cluster boundary).</li>
+</ul>
+<h3>5. Determining Optimal <span class="math-inline">$k$</span>: Elbow Method vs Silhouette Analysis (Must Draw in Exam!)</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <svg width="180" height="95" viewBox="0 0 180 95" xmlns="http://www.w3.org/2000/svg">
+<line x1="30" y1="10" x2="30" y2="75" stroke="#334155" stroke-width="1.2"/>
+<line x1="30" y1="75" x2="170" y2="75" stroke="#334155" stroke-width="1.2"/>
+<text x="25" y="15" font-size="6" text-anchor="end" fill="#334155">WCSS</text>
+<text x="165" y="86" font-size="6" text-anchor="end" fill="#334155">k</text>
+<text x="50" y="84" font-size="6" fill="#334155" text-anchor="middle">1</text>
+<text x="75" y="84" font-size="6" fill="#334155" text-anchor="middle">2</text>
+<text x="100" y="84" font-size="6" fill="#dc2626" font-weight="bold">3</text>
+<text x="125" y="84" font-size="6" fill="#334155" text-anchor="middle">4</text>
+<text x="150" y="84" font-size="6" fill="#334155" text-anchor="middle">5</text>
+<path d="M 50 18 Q 80 45 100 58 T 150 68" fill="none" stroke="#0284c7" stroke-width="2"/>
+<circle cx="50" cy="18" r="2.5" fill="#0284c7"/>
+<circle cx="75" cy="42" r="2.5" fill="#0284c7"/>
+<circle cx="100" cy="58" r="4" fill="#dc2626"/>
+<circle cx="125" cy="64" r="2.5" fill="#0284c7"/>
+<circle cx="150" cy="68" r="2.5" fill="#0284c7"/>
+<line x1="100" y1="58" x2="125" y2="30" stroke="#dc2626" stroke-width="1"/>
+<text x="128" y="28" font-size="6" font-weight="bold" fill="#dc2626">Elbow Point (k=3)</text>
+<text x="128" y="36" font-size="5.5" fill="#475569">Optimal Clusters</text>
+</svg>
+    <div class="diagram-caption">1. The Elbow Method</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="180" height="95" viewBox="0 0 180 95" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="45" cy="48" rx="28" ry="32" fill="#eff6ff" stroke="#3b82f6" stroke-dasharray="2,2"/>
+<text x="35" y="24" font-size="6" font-weight="bold" fill="#1d4ed8">Cluster A</text>
+<circle cx="45" cy="48" r="3.5" fill="#dc2626"/>
+<text x="45" y="42" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">Point i</text>
+<circle cx="30" cy="58" r="2.2" fill="#3b82f6"/>
+<circle cx="58" cy="62" r="2.2" fill="#3b82f6"/>
+<circle cx="52" cy="34" r="2.2" fill="#3b82f6"/>
+<line x1="45" y1="48" x2="30" y2="58" stroke="#3b82f6" stroke-width="1"/>
+<text x="42" y="68" font-size="5.8" fill="#1d4ed8" text-anchor="middle">a(i) = Cohesion</text>
+<ellipse cx="138" cy="48" rx="26" ry="32" fill="#f0fdf4" stroke="#16a34a" stroke-dasharray="2,2"/>
+<text x="138" y="24" font-size="6" font-weight="bold" fill="#15803d">Nearest Cluster B</text>
+<circle cx="125" cy="45" r="2.2" fill="#16a34a"/>
+<circle cx="145" cy="58" r="2.2" fill="#16a34a"/>
+<line x1="45" y1="48" x2="125" y2="45" stroke="#dc2626" stroke-width="1.5"/>
+<text x="85" y="42" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">b(i) = Separation</text>
+<text x="90" y="88" font-size="6" font-weight="bold" fill="#0f172a" text-anchor="middle">s(i) = (b - a) / max(a, b)</text>
+</svg>
+    <div class="diagram-caption">2. Silhouette Analysis Anatomy</div>
+  </div>
+</div>
+<hr>
+<h1>📌 SECTION 4: QUESTION 4 — PROBABILISTIC LEARNING: NAÏVE BAYES &amp; BBN (UNIT 4.1)</h1>
+<h2>4.1 PART A: CALCULATION ENGINE &amp; UNIVERSAL RECIPES</h2>
+<h3>Universal Plug-and-Play Recipe for ANY Classification Table</h3>
+<pre><code class="language-text">[STEP 1: Prior Probabilities]
+  P(Yes) = N_yes / N,   P(No) = N_no / N.
+[STEP 2: Likelihood Grid for Query X = (x1, x2, ...)]
+  For each feature:
+    P(x_i | Yes) = Count(x_i in Yes) / N_yes
+    P(x_i | No)  = Count(x_i in No)  / N_no
+  *If count is 0, use Laplace Smoothing: (0 + 1) / (N_class + K_distinct_options).
+[STEP 3: Multiply Likelihoods &amp; Multiply by Priors]
+  Score(Yes) = P(Yes) * P(x1|Yes) * P(x2|Yes) * ...
+  Score(No)  = P(No)  * P(x1|No)  * P(x2|No)  * ...
+[STEP 4: Decision]
+  Whichever score is larger wins! Normalized % = Score / (Score_Yes + Score_No).
+</code></pre>
+<h3>Solved Numerical: 14-Row <code>buys_computer</code> Problem (Slide 4.1)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 4.1, Page 20-21)</strong>:<br>
+<em>&quot;Given the 14-record AllElectronics customer training database with attributes: Age (<span class="math-inline">$\le 30, 31..40, &gt;40$</span>), Income (high, medium, low), Student (no, yes), Credit_rating (fair, excellent), and Class: buys_computer (yes, no).<br>
+Data to be classified:<br>
+<span class="math-inline">$X = (\text{age} \le 30, \text{income} = \text{medium}, \text{student} = \text{yes}, \text{credit\_rating} = \text{fair})$</span>.<br>
+Task: Classify <span class="math-inline">$X$</span> using Bayesian classifier ????&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Solution:</h4>
+<ol>
+<li><strong>Priors</strong>: <span class="math-inline">$P(\text{yes}) = 9/14 = 0.643$</span>, <span class="math-inline">$P(\text{no}) = 5/14 = 0.357$</span>.</li>
+<li><strong>Likelihoods</strong>:
+<ul>
+<li><span class="math-inline">$P(\text{age} \le 30 \mid \text{yes}) = 2/9 = 0.222$</span>; <span class="math-inline">$P(\text{age} \le 30 \mid \text{no}) = 3/5 = 0.600$</span></li>
+<li><span class="math-inline">$P(\text{income} = \text{med} \mid \text{yes}) = 4/9 = 0.444$</span>; <span class="math-inline">$P(\text{income} = \text{med} \mid \text{no}) = 2/5 = 0.400$</span></li>
+<li><span class="math-inline">$P(\text{student} = \text{yes} \mid \text{yes}) = 6/9 = 0.667$</span>; <span class="math-inline">$P(\text{student} = \text{yes} \mid \text{no}) = 1/5 = 0.200$</span></li>
+<li><span class="math-inline">$P(\text{credit} = \text{fair} \mid \text{yes}) = 6/9 = 0.667$</span>; <span class="math-inline">$P(\text{credit} = \text{fair} \mid \text{no}) = 2/5 = 0.400$</span></li>
+</ul>
+</li>
+<li><strong>Likelihood Products</strong>:
+<ul>
+<li><span class="math-inline">$P(X \mid \text{yes}) = 0.222 \times 0.444 \times 0.667 \times 0.667 = \mathbf{0.0438}$</span></li>
+<li><span class="math-inline">$P(X \mid \text{no}) = 0.600 \times 0.400 \times 0.200 \times 0.400 = \mathbf{0.0192}$</span></li>
+</ul>
+</li>
+<li><strong>Posteriors (Unnormalized Scores)</strong>:
+<ul>
+<li><span class="math-inline">$\text{Score}(\text{yes}) = 0.0438 \times 0.643 = \mathbf{0.0282}$</span></li>
+<li><span class="math-inline">$\text{Score}(\text{no}) = 0.0192 \times 0.357 = \mathbf{0.0069}$</span></li>
+</ul>
+</li>
+<li><strong>Decision</strong>: <span class="math-inline">$\text{Score}(\text{yes}) &gt; \text{Score}(\text{no}) \implies$</span> <strong>buys_computer = YES (80.3% confidence)</strong>.</li>
+</ol>
+<hr>
+<h3>Solved Numerical: Continuous Gaussian Naïve Bayes</h3>
+<blockquote>
+<p>🎯 <strong>EXACT EXAM QUESTION WORDING / PATTERN (Continuous Naïve Bayes)</strong>:<br>
+<em>&quot;In a continuous Naïve Bayes classification problem, attribute <span class="math-inline">$X$</span> follows a Gaussian distribution with class mean <span class="math-inline">$\mu = 80$</span> and variance <span class="math-inline">$\sigma^2 = 25$</span> (<span class="math-inline">$\sigma = 5$</span>). Compute the class-conditional probability density <span class="math-inline">$P(X = 85 \mid C)$</span>.&quot;</em></p>
+</blockquote>
+<p><div class="math-display">$$P(x = 85 \mid C) = \frac{1}{\sqrt{2\pi(25)}} \exp\left(-\frac{(85-80)^2}{2(25)}\right) = \frac{1}{12.533} e^{-0.50} = \frac{0.6065}{12.533} \approx \mathbf{0.0484}$$</div></p>
+<hr>
+<h2>4.2 PART B: 10-MARK THEORY MASTER MODULE — PROBABILISTIC LEARNING &amp; BBN</h2>
+<h3>1. Bayes Theorem &amp; Maximum A Posteriori (MAP) Derivation</h3>
+<ul>
+<li><strong>Bayes Theorem</strong>:
+<div class="math-display">$$P(C_k \mid X) = \frac{P(X \mid C_k) P(C_k)}{P(X)} = \frac{P(X \mid C_k) P(C_k)}{\sum_j P(X \mid C_j) P(C_j)}$$</div>
+<ul>
+<li><span class="math-inline">$P(C_k)$</span> = Class Prior; <span class="math-inline">$P(X \mid C_k)$</span> = Likelihood; <span class="math-inline">$P(X)$</span> = Marginal Evidence; <span class="math-inline">$P(C_k \mid X)$</span> = Posterior.</li>
+</ul>
+</li>
+<li><strong>MAP vs Maximum Likelihood (ML)</strong>:
+<ul>
+<li><strong>MAP Classifier</strong>: Picks class maximizing posterior: <span class="math-inline">$\hat{y}_{\text{MAP}} = \arg\max_{C_k} P(X \mid C_k) P(C_k)$</span>.</li>
+<li><strong>ML Classifier</strong>: Assumes uniform priors (<span class="math-inline">$P(C_k) = 1/K$</span>): <span class="math-inline">$\hat{y}_{\text{ML}} = \arg\max_{C_k} P(X \mid C_k)$</span>.</li>
+</ul>
+</li>
+<li><strong>Bayes Optimal Classifier</strong>: Averages predictions over all hypotheses weighted by posterior: <span class="math-inline">$P(y \mid X) = \sum_{h \in \mathcal{H}} P(y \mid h, X) P(h \mid D)$</span>. Theoretical gold standard minimum error.</li>
+</ul>
+<h3>2. The Naïve Bayes Assumption &amp; Parameter Reduction Proof</h3>
+<ul>
+<li><strong>The &quot;Naïve&quot; Conditional Independence Assumption</strong>:
+Given class label <span class="math-inline">$C$</span>, all features <span class="math-inline">$x_1, \dots, x_d$</span> are mutually conditionally independent:
+<div class="math-display">$$P(X \mid C) = P(x_1, x_2, \dots, x_d \mid C) = \prod_{i=1}^d P(x_i \mid C)$$</div></li>
+<li><strong>Parameter Reduction</strong>: Reduces full joint complexity from <span class="math-inline">$O(2^d)$</span> exponential parameters to <span class="math-inline">$O(d)$</span> linear parameters.</li>
+</ul>
+<h3>3. Handling Zero-Frequency: Laplace Smoothing Derivation</h3>
+<ul>
+<li><strong>Problem</strong>: If feature value <span class="math-inline">$x_i$</span> never appears with class <span class="math-inline">$C_k$</span>, <span class="math-inline">$P(x_i \mid C_k) = 0$</span>, collapsing the entire product to zero.</li>
+<li><strong>Laplace (Add-One) Correction</strong>: <span class="math-inline">$\hat{P}(x_i \mid C_k) = \frac{\text{Count}(x_i, C_k) + 1}{N_k + |V_i|}$</span>.<br>
+Proof of total probability preservation: <span class="math-inline">$\sum_v \hat{P} = \frac{\sum \text{Count} + |V_i|}{N_k + |V_i|} = \frac{N_k + |V_i|}{N_k + |V_i|} = 1.000$</span>.</li>
+</ul>
+<h3>4. Bayesian Belief Networks (BBN) &amp; D-Separation Topologies (Must Draw in Exam!)</h3>
+<div class="diagram-grid">
+  <div class="diagram-card">
+    <svg width="125" height="70" viewBox="0 0 125 70" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="35" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="20" y="38" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">A</text>
+<line x1="32" y1="35" x2="48" y2="35" stroke="#334155" stroke-width="1.5"/>
+<polygon points="48,32 54,35 48,38" fill="#334155"/>
+<circle cx="65" cy="35" r="12" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
+<text x="65" y="38" font-size="7.5" font-weight="bold" fill="#0f172a" text-anchor="middle">B</text>
+<line x1="77" y1="35" x2="93" y2="35" stroke="#334155" stroke-width="1.5"/>
+<polygon points="93,32 99,35 93,38" fill="#334155"/>
+<circle cx="108" cy="35" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="108" y="38" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+<text x="62" y="60" font-size="6" font-weight="bold" fill="#15803d" text-anchor="middle">A ⊥ C | B (Blocked)</text>
+</svg>
+    <div class="diagram-caption">1. Serial Connection</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="125" height="70" viewBox="0 0 125 70" xmlns="http://www.w3.org/2000/svg">
+<circle cx="62" cy="18" r="12" fill="#cbd5e1" stroke="#334155" stroke-width="1.5"/>
+<text x="62" y="21" font-size="7.5" font-weight="bold" fill="#0f172a" text-anchor="middle">B</text>
+<line x1="53" y1="26" x2="33" y2="44" stroke="#334155" stroke-width="1.5"/>
+<polygon points="32,40 28,48 37,45" fill="#334155"/>
+<circle cx="20" cy="52" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="20" y="55" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">A</text>
+<line x1="71" y1="26" x2="91" y2="44" stroke="#334155" stroke-width="1.5"/>
+<polygon points="87,45 96,48 92,40" fill="#334155"/>
+<circle cx="104" cy="52" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="104" y="55" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+<text x="62" y="66" font-size="6" font-weight="bold" fill="#15803d" text-anchor="middle">A ⊥ C | B (Common Cause)</text>
+</svg>
+    <div class="diagram-caption">2. Diverging Connection</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="125" height="70" viewBox="0 0 125 70" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="22" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="20" y="25" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">A</text>
+<circle cx="104" cy="22" r="12" fill="#eff6ff" stroke="#1e40af" stroke-width="1.2"/>
+<text x="104" y="25" font-size="7.5" font-weight="bold" fill="#1e40af" text-anchor="middle">C</text>
+<line x1="30" y1="29" x2="52" y2="43" stroke="#dc2626" stroke-width="1.5"/>
+<polygon points="50,39 57,46 47,44" fill="#dc2626"/>
+<line x1="94" y1="29" x2="72" y2="43" stroke="#dc2626" stroke-width="1.5"/>
+<polygon points="77,44 67,46 74,39" fill="#dc2626"/>
+<circle cx="62" cy="52" r="12" fill="#fecaca" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="62" y="55" font-size="7.5" font-weight="bold" fill="#991b1b" text-anchor="middle">B</text>
+<text x="62" y="67" font-size="5.5" font-weight="bold" fill="#dc2626" text-anchor="middle">B observed => Active!</text>
+</svg>
+    <div class="diagram-caption">3. V-Structure / Collider</div>
+  </div>
+  <div class="diagram-card">
+    <svg width="125" height="70" viewBox="0 0 125 70" xmlns="http://www.w3.org/2000/svg">
+<rect x="15" y="4" width="95" height="62" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.2" stroke-dasharray="3,2"/>
+<circle cx="45" cy="18" r="9" fill="#eff6ff" stroke="#1e40af" stroke-width="1"/>
+<text x="45" y="21" font-size="6" font-weight="bold" fill="#1e40af" text-anchor="middle">Parent</text>
+<line x1="45" y1="27" x2="45" y2="33" stroke="#334155" stroke-width="1.2"/>
+<polygon points="42,32 45,36 48,32" fill="#334155"/>
+<circle cx="45" cy="42" r="9" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+<text x="45" y="45" font-size="7" font-weight="bold" fill="#854d0e" text-anchor="middle">Target X</text>
+<line x1="45" y1="51" x2="45" y2="54" stroke="#334155" stroke-width="1.2"/>
+<polygon points="42,53 45,57 48,53" fill="#334155"/>
+<circle cx="45" cy="58" r="6.5" fill="#eff6ff" stroke="#1e40af" stroke-width="1"/>
+<text x="45" y="60.5" font-size="5" font-weight="bold" fill="#1e40af" text-anchor="middle">Child</text>
+<circle cx="85" cy="42" r="7.5" fill="#eff6ff" stroke="#1e40af" stroke-width="1"/>
+<text x="85" y="44.5" font-size="4.8" font-weight="bold" fill="#1e40af" text-anchor="middle">Co-Parent</text>
+<line x1="77" y1="46" x2="52" y2="56" stroke="#334155" stroke-width="1.2"/>
+<polygon points="53,53 49,57 55,58" fill="#334155"/>
+<text x="96" y="16" font-size="5" font-weight="bold" fill="#059669">MB(X)</text>
+</svg>
+    <div class="diagram-caption">4. Markov Blanket of X</div>
+  </div>
+</div>
+<ul>
+<li><strong>Chain Rule of BBNs</strong>: <span class="math-inline">$P(X_1, \dots, X_n) = \prod P(X_i \mid \text{Parents}(X_i))$</span>.</li>
+<li><strong>Markov Blanket</strong>: Consists of Parents + Children + Co-parents. Conditioning on the Markov Blanket completely insulates node <span class="math-inline">$X$</span> from the rest of the network.</li>
+</ul>
+<hr>
+<h1>📌 SECTION 5: QUESTION 5 — ASSOCIATION RULE MINING: APRIORI &amp; FP-GROWTH (UNIT 4.2)</h1>
+<h2>5.1 PART A: CALCULATION ENGINE &amp; UNIVERSAL RECIPES</h2>
+<h3>Universal Plug-and-Play Recipe for Apriori</h3>
+<pre><code class="language-text">[STEP 1: Support Threshold]
+  If min_sup given as %, min_count = ceil(% * Total_Transactions).
+[STEP 2: Level-wise Generation C_1 -&gt; L_1, C_2 -&gt; L_2]
+  Count frequency of individual items in DB -&gt; L_1.
+  Pair up items from L_1 -&gt; scan DB for counts -&gt; keep pairs &gt;= min_count -&gt; L_2.
+[STEP 3: C_3 Candidate Generation &amp; The Apriori Pruning Step]
+  Join L_2 pairs sharing first item: {A,B} + {A,C} -&gt; {A,B,C}.
+  *PRUNING RULE*: Check if all 2-item subsets {A,B}, {A,C}, {B,C} are in L_2.
+  If ANY subset is missing from L_2 -&gt; PRUNE IT! Do not scan DB!
+  Scan DB for remaining candidates -&gt; L_3.
+[STEP 4: Confidence &amp; Rule Extraction]
+  Confidence(X =&gt; Y) = Support_Count(X U Y) / Support_Count(X) * 100%.
+  If Confidence &gt;= min_conf -&gt; Rule is STRONG!
+  Lift(X =&gt; Y) = Confidence(X =&gt; Y) / Support(Y). (Lift &gt; 1 = Positive correlation).
+</code></pre>
+<h3>Solved Numerical: 9-Transaction Apriori Problem (Slide 4.2, Exercise 1)</h3>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING (Slide 4.2, Page 17 — Exercise 1)</strong>:<br>
+<em>&quot;• Exercise 1: Find the frequent Itemset where the minimum support count = 2.<br>
+Given 9 transactions:<br>
+<span class="math-inline">$T_{100}: \{I_1, I_2, I_5\}$</span><br>
+<span class="math-inline">$T_{200}: \{I_2, I_4\}$</span><br>
+<span class="math-inline">$T_{300}: \{I_2, I_3\}$</span><br>
+<span class="math-inline">$T_{400}: \{I_1, I_2, I_4\}$</span><br>
+<span class="math-inline">$T_{500}: \{I_1, I_3\}$</span><br>
+<span class="math-inline">$T_{600}: \{I_2, I_3\}$</span><br>
+<span class="math-inline">$T_{700}: \{I_1, I_3\}$</span><br>
+<span class="math-inline">$T_{800}: \{I_1, I_2, I_3, I_5\}$</span><br>
+<span class="math-inline">$T_{900}: \{I_1, I_2, I_3\}$</span><br>
+Show candidate generation and pruning for <span class="math-inline">$C_1 \to L_1 \to C_2 \to L_2 \to C_3 \to L_3$</span> and generate strong association rules for minimum confidence <span class="math-inline">$= 70\%$</span>.&quot;</em></p>
+</blockquote>
+<h4>Step-by-Step Level-wise Generation:</h4>
+<ul>
+<li><span class="math-inline">$N = 9$</span>, <span class="math-inline">$\text{minsup\_count} = 2$</span>, <span class="math-inline">$\text{min\_conf} = 70\%$</span>.</li>
+<li><strong>1-Itemsets (<span class="math-inline">$L_1$</span>)</strong>:
+<ul>
+<li><span class="math-inline">$\{I_1\}: 6$</span>, <span class="math-inline">$\{I_2\}: 7$</span>, <span class="math-inline">$\{I_3\}: 6$</span>, <span class="math-inline">$\{I_4\}: 2$</span>, <span class="math-inline">$\{I_5\}: 2$</span>. (All <span class="math-inline">$\ge 2 \implies L_1$</span>).</li>
+</ul>
+</li>
+<li><strong>2-Itemsets (<span class="math-inline">$L_2$</span>)</strong>:
+<ul>
+<li><span class="math-inline">$\{I_1, I_2\}: 4$</span>, <span class="math-inline">$\{I_1, I_3\}: 4$</span>, <span class="math-inline">$\{I_1, I_4\}: 1$</span> <em>(Pruned)</em>, <span class="math-inline">$\{I_1, I_5\}: 2$</span>, <span class="math-inline">$\{I_2, I_3\}: 4$</span>, <span class="math-inline">$\{I_2, I_4\}: 2$</span>, <span class="math-inline">$\{I_2, I_5\}: 2$</span>, <span class="math-inline">$\{I_3, I_4\}: 0$</span> <em>(Pruned)</em>, <span class="math-inline">$\{I_3, I_5\}: 1$</span> <em>(Pruned)</em>, <span class="math-inline">$\{I_4, I_5\}: 0$</span> <em>(Pruned)</em>.</li>
+<li><span class="math-inline">$L_2 = \{\{I_1, I_2\}, \{I_1, I_3\}, \{I_1, I_5\}, \{I_2, I_3\}, \{I_2, I_4\}, \{I_2, I_5\}\}$</span>.</li>
+</ul>
+</li>
+<li><strong>3-Itemset Candidate Generation &amp; Pruning (<span class="math-inline">$C_3$</span>)</strong>:
+<ul>
+<li>Join <span class="math-inline">$\{I_1, I_2\} \Join \{I_1, I_3\} \implies \{I_1, I_2, I_3\}$</span>. Subsets: <span class="math-inline">$\{I_1,I_2\}, \{I_1,I_3\}, \{I_2,I_3\} \in L_2 \implies$</span> <strong>Retained</strong>.</li>
+<li>Join <span class="math-inline">$\{I_1, I_2\} \Join \{I_1, I_5\} \implies \{I_1, I_2, I_5\}$</span>. Subsets: <span class="math-inline">$\{I_1,I_2\}, \{I_1,I_5\}, \{I_2,I_5\} \in L_2 \implies$</span> <strong>Retained</strong>.</li>
+<li>Join <span class="math-inline">$\{I_2, I_3\} \Join \{I_2, I_4\} \implies \{I_2, I_3, I_4\}$</span>. Subset <span class="math-inline">$\{I_3, I_4\} \notin L_2 \implies$</span> <strong>PRUNED!</strong></li>
+<li>Database Scan for retained candidates: Count(<span class="math-inline">$\{I_1, I_2, I_3\}$</span>) <span class="math-inline">$= 2$</span>, Count(<span class="math-inline">$\{I_1, I_2, I_5\}$</span>) <span class="math-inline">$= 2$</span>.</li>
+<li><span class="math-inline">$L_3 = \{\{I_1, I_2, I_3\}, \{I_1, I_2, I_5\}\}$</span>.</li>
+</ul>
+</li>
+<li><strong>Rule Generation from <span class="math-inline">$\{I_1, I_2, I_5\}$</span> (Count <span class="math-inline">$= 2$</span>)</strong>:
+<ul>
+<li><span class="math-inline">$I_1 \wedge I_5 \Rightarrow I_2$</span>: <span class="math-inline">$\text{Conf} = \frac{\sigma(I_1, I_2, I_5)}{\sigma(I_1, I_5)} = \frac{2}{2} = \mathbf{100\%}$</span> (<strong>STRONG</strong>)</li>
+<li><span class="math-inline">$I_2 \wedge I_5 \Rightarrow I_1$</span>: <span class="math-inline">$\text{Conf} = \frac{\sigma(I_1, I_2, I_5)}{\sigma(I_2, I_5)} = \frac{2}{2} = \mathbf{100\%}$</span> (<strong>STRONG</strong>)</li>
+<li><span class="math-inline">$I_5 \Rightarrow I_1 \wedge I_2$</span>: <span class="math-inline">$\text{Conf} = \frac{\sigma(I_1, I_2, I_5)}{\sigma(I_5)} = \frac{2}{2} = \mathbf{100\%}$</span> (<strong>STRONG</strong>)</li>
+<li><span class="math-inline">$I_1 \wedge I_2 \Rightarrow I_5$</span>: <span class="math-inline">$\text{Conf} = \frac{\sigma(I_1, I_2, I_5)}{\sigma(I_1, I_2)} = \frac{2}{4} = 50\%$</span> (Weak, rejected).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>5.2 PART B: 10-MARK THEORY MASTER MODULE — ASSOCIATION RULE MINING</h2>
+<h3>1. Market Basket Problem Formulation &amp; Mathematical Metrics</h3>
+<ul>
+<li><strong>Itemset Lattice</strong>: For <span class="math-inline">$I = \{i_1, \dots, i_d\}$</span>, there are <span class="math-inline">$2^d$</span> possible itemsets.</li>
+<li><strong>Association Rule</strong>: Implication <span class="math-inline">$X \Rightarrow Y$</span> where <span class="math-inline">$X, Y \subset I$</span> and <span class="math-inline">$X \cap Y = \emptyset$</span>.</li>
+<li><strong>Metrics (Must Define All 4 for 10 Marks)</strong>:
+<ol>
+<li><strong>Support</strong>: <span class="math-inline">$\text{Support}(X \Rightarrow Y) = \frac{\sigma(X \cup Y)}{N}$</span></li>
+<li><strong>Confidence</strong>: <span class="math-inline">$\text{Confidence}(X \Rightarrow Y) = \frac{\sigma(X \cup Y)}{\sigma(X)}$</span></li>
+<li><strong>Lift</strong>: <span class="math-inline">$\text{Lift}(X \Rightarrow Y) = \frac{P(X \cup Y)}{P(X)P(Y)} = \frac{\text{Confidence}(X \Rightarrow Y)}{\text{Support}(Y)}$</span> (<span class="math-inline">$&gt;1$</span> complementary, <span class="math-inline">$=1$</span> independent, <span class="math-inline">$&lt;1$</span> substitute).</li>
+<li><strong>Conviction</strong>: <span class="math-inline">$\text{Conviction}(X \Rightarrow Y) = \frac{1 - \text{Support}(Y)}{1 - \text{Confidence}(X \Rightarrow Y)}$</span>.</li>
+</ol>
+</li>
+</ul>
+<h3>2. The Apriori Property (Anti-Monotonicity Principle) &amp; Proof</h3>
+<ul>
+<li><strong>Theorem</strong>: <em>&quot;All non-empty subsets of a frequent itemset must also be frequent.&quot;</em></li>
+<li><strong>Contrapositive (Pruning Rule)</strong>: <em>&quot;If an itemset is infrequent, all of its supersets are guaranteed to be infrequent.&quot;</em></li>
+<li><strong>Mathematical Proof</strong>:
+Let <span class="math-inline">$A \subset B$</span>. Every transaction that contains <span class="math-inline">$B$</span> must also contain <span class="math-inline">$A$</span>: <span class="math-inline">$\{T \mid B \subseteq T\} \subseteq \{T \mid A \subseteq T\} \implies \sigma(B) \le \sigma(A)$</span>.<br>
+If <span class="math-inline">$\sigma(A) &lt; \text{minsup}$</span>, then <span class="math-inline">$\sigma(B) \le \sigma(A) &lt; \text{minsup}$</span>, proving <span class="math-inline">$B$</span> is strictly infrequent. <span class="math-inline">$\blacksquare$</span></li>
+</ul>
+<div class="diagram-box">
+  <svg width="450" height="85" viewBox="0 0 450 85" xmlns="http://www.w3.org/2000/svg">
+<!-- Level 1 -->
+<rect x="30" y="8" width="45" height="16" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="52" y="19" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ A }</text>
+<rect x="90" y="8" width="45" height="16" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="112" y="19" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ B }</text>
+<rect x="150" y="8" width="45" height="16" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="172" y="19" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ C }</text>
+<rect x="210" y="8" width="45" height="16" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="232" y="19" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ D }</text>
+<text x="360" y="19" font-size="6.5" fill="#475569" text-anchor="start">Level 1: Frequent 1-itemsets (L1)</text>
+<!-- Level 2 -->
+<rect x="25" y="34" width="70" height="18" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="60" y="46" font-size="6.5" font-weight="bold" fill="#b91c1c" text-anchor="middle">{ A, B } (Infrequent! ✗)</text>
+<rect x="105" y="34" width="45" height="18" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="127" y="46" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ A, C } (✓)</text>
+<rect x="160" y="34" width="45" height="18" rx="2" fill="#eff6ff" stroke="#2563eb"/>
+<text x="182" y="46" font-size="6.5" font-weight="bold" fill="#1e40af" text-anchor="middle">{ B, C } (✓)</text>
+<text x="360" y="46" font-size="6.5" fill="#475569" text-anchor="start">Level 2: {A,B} &lt; minsup (Infrequent)</text>
+<!-- Pruning branches to Level 3 -->
+<line x1="60" y1="52" x2="60" y2="62" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+<polygon points="57,60 60,64 63,60" fill="#dc2626"/>
+<rect x="15" y="64" width="90" height="16" rx="2" fill="#f8fafc" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="60" y="75" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">{ A, B, C } PRUNED (✗)</text>
+<line x1="75" y1="52" x2="120" y2="62" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+<polygon points="117,59 121,64 123,59" fill="#dc2626"/>
+<rect x="115" y="64" width="90" height="16" rx="2" fill="#f8fafc" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="160" y="75" font-size="6" font-weight="bold" fill="#dc2626" text-anchor="middle">{ A, B, D } PRUNED (✗)</text>
+<rect x="220" y="64" width="220" height="16" rx="2" fill="#fef2f2" stroke="#ef4444"/>
+<text x="330" y="75" font-size="6.2" font-weight="bold" fill="#b91c1c" text-anchor="middle">APRIORI PROPERTY: All supersets of {A,B} pruned without DB scan!</text>
+</svg>
+  <div class="diagram-caption">Apriori Anti-Monotone Property & Downward Closure Pruning Lattice (Slide 4.2, p. 10)</div>
+</div>
+<h3>3. FP-Growth (Frequent Pattern Growth) Architecture (Must Draw in Exam!)</h3>
+<div class="diagram-box">
+  <svg width="450" height="115" viewBox="0 0 450 115" xmlns="http://www.w3.org/2000/svg">
+<!-- Header Table -->
+<rect x="15" y="10" width="105" height="95" fill="#f8fafc" stroke="#334155" stroke-width="1.2" rx="3"/>
+<rect x="15" y="10" width="105" height="18" fill="#e2e8f0" stroke="#334155"/>
+<text x="25" y="22" font-size="6.5" font-weight="bold" fill="#0f172a">Item</text>
+<text x="55" y="22" font-size="6.5" font-weight="bold" fill="#0f172a">Count</text>
+<text x="92" y="22" font-size="6.5" font-weight="bold" fill="#0f172a">Link</text>
+<text x="28" y="37" font-size="6.5">I2</text><text x="60" y="37" font-size="6.5">7</text><circle cx="98" cy="35" r="2.5" fill="#dc2626"/>
+<text x="28" y="52" font-size="6.5">I1</text><text x="60" y="52" font-size="6.5">6</text><circle cx="98" cy="50" r="2.5" fill="#dc2626"/>
+<text x="28" y="67" font-size="6.5">I3</text><text x="60" y="67" font-size="6.5">6</text><circle cx="98" cy="65" r="2.5" fill="#dc2626"/>
+<text x="28" y="82" font-size="6.5">I4</text><text x="60" y="82" font-size="6.5">2</text><circle cx="98" cy="80" r="2.5" fill="#dc2626"/>
+<text x="28" y="97" font-size="6.5">I5</text><text x="60" y="97" font-size="6.5">2</text><circle cx="98" cy="95" r="2.5" fill="#dc2626"/>
+<!-- Tree Root -->
+<rect x="250" y="10" width="55" height="18" rx="3" fill="#cbd5e1" stroke="#334155"/>
+<text x="277" y="22" font-size="7" font-weight="bold" fill="#0f172a" text-anchor="middle">null (root)</text>
+<!-- Level 1 Nodes -->
+<rect x="180" y="40" width="45" height="18" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+<text x="202" y="52" font-size="7" font-weight="bold" fill="#1e40af" text-anchor="middle">I2 : 7</text>
+<rect x="330" y="40" width="45" height="18" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+<text x="352" y="52" font-size="7" font-weight="bold" fill="#1e40af" text-anchor="middle">I1 : 2</text>
+<line x1="260" y1="28" x2="202" y2="40" stroke="#334155" stroke-width="1.2"/>
+<line x1="290" y1="28" x2="352" y2="40" stroke="#334155" stroke-width="1.2"/>
+<!-- Level 2 Nodes -->
+<rect x="145" y="70" width="45" height="18" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+<text x="167" y="82" font-size="7" font-weight="bold" fill="#1e40af" text-anchor="middle">I1 : 4</text>
+<rect x="205" y="70" width="45" height="18" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+<text x="227" y="82" font-size="7" font-weight="bold" fill="#1e40af" text-anchor="middle">I4 : 2</text>
+<line x1="190" y1="58" x2="167" y2="70" stroke="#334155" stroke-width="1.2"/>
+<line x1="215" y1="58" x2="227" y2="70" stroke="#334155" stroke-width="1.2"/>
+<rect x="330" y="70" width="45" height="18" rx="3" fill="#eff6ff" stroke="#2563eb"/>
+<text x="352" y="82" font-size="7" font-weight="bold" fill="#1e40af" text-anchor="middle">I3 : 2</text>
+<line x1="352" y1="58" x2="352" y2="70" stroke="#334155" stroke-width="1.2"/>
+<!-- Horizontal Links (Dotted Red) -->
+<path d="M 98 35 H 175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="2,2"/>
+<path d="M 98 50 C 120 50, 130 79, 145 79" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="2,2" fill="none"/>
+<path d="M 190 79 C 230 79, 280 50, 330 50" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="2,2" fill="none"/>
+</svg>
+  <div class="diagram-caption">FP-Tree Architecture: Header Table & Prefix Tree with Horizontal Node-Links (Slide 4.2)</div>
+</div>
+<ul>
+<li><strong>2-Pass Algorithmic Pipeline</strong>:
+<ol>
+<li><strong>Pass 1</strong>: Scan DB <span class="math-inline">$\to$</span> individual item support counts <span class="math-inline">$\to$</span> filter by minsup <span class="math-inline">$\to$</span> sort into descending frequency list (F-List).</li>
+<li><strong>Pass 2</strong>: Construct the <strong>FP-Tree</strong> by inserting each transaction as a common prefix branch; create Header Table with linked list pointers connecting identical items across branches.</li>
+<li><strong>Mining Patterns</strong>: Extract Conditional Pattern Base <span class="math-inline">$\to$</span> build Conditional FP-Tree <span class="math-inline">$\to$</span> recursively generate patterns (Zero candidate generation!).</li>
+</ol>
+</li>
+</ul>
+<h3>4. Comprehensive Comparison: Apriori vs FP-Growth (Must Draw for 10 Marks)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature</th>
+<th style="text-align:left">Apriori Algorithm</th>
+<th style="text-align:left">FP-Growth Algorithm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Database Scans</strong></td>
+<td style="text-align:left">Multiple scans (<span class="math-inline">$k$</span> scans for <span class="math-inline">$k$</span>-itemsets)</td>
+<td style="text-align:left"><strong>Exactly 2 database scans</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Candidate Generation</strong></td>
+<td style="text-align:left">Generates millions of candidate sets (<span class="math-inline">$L_k \Join L_k$</span>)</td>
+<td style="text-align:left"><strong>Zero candidate generation</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Memory Footprint</strong></td>
+<td style="text-align:left">Low initial memory, but explodes during joins</td>
+<td style="text-align:left">High initial memory to hold FP-Tree in RAM</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Data Structure</strong></td>
+<td style="text-align:left">Array / Hash-Tree of candidates</td>
+<td style="text-align:left">Compact, highly compressed <strong>Prefix Tree (FP-Tree)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Runtime Speed</strong></td>
+<td style="text-align:left">Slow, bounded by disk I/O and candidate joins</td>
+<td style="text-align:left">Fast (typically 10x to 100x faster than Apriori)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Scalability</strong></td>
+<td style="text-align:left">Poor on dense datasets with long patterns</td>
+<td style="text-align:left">Highly scalable on dense and large datasets</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1>🏆 SECTION 6: THE PROFESSOR'S EXACT MODULE ACTIVITIES (FULLY SOLVED)</h1>
+<h2>6.1 Task A9 (Slide 3.5, p.25): Hierarchical AGNES on <span class="math-inline">$\{8, 11, 21, 29, 36\}$</span></h2>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING [Task A9] (Slide 3.5, Page 25)</strong>:<br>
+<em>&quot;TASK FOR YOU [A9]:<br>
+Consider one-dimensional data set <span class="math-inline">$\{8, 11, 21, 29, 36\}$</span>, perform hierarchical clustering to decide the clusters using single linkage and complete linkage analysis and plot the respective dendrogram to visualize it.<br>
+Give some key inferences to distinguish between those two analysis.&quot;</em></p>
+</blockquote>
+<h3>Step 1: Initial Distance Matrix <span class="math-inline">$D_0$</span>:</h3>
+<p><div class="math-display">$$D_0 = \begin{pmatrix} &amp; 8 &amp; 11 &amp; 21 &amp; 29 &amp; 36 \\ 8 &amp; 0 &amp; 3 &amp; 13 &amp; 21 &amp; 28 \\ 11 &amp; 3 &amp; 0 &amp; 10 &amp; 18 &amp; 25 \\ 21 &amp; 13 &amp; 10 &amp; 0 &amp; 8 &amp; 15 \\ 29 &amp; 21 &amp; 18 &amp; 8 &amp; 0 &amp; 7 \\ 36 &amp; 28 &amp; 25 &amp; 15 &amp; 7 &amp; 0 \end{pmatrix}$$</div></p>
+<ul>
+<li>Smallest distance is <span class="math-inline">$d(8, 11) = \mathbf{3}$</span>. Merge <span class="math-inline">$\{8, 11\}$</span> at height <span class="math-inline">$h = 3$</span>.</li>
+</ul>
+<h3>Step 2: Distance Matrix <span class="math-inline">$D_1$</span>:</h3>
+<ul>
+<li>Smallest remaining distance is <span class="math-inline">$d(29, 36) = \mathbf{7}$</span>. Merge <span class="math-inline">$\{29, 36\}$</span> at height <span class="math-inline">$h = 7$</span>.</li>
+</ul>
+<h3>Step 3: Distance Matrix <span class="math-inline">$D_2$</span> (Deciding Point 21):</h3>
+<ul>
+<li>Distance to point 21:
+<ul>
+<li>Single Linkage: <span class="math-inline">$d(\{8,11\}, 21) = \min(13, 10) = 10$</span>; <span class="math-inline">$d(\{29,36\}, 21) = \min(8, 15) = \mathbf{8}$</span>.<br>
+<strong>Single Link Choice</strong>: Merge 21 into <span class="math-inline">$\{29, 36\} \implies \{21, 29, 36\}$</span> at <span class="math-inline">$h = 8$</span>.</li>
+<li>Complete Linkage: <span class="math-inline">$d(\{8,11\}, 21) = \max(13, 10) = \mathbf{13}$</span>; <span class="math-inline">$d(\{29,36\}, 21) = \max(8, 15) = 15$</span>.<br>
+<strong>Complete Link Choice</strong>: Merge 21 into <span class="math-inline">$\{8, 11\} \implies \{8, 11, 21\}$</span> at <span class="math-inline">$h = 13$</span>.</li>
+</ul>
+</li>
+</ul>
+<h3>Step 4: Final Merges &amp; Cluster Output:</h3>
+<ul>
+<li><strong>Single Linkage</strong>: Final merge at <span class="math-inline">$h = \min(13, 21, 28, 10, 18, 25) = \mathbf{10}$</span>.<br>
+<strong>Clusters (<span class="math-inline">$k=2$</span>)</strong>: <strong><span class="math-inline">$\{8, 11\}$</span> and <span class="math-inline">$\{21, 29, 36\}$</span></strong>.</li>
+<li><strong>Complete Linkage</strong>: Final merge at <span class="math-inline">$h = \max(21, 28, 18, 25, 8, 15) = \mathbf{28}$</span>.<br>
+<strong>Clusters (<span class="math-inline">$k=2$</span>)</strong>: <strong><span class="math-inline">$\{8, 11, 21\}$</span> and <span class="math-inline">$\{29, 36\}$</span></strong>.</li>
+</ul>
+<h4>Task A9 Single Linkage Dendrogram:</h4>
+<pre><code class="language-text">Height (h)
+  10 |       +-----------------------+
+     |       |                       |
+   8 |       |               +-------+
+     |       |               |       |
+   7 |       |               |   +---+
+     |       |               |   |   |
+   3 |   +---+               |   |   |
+     |   |   |               |   |   |
+   0 +---+---+---------------+---+---+
+         8   11              21  29  36
+</code></pre>
+<h4>Task A9 Complete Linkage Dendrogram:</h4>
+<pre><code class="language-text">Height (h)
+  28 |   +---------------------------+
+     |   |                           |
+  13 |   +---------------+           |
+     |   |               |           |
+   7 |   |               |       +---+
+     |   |               |       |   |
+   3 | +-+-+             |       |   |
+     | |   |             |       |   |
+   0 +-+---+-------------+-------+---+
+       8   11            21      29  36
+</code></pre>
+<div class="diagram-grid">
+  <div class="diagram-card" style="flex: 1;">
+    <svg width="230" height="110" viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg">
+<!-- Y Axis -->
+<line x1="28" y1="12" x2="28" y2="95" stroke="#334155" stroke-width="1.2"/>
+<text x="22" y="16" font-size="5.5" text-anchor="end" fill="#334155">10 -</text>
+<text x="22" y="32" font-size="5.5" text-anchor="end" fill="#334155">8 -</text>
+<text x="22" y="40" font-size="5.5" text-anchor="end" fill="#334155">7 -</text>
+<text x="22" y="72" font-size="5.5" text-anchor="end" fill="#334155">3 -</text>
+<text x="22" y="95" font-size="5.5" text-anchor="end" fill="#334155">0 -</text>
+<text x="10" y="55" font-size="6" font-weight="bold" fill="#1e3a8a" transform="rotate(-90 10 55)" text-anchor="middle">Height (h)</text>
+<!-- Baseline -->
+<line x1="28" y1="95" x2="230" y2="95" stroke="#334155" stroke-width="1.2"/>
+<text x="45" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">8</text>
+<text x="75" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">11</text>
+<text x="115" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">21</text>
+<text x="150" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">29</text>
+<text x="185" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">36</text>
+<!-- Single Linkage Tree -->
+<line x1="45" y1="95" x2="45" y2="72" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="75" y1="95" x2="75" y2="72" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="45" y1="72" x2="75" y2="72" stroke="#0284c7" stroke-width="1.5"/>
+<text x="60" y="68" font-size="5.5" fill="#0284c7" font-weight="bold" text-anchor="middle">h=3</text>
+<line x1="150" y1="95" x2="150" y2="40" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="185" y1="95" x2="185" y2="40" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="150" y1="40" x2="185" y2="40" stroke="#0284c7" stroke-width="1.5"/>
+<text x="167" y="37" font-size="5.5" fill="#0284c7" font-weight="bold" text-anchor="middle">h=7</text>
+<line x1="115" y1="95" x2="115" y2="32" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="167" y1="40" x2="167" y2="32" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="115" y1="32" x2="167" y2="32" stroke="#0284c7" stroke-width="1.5"/>
+<text x="141" y="29" font-size="5.5" fill="#0284c7" font-weight="bold" text-anchor="middle">h=8</text>
+<line x1="60" y1="72" x2="60" y2="16" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="141" y1="32" x2="141" y2="16" stroke="#0284c7" stroke-width="1.5"/>
+<line x1="60" y1="16" x2="141" y2="16" stroke="#0284c7" stroke-width="1.5"/>
+<text x="100" y="13" font-size="5.5" fill="#0284c7" font-weight="bold" text-anchor="middle">h=10</text>
+<!-- Cut Line H=9 -->
+<line x1="28" y1="24" x2="160" y2="24" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
+<text x="165" y="26" font-size="5.5" fill="#dc2626" font-weight="bold" text-anchor="start">Cut H=9 (k=2)</text>
+</svg>
+    <div class="diagram-caption">Task A9: Single Linkage Dendrogram</div>
+    <div style="font-size: 5.8pt; color: #16a34a; font-weight: bold;">Final Clusters: {8, 11} and {21, 29, 36}</div>
+  </div>
+  <div class="diagram-card" style="flex: 1;">
+    <svg width="230" height="110" viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg">
+<!-- Y Axis -->
+<line x1="28" y1="12" x2="28" y2="95" stroke="#334155" stroke-width="1.2"/>
+<text x="22" y="16" font-size="5.5" text-anchor="end" fill="#334155">28 -</text>
+<text x="22" y="44" font-size="5.5" text-anchor="end" fill="#334155">13 -</text>
+<text x="22" y="62" font-size="5.5" text-anchor="end" fill="#334155">7 -</text>
+<text x="22" y="78" font-size="5.5" text-anchor="end" fill="#334155">3 -</text>
+<text x="22" y="95" font-size="5.5" text-anchor="end" fill="#334155">0 -</text>
+<text x="10" y="55" font-size="6" font-weight="bold" fill="#1e3a8a" transform="rotate(-90 10 55)" text-anchor="middle">Height (h)</text>
+<!-- Baseline -->
+<line x1="28" y1="95" x2="230" y2="95" stroke="#334155" stroke-width="1.2"/>
+<text x="45" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">8</text>
+<text x="75" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">11</text>
+<text x="115" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">21</text>
+<text x="150" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">29</text>
+<text x="185" y="104" font-size="6.5" font-weight="bold" fill="#0f172a" text-anchor="middle">36</text>
+<!-- Complete Linkage Tree -->
+<line x1="45" y1="95" x2="45" y2="78" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="75" y1="95" x2="75" y2="78" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="45" y1="78" x2="75" y2="78" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="60" y="74" font-size="5.5" fill="#7c3aed" font-weight="bold" text-anchor="middle">h=3</text>
+<line x1="150" y1="95" x2="150" y2="62" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="185" y1="95" x2="185" y2="62" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="150" y1="62" x2="185" y2="62" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="167" y="58" font-size="5.5" fill="#7c3aed" font-weight="bold" text-anchor="middle">h=7</text>
+<line x1="60" y1="78" x2="60" y2="44" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="115" y1="95" x2="115" y2="44" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="60" y1="44" x2="115" y2="44" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="87" y="40" font-size="5.5" fill="#7c3aed" font-weight="bold" text-anchor="middle">h=13</text>
+<line x1="87" y1="44" x2="87" y2="16" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="167" y1="62" x2="167" y2="16" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="87" y1="16" x2="167" y2="16" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="127" y="13" font-size="5.5" fill="#7c3aed" font-weight="bold" text-anchor="middle">h=28</text>
+<!-- Cut Line H=20 -->
+<line x1="28" y1="30" x2="155" y2="30" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
+<text x="160" y="32" font-size="5.5" fill="#dc2626" font-weight="bold" text-anchor="start">Cut H=20 (k=2)</text>
+</svg>
+    <div class="diagram-caption">Task A9: Complete Linkage Dendrogram</div>
+    <div style="font-size: 5.8pt; color: #16a34a; font-weight: bold;">Final Clusters: {8, 11, 21} and {29, 36}</div>
+  </div>
+</div>
+<h4>Key Inferences (Must Write in Exam):</h4>
+<ol>
+<li><strong>Single Linkage favors nearest neighbors</strong>, pulling point 21 towards the right cluster <span class="math-inline">$\{29, 36\}$</span> because <span class="math-inline">$|21-29|=8 &lt; |21-11|=10$</span>.</li>
+<li><strong>Complete Linkage enforces compact diameter</strong>, pulling point 21 towards the left cluster <span class="math-inline">$\{8, 11\}$</span> because the maximum span <span class="math-inline">$|21-8|=13$</span> is smaller than the span <span class="math-inline">$|36-21|=15$</span>.</li>
+</ol>
+<hr>
+<h2>6.2 Task A10 (Slide 3.6, p.21): K-Means on <span class="math-inline">$\{3, 5, 10, 13, 4, 21, 31, 12, 26\}$</span> (<span class="math-inline">$k=2$</span>)</h2>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING [Task A10] (Slide 3.6, Page 21)</strong>:<br>
+*&quot;TASK FOR YOU [A10]:</p>
+<ol>
+<li>Using K-means clustering, cluster the following data into two clusters and show each step:<br>
+<span class="math-inline">$\{3, 5, 10, 13, 4, 21, 31, 12, 26\}$</span>.<br>
+Give your step-by-step computational analysis.</li>
+<li>Investigate the computational processes of the K-medoid algorithm with a suitable scenario.&quot;*</li>
+</ol>
+</blockquote>
+<h3>Step-by-Step Computational Analysis (<span class="math-inline">$m_1=3.0, m_2=5.0$</span>):</h3>
+<ul>
+<li><strong>Iteration 1</strong>: Midpoint <span class="math-inline">$= \frac{3.0 + 5.0}{2} = 4.0$</span>.<br>
+<span class="math-inline">$K_1 = \{3, 4\} \implies \mathbf{m_1^{(1)} = \frac{3+4}{2} = 3.50}$</span>.<br>
+<span class="math-inline">$K_2 = \{5, 10, 12, 13, 21, 26, 31\} \implies \mathbf{m_2^{(1)} = \frac{118}{7} = 16.86}$</span>.</li>
+<li><strong>Iteration 2</strong>: Midpoint <span class="math-inline">$= \frac{3.50 + 16.86}{2} = 10.18$</span>.<br>
+<span class="math-inline">$K_1 = \{3, 4, 5, 10\} \implies \mathbf{m_1^{(2)} = \frac{22}{4} = 5.50}$</span>.<br>
+<span class="math-inline">$K_2 = \{12, 13, 21, 26, 31\} \implies \mathbf{m_2^{(2)} = \frac{103}{5} = 20.60}$</span>.</li>
+<li><strong>Iteration 3</strong>: Midpoint <span class="math-inline">$= \frac{5.50 + 20.60}{2} = 13.05$</span>.<br>
+<span class="math-inline">$K_1 = \{3, 4, 5, 10, 12, 13\} \implies \mathbf{m_1^{(3)} = \frac{47}{6} = 7.83}$</span>.<br>
+<span class="math-inline">$K_2 = \{21, 26, 31\} \implies \mathbf{m_2^{(3)} = \frac{78}{3} = 26.00}$</span>.</li>
+<li><strong>Iteration 4</strong>: Midpoint <span class="math-inline">$= \frac{7.83 + 26.00}{2} = 16.915$</span>.<br>
+<span class="math-inline">$K_1 = \{3, 4, 5, 10, 12, 13\}$</span> (Unchanged!).<br>
+<span class="math-inline">$K_2 = \{21, 26, 31\}$</span> (Unchanged!) <span class="math-inline">$\implies$</span> <strong>CONVERGENCE ACHIEVED!</strong></li>
+<li><strong>Final Cluster Centroids</strong>: <span class="math-inline">$C_1 = 7.83, C_2 = 26.00$</span>.</li>
+<li><strong>Total SSE</strong>: <span class="math-inline">$94.84 + 50.00 = \mathbf{144.84}$</span>.</li>
+</ul>
+<hr>
+<h2>6.3 Task A11 (Slide 4.1, p.22-23): 20-Row Mammals Naïve Bayes Classification</h2>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING [Task A11] (Slide 4.1, Page 22-23)</strong>:<br>
+<em>&quot;Task to think in-depth - [A-11]:<br>
+Given the dataset of 20 animal instances with attributes: Give Birth, Can Fly, Live in Water, Have Legs, and Class (mammals vs non-mammals).<br>
+Classify the unknown test animal:<br>
+<span class="math-inline">$X = (\text{Give Birth} = \text{yes}, \text{Can Fly} = \text{no}, \text{Live in Water} = \text{yes}, \text{Have Legs} = \text{no})$</span><br>
+using Naïve Bayes Classifier.&quot;</em></p>
+</blockquote>
+<h3>Step-by-Step Likelihood Calculations:</h3>
+<ol>
+<li><strong>Give Birth = yes</strong>: <span class="math-inline">$P(\text{Give Birth}=\text{yes} \mid M) = \frac{6}{7} \approx 0.8571$</span>; <span class="math-inline">$P(\text{Give Birth}=\text{yes} \mid NM) = \frac{1}{13} \approx 0.0769$</span>.</li>
+<li><strong>Can Fly = no</strong>: <span class="math-inline">$P(\text{Can Fly}=\text{no} \mid M) = \frac{6}{7} \approx 0.8571$</span>; <span class="math-inline">$P(\text{Can Fly}=\text{no} \mid NM) = \frac{10}{13} \approx 0.7692$</span>.</li>
+<li><strong>Live in Water = yes</strong>: <span class="math-inline">$P(\text{Live in Water}=\text{yes} \mid M) = \frac{2}{7} \approx 0.2857$</span>; <span class="math-inline">$P(\text{Live in Water}=\text{yes} \mid NM) = \frac{3}{13} \approx 0.2308$</span>.</li>
+<li><strong>Has Legs = no</strong>: <span class="math-inline">$P(\text{Has Legs}=\text{no} \mid M) = \frac{2}{7} \approx 0.2857$</span>; <span class="math-inline">$P(\text{Has Legs}=\text{no} \mid NM) = \frac{4}{13} \approx 0.3077$</span>.</li>
+</ol>
+<h3>Posterior Scoring:</h3>
+<ul>
+<li><strong>Score(Mammal)</strong>: <span class="math-inline">$0.35 \times \left(\frac{6}{7} \times \frac{6}{7} \times \frac{2}{7} \times \frac{2}{7}\right) = 0.35 \times \frac{144}{2401} = \mathbf{0.02099}$</span>.</li>
+<li><strong>Score(Non-Mammal)</strong>: <span class="math-inline">$0.65 \times \left(\frac{1}{13} \times \frac{10}{13} \times \frac{3}{13} \times \frac{4}{13}\right) = 0.65 \times \frac{120}{28561} = \mathbf{0.00273}$</span>.</li>
+<li><strong>Decision</strong>: Normalized <span class="math-inline">$P(M \mid X) = \frac{0.02099}{0.02099 + 0.00273} = \mathbf{88.5\%} \implies$</span> <strong>MAMMAL</strong>.</li>
+</ul>
+<hr>
+<h2>6.4 Activity 8 (Slide 3.4, p.10, 19, 20): Cluster Quality &amp; Similarity Metrics</h2>
+<blockquote>
+<p>🎯 <strong>EXACT SLIDE QUESTION WORDING [Activity 8] (Slide 3.4, Page 10, 19, 20)</strong>:<br>
+<em>&quot;1. Purity in Clusters (p. 19): Assume that we cluster three category of data items (colored red, blue, green) into three clusters: Cluster I (5 red, 1 blue), Cluster II (1 red, 4 blue, 1 green), Cluster III (2 red, 0 blue, 3 green). Calculate purity to measure the quality of each cluster.<br>
+2. Cosine Similarity (p. 10): Find the similarity between documents 1 and 2: <span class="math-inline">$d_1 = (5, 0, 3, 0, 2, 0, 0, 2, 0, 0)$</span> and <span class="math-inline">$d_2 = (3, 0, 2, 0, 1, 1, 0, 1, 0, 1)$</span>.<br>
+3. Jaccard Similarity (p. 20): Formulate a real-world scenario to use Jaccard similarity and compute similarity/distance between two object sets.&quot;</em></p>
+</blockquote>
+<h3>1. Cluster Purity Calculation:</h3>
+<p><div class="math-display">$$\text{Purity}(\Omega, \mathbb{C}) = \frac{1}{N} \sum_{k} \max_j |\omega_k \cap c_j| = \frac{5 + 4 + 3}{17} = \frac{12}{17} = \mathbf{70.59\%}$$</div></p>
+<h3>2. Cosine Similarity between Slide Vectors:</h3>
+<ul>
+<li>Dot Product: <span class="math-inline">$\mathbf{d_1} \cdot \mathbf{d_2} = (5\times3) + (3\times2) + (2\times1) + (2\times1) = 15 + 6 + 2 + 2 = \mathbf{25}$</span>.</li>
+<li>Magnitudes: <span class="math-inline">$\|\mathbf{d_1}\| = \sqrt{42} \approx 6.481$</span>; <span class="math-inline">$\|\mathbf{d_2}\| = \sqrt{17} \approx 4.123$</span>.</li>
+<li><strong>Cosine Similarity</strong>: <span class="math-inline">$\cos(\mathbf{d_1}, \mathbf{d_2}) = \frac{25}{6.481 \times 4.123} = \frac{25}{26.721} \approx \mathbf{0.9356} \approx \mathbf{0.94}$</span>.</li>
+</ul>
+<h3>3. Jaccard Similarity and Distance:</h3>
+<ul>
+<li><span class="math-inline">$A = \{\text{Bread}, \text{Milk}, \text{Beer}\}$</span>, <span class="math-inline">$B = \{\text{Bread}, \text{Milk}, \text{Diaper}, \text{Eggs}, \text{Coke}\}$</span>.</li>
+<li><span class="math-inline">$J(A, B) = \frac{|A \cap B|}{|A \cup B|} = \frac{2}{6} = \mathbf{0.333} \text{ (33.3\%)}$</span>; <span class="math-inline">$d_J(A, B) = 1 - 0.333 = \mathbf{0.667} \text{ (66.7\%)}$</span>.</li>
+</ul>
+<hr>
+<h1>📌 SECTION 7: PRE-EXAM CALCULATOR SURVIVAL GUIDE &amp; READY-TO-DRAW BLANK TABLES</h1>
+<h3>1. Casio fx-991ES / fx-991EX Key-by-Key Keystrokes:</h3>
+<ul>
+<li><strong>AdaBoost <span class="math-inline">$\alpha$</span></strong>: <code>0.5</code> <span class="math-inline">$\times$</span> <code>ln(</code> <code>(</code> <code>1</code> <code>-</code> <code>[eps]</code> <code>)</code> <code>÷</code> <code>[eps]</code> <code>)</code> <code>=</code></li>
+<li><strong>Multiplier <span class="math-inline">$e^{-\alpha}$</span></strong>: <code>SHIFT</code> + <code>ln</code> (<span class="math-inline">$e^x$</span>) <span class="math-inline">$\to$</span> <code>(-[alpha])</code> <code>=</code></li>
+<li><strong>Multiplier <span class="math-inline">$e^{+\alpha}$</span></strong>: <code>SHIFT</code> + <code>ln</code> (<span class="math-inline">$e^x$</span>) <span class="math-inline">$\to$</span> <code>(+[alpha])</code> <code>=</code></li>
+<li><strong>Euclidean Distance 2D</strong>: <code>√(</code> <code>(</code> <code>x1</code> <code>-</code> <code>x2</code> <code>)</code> <code>x²</code> <code>+</code> <code>(</code> <code>y1</code> <code>-</code> <code>y2</code> <code>)</code> <code>x²</code> <code>)</code> <code>=</code></li>
+<li><strong>Gaussian Density</strong>: <code>1</code> <code>÷</code> <code>(</code> <code>√(</code> <code>2</code> <code>×</code> <code>π</code> <code>×</code> <code>[var]</code> <code>)</code> <code>)</code> <span class="math-inline">$\times$</span> <code>SHIFT</code> <code>ln</code> <code>(</code> <code>-(</code> <code>[x]</code> <code>-</code> <code>[mu]</code> <code>)x²</code> <code>÷</code> <code>(</code> <code>2</code> <code>×</code> <code>[var]</code> <code>)</code> <code>)</code></li>
+</ul>
+<h3>2. Ready-to-Draw Table Templates (Draw These Instantly in the Exam):</h3>
+<h4>A. AdaBoost Iteration Table:</h4>
+<pre><code class="language-text">+----------+----------+----------+----------+----------+------------+----------------+--------------+
+| Sample i | True y_i | Pred h_t |  Status  |  Old w_i | Multiplier | Unnormalized w | Final w_new  |
++----------+----------+----------+----------+----------+------------+----------------+--------------+
+| 1        |          |          |          |          |            |                |              |
+| 2        |          |          |          |          |            |                |              |
+| ...      |          |          |          |          |            |                |              |
++----------+----------+----------+----------+----------+------------+----------------+--------------+
+| SUM      |    --    |    --    |    --    |  1.0000  |     --     | Z_t = ...      | 1.0000       |
++----------+----------+----------+----------+----------+------------+----------------+--------------+
+</code></pre>
+<h4>B. K-Means Assignment &amp; SSE Table:</h4>
+<pre><code class="language-text">+----------+--------------+--------------+------------------+---------------------+
+| Point x  | Dist to C_1  | Dist to C_2  | Assigned Cluster | Dist^2 (for SSE)    |
++----------+--------------+--------------+------------------+---------------------+
+| x_1      |              |              |                  |                     |
+| x_2      |              |              |                  |                     |
+| ...      |              |              |                  |                     |
++----------+--------------+--------------+------------------+---------------------+
+| TOTAL    |              |              |                  | Total SSE = ...     |
++----------+--------------+--------------+------------------+---------------------+
+</code></pre>
+<h4>C. Naïve Bayes Feature Likelihood Table:</h4>
+<pre><code class="language-text">+-------------------+----------------+--------------------+-------------------+------------------+
+| Feature Attribute | Value in Query | Count in Class Yes | P(Feature \| Yes) | Count in Class No|
++-------------------+----------------+--------------------+-------------------+------------------+
+| Attribute 1       |                |                    |                   |                  |
+| Attribute 2       |                |                    |                   |                  |
+| Attribute 3       |                |                    |                   |                  |
+| Attribute 4       |                |                    |                   |                  |
++-------------------+----------------+--------------------+-------------------+------------------+
+| CLASS PRIORS      |                | N_yes = ...        | P(Yes) = ...      | N_no = ...       |
+| PRODUCT SCORE     |                |                    | Score(Yes) = ...  | Score(No) = ...  |
+| FINAL DECISION    |                | Normalized %: ...  | WINNER: [ YES / NO ]                 |
++-------------------+----------------+--------------------+-------------------+------------------+
+</code></pre>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ],
+        throwOnError: false
+    });
+});
+</script>
+</body>
+</html>
