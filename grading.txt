@@ -1,0 +1,61 @@
+================================================================================
+                    VIT BHOPAL UNIVERSITY - OFFICIAL GRADING FORMULA
+================================================================================
+
+1. TOTAL COURSE MARKS COMPOSITION (OUT OF 100)
+--------------------------------------------------------------------------------
+Course Total (100) = CAT1 (15) + CAT2 (15) + Internals (35) + Attendance (5) + TEE (30)
+
+Detailed Breakdown & Scaling:
+  - CAT-1      : 15 Marks (15% Weightage)
+                 Scored out of 50 -> Scaled: CAT1_Marks * 0.30
+                 Formula: (CAT1_Marks / 50) * 15
+
+  - CAT-2      : 15 Marks (15% Weightage)
+                 Scored out of 50 -> Scaled: CAT2_Marks * 0.30
+                 Formula: (CAT2_Marks / 50) * 15
+
+  - Internals  : 35 Marks (35% Weightage)
+                 Continuous assessments, Digital Assignments (DAs), Quizzes, Seminars
+
+  - Attendance : 5 Marks (5% Weightage)
+                 Bonus 5 marks (everyone gets full 5/5)
+
+  - TEE / FAT  : 30 Marks (30% Weightage)
+                 Term End Examination scored out of 100 -> Scaled: TEE_Marks * 0.30
+                 Formula: (TEE_Marks / 100) * 30
+
+  Sum: 15 + 15 + 35 + 5 + 30 = 100 Marks Total
+
+
+2. OFFICIAL RELATIVE GRADING - LETTER GRADE AND ITS RANGE
+--------------------------------------------------------------------------------
+Based on Class Mean (Mean / mu) and Standard Deviation (sigma):
+
++-------+----------------------------------------------------------------------+
+| Grade | Official Relative Grading Formula Range                              |
++-------+----------------------------------------------------------------------+
+|   S   | Total Marks >= (Mean + 1.5*sigma) with a minimum of 90% total        |
+|   A   | Total Marks >= (Mean + 0.5*sigma) and Total Marks < (Mean + 1.5*sigma)|
+|   B   | Total Marks >= (Mean - 0.5*sigma) and Total Marks < (Mean + 0.5*sigma)|
+|   C   | Total Marks >= (Mean - 1.0*sigma) and Total Marks < (Mean - 0.5*sigma)|
+|   D   | Total Marks >= (Mean - 1.5*sigma) and Total Marks < (Mean - 1.0*sigma)|
+|   E   | Total Marks >= (Mean - 2.0*sigma) and Total Marks < (Mean - 1.5*sigma)|
+|   F   | Total Marks <  (Mean - 2.0*sigma)                                    |
++-------+----------------------------------------------------------------------+
+
+CRITICAL S-GRADE RULE:
+  To get an 'S' grade, you MUST satisfy BOTH:
+    1) Total Marks >= Mean + 1.5*sigma
+
+MANDATORY PASSING RULES:
+  - TEE Minimum   : Must score at least 40 out of 100 in TEE (>= 12 / 30 weighted).
+  - Course Minimum: Final composite total aggregate must be >= 50 out of 100.
+  - Grade Points  : S=10, A=9, B=8, C=7, D=6, E=5, F=0.
+
+
+3. SCORE CALCULATION & TEE TARGET FORMULA
+--------------------------------------------------------------------------------
+Final Total (100) = (CAT1 * 0.30) + (CAT2 * 0.30) + Internals + Attendance (5) + (TEE * 0.30)
+
+
