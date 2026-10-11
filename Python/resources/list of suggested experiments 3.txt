@@ -1,0 +1,5 @@
+8.Write python program to find the most frequent words in a text read from a file.
+ 9.Write python program in which a class is defined, then create object of that class and
+call simple ‘print function’ defined in class. 
+10.Write python program in which an function (with single string parameter ) is defined
+and calling that function prints the string parameters given to function.

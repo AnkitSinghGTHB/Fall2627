@@ -103,7 +103,7 @@
 >    *Therefore, $R$ is an Equivalence Relation.*
 > 4. **Equivalence Classes & Partition**:  
 >    The equivalence classes are the residue classes modulo $m$:  
->    $$[r] = \{x \in \mathbb{Z} \mid x \equiv r \pmod m\} = \{q m + r \mid q \in \mathbb{Z}\} \quad \text{for } r = 0, 1, 2, \dots, m-1$$  
+>    $[r] = \{x \in \mathbb{Z} \mid x \equiv r \pmod m\} = \{q m + r \mid q \in \mathbb{Z}\} \quad \text{for } r = 0, 1, 2, \dots, m-1$  
 >    * **Disjointness**: If $r_1 \ne r_2$ ($0 \le r_1 < r_2 < m$), $[r_1] \cap [r_2] = \emptyset$ (an integer cannot have two different remainders upon division by $m$). `[2M]`  
 >    * **Covering**: By the Division Algorithm, every integer $n$ can be uniquely written as $n = q m + r$ with $0 \le r < m$. Thus, $\bigcup_{r=0}^{m-1} [r] = \mathbb{Z}$. `[2M]`  
 >    *Hence, the equivalence classes form a complete partition of $\mathbb{Z}$.*
@@ -183,20 +183,19 @@
 
 ### ❓ Question 3.3 (5 Marks): PDNF and PCNF Formulation
 > **Problem (VIT CAT-2 / FAT 2024)**:  
-> Obtain the Principal Disjunctive Normal Form (PDNF) and Principal Conjunctive Normal Form (PCNF) for:  
-> $$f(x, y, z) = x y' + z$$
+> Obtain the Principal Disjunctive Normal Form (PDNF) and Principal Conjunctive Normal Form (PCNF) for: $f(x, y, z) = x y' + z$
 >
 > **Model Solution**:
 > 1. **Expansion of $x y'$**: Missing variable $z$:  
->    $$x y' = x y'(z + z') = x y' z + x y' z' = m_5 + m_4$$ `[1.5M]`
+>    $x y' = x y'(z + z') = x y' z + x y' z' = m_5 + m_4$ &nbsp;&nbsp;`[1.5M]`
 > 2. **Expansion of $z$**: Missing variables $x$ and $y$:  
->    $$z = (x + x')(y + y')z = (x y + x y' + x' y + x' y')z = x y z + x y' z + x' y z + x' y' z = m_7 + m_5 + m_3 + m_1$$ `[1.5M]`
+>    $z = (x + x')(y + y')z = (x y + x y' + x' y + x' y')z = x y z + x y' z + x' y z + x' y' z = m_7 + m_5 + m_3 + m_1$ &nbsp;&nbsp;`[1.5M]`
 > 3. **Combine & Deduplicate**:  
->    $$f(x, y, z) = m_1 + m_3 + m_4 + m_5 + m_7$$  
->    $$\mathbf{\text{PDNF} = \sum m(1, 3, 4, 5, 7) = x'y'z + x'yz + xy'z' + xy'z + xyz}$$ `[1M]`
+>    $f(x, y, z) = m_1 + m_3 + m_4 + m_5 + m_7$  
+>    **$\text{PDNF} = \sum m(1, 3, 4, 5, 7) = x'y'z + x'yz + xy'z' + xy'z + xyz$** &nbsp;&nbsp;`[1M]`
 > 4. **Obtain PCNF**:  
 >    Take the remaining indices from $\{0, 1, 2, 3, 4, 5, 6, 7\}$ that are NOT in PDNF: $\{0, 2, 6\}$.  
->    $$\mathbf{\text{PCNF} = \prod M(0, 2, 6) = (x + y + z)(x + y' + z)(x' + y' + z)}$$ `[1M]`
+>    **$\text{PCNF} = \prod M(0, 2, 6) = (x + y + z)(x + y' + z)(x' + y' + z)$** &nbsp;&nbsp;`[1M]`
 
 ---
 
@@ -303,21 +302,80 @@
 > **Model Solution**:
 > 1. Let $G$ be two triangles sharing common edge $e = (u, v)$.
 > 2. **Apply Deletion-Contraction Theorem**:  
->    $$P(G, \lambda) = P(G - e, \lambda) - P(G / e, \lambda)$$ `[1M]`
+>    $P(G, \lambda) = P(G - e, \lambda) - P(G / e, \lambda)$ &nbsp;&nbsp;`[1M]`
 > 3. **Analyze $G - e$**:  
 >    Deleting the shared edge $e$ leaves a 4-cycle $C_4$.  
->    We know: $P(C_4, \lambda) = (\lambda - 1)^4 + (\lambda - 1) = \lambda(\lambda - 1)(\lambda^2 - 3\lambda + 3)$. `[2M]`
+>    We know: $P(C_4, \lambda) = (\lambda - 1)^4 + (\lambda - 1) = \lambda(\lambda - 1)(\lambda^2 - 3\lambda + 3)$. &nbsp;&nbsp;`[2M]`
 > 4. **Analyze $G / e$**:  
 >    Contracting the shared edge $e$ merges vertices $u$ and $v$. The two remaining vertices are each connected to the merged vertex, and they are not connected to each other. This forms a star graph / path of length 2 / tree with 3 vertices ($T_3$)!  
->    $$P(G / e, \lambda) = P(T_3, \lambda) = \lambda(\lambda - 1)^2$$ `[1M]`
+>    $P(G / e, \lambda) = P(T_3, \lambda) = \lambda(\lambda - 1)^2$ &nbsp;&nbsp;`[1M]`
 > 5. **Subtract**:  
->    $$P(G, \lambda) = \lambda(\lambda - 1)(\lambda^2 - 3\lambda + 3) - \lambda(\lambda - 1)^2$$  
+>    $P(G, \lambda) = \lambda(\lambda - 1)(\lambda^2 - 3\lambda + 3) - \lambda(\lambda - 1)^2$  
 >    Factor out $\lambda(\lambda - 1)$:  
->    $$= \lambda(\lambda - 1) \left[ (\lambda^2 - 3\lambda + 3) - (\lambda - 1) \right]$$  
->    $$= \lambda(\lambda - 1) \left[ \lambda^2 - 4\lambda + 4 \right]$$  
->    $$= \mathbf{\lambda(\lambda - 1)(\lambda - 2)^2}$$ `[1M]`
+>    $= \lambda(\lambda - 1) [ (\lambda^2 - 3\lambda + 3) - (\lambda - 1) ]$  
+>    $= \lambda(\lambda - 1) [ \lambda^2 - 4\lambda + 4 ]$  
+>    $= \mathbf{\lambda(\lambda - 1)(\lambda - 2)^2}$ &nbsp;&nbsp;`[1M]`
 >
 > *(Verification: If $\lambda = 2$, $P(G, 2) = 0$ because $G$ contains a triangle $K_3$ which needs at least 3 colors. If $\lambda = 3$, $P(G, 3) = 3(2)(1)^2 = 6$ valid colorings!).*
+
+---
+
+### ❓ Question 5.3 (12 Marks): Graph Complement, Isomorphism, Eulerian/Hamiltonian & Chromatic Number (Direct from `some imp.txt`)
+> **Problem**:  
+> Given two graphs $G_1$ and $G_2$ with 5 vertices each:  
+> - $G_1 = (V_1, E_1)$ where $V_1 = \{v_1, v_2, v_3, v_4, v_5\}$ forming a cycle $C_5$: $(v_1, v_2), (v_2, v_3), (v_3, v_4), (v_4, v_5), (v_5, v_1)$.  
+> - $G_2 = (V_2, E_2)$ where $V_2 = \{u_1, u_2, u_3, u_4, u_5\}$ forming a star/pentagram cycle: $(u_1, u_3), (u_3, u_5), (u_5, u_2), (u_2, u_4), (u_4, u_1)$.  
+> **Questions**:  
+> 1. Check whether $G_1$ and $G_2$ are isomorphic.  
+> 2. Determine whether $G_1$ and $G_2$ are Eulerian, Hamiltonian, or both.  
+> 3. Draw the complement graphs $\overline{G_1}$ and $\overline{G_2}$.  
+> 4. Check whether $\overline{G_1}$ and $\overline{G_2}$ are isomorphic, Eulerian, and Hamiltonian.  
+> 5. Find the chromatic numbers $\chi(G_1), \chi(G_2), \chi(\overline{G_1}), \chi(\overline{G_2})$.
+
+#### Model Solution:
+
+* **Part 1: Isomorphism of $G_1$ and $G_2$** `[3 Marks]`:
+  - Invariants: $|V| = 5$, $|E| = 5$.
+  - Degrees: In both graphs, every vertex has degree exactly 2 (2-regular graphs).
+  - Cycle Structure: Both are connected simple graphs consisting of a single cycle of length 5 ($C_5$).
+  - **Isomorphism Mapping Function $f: V_1 \to V_2$**:
+    - $f(v_1) = u_1$
+    - $f(v_2) = u_3$
+    - $f(v_3) = u_5$
+    - $f(v_4) = u_2$
+    - $f(v_5) = u_4$
+  - Edge preservation: $(v_1, v_2) \to (u_1, u_3) \in E_2$, $(v_2, v_3) \to (u_3, u_5) \in E_2$, etc. All edges preserved.  
+    $\therefore \mathbf{G_1 \cong G_2}$ (Isomorphic!).
+
+* **Part 2: Eulerian & Hamiltonian Nature of $G_1$ and $G_2$** `[2 Marks]`:
+  - **Eulerian?**: A connected graph has an Euler circuit if and only if every vertex has an **even degree**. Here, $\deg(v) = 2$ (even) for all vertices.  
+    $\implies$ **Both $G_1$ and $G_2$ are EULERIAN.** (Euler circuit: $v_1-v_2-v_3-v_4-v_5-v_1$).
+  - **Hamiltonian?**: A cycle $C_5$ visits every vertex exactly once and returns to the start.  
+    $\implies$ **Both $G_1$ and $G_2$ are HAMILTONIAN.**
+
+* **Part 3: Complement Graphs $\overline{G_1}$ and $\overline{G_2}$** `[2 Marks]`:
+  - Complete graph $K_5$ has $\binom{5}{2} = 10$ edges.
+  - Number of edges in complement: $|E(\overline{G})| = 10 - 5 = \mathbf{5\text{ edges}}$.
+  - In $\overline{G_1}$, edges are the chords: $(v_1, v_3), (v_1, v_4), (v_2, v_4), (v_2, v_5), (v_3, v_5)$.
+  - Notice that these 5 edges in $\overline{G_1}$ form another 5-cycle ($C_5$)!  
+    *(In fact, the 5-cycle $C_5$ is **self-complementary**: $\overline{C_5} \cong C_5$).*
+
+* **Part 4: Isomorphism, Eulerian & Hamiltonian for Complements** `[2 Marks]`:
+  - **Theorem**: Two graphs are isomorphic if and only if their complements are isomorphic:
+    $$G_1 \cong G_2 \iff \overline{G_1} \cong \overline{G_2}$$
+  - Since $G_1 \cong G_2$, **$\overline{G_1} \cong \overline{G_2}$ is guaranteed.**
+  - Since $\overline{G_1}$ and $\overline{G_2}$ are also 5-cycles ($C_5$), every vertex has degree 2 (even).
+  - $\implies$ **Both $\overline{G_1}$ and $\overline{G_2}$ are EULERIAN and HAMILTONIAN.**
+
+* **Part 5: Chromatic Numbers** `[3 Marks]`:
+  - **Rule for Odd Cycles $C_{2k+1}$**: Any odd cycle has chromatic number $\chi(C_{2k+1}) = 3$. (Requires 3 colors: alternating 2 colors on an odd cycle leaves the last vertex adjacent to two different colors).
+  - Therefore:
+    - $\mathbf{\chi(G_1) = 3}$
+    - $\mathbf{\chi(G_2) = 3}$
+    - Since $\overline{G_1} \cong C_5$ and $\overline{G_2} \cong C_5$:
+      - $\mathbf{\chi(\overline{G_1}) = 3}$
+      - $\mathbf{\chi(\overline{G_2}) = 3}$
+  - *(Full 12/12 Marks!)*
 
 ---
 

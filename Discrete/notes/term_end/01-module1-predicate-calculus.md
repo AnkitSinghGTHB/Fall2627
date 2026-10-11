@@ -64,8 +64,10 @@ Given a conditional statement: **$p \to q$** ("If $p$, then $q$"):
 
 > ⚠️ **CRITICAL THEOREM**:  
 > **A conditional statement is LOGICALLY EQUIVALENT to its CONTRAPOSITIVE**:  
-> $$p \to q \equiv \neg q \to \neg p$$  
-> The Converse and Inverse are equivalent to each other, but **NOT** to the original conditional!
+> 
+> $$p \to q \equiv \neg q \to \neg p$$
+> 
+> *(The Converse and Inverse are equivalent to each other, but **NOT** to the original conditional!)*
 
 #### 📝 Worked Exam Example:
 > **Question**: For the statement *"If it rains, then the match is cancelled"*, write the Converse, Inverse, and Contrapositive.
@@ -100,11 +102,11 @@ To score full marks, you must apply the formal laws line by line and state the l
 | **Complement Laws** | $p \vee \neg p \equiv T$ | $p \wedge \neg p \equiv F$ |
 
 ### 2.2 Crucial Conditional Equivalence Laws (Memorize These!)
-1. **Conditional Identity**: $$p \to q \equiv \neg p \vee q$$
-2. **Negation of Conditional**: $$\neg(p \to q) \equiv p \wedge \neg q$$
-3. **Contrapositive Law**: $$p \to q \equiv \neg q \to \neg p$$
-4. **Biconditional Identity**: $$p \leftrightarrow q \equiv (p \to q) \wedge (q \to p) \equiv (\neg p \vee q) \wedge (\neg q \vee p)$$
-5. **Exportation Law**: $$(p \wedge q) \to r \equiv p \to (q \to r)$$
+1. **Conditional Identity**: $p \to q \equiv \neg p \vee q$
+2. **Negation of Conditional**: $\neg(p \to q) \equiv p \wedge \neg q$
+3. **Contrapositive Law**: $p \to q \equiv \neg q \to \neg p$
+4. **Biconditional Identity**: $p \leftrightarrow q \equiv (p \to q) \wedge (q \to p) \equiv (\neg p \vee q) \wedge (\neg q \vee p)$
+5. **Exportation Law**: $(p \wedge q) \to r \equiv p \to (q \to r)$
 
 ---
 
@@ -133,14 +135,14 @@ $$(P_1 \wedge P_2 \wedge \dots \wedge P_k) \to C \text{ is a TAUTOLOGY}$$
 
 | Rule of Inference | Name | Plain English Intuition |
 | :--- | :--- | :--- |
-| $\begin{aligned} &p \\ &p \to q \\ \hline \therefore &q \end{aligned}$ | **Modus Ponens (MP)** | If $p$ is true and $p$ implies $q$, then $q$ must be true. |
-| $\begin{aligned} &\neg q \\ &p \to q \\ \hline \therefore &\neg p \end{aligned}$ | **Modus Tollens (MT)** | If $q$ is false, then $p$ couldn't have been true. |
-| $\begin{aligned} &p \to q \\ &q \to r \\ \hline \therefore &p \to r \end{aligned}$ | **Hypothetical Syllogism (HS)** | Chain rule: $p$ leads to $q$, and $q$ leads to $r$, so $p$ leads to $r$. |
-| $\begin{aligned} &p \vee q \\ &\neg p \\ \hline \therefore &q \end{aligned}$ | **Disjunctive Syllogism (DS)** | Either $p$ or $q$. But not $p$. So it must be $q$. |
-| $\begin{aligned} &p \\ \hline \therefore &p \vee q \end{aligned}$ | **Addition (Add)** | If $p$ is true, then "$p$ OR anything" is also true. |
-| $\begin{aligned} &p \wedge q \\ \hline \therefore &p \end{aligned}$ | **Simplification (Simp)** | If both $p$ and $q$ are true, then $p$ is certainly true. |
-| $\begin{aligned} &p \\ &q \\ \hline \therefore &p \wedge q \end{aligned}$ | **Conjunction (Conj)** | If $p$ is true and $q$ is true, you can join them with AND. |
-| $\begin{aligned} &p \vee q \\ &\neg p \vee r \\ \hline \therefore &q \vee r \end{aligned}$ | **Resolution (Res)** | Resolves complementary literals $p$ and $\neg p$. |
+| $p, \ p \to q$<br>$\therefore q$ | **Modus Ponens (MP)** | If $p$ is true and $p$ implies $q$, then $q$ must be true. |
+| $\neg q, \ p \to q$<br>$\therefore \neg p$ | **Modus Tollens (MT)** | If $q$ is false, then $p$ couldn't have been true. |
+| $p \to q, \ q \to r$<br>$\therefore p \to r$ | **Hypothetical Syllogism (HS)** | Chain rule: $p$ leads to $q$, and $q$ leads to $r$, so $p$ leads to $r$. |
+| $p \vee q, \ \neg p$<br>$\therefore q$ | **Disjunctive Syllogism (DS)** | Either $p$ or $q$. But not $p$. So it must be $q$. |
+| $p$<br>$\therefore p \vee q$ | **Addition (Add)** | If $p$ is true, then "$p$ OR anything" is also true. |
+| $p \wedge q$<br>$\therefore p$ | **Simplification (Simp)** | If both $p$ and $q$ are true, then $p$ is certainly true. |
+| $p, \ q$<br>$\therefore p \wedge q$ | **Conjunction (Conj)** | If $p$ is true and $q$ is true, you can join them with AND. |
+| $p \vee q, \ \neg p \vee r$<br>$\therefore q \vee r$ | **Resolution (Res)** | Resolves complementary literals $p$ and $\neg p$. |
 
 ---
 
@@ -234,10 +236,10 @@ To do proofs with quantifiers, you follow a 3-step cycle:
 
 | Rule | Name | When & How to Use It |
 | :--- | :--- | :--- |
-| $\begin{aligned} &\forall x P(x) \\ \hline \therefore &P(c) \end{aligned}$ | **Universal Instantiation (UI)** | If something is true for **everyone**, it is true for any specific individual $c$ in the domain. |
-| $\begin{aligned} &P(c) \text{ for arbitrary } c \\ \hline \therefore &\forall x P(x) \end{aligned}$ | **Universal Generalization (UG)** | If $P(c)$ was proved for an **arbitrary (generic)** element $c$ without assuming special properties, it holds for all $x$. |
-| $\begin{aligned} &\exists x P(x) \\ \hline \therefore &P(c) \text{ for some specific } c \end{aligned}$ | **Existential Instantiation (EI)** | If an element exists, give it a **fresh temporary name** $c$. (*Warning: $c$ must be brand new, not previously used!*) |
-| $\begin{aligned} &P(c) \text{ for some known } c \\ \hline \therefore &\exists x P(x) \end{aligned}$ | **Existential Generalization (EG)** | If you found a specific element $c$ that works, then "there exists at least one $x$" is true. |
+| $\forall x \, P(x)$<br>$\therefore P(c)$ | **Universal Instantiation (UI)** | If something is true for **everyone**, it is true for any specific individual $c$ in the domain. |
+| $P(c) \text{ (arbitrary } c\text{)}$<br>$\therefore \forall x \, P(x)$ | **Universal Generalization (UG)** | If $P(c)$ was proved for an **arbitrary (generic)** element $c$ without assuming special properties, it holds for all $x$. |
+| $\exists x \, P(x)$<br>$\therefore P(c) \text{ (fresh } c\text{)}$ | **Existential Instantiation (EI)** | If an element exists, give it a **fresh temporary name** $c$. (*Warning: $c$ must be brand new, not previously used!*) |
+| $P(c) \text{ (known } c\text{)}$<br>$\therefore \exists x \, P(x)$ | **Existential Generalization (EG)** | If you found a specific element $c$ that works, then "there exists at least one $x$" is true. |
 
 > ⚠️ **THE GOLDEN RULE OF EI BEFORE UI**:  
 > Always perform **Existential Instantiation (EI) FIRST** to name the unknown element $c$, and then apply **Universal Instantiation (UI)** to that same $c$! If you do UI first, you cannot use that symbol for EI.

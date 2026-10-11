@@ -1,0 +1,216 @@
+================================================================================
+          FALL 2026–27 TERM END EXAMINATION (TEE/FAT) MASTER STRATEGY SUMMARY
+================================================================================
+Generated On : October 11, 2026
+Target Exams : Starting October 13, 2026
+Student Goal : Maximize TEE scores across all 7 subjects to secure A/S Grades
+
+================================================================================
+1. TEE / FAT EXAM PAPER STRUCTURE (OFFICIAL FORMAT FROM TEE.txt)
+================================================================================
+Total Marks : 100 Marks (3-Hour Duration | Closed Book)
+Course Weightage : 30% of total grade (Scaled: TEE_Score * 0.30 -> Max 30 Marks)
+
+Paper Layout:
+  - Section A : 5 Questions x 12 Marks = 60 Marks
+                (1 Question per module, internal choice "OR" format, e.g. 12 or 12,
+                or split as 6 + 6)
+  - Section B : 5 Questions x 8 Marks = 40 Marks
+                (1 Question per module, direct question without subparts)
+  - Distribution: Every single module (1 to 5) has exactly 20 marks (12M + 8M).
+  - Difficulty  : Between CAT-1 (basic KL01/KL02) and CAT-2 (HOTS KL03/KL04).
+
+================================================================================
+2. OFFICIAL VIT BHOPAL RELATIVE GRADING FORMULA & CUTOFFS (grading.txt)
+================================================================================
+Total Course Composite (100) =
+    (CAT-1 * 0.30) [15M] + (CAT-2 * 0.30) [15M] + Internals [35M] + Attendance [5M] + (TEE * 0.30) [30M]
+
+Relative Grading Cutoffs (Class Mean = mu, Standard Deviation = sigma):
+  - S Grade : Total >= (mu + 1.5*sigma) with a minimum of 90% total
+  - A Grade : Total >= (mu + 0.5*sigma) and < (mu + 1.5*sigma)  [Top ~30% of class]
+  - B Grade : Total >= (mu - 0.5*sigma) and < (mu + 0.5*sigma)  [Middle ~38% of class]
+  - C Grade : Total >= (mu - 1.0*sigma) and < (mu - 0.5*sigma)
+  - D Grade : Total >= (mu - 1.5*sigma) and < (mu - 1.0*sigma)
+  - E Grade : Total >= (mu - 2.0*sigma) and < (mu - 1.5*sigma)
+  - F Grade : Total <  (mu - 2.0*sigma) OR Total < 50 OR TEE < 40/100
+
+Mandatory Passing Rules:
+  1. TEE Component Minimum: Must score at least 40 out of 100 in TEE (>= 12 / 30).
+  2. Course Aggregate Minimum: Final composite total aggregate must be >= 50 / 100.
+
+Typical Class Parameters in TEE:
+  - TEE is closed-book across all 5 modules; class averages drop to ~58–62 / 100.
+  - Final Course Mean (mu) typically settles at 73.0 to 75.0.
+  - Course Standard Deviation (sigma) typically sits at 7.5 to 8.5 (0.5*sigma ~= 4.0).
+
+================================================================================
+3. COMPREHENSIVE 7-SUBJECT AUDIT & TEE TARGET MATRIX
+================================================================================
+Data combined from CAT1.txt, CAT2.txt, TEE.txt, and grading.txt:
+
+--------------------------------------------------------------------------------
+Subject 1: CSE3011 - Python Programming (Slot: B11+B12 | Faculty: Vaishnavi S)
+--------------------------------------------------------------------------------
+  - CAT-1: 37 / 50 (Class Avg: 29) -> Scaled: 11.1 / 15  (+2.4 ahead of class)
+  - CAT-2: 41 / 50 (Class Avg: 38) -> Scaled: 12.3 / 15  (+0.9 ahead of class)
+  - Attendance: 5.0 / 5
+  - Current Pre-TEE Subtotal: 28.4 / 35 recorded (Estimated Full Pre-TEE: ~60.4 / 70)
+  - Standing: +3.3 MARKS AHEAD OF THE CLASS!
+  - Target for A Grade: Need only ~62–66 / 100 in TEE (Just match class average!).
+  - Target for S Grade: 88–92 / 100 in TEE.
+
+--------------------------------------------------------------------------------
+Subject 2: CSE4005 - Machine Learning (Slot: A21+A23 | Faculty: Nilamadhab Mishra)
+--------------------------------------------------------------------------------
+  - CAT-1: 33.5 / 50 (Class Avg: 35) -> Scaled: 10.05 / 15
+  - CAT-2: 40.5 / 50 (Class Avg: 38) -> Scaled: 12.15 / 15
+  - Lab Challenging: 15.0 / 15
+  - Lab Continuous : 20.0 / 20 (Full Marks!)
+  - Attendance     : 5.0 / 5
+  - Recorded Pre-TEE Subtotal: 62.2 / 70.0 (Class Avg: ~58.9 / 70)
+  - Standing: +3.3 MARKS AHEAD OF CLASS!
+  - Target for A Grade: Need only ~64–68 / 100 in TEE.
+  - Target for S Grade: 88–92 / 100 in TEE.
+
+--------------------------------------------------------------------------------
+Subject 3: PLA1004 - Competitive Coding Practices (Slot: B22+B24 | PAT Trainer)
+--------------------------------------------------------------------------------
+  - CAT-1: 40 / 50 (Class Avg: 36) -> Scaled: 12.0 / 15
+  - CAT-2: 35 / 50 (Class Avg: 38.5) -> Scaled: 10.5 / 15
+  - Lab Challenging: 15.0 / 15 (Full Marks!)
+  - Lab Continuous : 19.0 / 20
+  - Attendance     : 5.0 / 5
+  - Recorded Pre-TEE Subtotal: 61.5 / 70.0 (Class Avg: ~59.5 / 70)
+  - Standing: +2.0 MARKS AHEAD OF CLASS!
+  - Target for A Grade: Need only ~65–68 / 100 in TEE.
+
+--------------------------------------------------------------------------------
+Subject 4: MGT2003 - Technology Entrepreneurship (Slot: E14+F14 | Abhishek Raj)
+--------------------------------------------------------------------------------
+  - CAT-1: 34 / 50 (Class Avg: 31) -> Scaled: 10.2 / 15
+  - CAT-2: 43 / 50 (Class Avg: High) -> Scaled: 12.9 / 15
+  - Tutorial + Quiz + Group Activity + Assignment: 28.0 / 35
+  - Attendance: 5.0 / 5
+  - Recorded Pre-TEE Subtotal: 56.1 / 70.0 (Solid, comfortably above class mean)
+  - Target for A Grade: Need ~68–72 / 100 in TEE.
+
+--------------------------------------------------------------------------------
+Subject 5: ECE2002 - Digital Logic Design (Slot: A14+D11+D12 | Kanimozhi M)
+--------------------------------------------------------------------------------
+  - CAT-1: 30 / 50 (Class Avg: 37) -> Scaled: 9.0 / 15
+  - CAT-2: 38 / 50 (Class Avg: 34) -> Scaled: 11.4 / 15 (+1.2 ahead in CAT2!)
+  - Internals: 4/5 (Viva) + 7/10 (Challenging) + 8/10 (Cont) + 5/5 (Tut) = 24.0 / 30
+  - Attendance: 5.0 / 5
+  - Recorded Pre-TEE Subtotal: 49.4 / 65.0 (Estimated 70-scale: ~53.5 / 70)
+  - Standing: Neck-and-neck with class average.
+  - Target for A Grade: Need ~70–74 / 100 in TEE (Standard counter / K-map paper).
+
+--------------------------------------------------------------------------------
+Subject 6: CSE2004 - Theory Of Computation & CD (Slot: A11+A12+A13 | Gaurav Soni)
+--------------------------------------------------------------------------------
+  - CAT-1: 31 / 50 (Class Avg: 30) -> Scaled: 9.3 / 15
+  - CAT-2: 28 / 50 (Class Avg: 34) -> Scaled: 8.4 / 15
+  - Attendance: 5.0 / 5
+  - Recorded so far: 22.7 / 35.0 (Estimated Full Pre-TEE: ~54.7 / 70 vs Class ~56.2)
+  - Standing: Only -1.5 marks deficit from class average!
+  - Target for A Grade: Need ~72–75 / 100 in TEE.
+  - Key to Success: Strictly follow Dr. Soni's mandatory 6-part syntactic rubric.
+
+--------------------------------------------------------------------------------
+Subject 7: MAT2002 - Discrete Mathematics & GT (Slot: B14+B23+D21 | Suresh Dara)
+--------------------------------------------------------------------------------
+  - CAT-1: 20 / 50 (Class Avg: 29) -> Scaled: 6.0 / 15  (-2.7 deficit)
+  - CAT-2: 20 / 50 on portal (Class Avg: 35) -> Scaled: 6.0 / 15 (-4.5 deficit)
+  - Attendance: 5.0 / 5
+  - Recorded so far: 17.0 / 35.0 (Estimated Full Pre-TEE: ~49.0 / 70 vs Class ~56.2)
+  - Starting Deficit: ~ -7.2 to -8.1 marks behind class.
+  - Safety Net: Clearing the mandatory 40/100 in TEE yields 49.0 + 12.0 = 61.0 >= 50
+                (100% immune from failing!).
+  - Target for B Grade (8.0 GPA): Need ~72–75 / 100 in TEE (Realistic, protects CGPA!).
+  - Target for A Grade (9.0 GPA): Need ~93–97 / 100 in TEE.
+
+================================================================================
+4. KEY REVELATIONS & CRITICAL INSIGHTS FROM THIS CHAT
+================================================================================
+
+1. THE FORMULA CORRECTION IN grading.txt:
+   Section 3 of grading.txt originally contained a typo writing CAT1 * 0.15 instead
+   of CAT1 * 0.30. Because CAT exams are scored out of 50, (score / 50) * 15 =
+   score * 0.30. This was corrected, restoring full accurate credit calculations.
+
+2. WHY YOU ARE NOT FAILING / WHY RELATIVE GRADING IS ON YOUR SIDE:
+   - In 4 out of 7 subjects (Python, ML, PLA Java, DLD), you are ALREADY ahead of
+     or even with the class average!
+   - In TOC, you are only 1.5 marks behind.
+   - Discrete is the ONLY subject with a noticeable deficit (-7 to -8 marks).
+   - TEE carries 30% of the entire course weight (more than CAT1 + CAT2 combined).
+   - Scoring solidly in TEE easily shifts your grade by an entire letter bracket.
+
+3. THE TOC DIAGNOSIS (WHY 28/50 IN CAT-2):
+   - Faculty Dr. Gaurav Soni cuts up to 6 marks per question if answers lack formal
+     syntax, even if the logic/diagram is correct.
+   - The 12 students who scored 50/50 followed his mandatory 6-part format:
+       Part 1: Language Description (Formal set builder notation)
+       Part 2: Design Logic (Algorithm in plain English)
+       Part 3: Formal 7-Tuples (Explicit enumeration of Q, Sigma, Gamma, etc.)
+       Part 4: State Transition Table (delta matrix)
+       Part 5: State Transition Diagram (Clean graph with start & final states)
+       Part 6: Validation (Instantaneous Description |– trace for a test string)
+
+4. DISCRETE MATH "GUARANTEED 60 MARKS" SAFETY NET:
+   You do not need to cram the entire textbook. 60 marks come from 6 purely
+   mechanical algorithms:
+     1) Kruskal's / Prim's MST table (10M - edge sorting)
+     2) Havel-Hakimi graphic degree sequence reduction (5-10M - simple subtraction)
+     3) Hasse diagram of Dn with GLB(gcd) and LUB(lcm) (10M - pure arithmetic)
+     4) Dijkstra shortest path table (10M - table filling)
+     5) Congruence modulo m equivalence proof (5-10M - 3 memorized steps)
+     6) Logical equivalence without truth tables (5M - 5 standard laws)
+
+================================================================================
+5. COMPLETE STUDY SUITES CREATED IN THE WORKSPACE
+================================================================================
+
+A. DISCRETE MATHEMATICS (c:\Users\ankit\Fall2627\Discrete\notes\term_end\):
+   - README.md                               : Official grading proof & roadmap
+   - 00-7-day-emergency-crash-course.md      : Daily 2-hour checklist & 6 templates
+   - 01-module1-predicate-calculus.md        : Logic, laws, inference, quantifiers
+   - 02-module2-sets-relations-hasse.md      : Equivalence relations, Posets, Dn Hasse
+   - 03-module3-lattices-boolean-algebra.md  : Lattices, M5/N5 rule, PDNF/PCNF
+   - 04-module4-graphs-and-matrices.md       : Handshaking, Havel-Hakimi, Isomorphism
+   - 05-module5-trees-and-graph-coloring.md  : Trees, MST, Chromatic polynomials
+   - 06-term-end-master-formula-cheat-sheet.md: 1-page quick formula revision sheet
+   - 07-fat-high-frequency-exam-question-bank.md: 20 fully solved past exam questions
+
+B. THEORY OF COMPUTATION (c:\Users\ankit\Fall2627\TOC\notes\term_end\):
+   - README.md                               : Dr. Soni's grading psychology & guide
+   - 00-7-day-toc-emergency-plan.md          : Daily 1.5-hour checklist
+   - 01-module1-finite-automata-and-minimization.md : 5-Tuple, Table-Filling, Pumping Lemma
+   - 02-module2-cfg-cnf-and-pda.md           : 2-Tree Ambiguity, 4-Step CNF, PDA IDs
+   - 03-module3-parsing-ll1-slr-clr-lalr.md  : FIRST/FOLLOW, LL(1), SLR(1) S/R conflicts
+   - 04-module4-turing-machines-and-undecidability.md : Mandatory 6-Part TM format, Halting
+   - 05-module5-intermediate-code-and-optimization.md : TAC Quad/Triples, Basic Blocks
+   - 06-toc-master-formula-sheet.md          : 1-page formula & tuple summary
+   - 07-toc-fat-high-frequency-exam-question-bank.md : 15 solved questions in Dr. Soni style
+
+C. MARKDOWN / KATEX RENDERING FIXES:
+   - Audited and fixed KaTeX formatting across all files (eliminated multiline
+     aligned blocks and trailing-space blockquote bugs to guarantee flawless
+     rendering in Obsidian, VS Code, and GitHub).
+
+================================================================================
+6. BATTLE-TESTED ACTION PLAN FOR EXAM DAYS
+================================================================================
+1. Python, ML, PLA Java, DLD:
+   - Maintain your lead by solving standard previous-year questions.
+   - A normal score of 65–72 in TEE safely locks in your A Grade.
+2. TOC:
+   - Write every Automata / TM question using Dr. Soni's 6 numbered headings.
+   - Practice FIRST/FOLLOW, LL(1) table, and SLR(1) Shift-Reduce conflict proof.
+   - Aim for 75+ in TEE to lock in your A Grade.
+3. Discrete Mathematics:
+   - Execute the 6 guaranteed mechanical templates first in the exam hall.
+   - Aim for 75 in TEE to lock in a safe, respectable B Grade (8.0 GPA).
+   - If the paper is easy, push for 90+ to pull off an A Grade comeback.
+================================================================================

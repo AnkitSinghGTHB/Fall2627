@@ -23,5 +23,5 @@ DLD: 38 (avg: ~34)
 ML: 40.5 (high avg appx 38 u take)
 PLA: 35 (avg: 38.5)
 Py: 41 (avg: 38)
-MGT: ? 
+MGT: 43 (avg: 36)
 TOC: 28 (avg appx 34)

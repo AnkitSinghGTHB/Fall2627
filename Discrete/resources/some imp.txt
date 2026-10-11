@@ -1,0 +1,3 @@
+from mod 5:
+q) given 2 graphs, check isomorphism, if they are hamiltonian or eulerian.
+q) draw the compliment of the graph, check isomorphism, check hamiltonian, check eulerian, for both graphs. Find chromatic number of both.

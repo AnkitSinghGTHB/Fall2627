@@ -1,0 +1,77 @@
+================================================================================
+                    IMPORTANT TOPICS: TOC & COMPILER DESIGN
+================================================================================
+
+--------------------------------------------------------------------------------
+1. THEORY OF COMPUTATION (TOC)
+--------------------------------------------------------------------------------
+
+[Finite Automata & Regular Languages]
+• NFA to DFA conversion
+• DFA construction & string acceptance:
+  - Strings ending in 101, accepting 110, ending in 110, or substring 110
+  - Verifying if a given string (e.g., 100110) is accepted
+• Arden's Theorem [IMPORTANT]
+• Regular Expressions:
+  - Conversion of Regular Expression to DFA (e.g., (a+ + b+).ab)
+• Removal of ε (epsilon) in NFA / Conversion of ε-NFA to DFA
+
+[Pushdown Automata (PDA) & Context-Free Languages]
+• Pushdown Automata (PDA) construction for:
+  1. L = { a^n b^n }
+  2. L = { w c w^R }
+  3. L = { a^n b^m | n ≠ m }
+• Deterministic Context-Free Languages (DCFL) & DPDA syntax:
+  - Examples: w c w^R, equal number of a's and b's
+• Grammars & Derivations:
+  - Leftmost Derivation (LMD) and Rightmost Derivation (RMD)
+  - Parse trees / Derivation trees
+• Chomsky Hierarchy
+
+[Turing Machines & Computability]
+• Turing Machine problems (refer to CAT-2 / assignment questions, 4-5 problems)
+• Decidability & Undecidability:
+  - Recursive languages (always halt -> Decidable)
+  - Recursively Enumerable languages (may not halt)
+  - Complement property: If L is recursive, then L' (complement) is also recursive
+  - Note: Proofs will not come, focus on concepts from lecture notes
+
+--------------------------------------------------------------------------------
+2. COMPILER DESIGN (CD)
+--------------------------------------------------------------------------------
+
+[Syntax Analysis / Parsing]
+• First & Follow set computation
+• Parsers (Any 2 will be asked):
+  - LL(1) Parser
+  - SLR Parser
+  - CLR Parser
+  - LALR Parser
+• Comparison: Difference between CLR and LALR parsers
+
+[Intermediate Code Generation (ICG)]
+• Pseudocode to Three Address Code (TAC) conversion
+• Three Address Code representations:
+  1. Quadruple
+  2. Triple
+  3. Indirect Triple
+• Directed Acyclic Graph (DAG) construction and syntax trees
+  (Example in notes: (a + b) ^ c + (c + d))
+
+[Code Optimization & Code Generation]
+• Code Optimization techniques
+• Target machine code generation
+================================================================================
+
+extra resources:
+PDA to CFG conversion
+https://www.youtube.com/watch?v=rq6B3bmcARU
+Three address codes
+https://www.gatevidyalay.com/implementation-of-three-address-code/
+Direct Acyclic Graph 
+https://www.gatevidyalay.com/directed-acyclic-graphs/
+Gate Smashers 
+lecture no 59   https://www.youtube.com/watch?v=LE_7krgRGt8  
+lecture no 60   https://www.youtube.com/watch?v=QuMscaeIRCo
+Minimization of DFA
+https://www.youtube.com/watch?v=A7eKj_GXam0z

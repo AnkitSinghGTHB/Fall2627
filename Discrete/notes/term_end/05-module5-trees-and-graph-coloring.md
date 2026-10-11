@@ -175,7 +175,9 @@ Given a connected graph $G(V, E)$ with $n$ vertices, $m$ edges, and a fixed span
    * Total number of fundamental cut sets = Number of tree branches = **$n - 1$** (This number is called the **Rank** of $G$!).
 
 > 🏆 **THE RANK-NULLITY THEOREM OF GRAPHS**:  
+> 
 > $$\text{Rank } r(G) + \text{Nullity } \mu(G) = (n - 1) + (m - n + 1) = \mathbf{m \text{ (Total Edges!)}}$$
+>
 
 ---
 
@@ -247,7 +249,9 @@ The **Chromatic Polynomial** $P(G, \lambda)$ is a polynomial in $\lambda$ that g
 
 > 🏆 **DELETION-CONTRACTION THEOREM**:  
 > For any edge $e = (u, v)$ in graph $G$:  
-> $$P(G, \lambda) = P(G - e, \lambda) - P(G / e, \lambda)$$  
+> 
+> $$P(G, \lambda) = P(G - e, \lambda) - P(G / e, \lambda)$$
+> 
 > * Where $G - e$ is the graph with edge $e$ **deleted**.  
 > * Where $G / e$ is the graph with edge $e$ **contracted** (merge vertices $u$ and $v$ into a single vertex, deleting edge $e$ and any duplicate parallel edges).
 
@@ -257,16 +261,15 @@ The **Chromatic Polynomial** $P(G, \lambda)$ is a polynomial in $\lambda$ that g
 > **Solution**:
 > Pick any edge $e$ of the 4-cycle $C_4$:
 > 1. **Delete $e$ ($C_4 - e$)**: Deleting an edge from a cycle produces a path graph $P_4$ (which is a tree of 4 vertices!).  
->    Since $P_4$ is a tree of 4 vertices:  
->    $$P(C_4 - e, \lambda) = P(T_4, \lambda) = \lambda(\lambda - 1)^3$$
+>    Since $P_4$ is a tree of 4 vertices: $P(C_4 - e, \lambda) = P(T_4, \lambda) = \lambda(\lambda - 1)^3$.
 > 2. **Contract $e$ ($C_4 / e$)**: Merging the two endpoints of $e$ turns the 4-cycle into a 3-cycle ($K_3$ / triangle)!  
->    $$P(C_4 / e, \lambda) = P(K_3, \lambda) = \lambda(\lambda - 1)(\lambda - 2)$$
+>    $P(C_4 / e, \lambda) = P(K_3, \lambda) = \lambda(\lambda - 1)(\lambda - 2)$.
 > 3. **Apply Theorem**:  
->    $$P(C_4, \lambda) = \lambda(\lambda - 1)^3 - \lambda(\lambda - 1)(\lambda - 2)$$  
+>    $P(C_4, \lambda) = \lambda(\lambda - 1)^3 - \lambda(\lambda - 1)(\lambda - 2)$  
 >    Factor out $\lambda(\lambda - 1)$:  
->    $$= \lambda(\lambda - 1) \left[ (\lambda - 1)^2 - (\lambda - 2) \right]$$  
->    $$= \lambda(\lambda - 1) \left[ \lambda^2 - 2\lambda + 1 - \lambda + 2 \right]$$  
->    $$= \lambda(\lambda - 1) \left[ \lambda^2 - 3\lambda + 3 \right] = (\lambda - 1)^4 + (\lambda - 1)$$
+>    $= \lambda(\lambda - 1) \left[ (\lambda - 1)^2 - (\lambda - 2) \right]$  
+>    $= \lambda(\lambda - 1) \left[ \lambda^2 - 2\lambda + 1 - \lambda + 2 \right]$  
+>    $= \lambda(\lambda - 1) \left[ \lambda^2 - 3\lambda + 3 \right] = (\lambda - 1)^4 + (\lambda - 1)$
 > 
 > **Conclusion**: $P(C_4, \lambda) = \lambda(\lambda - 1)(\lambda^2 - 3\lambda + 3)$.  
 > *(Notice: If $\lambda = 2$, $P(C_4, 2) = 2(1)(4 - 6 + 3) = 2$ colorings, which matches our knowledge that an even cycle can be properly 2-colored in exactly 2 ways!).*

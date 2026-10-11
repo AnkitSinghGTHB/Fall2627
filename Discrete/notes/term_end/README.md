@@ -51,7 +51,9 @@ Per the university exam regulations:
 
 > 🛡️ **SAFETY PROOF**:  
 > If you score the minimum required **$40 / 100$ in TEE**:  
-> $$\text{Final Total} = 48.1 + (40 \times 0.30) = 48.1 + 12.0 = \mathbf{60.1 / 100}$$  
+> 
+> $$\text{Final Total} = 48.1 + (40 \times 0.30) = 48.1 + 12.0 = \mathbf{60.1 / 100}$$
+> 
 > Since $60.1 \ge 50$, **you are 100% immune from failing the course as long as you clear the 40/100 TEE minimum!**
 
 ---

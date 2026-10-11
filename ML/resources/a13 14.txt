@@ -1,0 +1,26 @@
+A13
+1.Explain
+the
+concept of imbalanced datasets in machine learning. Discuss the causes,
+characteristics, challenges, and impact of class imbalance on classification
+algorithms. Why can accuracy be misleading when dealing with imbalanced data?
+Illustrate with a suitable example.
+
+
+2.Explain
+the complete working mechanism of SMOTE with an example. How are minority-class
+samples selected, nearest neighbors identified, and synthetic samples
+generated? Discuss the role of interpolation in creating new minority-class
+observations.
+
+
+3.Compare
+Random Oversampling and SMOTE for handling class imbalance. Explain how both
+methods increase minority-class representation, identify their differences, and
+discuss the advantages and disadvantages of each approach.
+
+
+a14
+Investigate
+any machine learning technology trend that has a significant impact on modern
+business innovations.

@@ -20,7 +20,9 @@
 
 > 🏆 **THEOREM (Euler's Handshaking Lemma)**:  
 > In any undirected graph $G = (V, E)$:  
-> $$\sum_{v \in V} \deg(v) = 2|E|$$  
+> 
+> $$\sum_{v \in V} \deg(v) = 2|E|$$
+> 
 > *Plain English*: Every edge has two endpoints. Therefore, when you sum the degrees of all vertices, every single edge is counted exactly twice!
 
 #### 🔑 The Crucial Corollary:
