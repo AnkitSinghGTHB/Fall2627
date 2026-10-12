@@ -66,3 +66,4 @@ Unlike Discrete (where you were $-8.1$ marks behind), in TOC you are **only $-1.
 6. **[`05-module5-intermediate-code-and-optimization.md`](./05-module5-intermediate-code-and-optimization.md)**: Three Address Code (Quadruples/Triples), Basic Blocks & Flow Graphs, and Code Optimization techniques.
 7. **[`06-toc-master-formula-sheet.md`](./06-toc-master-formula-sheet.md)**: 1-page quick formula & tuple lookup.
 8. **[`07-toc-fat-high-frequency-exam-question-bank.md`](./07-toc-fat-high-frequency-exam-question-bank.md)**: 15 past university questions solved in Dr. Soni's exact 100% full-mark layout.
+9. **[`08-tee-imp-solved-master-solutions.md`](./08-tee-imp-solved-master-solutions.md)**: Master solutions handbook for all topics listed in `tee_imp.txt` (Arden's, DFA, PDA, TM, Parsers, TAC, DAG, Optimization).
