@@ -75,3 +75,15 @@ lecture no 59   https://www.youtube.com/watch?v=LE_7krgRGt8
 lecture no 60   https://www.youtube.com/watch?v=QuMscaeIRCo
 Minimization of DFA
 https://www.youtube.com/watch?v=A7eKj_GXam0z
+
+
+IMP Questions
+Q1 Convert PDA to CFG 
+δ(q0, a, Zo)={(q1, XZo)} 
+δ(q0, b, Y)={(q1, Y)} 
+δ(q0, ε, Zo)={(q1, ε)}
+
+Q1 Convert PDA to CFG 
+δ(q0, b, Zo)={(q1, YZo)} 
+δ(q0, a, Y)={(q1, X)} 
+δ(q0, ε, Zo)={(q1, ε)}

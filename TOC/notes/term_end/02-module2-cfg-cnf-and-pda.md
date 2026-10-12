@@ -178,4 +178,13 @@ $$M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$$
 > &\vdash (q_1, \epsilon, Z_0) \\
 > &\vdash (q_2, \epsilon, Z_0)
 > \end{aligned}$$
-> Since the PDA reached final state $q_2 \in F$ after consuming all input symbols, the string $0011$ is **ACCEPTED**. *(Full 10 Marks!)*
+> Since the PDA reached final state $q_2 \in F$ after consuming all input symbols, the string $0011$ is **ACCEPTED**.
+
+---
+
+## 4. Conversion of Pushdown Automata (PDA) to CFG
+
+> 💡 **HIGH-FREQUENCY TEE QUESTION**:  
+> For the complete conversion algorithm ($S \to [q_0, Z_0, q]$, Pop rule, and Push/Replacement rule) and step-by-step solved questions from `tee_imp.txt`, see the dedicated solutions guide:  
+> 👉 [08-tee-imp-solved-master-solutions.md#problem-27-conversion-of-pda-to-cfg-two-solved-exam-problems](08-tee-imp-solved-master-solutions.md#problem-27-conversion-of-pda-to-cfg-two-solved-exam-problems)
+

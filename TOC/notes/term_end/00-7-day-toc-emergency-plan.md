@@ -6,30 +6,23 @@
 
 ---
 
-## 🎯 The 6 Guaranteed 10-Mark Exam Question Templates (60 Marks of FAT)
+## 🎯 Official TEE Paper Pattern & Guaranteed Questions (100 Marks Total)
 
-Almost every CSE2004 FAT paper draws 60–70% of its marks from these 6 identical mechanical questions:
+Per `TEE.txt`, the official Term End Exam structure is:
+* **Section A (60 Marks)**: 5 Questions (1 from each module), **12 Marks each** in `OR` format (either 12M full or 6M + 6M subparts).
+* **Section B (40 Marks)**: 5 Questions (1 from each module), **8 Marks each**, strictly **WITHOUT SUBPARTS**.
 
 ```text
 ┌───┬──────────────────────────────────────────┬──────────┬─────────────────────────────┐
-│ # │ Guaranteed FAT Question Template         │ Marks    │ Exact Time to Master        │
+│ # │ High-Frequency Exam Question             │ Section  │ TEE Weightage               │
 ├───┼──────────────────────────────────────────┼──────────┼─────────────────────────────┤
-│ 1 │ DFA Minimization (Table-Filling Method)  │ 10 Marks │ 40 mins (Triangular table)  │
-│ 2 │ CFG to CNF Conversion (Strict 4 Steps)   │ 10 Marks │ 35 mins (Algorithmic steps) │
-│ 3 │ LL(1) Parser: FIRST/FOLLOW + Table + ID  │ 10 Marks │ 45 mins (Formulaic rules)   │
-│ 4 │ SLR(1) Table + Shift-Reduce Conflict     │ 10 Marks │ 50 mins (LR(0) items trace) │
-│ 5 │ Turing Machine in 6-Part Mandatory Format│ 10 Marks │ 45 mins (aⁿbⁿcⁿ or parity)  │
-│ 6 │ Three Address Code: Quad/Triple/Indirect │ 10 Marks │ 30 mins (Simple table fill) │
-├───┴──────────────────────────────────────────┴──────────┴─────────────────────────────┤
-│ TOTAL PREDICTABLE MARKS                      │ 60 Marks │ ~4 hours of focused practice│
-└─────────────────────────────────────────────────────────┴─────────────────────────────┘
+│ 1 │ Arden's Theorem / DFA Minimization       │ Sec A/B  │ 12M (Sec A) / 8M (Sec B)    │
+│ 2 │ PDA Design / PDA to CFG Conversion       │ Sec A/B  │ 12M (Sec A) / 8M (Sec B)    │
+│ 3 │ Turing Machine in 6-Part Mandatory Format│ Sec A/B  │ 12M (Sec A) / 8M (Sec B)    │
+│ 4 │ LL(1) Table + Trace / SLR(1) Conflict    │ Sec A/B  │ 12M (Sec A) / 8M (Sec B)    │
+│ 5 │ TAC Quad/Triple/Indirect / DAG & Opt.    │ Sec A/B  │ 12M (Sec A) / 8M (Sec B)    │
+└───┴──────────────────────────────────────────┴──────────┴─────────────────────────────┘
 ```
-
-The remaining 30–40 marks come from:
-* Pumping Lemma for Regular Languages or CFL (5M–10M)
-* CFG Ambiguity proof (2 parse trees / 2 LMDs) (5M)
-* PDA design with 7-tuple and instantaneous descriptions ($\vdash$) (10M)
-* Basic Blocks & Code Optimization (Dead code, Loop invariant, Common subexpression) (10M)
 
 ---
 

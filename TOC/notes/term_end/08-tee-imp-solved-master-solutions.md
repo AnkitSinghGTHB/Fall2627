@@ -3,7 +3,10 @@
 > **Course**: CSE2004 — Theory of Computation and Compiler Design  
 > **Faculty**: Dr. Gaurav Soni  
 > **Purpose**: Complete, step-by-step solved solutions for all topics listed in [tee_imp.txt](../../resources/tee_imp.txt).  
-> **Grading Standard**: Solved using Dr. Soni's strict **6-part layout** (Language Specification ➔ Logic ➔ 7-Tuples ➔ Transition Table ➔ State Diagram ➔ Instantaneous Description / String Verification).
+> **Official TEE Exam Pattern (100 Marks Total, per TEE.txt)**:
+> - **Section A (60 Marks)**: 5 Questions (1 per module), **12 Marks each** in `OR` format (either 12M full or 6M + 6M subparts).
+> - **Section B (40 Marks)**: 5 Questions (1 per module), **8 Marks each**, strictly **WITHOUT SUBPARTS**.
+> - **Grading Standard**: Solved using Dr. Soni's strict **6-part layout** (Language Specification ➔ Logic ➔ 7-Tuples ➔ Transition Table ➔ State Diagram ➔ Instantaneous Description / String Verification).
 
 ---
 
@@ -21,6 +24,7 @@
    - [Problem 2.4: Deterministic Pushdown Automata (DPDA) for Equal a's and b's](#problem-24-deterministic-pushdown-automata-dpda-for-equal-as-and-bs)
    - [Problem 2.5: Leftmost Derivation (LMD), Rightmost Derivation (RMD) & Parse Trees](#problem-25-leftmost-derivation-lmd-rightmost-derivation-rmd--parse-trees)
    - [Problem 2.6: The Chomsky Hierarchy of Languages & Automata](#problem-26-the-chomsky-hierarchy-of-languages--automata)
+   - [Problem 2.7: Conversion of PDA to CFG (Two Solved Exam Problems)](#problem-27-conversion-of-pda-to-cfg-two-solved-exam-problems)
 3. [Turing Machines & Computability Theory](#3-turing-machines--computability-theory)
    - [Problem 3.1: Turing Machine for Equal 0s and 1s (Even 0s and Odd 1s)](#problem-31-turing-machine-for-equal-0s-and-1s-even-0s-and-odd-1s)
    - [Problem 3.2: Turing Machine for L = {aⁿ b²ⁿ | n ≥ 1}](#problem-32-turing-machine-for-l--an-b2n--n--1)
@@ -42,7 +46,7 @@
 ---
 
 ### Problem 1.1: DFA for Strings Ending in 101, Ending in 110 & Substring 110
-> **Exam Question (10 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)] / [TEE Section A: 6 Marks (Part a)]**:  
 > Design Minimal Deterministic Finite Automata (DFA) over $\Sigma = \{0, 1\}$ for:  
 > (a) Strings ending in `101`.  
 > (b) Strings ending in `110`.  
@@ -108,7 +112,7 @@ State Diagram:
 ---
 
 ### Problem 1.2: String Acceptance Verification Trace for $w = 100110$
-> **Exam Question (5 Marks)**:  
+> **[TEE Section A: 6 Marks (Part b)]**:  
 > Trace the computation of the DFA accepting substring `110` on input string $w = 100110$. Prove formally whether $w$ is accepted.
 
 #### Model Solution:
@@ -128,7 +132,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 1.3: Convert Regular Expression $(a^+ + b^+)ab$ to DFA
-> **Exam Question (10 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)] / [TEE Section A: 6 Marks (Part a)]**:  
 > Convert the regular expression $R = (a^+ + b^+)ab$ into a minimal DFA.
 
 #### Model Solution:
@@ -169,7 +173,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 1.4: Conversion of $\epsilon$-NFA to DFA via $\epsilon$-Closure
-> **Exam Question (10 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)] / [TEE Section A: 6 Marks (Part a)]**:  
 > Given an $\epsilon$-NFA with states $\{q_0, q_1, q_2\}$, transitions:  
 > $\delta(q_0, \epsilon) = \{q_1\}, \delta(q_0, a) = \{q_0\}, \delta(q_1, b) = \{q_1\}, \delta(q_1, \epsilon) = \{q_2\}, \delta(q_2, c) = \{q_2\}$, Final State $= \{q_2\}$.  
 > Convert to an equivalent DFA without $\epsilon$-transitions.
@@ -207,7 +211,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 1.5: Arden's Theorem — Statement, Algebraic Proof & System Application
-> **Exam Question (8 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question with Proof + DFA Solution)]**:  
 > (a) State and prove Arden's Theorem.  
 > (b) Consider the equations for a 3-state DFA:  
 > $q_1 = q_1 0 + \epsilon$, $q_2 = q_1 1 + q_2 1$, $q_3 = q_2 0 + q_3 (0 + 1)$.  
@@ -251,7 +255,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.1: PDA for $L = \{a^n b^n \mid n \ge 1\}$
-> **Exam Question (10 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)] / [TEE Section A: 6 Marks]**:  
 > Design a Pushdown Automaton for $L = \{a^n b^n \mid n \ge 1\}$ using acceptance by Final State. Provide formal 7-tuples, transition table, and Instantaneous Description for $w = aabb$.
 
 #### Step-by-Step Model Solution:
@@ -282,7 +286,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.2: PDA for $L = \{w c w^R \mid w \in \{a, b\}^*\}$
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question with 6-Part Layout)] / [TEE Section B: 8 Marks]**:  
 > Design a Deterministic PDA (DPDA) for palindrome language with center marker $c$: $L = \{w c w^R \mid w \in \{a, b\}^*\}$.
 
 #### Step-by-Step Model Solution:
@@ -309,7 +313,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.3: PDA for $L = \{a^n b^m \mid n \ne m\}$
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Construct a Non-Deterministic Pushdown Automaton (NPDA) for the language $L = \{a^n b^m \mid n \ne m, n, m \ge 1\}$.
 
 #### Model Solution:
@@ -329,7 +333,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.4: Deterministic Pushdown Automata (DPDA) for Equal $a$'s and $b$'s
-> **Exam Question (8 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)]**:  
 > Explain Deterministic Context-Free Languages (DCFL). Construct a DPDA for strings over $\{a, b\}$ having an equal number of $a$'s and $b$'s.
 
 #### Model Solution:
@@ -348,7 +352,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.5: Leftmost Derivation (LMD), Rightmost Derivation (RMD) & Parse Trees
-> **Exam Question (8 Marks)**:  
+> **[TEE Section A: 6 Marks (Part b)] / [TEE Section B: 8 Marks]**:  
 > Given Grammar $G$:  
 > $$E \to E + E \mid E * E \mid (E) \mid id$$  
 > Derive string $w = id + id * id$ using: (a) Leftmost Derivation, (b) Rightmost Derivation, (c) Draw Parse Tree, (d) State whether $G$ is ambiguous.
@@ -376,7 +380,7 @@ $$\begin{aligned}
 ---
 
 ### Problem 2.6: The Chomsky Hierarchy of Languages & Automata
-> **Exam Question (8 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)]**:  
 > Explain the Chomsky Hierarchy with grammar production constraints, language classes, and recognizing automata.
 
 | Type | Language Class | Grammar Production Format | Automaton Model | Real-world Use |
@@ -390,12 +394,132 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 
 ---
 
+### Problem 2.7: Conversion of Pushdown Automata (PDA) to Context-Free Grammar (CFG)
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)] / [TEE Section A: 6 Marks (Part a/b)]**:  
+> Systematically convert a given Pushdown Automaton (PDA) accepting by empty stack into an equivalent Context-Free Grammar (CFG).
+
+#### 📌 Theoretical Framework & Standard Conversion Rules
+Given a PDA $M = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, \emptyset)$ accepting by empty store, the equivalent CFG $G = (V_N, \Sigma, P, S)$ is constructed as follows:
+- **Variables / Non-Terminals ($V_N$)**:
+  - Start symbol $S$
+  - Composite tri-bracket variables: $[q, X, p]$ where $q, p \in Q$ and $X \in \Gamma$.  
+    *Interpretation*: $[q, X, p]$ derives all strings $w \in \Sigma^*$ that cause the PDA to transition from state $q$ to state $p$ while net-popping symbol $X$ off the stack for the first time.
+
+##### Rule 1: Start Symbol Productions
+For every state $q \in Q$:
+$$S \to [q_0, Z_0, q]$$
+
+##### Rule 2: Pop Transitions ($k = 0$)
+If $\delta(q, a, X)$ contains $(p, \epsilon)$ where $a \in \Sigma \cup \{\epsilon\}$:
+$$[q, X, p] \to a$$
+
+##### Rule 3: Push / Multi-symbol Transitions ($k \ge 1$)
+If $\delta(q, a, X)$ contains $(p, Y_1 Y_2 \dots Y_k)$ where $a \in \Sigma \cup \{\epsilon\}$ and $k \ge 1$:
+For **every possible sequence of states** $r_1, r_2, \dots, r_k \in Q$:
+$$[q, X, r_k] \to a \; [p, Y_1, r_1] \; [r_1, Y_2, r_2] \; [r_2, Y_3, r_3] \dots [r_{k-1}, Y_k, r_k]$$
+
+---
+
+#### 📝 Solved Question 1 (from `tee_imp.txt`)
+> **Given PDA Transitions**:  
+> 1. $\delta(q_0, a, Z_0) = \{(q_1, X Z_0)\}$  
+> 2. $\delta(q_0, b, Y) = \{(q_1, Y)\}$  
+> 3. $\delta(q_0, \epsilon, Z_0) = \{(q_1, \epsilon)\}$  
+> 
+> *States*: $Q = \{q_0, q_1\}$, *Alphabet*: $\Sigma = \{a, b\}$, *Stack Alphabet*: $\Gamma = \{X, Y, Z_0\}$, *Start State*: $q_0$, *Start Stack*: $Z_0$.
+
+##### Step 1: Start Symbol Productions (Rule 1)
+Since $Q = \{q_0, q_1\}$, start symbol $S$ expands to:
+$$S \to [q_0, Z_0, q_0] \mid [q_0, Z_0, q_1]$$
+
+##### Step 2: Pop Transition $\delta(q_0, \epsilon, Z_0) = \{(q_1, \epsilon)\}$ (Rule 2)
+Here $q = q_0, a = \epsilon, X = Z_0, p = q_1$.
+$$[q_0, Z_0, q_1] \to \epsilon$$
+
+##### Step 3: Transition $\delta(q_0, b, Y) = \{(q_1, Y)\}$ (Rule 3 with $k = 1$)
+Here $q = q_0, a = b, X = Y, p = q_1$, and $Y_1 = Y$.  
+For each $r_1 \in \{q_0, q_1\}$:
+$$[q_0, Y, r_1] \to b \; [q_1, Y, r_1]$$
+- For $r_1 = q_0$: $[q_0, Y, q_0] \to b \; [q_1, Y, q_0]$
+- For $r_1 = q_1$: $[q_0, Y, q_1] \to b \; [q_1, Y, q_1]$
+
+##### Step 4: Transition $\delta(q_0, a, Z_0) = \{(q_1, X Z_0)\}$ (Rule 3 with $k = 2$)
+Here $q = q_0, a = a, X = Z_0, p = q_1, Y_1 = X, Y_2 = Z_0$.  
+For each pair $(r_1, r_2) \in \{q_0, q_1\} \times \{q_0, q_1\}$ ($2 \times 2 = 4$ productions):
+$$[q_0, Z_0, r_2] \to a \; [q_1, X, r_1] \; [r_1, Z_0, r_2]$$
+- When $r_2 = q_0$:
+  1. $r_1 = q_0$: $[q_0, Z_0, q_0] \to a \; [q_1, X, q_0] \; [q_0, Z_0, q_0]$
+  2. $r_1 = q_1$: $[q_0, Z_0, q_0] \to a \; [q_1, X, q_1] \; [q_1, Z_0, q_0]$
+- When $r_2 = q_1$:
+  3. $r_1 = q_0$: $[q_0, Z_0, q_1] \to a \; [q_1, X, q_0] \; [q_0, Z_0, q_1]$
+  4. $r_1 = q_1$: $[q_0, Z_0, q_1] \to a \; [q_1, X, q_1] \; [q_1, Z_0, q_1]$
+
+##### Step 5: Analysis & Grammar Simplification
+- In this PDA fragment, there are no transitions starting from state $q_1$ ($\delta(q_1, \dots) = \emptyset$).
+- Variables $[q_1, X, q_0]$, $[q_1, X, q_1]$, $[q_1, Y, q_0]$, etc., have no productions and are non-generating.
+- The only generating production from start is $[q_0, Z_0, q_1] \to \epsilon$.
+- **Simplified Grammar**:
+  $$S \to [q_0, Z_0, q_1] \implies S \to \epsilon$$
+
+---
+
+#### 📝 Solved Question 2 (from `tee_imp.txt`)
+> **Given PDA Transitions**:  
+> 1. $\delta(q_0, b, Z_0) = \{(q_1, Y Z_0)\}$  
+> 2. $\delta(q_0, a, Y) = \{(q_1, X)\}$  
+> 3. $\delta(q_0, \epsilon, Z_0) = \{(q_1, \epsilon)\}$  
+> 
+> *States*: $Q = \{q_0, q_1\}$, *Alphabet*: $\Sigma = \{a, b\}$, *Stack Alphabet*: $\Gamma = \{X, Y, Z_0\}$, *Start State*: $q_0$, *Start Stack*: $Z_0$.
+
+##### Step 1: Start Symbol Productions (Rule 1)
+$$S \to [q_0, Z_0, q_0] \mid [q_0, Z_0, q_1]$$
+
+##### Step 2: Pop Transition $\delta(q_0, \epsilon, Z_0) = \{(q_1, \epsilon)\}$ (Rule 2)
+$$[q_0, Z_0, q_1] \to \epsilon$$
+
+##### Step 3: Transition $\delta(q_0, a, Y) = \{(q_1, X)\}$ (Rule 3 with $k = 1$)
+Here $q = q_0, a = a, X = Y, p = q_1, Y_1 = X$.  
+For each $r_1 \in \{q_0, q_1\}$:
+$$[q_0, Y, r_1] \to a \; [q_1, X, r_1]$$
+- For $r_1 = q_0$: $[q_0, Y, q_0] \to a \; [q_1, X, q_0]$
+- For $r_1 = q_1$: $[q_0, Y, q_1] \to a \; [q_1, X, q_1]$
+
+##### Step 4: Transition $\delta(q_0, b, Z_0) = \{(q_1, Y Z_0)\}$ (Rule 3 with $k = 2$)
+Here $q = q_0, a = b, X = Z_0, p = q_1, Y_1 = Y, Y_2 = Z_0$.  
+For each pair $(r_1, r_2) \in \{q_0, q_1\} \times \{q_0, q_1\}$ ($2 \times 2 = 4$ productions):
+$$[q_0, Z_0, r_2] \to b \; [q_1, Y, r_1] \; [r_1, Z_0, r_2]$$
+- When $r_2 = q_0$:
+  1. $r_1 = q_0$: $[q_0, Z_0, q_0] \to b \; [q_1, Y, q_0] \; [q_0, Z_0, q_0]$
+  2. $r_1 = q_1$: $[q_0, Z_0, q_0] \to b \; [q_1, Y, q_1] \; [q_1, Z_0, q_0]$
+- When $r_2 = q_1$:
+  3. $r_1 = q_0$: $[q_0, Z_0, q_1] \to b \; [q_1, Y, q_0] \; [q_0, Z_0, q_1]$
+  4. $r_1 = q_1$: $[q_0, Z_0, q_1] \to b \; [q_1, Y, q_1] \; [q_1, Z_0, q_1]$
+
+##### Step 5: Summary of Productions
+1. **From Start Symbol**:
+   - $S \to [q_0, Z_0, q_0]$
+   - $S \to [q_0, Z_0, q_1]$
+2. **From Pop Action**:
+   - $[q_0, Z_0, q_1] \to \epsilon$
+3. **From Replacing $Y$ with $X$**:
+   - $[q_0, Y, q_0] \to a [q_1, X, q_0]$
+   - $[q_0, Y, q_1] \to a [q_1, X, q_1]$
+4. **From Pushing $Y Z_0$**:
+   - $[q_0, Z_0, q_0] \to b [q_1, Y, q_0] [q_0, Z_0, q_0]$
+   - $[q_0, Z_0, q_0] \to b [q_1, Y, q_1] [q_1, Z_0, q_0]$
+   - $[q_0, Z_0, q_1] \to b [q_1, Y, q_0] [q_0, Z_0, q_1]$
+   - $[q_0, Z_0, q_1] \to b [q_1, Y, q_1] [q_1, Z_0, q_1]$
+
+*(Total: $2 + 1 + 2 + 4 = 9$ productions in the unreduced CFG!)*
+
+---
+
 # 3. TURING MACHINES & COMPUTABILITY THEORY
 
 ---
 
 ### Problem 3.1: Turing Machine for Equal 0s and 1s (Even 0s and Odd 1s)
-> **Exam Question (10 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)]**:  
 > Design a Turing Machine that accepts strings with an **Even number of 0s and Odd number of 1s** over $\Sigma = \{0, 1\}$. Provide the transition table and state diagram.
 
 #### Model Solution (Modulo 2 Parity State Machine):
@@ -418,7 +542,7 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 ---
 
 ### Problem 3.2: Turing Machine for $L = \{a^n b^{2n} \mid n \ge 1\}$
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question with 6-Part Layout & Trace)]**:  
 > Design a Turing Machine for $L = \{a^n b^{2n} \mid n \ge 1\}$. Provide complete 6-Part model solution.
 
 #### Model Solution:
@@ -450,7 +574,7 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 ---
 
 ### Problem 3.3: Turing Machine for Unary Addition ($0^m 1 0^n \to 0^{m+n}$)
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Design a Turing Machine that performs addition of two unary integers: takes tape input $0^m 1 0^n$ and produces $0^{m+n}$ on the tape.
 
 #### Model Solution:
@@ -468,7 +592,7 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 ---
 
 ### Problem 3.4: Decidability, Recursive vs. Recursively Enumerable & Complement Property
-> **Exam Question (8 Marks)**:  
+> **[TEE Section A: 6 Marks (Part b)] / [TEE Section B: 8 Marks (Standalone)]**:  
 > (a) Differentiate between Recursive (Decidable) and Recursively Enumerable (Semi-Decidable) Languages.  
 > (b) State and explain the Complement Property of Recursive Languages.
 
@@ -490,7 +614,7 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 ---
 
 ### Problem 4.1: FIRST and FOLLOW Set Computation
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Compute the `FIRST` and `FOLLOW` sets for the following grammar:  
 > $$E \to T E'$$  
 > $$E' \to + T E' \mid \epsilon$$  
@@ -533,7 +657,7 @@ $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0
 ---
 
 ### Problem 4.2: Predictive LL(1) Parsing Table Construction & Stack Parsing
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question with Table & 17-Step Trace)]**:  
 > (a) Construct the LL(1) parsing table for the grammar in Problem 4.1.  
 > (b) Trace the predictive stack parse for input string $w = id + id * id \$$.
 
@@ -576,7 +700,7 @@ For each production $A \to \alpha$:
 ---
 
 ### Problem 4.3: Stepwise SLR(1) Parsing Table Construction & Shift-Reduce Conflicts
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question with Collection, Table & Conflict Proof)]**:  
 > Given Grammar:  
 > $$S \to L = R \mid R$$  
 > $$L \to * R \mid id$$  
@@ -608,12 +732,12 @@ For each production $A \to \alpha$:
      - Shift action: `s6` (from $S \to L \cdot = R$)
      - Reduce action: `r5` (from $R \to L \cdot$ since `=` $\in \text{FOLLOW}(R)$)
    - Cell $M[I_2, =]$ contains **BOTH $\{s6, r5\}$**!
-   - $\therefore$ The grammar has a **Shift-Reduce Conflict** and is **NOT SLR(1)**! `[Full 10 Marks]`
+   - $\therefore$ The grammar has a **Shift-Reduce Conflict** and is **NOT SLR(1)**! `[Full 12 Marks]`
 
 ---
 
 ### Problem 4.4: Canonical LR (CLR(1)) vs. LALR(1) & Reduce-Reduce Conflicts
-> **Exam Question (8 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)]**:  
 > Why does merging states in LALR(1) never introduce a Shift-Reduce conflict, but may introduce a Reduce-Reduce conflict?
 
 #### Model Solution:
@@ -634,7 +758,7 @@ For each production $A \to \alpha$:
 ---
 
 ### Problem 4.5: Directed Acyclic Graph (DAG) for Expression $E = (a + b) \wedge c + (c + d)$
-> **Exam Question (10 Marks)**:  
+> **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Construct the Directed Acyclic Graph (DAG) and 3-Address Code for expression:  
 > $$E = (a + b) \wedge c + (c + d)$$  
 > Highlight node sharing and explain optimization benefits.
@@ -666,7 +790,7 @@ For each production $A \to \alpha$:
 ---
 
 ### Problem 4.6: TAC, Quadruples, Triples & Indirect Triples for Loops with Arrays
-> **Exam Question (12 Marks)**:  
+> **[TEE Section A: 12 Marks (Full Question: TAC + Quadruple + Triple + Indirect Triple)]**:  
 > Translate the following while loop into Three-Address Code, Quadruples, Triples, and Indirect Triples:
 > ```c
 > i = 1;
@@ -731,7 +855,7 @@ Contains an array of pointers pointing to the Triples table:
 ---
 
 ### Problem 4.7: Code Optimization Techniques & Target Machine Code Generation
-> **Exam Question (8 Marks)**:  
+> **[TEE Section B: 8 Marks (Standalone - No Subparts)]**:  
 > Explain the primary machine-independent code optimization techniques with before-and-after code snippets.
 
 #### Model Solution:
