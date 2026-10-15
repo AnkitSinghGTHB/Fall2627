@@ -387,7 +387,7 @@ $$\begin{aligned}
 |:---:|:---|:---|:---|:---|
 | **Type 3** | **Regular Languages** | $A \to aB \mid a$ (Right-Linear) or $A \to Ba \mid a$ (Left-Linear) | **Finite Automata (DFA/NFA)** | Lexical analyzers, regex, tokens |
 | **Type 2** | **Context-Free Languages (CFL)** | $A \to \alpha$ where $A \in V_N$, $\alpha \in (V_N \cup \Sigma)^*$ | **Pushdown Automata (PDA)** | Programming syntax, compilers |
-| **Type 1** | **Context-Sensitive Languages (CSL)** | $\alpha \to \beta$ where $|\alpha| \le |\beta|$ (Non-contracting) | **Linear Bounded Automata (LBA)** | Natural language syntax, types |
+| **Type 1** | **Context-Sensitive Languages (CSL)** | $\alpha \to \beta$ where $ , \alpha \le \beta$ (Non-contracting) | **Linear Bounded Automata (LBA)** | Natural language syntax, types |
 | **Type 0** | **Recursively Enumerable (RE)** | $\alpha \to \beta$ where $\alpha \in (V_N \cup \Sigma)^+$ (Unrestricted) | **Turing Machine (TM)** | Universal general computation |
 
 $$\text{Type 3} \subset \text{Type 2} \subset \text{Type 1} \subset \text{Type 0}$$
@@ -616,95 +616,110 @@ $$[q_0, Z_0, r_2] \to b \; [q_1, Y, r_1] \; [r_1, Z_0, r_2]$$
 ### Problem 4.1: FIRST and FOLLOW Set Computation
 > **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Compute the `FIRST` and `FOLLOW` sets for the following grammar:  
-> $$E \to T E'$$  
-> $$E' \to + T E' \mid \epsilon$$  
-> $$T \to F T'$$  
-> $$T' \to * F T' \mid \epsilon$$  
-> $$F \to ( E ) \mid id$$
+> 
+> ```text
+> E  -> T E'
+> E' -> + T E' | ε
+> T  -> F T'
+> T' -> * F T' | ε
+> F  -> ( E ) | id
+> ```
 
 #### Step-by-Step Model Solution:
 * **Rules for FIRST**:
-  1. If $X$ is terminal, $\text{FIRST}(X) = \{X\}$.
-  2. If $X \to \epsilon$, add $\epsilon$ to $\text{FIRST}(X)$.
-  3. If $X \to Y_1 Y_2 \dots Y_k$, add $\text{FIRST}(Y_1) \setminus \{\epsilon\}$. If $Y_1 \implies^* \epsilon$, add $\text{FIRST}(Y_2)$, etc.
+  1. If `X` is terminal, `FIRST(X) = { X }`.
+  2. If `X → ε`, add `ε` to `FIRST(X)`.
+  3. If `X → Y1 Y2 ... Yk`, add `FIRST(Y1) \ {ε}`. If `Y1 ⇒* ε`, add `FIRST(Y2)`, etc.
+
 * **FIRST Sets**:
-  - $\text{FIRST}(F) = \{(, id\}$
-  - $\text{FIRST}(T') = \{*, \epsilon\}$
-  - $\text{FIRST}(T) = \text{FIRST}(F) = \{(, id\}$
-  - $\text{FIRST}(E') = \{+, \epsilon\}$
-  - $\text{FIRST}(E) = \text{FIRST}(T) = \{(, id\}$
+  - **FIRST(F)** = `{ (, id }`
+  - **FIRST(T')** = `{ *, ε }`
+  - **FIRST(T)** = **FIRST(F)** = `{ (, id }`
+  - **FIRST(E')** = `{ +, ε }`
+  - **FIRST(E)** = **FIRST(T)** = `{ (, id }`
 
 * **Rules for FOLLOW**:
-  1. Add `$` to $\text{FOLLOW}(S)$ where $S$ is start symbol.
-  2. If $A \to \alpha B \beta$, add $\text{FIRST}(\beta) \setminus \{\epsilon\}$ to $\text{FOLLOW}(B)$.
-  3. If $A \to \alpha B$ or $A \to \alpha B \beta$ where $\beta \implies^* \epsilon$, add $\text{FOLLOW}(A)$ to $\text{FOLLOW}(B)$.
+  1. Add `$` to `FOLLOW(S)` where `S` is start symbol.
+  2. If `A → α B β`, add `FIRST(β) \ {ε}` to `FOLLOW(B)`.
+  3. If `A → α B` or `A → α B β` where `β ⇒* ε`, add `FOLLOW(A)` to `FOLLOW(B)`.
+
 * **FOLLOW Sets**:
-  - $\text{FOLLOW}(E) = \{\$, )\}$ (Rule 1 for $\$$; from $F \to (E)$, `)` follows $E$).
-  - $\text{FOLLOW}(E') = \text{FOLLOW}(E) = \{\$, )\}$.
-  - $\text{FOLLOW}(T)$: From $E \to T E'$, add $\text{FIRST}(E') \setminus \{\epsilon\} = \{+\}$. Since $E' \to \epsilon$, also add $\text{FOLLOW}(E) = \{\$, )\}$. $\implies \mathbf{\{+, \$, )\}}$
-  - $\text{FOLLOW}(T') = \text{FOLLOW}(T) = \{+, \$, )\}$.
-  - $\text{FOLLOW}(F)$: From $T \to F T'$, add $\text{FIRST}(T') \setminus \{\epsilon\} = \{*\}$. Since $T' \to \epsilon$, add $\text{FOLLOW}(T) = \{+, \$, )\}$. $\implies \mathbf{\{*, +, \$, )\}}$
+  - **FOLLOW(E)** = `{ $, ) }` *(Rule 1: add `$` for start symbol `E`; from `F → ( E )`, `)` follows `E`)*
+  - **FOLLOW(E')** = **FOLLOW(E)** = `{ $, ) }` *(From `E → T E'`, `FOLLOW(E') = FOLLOW(E)`)*
+  - **FOLLOW(T)**: From `E → T E'`, add `FIRST(E') \ {ε} = {+}`. Since `E' → ε`, also add `FOLLOW(E) = {$, )}`. ➔ **`{ +, $, ) }`**
+  - **FOLLOW(T')** = **FOLLOW(T)** = **`{ +, $, ) }`** *(From `T → F T'`, `FOLLOW(T') = FOLLOW(T)`)*
+  - **FOLLOW(F)**: From `T → F T'`, add `FIRST(T') \ {ε} = {*}`. Since `T' → ε`, add `FOLLOW(T) = {+, $, )}`. ➔ **`{ *, +, $, ) }`**
 
 * **Summary Table**:
   | Non-Terminal | FIRST | FOLLOW |
   | :---: | :---: | :---: |
-  | $E$ | `{(, id}` | `{$, )}` |
-  | $E'$ | `{+, ε}` | `{$, )}` |
-  | $T$ | `{(, id}` | `{+, $, )}` |
-  | $T'$ | `{*, ε}` | `{+, $, )}` |
-  | $F$ | `{(, id}` | `{*, +, $, )}` |
+  | **E** | `{ (, id }` | `{ $, ) }` |
+  | **E'** | `{ +, ε }` | `{ $, ) }` |
+  | **T** | `{ (, id }` | `{ +, $, ) }` |
+  | **T'** | `{ *, ε }` | `{ +, $, ) }` |
+  | **F** | `{ (, id }` | `{ *, +, $, ) }` |
 
 ---
 
 ### Problem 4.2: Predictive LL(1) Parsing Table Construction & Stack Parsing
 > **[TEE Section A: 12 Marks (Full Question with Table & 17-Step Trace)]**:  
 > (a) Construct the LL(1) parsing table for the grammar in Problem 4.1.  
-> (b) Trace the predictive stack parse for input string $w = id + id * id \$$.
+> (b) Trace the predictive stack parse for input string: **`w = id + id * id $`**.
 
 #### (a) LL(1) Parsing Table Construction:
-For each production $A \to \alpha$:
-- For each terminal $a \in \text{FIRST}(\alpha)$, add $A \to \alpha$ to $M[A, a]$.
-- If $\epsilon \in \text{FIRST}(\alpha)$, for each terminal $b \in \text{FOLLOW}(A)$, add $A \to \alpha$ to $M[A, b]$.
+For each production `A → α`:
+- For each terminal `a ∈ FIRST(α)`, add `A → α` to `M[A, a]`.
+- If `ε ∈ FIRST(α)`, for each terminal `b ∈ FOLLOW(A)`, add `A → α` to `M[A, b]`.
 
-| Non-Terminal | `id` | `+` | `*` | `(` | `)` | `$` |
+| Non-Terminal | `id` | `+` | `*` | `(` | `)` | `$` (End) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **$E$** | $E \to T E'$ | | | $E \to T E'$ | | |
-| **$E'$** | | $E' \to + T E'$ | | | $E' \to \epsilon$ | $E' \to \epsilon$ |
-| **$T$** | $T \to F T'$ | | | $T \to F T'$ | | |
-| **$T'$** | | $T' \to \epsilon$ | $T' \to * F T'$ | | $T' \to \epsilon$ | $T' \to \epsilon$ |
-| **$F$** | $F \to id$ | | | $F \to (E)$ | | |
+| **E** | `E → T E'` | | | `E → T E'` | | |
+| **E'** | | `E' → + T E'` | | | `E' → ε` | `E' → ε` |
+| **T** | `T → F T'` | | | `T → F T'` | | |
+| **T'** | | `T' → ε` | `T' → * F T'` | | `T' → ε` | `T' → ε` |
+| **F** | `F → id` | | | `F → (E)` | | |
 
 *(Since no cell contains more than one production, the grammar is **LL(1)**!)*
 
-#### (b) Stack Parse for $w = id + id * id \$ $:
-| Step | Stack | Input | Action |
-| :---: | :--- | :--- | :--- |
-| 1 | `$ E` | `id + id * id $` | Output: $E \to T E'$ |
-| 2 | `$ E' T` | `id + id * id $` | Output: $T \to F T'$ |
-| 3 | `$ E' T' F` | `id + id * id $` | Output: $F \to id$ |
-| 4 | `$ E' T' id` | `id + id * id $` | **Match `id`** |
-| 5 | `$ E' T'` | `+ id * id $` | Output: $T' \to \epsilon$ |
-| 6 | `$ E'` | `+ id * id $` | Output: $E' \to + T E'$ |
-| 7 | `$ E' T +` | `+ id * id $` | **Match `+`** |
-| 8 | `$ E' T` | `id * id $` | Output: $T \to F T'$ |
-| 9 | `$ E' T' F` | `id * id $` | Output: $F \to id$ |
-| 10 | `$ E' T' id` | `id * id $` | **Match `id`** |
-| 11 | `$ E' T'` | `* id $` | Output: $T' \to * F T'$ |
-| 12 | `$ E' T' F *` | `* id $` | **Match `*`** |
-| 13 | `$ E' T' F` | `id $` | Output: $F \to id$ |
-| 14 | `$ E' T' id` | `id $` | **Match `id`** |
-| 15 | `$ E' T'` | `$` | Output: $T' \to \epsilon$ |
-| 16 | `$ E'` | `$` | Output: $E' \to \epsilon$ |
-| 17 | `$` | `$` | **ACCEPT! (Success)** |
+#### (b) Stack Parse for `w = id + id * id $`:
+
+```text
++------+---------------+------------------+-----------------------+
+| Step | Stack         | Input            | Action                |
++------+---------------+------------------+-----------------------+
+|  1   | $ E           | id + id * id $   | Output: E -> T E'     |
+|  2   | $ E' T        | id + id * id $   | Output: T -> F T'     |
+|  3   | $ E' T' F     | id + id * id $   | Output: F -> id       |
+|  4   | $ E' T' id    | id + id * id $   | Match id              |
+|  5   | $ E' T'       | + id * id $      | Output: T' -> ε       |
+|  6   | $ E'          | + id * id $      | Output: E' -> + T E'  |
+|  7   | $ E' T +      | + id * id $      | Match +               |
+|  8   | $ E' T        | id * id $        | Output: T -> F T'     |
+|  9   | $ E' T' F     | id * id $        | Output: F -> id       |
+| 10   | $ E' T' id    | id * id $        | Match id              |
+| 11   | $ E' T'       | * id $           | Output: T' -> * F T'  |
+| 12   | $ E' T' F *   | * id $           | Match *               |
+| 13   | $ E' T' F     | id $             | Output: F -> id       |
+| 14   | $ E' T' id    | id $             | Match id              |
+| 15   | $ E' T'       | $                | Output: T' -> ε       |
+| 16   | $ E'          | $                | Output: E' -> ε       |
+| 17   | $             | $                | ACCEPT! (Success)     |
++------+---------------+------------------+-----------------------+
+```
 
 ---
 
 ### Problem 4.3: Stepwise SLR(1) Parsing Table Construction & Shift-Reduce Conflicts
 > **[TEE Section A: 12 Marks (Full Question with Collection, Table & Conflict Proof)]**:  
 > Given Grammar:  
-> $$S \to L = R \mid R$$  
-> $$L \to * R \mid id$$  
-> $$R \to L$$  
+> ```text
+> (0) S' -> S  (Augmented)
+> (1) S  -> L = R
+> (2) S  -> R
+> (3) L  -> * R
+> (4) L  -> id
+> (5) R  -> L
+> ```
 > Show that this grammar is **NOT SLR(1)** by demonstrating a Shift-Reduce conflict in state $I_2$.
 
 #### Model Solution:
@@ -721,17 +736,18 @@ For each production $A \to \alpha$:
    - $I_2 = \text{GOTO}(I_0, L)$:
      $$\mathbf{I_2 = \{S \to L \cdot = R, \quad R \to L \cdot\}}$$
 3. **Analyze State $I_2$ for Conflicts**:
-   - Item $S \to L \cdot = R$: Dot is before terminal `=`, indicating a **SHIFT action** on `=` ($s_6$).
+   - Item $S \to L \cdot = R$: Dot is before terminal `=`, indicating a **SHIFT action** on `=` (`s6`).
    - Item $R \to L \cdot$: Dot is at the end, indicating a **REDUCE action** by rule (5) ($R \to L$).
    - In an SLR(1) parser, the reduce action $R \to L$ is placed in all columns of $\text{FOLLOW}(R)$.
 4. **Compute $\text{FOLLOW}(R)$**:
-   - From $S \to L = R$, $\text{FOLLOW}(R)$ contains $\text{FOLLOW}(S) = \{\$\}$.
+   - From $S \to L = R$, $\text{FOLLOW}(R)$ contains $\text{FOLLOW}(S) = \{ \$ \}$.
    - From $S \to L = R$, since $R \to L$, `=` can follow $R$. Therefore, **`=` $\in \text{FOLLOW}(R)$!**
+   - Result: **$\text{FOLLOW}(R) = \{ =, \$ \}$**
 5. **The Shift-Reduce Conflict**:
    - In row $I_2$ and column `=`:
      - Shift action: `s6` (from $S \to L \cdot = R$)
      - Reduce action: `r5` (from $R \to L \cdot$ since `=` $\in \text{FOLLOW}(R)$)
-   - Cell $M[I_2, =]$ contains **BOTH $\{s6, r5\}$**!
+   - Cell $M[I_2, =]$ contains **BOTH $\{ s6, r5 \}$**!
    - $\therefore$ The grammar has a **Shift-Reduce Conflict** and is **NOT SLR(1)**! `[Full 12 Marks]`
 
 ---
@@ -757,18 +773,18 @@ For each production $A \to \alpha$:
 
 ---
 
-### Problem 4.5: Directed Acyclic Graph (DAG) for Expression $E = (a + b) \wedge c + (c + d)$
+### Problem 4.5: Directed Acyclic Graph (DAG) for Expression E = (a + b) ^ c + (c + d)
 > **[TEE Section A: 6 Marks (Part a)] / [TEE Section B: 8 Marks]**:  
 > Construct the Directed Acyclic Graph (DAG) and 3-Address Code for expression:  
-> $$E = (a + b) \wedge c + (c + d)$$  
+> **`E = (a + b) ^ c + (c + d)`**  
 > Highlight node sharing and explain optimization benefits.
 
 #### Model Solution:
 1. **Three Address Code (TAC)**:
-   - $t_1 = a + b$
-   - $t_2 = t_1 \wedge c$
-   - $t_3 = c + d$
-   - $t_4 = t_2 + t_3$
+   - `t1 = a + b`
+   - `t2 = t1 ^ c`
+   - `t3 = c + d`
+   - `t4 = t2 + t3`
 2. **DAG Construction & Node Sharing**:
    - In an Abstract Syntax Tree (AST), variable `c` would appear twice as two independent leaf nodes.
    - In a **DAG**, subexpression/variable `c` is created **once** and shared by both operators `^` and `+`:

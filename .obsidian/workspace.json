@@ -27,12 +27,36 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TOC/notes/term_end/08-tee-imp-solved-master-solutions.md",
+                "file": "TOC/notes/term_end/09-official-question-bank-complete-solutions.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "08-tee-imp-solved-master-solutions"
+              "title": "09-official-question-bank-complete-solutions"
+            }
+          },
+          {
+            "id": "5672734985282349",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "TOC/notes/cat2/pdf/TOC_CAT2_Turing_Machine_Even0_Odd1_Solved.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "TOC_CAT2_Turing_Machine_Even0_Odd1_Solved"
+            }
+          },
+          {
+            "id": "1bde160211a625ec",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "TOC/notes/cat2/pdf/TOC_CAT2_FOOLPROOF_SOLVE_BOOKLET.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "TOC_CAT2_FOOLPROOF_SOLVE_BOOKLET"
             }
           }
         ],
@@ -95,8 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 299.8999938964844,
-    "collapsed": true
+    "width": 221.5
   },
   "right": {
     "id": "02fbfcc4c55b6218",
@@ -227,10 +250,30 @@
   },
   "active": "50f8e7a2964774f9",
   "lastOpenFiles": [
-    "TOC/notes/term_end/07-toc-fat-high-frequency-exam-question-bank.md",
     "TOC/notes/term_end/08-tee-imp-solved-master-solutions.md",
-    "TOC/notes/term_end/00-7-day-toc-emergency-plan.md",
+    "TOC/notes/term_end/09-official-question-bank-complete-solutions.md",
+    "TOC/notes/term_end/07-toc-fat-high-frequency-exam-question-bank.md",
+    "TOC/notes/term_end/06-toc-master-formula-sheet.md",
+    "TOC/notes/term_end/05-module5-intermediate-code-and-optimization.md",
+    "TOC/notes/term_end/04-module4-turing-machines-and-undecidability.md",
+    "TOC/notes/term_end/03-module3-parsing-ll1-slr-clr-lalr.md",
+    "TOC/notes/term_end/02-module2-cfg-cnf-and-pda.md",
     "TOC/notes/term_end/01-module1-finite-automata-and-minimization.md",
+    "TOC/notes/term_end/build_qbank_solutions.py",
+    "TOC/resources/extracted_all_practice_questions.txt",
+    "TOC/notes/cat2/pdf/TOC_CAT2_Turing_Machine_Even0_Odd1_Solved.pdf",
+    "TOC/notes/cat2/pdf/TOC_CAT2_FOOLPROOF_SOLVE_BOOKLET.pdf",
+    "Tech Entre/notes/term_end/08-tee-sample-questions-and-points-to-write.md",
+    "Tech Entre/notes/term_end/07-tech-entre-fat-high-frequency-exam-question-bank.md",
+    "Tech Entre/notes/term_end/04-module4-technology-adoption-incubators-funding.md",
+    "Tech Entre/notes/term_end/06-tech-entre-master-formula-cheat-sheet.md",
+    "Tech Entre/notes/term_end/03-module3-ipr-legal-patents-finance.md",
+    "Tech Entre/notes/term_end/02-module2-journey-discovery-feasibility.md",
+    "Tech Entre/notes/term_end/01-module1-understanding-entrepreneurship-bmc.md",
+    "Tech Entre/interactive_studio/index.html",
+    "Tech Entre/interactive_studio",
+    "Tech Entre/notes/term_end/00-2-day-tech-entre-emergency-plan.md",
+    "TOC/notes/term_end/00-7-day-toc-emergency-plan.md",
     "DLD/notes/term_end/01-module1-number-systems-boolean-logic-families.md",
     "DLD/notes/term_end/00-dld-emergency-plan-and-blueprints.md",
     "DLD/notes/term_end/02-module2-combinational-circuits-kmaps-arithmetic.md",
@@ -241,33 +284,13 @@
     "ML/resources/a13 14.txt",
     "DLD/resources/circuit_activity_b.png",
     "DLD/resources/circuit_activity_a.png",
-    "DLD/resources/unit5_pdf_text.txt",
     "DLD/resources/word/media/image2.png",
     "DLD/resources/word/media/image1.png",
-    "DLD/resources/word/media",
-    "DLD/resources/word",
-    "Python/resources/list of experiments 4.txt",
-    "Python/resources/Unit  5.pptx",
-    "Tech Entre/resources/UNIT-5 TECH ENT.pptx",
     "Discrete/notes/term_end/06-term-end-master-formula-cheat-sheet.md",
     "TOC/resources/slr(1) problem123.jpg",
     "TOC/resources/Chomsky-Hierarchy-in-TOC.png",
     "PLA Java/notes/term_end/07-pla-fat-high-frequency-exam-question-bank.md",
     "PLA Java/notes/term_end/06-pla-master-cheat-sheet.md",
-    "PLA Java/notes/term_end/05-module5-dp-knapsack-lcs-graphs.md",
-    "PLA Java/notes/term_end/04-module4-greedy-huffman-backtracking-nqueens.md",
-    "PLA Java/notes/term_end/03-module3-sliding-window-manacher-stacks-queues.md",
-    "PLA Java/notes/term_end/02-module2-number-theory-sieves-booths-euler.md",
-    "PLA Java/notes/term_end/01-module1-time-complexity-bit-manipulation.md",
-    "PLA Java/notes/term_end/00-pla-emergency-plan-and-code-templates.md",
-    "PLA Java/notes/term_end/README.md",
-    "Python/notes/term_end/07-python-fat-high-frequency-exam-question-bank.md",
-    "Python/notes/term_end/06-python-master-cheat-sheet.md",
-    "Python/notes/term_end/05-module5-tkinter-gui-threads-sockets.md",
-    "Python/notes/term_end/04-module4-file-handling-sqlite-mysql-streams.md",
-    "Python/notes/term_end/03-module3-oop-dunder-methods-exceptions.md",
-    "Python/notes/term_end/02-module2-collections-functions-regex.md",
-    "Python/notes/term_end/01-module1-syntax-control-flow-operators.md",
-    "Python/notes/term_end/00-python-emergency-plan-and-blueprints.md"
+    "PLA Java/notes/term_end/05-module5-dp-knapsack-lcs-graphs.md"
   ]
 }

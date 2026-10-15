@@ -52,3 +52,4 @@ Dr. Abhishek Raj and business school evaluators penalize vague essay paragraphs.
 | [05-module5-globalization-offshoring-trends.md](./05-module5-globalization-offshoring-trends.md) | Unit 5: Global Supply Chains, Offshoring, Global Market Entry, Contemporary Trends |
 | [06-tech-entre-master-formula-cheat-sheet.md](./06-tech-entre-master-formula-cheat-sheet.md) | 1-Page Rapid Revision Sheet: All frameworks, tables & definitions |
 | [07-tech-entre-fat-high-frequency-exam-question-bank.md](./07-tech-entre-fat-high-frequency-exam-question-bank.md) | 15 Fully Solved Past TEE Questions (12-Mark & 8-Mark models) |
+| [08-tee-sample-questions-and-points-to-write.md](./08-tee-sample-questions-and-points-to-write.md) | High-yield TEE sample questions & exact points/tables to write on your answer sheet |

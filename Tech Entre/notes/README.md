@@ -13,9 +13,12 @@
 
 ---
 
-## 🔥 CAT-2 Master HOTS Exam Sheets (Modules 3 & 4)
-*Permitted in Exam Hall: Bring your own handwritten notes copied directly from these templates!*
+## 🔥 TEE / FAT Master Exam Suite (100 Marks Target)
+*Direct, consultant-grade answers with comparative tables, formulas, and diagrams for Dr. Abhishek Raj.*
 
-| Topic | File | Exam HOTS Recipe |
+| Guide | File | What's Inside |
 | :--- | :--- | :--- |
-| **Business Models, Customer Validation & Feasibility** | [cat2-hots-module3-4-entrepreneurship-master.md](./cat2/cat2-hots-module3-4-entrepreneurship-master.md) | • 9-Block Business Model Canvas (Airbnb)<br>• Customer Discovery 4-Step Validation<br>• 4 Pillars of Feasibility Analysis<br>• Willingness-to-Pay Smoke Tests & Van Westendorp |
+| **TEE Complete Survival Guide** | [term_end/README.md](./term_end/README.md) | Full 5-module term end notes suite & 2-day emergency plan |
+| **Sample Questions & Points to Write** | [term_end/08-tee-sample-questions-and-points-to-write.md](./term_end/08-tee-sample-questions-and-points-to-write.md) | **10 High-Yield 12M & 8M questions with exact tables and points** |
+| **15 Fully Solved University Questions** | [term_end/07-tech-entre-fat-high-frequency-exam-question-bank.md](./term_end/07-tech-entre-fat-high-frequency-exam-question-bank.md) | Detailed solutions across all 5 units |
+| **Interactive Video & Audio Studio** | [interactive_studio/index.html](../interactive_studio/index.html) | Animated visual deck & Google Voice audio narration |

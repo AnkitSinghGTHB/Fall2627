@@ -1,0 +1,698 @@
+=== Module-1 Practice Questions.pdf ===
+--- Page 1 ---
+Module-1 Practice Questions 
+Design (Construction of Finite Automation for given regular set/language) 
+1. (a) Construct (Design)a DFA for the following languages over alphabet {0, 1}:  
+    i.   L={ww has both an even number of 0’s and even number of 1’s } 
+    ii.  L= {ww is in the form of ‘x01y’ for some strings x and y consisting of 0’s and 1’s}  
+   iii. L = set of all strings containing odd number of 0’s and odd number of 1’s. 
+   iv. L = set of all strings containing even number of 1’s. 
+   v. L=set of all strings whose length is divisible by either 3 or 4. 
+   vi. L = set of all strings ending with 101. 
+   vii. L = set of all strings that do not contain 101 as substring.  
+         viii. L = set of strings interpreted as binary numbers would be multiple of 3. 
+         ix. L = set of all strings w such that numbers of 1’s in w is 3 mod 4. 
+ (b) Design DFA for the following languages shown below over Σ ={a, b}: 
+              i. L={ww does not contains the sub strings ab}. 
+              ii. L={ww contains neither the sub strings ab nor ba}. 
+       iii. L={ww is any string that doesn’t contain exactly two a’s }. 
+(c) Write DFA to accept strings of 0’s, 1’s and 2’s beginning with a 0 followed by odd number 
+of 1’s and ending with a 2.   
+       (d) Design a NFA for the following 
+           i. L={abaan n> 1 } 
+     ii. L = set of all strings with 2 a’s followed by 2 b’s over { a , b } 
+     iii. L = set of all strings does not contain 3 consecutive 0’s over Σ={0,1}. 
+(e) Design FA to accept string with ‘a’ and ‘b’ such that the number of a’s are divisible by 3. 
+(f) Design a FA to accept following languages over Σ={0,1} 
+     i. L = set of strings ending with last two characters are same. 
+     ii. L = set of all strings containing 4 consecutive zeros. 
+       (g) Construct NFA with  which accepts a language consisting th e strings of any number of 
+0’s followed by any number of 1’s followed by any number of 2’s. 
+ 
+Conversion of NFA to DFA and -NFA to DFA 
+ 
+2. (a) Covert the following NFA in Figure 1 to equivalent DFA. 
+ 
+                                  
+ 
+Figure: 1 
+    
+ 
+
+--- Page 2 ---
+ (b) Construct DFA for given NFA. 
+                                                  
+Figure: 2 
+ 
+    (c) Convert the following NFA with -moves to DFA. 
+ 
+Figure: 3 
+ 
+   (d) Convert the following NFA with -moves to DFA. 
+ 
+                                                                   Figure: 4 
+ 
+Conversion of -NFA to NFA (NFA with -moves to NFA without -moves) 
+3. (a) Convert the following NFA in Figure 5 with -moves into a NFA without -moves and 
+show that NFA with- moves accepts the same language.  
+ 
+                                    
+                                                          Figure: 5 
+ 
+     (b) Convert the following NFA in Figure 6 with -moves into a NFA without -moves. 
+                                                 
+                                                           Figure: 6 
+
+--- Page 3 ---
+     (c) Construct NFA for given NFA with -moves.  
+                                                
+                                                            Figure: 7 
+ 
+Minimization of Finite Automation 
+ 
+4. (a) Build the DFA with minimum states equivalent to the following DFA: 
+                                                               
+Figure: 8 
+ 
+(b) Minimize the following DFA: 
+                                                      
+                                                                   Figure: 9 
+ 
+(c) Build the DFA with minimum states equivalent to the following DFA: 
+ 
+
+--- Page 4 ---
+ 
+Figure: 10 
+(d) Construct the minimum state automaton equivalent to the transition diagram given by Figure 
+11. 
+ 
+Figure: 11 
+ 
+Conversion of Regular Sets (Regular Languages) to Regular Expressions 
+5. (i) Find Regular Expression for no 0 or many triples of 0s with no 1 or many 1 in the strings. 
+       (ii) Find Regular Expression for strings of one or many 11 or no 11. 
+       (iii) Find A regular expression for ending with abb. 
+       (iv) Find Regular expression for all strings having 010 or 101. 
+       (v) Find Regular expression for Even Length Strings defined over {a,b}. 
+       (vi) Find Regular Expression for strings having at least one double 0 or double 1. 
+       (vii) Find Regular Expression of starting with 0 and having multiple even 1’s or no 1. 
+       (viii) Find Regular Expression for an odd number of 0’s or an odd number of 1’s in the strings. 
+       (ix) Find Regular Expression (RE) for starting with 0 and ending with 1. 
+       (x) Find RE for ending with b and having zero or multiple sets of aa and bb. 
+       (xi) Find regular expression of the second last symbol is 1. 
+       (xii) Find RE for starting with 1 having zero or multiple even 1’s. 
+
+--- Page 5 ---
+      (xiii) Find RE for exactly single 1 many 0’s . 
+      (xiv) Find Regular expression (RE) for the language of all those strings starting with aa and    
+            ending with ba. 
+      (xv) Find Regular expression for the language of all consecutive even length a’s. 
+      (xvi) Find Regular expression for the language of all odd length strings. 
+      (xvii) Find Regular expression for the language of all even length strings but end with aa. 
+       (xviii) Find Regular expression for the language of an odd number of 1’s. 
+       (xix) Find Regular expression for the language of even length strings starting with a and    
+                ending with b. 
+       (xx) Find the Regular expression for the language of all even length strings but starts with a. 
+   (xxi) Find Regular Expression for the Language of all strings with an even number of 0’s or even    
+             number of 1’s. 
+   (xxii) Find Regular expression of strings containing exactly three consecutive 1’s. 
+   (xxiii) Find Regular Expression of all strings whose length is divisible by 4. 
+   (xxiv) Find Regular Expression Strings does not contain substring 110. 
+   (xxv) Find a regular expression corresponding to each of the following subsets of {a. b}. 
+            (a) The set of all strings containing exactly 2 a' s. 
+            (b) The set of all strings containing at least 2 a' s. 
+            (c) The set of all strings containing at most 2 a' s. 
+            (d) The set of all strings containing the substring aa. 
+(xxvi) Find a regular expression consisting of all strings over {a, b} starting with any number of    
+           a's, followed by one or more b's, followed by one or more a's, followed by a single b,    
+           followed by any number of a's, followed by b and ending in any string of a's and b's. 
+(xxvii) Find the regular expression representing the set of all strings of the form 
+             (a) ambncp where m, n, p ≥ 1 
+             (b) amb2nc3p where m, n, p ≥ 1 
+              (c) anba2mb2 where m ≥ 0, n ≥ 1 
+(xxviii) Represent the following sets by regular expressions: 
+              (a) {0, 1, 2}. 
+              (b) {12n+1 | n > 0}. 
+              (c) {w  {a, b}* | w has only one a}. 
+              (d) The set of all strings over {0, 1} which has at most two zeros. 
+              (e) {a2, a5, a8, ... }. 
+              (f) {an | n is divisible by 2 or 3 or n = 5}. 
+              (g) The set of all strings over {a, b} beginning and ending with a. 
+(xxix) Find the regular expressions representing the following sets: 
+      (a) The set of all strings over {0, 1} having at most one pair of 0's or at most one pair of 1's. 
+      (b) The set of all strings over {a. b} in which the number of occurrences of a is divisible by 3. 
+      (c) The set of all strings over {a. b} in which there are at least two occurrences of b between    
+           any two occurrences of a. 
+  
+Conversion of Regular Expressions to Regular Sets (Regular Languages) 
+6. Find the sets represented by the following regular expressions. 
+      (a) (a + b)(aa + bb + ab + ba)* 
+      (b) (aa)* + (aaa)* 
+--- Page 6 ---
+      (c) (1 + 01 + 001)*(1\ + 0 + 00) 
+      (d) a + b(a + b)* 
+ 
+7. Find all strings of length 5 or less in the regular set represented by the following regular 
+expressions: 
+      (a) (ab + a)*(aa + b) 
+      (b) (a*b + b*a)*a 
+      (c) a* + (ab + a)* 
+ 
+8. Describe, in the English language, the sets represented by the following regular expressions: 
+ (a) a(a + b)*ab 
+       (b) a*b + b*a 
+       (c) (aa + b)*(bb + a)* 
+ 
+Simplification of Regular Expressions   
+9. (a) Giye a RE. for representing the set L of strings in which every 0 is immediately followed     
+      by at least two 1’s. 
+(b) Prove that the regular expression R = ε + 1*(011)*(1* (011)*)* also describes the same set    
+            of strings.      
+10. Prove (1 + 00*1) + (1 + 00*1)(0 + 10*1)* (0 + 10*1) = 0*1(0 + 10*1)*. 
+11. Prove that P + PQ*Q =a*bQ* where P = b + aa*b and Q is any regular expression. 
+ 
+Conversion of Regular Expressions to Finite Automata 
+12. (a) Construct FA for the following regular expressions 
+             i. 0+10* +01*0 
+            ii. (0+1)*(01+110) 
+       (b) Construct Finite Automata for the regular expression 0*1*(101)*11. 
+       (c) Convert the following regular expressions to NFA with epsilon transitions 
+              i. 0*+1101    ii.  (0+1)* 
+       (d) Explain the procedure for the conversion of DFA into regular expression like    
+             (10)*110(10)* over an alphabet {0, 1}. 
+       (e) Define DFA and Regular expression. Find a DFA that accepts all strings     
+            corresponding to the expression 1*01(0+11)*. Also explain how to convert a regular    
+            expression to DFA. 
+      (f) Construct a DFA accepting language represented by 0*1*2*. 
+      (g) Design a FA for the following languages: 
+            i. (0*1*)*       ii. (0 + 1)*111*         iii. 0*11* + 101 
+ 
+Conversion of Finite Automata to Regular Expressions 
+13. (a) Derive the regular expression from the following automata: 
+--- Page 7 ---
+                       
+                                                  Figure: 12 
+        (b) Convert the following FA to regular expression: 
+ 
+Figure: 13 
+        (c) Convert the following Finite Automata to it’s equivalent Regular Expression. 
+ 
+Figure: 14 
+ 
+Proving the given language L as not regular using Pumping lemma 
+ 
+14. Using pumping lemma Prove that the following languages are not regular. 
+(a) 𝐿 = {𝑎𝑘2
+| 𝑘 ≥ 1} 
+(b) 𝐿 = {𝑎2𝑛
+| 𝑘 ≥ 1} 
+(c) 𝐿 = {𝑎𝑝| 𝑝 is prime} 
+(d) 𝐿 = {𝑎𝑛!| 𝑛 ≥ 1} 
+(e) 𝐿 = {0𝑘1𝑘| 𝑘 ≥ 1} 
+(f) L = {ww | w  {a, b}*} 
+ 
+ Specification and recognition of Tokens 
+15. Write the regular definitions (specifications) for the following tokens 
+  keywords (if, then, else), identifier, relop, num, white space (ws)   
+ Illustrate the recognition of above token with transition diagrams. 
+16. Illustrate the simple approach to the design of a lexical analyzer for an identifier.  
+ 
+LEX: Lexical Analyzer Generator 
+ 
+17. A Lex program is given below – 
+                             
+                            Regular Definitions 
+                                      None 
+                        Transition Rules 
+                            a      { } /* actions are omitted here */ 
+                            abb  { } 
+                      a*b+   { }   
+Implement the Lex as DFA. 
+
+--- Page 8 ---
+ 
+18. A Lex program is given below – 
+                             
+                            Auxiliary Definitions 
+                                      None 
+                        Transition Rules 
+                            a      { } /* actions are omitted here */ 
+                            abb  { } 
+                      a*b*   { }   
+Implement the Lex as DFA. 
+ 
+19. Write a Lex program to recognize the following tokens – 
+     ws {white space}, if, then, else, end, id 
+Also generate the output of Lex as Lexical Analyzer (Finite Automata). 
+
+
+=== Module-2 Practice Questions.pdf ===
+--- Page 1 ---
+Module-2 Practice Questions 
+CFG: Derivations, Derivation tree, ambiguity in a grammar 
+ 
+1. (a)  Derive left and right most derivations for the input string a=b⋆c+d/e for the given grammar  
+                    EE+E|E-E|E⋆E|E/E|(E)|id  
+        (b) Find the left most and right most derivations for the string +⋆-xyx in the grammar: 
+                     E+EE | ⋆EE | -EE | x | y | ε 
+        (c)  Consider G whose productions are S  aAS I a, A  SbA | SS | ba. Show that  
+              S => aabbaa and construct a derivation tree whose yield is aabbaa. 
+         (d) Let G be the grammar S  0B | 1A, A  0 | 0S | 1AA, B  1 | 1S | 0BB.  
+             For the string 00110101, find (i) the leftmost derivation, (ii) the rightmost derivation, and    
+             (iii) the derivation tree. 
+         (e) If G is the grammar S  SbS | a, show that G is ambiguous. 
+         (f) If G is the grammar S  S+S | S*S | a | b, show that G is ambiguous. 
+         (g) Show that the grammar S  a | abSb | aAb, A  bS | aAAb is ambiguous. 
+          (h) Show that the grammar S  aB | ab, A  aAB | a. B  ABb | b is ambiguous. 
+ 
+CFG: Simplification of CFGs 
+ 
+2. (a) Find a reduced grammar equivalent to the grammar S  aAa, A bBB, B  ab, C  aB. 
+      (b) Given the grammar S  AB, A  a, B  C | b, C  D, D  E,E  a, find an equivalent    
+              grammar which is reduced and has no unit productions. 
+      (c) Construct a reduced grammar equivalent to the grammar 
+                 S  aAa, A  Sb | bCC | DaA. C  abb | DD, E  aC, D  aDA 
+     (d) Consider the grammar G whose productions are S  as | AB, A  Λ, B  Λ, D  b.     
+               Construct a grammar G1 without null productions generating L(G) - { Λ }. 
+ 
+Normal forms: CFG to CNF 
+3. (a) What is CNF? Convert the following grammar into CNF: 
+                        S→ABa,       A→aab,     B→Ac 
+       (b) Consider the grammar ({S,A,B}, {a,b}, P, S) that has the productions:  
+                      S→bA | aB,       A→bAA | aS | a,     B→aBB | bS | b.  
+            Find an equivalent grammar in CNF. 
+      (c) Convert the following Context Free Grammar to Chomsky Normal Form 
+                 S→AaB | aaB,    A→ ε,      B→bbA | ε 
+      (d) Convert the following grammar to Chomsky Normal Form 
+                 S→bA | aB,       A→bAA | aS | a,        B→aBB | bS | b 
+      (e) Convert the following Context Free Grammar to Chomsky Normal Form 
+                  S→1A | 0B,    A→1AA | 0S | 0,      B→0BB | 1 
+     (f) Convert the following Context Free Grammar G = ({E, T, F}, {+,⋆, (, ), id}, P, E) to     
+          Chomsky Normal Form, where P is given as 
+             E→E + T | T,    T→T ⋆ F |F,      F→(E) | id 
+     (g)  Convert the following Context Free Grammar to Chomsky Normal Form 
+--- Page 2 ---
+                S→ABA,    A→aA | ε,      B→bB | ε 
+ 
+Normal forms: CFG to GNF 
+4. (a) Convert the following grammar to Greibach Normal Form 
+              G = ({A1, A2, A3}, {a ,b},P,A) Where P consists of the following 
+                        A1→A2A3,   A2→A3A1 | b,   A3→A1A2 | a 
+       (b) Convert the following grammar to Greibach Normal Form  
+                      S→ABA | AB | BA | AA | B,       A→aA | a,        B→bB | b 
+       (c) Convert the following grammar to Greibach Normal Form  
+                                     S→aAS | a,       A→SbA | SS |ba 
+       (d) Find the GNF equivalent to the following: 
+                      S→AA | a,       A→SS | b 
+ 
+       (e) Build the grammar G’ in GNF equivalent to the following grammar:  
+              G = ({S, X, Y}, {a, b}, { S  Xa,  X  aY, Y  Xa|b}, S) 
+ 
+PDA: Construction of a PDA for a given Context-free Language (CFL) 
+ 
+5. (a) Define Push Down Automata. Construct Push Down Automata accepting the following 
+language L ={anbn|n ≥ o} 
+ (b) Construct the PDA that recognizes the languages L={x=xR: x є {a,b}
++
+}. 
+       (c) Design Push Down Automata for L ={anbn|n ≥ 1}. 
+        (d) Design Push Down Automata for L = {a2nbn | n ≥ 1}. 
+        (e) Design Push Down Automata for L = {anb2n | n >0}. 
+        (f) Design PDA for L = {anbncm |n, m ≥ 1}. 
+        (g) Design PDA for L = {ambncn |n, m ≥ 1}. 
+        (h) Design PDA for L = {anbmcn |n, m ≥ 1}.       
+        (i) Construct the PDA that recognizes the languages L={wwR|wє (0 +1)*, wR is reverse of    
+             w}. 
+        
+Note: Acceptance might be asked by either final state or by null store (empty stack). 
+ 
+PDA: Conversion of CFG to PDA 
+ 
+6. (a) Construct the PDA to the following grammar:  
+                     S→aAA, A→aS | bS | a 
+      (b) Convert the following Context Free Grammar to Push Down Automata 
+                      S→aSbb | aab 
+      (c) Find Push Down Automata that accepts the Context-free Grammar: 
+                    S→XY,       X→aX | bX|a,        Y→Ya | Yb|a 
+      (d) Construct PDA for the given CFG: S→aSb, S→ab, Where S is the only variable and{a,b} are  
+            terminals. 
+      (e) Convert the following grammar in a PDA that accepts the language by empty stack 
+                            S→0S1|A,       A→1A0|S| 
+--- Page 3 ---
+PDA: Conversion of PDA to CFG 
+ 
+7.  (a) Convert the following Push Down Automata to Context Free Grammar 
+             M= ({q0,q1},{a,b}{z0,za},δ,q0,z0,φ) where δ is given by 
+             δ(q0,a,z0) =(q0, zaz0) 
+             δ(q0,a, za) =(q0,zaza) 
+             δ(q0,b, za) =(q1,Є) 
+             δ(q1,b, za) =(q1,Є) 
+             δ(q1, Є, z0) =(q1,Є) 
+ 
+     (b) Construct CFG for the PDA given below A=({q0,q1},{0,1},{S,A},δ, q0,S,φ) where δ is    
+           given as below 
+              δ(q0,1,S)={(q0,AS)} 
+              δ(q0,ε,S)={(q0,ε)} 
+             δ(q0,1,A)={(q0,AA)} 
+             δ(q0,0,A)={(q1,A)} 
+             δ(q0,1,A)={(q1,ε)} 
+             δ(q1,0,S)={(q0,S)} 
+ 
+      (c) Construct CFG for the PDA M=({q0,q1},{0,1},{R,Z0},δ, q0,Z0,φ) where δ is given by 
+                     δ(q0,1,Z0)={(q0,RZ0)} 
+                      δ(q0,1,R)={(q0,RR)} 
+                      δ(q0,0,R)={(q1,R)} 
+                      δ(q1,0,Z0)={(q0,Z0)} 
+                      δ(q0,ε,Z0)={(q0,ε)} 
+                      δ(q1,1,R)={(q1,ε)} 
+ 
+Proving the given language L as not context-free using Pumping lemma 
+ 
+8. Using pumping lemma Prove that the following languages are not context-free. 
+(a) 𝐿 = {𝑎𝑛𝑏𝑛𝑐𝑛| 𝑛 ≥ 1} 
+(b) 𝐿 = {𝑎𝑝| 𝑝 is prime} 
+(c) The set of all strings over {a, b, c} in which the number of occurrences of a, b, c is the    
+      same. 
+(d) 𝐿 = {𝑎𝑚𝑏𝑚𝑐𝑛| 𝑚 ≤ 𝑛 ≤ 2𝑚} 
+(e) 𝐿 = {𝑎𝑚𝑏𝑛| 𝑛 =  𝑚2} 
+
+
+=== Module-3 Practice Questions.pdf ===
+--- Page 1 ---
+Module-3 Practice Questions 
+Elimination of Left Recursion 
+ 
+1. (i) Eliminate the left recursion from the following grammar:  
+               E  E + T | E – T | T 
+               T  T / F | T * F | F 
+               F  ( E ) | id  
+  
+       (ii) Eliminate the left recursion from the following grammar:  
+               A  ABd | Aa | a 
+               B  Be | b    
+ 
+(iii) Remove the left recursion from the following grammar: 
+              S  Aa | b 
+              A  Ac | Sd |     
+ 
+ 
+Left Factoring 
+ 
+2. (i) Do left factoring for the following grammar: 
+                 S  AS | AbS | A | a 
+                 A  aB | aBS | a 
+                 B  bA | b 
+ 
+      (ii)  Do left factoring for the following grammar: 
+                 A  aAB | aA | a 
+                 B  bB | b 
+ 
+FIRST and FOLLOW Sets 
+ 
+3. (i) For the following grammar find FIRST and FOLLOW sets: 
+                 S  aAB | bA |  
+                 A  aAb |  
+                 B  bB |  
+ 
+       (ii) Calculate the FIRST and FOLLOW sets for the following grammar: 
+                 S  ACB | CbB | Ba 
+                 A  da | BC 
+                 B  g |  
+                 C  h |  
+ 
+Top-down Parsing: Nonrecursive [LL(1)] Predictive Parsing 
+ 
+--- Page 2 ---
+4. (a) Construct LL(1) parsing table for the following grammar: 
+                        S  AaAb | BbBa 
+                              A   
+                              B   
+ 
+       (b) Consider the grammar: 
+                S→iCtSA|a 
+                A→eS| 
+               C→b 
+           Test whether it is LL(1) grammar and construct the predictive parsing table for it. 
+ 
+       (c) Check whether the given grammar is LL(1)?? Remove left recursion and then again     
+              verify whether it is LL(1)? 
+                  S  Aa | b 
+                 A  Ac | Sd |  
+ 
+      (d)  Construct LL(1) parsing table for the following grammar: 
+               E  E + T | T 
+               T  T * F | F 
+               F  ( E ) | id   
+ 
+      (e) Design LL(1) parsing table for the following grammar: 
+             S  AcB | cC | C 
+                   B  bB | id 
+                   A  CaB | BbB | B 
+ 
+      (f) Construct LL(1) parsing table for the following grammar: 
+             S  aXYb 
+                   X  c |  
+                   Y  d |  
+ 
+Bottom-up Parsing: Simple LR [SLR(1)] Parser 
+ 
+5. (a) Construct LR(0) [or LR] parsing table for the following grammar: 
+                 E→AA 
+                A→aA|b 
+ 
+      (b) Construct SLR(1) parsing table for the following grammar: 
+            S  cA | ccB 
+                   A  cA | a 
+                   B  ccB | b 
+        
+     (c) Show that the following grammar  
+                     S  Aa | bAc | dc | bda 
+                     A  d 
+--- Page 3 ---
+             is not SLR(1). Also construct SLR(1) parsing table. 
+ 
+Bottom-up Parsing: Cannonocal LR [CLR(1) or LR(1)] Parser 
+ 
+6. (a) Construct CLR(1) (also called LR(1))  parsing table for the following grammar: 
+                 E→AA 
+                A→aA|b   
+     
+(b) Construct CLR(1) parsing table for the following grammar: 
+                     S  Aa | bAc | Bc | bBa 
+                     A  d 
+                     B  d 
+Bottom-up Parsing: Look ahead LR [LALR(1) or LLR(1)] Parser 
+ 
+7. (a) Construct LALR(1) (also called LLR(1))  parsing table for the following grammar: 
+                 E→AA 
+                 A→aA|b       
+ 
+(b) Construct LALR(1) parsing table for the following grammar: 
+       S→ (L) a 
+       L → L, S  S 
+       
+(c) Prove that the following grammar 
+         E  Fa | bFc | Tc | bTa 
+                     F  d 
+                     T d 
+           is LR(1) but not LALR(1). Also construct LALR(1) parsing table.      
+ 
+
+
+=== Module-4 Practice Questions.pdf ===
+--- Page 1 ---
+Module-4 Practice Questions 
+ 
+1. Design a Turing Machine to recognize the language  
+  L={0n1n| n≥1}.  
+Illustrate the moves to verify the acceptance of the strings  
+ (i) 0011 (ii) 011 
+ 
+2. Design a Turing Machine to recognize the language L={anbncn| n≥1}. 
+(Transition Diagram, Transition table and Tuples)                       
+Illustrate the moves to verify the acceptance of the strings  
+ (i) aabbcc (ii) aabcc 
+ 
+3. Design a Turing machine to recognize all strings consisting of an even number of 1's. 
+ (Transition Diagram, Transition table and Tuples)                       
+Illustrate the moves to verify the acceptance of the strings  
+ (i) 1111      (ii) 111 
+ 
+4. Design a Turing machine over {1, B} which can compute a concatenation function over 
+L = {1}. If a pair of words (w1, w2) is the input. the output has to be w1w2. 
+ (Transition Diagram, Transition table and Tuples) 
+Illustrate the moves to perform the concatenation of strings (w1, w2) = (111, 1111)  
+  
+5. Construct a TM that accepts the language 0 1* + 1 0*. 
+ 
+6. Construct a TM that computes addition of two integers i.e. f(x,y) = x + y.  
+       (Transition Diagram, Transition table and Tuples) 
+      Illustrate the moves to perform addition of m = 3, n = 2. 
+ 
+7. Construct a TM that computes proper subtraction i.e. 
+  f(m, n) = m – n,  if  m ≥ n 
+              = 0,          if m < n 
+(Transition Diagram, Transition table and Tuples) 
+Illustrate the moves to perform proper subtraction for  (i) m = 3, n = 2  (ii) m = 3, n = 4 
+ 
+8. Design a Turing machine to accept the set of all palindrome over {0,1}*. Draw a transition 
+diagram for this machine. 
+(Transition Diagram, Transition table and Tuples) 
+Illustrate the moves to verify the acceptance of the strings  
+(i) 010 (ii) 101 (iii) 011 
+ 
+9. Design a Turing machine to check whether the given input is prime or not using multiple 
+tracks. Illustrate the steps to determine which of the following binary input is/are the 
+prime numbers. 
+    (i) 1010                           (ii) 1011 
+ 
+--- Page 2 ---
+10. Discuss recursive and reclusively enumerable languages with examples. 
+  
+11. If 𝑳 is a recursive language over Σ, prove that 𝑳̅ (𝑳̅ =  𝚺∗ − 𝑳) is also recursive. 
+ 
+12. If L and 𝑳̅ are both recursively enumerable. show that L and L are recursive. 
+ 
+13. Prove that HALTTM = {(M, w) | The Turing machine M halts on input w} is undecidable. 
+ 
+14. Determine whether the following PCPs with two lists x and y have a solution. 
+(i) x = (ba, bab3, b),      y = (a, ba, b3) 
+(ii) x = (01, 1, 1),         y = (012, 10, 12) 
+(ii) x = (a, b20, a2b),      y = (ba, a3, ba) 
+ 
+15. Determine whether the  PCP defined by the following dominoes does has a solution. If 
+there exists a solution, then find at least two solutions: 
+ 
+       
+ 
+ 
+ca 
+b 
+ab 
+a 
+a 
+ca 
+c 
+abc 
+
+
+=== Module-5 Practice questions.pdf ===
+--- Page 1 ---
+Module-5 Practice Questions 
+ 
+1. Construct 3-address Code for the following –  
+   if [(a < b) and ((c > d) or (a >d))], then 
+                z = x + y + z 
+   else 
+                z = z + 1 
+ 
+2. Construct 3-address Code for the following –  
+   while (a < b) do 
+                if (c < d) then 
+                   x = y + z 
+   else 
+                x = y – z 
+ 
+3. Generate the 3-address Code for the following C program  
+main () 
+{   
+   int i = 1; 
+   int a[10];   
+   while (i <= 10)  
+                a[i] = i; 
+} 
+ 
+4. Generate the 3-address Code for the following while statement -  
+  
+   while ((A > B) and (A <= 2*B – 5)) do 
+                A = A + B 
+ 
+5. Generate the 3-address Code for the following program fragment -  
+  
+   while (A > C and B > D) do 
+            if A = 1 then 
+               C = C + 1 
+           else 
+                while (A<=D) do 
+                  A = A + 3 
+ 
+6. Consider the following program fragment: 
+       sum := 0 
+     for (i = 1; i <= 20; i++) 
+     sum := sum + a[i] + b[i] 
+    
+--- Page 2 ---
+Construct three-address code for the above program fragment. Assume there are 4 bytes per 
+word.  
+    
+7. Construct three-address code for the above program fragment. Assume there are 4 bytes 
+per word.     
+                          x = a[i] + 1 
+                         a[i] = b[c[i]] 
+                         a[i][j] = b[i][k] * c[k][j] 
+                         a[i] = a[i] + b[j] 
+                         a[i] += b[j] 
+ 
+8. Construct syntax tree and postfix notation for the following expression 
+              (a + b*(b*c))  d – e / (f+g) 
+ 
+9. Translate the expression - (a + b) * (c + d) + (a + b + c) into  
+  (i) Quadruples   (ii) Triples   (iii) Indirect Triples  
+ 
+10. Translate the expression - (x + y) * (z + c) - (x + y + z) into  
+        (i) Quadruples   (ii) Triples   (iii) Indirect Triples 
+ 
+11.  Construct the Directed Acyclic Graph (DAG) for the following basic block: 
+    t1 := a + b 
+    t2 := c + d 
+    t3 := e - t2 
+    t4 := t1 - t3 
+ and generate code (assembly code) for these three address statements. 
+    
+12. Construct the Directed Acyclic Graph (DAG) for the following basic block: 
+    a := b + c 
+    b := a - d 
+    c := b + c 
+    d := a – d 
+ 
+13. Construct the Directed Acyclic Graph (DAG) for the following basic block: 
+    a := b + c 
+    b := b - d 
+    c := c + d 
+    e := b + c 
+ 
+14. Construct the Directed Acyclic Graph (DAG) for the following basic block: 
+    D := B * C 
+    E := A + B 
+    B := B * C 
+    A := E – D 
+ 
+--- Page 3 ---
+15. Show the DAG for the following statement-  
+    Z = X – Y + X * Y * U – V/W + X + V 
+ 
+16. Construct DAG of basic block after converting the code in 3-address representation –  
+   i = 1; 
+   j = 2; 
+ 
+repeat  
+          A[i] = j; 
+         j = j * 2; 
+         i = i + 1 
+until (i > 10) 
+  
+17. Costruct the Directed Acyclic Graph (DAG) for the following basic block: 
+             (i)     t1 := 4 * i 
+             (ii)    t2 := a[t1] 
+            (iii)   t3 := 4 * i 
+            (iv)   t4 := b[t3] 
+            (v)    t5 := t2 * t4 
+            (vi)   t6 := Prod + t5 
+            (vii)  Prod : = t6 
+            (viii) t7 := i + 1 
+            (ix)   i := t7 
+            (x)    if  i <= 20 goto (i) 
+ 
+
+
