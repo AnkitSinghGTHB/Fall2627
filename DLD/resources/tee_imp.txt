@@ -1,0 +1,25 @@
+Module 1Number system conversion 
+1's and 2's, 9's and 10's complement
+RTL logic
+Boolean Algebra
+Realisation using NAND and NOR logic
+
+Module 2
+K-map
+Mux, demux encoder, decoder
+Problems related to decoder and encoder
+Code converters:
+  Bcd to excess 3
+  Binary to Gray 
+Problems related to multiplexer and decoder
+
+Module 3
+Flip flops and state diagrams
+
+Module 4
+Counters
+Sequence detector
+FSM
+
+Module 5
+All questions from group activity
