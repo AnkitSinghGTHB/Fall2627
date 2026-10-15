@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSE2004: TOC & Compiler Design — TEE Master Solutions Handbook</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 14mm 12mm 14mm 12mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+    background: #ffffff;
+    line-height: 1.5;
+    font-size: 13.5px;
+    margin: 0;
+    padding: 0;
+  }
+  .cover {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: white;
+    padding: 35px 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .cover h1 {
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+  }
+  .cover h2 {
+    margin: 0 0 15px 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: #93c5fd;
+  }
+  .cover-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 12px;
+  }
+  .cover-meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .module-header {
+    background: #1e3a8a;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    page-break-after: avoid;
+  }
+  .problem-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 18px;
+    background: #ffffff;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .problem-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-top: 0;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .badge-12m { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+  .badge-8m { background: #e0e7ff; color: #4338ca; border: 1px solid #c7d2fe; }
+  .badge-core { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+  
+  .prompt-box {
+    background: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    color: #334155;
+    margin-bottom: 12px;
+    border-radius: 0 6px 6px 0;
+  }
+  .step-head {
+    font-weight: 700;
+    color: #0f766e;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-size: 13.5px;
+  }
+  pre, code {
+    font-family: 'Consolas', 'Courier New', monospace;
+  }
+  pre {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 12px;
+    overflow-x: auto;
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 12.5px;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: left;
+  }
+  table.data-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  table.data-table tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .diagram-container {
+    text-align: center;
+    margin: 12px 0;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  .diagram-caption {
+    font-size: 11px;
+    color: #64748b;
+    font-style: italic;
+    margin-top: 6px;
+  }
+  .formula-highlight {
+    background: #fef3c7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    display: inline-block;
+    margin: 4px 0;
+  }
+  .check-list {
+    margin: 6px 0;
+    padding-left: 20px;
+  }
+  .check-list li {
+    margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>🎯 CSE2004: Theory of Computation & Compiler Design</h1>
+  <h2>TEE (Term End / FAT) Master Solutions Handbook & Visual Revision Guide</h2>
+  <div class="cover-meta">
+    <span><b>Course:</b> CSE2004</span>
+    <span><b>Slot:</b> A11+A12+A13</span>
+    <span><b>Faculty:</b> Dr. Gaurav Soni</span>
+    <span><b>Exam Date:</b> Oct 15, 2026 (01:15 PM – 04:15 PM)</span>
+    <span><b>Coverage:</b> 100% Solved (Modules 1–5 & Question Bank)</span>
+  </div>
+</div>
+
+<!-- ======================================================================= -->
+<!-- MODULE 1 -->
+<!-- ======================================================================= -->
+<div class="module-header">MODULE 1: Finite Automata, Regular Languages & Lexical Tokens</div>
+
+<!-- Q1.1 DFA 101/110 -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 1.1: DFA for Strings Ending in '101' & Substring '110'</span>
+    <span class="badge badge-8m">8 Marks / Sec A (6M)</span>
+  </div>
+  <div class="prompt-box">
+    <b>Exam Prompt:</b> Design Minimal DFA over &Sigma; = {0, 1} for: (a) Strings ending in '101', (b) Strings containing substring '110'. Provide state transition table and trace for w = 100110.
+  </div>
+  
+  <div class="step-head">(a) DFA for Strings Ending in '101'</div>
+  <p><b>State Meanings:</b> q0 = Start / No match; q1 = Saw '1'; q2 = Saw '10'; q3 (Final) = Saw '101'.</p>
+  
+  <div class="diagram-container">
+    <svg width="480" height="110" viewBox="0 0 480 110" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a8a"/>
+        </marker>
+      </defs>
+      <!-- Start arrow -->
+      <line x1="10" y1="50" x2="40" y2="50" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- q0 -->
+      <circle cx="65" cy="50" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="65" y="55" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">q0</text>
+      <!-- loop 0 on q0 -->
+      <path d="M 55 30 C 50 5, 80 5, 75 30" stroke="#1e3a8a" stroke-width="1.8" fill="none" marker-end="url(#arr)"/>
+      <text x="65" y="12" font-size="11" fill="#1e3a8a" text-anchor="middle">0</text>
+      
+      <!-- q0 -> q1 on 1 -->
+      <line x1="87" y1="50" x2="153" y2="50" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="120" y="42" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">1</text>
+      
+      <!-- q1 -->
+      <circle cx="175" cy="50" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="175" y="55" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">q1</text>
+      <!-- loop 1 on q1 -->
+      <path d="M 165 30 C 160 5, 190 5, 185 30" stroke="#1e3a8a" stroke-width="1.8" fill="none" marker-end="url(#arr)"/>
+      <text x="175" y="12" font-size="11" fill="#1e3a8a" text-anchor="middle">1</text>
+
+      <!-- q1 -> q2 on 0 -->
+      <line x1="197" y1="50" x2="263" y2="50" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="230" y="42" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">0</text>
+      
+      <!-- q2 -->
+      <circle cx="285" cy="50" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="285" y="55" font-family="sans-serif" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">q2</text>
+      
+      <!-- q2 -> q3 on 1 -->
+      <line x1="307" y1="50" x2="373" y2="50" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="340" y="42" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">1</text>
+
+      <!-- q3 (Double circle) -->
+      <circle cx="395" cy="50" r="22" stroke="#dc2626" stroke-width="2" fill="#fef2f2"/>
+      <circle cx="395" cy="50" r="18" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+      <text x="395" y="55" font-family="sans-serif" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">q3</text>
+
+      <!-- q2 -> q0 on 0 -->
+      <path d="M 280 72 C 250 105, 100 105, 70 72" stroke="#1e3a8a" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+      <text x="175" y="102" font-size="11" fill="#1e3a8a" text-anchor="middle">0</text>
+
+      <!-- q3 -> q2 on 0 -->
+      <path d="M 385 70 C 365 92, 315 92, 295 70" stroke="#dc2626" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+      <text x="340" y="90" font-size="11" fill="#dc2626" text-anchor="middle">0 (suffix 10)</text>
+    </svg>
+    <div class="diagram-caption">Figure 1.1: State Transition Diagram for DFA Ending in '101'</div>
+  </div>
+
+  <table class="data-table">
+    <tr><th>State</th><th>Input '0'</th><th>Input '1'</th><th>State Description / Semantic Rule</th></tr>
+    <tr><td><b>&rarr; q0</b></td><td>q0</td><td>q1</td><td>Initial state (no progress or ended in 0)</td></tr>
+    <tr><td><b>q1</b></td><td>q2</td><td>q1</td><td>Last symbol seen was '1'</td></tr>
+    <tr><td><b>q2</b></td><td>q0</td><td>q3</td><td>Last two symbols seen were '10'</td></tr>
+    <tr><td><b>* q3</b></td><td>q2</td><td>q1</td><td><b>Accepting State</b> (Ended in '101'). On 0 &rarr; q2 ('10'), on 1 &rarr; q1 ('1').</td></tr>
+  </table>
+
+  <div class="step-head">(b) Verification Trace for w = 100110 (Substring '110'):</div>
+  <pre>&delta;(q0, 1) = q1 &vdash; &delta;(q1, 0) = q0 &vdash; &delta;(q0, 0) = q0 &vdash; &delta;(q0, 1) = q1 &vdash; &delta;(q1, 1) = q2 &vdash; &delta;(q2, 0) = q3 [Final Trap State]</pre>
+  <p><b>Conclusion:</b> Since &delta;*(q0, 100110) = q3 and q3 &isin; F, the string <b>100110 is ACCEPTED</b>. (Full Marks).</p>
+</div>
+
+<!-- Q1.2 DFA MINIMIZATION -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 1.2: DFA Minimization (Table-Filling / Myhill-Nerode Algorithm)</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Question Bank Q4(a):</b> Build the minimal DFA equivalent to the 5-state DFA: Q = {A, B, C, D, E}, Start = A, F = {D, E}. Transitions: &delta;(A,0)=B, &delta;(A,1)=C; &delta;(B,0)=D, &delta;(B,1)=C; &delta;(C,0)=B, &delta;(C,1)=E; &delta;(D,0)=D, &delta;(D,1)=E; &delta;(E,0)=D, &delta;(E,1)=E.
+  </div>
+
+  <div class="step-head">Step 1: Base Step (Final vs Non-Final Partition)</div>
+  <p>Non-Final states = {A, B, C}; Final states = {D, E}. Mark all cross-pairs with &times; (0-distinguishable): (A,D), (A,E), (B,D), (B,E), (C,D), (C,E).</p>
+
+  <div class="step-head">Step 2: Iterative Equivalence Testing</div>
+  <ul class="check-list">
+    <li><b>Pair (D, E):</b> On 0 &rarr; (&delta;(D,0), &delta;(E,0)) = (D, D) [Same]; on 1 &rarr; (&delta;(D,1), &delta;(E,1)) = (E, E) [Same]. States D and E are <b>EQUIVALENT</b>! They merge into composite state <b>[D, E]</b>.</li>
+    <li><b>Pair (A, B):</b> On 0 &rarr; (B, D) [B is non-final, D is final &rarr; marked &times;]. Thus (A, B) is distinct.</li>
+    <li><b>Pair (A, C):</b> On 1 &rarr; (C, E) [C is non-final, E is final &rarr; marked &times;]. Thus (A, C) is distinct.</li>
+    <li><b>Pair (B, C):</b> On 0 &rarr; (D, B) [D is final, B is non-final &rarr; marked &times;]. Thus (B, C) is distinct.</li>
+  </ul>
+
+  <div class="step-head">Step 3: Minimal 4-State Transition Table & Diagram</div>
+  <table class="data-table">
+    <tr><th>Minimal State</th><th>Input '0'</th><th>Input '1'</th><th>Status</th></tr>
+    <tr><td><b>&rarr; [A]</b></td><td>[B]</td><td>[C]</td><td>Start</td></tr>
+    <tr><td><b>[B]</b></td><td>[D, E]</td><td>[C]</td><td>Intermediate</td></tr>
+    <tr><td><b>[C]</b></td><td>[B]</td><td>[D, E]</td><td>Intermediate</td></tr>
+    <tr><td><b>* [D, E]</b></td><td>[D, E]</td><td>[D, E]</td><td><b>Merged Accepting State</b></td></tr>
+  </table>
+
+  <div class="diagram-container">
+    <svg width="420" height="90" viewBox="0 0 420 90" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a8a"/>
+        </marker>
+      </defs>
+      <line x1="10" y1="45" x2="40" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr2)"/>
+      <circle cx="65" cy="45" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="65" y="50" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">[A]</text>
+      
+      <circle cx="165" cy="45" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="165" y="50" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">[B]</text>
+      
+      <circle cx="265" cy="45" r="22" stroke="#1e3a8a" stroke-width="2" fill="#eff6ff"/>
+      <text x="265" y="50" font-size="12" font-weight="bold" fill="#1e3a8a" text-anchor="middle">[C]</text>
+
+      <circle cx="365" cy="45" r="22" stroke="#dc2626" stroke-width="2" fill="#fef2f2"/>
+      <circle cx="365" cy="45" r="18" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+      <text x="365" y="50" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">[D,E]</text>
+
+      <line x1="87" y1="45" x2="143" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="115" y="38" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">0</text>
+
+      <path d="M 75 25 C 120 -5, 210 -5, 255 25" stroke="#1e3a8a" stroke-width="1.8" fill="none" marker-end="url(#arr2)"/>
+      <text x="165" y="8" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">1</text>
+
+      <path d="M 187 45 C 230 45, 300 45, 343 45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="265" y="38" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">0</text>
+
+      <line x1="287" y1="45" x2="343" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="315" y="38" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">1</text>
+
+      <!-- self loop on D,E -->
+      <path d="M 355 25 C 350 0, 380 0, 375 25" stroke="#dc2626" stroke-width="1.8" fill="none" marker-end="url(#arr2)"/>
+      <text x="365" y="8" font-size="11" fill="#dc2626" text-anchor="middle">0, 1</text>
+    </svg>
+    <div class="diagram-caption">Figure 1.2: Equivalent Minimal 4-State DFA</div>
+  </div>
+</div>
+
+<!-- Q1.3 ARDEN'S THEOREM -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 1.3: Arden's Theorem — Statement, Proof & System Solution</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Exam Prompt:</b> State and prove Arden's Theorem. Solve the system: q1 = q1 0 + &epsilon;, q2 = q1 1 + q2 1, q3 = q2 0 + q3 (0 + 1).
+  </div>
+  <p><b>Statement:</b> If P and Q are regular expressions over &Sigma; and P does not contain &epsilon;, then the equation <b>R = Q + RP</b> has a unique solution: <b>R = QP*</b>.</p>
+  <div class="step-head">Algebraic Proof:</div>
+  <ul class="check-list">
+    <li><b>Existence:</b> Substitute R = QP* into RHS &rarr; RHS = Q + (QP*)P = Q(&epsilon; + P*P). Since &epsilon; + P*P = P*, RHS = QP* = LHS.</li>
+    <li><b>Uniqueness:</b> Repeatedly replace R into itself: R = Q + (Q + RP)P = Q + QP + RP^2 = Q(&epsilon; + P + P^2 + ... + P^k) + RP^(k+1). Since P has no &epsilon;, P^(k+1) contains no strings of length &le; k. As k &rarr; &infin;, R = QP*.</li>
+  </ul>
+  <div class="step-head">System Solution:</div>
+  <pre>1. For q1: q1 = &epsilon; + q1 0   &rArr; Q = &epsilon;, P = 0 &rArr; q1 = &epsilon;·0* = 0*
+2. For q2: q2 = (0* 1) + q2 1 &rArr; Q = 0* 1, P = 1 &rArr; q2 = (0* 1) 1* = 0* 1+
+3. For q3: q3 = (0* 1+ 0) + q3 (0 + 1) &rArr; q3 = (0* 1+ 0)(0 + 1)*</pre>
+</div>
+
+<!-- ======================================================================= -->
+<!-- MODULE 2 -->
+<!-- ======================================================================= -->
+<div class="module-header">MODULE 2: Pushdown Automata, Normal Forms & CFL Pumping Lemma</div>
+
+<!-- Q2.1 PDA a^n b^n and w c w^R -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 2.1: PDA for L = {a^n b^n} & L = {w c w^R}</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Design Logic:</b> For L = {w c w^R}, push incoming symbols of w onto stack in state q0. When center marker 'c' appears, switch to state q1 without changing stack. In state q1, pop matching symbols on reading w^R. On endmarker &epsilon; with stack showing Z0, transition to final state q2.
+  </div>
+
+  <table class="data-table">
+    <tr><th>Current State</th><th>Input</th><th>Stack Top</th><th>Next State, Stack Operation</th><th>Meaning</th></tr>
+    <tr><td>q0</td><td>a</td><td>Z0</td><td>(q0, a Z0)</td><td>Push first 'a'</td></tr>
+    <tr><td>q0</td><td>b</td><td>Z0</td><td>(q0, b Z0)</td><td>Push first 'b'</td></tr>
+    <tr><td>q0</td><td>a / b</td><td>a / b</td><td>(q0, push symbol)</td><td>Accumulate w on stack</td></tr>
+    <tr><td>q0</td><td>c</td><td>Any (X)</td><td>(q1, X)</td><td><b>Center marker reached</b> (Switch mode)</td></tr>
+    <tr><td>q1</td><td>a</td><td>a</td><td>(q1, &epsilon;)</td><td>Match 'a' and POP</td></tr>
+    <tr><td>q1</td><td>b</td><td>b</td><td>(q1, &epsilon;)</td><td>Match 'b' and POP</td></tr>
+    <tr><td>q1</td><td>&epsilon;</td><td>Z0</td><td>(q2, Z0)</td><td><b>Accept by Final State q2 &isin; F</b></td></tr>
+  </table>
+
+  <div class="step-head">Stack Trace for w = abcba:</div>
+  <pre>(q0, abcba, Z0) &vdash; (q0, bcba, aZ0) &vdash; (q0, cba, baZ0) &vdash; (q1, ba, baZ0) &vdash; (q1, a, aZ0) &vdash; (q1, &epsilon;, Z0) &vdash; (q2, &epsilon;, Z0) [ACCEPTED]</pre>
+</div>
+
+<!-- Q2.2 CNF CONVERSION -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 2.2: Chomsky Normal Form (CNF) Systematic Conversion</span>
+    <span class="badge badge-12m">12 Marks / 8 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Question Bank Q3(a):</b> Convert grammar to CNF: S &rarr; ABa, A &rarr; aab, B &rarr; Ac.
+  </div>
+  <p><b>CNF Standard Form:</b> All productions must be strictly <code>A &rarr; BC</code> or <code>A &rarr; a</code>.</p>
+  <div class="step-head">Step-by-Step Conversion:</div>
+  <ul class="check-list">
+    <li><b>Step 1 (Terminal Substitutions):</b> Terminals a, b, c appear in long rules. Introduce Ca &rarr; a, Cb &rarr; b, Cc &rarr; c.<br>
+    New rules: <code>S &rarr; AB Ca</code>, <code>A &rarr; Ca Ca Cb</code>, <code>B &rarr; A Cc</code>.</li>
+    <li><b>Step 2 (Binary Cascades):</b> Break rules with length &gt; 2 into binary pairs:
+      <br>&bull; For S &rarr; AB Ca: Introduce <b>D1 &rarr; AB</b> &rArr; <b>S &rarr; D1 Ca</b>.
+      <br>&bull; For A &rarr; Ca Ca Cb: Introduce <b>D2 &rarr; Ca Ca</b> &rArr; <b>A &rarr; D2 Cb</b>.
+      <br>&bull; B &rarr; A Cc already has 2 variables &rArr; already in CNF!
+    </li>
+  </ul>
+  <div class="step-head">Final Grammar in CNF:</div>
+  <pre>S  &rarr; D1 Ca
+D1 &rarr; AB
+A  &rarr; D2 Cb
+D2 &rarr; Ca Ca
+B  &rarr; A Cc
+Ca &rarr; a
+Cb &rarr; b
+Cc &rarr; c</pre>
+</div>
+
+<!-- Q2.3 PUMPING LEMMA FOR CFL -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 2.3: Pumping Lemma Proof for Non-CFL (L = {a^n b^n c^n})</span>
+    <span class="badge badge-8m">8 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Proof Strategy:</b> Assume L is CFL with pumping length p. Choose string z = a^p b^p c^p (|z| = 3p &ge; p). By CFL Pumping Lemma, z = uvwxy with |vwx| &le; p and |vx| &ge; 1.
+  </div>
+  <p><b>5-Case Breakdown:</b> Because |vwx| &le; p, the substring vwx cannot contain all three symbols a, b, and c simultaneously. Therefore, vx contains at most two distinct symbols:</p>
+  <ul class="check-list">
+    <li>If vx contains only a's and b's, pumping down (i = 0) reduces the number of a's or b's, but leaves the count of c's unchanged at p. Thus, the counts are no longer equal.</li>
+    <li>If vx contains only b's and c's, pumping down (i = 0) leaves the count of a's unchanged at p.</li>
+  </ul>
+  <p>In all cases, <b>u v^0 w x^0 y &notin; L</b>. Contradiction! &there4; <b>L is NOT context-free</b>. (Q.E.D.)</p>
+</div>
+
+<!-- ======================================================================= -->
+<!-- MODULE 3 -->
+<!-- ======================================================================= -->
+<div class="module-header">MODULE 3: Syntax Analysis, LR(0), CLR(1) & LALR(1) Parsers</div>
+
+<!-- Q3.1 FIRST & FOLLOW + LL(1) -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 3.1: FIRST & FOLLOW Computation + Predictive LL(1) Parsing</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Grammar:</b> E &rarr; T E', E' &rarr; + T E' | &epsilon;, T &rarr; F T', T' &rarr; * F T' | &epsilon;, F &rarr; ( E ) | id.
+  </div>
+  <table class="data-table">
+    <tr><th>Non-Terminal</th><th>FIRST Set</th><th>FOLLOW Set</th><th>Derivation Explanation</th></tr>
+    <tr><td><b>E</b></td><td>{ (, id }</td><td>{ $, ) }</td><td>Start symbol takes $; F &rarr; ( E ) adds ')'</td></tr>
+    <tr><td><b>E'</b></td><td>{ +, &epsilon; }</td><td>{ $, ) }</td><td>Inherits FOLLOW(E)</td></tr>
+    <tr><td><b>T</b></td><td>{ (, id }</td><td>{ +, $, ) }</td><td>FIRST(E') \ {&epsilon;} = {+}; E' &rarr; &epsilon; adds FOLLOW(E)</td></tr>
+    <tr><td><b>T'</b></td><td>{ *, &epsilon; }</td><td>{ +, $, ) }</td><td>Inherits FOLLOW(T)</td></tr>
+    <tr><td><b>F</b></td><td>{ (, id }</td><td>{ *, +, $, ) }</td><td>FIRST(T') \ {&epsilon;} = {*}; T' &rarr; &epsilon; adds FOLLOW(T)</td></tr>
+  </table>
+
+  <div class="step-head">LL(1) Parsing Table:</div>
+  <table class="data-table">
+    <tr><th>NT</th><th>id</th><th>+</th><th>*</th><th>(</th><th>)</th><th>$ (End)</th></tr>
+    <tr><td><b>E</b></td><td>E &rarr; T E'</td><td></td><td></td><td>E &rarr; T E'</td><td></td><td></td></tr>
+    <tr><td><b>E'</b></td><td></td><td>E' &rarr; + T E'</td><td></td><td></td><td>E' &rarr; &epsilon;</td><td>E' &rarr; &epsilon;</td></tr>
+    <tr><td><b>T</b></td><td>T &rarr; F T'</td><td></td><td></td><td>T &rarr; F T'</td><td></td><td></td></tr>
+    <tr><td><b>T'</b></td><td></td><td>T' &rarr; &epsilon;</td><td>T' &rarr; * F T'</td><td></td><td>T' &rarr; &epsilon;</td><td>T' &rarr; &epsilon;</td></tr>
+    <tr><td><b>F</b></td><td>F &rarr; id</td><td></td><td></td><td>F &rarr; ( E )</td><td></td><td></td></tr>
+  </table>
+  <p><i>Grammar is LL(1) because no cell has multiple entries.</i></p>
+</div>
+
+<!-- Q3.2 SLR(1) CONFLICT -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 3.2: SLR(1) Parsing Table & Shift-Reduce Conflict Proof</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Grammar:</b> S &rarr; L = R | R, L &rarr; * R | id, R &rarr; L. Prove that state I2 contains a Shift-Reduce conflict on '='.
+  </div>
+  <ul class="check-list">
+    <li><b>Item Set I2:</b> GOTO(I0, L) = { <b>S &rarr; L &middot; = R</b>, &nbsp; <b>R &rarr; L &middot;</b> }.</li>
+    <li><b>Shift Action:</b> The item <code>S &rarr; L &middot; = R</code> has dot before terminal '=', calling for <b>SHIFT on '=' (s6)</b>.</li>
+    <li><b>Reduce Action:</b> The item <code>R &rarr; L &middot;</code> calls for <b>REDUCE by rule (5)</b> in all columns of FOLLOW(R).</li>
+    <li><b>FOLLOW(R) Calculation:</b> From S &rarr; L = R, '=' follows L. Since R &rarr; L, '=' is in FOLLOW(R).</li>
+    <li><b>The Fatal Conflict:</b> Cell <code>M[I2, =]</code> contains <b>BOTH { s6, r5 }</b>! Shift-Reduce conflict confirmed &there4; <b>NOT SLR(1)</b>.</li>
+  </ul>
+</div>
+
+<!-- ======================================================================= -->
+<!-- MODULE 4 -->
+<!-- ======================================================================= -->
+<div class="module-header">MODULE 4: Turing Machines, Computability & Decidability</div>
+
+<!-- Q4.1 TM a^n b^n c^n -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 4.1: Turing Machine for L = {a^n b^n c^n | n &ge; 1}</span>
+    <span class="badge badge-12m">12 Marks (Mandatory 6-Part Layout)</span>
+  </div>
+  <div class="prompt-box">
+    <b>Design Logic:</b> For each 'a' marked with 'X', move Right to mark one 'b' with 'Y', then move Right to mark one 'c' with 'Z'. Rewind Left back to X. Repeat. When no 'a' remains, verify all symbols are marked until Blank B is reached.
+  </div>
+
+  <table class="data-table">
+    <tr><th>State</th><th>Input 'a'</th><th>Input 'b'</th><th>Input 'c'</th><th>Input 'X'</th><th>Input 'Y'</th><th>Input 'Z'</th><th>Input 'B'</th></tr>
+    <tr><td><b>&rarr; q0</b></td><td>(q1, X, R)</td><td>—</td><td>—</td><td>—</td><td>(q4, Y, R)</td><td>—</td><td>—</td></tr>
+    <tr><td><b>q1</b></td><td>(q1, a, R)</td><td>(q2, Y, R)</td><td>—</td><td>—</td><td>(q1, Y, R)</td><td>—</td><td>—</td></tr>
+    <tr><td><b>q2</b></td><td>—</td><td>(q2, b, R)</td><td>(q3, Z, L)</td><td>—</td><td>—</td><td>(q2, Z, R)</td><td>—</td></tr>
+    <tr><td><b>q3</b></td><td>(q3, a, L)</td><td>(q3, b, L)</td><td>—</td><td>(q0, X, R)</td><td>(q3, Y, L)</td><td>(q3, Z, L)</td><td>—</td></tr>
+    <tr><td><b>q4</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>(q4, Y, R)</td><td>(q4, Z, R)</td><td><b>(q5, B, R) [ACC]</b></td></tr>
+    <tr><td><b>* q5</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Halt & Accept</td></tr>
+  </table>
+
+  <div class="step-head">Instantaneous Description Trace for w = aabbcc:</div>
+  <pre>q0 aabbcc &vdash; X q1 abbcc &vdash; X a q1 bbcc &vdash; X a Y q2 bcc &vdash; X a Y b q2 cc &vdash; X a Y b Z q3 c &vdash; ...
+&vdash; X q0 a Y b Z c &vdash; X X q1 Y b Z c &vdash; X X Y Y q2 Z c &vdash; X X Y Y Z q3 Z c &vdash; ...
+&vdash; X X Y Y Z Z q4 B &vdash; X X Y Y Z Z B q5 [ACCEPTED]</pre>
+</div>
+
+<!-- Q4.2 HALTING PROBLEM -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 4.2: Halting Problem (HALT_TM) Undecidability Proof</span>
+    <span class="badge badge-12m">12 Marks / 8 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Theorem:</b> HALT_TM = { &lang;M, w&rang; | Turing Machine M halts on input w } is undecidable.
+  </div>
+  <p><b>Proof by Diagonalization:</b></p>
+  <ul class="check-list">
+    <li>Assume decider H(&lang;M, w&rang;) exists: H accepts if M halts on w; H rejects if M loops on w.</li>
+    <li>Construct adversarial machine <b>D(&lang;M&rang;)</b>: Run H(&lang;M, &lang;M&rang;&rang;). If H accepts, <b>D loops infinitely</b>. If H rejects, <b>D halts</b>.</li>
+    <li>Pass description of D to itself: <b>D(&lang;D&rang;)</b>:
+      <br>&bull; If D halts on &lang;D&rang; &rArr; D must loop infinitely!
+      <br>&bull; If D loops on &lang;D&rang; &rArr; D must halt!
+    </li>
+    <li><b>Contradiction:</b> D halts on &lang;D&rang; &hArr; D does not halt on &lang;D&rang;.</li>
+    <li>&there4; Decider H cannot exist &rArr; <b>HALT_TM is UNDECIDABLE</b>. (Q.E.D.)</li>
+  </ul>
+</div>
+
+<!-- ======================================================================= -->
+<!-- MODULE 5 -->
+<!-- ======================================================================= -->
+<div class="module-header">MODULE 5: Intermediate Code Generation, DAGs & Optimization</div>
+
+<!-- Q5.1 DAG BASIC BLOCK -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 5.1: Directed Acyclic Graph (DAG) for Array Loop</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Question Bank Q17:</b> (1) t1 = 4 * i, (2) t2 = a[t1], (3) t3 = 4 * i, (4) t4 = b[t3], (5) t5 = t2 * t4, (6) t6 = Prod + t5, (7) Prod = t6, (8) t7 = i + 1, (9) i = t7, (10) if i &le; 20 goto (1).
+  </div>
+
+  <div class="step-head">Common Subexpression Node Sharing:</div>
+  <p>Statement (1) and Statement (3) both compute <code>4 * i</code> before <code>i</code> is modified. In the DAG, node <b>t3 shares the exact node of t1</b>, completely eliminating redundant multiplication!</p>
+
+  <div class="diagram-container">
+    <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a8a"/>
+        </marker>
+      </defs>
+      <!-- Root Prod -->
+      <circle cx="150" cy="25" r="16" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2"/>
+      <text x="150" y="30" font-size="13" font-weight="bold" fill="#1e3a8a" text-anchor="middle">+</text>
+      <text x="175" y="25" font-size="11" font-weight="bold" fill="#dc2626">Prod</text>
+
+      <!-- t5 (*) -->
+      <circle cx="210" cy="65" r="16" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2"/>
+      <text x="210" y="70" font-size="13" font-weight="bold" fill="#1e3a8a" text-anchor="middle">*</text>
+      <text x="235" y="65" font-size="11" font-weight="bold" fill="#0f766e">t5</text>
+      <line x1="162" y1="36" x2="198" y2="54" stroke="#1e3a8a" stroke-width="1.8" marker-end="url(#arr3)"/>
+
+      <!-- a[t1] -->
+      <circle cx="160" cy="105" r="16" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+      <text x="160" y="110" font-size="11" fill="#1e293b" text-anchor="middle">a[ ]</text>
+      <line x1="200" y1="76" x2="170" y2="94" stroke="#1e3a8a" stroke-width="1.8" marker-end="url(#arr3)"/>
+
+      <!-- b[t3] -->
+      <circle cx="260" cy="105" r="16" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+      <text x="260" y="110" font-size="11" fill="#1e293b" text-anchor="middle">b[ ]</text>
+      <line x1="220" y1="76" x2="250" y2="94" stroke="#1e3a8a" stroke-width="1.8" marker-end="url(#arr3)"/>
+
+      <!-- Shared node: 4 * i -->
+      <circle cx="210" cy="130" r="16" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      <text x="210" y="135" font-size="12" font-weight="bold" fill="#854d0e" text-anchor="middle">*</text>
+      <text x="260" y="135" font-size="11" font-weight="bold" fill="#854d0e">[t1, t3 SHARED!]</text>
+
+      <line x1="168" y1="116" x2="198" y2="124" stroke="#ca8a04" stroke-width="1.8" marker-end="url(#arr3)"/>
+      <line x1="252" y1="116" x2="222" y2="124" stroke="#ca8a04" stroke-width="1.8" marker-end="url(#arr3)"/>
+    </svg>
+    <div class="diagram-caption">Figure 5.1: DAG for Array Basic Block showing Subexpression Sharing of '4 * i'</div>
+  </div>
+
+  <div class="step-head">Optimized Three-Address Code:</div>
+  <pre>(1) t1 = 4 * i
+(2) t2 = a[t1]
+(3) t4 = b[t1]         // Replaces t3 with t1! Eliminates duplicate multiplication!
+(4) t5 = t2 * t4
+(5) Prod = Prod + t5
+(6) i = i + 1
+(7) if i <= 20 goto (1)</pre>
+</div>
+
+<!-- Q5.2 QUADRUPLES & TRIPLES -->
+<div class="problem-card">
+  <div class="problem-title">
+    <span>Problem 5.2: Quadruples, Triples & Indirect Triples</span>
+    <span class="badge badge-12m">12 Marks</span>
+  </div>
+  <div class="prompt-box">
+    <b>Expression:</b> E = (a + b) * (c + d) + (a + b + c)
+  </div>
+  <table class="data-table">
+    <tr><th>Index</th><th>Quadruple: (op, arg1, arg2, result)</th><th>Triple: (op, arg1, arg2)</th><th>Indirect Triple: Pointer &rarr; Target</th></tr>
+    <tr><td><b>(0)</b></td><td>(+, a, b, t1)</td><td>(+, a, b)</td><td>statement[0] &rarr; (0)</td></tr>
+    <tr><td><b>(1)</b></td><td>(+, c, d, t2)</td><td>(+, c, d)</td><td>statement[1] &rarr; (1)</td></tr>
+    <tr><td><b>(2)</b></td><td>(*, t1, t2, t3)</td><td>(*, (0), (1))</td><td>statement[2] &rarr; (2)</td></tr>
+    <tr><td><b>(3)</b></td><td>(+, t1, c, t4)</td><td>(+, (0), c)</td><td>statement[3] &rarr; (3)</td></tr>
+    <tr><td><b>(4)</b></td><td>(+, t3, t4, t5)</td><td>(+, (2), (3))</td><td>statement[4] &rarr; (4)</td></tr>
+    <tr><td><b>(5)</b></td><td>(=, t5, —, E)</td><td>(=, E, (4))</td><td>statement[5] &rarr; (5)</td></tr>
+  </table>
+</div>
+
+<!-- ======================================================================= -->
+<!-- FINAL REVISION CHECKLIST -->
+<!-- ======================================================================= -->
+<div class="problem-card" style="background: #f8fafc; border: 2px solid #3b82f6;">
+  <div class="problem-title" style="color: #1e3a8a;">
+    <span>⚡ Dr. Gaurav Soni's Full-Marks Presentation Checklist</span>
+    <span class="badge badge-core">Exam Rubric</span>
+  </div>
+  <ol class="check-list">
+    <li><b>Every Automaton Answer (DFA, PDA, TM)</b> MUST have the 6 parts: (1) Language set-builder notation, (2) 2-line plain English algorithm, (3) Formal Tuples (Q, &Sigma;, &Gamma;, &delta;, q0, Z0/B, F), (4) Transition Table matrix, (5) Clean Transition Diagram with start/accept arrows, (6) Instantaneous Description trace (&vdash;) for a test string.</li>
+    <li><b>Parsing Tables:</b> Always show FIRST and FOLLOW sets explicitly before drawing the parsing matrix. Write row states and column terminals clearly.</li>
+    <li><b>Optimization / DAGs:</b> Explicitly write down which node is shared and which instruction was eliminated.</li>
+  </ol>
+</div>
+
+</body>
+</html>

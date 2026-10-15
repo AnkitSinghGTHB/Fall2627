@@ -250,6 +250,11 @@
   },
   "active": "50f8e7a2964774f9",
   "lastOpenFiles": [
+    "TOC/notes/term_end/CSE2004_TOC_Master_Solutions_Handbook.pdf",
+    "TOC/notes/term_end/CSE2004_TOC_Master_Solutions_Handbook.html",
+    "TOC/notes/term_end/create_pdf_handbook.py",
+    "TOC/notes/term_end/test.pdf",
+    "TOC/notes/term_end/test.html",
     "TOC/notes/term_end/08-tee-imp-solved-master-solutions.md",
     "TOC/notes/term_end/09-official-question-bank-complete-solutions.md",
     "TOC/notes/term_end/07-toc-fat-high-frequency-exam-question-bank.md",
@@ -278,10 +283,6 @@
     "DLD/notes/term_end/00-dld-emergency-plan-and-blueprints.md",
     "DLD/notes/term_end/02-module2-combinational-circuits-kmaps-arithmetic.md",
     "Discrete/notes/term_end/05-module5-trees-and-graph-coloring.md",
-    "ML/resources/5.0 CLASS -ML.pdf",
-    "ML/resources/5.1 CLASS -ML.pdf",
-    "ML/resources/5.2 CLASS-ML.pdf",
-    "ML/resources/a13 14.txt",
     "DLD/resources/circuit_activity_b.png",
     "DLD/resources/circuit_activity_a.png",
     "DLD/resources/word/media/image2.png",
@@ -290,7 +291,6 @@
     "TOC/resources/slr(1) problem123.jpg",
     "TOC/resources/Chomsky-Hierarchy-in-TOC.png",
     "PLA Java/notes/term_end/07-pla-fat-high-frequency-exam-question-bank.md",
-    "PLA Java/notes/term_end/06-pla-master-cheat-sheet.md",
-    "PLA Java/notes/term_end/05-module5-dp-knapsack-lcs-graphs.md"
+    "PLA Java/notes/term_end/06-pla-master-cheat-sheet.md"
   ]
 }
