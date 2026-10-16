@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 510" width="950" height="510">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .box { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 8; }
+      .tp-box { fill: #064e3b; stroke: #34d399; stroke-width: 2; rx: 6; }
+      .fn-box { fill: #4c0519; stroke: #f43f5e; stroke-width: 2; rx: 6; }
+      .fp-box { fill: #451a03; stroke: #f59e0b; stroke-width: 2; rx: 6; }
+      .tn-box { fill: #1e3a8a; stroke: #60a5fa; stroke-width: 2; rx: 6; }
+      .title { fill: #38bdf8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .subtitle { fill: #94a3b8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; }
+      .cell-title { fill: #ffffff; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .cell-desc { fill: #cbd5e1; font-family: 'Consolas', monospace; font-size: 11px; text-anchor: middle; }
+      .lbl { fill: #e2e8f0; font-family: 'Consolas', monospace; font-size: 13px; font-weight: bold; }
+      .hdr { fill: #38bdf8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: bold; text-anchor: middle; }
+      .formula { fill: #34d399; font-family: 'Consolas', monospace; font-size: 12px; font-weight: bold; }
+      .note { fill: #94a3b8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" class="bg" />
+  <rect x="20" y="15" width="910" height="480" class="box" />
+  <text x="475" y="38" text-anchor="middle" class="title">CLASSIFICATION PERFORMANCE METRICS &amp; CONFUSION MATRIX</text>
+  <text x="475" y="56" text-anchor="middle" class="subtitle">Complete Diagnostic Framework: Accuracy, Precision, Recall, Specificity, F1-Score &amp; ROC-AUC</text>
+
+  <!-- 2x2 CONFUSION MATRIX GRID -->
+  <g transform="translate(60, 90)">
+    <!-- Column Headers: Predicted Class -->
+    <text x="210" y="0" class="hdr" font-size="14">PREDICTED CLASS</text>
+    <text x="135" y="25" class="hdr" fill="#34d399">Predicted Positive (1)</text>
+    <text x="285" y="25" class="hdr" fill="#f43f5e">Predicted Negative (0)</text>
+
+    <!-- Row Headers: Actual Class -->
+    <text x="-25" y="115" class="hdr" font-size="14" transform="rotate(-90, -25, 115)">ACTUAL CLASS</text>
+    <text x="45" y="85" class="lbl" fill="#34d399" text-anchor="end">Actual Positive (1)</text>
+    <text x="45" y="195" class="lbl" fill="#f43f5e" text-anchor="end">Actual Negative (0)</text>
+
+    <!-- QUADRANT 1: TRUE POSITIVE (TP) -->
+    <rect x="60" y="40" width="150" height="100" class="tp-box" />
+    <text x="135" y="75" class="cell-title">TRUE POSITIVE (TP)</text>
+    <text x="135" y="98" class="cell-desc">Actual = 1, Pred = 1</text>
+    <text x="135" y="118" class="cell-desc" fill="#a7f3d0">Hits / Correct Alarm</text>
+
+    <!-- QUADRANT 2: FALSE NEGATIVE (FN) -->
+    <rect x="220" y="40" width="150" height="100" class="fn-box" />
+    <text x="295" y="75" class="cell-title">FALSE NEGATIVE (FN)</text>
+    <text x="295" y="98" class="cell-desc">Actual = 1, Pred = 0</text>
+    <text x="295" y="118" class="cell-desc" fill="#fecdd3">Type II Error (Miss)</text>
+
+    <!-- QUADRANT 3: FALSE POSITIVE (FP) -->
+    <rect x="60" y="150" width="150" height="100" class="fp-box" />
+    <text x="135" y="185" class="cell-title">FALSE POSITIVE (FP)</text>
+    <text x="135" y="208" class="cell-desc">Actual = 0, Pred = 1</text>
+    <text x="135" y="228" class="cell-desc" fill="#fed7aa">Type I Error (False Alarm)</text>
+
+    <!-- QUADRANT 4: TRUE NEGATIVE (TN) -->
+    <rect x="220" y="150" width="150" height="100" class="tn-box" />
+    <text x="295" y="185" class="cell-title">TRUE NEGATIVE (TN)</text>
+    <text x="295" y="208" class="cell-desc">Actual = 0, Pred = 0</text>
+    <text x="295" y="228" class="cell-desc" fill="#bfdbfe">Correct Rejection</text>
+
+    <!-- Horizontal Arrow for Precision -->
+    <path d="M 60 265 L 210 265" stroke="#34d399" stroke-width="2" />
+    <text x="135" y="285" text-anchor="middle" class="formula">Precision = TP / (TP + FP)</text>
+
+    <!-- Vertical Arrow for Recall -->
+    <path d="M 385 40 L 385 140" stroke="#38bdf8" stroke-width="2" />
+    <text x="400" y="95" class="formula" fill="#38bdf8">Recall = TP / (TP + FN)</text>
+  </g>
+
+  <!-- RIGHT PANEL: MATHEMATICAL METRICS & FORMULA ROSTER -->
+  <g transform="translate(560, 75)">
+    <rect width="345" height="395" rx="6" style="fill:#111827; stroke:#475569; stroke-width:1.5;" />
+    <text x="172" y="26" text-anchor="middle" class="lbl" fill="#38bdf8">MASTER EVALUATION FORMULAS</text>
+
+    <text x="15" y="55" class="lbl" fill="#fbbf24">1. Accuracy:</text>
+    <text x="15" y="75" class="formula">Accuracy = (TP + TN) / (TP + TN + FP + FN)</text>
+    <text x="15" y="92" class="note">Warning: Misleading in imbalanced data!</text>
+
+    <text x="15" y="118" class="lbl" fill="#fbbf24">2. Precision (Positive Predictive Value):</text>
+    <text x="15" y="138" class="formula">Precision = TP / (TP + FP)</text>
+    <text x="15" y="154" class="note">Critical when False Positives are costly (Spam filter).</text>
+
+    <text x="15" y="180" class="lbl" fill="#fbbf24">3. Recall / Sensitivity (True Positive Rate):</text>
+    <text x="15" y="200" class="formula">Recall (TPR) = TP / (TP + FN)</text>
+    <text x="15" y="216" class="note">Critical when False Negatives are fatal (Cancer diagnosis).</text>
+
+    <text x="15" y="242" class="lbl" fill="#fbbf24">4. Specificity (True Negative Rate):</text>
+    <text x="15" y="262" class="formula">Specificity (TNR) = TN / (TN + FP)</text>
+    <text x="15" y="278" class="note">FPR = 1 - Specificity = FP / (TN + FP)</text>
+
+    <text x="15" y="304" class="lbl" fill="#fbbf24">5. F1-Score (Harmonic Mean):</text>
+    <text x="15" y="324" class="formula">F1 = 2·(Prec · Recall) / (Prec + Recall)</text>
+    <text x="15" y="342" class="formula">F1 = 2TP / (2TP + FP + FN)</text>
+
+    <text x="15" y="368" class="lbl" fill="#fbbf24">6. ROC-AUC:</text>
+    <text x="15" y="385" class="note">Plot TPR (Recall) vs FPR. Ideal AUC = 1.0; Random = 0.5.</text>
+  </g>
+</svg>

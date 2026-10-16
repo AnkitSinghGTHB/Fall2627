@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 490" width="950" height="490">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .box { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 8; }
+      .panel { fill: #111827; stroke: #475569; stroke-width: 1.5; rx: 6; }
+      .c1-pt { fill: #38bdf8; stroke: #ffffff; stroke-width: 1.5; }
+      .c2-pt { fill: #f43f5e; stroke: #ffffff; stroke-width: 1.5; }
+      .c1-centroid { fill: #0284c7; stroke: #38bdf8; stroke-width: 2.5; }
+      .c2-centroid { fill: #e11d48; stroke: #f43f5e; stroke-width: 2.5; }
+      .boundary { stroke: #fbbf24; stroke-width: 2; stroke-dasharray: 5,4; }
+      .title { fill: #38bdf8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .subtitle { fill: #94a3b8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; }
+      .lbl { fill: #e2e8f0; font-family: 'Consolas', monospace; font-size: 12px; font-weight: bold; }
+      .step-hdr { fill: #fbbf24; font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; font-weight: bold; text-anchor: middle; }
+      .formula { fill: #34d399; font-family: 'Consolas', monospace; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" class="bg" />
+  <rect x="20" y="15" width="910" height="460" class="box" />
+  <text x="475" y="38" text-anchor="middle" class="title">K-MEANS CLUSTERING: LLOYD&apos;S ALGORITHM &amp; CONVERGENCE</text>
+  <text x="475" y="56" text-anchor="middle" class="subtitle">Minimizing WCSS: J = Σ Σ ||x - μ_k||² via Alternating Assignment &amp; Centroid Update Steps</text>
+
+  <!-- STEP 1: INITIALIZATION & INITIAL ASSIGNMENT -->
+  <g transform="translate(40, 80)">
+    <rect width="270" height="360" class="panel" />
+    <text x="135" y="28" class="step-hdr">1. INITIALIZATION (K=2)</text>
+
+    <!-- Cluster 1 points -->
+    <circle cx="60" cy="110" r="5" class="c1-pt" /><circle cx="90" cy="90" r="5" class="c1-pt" />
+    <circle cx="70" cy="140" r="5" class="c1-pt" /><circle cx="100" cy="130" r="5" class="c1-pt" />
+
+    <!-- Cluster 2 points -->
+    <circle cx="170" cy="220" r="5" class="c2-pt" /><circle cx="210" cy="200" r="5" class="c2-pt" />
+    <circle cx="180" cy="250" r="5" class="c2-pt" /><circle cx="220" cy="240" r="5" class="c2-pt" />
+
+    <!-- Initial Random Centroids (Cross / Diamond) -->
+    <rect x="75" y="80" width="12" height="12" transform="rotate(45, 81, 86)" class="c1-centroid" />
+    <text x="95" y="75" class="lbl" fill="#38bdf8">μ1 (init)</text>
+
+    <rect x="185" y="170" width="12" height="12" transform="rotate(45, 191, 176)" class="c2-centroid" />
+    <text x="205" y="175" class="lbl" fill="#f43f5e">μ2 (init)</text>
+
+    <line x1="20" y1="210" x2="250" y2="80" class="boundary" />
+    <text x="135" y="325" text-anchor="middle" class="lbl">Assign each point to</text>
+    <text x="135" y="342" text-anchor="middle" class="formula">nearest centroid</text>
+  </g>
+
+  <!-- STEP 2: RECOMPUTE CENTROIDS (SHIFT) -->
+  <g transform="translate(340, 80)">
+    <rect width="270" height="360" class="panel" />
+    <text x="135" y="28" class="step-hdr">2. RECOMPUTE CENTROIDS</text>
+
+    <!-- Points with lines to new centroid -->
+    <circle cx="60" cy="110" r="5" class="c1-pt" /><circle cx="90" cy="90" r="5" class="c1-pt" />
+    <circle cx="70" cy="140" r="5" class="c1-pt" /><circle cx="100" cy="130" r="5" class="c1-pt" />
+
+    <!-- New Center of Gravity μ1* = mean(x in C1) -->
+    <rect x="74" y="112" width="14" height="14" transform="rotate(45, 81, 119)" class="c1-centroid" />
+    <text x="95" y="125" class="lbl" fill="#38bdf8">μ1 (mean)</text>
+
+    <circle cx="170" cy="220" r="5" class="c2-pt" /><circle cx="210" cy="200" r="5" class="c2-pt" />
+    <circle cx="180" cy="250" r="5" class="c2-pt" /><circle cx="220" cy="240" r="5" class="c2-pt" />
+
+    <!-- New Center of Gravity μ2* = mean(x in C2) -->
+    <rect x="188" y="221" width="14" height="14" transform="rotate(45, 195, 228)" class="c2-centroid" />
+    <text x="145" y="265" class="lbl" fill="#f43f5e">μ2 (mean)</text>
+
+    <text x="135" y="325" text-anchor="middle" class="lbl">Centroids shift to</text>
+    <text x="135" y="342" text-anchor="middle" class="formula">μ_k = (1/|C_k|) Σ x_i</text>
+  </g>
+
+  <!-- STEP 3: CONVERGENCE -->
+  <g transform="translate(640, 80)">
+    <rect width="270" height="360" class="panel" />
+    <text x="135" y="28" class="step-hdr" fill="#34d399">3. FINAL CONVERGENCE</text>
+
+    <circle cx="60" cy="110" r="5" class="c1-pt" /><circle cx="90" cy="90" r="5" class="c1-pt" />
+    <circle cx="70" cy="140" r="5" class="c1-pt" /><circle cx="100" cy="130" r="5" class="c1-pt" />
+    <rect x="74" y="112" width="14" height="14" transform="rotate(45, 81, 119)" class="c1-centroid" />
+
+    <circle cx="170" cy="220" r="5" class="c2-pt" /><circle cx="210" cy="200" r="5" class="c2-pt" />
+    <circle cx="180" cy="250" r="5" class="c2-pt" /><circle cx="220" cy="240" r="5" class="c2-pt" />
+    <rect x="188" y="221" width="14" height="14" transform="rotate(45, 195, 228)" class="c2-centroid" />
+
+    <!-- Final Voronoi Decision Boundary -->
+    <line x1="20" y1="240" x2="250" y2="100" class="boundary" stroke="#34d399" />
+
+    <text x="135" y="325" text-anchor="middle" class="lbl" fill="#34d399">Centroids stop moving</text>
+    <text x="135" y="342" text-anchor="middle" class="formula">WCSS minimum reached!</text>
+  </g>
+</svg>

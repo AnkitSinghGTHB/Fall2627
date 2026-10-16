@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 490" width="950" height="490">
+  <defs>
+    <style>
+      .bg { fill: #0f172a; }
+      .box { fill: #1e293b; stroke: #334155; stroke-width: 2; rx: 8; }
+      .round-box { fill: #111827; stroke: #818cf8; stroke-width: 2; rx: 6; }
+      .weak-box { fill: #1e1b4b; stroke: #6366f1; stroke-width: 1.5; rx: 4; }
+      .title { fill: #38bdf8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .subtitle { fill: #94a3b8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; }
+      .lbl { fill: #e2e8f0; font-family: 'Consolas', monospace; font-size: 12px; font-weight: bold; }
+      .formula { fill: #34d399; font-family: 'Consolas', monospace; font-size: 12px; }
+      .note { fill: #94a3b8; font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; }
+      .arr { stroke: #38bdf8; stroke-width: 2; fill: none; marker-end: url(#bluearr); }
+    </style>
+    <marker id="bluearr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#38bdf8" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" class="bg" />
+  <rect x="20" y="15" width="910" height="460" class="box" />
+  <text x="475" y="38" text-anchor="middle" class="title">ADABOOST: SEQUENTIAL ENSEMBLE ARCHITECTURE &amp; WEIGHT REBALANCING</text>
+  <text x="475" y="56" text-anchor="middle" class="subtitle">Final Prediction: H(x) = sign( Σ α_t h_t(x) ) | α_t = 0.5 · ln((1 - ε_t) / ε_t)</text>
+
+  <!-- ROUND 1 -->
+  <g transform="translate(40, 85)">
+    <rect width="250" height="320" class="round-box" />
+    <text x="125" y="28" text-anchor="middle" class="lbl" fill="#38bdf8">ROUND 1 (t = 1)</text>
+
+    <text x="15" y="60" class="note">Equal Weights: w_i = 1/N = 0.20</text>
+    <!-- Sample dots -->
+    <circle cx="50" cy="95" r="6" fill="#38bdf8" /><text x="65" y="99" class="note">x1 (correct)</text>
+    <circle cx="50" cy="130" r="9" fill="#f43f5e" /><text x="65" y="134" class="note" fill="#f43f5e">x2 (WRONG!)</text>
+    <circle cx="50" cy="165" r="6" fill="#38bdf8" /><text x="65" y="169" class="note">x3 (correct)</text>
+    <circle cx="50" cy="200" r="9" fill="#f43f5e" /><text x="65" y="204" class="note" fill="#f43f5e">x4 (WRONG!)</text>
+    <circle cx="50" cy="235" r="6" fill="#38bdf8" /><text x="65" y="239" class="note">x5 (correct)</text>
+
+    <!-- Metrics -->
+    <text x="15" y="275" class="formula">ε_1 = 0.2 + 0.2 = 0.40</text>
+    <text x="15" y="295" class="formula">α_1 = 0.5 ln(1.5) = 0.2027</text>
+  </g>
+
+  <!-- ARROW TO ROUND 2 -->
+  <line x1="290" y1="240" x2="335" y2="240" class="arr" />
+
+  <!-- ROUND 2 -->
+  <g transform="translate(340, 85)">
+    <rect width="250" height="320" class="round-box" />
+    <text x="125" y="28" text-anchor="middle" class="lbl" fill="#fbbf24">ROUND 2 (t = 2)</text>
+
+    <text x="15" y="60" class="note">Reweighted Distribution:</text>
+    <!-- Samples with modified size -->
+    <circle cx="50" cy="95" r="4.5" fill="#38bdf8" /><text x="65" y="99" class="note">w1 shrinks (0.17)</text>
+    <circle cx="50" cy="130" r="14" fill="#f43f5e" /><text x="75" y="134" class="lbl" fill="#f43f5e">w2 GROWS (0.25)</text>
+    <circle cx="50" cy="165" r="4.5" fill="#38bdf8" /><text x="65" y="169" class="note">w3 shrinks (0.17)</text>
+    <circle cx="50" cy="200" r="14" fill="#f43f5e" /><text x="75" y="204" class="lbl" fill="#f43f5e">w4 GROWS (0.25)</text>
+    <circle cx="50" cy="235" r="4.5" fill="#38bdf8" /><text x="65" y="239" class="note">w5 shrinks (0.17)</text>
+
+    <text x="15" y="275" class="formula">Classifier h_2 focuses</text>
+    <text x="15" y="295" class="formula">on misclassified x2, x4!</text>
+  </g>
+
+  <!-- ARROW TO FINAL COMBINATION -->
+  <line x1="590" y1="240" x2="635" y2="240" class="arr" />
+
+  <!-- FINAL ENSEMBLE -->
+  <g transform="translate(640, 85)">
+    <rect width="270" height="320" class="round-box" style="stroke:#34d399;" />
+    <text x="135" y="28" text-anchor="middle" class="lbl" fill="#34d399">FINAL STRONG CLASSIFIER</text>
+
+    <rect x="25" y="60" width="220" height="40" class="weak-box" />
+    <text x="135" y="85" text-anchor="middle" class="lbl">α1 · h1(x) [Weight: 0.20]</text>
+
+    <text x="135" y="125" text-anchor="middle" class="lbl" fill="#38bdf8">+</text>
+
+    <rect x="25" y="140" width="220" height="40" class="weak-box" />
+    <text x="135" y="165" text-anchor="middle" class="lbl">α2 · h2(x) [Weight: α2]</text>
+
+    <text x="135" y="205" text-anchor="middle" class="lbl" fill="#38bdf8">+</text>
+
+    <rect x="25" y="220" width="220" height="40" class="weak-box" />
+    <text x="135" y="245" text-anchor="middle" class="lbl">α3 · h3(x) [Weight: α3]</text>
+
+    <!-- Final Output -->
+    <path d="M 135 260 L 135 285" class="arr" />
+    <text x="135" y="305" text-anchor="middle" class="formula">H(x) = sign( Σ α_t h_t(x) )</text>
+  </g>
+
+  <!-- BOTTOM CALLOUT -->
+  <rect x="40" y="420" width="870" height="30" rx="4" style="fill:#111827; stroke:#334155;" />
+  <text x="475" y="440" text-anchor="middle" class="formula">Exam Key: Misclassified weight multiplier = exp(α); Correctly classified multiplier = exp(-α). Normalize with Z_t.</text>
+</svg>

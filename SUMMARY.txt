@@ -68,10 +68,12 @@ Subject 2: CSE4005 - Machine Learning (Slot: A21+A23 | Faculty: Nilamadhab Mishr
   - Lab Challenging: 15.0 / 15
   - Lab Continuous : 20.0 / 20 (Full Marks!)
   - Attendance     : 5.0 / 5
-  - Recorded Pre-TEE Subtotal: 62.2 / 70.0 (Class Avg: ~58.9 / 70)
-  - Standing: +3.3 MARKS AHEAD OF CLASS!
-  - Target for A Grade: Need only ~64–68 / 100 in TEE.
-  - Target for S Grade: 88–92 / 100 in TEE.
+  - Recorded Pre-TEE Subtotal: 62.2 / 70.0 (Class Avg: 61.9 / 70.0)
+  - Internals Status: EVERYONE in class got full marks (35/35 internals + 5/5 att)
+  - Standing: +0.3 MARKS AHEAD OF CLASS (Essentially tied at class mean; zero internal cushion!)
+  - B-Grade Danger Zone: 48–69 / 100 in TEE (B Grade must be strictly avoided!)
+  - Target for A Grade (>= mu + 0.5*sigma): 70–74 / 100 in TEE (~10–12 marks above TEE avg).
+  - Target for S Grade (Total >= 90): 93+ / 100 in TEE.
 
 --------------------------------------------------------------------------------
 Subject 3: PLA1004 - Competitive Coding Practices (Slot: B22+B24 | PAT Trainer)

@@ -26,7 +26,7 @@ Using typical VIT Bhopal end-of-semester stats:
 | 1 | **MGT2003** — Tech Entrepreneurship | 56.1 | ~54 | **+2.1** | **68–72** | 🟢 Easy | Oct 13 |
 | 2 | **CSE2004** — TOC & Compiler Design | 22.7 + ~32 int = **~54.7** | ~56.2 | **-1.5** | **72–76** | 🟡 Medium | Oct 15 |
 | 3 | **ECE2002** — Digital Logic Design | 49.4 + ~4 est = **~53.5** | ~54 | **~0** | **70–74** | 🟡 Medium | Oct 16 |
-| 4 | **CSE4005** — Machine Learning | **62.2** | ~58.9 | **+3.3** | **64–68** | 🟢 Easy | Oct 17 |
+| 4 | **CSE4005** — Machine Learning | **62.2** | 61.9 (all got 40/40 int) | **+0.3** | **70–74** | 🟡 Medium | Oct 17 |
 | 5 | **CSE3011** — Python Programming | 28.4 + ~32 int = **~60.4** | ~57.1 | **+3.3** | **62–66** | 🟢 Easy | Oct 19 |
 | 6 | **MAT2002** — Discrete Math & GT | 17.0 + ~32 int = **~49.0** | ~56.2 | **-7.2** | **93–97** | 🔴 Very Hard | Oct 21 |
 | 7 | **PLA1004** — Competitive Coding | **61.5** | ~59.5 | **+2.0** | **65–68** | 🟢 Easy | Oct 25 |
@@ -57,9 +57,10 @@ These 5 subjects — you only need to **match or slightly beat the class TEE ave
 - Modules 1–5, standard coding + OOP + file handling questions
 - **Strategy:** Solve 2–3 previous year papers, you're golden
 
-### 2. Machine Learning (Oct 17) — TEE Target: **64–68**
-- You're **+3.3 ahead**, full lab marks (35/35!)
-- **Strategy:** Focus on derivations (gradient descent, backprop), confusion matrix formulas, SVM margins
+### 2. Machine Learning (Oct 17) — TEE Target: **70–74**
+- **Status**: Pre-TEE **62.2 / 70** vs Class **61.9 / 70** (Everyone in class was awarded 35/35 internals + 5/5 att; you enter TEE +0.3 ahead).
+- **Target**: Must beat class TEE average by ~10–12 marks (**70–74/100**) to guarantee **A Grade** and escape the B-Grade danger zone (48–69).
+- **Strategy**: Focus on the 10 Guaranteed Pillars (ID3 Decision Tree, AdaBoost weight trace, Naïve Bayes, SMOTE, PCA Lagrange).
 
 ### 3. PLA / Competitive Coding (Oct 25) — TEE Target: **65–68**
 - You're **+2.0 ahead**, near-full lab marks (34/35)
