@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" width="680" height="360">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Ring Counter vs Johnson Counter Architecture & Feedback Wiring</text>
+  
+  <g transform="translate(30, 40)" font-family="Consolas, monospace" font-size="11">
+    <!-- 1. Ring Counter (Top) -->
+    <text x="10" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">1. 4-Bit Ring Counter [States = 4, f_out = f_clk / 4, Preset = 1000]</text>
+    <rect x="40" y="40" width="70" height="60" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8" rx="4"/><text x="75" y="75" text-anchor="middle">FF3</text>
+    <line x1="110" y1="70" x2="160" y2="70" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="160" y="40" width="70" height="60" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8" rx="4"/><text x="195" y="75" text-anchor="middle">FF2</text>
+    <line x1="230" y1="70" x2="280" y2="70" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="280" y="40" width="70" height="60" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8" rx="4"/><text x="315" y="75" text-anchor="middle">FF1</text>
+    <line x1="350" y1="70" x2="400" y2="70" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="400" y="40" width="70" height="60" fill="#eff6ff" stroke="#1e3a8a" stroke-width="1.8" rx="4"/><text x="435" y="75" text-anchor="middle">FF0</text>
+    <!-- Straight Feedback Q0 to D3 -->
+    <line x1="470" y1="70" x2="510" y2="70" stroke="#15803d" stroke-width="2"/>
+    <line x1="510" y1="70" x2="510" y2="120" stroke="#15803d" stroke-width="2"/>
+    <line x1="510" y1="120" x2="20" y2="120" stroke="#15803d" stroke-width="2"/>
+    <line x1="20" y1="120" x2="20" y2="70" stroke="#15803d" stroke-width="2"/>
+    <line x1="20" y1="70" x2="40" y2="70" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="210" y="115" font-weight="bold" fill="#15803d">Straight Feedback: Q0 to D3</text>
+
+    <!-- 2. Johnson Counter (Bottom) -->
+    <g transform="translate(0, 160)">
+      <text x="10" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">2. 4-Bit Johnson (Twisted-Ring) Counter [States = 8, f_out = f_clk / 8, Clear = 0000]</text>
+      <rect x="40" y="40" width="70" height="60" fill="#fdf4ff" stroke="#c026d3" stroke-width="1.8" rx="4"/><text x="75" y="75" text-anchor="middle">FF3</text>
+      <line x1="110" y1="70" x2="160" y2="70" stroke="#c026d3" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="160" y="40" width="70" height="60" fill="#fdf4ff" stroke="#c026d3" stroke-width="1.8" rx="4"/><text x="195" y="75" text-anchor="middle">FF2</text>
+      <line x1="230" y1="70" x2="280" y2="70" stroke="#c026d3" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="280" y="40" width="70" height="60" fill="#fdf4ff" stroke="#c026d3" stroke-width="1.8" rx="4"/><text x="315" y="75" text-anchor="middle">FF1</text>
+      <line x1="350" y1="70" x2="400" y2="70" stroke="#c026d3" stroke-width="2" marker-end="url(#arr)"/>
+      <rect x="400" y="40" width="70" height="60" fill="#fdf4ff" stroke="#c026d3" stroke-width="1.8" rx="4"/><text x="435" y="75" text-anchor="middle">FF0</text>
+      <!-- Inverted Feedback Q0' to D3 -->
+      <line x1="470" y1="85" x2="510" y2="85" stroke="#dc2626" stroke-width="2"/>
+      <line x1="510" y1="85" x2="510" y2="120" stroke="#dc2626" stroke-width="2"/>
+      <line x1="510" y1="120" x2="20" y2="120" stroke="#dc2626" stroke-width="2"/>
+      <line x1="20" y1="120" x2="20" y2="70" stroke="#dc2626" stroke-width="2"/>
+      <line x1="20" y1="70" x2="40" y2="70" stroke="#dc2626" stroke-width="2" marker-end="url(#redarr)"/>
+      <text x="190" y="115" font-weight="bold" fill="#dc2626">Inverted Feedback: Q0' (Complement) to D3</text>
+    </g>
+  </g>
+
+</svg>

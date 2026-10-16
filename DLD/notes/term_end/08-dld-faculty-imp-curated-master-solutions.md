@@ -255,6 +255,9 @@
 
 #### 1. Circuit Schematic:
 
+![2-Input RTL NOR Gate Circuit Diagram](images/rtl_nor_gate.svg)
+*Figure 1.1: Complete Schematic of 2-Input RTL NOR Gate showing Transistors Q1, Q2, Base Resistors RB, Collector Resistor RC, and Output Node Y.*
+
 ```mermaid
 graph TD
     subgraph Inputs
@@ -343,6 +346,9 @@ graph TD
 | **OR ($A+B$)** | $\overline{\overline{A} \cdot \overline{B}}$ (3 gates: 2 inverters + 1 NAND) | $\overline{\overline{A+B} + \overline{A+B}}$ (2 gates) |
 | **XOR ($A \oplus B$)** | **4 NAND gates** | **5 NOR gates** |
 | **XNOR ($A \odot B$)** | **5 NAND gates** | **4 NOR gates** |
+
+![Universal Logic Realization using NAND and NOR](images/universal_gates_realization.svg)
+*Figure 1.2: Complete Visual Blueprint for realizing NOT, AND, OR, XOR using NAND-Only and NOR-Only configurations.*
 
 #### 2. Consensus Theorem Proof (Algebraic):
 **Theorem**: $A B + \overline{A} C + B C = A B + \overline{A} C$
@@ -444,6 +450,9 @@ W &= A + B(C + D)
 
 #### Step 4: Logic Schematic
 
+![BCD to Excess-3 Logic Circuit Diagram](images/bcd_to_excess3_circuit.svg)
+*Figure 2.1: Minimized 4-Bit Gate-Level Schematic of BCD to Excess-3 Code Converter (Outputs W, X, Y, Z).*
+
 ```mermaid
 graph LR
     subgraph BCD_Inputs["BCD Inputs (0000 to 1001)"]
@@ -510,6 +519,10 @@ graph LR
 
 
 #### 2. Gray to Binary Code:
+
+![4-Bit Binary to Gray & Gray to Binary Circuits](images/binary_to_gray_circuit.svg)
+*Figure 2.2: Side-by-Side Gate Schematics for 4-Bit Binary-to-Gray and Gray-to-Binary Converters with XOR Cascade.*
+
 * **Inverse Equations**:
   $$\begin{aligned}
   B_3 &= G_3 \\
@@ -529,6 +542,10 @@ A $3 \times 8$ decoder has 3 inputs $(A, B, C_{in})$ and generates all 8 minterm
 - **Carry Out**: $C_{out}(A, B, C_{in}) = \sum m(3, 5, 6, 7)$
 
 #### 2. Implementation with Active-Low Decoder (74LS138 style):
+
+![Full Adder Implementation using 3:8 Decoder with Active Low NAND](images/full_adder_decoder.svg)
+*Figure 2.3: Hardware Implementation of Full Adder (S, Cout) using a 3:8 Active-Low Decoder and two 4-Input NAND Gates.*
+
 - An active-low decoder produces $\overline{m_i}$ at output pin $Y_i$.
 - By De Morgan's Law:
   $$S = m_1 + m_2 + m_4 + m_7 = \overline{\overline{m_1} \cdot \overline{m_2} \cdot \overline{m_4} \cdot \overline{m_7}}$$
@@ -656,6 +673,9 @@ graph LR
 3. **Pin Connections**:
    $$I_0 = D, \quad I_1 = D, \quad I_2 = D', \quad I_3 = 0, \quad I_4 = 0, \quad I_5 = D, \quad I_6 = 1, \quad I_7 = 1$$
 
+![4:1 Multiplexer Architecture & Implementation](images/mux_4to1_circuit.svg)
+*Figure 2.4: 4:1 Multiplexer Internal Gate-Level Architecture and Boolean Function Realization Block Diagram.*
+
 ---
 
 ### Q2.7: 8:3 Priority Encoder with Valid Bit
@@ -677,6 +697,9 @@ graph LR
 ---
 
 ### Q3.1: Master Flip-Flop Suite (SR, JK, D, T)
+
+![SR Latches using NOR and NAND Cross-Coupled Gates](images/sr_latches.svg)
+*Figure 3.1: Circuit Topologies and Truth Tables for NOR Latch (Active-High) and NAND Latch (Active-Low).*
 
 #### Flip-Flop State Transition Diagram (JK Flip-Flop Model):
 
@@ -709,6 +732,9 @@ $$t_w > t_{pd}$$
 The output complements, feeds back to inputs, complements again, and continues oscillating uncontrollably between 0 and 1 for the entire duration of the clock pulse! At the end of the pulse, the final state is **unpredictable**.
 
 #### 2. The Master-Slave JK Solution:
+
+![Master-Slave JK Flip-Flop Schematic](images/master_slave_jk_ff.svg)
+*Figure 3.2: Complete Gate-Level Schematic of Master-Slave JK Flip-Flop showing Clock Inverter and Anti-Race Feedback Paths.*
 
 ```mermaid
 graph LR
@@ -768,6 +794,9 @@ graph LR
 ---
 
 ### Q3.4: Analysis of Clocked Sequential Circuits
+
+![Sequential Circuit from Assignment 4](images/assignment4_img_1.png)
+*Figure 3.3: Clocked Sequential Circuit from Assignment 4 (Flip-Flops with Combinational Logic).*
 
 **Methodology**:
 1. Determine the input equations for each flip-flop from the circuit schematic.
@@ -836,6 +865,9 @@ Using JK Excitation Table ($0 \to 0: 0X; 0 \to 1: 1X; 1 \to 0: X1; 1 \to 1: X0$)
    - $K_D = Q_A$
 
 #### Step 4: Logic Circuit Schematic
+
+![Synchronous Decade Counter Circuit Diagram](images/sync_decade_counter_circuit.svg)
+*Figure 4.1: Complete Synchronous Mod-10 Decade Counter Logic Schematic with 4 JK Flip-Flops and Synchronized Clocking.*
 
 ```mermaid
 graph LR
@@ -927,6 +959,9 @@ stateDiagram-v2
 
 ### Q4.4: Asynchronous (Ripple) Decade Counter with NAND Reset
 
+![Asynchronous Ripple Decade Counter with NAND Reset](images/async_decade_counter_circuit.svg)
+*Figure 4.2: Asynchronous Ripple Decade Counter (0000 to 1001) with 2-Input NAND Gate Clear at State 1010.*
+
 * **Structure**: 4 T (or JK) Flip-Flops with $T=1$ (toggle mode).
 * **Clocking**: Negative edge-triggered. Output $Q_0$ drives clock of $FF_1$, $Q_1$ drives clock of $FF_2$, $Q_2$ drives clock of $FF_3$.
 * **Asynchronous Reset**:
@@ -953,6 +988,9 @@ graph LR
 ---
 
 ### Q4.5: Ring Counter vs Johnson Counter
+
+![Ring Counter vs Johnson Counter Schematics](images/ring_and_johnson_counters.svg)
+*Figure 4.3: Comparison of 4-Bit Ring Counter (Straight Feedback) and 4-Bit Johnson Counter (Twisted-Ring Inverted Feedback).*
 
 | Parameter | 4-Bit Ring Counter | 4-Bit Johnson Counter |
 |:---|:---|:---|
@@ -1323,7 +1361,7 @@ endmodule
 ### Q5.9: Gate-Level Verilog for Circuit 1 (`circuit_activity_a.png`)
 
 
-![Group Activity Circuit 1 (NAND-XOR-NOT Network)](../../resources/circuit_activity_a.png)
+![Group Activity Circuit 1 (NAND-XOR-NOT Network)](images/circuit_activity_a.png)
 *Figure 5.1: Group Activity Circuit 1 Schematic Diagram.*
 
 
@@ -1355,7 +1393,7 @@ endmodule
 ### Q5.10: Gate-Level Verilog for Circuit 2 (`circuit_activity_b.png`)
 
 
-![Group Activity Circuit 2 (XOR-AND-OR Network)](../../resources/circuit_activity_b.png)
+![Group Activity Circuit 2 (XOR-AND-OR Network)](images/circuit_activity_b.png)
 *Figure 5.2: Group Activity Circuit 2 Schematic Diagram.*
 
 
@@ -1385,3 +1423,150 @@ endmodule
 2. **Circle EPIs explicitly in K-maps**: Write `Essential Prime Implicants: ...` before writing the minimized equation.
 3. **Use standard logic gate symbols**: Draw distinct curved inputs for OR/NOR and flat inputs for AND/NAND. Put inversion bubbles clearly at gate outputs.
 4. **Verilog golden rule**: Use non-blocking `<= ` inside clocked `always @(posedge clk)` blocks; use blocking `=` inside combinational `always @(*)` blocks.
+
+
+---
+
+# 🎯 SPECIAL SECTION: Faculty Classroom Revision Hacks & Exam Directives
+*(Extracted directly from Dr. Kanimozhi M's blackboard revision notes & hints)*
+
+---
+
+### ⚡ HACK 1: The Register Clock Pulse Rule (Exam Numerical Guaranteed!)
+
+![All 4 Shift Registers (SISO, SIPO, PISO, PIPO)](images/shift_registers_all4.svg)
+*Figure 4.5: Master Architectural Comparison of All 4 Shift Registers (SISO, SIPO, PISO, PIPO) with Clock Pulse Formulations.*
+
+**Question**: *For an n-bit (4-bit or 8-bit) shift register, how many clock pulses are required to load and retrieve data?*
+
+| Shift Register Mode | Pulses to LOAD Data | Pulses to READ / UNLOAD Data | Total Clock Pulses (Load + Unload) |
+|:---|:---:|:---:|:---:|
+| **SISO** (Serial-In Serial-Out) | **n pulses** | **n - 1 pulses** | **2n - 1 pulses** (e.g. 4-bit = 7 pulses, 8-bit = 15 pulses) |
+| **SIPO** (Serial-In Parallel-Out) | **n pulses** | **0 pulses** (Instantaneous in parallel) | **n pulses** (4-bit = 4, 8-bit = 8) |
+| **PISO** (Parallel-In Serial-Out) | **1 pulse** (Parallel load) | **n - 1 pulses** (Serial shift) | **n pulses** (4-bit = 4, 8-bit = 8) |
+| **PIPO** (Parallel-In Parallel-Out) | **1 pulse** | **0 pulses** | **1 pulse** (Fastest register) |
+
+---
+
+### ⚡ HACK 2: Sequence Detector — Always Default to D Flip-Flop!
+> **Faculty Instruction**: *"Agar nhi likha kis FF se krna hai to D FF se kro!"*
+- **Why D Flip-Flop?** Because the characteristic equation of D-FF is:
+  $$D = Q_{next}$$
+  This means you **never need an excitation table**! The K-map for input $D_A$ is literally the column of $Q_A^+$, and $D_B$ is literally $Q_B^+$. This cuts your exam solving time by 70%!
+
+![Sequence Detector Hardware Implementation with D Flip-Flops](images/sequence_detector_circuit.svg)
+*Figure 4.4: Complete Hardware Implementation of 1011 Overlapping Sequence Detector using 2 D Flip-Flops and Combinational Gates.*
+
+#### Worked Example: Overlapping '1010' Sequence Detector using D Flip-Flops
+1. **States**: $S_0 (00), S_1 (01), S_2 (10), S_3 (11)$ with 2 state variables $Q_1, Q_0$.
+2. **State Transition Table**:
+   | Present State ($Q_1 Q_0$) | Input $x=0$ ($Q_1^+ Q_0^+, y$) | Input $x=1$ ($Q_1^+ Q_0^+, y$) |
+   |:---:|:---:|:---:|
+   | $S_0$ (00) | 00, 0 | 01, 0 |
+   | $S_1$ (01) | 10, 0 | 01, 0 |
+   | $S_2$ (10) | 00, 0 | 11, 0 |
+   | $S_3$ (11) | **10, 1 (Detected!)** | 01, 0 |
+3. **D Inputs**:
+   - $D_1 = Q_1^+ = \sum m(1, 7)$ (for inputs $x, Q_1, Q_0$) $\implies \mathbf{D_1 = x' Q_1' Q_0 + x Q_1 Q_0'}$
+   - $D_0 = Q_0^+ = x$ (simply equals input $x$!)
+   - Output $y = x' Q_1 Q_0$
+4. **Schematic**: Two D flip-flops with $D_0 = x$, $D_1 = x' Q_1' Q_0 + x Q_1 Q_0'$, and $y = x' Q_1 Q_0$. Done in under 5 minutes!
+
+---
+
+### ⚡ HACK 3: Mod-6 Synchronous Counter (Mod-N Design)
+**Sequence**: $0 \to 1 \to 2 \to 3 \to 4 \to 5 \to 0$. Unused states: $6 (110_2), 7 (111_2)$.
+1. **Number of FFs**: $2^n \ge 6 \implies n = 3$ FFs ($Q_C, Q_B, Q_A$).
+2. **Transition & D-FF Excitation Table ($D = Q^+$)**:
+   | Present ($Q_C Q_B Q_A$) | Next ($Q_C^+ Q_B^+ Q_A^+$) | $D_C$ | $D_B$ | $D_A$ |
+   |:---:|:---:|:---:|:---:|:---:|
+   | 0 0 0 | 0 0 1 | 0 | 0 | 1 |
+   | 0 0 1 | 0 1 0 | 0 | 1 | 0 |
+   | 0 1 0 | 0 1 1 | 0 | 1 | 1 |
+   | 0 1 1 | 1 0 0 | 1 | 0 | 0 |
+   | 1 0 0 | 1 0 1 | 1 | 0 | 1 |
+   | 1 0 1 | 0 0 0 | 0 | 0 | 0 |
+   | 1 1 0 (Unused) | X X X | X | X | X |
+   | 1 1 1 (Unused) | X X X | X | X | X |
+
+3. **K-Maps (with Don't Cares 6, 7)**:
+   - $D_C = Q_C Q_A' + Q_B Q_A$
+   - $D_B = Q_C' Q_B' Q_A + Q_B Q_A' = Q_C' (Q_B \oplus Q_A)$
+   - $D_A = Q_A'$
+4. **Schematic**: 3 D flip-flops clocked simultaneously.
+
+---
+
+### ⚡ HACK 4: Module 5 "Only Coding" — 4:1 MUX & 2:4 Decoder with `case`
+> **Faculty Instruction**: *"Truth table de denge, fir code likhna hoga... use case statement!"*
+
+#### 1. 2:4 Decoder with Enable in Behavioral Verilog (`case` statement):
+```verilog
+module decoder2to4_behavioral (
+    input [1:0] a,
+    input en,
+    output reg [3:0] y
+);
+    always @(*) begin
+        if (!en)
+            y = 4'b0000;
+        else begin
+            case (a)
+                2'b00: y = 4'b0001;
+                2'b01: y = 4'b0010;
+                2'b10: y = 4'b0100;
+                2'b11: y = 4'b1000;
+                default: y = 4'b0000;
+            endcase
+        end
+    end
+endmodule
+```
+
+#### 2. 4:1 Multiplexer in Behavioral Verilog (`case` statement):
+```verilog
+module mux4to1_behavioral (
+    input [3:0] in,
+    input [1:0] sel,
+    output reg y
+);
+    always @(*) begin
+        case (sel)
+            2'b00: y = in[0];
+            2'b01: y = in[1];
+            2'b10: y = in[2];
+            2'b11: y = in[3];
+            default: y = 1'b0;
+        endcase
+    end
+endmodule
+```
+
+---
+
+### ⚡ HACK 5: SR and D Latches using NAND and NOR Gates
+
+#### 1. SR Latch using NOR Gates:
+```text
+R ───┤ NOR 1 ├─────── Q
+     │       │   ┌───┘
+     │       └───┼───┐
+S ───┤ NOR 2 ├─────── Q'
+```
+* **Truth Table**:
+  - $S=0, R=0 \implies$ No change ($Q_n$)
+  - $S=0, R=1 \implies$ Reset ($Q=0, Q'=1$)
+  - $S=1, R=0 \implies$ Set ($Q=1, Q'=0$)
+  - $S=1, R=1 \implies$ **Forbidden / Invalid ($Q=0, Q'=0$)**
+
+#### 2. SR Latch using NAND Gates:
+* Cross-coupled NAND gates operate with **active-low inputs** ($\overline{S}, \overline{R}$):
+  - $\overline{S}=1, \overline{R}=1 \implies$ No change
+  - $\overline{S}=1, \overline{R}=0 \implies$ Reset ($Q=0$)
+  - $\overline{S}=0, \overline{R}=1 \implies$ Set ($Q=1$)
+  - $\overline{S}=0, \overline{R}=0 \implies$ **Invalid ($Q=1, Q'=1$)**
+
+#### 3. D Latch (Transparent Latch):
+* Formed from an enabled SR latch where $S = D$ and $R = \overline{D}$ (via an inverter).
+* When $EN = 1$: Output tracks input ($Q = D$).
+* When $EN = 0$: Output retains previous state ($Q = Q_{prev}$).

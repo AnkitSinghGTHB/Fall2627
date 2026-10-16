@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 270" width="700" height="270">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Cross-Coupled SR Latches: NOR Gate vs NAND Gate Configurations</text>
+  
+  <g transform="translate(30, 40)" font-family="Consolas, monospace" font-size="12">
+    <!-- 1. NOR Latch (Left) -->
+    <text x="20" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">1. SR Latch using NOR Gates (Active-High)</text>
+    
+    <!-- Top NOR Gate (R Input) -->
+    <line x1="20" y1="55" x2="60" y2="55" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/><text x="5" y="60">R</text>
+    <line x1="20" y1="75" x2="60" y2="75" stroke="#1e3a8a" stroke-width="1.8"/>
+    <path d="M 55 45 Q 70 65 55 85 Q 90 85 105 65 Q 90 45 55 45 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <circle cx="109" cy="65" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="113" y1="65" x2="230" y2="65" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <circle cx="180" cy="65" r="3" fill="#1e3a8a"/>
+    <text x="235" y="70" font-weight="bold" fill="#15803d" font-size="14">Q</text>
+
+    <!-- Bottom NOR Gate (S Input) -->
+    <line x1="20" y1="145" x2="60" y2="145" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="20" y1="165" x2="60" y2="165" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/><text x="5" y="170">S</text>
+    <path d="M 55 135 Q 70 155 55 175 Q 90 175 105 155 Q 90 135 55 135 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <circle cx="109" cy="155" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="113" y1="155" x2="230" y2="155" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <circle cx="170" cy="155" r="3" fill="#1e3a8a"/>
+    <text x="235" y="160" font-weight="bold" fill="#15803d" font-size="14">Q'</text>
+
+    <!-- Cross-Coupled Feedback Lines -->
+    <line x1="180" y1="65" x2="180" y2="100" stroke="#dc2626" stroke-width="1.5"/>
+    <line x1="180" y1="100" x2="40" y2="120" stroke="#dc2626" stroke-width="1.5"/>
+    <line x1="40" y1="120" x2="40" y2="145" stroke="#dc2626" stroke-width="1.5"/>
+    <line x1="40" y1="145" x2="60" y2="145" stroke="#dc2626" stroke-width="1.5"/>
+
+    <line x1="170" y1="155" x2="170" y2="120" stroke="#16a34a" stroke-width="1.5"/>
+    <line x1="170" y1="120" x2="40" y2="100" stroke="#16a34a" stroke-width="1.5"/>
+    <line x1="40" y1="100" x2="40" y2="75" stroke="#16a34a" stroke-width="1.5"/>
+    <line x1="40" y1="75" x2="60" y2="75" stroke="#16a34a" stroke-width="1.5"/>
+
+    <!-- 2. NAND Latch (Right) -->
+    <g transform="translate(340, 0)">
+      <text x="20" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">2. SR Latch using NAND Gates (Active-Low)</text>
+      <!-- Top NAND Gate (S' Input) -->
+      <line x1="20" y1="55" x2="60" y2="55" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/><text x="2" y="60">S'</text>
+      <line x1="20" y1="75" x2="60" y2="75" stroke="#1e3a8a" stroke-width="1.8"/>
+      <path d="M 60 45 L 80 45 A 20 20 0 0 1 80 85 L 60 85 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+      <circle cx="104" cy="65" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+      <line x1="108" y1="65" x2="230" y2="65" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <circle cx="180" cy="65" r="3" fill="#1e3a8a"/>
+      <text x="235" y="70" font-weight="bold" fill="#15803d" font-size="14">Q</text>
+
+      <!-- Bottom NAND Gate (R' Input) -->
+      <line x1="20" y1="145" x2="60" y2="145" stroke="#1e3a8a" stroke-width="1.8"/>
+      <line x1="20" y1="165" x2="60" y2="165" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/><text x="2" y="170">R'</text>
+      <path d="M 60 135 L 80 135 A 20 20 0 0 1 80 175 L 60 175 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+      <circle cx="104" cy="155" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+      <line x1="108" y1="155" x2="230" y2="155" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+      <circle cx="170" cy="155" r="3" fill="#1e3a8a"/>
+      <text x="235" y="160" font-weight="bold" fill="#15803d" font-size="14">Q'</text>
+
+      <!-- Cross Feedback -->
+      <line x1="180" y1="65" x2="180" y2="100" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="180" y1="100" x2="40" y2="120" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="40" y1="120" x2="40" y2="145" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="40" y1="145" x2="60" y2="145" stroke="#dc2626" stroke-width="1.5"/>
+
+      <line x1="170" y1="155" x2="170" y2="120" stroke="#16a34a" stroke-width="1.5"/>
+      <line x1="170" y1="120" x2="40" y2="100" stroke="#16a34a" stroke-width="1.5"/>
+      <line x1="40" y1="100" x2="40" y2="75" stroke="#16a34a" stroke-width="1.5"/>
+      <line x1="40" y1="75" x2="60" y2="75" stroke="#16a34a" stroke-width="1.5"/>
+    </g>
+  </g>
+
+</svg>

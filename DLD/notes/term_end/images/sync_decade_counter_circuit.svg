@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">Synchronous Decade (Mod-10) Counter Hardware Circuit Schematic</text>
+  
+  <g transform="translate(20, 35)" font-family="Consolas, monospace" font-size="11">
+    <!-- FF A (LSB) -->
+    <rect x="40" y="60" width="90" height="130" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4"/>
+    <text x="85" y="80" text-anchor="middle" font-weight="bold" fill="#1e3a8a">FF A (LSB)</text>
+    <text x="50" y="105">J</text><text x="50" y="155">K</text>
+    <text x="110" y="105">QA</text><text x="110" y="155">QA'</text>
+    <polygon points="40,125 50,130 40,135" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
+
+    <!-- FF B -->
+    <rect x="200" y="60" width="90" height="130" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4"/>
+    <text x="245" y="80" text-anchor="middle" font-weight="bold" fill="#1e3a8a">FF B</text>
+    <text x="210" y="105">J</text><text x="210" y="155">K</text>
+    <text x="270" y="105">QB</text><text x="270" y="155">QB'</text>
+    <polygon points="200,125 210,130 200,135" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
+
+    <!-- FF C -->
+    <rect x="360" y="60" width="90" height="130" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4"/>
+    <text x="405" y="80" text-anchor="middle" font-weight="bold" fill="#1e3a8a">FF C</text>
+    <text x="370" y="105">J</text><text x="370" y="155">K</text>
+    <text x="430" y="105">QC</text><text x="430" y="155">QC'</text>
+    <polygon points="360,125 370,130 360,135" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
+
+    <!-- FF D (MSB) -->
+    <rect x="530" y="60" width="90" height="130" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4"/>
+    <text x="575" y="80" text-anchor="middle" font-weight="bold" fill="#1e3a8a">FF D (MSB)</text>
+    <text x="540" y="105">J</text><text x="540" y="155">K</text>
+    <text x="600" y="105">QD</text><text x="600" y="155">QD'</text>
+    <polygon points="530,125 540,130 530,135" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
+
+    <!-- Shared Synchronous Clock Line -->
+    <line x1="10" y1="220" x2="530" y2="220" stroke="#dc2626" stroke-width="2"/>
+    <text x="10" y="240" font-weight="bold" fill="#dc2626">Common Clock CLK</text>
+    <line x1="40" y1="220" x2="40" y2="130" stroke="#dc2626" stroke-width="2"/>
+    <line x1="200" y1="220" x2="200" y2="130" stroke="#dc2626" stroke-width="2"/>
+    <line x1="360" y1="220" x2="360" y2="130" stroke="#dc2626" stroke-width="2"/>
+    <line x1="530" y1="220" x2="530" y2="130" stroke="#dc2626" stroke-width="2"/>
+
+    <!-- Logic 1 to FF A -->
+    <line x1="10" y1="100" x2="40" y2="100" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="10" y1="150" x2="40" y2="150" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="5" y="90" font-weight="bold" fill="#15803d">Logic 1</text>
+
+    <!-- FF B inputs: JB = QA · QD', KB = QA -->
+    <line x1="130" y1="100" x2="160" y2="100" stroke="#1e3a8a" stroke-width="2"/>
+    <circle cx="150" cy="100" r="3" fill="#1e3a8a"/>
+    <!-- AND gate for JB -->
+    <path d="M 160 90 L 175 90 A 10 10 0 0 1 175 110 L 160 110 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="185" y1="100" x2="200" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <!-- QD' feedback to AND gate -->
+    <line x1="620" y1="150" x2="640" y2="150" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="640" y1="150" x2="640" y2="25" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="640" y1="25" x2="160" y2="25" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="160" y1="25" x2="160" y2="95" stroke="#64748b" stroke-width="1.5"/>
+    <!-- KB = QA -->
+    <line x1="150" y1="100" x2="150" y2="150" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="150" y1="150" x2="200" y2="150" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+
+    <!-- FF C inputs: JC = KC = QA · QB -->
+    <line x1="290" y1="100" x2="310" y2="100" stroke="#1e3a8a" stroke-width="1.8"/>
+    <!-- QA feedforward to C -->
+    <line x1="150" y1="150" x2="150" y2="180" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="150" y1="180" x2="310" y2="180" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="310" y1="180" x2="310" y2="115" stroke="#1e3a8a" stroke-width="1.5"/>
+    <!-- AND gate for JC, KC -->
+    <path d="M 315 95 L 330 95 A 10 10 0 0 1 330 115 L 315 115 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="340" y1="105" x2="360" y2="105" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <circle cx="350" cy="105" r="3" fill="#1e3a8a"/>
+    <line x1="350" y1="105" x2="350" y2="150" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="350" y1="150" x2="360" y2="150" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+
+    <!-- FF D inputs: JD = QA · QB · QC, KD = QA -->
+    <circle cx="340" cy="105" r="3" fill="#1e3a8a"/>
+    <line x1="340" y1="105" x2="340" y2="45" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="340" y1="45" x2="480" y2="45" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="450" y1="100" x2="480" y2="100" stroke="#1e3a8a" stroke-width="1.5"/>
+    <!-- 2nd AND gate for JD -->
+    <path d="M 480 60 L 495 60 A 10 10 0 0 1 495 80 L 480 80 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="505" y1="70" x2="530" y2="100" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <!-- KD = QA -->
+    <line x1="150" y1="180" x2="510" y2="180" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="510" y1="180" x2="510" y2="150" stroke="#1e3a8a" stroke-width="1.5"/>
+    <line x1="510" y1="150" x2="530" y2="150" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+  </g>
+
+</svg>

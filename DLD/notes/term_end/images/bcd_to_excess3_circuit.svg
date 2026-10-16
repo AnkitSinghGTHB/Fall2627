@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 540" width="740" height="540">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">BCD to Excess-3 Code Converter Minimal Logic Schematic</text>
+  
+  <g transform="translate(40, 40)" font-family="Consolas, monospace" font-size="12">
+    <!-- Input Rails -->
+    <text x="10" y="40" font-weight="bold" fill="#1e3a8a">A</text>
+    <line x1="30" y1="35" x2="520" y2="35" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="80" font-weight="bold" fill="#1e3a8a">B</text>
+    <line x1="30" y1="75" x2="520" y2="75" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="120" font-weight="bold" fill="#1e3a8a">C</text>
+    <line x1="30" y1="115" x2="520" y2="115" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="160" font-weight="bold" fill="#1e3a8a">D</text>
+    <line x1="30" y1="155" x2="520" y2="155" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- Output Z: Inverter on D -->
+    <circle cx="80" cy="155" r="3" fill="#1e3a8a"/>
+    <line x1="80" y1="155" x2="80" y2="200" stroke="#1e3a8a" stroke-width="2"/>
+    <line x1="80" y1="200" x2="120" y2="200" stroke="#1e3a8a" stroke-width="2"/>
+    <!-- Inverter Triangle -->
+    <polygon points="120,190 145,200 120,210" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <circle cx="149" cy="200" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="153" y1="200" x2="520" y2="200" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="530" y="205" font-weight="bold" fill="#16a34a" font-size="14">Z = D'</text>
+
+    <!-- Sub-expression (C + D) OR Gate -->
+    <circle cx="160" cy="115" r="3" fill="#1e3a8a"/>
+    <circle cx="170" cy="155" r="3" fill="#1e3a8a"/>
+    <line x1="160" y1="115" x2="160" y2="245" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="160" y1="245" x2="200" y2="245" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="170" y1="155" x2="170" y2="265" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="170" y1="265" x2="200" y2="265" stroke="#1e3a8a" stroke-width="1.8"/>
+    <!-- OR gate symbol -->
+    <path d="M 195 240 Q 210 255 195 270 Q 225 270 240 255 Q 225 240 195 240 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <line x1="240" y1="255" x2="270" y2="255" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="245" y="250" font-size="11" fill="#64748b">(C+D)</text>
+
+    <!-- Output Y: XNOR of C and D -->
+    <circle cx="110" cy="115" r="3" fill="#1e3a8a"/>
+    <circle cx="120" cy="155" r="3" fill="#1e3a8a"/>
+    <line x1="110" y1="115" x2="110" y2="305" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="110" y1="305" x2="200" y2="305" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="120" y1="155" x2="120" y2="325" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="120" y1="325" x2="200" y2="325" stroke="#1e3a8a" stroke-width="1.8"/>
+    <!-- XNOR gate symbol -->
+    <path d="M 190 300 Q 200 315 190 330" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+    <path d="M 196 300 Q 211 315 196 330 Q 226 330 241 315 Q 226 300 196 300 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <circle cx="245" cy="315" r="3.5" fill="#ffffff" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="249" y1="315" x2="520" y2="315" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="530" y="320" font-weight="bold" fill="#16a34a" font-size="14">Y = (C ⊕ D)'</text>
+
+    <!-- Output X: XOR of B and (C + D) -->
+    <circle cx="260" cy="75" r="3" fill="#1e3a8a"/>
+    <line x1="260" y1="75" x2="260" y2="365" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="260" y1="365" x2="310" y2="365" stroke="#1e3a8a" stroke-width="1.8"/>
+    <circle cx="270" cy="255" r="3" fill="#1e3a8a"/>
+    <line x1="270" y1="255" x2="270" y2="385" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="270" y1="385" x2="310" y2="385" stroke="#1e3a8a" stroke-width="1.8"/>
+    <!-- XOR symbol -->
+    <path d="M 304 360 Q 314 375 304 390" fill="none" stroke="#1e3a8a" stroke-width="2"/>
+    <path d="M 310 360 Q 325 375 310 390 Q 340 390 355 375 Q 340 360 310 360 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <line x1="355" y1="375" x2="520" y2="375" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="530" y="380" font-weight="bold" fill="#16a34a" font-size="14">X = B ⊕ (C + D)</text>
+
+    <!-- Output W: A + B(C + D) -->
+    <!-- AND gate for B(C + D) -->
+    <circle cx="280" cy="75" r="3" fill="#1e3a8a"/>
+    <line x1="280" y1="75" x2="280" y2="425" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="280" y1="425" x2="310" y2="425" stroke="#1e3a8a" stroke-width="1.8"/>
+    <circle cx="270" cy="385" r="3" fill="#1e3a8a"/>
+    <line x1="270" y1="385" x2="270" y2="445" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="270" y1="445" x2="310" y2="445" stroke="#1e3a8a" stroke-width="1.8"/>
+    <path d="M 310 415 L 330 415 A 15 15 0 0 1 330 455 L 310 455 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <line x1="345" y1="435" x2="390" y2="435" stroke="#1e3a8a" stroke-width="1.8"/>
+    <!-- OR gate with A -->
+    <circle cx="370" cy="35" r="3" fill="#1e3a8a"/>
+    <line x1="370" y1="35" x2="370" y2="465" stroke="#1e3a8a" stroke-width="1.8"/>
+    <line x1="370" y1="465" x2="390" y2="465" stroke="#1e3a8a" stroke-width="1.8"/>
+    <path d="M 385 430 Q 400 450 385 470 Q 420 470 435 450 Q 420 430 385 430 Z" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2"/>
+    <line x1="435" y1="450" x2="520" y2="450" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="530" y="455" font-weight="bold" fill="#16a34a" font-size="14">W = A + B(C + D)</text>
+  </g>
+
+</svg>

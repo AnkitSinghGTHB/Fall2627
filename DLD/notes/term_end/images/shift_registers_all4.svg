@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 260" width="750" height="260">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">All 4 Shift Registers (SISO, SIPO, PISO, PIPO) Architectures & Timing</text>
+  
+  <g transform="translate(20, 35)" font-family="Consolas, monospace" font-size="11">
+    <!-- 1. SISO -->
+    <text x="10" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">1. Serial-In Serial-Out (SISO) [Takes 2n - 1 pulses: 4-bit = 7 pulses]</text>
+    <line x1="20" y1="45" x2="50" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="5" y="40">Din</text>
+    <rect x="50" y="30" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="65" y="50">FF3</text>
+    <line x1="95" y1="45" x2="115" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="115" y="30" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="130" y="50">FF2</text>
+    <line x1="160" y1="45" x2="180" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="180" y="30" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="195" y="50">FF1</text>
+    <line x1="225" y1="45" x2="245" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="245" y="30" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="260" y="50">FF0</text>
+    <line x1="290" y1="45" x2="320" y2="45" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="325" y="50" font-weight="bold" fill="#15803d">Dout (Serial)</text>
+
+    <!-- 2. SIPO -->
+    <text x="10" y="100" font-weight="bold" fill="#1e3a8a" font-size="13">2. Serial-In Parallel-Out (SIPO) [Takes n pulses: 4-bit = 4 pulses]</text>
+    <line x1="20" y1="125" x2="50" y2="125" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="5" y="120">Din</text>
+    <rect x="50" y="110" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="65" y="130">FF3</text>
+    <line x1="95" y1="125" x2="115" y2="125" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="115" y="110" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="130" y="130">FF2</text>
+    <line x1="160" y1="125" x2="180" y2="125" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="180" y="110" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="195" y="130">FF1</text>
+    <line x1="225" y1="125" x2="245" y2="125" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <rect x="245" y="110" width="45" height="30" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="260" y="130">FF0</text>
+    <!-- Parallel Outputs -->
+    <line x1="72" y1="140" x2="72" y2="160" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/><text x="68" y="172">Q3</text>
+    <line x1="137" y1="140" x2="137" y2="160" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/><text x="133" y="172">Q2</text>
+    <line x1="202" y1="140" x2="202" y2="160" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/><text x="198" y="172">Q1</text>
+    <line x1="267" y1="140" x2="267" y2="160" stroke="#15803d" stroke-width="2" marker-end="url(#arr)"/><text x="263" y="172">Q0</text>
+
+    <!-- 3. PISO -->
+    <text x="380" y="20" font-weight="bold" fill="#1e3a8a" font-size="13">3. Parallel-In Serial-Out (PISO) [1 load + (n-1) shift = n pulses]</text>
+    <line x1="400" y1="40" x2="400" y2="55" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="395" y="35">D3</text>
+    <rect x="380" y="55" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="390" y="72">FF3</text>
+    <line x1="420" y1="67" x2="445" y2="67" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="465" y1="40" x2="465" y2="55" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="460" y="35">D2</text>
+    <rect x="445" y="55" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="455" y="72">FF2</text>
+    <line x1="485" y1="67" x2="510" y2="67" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="530" y1="40" x2="530" y2="55" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="525" y="35">D1</text>
+    <rect x="510" y="55" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="520" y="72">FF1</text>
+    <line x1="550" y1="67" x2="575" y2="67" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="595" y1="40" x2="595" y2="55" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="590" y="35">D0</text>
+    <rect x="575" y="55" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="585" y="72">FF0</text>
+    <line x1="615" y1="67" x2="640" y2="67" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arr)"/>
+    <text x="645" y="72" font-weight="bold" fill="#15803d">Serial Out</text>
+
+    <!-- 4. PIPO -->
+    <text x="380" y="115" font-weight="bold" fill="#1e3a8a" font-size="13">4. Parallel-In Parallel-Out (PIPO) [Takes 1 pulse only]</text>
+    <line x1="400" y1="130" x2="400" y2="145" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="395" y="127">D3</text>
+    <rect x="380" y="145" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="390" y="162">FF3</text>
+    <line x1="400" y1="170" x2="400" y2="185" stroke="#15803d" stroke-width="1.8" marker-end="url(#arr)"/><text x="395" y="198">Q3</text>
+    
+    <line x1="465" y1="130" x2="465" y2="145" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="460" y="127">D2</text>
+    <rect x="445" y="145" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="455" y="162">FF2</text>
+    <line x1="465" y1="170" x2="465" y2="185" stroke="#15803d" stroke-width="1.8" marker-end="url(#arr)"/><text x="460" y="198">Q2</text>
+
+    <line x1="530" y1="130" x2="530" y2="145" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="525" y="127">D1</text>
+    <rect x="510" y="145" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="520" y="162">FF1</text>
+    <line x1="530" y1="170" x2="530" y2="185" stroke="#15803d" stroke-width="1.8" marker-end="url(#arr)"/><text x="525" y="198">Q1</text>
+
+    <line x1="595" y1="130" x2="595" y2="145" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arr)"/><text x="590" y="127">D0</text>
+    <rect x="575" y="145" width="40" height="25" fill="#f1f5f9" stroke="#1e3a8a" stroke-width="1.5"/><text x="585" y="162">FF0</text>
+    <line x1="595" y1="170" x2="595" y2="185" stroke="#15803d" stroke-width="1.8" marker-end="url(#arr)"/><text x="590" y="198">Q0</text>
+  </g>
+
+</svg>

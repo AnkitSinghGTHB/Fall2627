@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 350" width="620" height="350">
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#1e3a8a" />
+    </marker>
+    <marker id="redarr" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L5,2.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" rx="8"/>
+  <rect width="100%" height="100%" fill="none" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="bold" fill="#1e3a8a">RTL (Resistor-Transistor Logic) 2-Input NOR Gate Schematic</text>
+  
+  <g transform="translate(60, 40)" font-family="Consolas, monospace" font-size="12">
+    <!-- Vcc Rail -->
+    <line x1="200" y1="20" x2="200" y2="60" stroke="#0f172a" stroke-width="2.5"/>
+    <circle cx="200" cy="20" r="4" fill="#0f172a"/>
+    <text x="210" y="24" font-weight="bold" fill="#b91c1c">+Vcc (+3.6V)</text>
+    
+    <!-- Collector Resistor Rc -->
+    <rect x="190" y="60" width="20" height="40" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    <text x="220" y="85" fill="#0f172a">Rc (640 Ω)</text>
+    <line x1="200" y1="100" x2="200" y2="130" stroke="#0f172a" stroke-width="2.5"/>
+    
+    <!-- Output Node Y -->
+    <circle cx="200" cy="130" r="4" fill="#1e3a8a"/>
+    <line x1="200" y1="130" x2="350" y2="130" stroke="#1e3a8a" stroke-width="2.5" marker-end="url(#arr)"/>
+    <text x="360" y="135" font-weight="bold" fill="#1e3a8a" font-size="14">Output Y = (A + B)' [NOR]</text>
+    
+    <!-- Transistor Bus -->
+    <line x1="120" y1="130" x2="280" y2="130" stroke="#0f172a" stroke-width="2"/>
+    <line x1="120" y1="130" x2="120" y2="160" stroke="#0f172a" stroke-width="2"/>
+    <line x1="280" y1="130" x2="280" y2="160" stroke="#0f172a" stroke-width="2"/>
+    
+    <!-- Transistor Q1 (Left) -->
+    <!-- Collector line -->
+    <line x1="120" y1="160" x2="120" y2="185" stroke="#0f172a" stroke-width="2"/>
+    <!-- Base Bar & Slanted lines -->
+    <line x1="105" y1="180" x2="105" y2="210" stroke="#0f172a" stroke-width="3"/>
+    <line x1="105" y1="185" x2="120" y2="175" stroke="#0f172a" stroke-width="2"/>
+    <line x1="105" y1="205" x2="120" y2="215" stroke="#0f172a" stroke-width="2"/>
+    <!-- Emitter arrow -->
+    <polygon points="116,211 122,217 114,217" fill="#0f172a"/>
+    <line x1="120" y1="215" x2="120" y2="250" stroke="#0f172a" stroke-width="2"/>
+    <text x="75" y="195" font-weight="bold" fill="#0f172a">Q1</text>
+    
+    <!-- Input A with RB -->
+    <line x1="10" y1="195" x2="40" y2="195" stroke="#0f172a" stroke-width="2"/>
+    <text x="-5" y="200" font-weight="bold" fill="#1e3a8a">Input A</text>
+    <rect x="40" y="185" width="40" height="20" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    <text x="45" y="200" font-size="10">RB (450Ω)</text>
+    <line x1="80" y1="195" x2="105" y2="195" stroke="#0f172a" stroke-width="2"/>
+
+    <!-- Transistor Q2 (Right) -->
+    <!-- Collector line -->
+    <line x1="280" y1="160" x2="280" y2="185" stroke="#0f172a" stroke-width="2"/>
+    <!-- Base Bar & Slanted lines -->
+    <line x1="265" y1="180" x2="265" y2="210" stroke="#0f172a" stroke-width="3"/>
+    <line x1="265" y1="185" x2="280" y2="175" stroke="#0f172a" stroke-width="2"/>
+    <line x1="265" y1="205" x2="280" y2="215" stroke="#0f172a" stroke-width="2"/>
+    <!-- Emitter arrow -->
+    <polygon points="276,211 282,217 274,217" fill="#0f172a"/>
+    <line x1="280" y1="215" x2="280" y2="250" stroke="#0f172a" stroke-width="2"/>
+    <text x="235" y="195" font-weight="bold" fill="#0f172a">Q2</text>
+    
+    <!-- Input B with RB -->
+    <line x1="170" y1="195" x2="200" y2="195" stroke="#0f172a" stroke-width="2"/>
+    <text x="125" y="200" font-weight="bold" fill="#1e3a8a">Input B</text>
+    <rect x="200" y="185" width="40" height="20" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    <text x="205" y="200" font-size="10">RB (450Ω)</text>
+    <line x1="240" y1="195" x2="265" y2="195" stroke="#0f172a" stroke-width="2"/>
+
+    <!-- Common Emitter Ground Bus -->
+    <line x1="120" y1="250" x2="280" y2="250" stroke="#0f172a" stroke-width="2.5"/>
+    <line x1="200" y1="250" x2="200" y2="270" stroke="#0f172a" stroke-width="2.5"/>
+    <line x1="185" y1="270" x2="215" y2="270" stroke="#0f172a" stroke-width="3"/>
+    <line x1="190" y1="275" x2="210" y2="275" stroke="#0f172a" stroke-width="2"/>
+    <line x1="195" y1="280" x2="205" y2="280" stroke="#0f172a" stroke-width="1.5"/>
+    <text x="225" y="275" font-size="11" fill="#64748b">GND (0V)</text>
+  </g>
+
+</svg>
