@@ -44,3 +44,5 @@
 | [05-module5-evaluation-metrics-pca-imbalanced-data.md](./05-module5-evaluation-metrics-pca-imbalanced-data.md) | Unit 5: Precision/Recall/F1, ROC-AUC, Bias-Variance, SMOTE, PCA eigenvalue steps |
 | [06-ml-master-formula-derivation-cheat-sheet.md](./06-ml-master-formula-derivation-cheat-sheet.md) | 1-Page Master Formula Sheet: Every equation, metric, and update rule |
 | [07-ml-fat-high-frequency-exam-question-bank.md](./07-ml-fat-high-frequency-exam-question-bank.md) | 15 Fully Solved Past TEE Exam Numericals and derivations |
+| [08-ml-cat1-cat2-assignments-tee-master-synthesis.md](./08-ml-cat1-cat2-assignments-tee-master-synthesis.md) | Forensic correlation between Faculty CAT1, CAT2, assignments, and TEE predictions |
+| [09-ml-guaranteed-topics-master-study-sheet.md](./09-ml-guaranteed-topics-master-study-sheet.md) | **Official 100M TEE Question Paper & Model Answer Script** (Full Datasets, Exam Formats, Zero References) |
