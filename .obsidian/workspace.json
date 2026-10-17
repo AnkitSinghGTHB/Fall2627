@@ -212,6 +212,7 @@
   },
   "active": "b7853a80d17777e3",
   "lastOpenFiles": [
+    "ML/notes/term_end/rewrite_student_friendly_tee_sheet.py",
     "ML/notes/term_end/align_with_exact_cat_papers.py",
     "ML/notes/term_end/08-ml-cat1-cat2-assignments-tee-master-synthesis.md",
     "ML/resources/cat1cat2ques.txt",
@@ -228,7 +229,6 @@
     "ML/notes/term_end/reorder_ml_question_bank.py",
     "ML/notes/term_end/07-ml-fat-high-frequency-exam-question-bank.backup.md",
     "ML/notes/term_end/01-module1-learning-paradigms-pac-vc-dimension.md",
-    "ML/notes/term_end/update_ml_guide.py",
     "ML/notes/term_end/images/svm_hyperplane_margin.svg",
     "ML/notes/term_end/images/smote_synthetic_interpolation.svg",
     "ML/notes/term_end/images/pca_variance_maximization.svg",
