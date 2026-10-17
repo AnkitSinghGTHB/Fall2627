@@ -1,0 +1,107 @@
+# VIT Bhopal University
+
+**Continuous Assessment Test (CAT) – I – AUGUST 2026**
+
+| Parameter | Details | Parameter | Details |
+| --- | --- | --- | --- |
+| **Programme** | B.Tech. / Int. M.Tech. | **Semester** | Fall Semester 2026-27 |
+| **Course Title** | Machine Learning | **Course Code** | CSE4005 |
+| **Date / Session** | 14-08-2026 / S-III | **Slot** | A21+A23 |
+| **Time** | 1 ½ hours | **Max. Marks** | 50 |
+
+**Answer all the Questions**
+
+---
+
+### Questions
+
+| Q.No. | Sub. Sec. | Question Description | Marks |
+| --- | --- | --- | --- |
+| **1** |  | Explain the Machine Learning Lifecycle Framework for application development in detail. Discuss all major stages from problem definition to deployment. | 10 |
+| **2** |  | What do you mean by Version space learning? Investigate VC and Natarajan dimensions with some relevant problem scenarios. | 10 |
+| **3** |  | Explain the k-Nearest Neighbours (k-NN) classification algorithm in detail. Describe its working steps with a suitable example. | 10 |
+| **4** |  | Consider the dataset below:<br><br>| Person | Height (cm) | Weight (kg) |<br>| :---: | :---: | :---: |<br>| 1 | 150 | 45 |<br>| 2 | 152 | 48 |<br>| 3 | 155 | 50 |<br>| 4 | 158 | 53 |<br>| 5 | 160 | 55 |<br>| 6 | 162 | 57 |<br>| 7 | 165 | 60 |<br>| 8 | 168 | 63 |<br>| 9 | 170 | 65 |<br>| 10 | 172 | 68 |<br><br>Formulate a linear regression model based on the above dataset. | 10 |
+| **5** |  | What's the motivation for the SVM algorithm towards modelling any classification problem? How does SVM work? Describe with a scenario. | 10 |
+
+---
+---
+
+# VIT Bhopal University
+
+**Continuous Assessment Test (CAT) – II – SEPTEMBER 2026**
+
+| Parameter | Details | Parameter | Details |
+| --- | --- | --- | --- |
+| **Programme** | B.Tech. / Int. M.Tech. | **Semester** | Fall Semester 2026-27 |
+| **Course Title** | Machine Learning | **Course Code** | CSE4005 |
+| **Date / Session** | 28.09.2026 / S-I | **Slot** | A21+A23 |
+| **Time** | 1 ½ hours | **Max. Marks** | 50 |
+
+**Answer all the Questions**
+
+---
+
+### Questions
+
+#### Question 1 (10 Marks)
+A hospital wants to predict whether a patient is at high or low risk of a disease using clinical attributes. Design and explain the implementation of Random Forest and AdaBoost for this problem. Compare their training process, prediction mechanism, computational requirements, and expected performance. Recommend one algorithm with justification.
+
+---
+
+#### Question 2 (10 Marks)
+Consider a one-dimensional data set $\{5, 9, 14, 25, 28, 40\}$. Perform hierarchical clustering to determine the clusters using single-linkage and complete-linkage analysis, and plot the respective dendrograms to visualize the results. Suggest some key inferences to distinguish between those two analyses.
+
+---
+
+#### Question 3 (10 Marks)
+Using K-means clustering, cluster the following data set $D$ into two clusters:
+
+$$D = \{3, 5, 11, 12, 19, 21, 29, 32, 45, 48\}$$
+
+Explore your step-by-step computational analysis using both computational methods, along with key descriptions.
+
+---
+
+#### Question 4 (10 Marks)
+The loan approval dataset is given for 12 applicants:
+
+| Applicant | Income | Credit History | Employment | Existing Loan | Class |
+| --- | --- | --- | --- | --- | --- |
+| A1 | High | Good | Stable | No | Approved |
+| A2 | High | Good | Unstable | No | Approved |
+| A3 | Medium | Good | Stable | No | Approved |
+| A4 | High | Poor | Stable | Yes | Rejected |
+| A5 | Low | Good | Stable | Yes | Rejected |
+| A6 | Medium | Poor | Unstable | Yes | Rejected |
+| A7 | Low | Poor | Unstable | Yes | Rejected |
+| A8 | Medium | Good | Stable | No | Approved |
+| A9 | High | Good | Stable | Yes | Approved |
+| A10 | Low | Good | Unstable | No | Rejected |
+| A11 | Medium | Poor | Stable | Yes | Rejected |
+| A12 | High | Poor | Unstable | No | Rejected |
+
+Consider a new applicant $X$ as given below:
+
+$$X = (\text{Income} = \text{Medium}, \, \text{Credit} = \text{Good}, \, \text{Employment} = \text{Stable}, \, \text{Loan} = \text{No})$$
+
+Use the Naïve Bayes Classifier to predict whether the applicant's loan should be Approved or Rejected. Do you think attributes such as income, employment stability, and existing loans are truly independent?
+
+---
+
+#### Question 5 (10 Marks)
+The market basket transaction dataset of 10 customers is given to you:
+
+| Transaction ID | Items Purchased |
+| --- | --- |
+| T1 | Bread, Milk, Butter |
+| T2 | Bread, Milk, Eggs |
+| T3 | Bread, Butter, Eggs |
+| T4 | Milk, Butter, Eggs |
+| T5 | Bread, Milk, Butter, Eggs |
+| T6 | Bread, Milk |
+| T7 | Bread, Butter |
+| T8 | Milk, Butter |
+| T9 | Bread, Milk, Eggs |
+| T10 | Bread, Butter, Milk |
+
+Use the computational steps of the Apriori algorithm with a minimum support count = 2 to find the frequent itemsets.
