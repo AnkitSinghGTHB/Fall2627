@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ML/notes/term_end/09-ml-guaranteed-topics-master-study-sheet.md",
+                "file": "Python/notes/term_end/03-module3-oop-dunder-methods-exceptions.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "09-ml-guaranteed-topics-master-study-sheet"
+              "title": "03-module3-oop-dunder-methods-exceptions"
             }
           }
         ]
@@ -212,6 +212,13 @@
   },
   "active": "b7853a80d17777e3",
   "lastOpenFiles": [
+    "Python/notes/term_end/02-module2-collections-functions-regex.md",
+    "Python/notes/term_end/01-module1-syntax-control-flow-operators.md",
+    "Python/notes/term_end/08-python-guaranteed-topics-master-study-sheet.md",
+    "Python/notes/term_end/00-python-emergency-plan-and-blueprints.md",
+    "Discrete/notes/term_end/01-module1-predicate-calculus.md",
+    "Discrete/notes/term_end/00-7-day-emergency-crash-course.md",
+    "ML/notes/term_end/09-ml-guaranteed-topics-master-study-sheet.md",
     "ML/notes/term_end/rewrite_student_friendly_tee_sheet.py",
     "ML/notes/term_end/align_with_exact_cat_papers.py",
     "ML/notes/term_end/08-ml-cat1-cat2-assignments-tee-master-synthesis.md",
@@ -219,14 +226,12 @@
     "ML/resources/cat1cat2ques.md",
     "cat1cat2ques.txt",
     "ML/notes/term_end/make_study_sheet_simple_and_complete.py",
-    "ML/notes/term_end/09-ml-guaranteed-topics-master-study-sheet.md",
     "ML/notes/term_end/refine_tee_sheet_datasets.py",
     "ML/notes/term_end/update_tee_sheet_with_full_datasets.py",
     "ML/notes/term_end/build_official_tee_sheet.py",
     "ML/notes/term_end/generate_exam_script_sheet.py",
     "ML/notes/term_end/build_master_sheet.py",
     "ML/notes/term_end/07-ml-fat-high-frequency-exam-question-bank.md",
-    "ML/notes/term_end/reorder_ml_question_bank.py",
     "ML/notes/term_end/07-ml-fat-high-frequency-exam-question-bank.backup.md",
     "ML/notes/term_end/01-module1-learning-paradigms-pac-vc-dimension.md",
     "ML/notes/term_end/images/svm_hyperplane_margin.svg",
@@ -252,11 +257,6 @@
     "TOC/notes/term_end/09-official-question-bank-complete-solutions.md",
     "TOC/notes/term_end/08-tee-imp-solved-master-solutions.md",
     "TOC/notes/term_end/07-toc-fat-high-frequency-exam-question-bank.md",
-    "TOC/notes/term_end/06-toc-master-formula-sheet.md",
-    "TOC/notes/term_end/05-module5-intermediate-code-and-optimization.md",
-    "TOC/notes/term_end/04-module4-turing-machines-and-undecidability.md",
-    "TOC/notes/term_end/03-module3-parsing-ll1-slr-clr-lalr.md",
-    "TOC/notes/term_end/02-module2-cfg-cnf-and-pda.md",
-    "TOC/notes/term_end/01-module1-finite-automata-and-minimization.md"
+    "TOC/notes/term_end/06-toc-master-formula-sheet.md"
   ]
 }

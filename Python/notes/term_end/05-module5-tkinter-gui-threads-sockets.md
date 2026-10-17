@@ -68,6 +68,25 @@ def create_calc():
     root.mainloop()
 ```
 
+##### Sample Input & Output:
+```text
+GUI Window Interaction:
++--------------------------------------+
+| Simple Adder                    [X]  |
++--------------------------------------+
+| Number 1:  [ 25.5                 ]  |
+| Number 2:  [ 14.5                 ]  |
+|          [  Add (+)  ]               |
+|                                      |
+|          Result: 40.0                |
++--------------------------------------+
+
+Runtime Calculation Output:
+User inputs: "25.5" and "14.5"
+Button Click: Add (+) -> Result Label updates to: "Result: 40.0"
+Error Case: If user enters "abc", Result Label updates to: "Error: Enter valid numbers!"
+```
+
 ---
 
 ## 2. Multithreading & Synchronization
@@ -96,6 +115,12 @@ t2 = threading.Thread(target=worker)
 t1.start(); t2.start()
 t1.join();  t2.join()  # Main thread waits for both workers to finish
 print("Final Synchronized Counter:", counter)  # Guaranteed 200,000
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Final Synchronized Counter: 200000
 ```
 
 ---
@@ -136,6 +161,17 @@ def run_client():
     print(f"Server replied: {response.decode('utf-8')}")
     
     client_sock.close()
+```
+
+##### Sample Input & Output:
+```text
+Terminal 1 (Server Execution):
+Server listening on port 65432...
+Connected by client: ('127.0.0.1', 54210)
+Received from client: Hello Server from Ankit!
+
+Terminal 2 (Client Execution):
+Server replied: ACK from Python Server
 ```
 
 ---
@@ -194,6 +230,29 @@ print(f"""
 </body>
 </html>
 """)
+```
+
+##### Sample Input & Output:
+```text
+Sample HTTP GET/POST Request:
+URL: http://localhost/cgi-bin/student_register.py?student_name=Ankit+Singh&reg_no=22BCE1001&branch=Computer+Science
+
+Browser Rendered HTML Output:
++-----------------------------------------------------------+
+| Student Registration Response                             |
++-----------------------------------------------------------+
+| Student Registration Confirmation                         |
+|                                                           |
+| +-------------------+-----------------------------------+ |
+| | Field             | Submitted Value                   | |
+| +-------------------+-----------------------------------+ |
+| | Student Name      | Ankit Singh                       | |
+| | Registration No   | 22BCE1001                         | |
+| | Branch            | Computer Science                  | |
+| +-------------------+-----------------------------------+ |
+|                                                           |
+| Record successfully processed by Python CGI!              |
++-----------------------------------------------------------+
 ```
 
 ### 4.4 Local vs Remote Server Deployment (XAMPP Steps)
@@ -262,7 +321,17 @@ def reverse_client(message):
 
 if __name__ == "__main__":
     reverse_client("Python Programming")
-    # Output: Reversed: gnimmargorP nohtyP
+```
+
+##### Sample Input & Output:
+```text
+Terminal 1 (Server Execution Console):
+Reverse Server is ready on port 9999...
+Client connected from ('127.0.0.1', 58312)
+
+Terminal 2 (Client Execution Console):
+Original: Python Programming
+Reversed: gnimmargorP nohtyP
 ```
 
 ### Question 2 (8 Marks)
@@ -339,6 +408,19 @@ if __name__ == "__main__":
     run_elliptical_orbit()
 ```
 
+##### Sample Simulation State & Visual Output:
+```text
+Visual Window Display (800x600):
+- Central Sun drawn at (400, 300) in glowing yellow (RGB: 255, 200, 0).
+- Faint elliptical trajectory outline drawn with a=250, b=140.
+- Cyan planet orbiter coordinates trace parametric path:
+  At θ = 0.00 rad: Planet at (650, 300)
+  At θ = 1.57 rad: Planet at (400, 440)
+  At θ = 3.14 rad: Planet at (150, 300)
+  At θ = 4.71 rad: Planet at (400, 160)
+Execution: Smooth 60 FPS continuous orbital cycle.
+```
+
 #### (b) Bouncing Ball Simulation (`bouncing_ball.py`):
 ```python
 import pygame
@@ -397,3 +479,14 @@ def run_bouncing_ball():
 if __name__ == "__main__":
     run_bouncing_ball()
 ```
+
+##### Sample Simulation State & Visual Output:
+```text
+Physics Simulation Trace (640x480):
+- Initial drop: (x=320, y=80), vy=0.0 px/frame
+- Frame 10: y=102.5, vy=4.5 px/frame (accelerating downward under gravity 0.5)
+- First Ground Impact (y + r = 480): vy reverses with 85% damping (rebound vy = -16.8)
+- Peak of first bounce: y=238.2
+- Settles cleanly onto floor at y=460 after dissipation of kinetic energy.
+```
+

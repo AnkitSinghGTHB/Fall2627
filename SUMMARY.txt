@@ -54,11 +54,12 @@ Subject 1: CSE3011 - Python Programming (Slot: B11+B12 | Faculty: Vaishnavi S)
 --------------------------------------------------------------------------------
   - CAT-1: 37 / 50 (Class Avg: 29) -> Scaled: 11.1 / 15  (+2.4 ahead of class)
   - CAT-2: 41 / 50 (Class Avg: 38) -> Scaled: 12.3 / 15  (+0.9 ahead of class)
+  - Internals / Lab: 35.0 / 35.0 (Full marks!)
   - Attendance: 5.0 / 5
-  - Current Pre-TEE Subtotal: 28.4 / 35 recorded (Estimated Full Pre-TEE: ~60.4 / 70)
+  - TOTAL RECORDED PRE-TEE: 63.4 / 70.0 (Class Avg: ~60.1 / 70.0)
   - Standing: +3.3 MARKS AHEAD OF THE CLASS!
-  - Target for A Grade: Need only ~62–66 / 100 in TEE (Just match class average!).
-  - Target for S Grade: 88–92 / 100 in TEE.
+  - Target for A Grade (9.0 GP): Need only ~60–64 / 100 in TEE (Match class average!).
+  - Target for S Grade (10.0 GP): ~85–88 / 100 in TEE.
 
 --------------------------------------------------------------------------------
 Subject 2: CSE4005 - Machine Learning (Slot: A21+A23 | Faculty: Nilamadhab Mishra)
@@ -102,21 +103,22 @@ Subject 5: ECE2002 - Digital Logic Design (Slot: A14+D11+D12 | Kanimozhi M)
 --------------------------------------------------------------------------------
   - CAT-1: 30 / 50 (Class Avg: 37) -> Scaled: 9.0 / 15
   - CAT-2: 38 / 50 (Class Avg: 34) -> Scaled: 11.4 / 15 (+1.2 ahead in CAT2!)
-  - Internals: 4/5 (Viva) + 7/10 (Challenging) + 8/10 (Cont) + 5/5 (Tut) = 24.0 / 30
+  - Internals: 4/5 (Viva) + 7/10 (Challenging) + 8/10 (Cont) + 5/5 (Tut) + 5/5 (Group Activity) = 29.0 / 35.0
   - Attendance: 5.0 / 5
-  - Recorded Pre-TEE Subtotal: 49.4 / 65.0 (Estimated 70-scale: ~53.5 / 70)
-  - Standing: Neck-and-neck with class average.
-  - Target for A Grade: Need ~70–74 / 100 in TEE (Standard counter / K-map paper).
+  - TOTAL RECORDED PRE-TEE: 54.4 / 70.0 (Class Avg: ~54.0 / 70.0)
+  - Standing: Neck-and-neck / slightly ahead (+0.4) of class average!
+  - Target for A Grade: Need ~68–72 / 100 in TEE.
 
 --------------------------------------------------------------------------------
 Subject 6: CSE2004 - Theory Of Computation & CD (Slot: A11+A12+A13 | Gaurav Soni)
 --------------------------------------------------------------------------------
   - CAT-1: 31 / 50 (Class Avg: 30) -> Scaled: 9.3 / 15
   - CAT-2: 28 / 50 (Class Avg: 34) -> Scaled: 8.4 / 15
+  - Internals / Tutorials: 35.0 / 35.0 (Full marks!)
   - Attendance: 5.0 / 5
-  - Recorded so far: 22.7 / 35.0 (Estimated Full Pre-TEE: ~54.7 / 70 vs Class ~56.2)
+  - TOTAL RECORDED PRE-TEE: 57.7 / 70.0 (Class Avg: ~59.2 / 70.0)
   - Standing: Only -1.5 marks deficit from class average!
-  - Target for A Grade: Need ~72–75 / 100 in TEE.
+  - Target for A Grade: Need ~70–74 / 100 in TEE.
   - Key to Success: Strictly follow Dr. Soni's mandatory 6-part syntactic rubric.
 
 --------------------------------------------------------------------------------
@@ -124,13 +126,13 @@ Subject 7: MAT2002 - Discrete Mathematics & GT (Slot: B14+B23+D21 | Suresh Dara)
 --------------------------------------------------------------------------------
   - CAT-1: 20 / 50 (Class Avg: 29) -> Scaled: 6.0 / 15  (-2.7 deficit)
   - CAT-2: 20 / 50 on portal (Class Avg: 35) -> Scaled: 6.0 / 15 (-4.5 deficit)
-  - Attendance: 5.0 / 5
-  - Recorded so far: 17.0 / 35.0 (Estimated Full Pre-TEE: ~49.0 / 70 vs Class ~56.2)
-  - Starting Deficit: ~ -7.2 to -8.1 marks behind class.
-  - Safety Net: Clearing the mandatory 40/100 in TEE yields 49.0 + 12.0 = 61.0 >= 50
-                (100% immune from failing!).
-  - Target for B Grade (8.0 GPA): Need ~72–75 / 100 in TEE (Realistic, protects CGPA!).
-  - Target for A Grade (9.0 GPA): Need ~93–97 / 100 in TEE.
+  - Attendance: 5.0 / 5 (Full marks)
+  - Internals Breakdown: Tut 8.25/10 + Quiz 8.0/10 + Group Act 3.5/5 + Assignment 8.5/10 = 28.25 / 35.0
+  - TOTAL RECORDED PRE-TEE: 45.25 / 70.0 (vs Estimated Class ~53.5)
+  - Starting Deficit: ~ -8.25 marks behind class (improved from -9.75!).
+  - Passing Check: Passing requires TEE >= 40/100 (12M) -> 45.25 + 12.0 = 57.25 >= 50 (100% Passed!).
+  - Target for B Grade (8.0 GPA): Need ~63–66 / 100 in TEE (Very realistic, protects CGPA!).
+  - Target for A Grade (9.0 GPA): Need ~89–92 / 100 in TEE (Competitive stretch).
 
 ================================================================================
 4. KEY REVELATIONS & CRITICAL INSIGHTS FROM THIS CHAT

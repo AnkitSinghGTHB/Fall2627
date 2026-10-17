@@ -8,12 +8,23 @@
 * Always open files using the `with` statement (Python context manager protocol using `__enter__` and `__exit__`), which guarantees file descriptor closure even if exceptions occur.
 
 ```python
-# Reading and writing text files
+# Writing and reading text files using context managers
+with open("data.txt", "w", encoding="utf-8") as f:
+    f.write("CSE3011 Python Programming\nUnit 4 File I/O")
+
 with open("data.txt", "r", encoding="utf-8") as f:
-    content = f.read()          # Reads entire file as string
-    # lines = f.readlines()     # Reads entire file as list of line strings
-    # line = f.readline()       # Reads a single line
+    lines = f.readlines()
+    for line in lines:
+        print("Read line:", line.strip())
 ```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Read line: CSE3011 Python Programming
+Read line: Unit 4 File I/O
+```
+
 
 ### 1.2 File Pointer Navigation: `seek()` and `tell()`
 * `f.tell()`: Returns the current integer byte offset position of the file pointer.
@@ -23,11 +34,23 @@ with open("data.txt", "r", encoding="utf-8") as f:
   - `whence = 2`: Relative to the end of the file (Requires binary mode `'rb'`).
 
 ```python
+with open("log.bin", "wb") as f:
+    f.write(b"0123456789ABCDEF")
+
 with open("log.bin", "rb") as f:
     f.seek(0, 2)              # Move pointer to end of file
     file_size = f.tell()      # Returns exact file size in bytes
-    f.seek(-10, 2)            # Move 10 bytes before end
-    tail_bytes = f.read(10)
+    print("Total File Size:", file_size)
+    f.seek(-6, 2)             # Move 6 bytes before end
+    tail_bytes = f.read(6)
+    print("Read last 6 bytes:", tail_bytes)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Total File Size: 16
+Read last 6 bytes: b'ABCDEF'
 ```
 
 ---
@@ -51,10 +74,18 @@ json_str = json.dumps(data, indent=4)
 restored_json = json.loads(json_str)
 
 # Pickle serialization
-with open("data.pkl", "wb") as f:
-    pickle.dump(data, f)
-with open("data.pkl", "rb") as f:
-    restored_pickle = pickle.load(f)
+pickle_bytes = pickle.dumps(data)
+restored_pickle = pickle.loads(pickle_bytes)
+
+print("Restored JSON:", restored_json["student"])
+print("Restored PKL :", restored_pickle["student"])
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Restored JSON: Ankit
+Restored PKL : Ankit
 ```
 
 ---
@@ -72,11 +103,9 @@ All relational database drivers in Python (SQLite, MySQL, PostgreSQL) follow the
 import sqlite3
 
 def sqlite_demo():
-    # 1. Establish connection and cursor
     conn = sqlite3.connect("university.db")
     cur = conn.cursor()
 
-    # 2. Create Table
     cur.execute("""
         CREATE TABLE IF NOT EXISTS courses (
             code TEXT PRIMARY KEY,
@@ -85,23 +114,32 @@ def sqlite_demo():
         )
     """)
 
-    # 3. Parameterized INSERT (Safe against SQL Injection attacks)
     course_data = [
-        ("CSE3011", "Python Programming", 3),
-        ("CSE4005", "Machine Learning", 3),
+        ("CSE3011", "Python Programming", 4),
+        ("CSE4005", "Machine Learning", 4),
         ("ECE2002", "Digital Logic Design", 4)
     ]
     cur.executemany("INSERT OR REPLACE INTO courses VALUES (?, ?, ?)", course_data)
-    conn.commit()  # Persist changes to disk
+    conn.commit()
 
-    # 4. Query with filter
-    cur.execute("SELECT code, title FROM courses WHERE credits >= ?", (3,))
+    cur.execute("SELECT code, title, credits FROM courses WHERE credits >= ?", (4,))
     results = cur.fetchall()
-    for code, title in results:
-        print(f"Course: {code} | Title: {title}")
+    print("Retrieved Courses:")
+    for code, title, cred in results:
+        print(f"- {code}: {title} ({cred} credits)")
 
-    # 5. Clean resource shutdown
     conn.close()
+
+sqlite_demo()
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Retrieved Courses:
+- CSE3011: Python Programming (4 credits)
+- CSE4005: Machine Learning (4 credits)
+- ECE2002: Digital Logic Design (4 credits)
 ```
 
 ### 3.2 MySQL Connector Syntax
@@ -116,10 +154,24 @@ conn = mysql.connector.connect(
 )
 cur = conn.cursor()
 # MySQL uses %s placeholder instead of ?
-cur.execute("SELECT * FROM students WHERE branch = %s", ("CSE",))
+cur.execute("SELECT reg_no, name, branch FROM students WHERE branch = %s", ("CSE",))
 rows = cur.fetchall()
+
+print("Queried CSE Students:")
+for reg, name, branch in rows:
+    print(f"- {reg}: {name} ({branch})")
+
 conn.close()
 ```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Queried CSE Students:
+- 22BCE1001: Ankit Singh (CSE)
+- 22BCE1045: Rahul Sharma (CSE)
+```
+
 
 ---
 
@@ -132,19 +184,17 @@ conn.close()
 ```python
 import string
 
-def generate_word_frequency(input_path, output_path):
+def generate_word_frequency(input_path="input.txt", output_path="frequency.txt"):
     word_counts = {}
     
     try:
         with open(input_path, "r", encoding="utf-8") as infile:
             for line in infile:
-                # Remove punctuation and convert to lowercase
                 cleaned_line = line.translate(str.maketrans("", "", string.punctuation)).lower()
                 words = cleaned_line.split()
                 for word in words:
                     word_counts[word] = word_counts.get(word, 0) + 1
                     
-        # Sort by frequency descending
         sorted_words = sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
         
         with open(output_path, "w", encoding="utf-8") as outfile:
@@ -156,12 +206,28 @@ def generate_word_frequency(input_path, output_path):
         
     except FileNotFoundError:
         print(f"Error: The source file '{input_path}' does not exist.")
-    except PermissionError:
-        print("Error: Permission denied while accessing files.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-# Call function: generate_word_frequency("input.txt", "frequency.txt")
+generate_word_frequency()
+```
+
+##### Sample Input & Output:
+```text
+Sample Input File (input.txt):
+Python is fast. Python is dynamic and Python is robust!
+
+Sample Output File (frequency.txt):
+WORD,FREQUENCY
+python,3
+is,3
+fast,1
+dynamic,1
+and,1
+robust,1
+
+Terminal Console Message:
+Success! Frequency table written to frequency.txt
 ```
 
 ### Question 2 (8 Marks)

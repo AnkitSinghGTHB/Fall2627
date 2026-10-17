@@ -15,12 +15,21 @@
 * **List Comprehension**:
   ```python
   even_squares = [x**2 for x in range(10) if x % 2 == 0]
-  # Result: [0, 4, 16, 36, 64]
+  print("Even Squares:", even_squares)
   ```
+  ##### Sample Output:
+  ```text
+  Even Squares: [0, 4, 16, 36, 64]
+  ```
+
 * **Dictionary Comprehension**:
   ```python
-  char_counts = {char: len(char) for char in ["apple", "banana", "cherry"]}
-  # Result: {'apple': 5, 'banana': 6, 'cherry': 6}
+  char_counts = {word: len(word) for word in ["apple", "banana", "cherry"]}
+  print("Word Lengths:", char_counts)
+  ```
+  ##### Sample Output:
+  ```text
+  Word Lengths: {'apple': 5, 'banana': 6, 'cherry': 6}
   ```
 
 ---
@@ -38,6 +47,14 @@ def flexible_logger(prefix, *args, **kwargs):
     print(f"Keyword args: {kwargs}")      # Dict
 
 flexible_logger("WARN", 101, "Timeout", user="Ankit", ip="192.168.1.1")
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Prefix: WARN
+Positional args: (101, 'Timeout')
+Keyword args: {'user': 'Ankit', 'ip': '192.168.1.1'}
 ```
 
 ### 2.2 The LEGB Scoping Rule
@@ -74,7 +91,13 @@ import re
 email_text = "Contact support@vit.ac.in or admissions@vitbhopal.ac.in for details."
 pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
 emails = re.findall(pattern, email_text)
-# emails -> ['support@vit.ac.in', 'admissions@vitbhopal.ac.in']
+print("Extracted Emails:", emails)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Extracted Emails: ['support@vit.ac.in', 'admissions@vitbhopal.ac.in']
 ```
 
 ---
@@ -96,9 +119,15 @@ emails = re.findall(pattern, email_text)
    deep = copy.deepcopy(original)
 
    original[0][0] = 99
-   print(shallow[0][0])  # Prints 99 (Affected by mutation!)
-   print(deep[0][0])     # Prints 1  (Completely independent memory!)
+   print("Shallow Copy element [0][0]:", shallow[0][0])  # Mutated!
+   print("Deep Copy element [0][0]:   ", deep[0][0])     # Independent!
    ```
+   ##### Sample Output:
+   ```text
+   Shallow Copy element [0][0]: 99
+   Deep Copy element [0][0]:    1
+   ```
+
 2. **Part (b): Password Validation Program**:
 ```python
 import re
@@ -116,7 +145,16 @@ def validate_password(password):
         return False, "Must contain at least one special character (@#$%^&+=)."
     return True, "Valid password!"
 
-# Test: print(validate_password("SecurePass@2026")) -> (True, 'Valid password!')
+# Test passwords
+print(validate_password("SecurePass@2026"))
+print(validate_password("weakpass"))
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+(True, 'Valid password!')
+(False, 'Must contain at least one uppercase letter.')
 ```
 
 ### Question 2 (8 Marks)
@@ -142,7 +180,11 @@ def outer():
     print(f"Inside outer: x={x}")
 
 outer()
-# Output:
-# Inside inner: x=15, counter=1
-# Inside outer: x=15
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Inside inner: x=15, counter=1
+Inside outer: x=15
 ```

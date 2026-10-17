@@ -2,9 +2,9 @@
 
 > **Course Code**: CSE3011 | **Slot**: B11+B12 | **Faculty**: Prof. Vaishnavi S  
 > **Exam Date**: Monday, October 19, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: 28.4 / 35.0 (Estimated 70-scale: ~60.4 / 70.0 — +3.3 marks ahead of class!)  
-> **TEE Target for A Grade**: **62–66 / 100** (Just match class average!)  
-> **TEE Target for S Grade**: **88–92 / 100**
+> **Pre-TEE Recorded Standing**: **63.4 / 70.0** (CAT1: 11.1 + CAT2: 12.3 + Att: 5.0 + Lab: 35.0 — **+3.3 marks ahead of class!**)  
+> **TEE Target for A Grade**: **60–64 / 100** (Match class average!)  
+> **TEE Target for S Grade**: **85–88+ / 100**
 
 ---
 
@@ -35,7 +35,8 @@
 
 | File | Description |
 |:---|:---|
-| [00-python-emergency-plan-and-blueprints.md](./00-python-emergency-plan-and-blueprints.md) | Emergency study checklist, timing strategy, and master code blueprints |
+| [08-python-guaranteed-topics-master-study-sheet.md](./08-python-guaranteed-topics-master-study-sheet.md) | ⭐ **OFFICIAL TEE MASTER STUDY SHEET**: Complete 100M Mock Exam Paper (Sec A 5×12M OR + Sec B 5×8M) with exam-ready code & theory |
+| [00-python-emergency-plan-and-blueprints.md](./00-python-emergency-plan-and-blueprints.md) | Emergency study checklist, timing strategy, and 5 master code blueprints |
 | [01-module1-syntax-control-flow-operators.md](./01-module1-syntax-control-flow-operators.md) | Unit 1: Syntax, Bitwise math, Control structures, String formatting |
 | [02-module2-collections-functions-regex.md](./02-module2-collections-functions-regex.md) | Unit 2: Collections operations, LEGB rule, Lambda/Map/Filter, Regex matching |
 | [03-module3-oop-dunder-methods-exceptions.md](./03-module3-oop-dunder-methods-exceptions.md) | Unit 3: OOP architecture, Dunder operator overloading, C3 MRO, Exceptions |

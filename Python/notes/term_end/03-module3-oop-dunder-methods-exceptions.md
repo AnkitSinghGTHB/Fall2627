@@ -25,6 +25,20 @@ class Employee:
     @staticmethod
     def is_workday(day_name):
         return day_name.lower() not in ["saturday", "sunday"]
+
+# Test calls:
+emp1 = Employee.from_string("Ankit-85000")
+print(f"Employee: {emp1.name} | Organization: {Employee.company}")
+print("Is Monday a workday?:", Employee.is_workday("Monday"))
+print("Is Sunday a workday?:", Employee.is_workday("Sunday"))
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Employee: Ankit | Organization: VIT Bhopal
+Is Monday a workday?: True
+Is Sunday a workday?: False
 ```
 
 ### 1.2 Access Specifiers & Name Mangling
@@ -65,11 +79,19 @@ class Book:
 
 # Demonstration
 b = Book("Automata Theory", "John Hopcroft", "978-0131103627")
-print(b.title)                     # Allowed: Automata Theory
-print(b._author)                   # Accessible by convention: John Hopcroft
-# print(b.__isbn)                  # Raises AttributeError!
-print(b._Book__isbn)               # Accessible via name mangling: 978-0131103627
+print("Public Attribute:   ", b.title)                     # Allowed: Automata Theory
+print("Protected Attribute:", b._author)                   # Accessible by convention: John Hopcroft
+print("Mangled Private:    ", b._Book__isbn)               # Accessible via name mangling
 b._update_author_details("J. E. Hopcroft & J. D. Ullman")
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Public Attribute:    Automata Theory
+Protected Attribute: John Hopcroft
+Mangled Private:     978-0131103627
+Author updated to: J. E. Hopcroft & J. D. Ullman
 ```
 
 ---
@@ -123,6 +145,20 @@ class Vector2D:
 
     def __str__(self):
         return f"Vector({self.x}, {self.y})"
+
+# Test calls:
+v1 = Vector2D(3, 4)
+v2 = Vector2D(1, 2)
+v3 = v1 + v2
+print("v1 + v2 =", v3)
+print("v1 == Vector2D(3, 4):", v1 == Vector2D(3, 4))
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+v1 + v2 = Vector(4, 6)
+v1 == Vector2D(3, 4): True
 ```
 
 #### Complete Example: Comparing Persons by Age via Operator Overloading (Assignment 3)
@@ -168,6 +204,13 @@ else:
     print(f"-> {p1.name} and {p2.name} are of the same age.")
 ```
 
+##### Sample Input & Output:
+```text
+Sample Output:
+Danny (30) vs Thomas (25):
+-> Danny is older than Thomas.
+```
+
 ---
 
 ## 4. Exception Handling Architecture
@@ -202,6 +245,19 @@ class BankAccount:
             raise InsufficientBalanceError(self.balance, amount)
         self.balance -= amount
         return self.balance
+
+# Testing custom exception
+acc = BankAccount(500)
+try:
+    acc.withdraw(800)
+except InsufficientBalanceError as err:
+    print(f"Caught Exception: {err}")
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Caught Exception: Attempted to withdraw ₹800, but balance is only ₹500!
 ```
 
 ---
@@ -235,13 +291,16 @@ class SmartPhone(Phone, Camera):
 sp = SmartPhone()
 sp.identify()
 print("MRO Order:", [cls.__name__ for cls in SmartPhone.__mro__])
+```
 
-# Output:
-# SmartPhone initializing:
-# Phone subsystem
-# Camera subsystem
-# Device identification
-# MRO Order: ['SmartPhone', 'Phone', 'Camera', 'Device', 'object']
+##### Sample Input & Output:
+```text
+Sample Output:
+SmartPhone initializing:
+Phone subsystem
+Camera subsystem
+Device identification
+MRO Order: ['SmartPhone', 'Phone', 'Camera', 'Device', 'object']
 ```
 
 ### Question 2 (8 Marks)
@@ -273,7 +332,12 @@ class Rectangle(Shape):
 
 rect = Rectangle(5, 4)
 print(f"Area: {rect.area()}, Perimeter: {rect.perimeter()}")
-# Output: Area: 20, Perimeter: 18
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Area: 20, Perimeter: 18
 ```
 
 ---
@@ -353,6 +417,22 @@ if __name__ == "__main__":
         shape.display()
 ```
 
+##### Sample Input & Output:
+```text
+Sample Output:
+--- Triangle ---
+Perimeter: 12.00
+Area:      6.00
+
+--- Rectangle ---
+Perimeter: 30.00
+Area:      50.00
+
+--- Regular 6-gon ---
+Perimeter: 24.00
+Area:      41.57
+```
+
 ---
 
 ### Question 4 (8 Marks) [Direct from Suggested Experiments 3]
@@ -370,9 +450,7 @@ def find_most_frequent_words(filename, top_n=5):
         with open(filename, "r", encoding="utf-8") as f:
             text = f.read().lower()
         
-        # Tokenize words using regular expression (alphanumeric only)
         words = re.findall(r"\b[a-z0-9]+\b", text)
-        
         counts = Counter(words)
         print(f"Top {top_n} Most Frequent Words:")
         for word, freq in counts.most_common(top_n):
@@ -399,4 +477,11 @@ if __name__ == "__main__":
     greet_student("Welcome to Python Programming FAT preparation!")
     obj = Greeter("Good Morning")
     obj.print_message("Ankit")
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+[Function Call Output]: Welcome to Python Programming FAT preparation!
+[Class Method Output]: Good Morning, Ankit!
 ```

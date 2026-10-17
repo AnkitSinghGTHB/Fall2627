@@ -52,11 +52,39 @@ def check_prime(n):
             break
     else:
         print(f"{n} is prime!")  # Executes only if no divisor found
+
+# Test calls:
+check_prime(11)
+check_prime(12)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+11 is prime!
+12 is divisible by 2
 ```
 
 ### 3.2 String Slicing (`[start:stop:step]`)
 * `s[::-1]`: Reverses the string in $O(n)$ time.
 * `s[1:6:2]`: Elements from index 1 up to (excluding) 6 with step 2.
+
+```python
+s = "PYTHON_FAT_2026"
+print("Original String: ", s)
+print("Reversed (s[::-1]):", s[::-1])
+print("Slice (s[0:6]):    ", s[0:6])
+print("Step 2 (s[::2]):   ", s[::2])
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Original String:  PYTHON_FAT_2026
+Reversed (s[::-1]): 6202_TAF_NOHTYP
+Slice (s[0:6]):     PYTHON
+Step 2 (s[::2]):    PTO_A_06
+```
 
 ---
 
@@ -88,8 +116,17 @@ def fibonacci_series(n):
     print(f"First {n} Fibonacci numbers: {fib_list}")
     print(f"Sum = {total_sum} | Parity: {parity}")
 
-# Execution test:
-# fibonacci_series(6) -> First 6: [0, 1, 1, 2, 3, 5], Sum = 12 (Even)
+fibonacci_series(6)
+```
+
+##### Sample Input & Output:
+```text
+Sample Input:
+fibonacci_series(6)
+
+Sample Output:
+First 6 Fibonacci numbers: [0, 1, 1, 2, 3, 5]
+Sum = 12 | Parity: Even
 ```
 
 ### Question 2 (8 Marks)
@@ -101,9 +138,17 @@ list1 = [1, 2, 3]
 list2 = [1, 2, 3]
 list3 = list1
 
-print(list1 == list2)  # True  (Both lists hold identical values [1, 2, 3])
-print(list1 is list2)  # False (Different memory addresses: id(list1) != id(list2))
-print(list1 is list3)  # True  (Both point to the same object: id(list1) == id(list3))
+print("list1 == list2:", list1 == list2)
+print("list1 is list2:", list1 is list2)
+print("list1 is list3:", list1 is list3)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+list1 == list2: True  (Values are identical [1, 2, 3])
+list1 is list2: False (Different heap allocations: id(list1) != id(list2))
+list1 is list3: True  (Point to the same reference: id(list1) == id(list3))
 ```
 * `==` invokes the `__eq__()` dunder method to compare values.
 * `is` compares memory pointers (`id(a) == id(b)`).

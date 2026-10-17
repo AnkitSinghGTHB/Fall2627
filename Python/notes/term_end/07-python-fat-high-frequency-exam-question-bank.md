@@ -48,7 +48,31 @@ def check_symmetric_matrix():
     except ValueError:
         print("Invalid input. Please enter integers only.")
 
-# Test: [[1, 2], [2, 1]] -> Symmetric!
+# Test: [[1, 2, 3], [2, 4, 5], [3, 5, 6]] -> Symmetric!
+```
+
+##### Sample Input & Output:
+```text
+Sample Interactive Input:
+Enter number of rows: 3
+Enter number of columns: 3
+Enter elements row by row (space-separated):
+Row 1: 1 2 3
+Row 2: 2 4 5
+Row 3: 3 5 6
+
+Sample Console Output:
+Original Matrix:
+[1, 2, 3]
+[2, 4, 5]
+[3, 5, 6]
+
+Transpose Matrix:
+[1, 2, 3]
+[2, 4, 5]
+[3, 5, 6]
+
+Result: The matrix is SYMMETRIC.
 ```
 
 ---
@@ -59,19 +83,33 @@ def check_symmetric_matrix():
 **Solution**:
 ```python
 # 1. break: Immediately terminates loop execution
+print("break demo:   ", end="")
 for x in range(5):
     if x == 3: break
-    print(x, end=" ")  # Prints: 0 1 2
+    print(x, end=" ")
+print()
 
 # 2. continue: Skips remainder of current iteration, proceeds to next
+print("continue demo:", end="")
 for x in range(5):
     if x == 3: continue
-    print(x, end=" ")  # Prints: 0 1 2 4
+    print(x, end=" ")
+print()
 
 # 3. pass: Null statement; syntactic placeholder where code is required
+print("pass demo:    ", end="")
 for x in range(5):
-    if x == 3: pass    # Does nothing
-    print(x, end=" ")  # Prints: 0 1 2 3 4
+    if x == 3: pass
+    print(x, end=" ")
+print()
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+break demo:    0 1 2 
+continue demo: 0 1 2 4 
+pass demo:     0 1 2 3 4 
 ```
 
 ---
@@ -105,7 +143,15 @@ def extract_and_analyze(text):
 
 # Test execution:
 sample = "Call me at 9876543210 or email ankit@vitbhopal.ac.in. Python is great and Python is fast."
-# extract_and_analyze(sample)
+extract_and_analyze(sample)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Found Phone Numbers: ['9876543210']
+Found Email Addresses: ['ankit@vitbhopal.ac.in']
+Top 3 Words: [('python', 2), ('is', 2), ('call', 1)]
 ```
 
 ---
@@ -133,7 +179,13 @@ def weighted_average(*values, **weights):
     return total_weighted_sum / total_weight if total_weight != 0 else 0
 
 result = weighted_average(80, 90, 100, w0=0.2, w1=0.3, w2=0.5)
-print("Weighted Average:", result)  # (16 + 27 + 50) = 93.0
+print("Weighted Average:", result)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Weighted Average: 93.0
 ```
 
 ---
@@ -179,6 +231,13 @@ print("p1 + p2 =", p1 + p2)  # 4 + 6x + 1x^2
 print("p1 * p2 =", p1 * p2)  # 3 + 10x + 9x^2 + 2x^3
 ```
 
+##### Sample Input & Output:
+```text
+Sample Output:
+p1 + p2 = 4 + 6x + 1x^2
+p1 * p2 = 3 + 10x + 9x^2 + 2x^3
+```
+
 ---
 
 ### Q6 (8 Marks) [Section B Model]
@@ -204,6 +263,23 @@ finally:
     if file_handle and not file_handle.closed:
         file_handle.close()
         print("Cleanup: File handle closed successfully.")
+```
+
+##### Sample Input & Output:
+```text
+Case 1: "sample.txt" contains "25"
+Sample Output:
+Calculation succeeded! Result: 4.0
+Cleanup: File handle closed successfully.
+
+Case 2: "sample.txt" is missing
+Sample Output:
+Caught Error: File not found on disk.
+
+Case 3: "sample.txt" contains "0"
+Sample Output:
+Caught Error: Cannot divide by zero.
+Cleanup: File handle closed successfully.
 ```
 
 ---
@@ -258,6 +334,14 @@ def run_db_operations():
 
 if __name__ == "__main__":
     run_db_operations()
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Employees earning > ₹50000.0:
+- Alice (Engineering): ₹75000.0
+- Charlie (Finance): ₹82000.0
 ```
 
 ---
@@ -318,6 +402,29 @@ def launch_registration_form():
 
     tk.Button(root, text="Register", command=submit, bg="#008CBA", fg="white").grid(row=5, column=0, columnspan=2, pady=15)
     root.mainloop()
+```
+
+##### Sample Input & Output:
+```text
+GUI Window Interaction:
++--------------------------------------+
+| Student Registration Form       [X]  |
++--------------------------------------+
+| Name:    [ Ankit Singh            ]  |
+| Gender:  (o) Male   ( ) Female       |
+| Courses: [X] Python                  |
+|          [X] Machine Learning        |
+|                                      |
+|          [  Register  ]              |
++--------------------------------------+
+
+Messagebox Popup on Register Click:
+Title: "Success"
+Content:
+Registration Successful!
+Name: Ankit Singh
+Gender: Male
+Courses: Python, ML
 ```
 
 ---
@@ -382,6 +489,15 @@ if danny > thomas:
     print(f"Result: {danny.name} ({danny.age}) is older than {thomas.name} ({thomas.age}).")
 ```
 
+##### Sample Input & Output:
+```text
+Sample Output:
+Public Title: Designing Data-Intensive Applications
+Protected Author: Martin Kleppmann
+Mangled Private ISBN: 978-1449373320
+Result: Danny (30) is older than Thomas (25).
+```
+
 ---
 
 ### Q12 (10 Marks) [Direct from Assignment 3]
@@ -421,6 +537,13 @@ print(f"Triangle Area: {t.area()}, Perimeter: {t.perimeter()}")
 print(f"Rectangle Area: {r.area()}, Perimeter: {r.perimeter()}")
 ```
 
+##### Sample Input & Output:
+```text
+Sample Output:
+Triangle Area: 6.0, Perimeter: 12
+Rectangle Area: 40, Perimeter: 28
+```
+
 ---
 
 ### Q13 (8 Marks) [Direct from Suggested Experiments 3]
@@ -444,7 +567,22 @@ def top_frequent_words(filepath, n=5):
     except FileNotFoundError:
         print(f"Error: {filepath} not found.")
 
-# Usage: top_frequent_words("article.txt", 5)
+# Test execution with sample text:
+sample_text = "Python is an interpreted, high-level, general-purpose programming language. Python is dynamically typed."
+with open("article.txt", "w", encoding="utf-8") as f:
+    f.write(sample_text)
+
+top_frequent_words("article.txt", 4)
+```
+
+##### Sample Input & Output:
+```text
+Sample Output:
+Top 4 words:
+- python: 2
+- is: 2
+- an: 1
+- interpreted: 1
 ```
 
 ---
@@ -504,6 +642,23 @@ def simulate_bouncing_ball():
         clock.tick(60)
 ```
 
+##### Sample Simulation State & Visual Output:
+```text
+(a) Elliptical Orbit State Output:
+Window 600x400:
+- Center Sun at (300, 200)
+- Semi-major axis a=180, Semi-minor axis b=100
+- Planet smoothly traces coordinates: (480, 200) -> (300, 300) -> (120, 200) -> (300, 100)
+Frame Rate: 60 FPS constant.
+
+(b) Bouncing Ball Physics State Output:
+Window 500x400:
+- Initial position: (250, 50), vy=0.0
+- Ball accelerates under gravity 0.4
+- Hits floor (y=385) and reflects with vy = -vy * 0.85
+- Horizontal reflection on reaching left/right boundaries (x <= 15 or x >= 485).
+```
+
 ---
 
 ### Q15 (10 Marks) [Direct from Unit 5 PPT]
@@ -533,8 +688,26 @@ print(f"""
 </html>
 """)
 ```
+
+##### Sample Input & Output:
+```text
+HTTP Request Data:
+name = "Ankit Singh", regno = "22BCE1001", dept = "Computer Science"
+
+Rendered HTML Browser Output:
++-----------------------------------------+
+| Registration Summary                    |
++-----------------------------------------+
+| Registration Confirmation               |
+| Name: Ankit Singh                       |
+| Reg No: 22BCE1001                       |
+| Department: Computer Science            |
++-----------------------------------------+
+```
+
 *Server Deployment Steps*:
 1. Install and launch Apache server via XAMPP.
 2. In Apache `httpd.conf`, add `AddHandler cgi-script .py` and allow `Options +ExecCGI`.
 3. Ensure the script has the exact shebang `#!(path to python.exe)` at line 1.
 4. Place the `.py` script in `htdocs` or `cgi-bin` directory and access via `http://localhost/...`.
+
