@@ -1,0 +1,97 @@
+================================================================================
+
+VIT BHOPAL - PYTHON PROGRAMMING (CSE3011) QUESTION PAPERS
+
+Programme: B.Tech. | Semester: Fall Semester 2026 | Slot: B11+B12
+
+================================================================================
+
+
+
+--------------------------------------------------------------------------------
+
+PAPER 1: CAT-1 (August 2026)
+
+Date / Session: 11-08-2026 / S-III
+
+Time: $1\frac{1}{2}$ hours | Max. Marks: 50
+
+Instructions: Answer all the Questions
+
+--------------------------------------------------------------------------------
+
+
+
+Q1. [10 Marks] (CAT-1, August 2026)
+
+Write a Python program to check whether a given number is a palindrome or not. Reverse the number using loops and arithmetic operators, and explain the logic used in the program.
+
+
+
+Q2. [10 Marks] (CAT-1, August 2026)
+
+Write a Python program to display the multiplication table of a given number using a for loop. Explain the use of range() and control flow statements in the program.
+
+
+
+Q3. [10 Marks] (CAT-1, August 2026)
+
+Write a Python program that accepts a list of integers from the user and performs the following operations: remove duplicates, sort the list, and display the frequency of each element using collections.
+
+
+
+Q4. [10 Marks] (CAT-1, August 2026)
+
+Develop a Python program to validate a password using regular expressions. The password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character. Explain the regex pattern used.
+
+
+
+Q5. [10 Marks] (CAT-1, August 2026)
+
+Write a Python program to create a user-defined function factorial(n) that returns the factorial of a given number. Place the function in a separate module named mymath.py and import this module into another Python program to calculate and display the factorial of a user-entered number. Explain the advantages of using functions and modules in Python programming.
+
+
+
+
+
+--------------------------------------------------------------------------------
+
+PAPER 2: CAT-2 (September 2026)
+
+Date / Session: 26-09-2026 / S-3
+
+Time: $1\frac{1}{2}$ hours | Max. Marks: 50
+
+Instructions: Answer all the Questions
+
+--------------------------------------------------------------------------------
+
+
+
+Q1. [10 Marks] (CAT-2, September 2026)
+
+A company has Managers, Developers, and Interns. Each type of employee has a different way of calculating salary. Design a Python program using inheritance and polymorphism so that the same function can calculate the salary of every employee without using if-elif or isinstance(). Explain how your design can support a new employee type.
+
+
+
+Q2. [10 Marks] (CAT-2, September 2026)
+
+A drawing application needs to calculate the area of a Circle, Rectangle, and Triangle. Each shape has a different area formula. Design a Python solution using an abstract class and polymorphism. Show how the same function can calculate the area of different shapes.
+
+
+
+Q3. [10 Marks] (CAT-2, September 2026)
+
+Develop a solution using a Python Distance class to store distance in kilometers and meters. Overload the $+$ operator so that two distance objects can be added correctly. Demonstrate your solution with suitable values.
+
+
+
+Q4. [10 Marks] (CAT-2, September 2026)
+
+Develop and implement a Python program that collects employee details from the user, stores them in a text file, reads the stored data, and creates a copy of the file with the same contents. Use appropriate file handling methods and exception handling to manage errors that may occur while opening, reading, or writing the files. Demonstrate the working of your program with suitable input and output.
+
+
+
+Q5. [10 Marks] (CAT-2, September 2026)
+
+Design and develop a Python based employee management system using MySQL connectivity. The system should create an employee table, insert employee details, retrieve employees based on a specified condition, update existing employee information, and handle database related errors appropriately. Demonstrate how your program performs these operations with suitable input and output.

@@ -1,0 +1,407 @@
+================================================================================
+
+VIT BHOPAL - PYTHON PROGRAMMING (CSE3011) TEE QUESTION PAPERS
+
+Programme: B.Tech. | Semester: Fall Semester 2026-2027
+
+================================================================================
+
+
+
+--------------------------------------------------------------------------------
+
+PAPER 1: TERM END EXAMINATIONS (TEE) – October 2026 (Slot: F11+F12)
+
+Date / Session: 18-10-2026 / S-2
+
+Time: 3 Hours | Max. Marks: 100
+
+Instructions: Answer ALL the Questions
+
+--------------------------------------------------------------------------------
+
+
+
+=== PART A – (60 Marks) ===
+
+
+
+Q1 (a). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+A university attendance system receives student registration numbers from multiple scanners. Because of repeated scanning, the array may contain thousands of duplicate registration numbers and is not necessarily sorted. For example: [105, 102, 108, 105, 110, 102, 115, 108, 120, 105, 102, 120, 115]
+
+
+
+The system must produce:
+
+  o The list of unique registration numbers,
+
+  o The frequency of each registration number,
+
+  o The duplicated registration numbers
+
+
+
+Design an efficient solution using appropriate Python data structures.
+
+
+
+OR
+
+
+
+Q1 (b). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Write a Python program to compute the Matrix Multiplication.
+
+
+
+
+
+Q2 (a). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Create a Python program to construct the following pattern, using a nested for loop:
+
+*
+
+* *
+
+* * *
+
+* * * *
+
+* * * * *
+
+* * * *
+
+* * *
+
+* *
+
+*
+
+
+
+OR
+
+
+
+Q2 (b). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Write a Python program that accepts a paragraph from the user and performs the following operations:
+
+  i) Count words, sentences, and paragraphs.
+
+  ii) Remove punctuation marks.
+
+  iii) Convert the text into title case.
+
+  iv) Count the frequency of every word.
+
+
+
+
+
+Q3 (a). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Create a Python class to model a simple bank account with methods to deposit, withdraw, and check the balance. Include access specifications and exception handling for invalid transactions.
+
+
+
+OR
+
+
+
+Q3 (b). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+  i) Explain Exception Handling in Python. Write a Python program that demonstrates the use of try, except, and finally blocks to handle division by zero.
+
+  ii) Write a Python program that uses a try-except block to handle multiple exceptions while reading data from a file.
+
+
+
+
+
+Q4 (a). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+A faculty receives students assignment submissions from multiple courses into one common shared folder, submissions/. Students submit files with different extensions - .pdf, .docx, .jpg, and .pptx. The faculty wants to automatically sort different files into separate subfolders based on file type (creating each destination folder only if it does not already exist).
+
+Write a single Python code that:
+
+  a) Identifies each file's extension using appropriate functions. Checks whether a folder corresponding to that extension already exists, and creates it if it does not.
+
+  b) Moves each file into its corresponding folder based on extension.
+
+
+
+OR
+
+
+
+Q4 (b). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+An HR application stores employee details in a MySQL database table named employees, with columns Emp_Id, Name, Department, Designation, and Salary.
+
+The HR team wants a Python utility that connects to this database and, given a department name as input, retrieves and displays all employees belonging to that department.
+
+
+
++--------+-------------+------------+------------------------+--------+
+
+| Emp ID | Name        | Department | Designation            | Salary |
+
++--------+-------------+------------+------------------------+--------+
+
+| 101    | Aditi Singh | IT         | Software Engineer      | 55000  |
+
+| 102    | Rohan Yadav | IT         | Database Administrator | 62000  |
+
+| 103    | Priya Nair  | HR         | HR Manager             | 58000  |
+
+| 104    | Karan Verma | Finance    | Financial Analyst      | 60000  |
+
+| 105    | Sneha Iyer  | IT         | QA Engineer            | 48000  |
+
++--------+-------------+------------+------------------------+--------+
+
+
+
+
+
+Q5 (a). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Write any Python program to create a simple GUI application using the tkinter module. The application should have an entry field and a button. When the button is clicked, the text entered in the field should be displayed in a label.
+
+
+
+OR
+
+
+
+Q5 (b). [12 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Discuss CGI programming and describe how Python can interact with remote HTML servers.
+
+
+
+
+
+=== PART B – (40 Marks) ===
+
+
+
+Q6. [8 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Write a Python program to check the validity of the password based on the following constraints.
+
+  * At least 1 letter between [a-z] and 1 letter between [A-Z].
+
+  * At least 1 number between [0-9].
+
+  * At least 1 character from [$#@].
+
+  * Maximum length 16 characters.
+
+
+
+Q7. [8 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Discuss function and different types of function arguments and how Python handles scoping within functions with examples.
+
+
+
+Q8. [8 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Discuss the role of abstract classes in Python. How do you create and use abstract classes?
+
+
+
+Q9. [8 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Open two files at once in a single with statement and copy the content of one into the other.
+
+
+
+Q10. [8 Marks] (TEE - Oct 2026 | 18-10-2026 | Slot: F11+F12)
+
+Write a Client/Server program to pass a string from the client to the server.
+
+
+
+
+
+================================================================================
+
+
+
+--------------------------------------------------------------------------------
+
+PAPER 2: TERM END EXAMINATIONS (TEE) – October 2026 (Slot: A21+A23)
+
+Date / Session: 17-10-2026 / S-2
+
+Time: 3 Hours | Max. Marks: 100
+
+Instructions: Answer ALL the Questions
+
+--------------------------------------------------------------------------------
+
+
+
+=== PART A – (60 Marks) ===
+
+
+
+Q1 (a). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Write a Python program that accepts an integer from the user and determines whether it is positive, negative, or zero. For a positive number, further determine whether it is even or odd using relational and logical operators. Extend the program to check whether the number satisfies a specified bitwise condition using appropriate bitwise operators.
+
+
+
+OR
+
+
+
+Q1 (b). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Python programs do not always run line by line; control flow structures decide which statements run and how often. Answer the following:
+
+  (a) Describe the main types of control flow structures in Python (sequential, selection, iteration, and jump statements).
+
+  (b) Explain how if-elif-else works to choose what the program does based on conditions.
+
+  (c) Explain the purpose of the for loop and the while loop, with a short example of each.
+
+  (d) Give a scenario where a for loop is the better choice and one where a while loop is better, and justify why.
+
+
+
+
+
+Q2 (a). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Write the process_temperatures function using a for loop, if-elif-else statements, and the break keyword. Explain the flow of control in your code, specifically how and why the loop's iteration is interrupted for a freeze warning. Also, explain the concept of dictionary in python with an example.
+
+
+
+OR
+
+
+
+Q2 (b). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Functions can be categorized by their argument list and return behavior. With a suitable example for each, distinguish between the following four function prototypes:
+
+  a) No parameters, no return value
+
+  b) With parameters, no return value
+
+  c) No parameters, with a return value
+
+  d) With parameters, with a return value
+
+
+
+
+
+Q3 (a). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+A developer creates separate classes Student, Faculty, and Administrator, but all three classes contain the same get_role() method. Evaluate whether inheritance and polymorphism would improve this design. Justify your answer. Also, design a real-world system of your choice in which at least three types of inheritance single, multilevel, and hierarchical can be demonstrated.
+
+
+
+OR
+
+
+
+Q3 (b). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Explain the concept of method overloading and operator overloading with an example. Write a Python program to define a class that stores a given string and maintains its various properties, such as the number of uppercase letters, vowels, consonants, and spaces. Explain the complete logic and working of the program in detail.
+
+
+
+
+
+Q4 (a). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+A hospital needs to maintain patient details including Patient ID, name, age, doctor, diagnosis, admission date, and discharge date. Design a Python-based database application that supports insertion, searching, modification, and deletion of patient records. Identify an appropriate primary key and explain why a database is preferable to a CSV/text-file-based solution.
+
+
+
+OR
+
+
+
+Q4 (b). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+A student information system stores student records in a text file. The program must allow users to add, search, modify, and delete records. Design an appropriate file organization strategy and explain why your choice is better than storing all records as an unstructured text file.
+
+
+
+
+
+Q5 (a). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Design a Tkinter-based calculator application that performs addition, subtraction, multiplication, and division. Use appropriate widgets, fonts, colors, sizes, layouts, and dialog boxes, and explain the role of widget attributes used in the application.
+
+
+
+OR
+
+
+
+Q5 (b). [12 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Explain the event-driven programming paradigm and develop a Python Tkinter GUI application for a student registration form using labels, entry fields, buttons, and appropriate event handlers.
+
+
+
+
+
+=== PART B – (40 Marks) ===
+
+
+
+Q6. [8 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Define operator precedence in Python, determine the correct output for the expression given below, and provide a step-by-step explanation of how the result is derived.
+
+  a. 24 // 4 * 2 + 16 % 4 ** 3
+
+  b. False or True and (not True) or False
+
+  c. 18 + 5 * 2 ** 2 // 6 - 3
+
+  d. (45 // 9 * 3 + 8 % 4) ** (25 * 6) - 9 ** 2
+
+
+
+Q7. [8 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Describe the purpose of the following Python list functions and demonstrate the use of each with an appropriate example:
+
+  a. sorted()
+
+  b. append()
+
+  c. remove()
+
+  d. index()
+
+
+
+Q8. [8 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Design a banking system using inheritance and polymorphism where SavingsAccount and CurrentAccount provide different implementations of a common withdraw() method.
+
+
+
+Q9. [8 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Explain why ODBC can be considered a generic database connectivity mechanism. Suppose the same Python application needs to work with different relational database systems. Analyse how ODBC can reduce changes to the application code.
+
+
+
+Q10. [8 Marks] (TEE - Oct 2026 | 17-10-2026 | Slot: A21+A23)
+
+Explain the concept of multithreading and why it is important in GUI and network applications.
