@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "05-module5-tkinter-gui-threads-sockets"
             }
+          },
+          {
+            "id": "a858506c8926c7c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Python/notes/term_end/09-python-tee-live-papers-pattern-analysis-and-oct19-predictions.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "09-python-tee-live-papers-pattern-analysis-and-oct19-predictions"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -210,14 +225,22 @@
       "mermaid-tools:Open Mermaid Toolbar": false
     }
   },
-  "active": "b7853a80d17777e3",
+  "active": "a858506c8926c7c0",
   "lastOpenFiles": [
+    "Python/notes/term_end/10-python-last-hour-walk-in-sheet.md",
+    "Python/notes/term_end/05-module5-tkinter-gui-threads-sockets.md",
+    "Python/resources/~$module 3.pptx",
+    "Python/resources/~$Unit 4, Part 1.pptx",
+    "Python/resources/~$Unit  5.pptx",
+    "Python/resources/~$Unit-2.pptx",
+    "Python/resources/~$Unit - 1( B11+B12 Slot).pptx",
     "Python/notes/term_end/09-python-tee-live-papers-pattern-analysis-and-oct19-predictions.md",
+    "Python/notes/term_end/07-python-fat-high-frequency-exam-question-bank.md",
+    "Python/notes/term_end/06-python-master-cheat-sheet.md",
     "Python/resources/teepaperssofar.txt",
     "Python/resources/cat1cat2paper.txt",
     "Python/notes/term_end/04-module4-file-handling-sqlite-mysql-streams.md",
     "Python/notes/term_end/03-module3-oop-dunder-methods-exceptions.md",
-    "Python/notes/term_end/05-module5-tkinter-gui-threads-sockets.md",
     "Discrete/notes/term_end/05-module5-trees-and-graph-coloring.md",
     "Discrete/notes/term_end/README.md",
     "Discrete/notes/term_end/00-7-day-emergency-crash-course.md",
@@ -232,11 +255,6 @@
     "ML/notes/term_end/08-ml-cat1-cat2-assignments-tee-master-synthesis.md",
     "ML/resources/cat1cat2ques.txt",
     "ML/resources/cat1cat2ques.md",
-    "cat1cat2ques.txt",
-    "ML/notes/term_end/make_study_sheet_simple_and_complete.py",
-    "ML/notes/term_end/refine_tee_sheet_datasets.py",
-    "ML/notes/term_end/update_tee_sheet_with_full_datasets.py",
-    "ML/notes/term_end/build_official_tee_sheet.py",
     "ML/notes/term_end/07-ml-fat-high-frequency-exam-question-bank.md",
     "ML/notes/term_end/07-ml-fat-high-frequency-exam-question-bank.backup.md",
     "ML/notes/term_end/01-module1-learning-paradigms-pac-vc-dimension.md",
@@ -254,9 +272,6 @@
     "DLD/notes/term_end/05-module5-verilog-hdl-modeling-testbenches.md",
     "DLD/notes/term_end/08-dld-faculty-imp-curated-master-solutions.backup.md",
     "DLD/notes/term_end/images/assignment4_img_1.png",
-    "DLD/notes/term_end/images/assignment4_img_0.jpeg",
-    "DLD/notes/term_end/02-module2-combinational-circuits-kmaps-arithmetic.md",
-    "DLD/notes/term_end/03-module3-sequential-logic-flipflops-state-reduction.md",
-    "DLD/notes/term_end/04-module4-registers-counters-fsm-detectors.md"
+    "DLD/notes/term_end/images/assignment4_img_0.jpeg"
   ]
 }

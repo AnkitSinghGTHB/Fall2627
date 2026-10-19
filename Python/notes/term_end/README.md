@@ -35,6 +35,7 @@
 
 | File | Description |
 |:---|:---|
+| [10-python-last-hour-walk-in-sheet.md](./10-python-last-hour-walk-in-sheet.md) | ⚡ **LAST-HOUR WALK-IN CRAM SHEET**: 10 syntax traps, 4 function prototypes, 4 list built-ins, precedence rules, and 5 minimal 6-line skeletons |
 | [09-python-tee-live-papers-pattern-analysis-and-oct19-predictions.md](./09-python-tee-live-papers-pattern-analysis-and-oct19-predictions.md) | 🚨 **OCT 19 LIVE INTELLIGENCE & PREDICTIONS**: Pattern analysis of TEE Oct 17 & 18 papers vs CAT-1/CAT-2 with step-by-step precedence derivations & 8 exact code clones |
 | [08-python-guaranteed-topics-master-study-sheet.md](./08-python-guaranteed-topics-master-study-sheet.md) | ⭐ **OFFICIAL TEE MASTER STUDY SHEET**: Complete 100M Mock Exam Paper (Sec A 5×12M OR + Sec B 5×8M) with exam-ready code & theory |
 | [00-python-emergency-plan-and-blueprints.md](./00-python-emergency-plan-and-blueprints.md) | Emergency study checklist, timing strategy, and 5 master code blueprints |
