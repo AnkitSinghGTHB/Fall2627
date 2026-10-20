@@ -1,0 +1,28 @@
+Discrete Mathematics
+• Tautology and Contradiction using Truth Tables
+• Rule of Inferences, Validity of Argument using Rules of Inferences
+• Converse, Inverse, Contrapositive, Mathematical to Proposition and Vice-Versa
+• Negation of Statements
+• Equivalence Relation
+• POSET and Hasse Diagram with its all properties like LUB, GLB, etc
+• How to check if a poset is lattice
+• Types of lattices
+• CNF AND DNF
+• Logic Circuit and Complete Sum of Products
+• Dn set
+• Isomorphism of two graphs
+• Dijiskstra Algorithm, Wuler Algorithm
+• Degree question just like CAT 2 (Q3 B part)
+• Adjacency Matrix, Incidence Matrix
+• Kshukal and prime's Algorithm to find shortest path
+• Coloring of Graphs, Chromatic Numbers and Chromatic Index
+
+
+
+
+
+Module 4: Mainly the topics covered in the class
+(graph degree sequence, handshaking theorem, complete graphs, bipartite graphs, complemented graphs, isomorphisms, adjacent and incident matrix, matrix to graph, graph to matrix, shortest path for weighted matrix, Dijkstra's algorithm for directed graph).
+Module 5: Trees and properties, minimal spanning tree, Kruskal and Prim's algorithm, chromatic number, and index.
+Please follow the uploaded question set for practice from both modules. The rest of the topics from these two modules, you can see from the uploaded notes. It's based on your interest.
+Module 1, 2, 3: Completely follow the class notes, uploaded question bank, and CAT 1 and 2 question papers. Don't skip any topic from there.

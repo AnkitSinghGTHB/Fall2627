@@ -82,6 +82,7 @@ In a closed-book 100-mark TEE covering all 5 modules, class average drops to $\a
 
 | File | Module | Topic | Core Focus & Why You'll Understand It |
 | :--- | :---: | :--- | :--- |
+| **[08-discrete-tee-live-papers-pattern-analysis-and-oct21-predictions.md](./08-discrete-tee-live-papers-pattern-analysis-and-oct21-predictions.md)** | 🚨 **OCT 21 LIVE INTELLIGENCE** | **TEE Live Papers Pattern Analysis & Predictions** | Direct synthesis of `tee_imp.txt` with TEE papers from Oct 16, 17, and 18, recurring questions, and 7 step-by-step master solutions. |
 | **[00-7-day-emergency-crash-course.md](./00-7-day-emergency-crash-course.md)** | **Crash Course** | **7-Day Emergency FAT Battle Plan** | Day-by-day 2-hour checklist & guaranteed 60-mark mechanical templates |
 | **[01-module1-predicate-calculus.md](./01-module1-predicate-calculus.md)** | **Module 1** | **Predicate Calculus & Inference** | Truth tables, equivalences without truth tables, Rules of Inference (MP/MT/HS/DS), Quantifiers ($\forall, \exists$), and EI-before-UI quantifier proofs. |
 | **[02-module2-sets-relations-hasse.md](./02-module2-sets-relations-hasse.md)** | **Module 2** | **Sets, Relations & Hasse Diagrams** | Reflexive/Symmetric/Transitive proofs ($a \equiv b \pmod m$), Equivalence classes, POSETs, and drawing Hasse diagrams of $D_n$ with $\gcd$/$\operatorname{lcm}$. |
