@@ -1,280 +1,299 @@
-# 📘 Unit 5: Dynamic Programming & Graph Algorithms
+# 📘 Unit 5: Dynamic Programming, Trees & Graph Algorithms
+
+> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11  
+> **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
 
 ---
 
-## 1. Dynamic Programming Master Paradigms
+## 1. Dynamic Programming Paradigms
 
-### 1.1 0/1 Knapsack Problem (1D Space Optimized)
-* **Recurrence**:
-  $$dp[w] = \max(dp[w], val[i] + dp[w - wt[i]])$$
-  *(Iterate backwards from $W$ down to $wt[i]$ to prevent reusing the same item)*
+### 1.1 Maneuvering Problem (Grid Unique Paths with DP)
+*(Paper 2 Q5a & Paper 3 Q5a — 12 Marks)*
+
+Count total number of unique paths from top-left $(0, 0)$ to bottom-right $(M-1, N-1)$ of an $M \times N$ grid moving only Right or Down.
+
+#### Recurrence Relation & Base Cases:
+$$dp[i][j] = dp[i-1][j] + dp[i][j-1]$$
+- Base Cases: $dp[0][j] = 1$ for all $0 \le j < N$; $dp[i][0] = 1$ for all $0 \le i < M$.
+- Combinatorial Solution: Total moves $= (M - 1) + (N - 1)$. We must choose $(M - 1)$ down moves:
+  $$\text{Paths} = \binom{(M-1) + (N-1)}{M-1} = \frac{(M + N - 2)!}{(M - 1)! \, (N - 1)!}$$
 
 ```java
-public class KnapsackDP {
-    public static int knapsack(int W, int[] wt, int[] val, int n) {
-        int[] dp = new int[W + 1];
-        for (int i = 0; i < n; i++) {
-            for (int w = W; w >= wt[i]; w--) {
-                dp[w] = Math.max(dp[w], val[i] + dp[w - wt[i]]);
+public class GridPathsDP {
+    public static int uniquePaths(int m, int n) {
+        int[] dp = new int[n];
+        java.util.Arrays.fill(dp, 1); // Row 0 base case
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                dp[j] = dp[j] + dp[j - 1]; // dp[j] from top cell, dp[j-1] from left cell
             }
         }
-        return dp[W];
+        return dp[n - 1];
     }
 
     public static void main(String[] args) {
-        int W = 5;
-        int[] wt = {2, 3, 4, 5};
-        int[] val = {3, 4, 5, 6};
-        System.out.println("Maximum Knapsack Value: " + knapsack(W, wt, val, wt.length));
-    }
-}
-// Time Complexity: O(N * W), Space Complexity: O(W)
-```
-**Sample Input**: $W = 5, wt = [2, 3, 4, 5], val = [3, 4, 5, 6]$  
-**Sample Output**:
-```text
-Maximum Knapsack Value: 7
-```
-
----
-
-### 1.2 Longest Common Subsequence (LCS)
-* **Recurrence**:
-  $$L[i][j] = \begin{cases}
-    1 + L[i-1][j-1] & \text{if } s_1[i-1] == s_2[j-1] \\
-    \max(L[i-1][j], \, L[i][j-1]) & \text{if } s_1[i-1] \ne s_2[j-1]
-  \end{cases}$$
-
-```java
-public class LCSDemo {
-    public static int lcs(String s1, String s2) {
-        int m = s1.length(), n = s2.length();
-        int[][] dp = new int[m + 1][n + 1];
-
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                }
-            }
-        }
-        return dp[m][n];
-    }
-
-    public static void main(String[] args) {
-        String s1 = "LONGEST", s2 = "STONE";
-        System.out.println("LCS of " + s1 + " and " + s2 + ": " + lcs(s1, s2));
+        int m = 3, n = 3;
+        System.out.println("Unique paths in 3x3 grid: " + uniquePaths(m, n)); // 6
     }
 }
 ```
-**Sample Input**: `"LONGEST"`, `"STONE"`  
-**Sample Output**:
-```text
-LCS of LONGEST and STONE: 3
-```
-*(Common subsequence: `"ONE"`).*
+* **Trace for $3 \times 3$ Grid**:
+  - Row 0: $[1, 1, 1]$
+  - Row 1: $[1, 1+1=2, 2+1=3]$
+  - Row 2: $[1, 1+2=3, 3+3=\mathbf{6}]$
+  - Total Unique Paths $= \mathbf{6}$. Combinatorics: $\binom{4}{2} = 6$. Time: $O(M \cdot N)$, Auxiliary Space: $O(N)$.
 
 ---
 
-## 2. Tree Traversals (DFS & BFS Level Order)
-*(Priority Topic 15 — `Tree_Traversals.pptx`)*
+### 1.2 0/1 Knapsack Problem (1D Space Optimized)
+* Recurrence: $dp[w] = \max(dp[w], val[i] + dp[w - wt[i]])$ traversing backwards from $W$ down to $wt[i]$. Time: $O(N \cdot W)$, Space: $O(W)$.
+
+### 1.3 Longest Common Subsequence (LCS)
+* Recurrence: $dp[i][j] = 1 + dp[i-1][j-1]$ on character match; $\max(dp[i-1][j], dp[i][j-1])$ otherwise.
+
+---
+
+## 2. Binary Tree Algorithms & Traversals
+
+### 2.1 Height & Diameter of Binary Tree
+*(Paper 2 Q2a & Paper 3 Q2a — 12 Marks)*
+
+* **Height**: Length of longest path from root to deepest leaf node.
+* **Diameter**: Length of longest path between *any two nodes* in a tree.
 
 ```java
-import java.util.*;
-
 class TreeNode {
     int val;
     TreeNode left, right;
     TreeNode(int v) { this.val = v; }
 }
 
-public class TreeTraversals {
-    public static void preorder(TreeNode root) {
-        if (root == null) return;
-        System.out.print(root.val + " ");
-        preorder(root.left);
-        preorder(root.right);
+public class TreeMetrics {
+    static int maxDiameter = 0;
+
+    public static int height(TreeNode root) {
+        if (root == null) return 0;
+        int leftH = height(root.left);
+        int rightH = height(root.right);
+        maxDiameter = Math.max(maxDiameter, leftH + rightH); // Diameter at this node
+        return 1 + Math.max(leftH, rightH);
     }
 
-    public static void inorder(TreeNode root) {
-        if (root == null) return;
-        inorder(root.left);
-        System.out.print(root.val + " ");
-        inorder(root.right);
-    }
-
-    public static void postorder(TreeNode root) {
-        if (root == null) return;
-        postorder(root.left);
-        postorder(root.right);
-        System.out.print(root.val + " ");
-    }
-
-    public static void levelOrder(TreeNode root) {
-        if (root == null) return;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            TreeNode curr = queue.poll();
-            System.out.print(curr.val + " ");
-            if (curr.left != null) queue.offer(curr.left);
-            if (curr.right != null) queue.offer(curr.right);
-        }
-    }
-
-    public static void main(String[] args) {
-        /* Construct Tree:
-                 1
-               /   \
-              2     3
-             / \
-            4   5
-        */
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(4);
-        root.left.right = new TreeNode(5);
-
-        System.out.print("Preorder:   "); preorder(root); System.out.println();
-        System.out.print("Inorder:    "); inorder(root); System.out.println();
-        System.out.print("Postorder:  "); postorder(root); System.out.println();
-        System.out.print("Level Order: "); levelOrder(root); System.out.println();
+    public static int getDiameter(TreeNode root) {
+        maxDiameter = 0;
+        height(root);
+        return maxDiameter;
     }
 }
-```
-**Sample Output**:
-```text
-Preorder:   1 2 4 5 3 
-Inorder:    4 2 5 1 3 
-Postorder:  4 5 2 3 1 
-Level Order: 1 2 3 4 5 
 ```
 
 ---
 
-## 3. Graph Algorithms: Dijkstra & Kruskal's MST
+### 2.2 Check if Two Binary Trees are Identical
+*(Paper 1 Q5c — 6 Marks)*
 
-### 3.1 Dijkstra's Shortest Path Algorithm
+```java
+public class IdenticalTrees {
+    public static boolean isIdentical(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) return true;
+        if (t1 == null || t2 == null) return false;
+        return (t1.val == t2.val) &&
+               isIdentical(t1.left, t2.left) &&
+               isIdentical(t1.right, t2.right);
+    }
+
+    public static void main(String[] args) {
+        // T1 = 1(2, 3), T2 = 1(2, 3)
+        TreeNode t1 = new TreeNode(1); t1.left = new TreeNode(2); t1.right = new TreeNode(3);
+        TreeNode t2 = new TreeNode(1); t2.left = new TreeNode(2); t2.right = new TreeNode(3);
+        // T3 = 1(3, 2)
+        TreeNode t3 = new TreeNode(1); t3.left = new TreeNode(3); t3.right = new TreeNode(2);
+
+        System.out.println("T1 and T2 identical? " + isIdentical(t1, t2)); // true
+        System.out.println("T1 and T3 identical? " + isIdentical(t1, t3)); // false
+    }
+}
+```
+* **Complexity**: Time: $O(\min(N_1, N_2))$, Space: $O(H)$.
+
+---
+
+### 2.3 Level-Order Traversal (BFS Queue) Printing Each Level on New Line
+*(Paper 1 Q5b & Paper 4 Q10 — 6 to 8 Marks)*
+
 ```java
 import java.util.*;
 
-public class Dijkstra {
-    static class Edge { int to, weight; Edge(int t, int w) { to = t; weight = w; } }
+public class LevelOrderLineByLine {
+    public static void printLevelOrder(TreeNode root) {
+        if (root == null) return;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
 
-    public static int[] shortestPath(int n, List<List<Edge>> adj, int src) {
-        int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
+        while (!q.isEmpty()) {
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode curr = q.poll();
+                System.out.print(curr.val + " ");
+                if (curr.left != null) q.offer(curr.left);
+                if (curr.right != null) q.offer(curr.right);
+            }
+            System.out.println(); // New line after each level
+        }
+    }
 
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
-        pq.offer(new int[]{src, 0});
+    public static void main(String[] args) {
+        // Tree: 3(9, 20(15, 7))
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
 
-        while (!pq.isEmpty()) {
-            int[] curr = pq.poll();
-            int u = curr[0], d = curr[1];
-            if (d > dist[u]) continue;
+        System.out.println("Level Order Traversal:");
+        printLevelOrder(root);
+    }
+}
+```
+**Queue Contents Trace Output**:
+```text
+Level Order Traversal:
+3 
+9 20 
+15 7 
+```
 
-            for (Edge edge : adj.get(u)) {
-                if (dist[u] + edge.weight < dist[edge.to]) {
-                    dist[edge.to] = dist[u] + edge.weight;
-                    pq.offer(new int[]{edge.to, dist[edge.to]});
+---
+
+## 3. Graph Algorithms
+
+### 3.1 Connected Components in Undirected Graph: BFS vs Recursive DFS
+*(Paper 1 Q5a — 12 Marks)*
+
+#### BFS vs Recursive DFS Evaluation for $10^5$ Vertices:
+* **Recursive DFS Vulnerability**: In the worst-case (a degenerate "skewed" graph structured as a straight chain $0\text{--}1\text{--}2\dots\text{--}10^5$), recursive DFS reaches a call stack depth of $10^5$. In standard JVM environments, call stack memory is limited ($\approx 1\text{ MB}$), causing an immediate, fatal `java.lang.StackOverflowError`.
+* **BFS Superiority (RECOMMENDED)**: BFS allocates its `Queue` on the JVM **heap memory** (typically hundreds of megabytes or gigabytes). It easily processes $10^5$ or even $10^7$ vertices without call stack overflow risks.
+
+```java
+import java.util.*;
+
+public class ConnectedComponents {
+    public static int countComponents(int V, List<List<Integer>> adj) {
+        boolean[] visited = new boolean[V];
+        int components = 0;
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                components++;
+                // BFS Traversal using heap-allocated queue
+                Queue<Integer> q = new LinkedList<>();
+                visited[i] = true;
+                q.offer(i);
+                while (!q.isEmpty()) {
+                    int curr = q.poll();
+                    for (int neighbor : adj.get(curr)) {
+                        if (!visited[neighbor]) {
+                            visited[neighbor] = true;
+                            q.offer(neighbor);
+                        }
+                    }
                 }
             }
         }
-        return dist;
+        return components;
     }
 
     public static void main(String[] args) {
-        int n = 4;
-        List<List<Edge>> adj = new ArrayList<>();
-        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+        int V = 7;
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < V; i++) adj.add(new ArrayList<>());
+        // Edges: 0--1, 1--2, 3--4, 5--6
+        adj.get(0).add(1); adj.get(1).add(0);
+        adj.get(1).add(2); adj.get(2).add(1);
+        adj.get(3).add(4); adj.get(4).add(3);
+        adj.get(5).add(6); adj.get(6).add(5);
 
-        adj.get(0).add(new Edge(1, 4));
-        adj.get(0).add(new Edge(2, 1));
-        adj.get(2).add(new Edge(1, 2));
-        adj.get(1).add(new Edge(3, 1));
-        adj.get(2).add(new Edge(3, 5));
-
-        int[] dist = shortestPath(n, adj, 0);
-        System.out.println("Distances from node 0: " + Arrays.toString(dist));
+        int count = countComponents(V, adj);
+        System.out.println("Is connected? " + (count == 1));
+        System.out.println("Number of connected components: " + count);
     }
 }
-// Time Complexity: O((V + E) log V), Auxiliary Space: O(V)
 ```
-**Sample Output**:
+**Sample Output for Edges $\{0\text{--}1, 1\text{--}2, 3\text{--}4, 5\text{--}6\}$**:
 ```text
-Distances from node 0: [0, 3, 1, 4]
+Is connected? false
+Number of connected components: 3
 ```
+*(Component 1: $\{0, 1, 2\}$, Component 2: $\{3, 4\}$, Component 3: $\{5, 6\}$).*
 
 ---
 
-### 3.2 Kruskal's Algorithm with Disjoint Set Union (DSU)
-*(From `Kruskal_Algorithm.pptx`)*
+### 3.2 Unweighted Graph Shortest Path via BFS
+*(Paper 1 Q10 — 8 Marks)*
+
+Find and display the shortest path from vertex $0$ to vertex $4$ for edges: $0\text{--}1, 0\text{--}2, 1\text{--}3, 2\text{--}3, 3\text{--}4, 2\text{--}5$.
 
 ```java
 import java.util.*;
 
-class Edge implements Comparable<Edge> {
-    int src, dest, weight;
-    Edge(int s, int d, int w) { src = s; dest = d; weight = w; }
-    public int compareTo(Edge o) { return Integer.compare(this.weight, o.weight); }
-}
-
-public class KruskalMST {
-    static int find(int[] parent, int i) {
-        if (parent[i] == i) return i;
-        return parent[i] = find(parent, parent[i]); // Path compression
-    }
-
-    static void union(int[] parent, int[] rank, int x, int y) {
-        int rootX = find(parent, x);
-        int rootY = find(parent, y);
-        if (rootX != rootY) {
-            if (rank[rootX] < rank[rootY]) parent[rootX] = rootY;
-            else if (rank[rootX] > rank[rootY]) parent[rootY] = rootX;
-            else { parent[rootY] = rootX; rank[rootX]++; }
-        }
-    }
-
-    public static int getMSTWeight(int V, List<Edge> edges) {
-        Collections.sort(edges);
+public class BFSShortestPath {
+    public static List<Integer> findShortestPath(int V, List<List<Integer>> adj, int src, int dest) {
+        boolean[] visited = new boolean[V];
         int[] parent = new int[V];
-        int[] rank = new int[V];
-        for (int i = 0; i < V; i++) parent[i] = i;
+        Arrays.fill(parent, -1);
+        Queue<Integer> q = new LinkedList<>();
 
-        int totalWeight = 0;
-        int edgesCount = 0;
-        for (Edge e : edges) {
-            int rootSrc = find(parent, e.src);
-            int rootDest = find(parent, e.dest);
-            if (rootSrc != rootDest) {
-                totalWeight += e.weight;
-                union(parent, rank, rootSrc, rootDest);
-                edgesCount++;
-                if (edgesCount == V - 1) break;
+        visited[src] = true;
+        q.offer(src);
+
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            if (curr == dest) break;
+
+            for (int neighbor : adj.get(curr)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    parent[neighbor] = curr;
+                    q.offer(neighbor);
+                }
             }
         }
-        return totalWeight;
+
+        List<Integer> path = new ArrayList<>();
+        for (int at = dest; at != -1; at = parent[at]) path.add(at);
+        Collections.reverse(path);
+        return path;
     }
 
     public static void main(String[] args) {
-        int V = 4;
-        List<Edge> edges = Arrays.asList(
-            new Edge(0, 1, 10),
-            new Edge(0, 2, 6),
-            new Edge(0, 3, 5),
-            new Edge(1, 3, 15),
-            new Edge(2, 3, 4)
-        );
-        System.out.println("Total MST Weight: " + getMSTWeight(V, edges));
+        int V = 6;
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < V; i++) adj.add(new ArrayList<>());
+        adj.get(0).addAll(Arrays.asList(1, 2));
+        adj.get(1).addAll(Arrays.asList(0, 3));
+        adj.get(2).addAll(Arrays.asList(0, 3, 5));
+        adj.get(3).addAll(Arrays.asList(1, 2, 4));
+        adj.get(4).add(3);
+        adj.get(5).add(2);
+
+        System.out.println("Shortest Path from 0 to 4: " + findShortestPath(V, adj, 0, 4));
     }
 }
-// Time: O(E log E), Space: O(V)
 ```
-**Sample Output**:
-```text
-Total MST Weight: 19
-```
+* **Step-by-Step Parent Trace**:
+  - $0$ enqueues $1, 2$ (`parent[1]=0, parent[2]=0`).
+  - $1$ enqueues $3$ (`parent[3]=1`).
+  - $2$ enqueues $5$ (`parent[5]=2`).
+  - $3$ enqueues $4$ (`parent[4]=3`). Destination reached!
+  - Backtracking: $4 \leftarrow 3 \leftarrow 1 \leftarrow 0$.
+* **Shortest Path**: **`[0, 1, 3, 4]`** (Length $= 3$ edges).
+* **Why BFS Guarantees Shortest Path**: In unweighted graphs, BFS visits all vertices at distance $d$ before any vertex at distance $d + 1$. Thus, the first time the destination node is dequeued, it is guaranteed to have been reached along a path of minimum edge length.
+
+---
+
+### 3.3 Kruskal's Algorithm for Minimum Spanning Tree (MST)
+*(Paper 4 Q5a — 12 Marks)*
+
+Uses **Disjoint Set Union (DSU)** with path compression and rank to greedily pick the smallest non-cycle edges:
+* Time Complexity: $O(E \log E)$, Auxiliary Space: $O(V)$.

@@ -1,68 +1,112 @@
 # 📘 Unit 1: Complexity Analysis & Bit Manipulation Algorithms
 
+> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11  
+> **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
+
 ---
 
 ## 1. Asymptotic Notations & Complexity Analysis
 
 ### 1.1 Asymptotic Definitions
-* **Big-$O$ ($O$)**: Asymptotic upper bound ($f(n) \le c \cdot g(n)$ for all $n \ge n_0$). Represents worst-case upper ceiling.
-* **Big-$\Omega$ ($\Omega$)**: Asymptotic lower bound ($f(n) \ge c \cdot g(n)$ for all $n \ge n_0$). Represents best-case lower floor.
-* **Big-$\Theta$ ($\Theta$)**: Tight bound ($c_1 g(n) \le f(n) \le c_2 g(n)$ for all $n \ge n_0$). Algorithm grows at the exact same rate.
-
-### 1.2 Loop Complexity Comparison: $O(n)$ vs $O(n^2)$
-*(Directly tested in Sample Paper 1, Q1)*
-
-```java
-public class ComplexityDemo {
-    // Linear Time O(n): Single loop running n times
-    public static int linearSum(int[] arr) {
-        int sum = 0;
-        for (int x : arr) { // Runs exactly n iterations
-            sum += x;
-        }
-        return sum;
-    }
-
-    // Quadratic Time O(n^2): Nested loops comparing every pair
-    public static int countInversions(int[] arr) {
-        int n = arr.length;
-        int invCount = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) { // Total iterations = n*(n-1)/2
-                if (arr[i] > arr[j]) invCount++;
-            }
-        }
-        return invCount;
-    }
-
-    public static void main(String[] args) {
-        int[] data = {8, 4, 2, 1};
-        System.out.println("Linear Sum: " + linearSum(data));
-        System.out.println("Inversion Count: " + countInversions(data));
-    }
-}
-```
-**Sample Input**: `[8, 4, 2, 1]`  
-**Sample Output**:
-```text
-Linear Sum: 15
-Inversion Count: 6
-```
+* **Big-$O$ ($O$)**: Asymptotic upper bound ($f(n) \le c \cdot g(n)$ for all $n \ge n_0$). Worst-case guarantee.
+* **Big-$\Omega$ ($\Omega$)**: Asymptotic lower bound ($f(n) \ge c \cdot g(n)$ for all $n \ge n_0$). Best-case floor.
+* **Big-$\Theta$ ($\Theta$)**: Tight bound ($c_1 g(n) \le f(n) \le c_2 g(n)$ for all $n \ge n_0$). Precise growth rate.
 
 ---
 
-### 1.3 Master Theorem for Divide-and-Conquer Recurrences
+### 1.2 High-Frequency Exam Loop Complexity Traces
+
+#### Loop Pattern A: Halving Double Loop *(Paper 2 Q8 & Paper 3 Q8 — 8 Marks)*
+```java
+int count = 0;
+for (int i = 1; i < n; i = i * 2) {
+    for (int j = n; j > 0; j = j / 2) {
+        count++;
+    }
+}
+```
+* **Analysis**:
+  - Outer loop: $i \in \{1, 2, 4, \dots, < n\} \implies \lceil \log_2 n \rceil$ iterations.
+  - Inner loop: $j \in \{n, \lfloor n/2 \rfloor, \lfloor n/4 \rfloor, \dots, 1\} \implies (\lfloor \log_2 n \rfloor + 1)$ iterations.
+  - Total Operations: $O(\log n) \times O(\log n) = \mathbf{O(\log^2 n)}$. Space: $\mathbf{O(1)}$.
+* **Execution Trace for $N = 16$**:
+  - Outer values: $i = 1, 2, 4, 8$ (4 iterations).
+  - Inner values: $j = 16, 8, 4, 2, 1$ (5 iterations).
+  - Cumulative `count` $= 4 \times 5 = \mathbf{20}$.
+
+#### Loop Pattern B: Geometric Inner Bound *(Paper 4 Q1a-ii — 6 Marks)*
+```java
+for (i = 1; i <= n; i = i * 2)
+    for (j = 1; j <= i; j++)
+        print(j);
+```
+* **Analysis & Proof**:
+  - Outer variable $i$ takes values $2^0, 2^1, 2^2, \dots, 2^k \le n$.
+  - Inner loop executes $i$ times for each outer step.
+  - Sum of operations is a geometric series:
+    $$\sum_{p=0}^{\lfloor \log_2 n \rfloor} 2^p = 1 + 2 + 4 + 8 + \dots + 2^k = 2^{k+1} - 1 < 2n = \mathbf{O(n)}$$
+  - Time Complexity is **$O(n)$ (Linear Time)**, NOT $O(n^2)$ or $O(n \log n)$! Auxiliary Space: $O(1)$.
+
+#### Loop Pattern C: Recursive Fibonacci *(Paper 4 Q1b-ii — 6 Marks)*
+```java
+int fib(int n) {
+    if (n <= 1) return n;
+    return fib(n - 1) + fib(n - 2);
+}
+```
+* **Analysis**:
+  - Recurrence: $T(n) = T(n - 1) + T(n - 2) + O(1)$.
+  - The recursion generates a binary tree of height $n$ where the number of nodes roughly doubles at each level.
+  - Total recursive calls: $2^0 + 2^1 + 2^2 + \dots + 2^n \approx 2^{n+1} - 1 = \mathbf{O(2^n)}$ (Exponential Time).
+  - Auxiliary Space: $\mathbf{O(n)}$ due to maximum call stack depth reaching $n$.
+
+---
+
+### 1.3 Binary Search: Complexity & Execution Trace
+*(Paper 1 Q1b — 12 Marks)*
+
+```java
+public class BinarySearchDemo {
+    public static int binarySearch(int a[], int l, int r, int key) {
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (a[mid] == key) return mid;
+            else if (a[mid] < key) l = mid + 1;
+            else r = mid - 1;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 5, 8, 12, 16, 23, 38, 45, 56, 72};
+        System.out.println("Search 23: " + binarySearch(arr, 0, arr.length - 1, 23));
+        System.out.println("Search 50: " + binarySearch(arr, 0, arr.length - 1, 50));
+    }
+}
+```
+
+#### Step-by-Step Execution Traces on Array $\{2, 5, 8, 12, 16, 23, 38, 45, 56, 72\}$:
+1. **Searching for Key = 23**:
+   - $l=0, r=9 \implies \text{mid} = 4, a[4] = 16 < 23 \implies l = 5$.
+   - $l=5, r=9 \implies \text{mid} = 7, a[7] = 45 > 23 \implies r = 6$.
+   - $l=5, r=6 \implies \text{mid} = 5, a[5] = 23 == 23 \implies$ **Found at Index 5!**
+2. **Searching for Key = 50**:
+   - $l=0, r=9 \implies \text{mid} = 4, a[4] = 16 < 50 \implies l = 5$.
+   - $l=5, r=9 \implies \text{mid} = 7, a[7] = 45 < 50 \implies l = 8$.
+   - $l=8, r=9 \implies \text{mid} = 8, a[8] = 56 > 50 \implies r = 7$.
+   - $l = 8 > r = 7 \implies$ Loop ends. **Return -1 (Not Found)**.
+* **Complexities**: Best: $O(1)$, Average/Worst: $O(\log n)$. Iterative Space: $O(1)$, Recursive Space: $O(\log n)$.
+
+---
+
+### 1.4 Master Theorem for Divide-and-Conquer Recurrences
 $$T(n) = a T(n/b) + f(n), \quad \text{where } a \ge 1, b > 1$$
 
-Compare $f(n)$ with the watershed threshold $n^{\log_b a}$:
-1. **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon})$ for some $\epsilon > 0$:
-   $$T(n) = \Theta(n^{\log_b a})$$
-   *(Example: Strassen's Matrix Multiplication $T(n) = 7 T(n/2) + O(n^2) \implies \log_2 7 \approx 2.81 > 2 \implies T(n) = \Theta(n^{2.81})$).*
-2. **Case 2**: If $f(n) = \Theta(n^{\log_b a} \log^k n)$ for $k \ge 0$:
-   $$T(n) = \Theta(n^{\log_b a} \log^{k+1} n)$$
-   *(Example: Merge Sort $T(n) = 2 T(n/2) + \Theta(n) \implies \log_2 2 = 1 \implies T(n) = \Theta(n \log n)$).*
-3. **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon})$ for $\epsilon > 0$ and $a f(n/b) \le c f(n)$ for $c < 1$:
-   $$T(n) = \Theta(f(n))$$
+Compare $f(n)$ with watershed boundary $n^{\log_b a}$:
+1. **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon}) \implies T(n) = \Theta(n^{\log_b a})$.
+2. **Case 2**: If $f(n) = \Theta(n^{\log_b a} \log^k n) \implies T(n) = \Theta(n^{\log_b a} \log^{k+1} n)$.
+   - Example: $T(n) = 4T(n/2) + n^2 \log n \implies n^{\log_2 4} = n^2 \implies T(n) = \mathbf{\Theta(n^2 \log^2 n)}$.
+3. **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon}) \implies T(n) = \Theta(f(n))$.
 
 ---
 
@@ -85,10 +129,7 @@ Compare $f(n)$ with the watershed threshold $n^{\log_b a}$:
 ```
 
 ### 2.1 Swap Two Nibbles in an 8-bit Byte
-*(Guaranteed TEE Question — Sample Paper 1, Q4)*
-
-* **Concept**: An 8-bit byte consists of two 4-bit nibbles: high nibble (bits 4–7) and low nibble (bits 0–3).
-* **Bitwise Formula**: `((n & 0x0F) << 4) | ((n & 0xF0) >> 4)`
+*(Guaranteed TEE Question — Appeared in Paper 2 Q2c, Paper 2 Q7, Paper 3 Q7, Paper 4 Q2c)*
 
 ```java
 public class SwapNibbles {
@@ -99,145 +140,100 @@ public class SwapNibbles {
     public static void main(String[] args) {
         int n = 100;
         int swapped = swapNibbles(n);
-        System.out.println("Original: " + n + " (" + Integer.toBinaryString(n) + ")");
-        System.out.println("Swapped:  " + swapped + " (" + Integer.toBinaryString(swapped) + ")");
+        System.out.println("Before: " + n + " (" + String.format("%8s", Integer.toBinaryString(n)).replace(' ', '0') + ")");
+        System.out.println("After:  " + swapped + " (" + String.format("%8s", Integer.toBinaryString(swapped)).replace(' ', '0') + ")");
     }
 }
 ```
 **Sample Input**: `100`  
 **Execution Trace**:
 - $100_{10} = 0110 \, 0100_2$
-- `n & 0x0F` $= 0000 \, 0100_2 \implies$ shift left 4 bits $= 0100 \, 0000_2 = 64$
-- `n & 0xF0` $= 0110 \, 0000_2 \implies$ shift right 4 bits $= 0000 \, 0110_2 = 6$
-- OR operation $= 0100 \, 0110_2 = 64 + 6 = \mathbf{70_{10}}$
-
+- `n & 0x0F` isolates low nibble: $0000 \, 0100_2$. Shift left 4 bits: $0100 \, 0000_2 = 64$.
+- `n & 0xF0` isolates high nibble: $0110 \, 0000_2$. Shift right 4 bits: $0000 \, 0110_2 = 6$.
+- Bitwise OR: $0100 \, 0110_2 = 64 + 6 = \mathbf{70_{10}}$.
 **Sample Output**:
 ```text
-Original: 100 (1100100)
-Swapped:  70 (1000110)
+Before: 100 (01100100)
+After:  70 (01000110)
 ```
 
 ---
 
-### 2.2 Brian Kernighan's Algorithm (Count Set Bits)
-Iterates in $O(\text{set bits})$ time rather than checking all 32 bits:
+### 2.2 Dutch National Flag ($0, 1, 2$ Single-Pass Sort)
+*(Paper 1 Q7 — 8 Marks)*
+
+Sort an array of $0\text{s}, 1\text{s}, 2\text{s}$ in $O(N)$ time and $O(1)$ space using 3 pointers:
 ```java
-public class KernighanBits {
-    public static int countSetBits(int n) {
-        int count = 0;
-        while (n > 0) {
-            n &= (n - 1); // Clears the lowest set bit in each step
-            count++;
-        }
-        return count;
-    }
+import java.util.Arrays;
 
-    public static void main(String[] args) {
-        int n = 29; // Binary: 11101 (4 set bits)
-        System.out.println("Set bits in " + n + ": " + countSetBits(n));
-    }
-}
-```
-**Sample Input**: `29`  
-**Sample Output**:
-```text
-Set bits in 29: 4
-```
-
----
-
-### 2.3 Longest Sequence of 1s After Flipping Exactly One 0
-*(Tested in Sample Paper 1, Q5)*
-
-```java
-public class LongestConsecutiveOnes {
-    public static int longestSequenceAfterFlip(int n) {
-        if (~n == 0) return Integer.BYTES * 8; // All 1s
-
-        int currentLen = 0, prevLen = 0, maxLen = 0;
-        while (n != 0) {
-            if ((n & 1) == 1) {
-                currentLen++;
-            } else {
-                // If the next bit is also 0, previous sequence cannot bridge
-                prevLen = ((n & 2) == 0) ? 0 : currentLen;
-                currentLen = 0;
+public class DutchFlag {
+    public static void sort012(int[] arr) {
+        int low = 0, mid = 0, high = arr.length - 1;
+        while (mid <= high) {
+            if (arr[mid] == 0) {
+                swap(arr, low++, mid++);
+            } else if (arr[mid] == 1) {
+                mid++;
+            } else { // arr[mid] == 2
+                swap(arr, mid, high--);
             }
-            maxLen = Math.max(maxLen, prevLen + currentLen + 1);
-            n >>>= 1;
         }
-        return maxLen;
+    }
+
+    private static void swap(int[] a, int i, int j) {
+        int t = a[i]; a[i] = a[j]; a[j] = t;
     }
 
     public static void main(String[] args) {
-        int n = 1775; // Binary: 11011101111_2
-        System.out.println("Max sequence of 1s for " + n + ": " + longestSequenceAfterFlip(n));
+        int[] arr = {2, 0, 2, 1, 1, 0};
+        sort012(arr);
+        System.out.println("Sorted: " + Arrays.toString(arr));
     }
 }
 ```
-**Sample Input**: `1775` (Binary: `11011101111`)  
+**Sample Input**: `[2, 0, 2, 1, 1, 0]`  
 **Sample Output**:
 ```text
-Max sequence of 1s for 1775: 8
-```
-*(Explanation: Flipping the 0 at bit 4 joins sequences of length 3 and 4, producing $3 + 1 + 4 = 8$ contiguous 1s).*
-
----
-
-### 2.4 Binary Palindrome Check
-*(Tested in Sample Paper 1, Q6)*
-
-Check if the binary representation of a number reads the same forwards and backwards:
-```java
-public class BinaryPalindrome {
-    public static boolean isBinaryPalindrome(int n) {
-        int rev = 0;
-        int temp = n;
-        while (temp > 0) {
-            rev = (rev << 1) | (temp & 1);
-            temp >>= 1;
-        }
-        return rev == n;
-    }
-
-    public static void main(String[] args) {
-        int a = 9;  // 1001_2 -> Palindrome
-        int b = 10; // 1010_2 -> Not Palindrome
-        System.out.println(a + " is palindrome: " + isBinaryPalindrome(a));
-        System.out.println(b + " is palindrome: " + isBinaryPalindrome(b));
-    }
-}
-```
-**Sample Input**: `9` and `10`  
-**Sample Output**:
-```text
-9 is palindrome: true
-10 is palindrome: false
+Sorted: [0, 0, 1, 1, 2, 2]
 ```
 
 ---
 
-### 2.5 Maximum $6 \times 6$ Hourglass Sum
-*(Tested in Sample Paper 1, Q3)*
-
-In a $6 \times 6$ matrix, an hourglass is defined by 7 values:
-```text
-a b c
-  d
-e f g
-```
-There are $(6-2) \times (6-2) = 16$ possible hourglasses.
+### 2.3 Single Number with XOR vs HashMap Space Comparison
+*(Paper 1 Q2b — 5 Marks)*
 
 ```java
-public class HourglassMaxSum {
+int[] a = {4, 1, 2, 1, 2};
+int r = 0;
+for (int x : a) r ^= x;
+System.out.println(r); // Output: 4
+```
+* **Properties of XOR that make it work**:
+  1. **Self-inverse**: $x \oplus x = 0$. (Pairs cancel out).
+  2. **Identity element**: $x \oplus 0 = x$.
+  3. **Commutative & Associative**: Order of operations does not affect the final result.
+* **Space Comparison**:
+  - **XOR Approach**: Auxiliary Space $= \mathbf{O(1)}$ (uses only a single integer variable `r`).
+  - **HashMap Approach**: Auxiliary Space $= \mathbf{O(N)}$ (must store $N/2 + 1$ distinct keys and their frequencies in memory).
+
+---
+
+### 2.4 Maximum $6 \times 6$ (or $N \times M$) Hourglass Sum
+*(Paper 1 Q2c, Paper 2 Q5c, Paper 3 Q5c — 6 to 12 Marks)*
+
+```java
+public class HourglassSum {
     public static int maxHourglass(int[][] mat) {
+        int R = mat.length, C = mat[0].length;
+        if (R < 3 || C < 3) return -1;
         int maxSum = Integer.MIN_VALUE;
-        for (int r = 0; r <= 3; r++) {
-            for (int c = 0; c <= 3; c++) {
-                int sum = mat[r][c] + mat[r][c+1] + mat[r][c+2]
-                                    + mat[r+1][c+1]
-                        + mat[r+2][c] + mat[r+2][c+1] + mat[r+2][c+2];
-                maxSum = Math.max(maxSum, sum);
+
+        for (int i = 0; i < R - 2; i++) {
+            for (int j = 0; j < C - 2; j++) {
+                int sum = mat[i][j]   + mat[i][j+1]   + mat[i][j+2]
+                                      + mat[i+1][j+1]
+                        + mat[i+2][j] + mat[i+2][j+1] + mat[i+2][j+2];
+                if (sum > maxSum) maxSum = sum;
             }
         }
         return maxSum;
@@ -245,34 +241,14 @@ public class HourglassMaxSum {
 
     public static void main(String[] args) {
         int[][] mat = {
-            {1, 1, 1, 0, 0, 0},
-            {0, 1, 0, 0, 0, 0},
-            {1, 1, 1, 0, 0, 0},
-            {0, 0, 2, 4, 4, 0},
-            {0, 0, 0, 2, 0, 0},
-            {0, 0, 1, 2, 4, 0}
+            {1, 1, 1, 0, 0},
+            {0, 1, 0, 0, 0},
+            {1, 1, 1, 0, 0},
+            {0, 0, 2, 4, 4},
+            {0, 0, 0, 2, 0}
         };
         System.out.println("Maximum Hourglass Sum: " + maxHourglass(mat));
     }
 }
 ```
-**Sample Input**: The $6 \times 6$ matrix above  
-**Sample Output**:
-```text
-Maximum Hourglass Sum: 19
-```
-*(The bottom-right hourglass: $2+4+4 + 2 + 1+2+4 = 19$).*
-
----
-
-## 3. High-Yield Unit 1 Exam Question
-
-### Question: Master Theorem Solution
-**Solve the recurrence relation $T(n) = 4 T(n/2) + n^2 \log n$.**
-
-1. Identify parameters: $a = 4, b = 2, f(n) = n^2 \log n$.
-2. Compute watershed boundary: $n^{\log_b a} = n^{\log_2 4} = n^2$.
-3. Compare $f(n)$ with $n^{\log_b a}$:
-   $$f(n) = n^2 \log^1 n = \Theta(n^{\log_b a} \log^k n) \quad \text{with } k = 1$$
-4. By Master Theorem Case 2:
-   $$T(n) = \Theta(n^{\log_b a} \log^{k+1} n) = \Theta(n^2 \log^{1+1} n) = \mathbf{\Theta(n^2 \log^2 n)}$$
+* **Complexity**: Time: $O((R-2)(C-2)) = \mathbf{O(R \cdot C)}$, Auxiliary Space: $\mathbf{O(1)}$.

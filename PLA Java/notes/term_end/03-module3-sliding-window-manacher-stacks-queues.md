@@ -1,153 +1,182 @@
 # 📘 Unit 3: Linear DSA, Sliding Window & String Algorithms
 
+> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11  
+> **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
+
 ---
 
 ## 1. Linked List Patterns
 
-### 1.1 Floyd's Cycle Detection & Cycle Starting Node
-*(Priority Topic 8 — `LinkedList_Problems.pptx`)*
+### 1.1 Singly Linked List: Basic Operations & Tail Pointer Impact
+*(Paper 1 Q4a — 12 Marks)*
 
-* **Detection**: Fast pointer moves 2 steps, slow pointer moves 1 step. If `fast == slow`, cycle exists.
-* **Finding Entry Node**:
-  - Distance from head to cycle start $= L$.
-  - Distance from cycle start to meeting point $= k$.
-  - When fast and slow meet, total distance by fast $= 2 \times \text{slow}$.
-  - Reset `slow = head`; keep `fast` at meeting point. Move both **1 step at a time**. They meet at the **cycle start node**!
+* **Operations**: Insertion (beginning, end, given position), deletion by value, traversal.
+* **Impact of Maintaining a Tail Pointer**:
+  - *Without Tail Pointer*: `insertEnd()` requires traversing all $N$ nodes from `head` to find the last node $\implies \mathbf{O(N)\text{ time}}$.
+  - *With Tail Pointer*: Direct access via `tail.next = newNode; tail = newNode;` $\implies \mathbf{O(1)\text{ time}}$.
+  - Note: `deleteEnd()` remains $O(N)$ even with a tail pointer in a singly linked list because updating `tail` requires finding the second-to-last node.
 
 ```java
-class ListNode {
+class Node {
     int val;
-    ListNode next;
-    ListNode(int val) { this.val = val; }
+    Node next;
+    Node(int v) { this.val = v; }
 }
 
-public class LinkedListCycle {
-    public static ListNode detectCycleStart(ListNode head) {
-        if (head == null || head.next == null) return null;
-        ListNode slow = head, fast = head;
-        boolean hasCycle = false;
+public class SinglyLinkedList {
+    Node head = null, tail = null;
 
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-            if (slow == fast) {
-                hasCycle = true;
-                break;
-            }
-        }
-        if (!hasCycle) return null;
-
-        slow = head;
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        return slow; // Loop starting node
+    public void insertBegin(int val) {
+        Node newNode = new Node(val);
+        if (head == null) { head = tail = newNode; }
+        else { newNode.next = head; head = newNode; }
     }
 
-    public static void main(String[] args) {
-        ListNode n1 = new ListNode(1);
-        ListNode n2 = new ListNode(2);
-        ListNode n3 = new ListNode(3);
-        ListNode n4 = new ListNode(4);
-        n1.next = n2; n2.next = n3; n3.next = n4; n4.next = n2; // Loop back to 2
-
-        ListNode cycleStart = detectCycleStart(n1);
-        System.out.println("Cycle starts at node: " + (cycleStart != null ? cycleStart.val : "No cycle"));
-    }
-}
-```
-**Sample Input**: Linked list `1 -> 2 -> 3 -> 4 -> (points back to 2)`  
-**Sample Output**:
-```text
-Cycle starts at node: 2
-```
-
----
-
-### 1.2 Remove $N$-th Node From End of List (Single Pass)
-*(Tested in Sample Paper, Q6 with $N=2$)*
-
-```java
-public class RemoveNthEnd {
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode fast = dummy, slow = dummy;
-
-        // Move fast ahead by n + 1 steps
-        for (int i = 0; i <= n; i++) {
-            if (fast == null) return head;
-            fast = fast.next;
-        }
-
-        // Move both until fast reaches the end
-        while (fast != null) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        slow.next = slow.next.next;
-        return dummy.next;
+    public void insertEnd(int val) {
+        Node newNode = new Node(val);
+        if (head == null) { head = tail = newNode; }
+        else { tail.next = newNode; tail = newNode; }
     }
 
-    public static void printList(ListNode head) {
-        ListNode curr = head;
-        while (curr != null) {
-            System.out.print(curr.val + (curr.next != null ? " -> " : ""));
-            curr = curr.next;
+    public void insertAt(int val, int pos) { // 1-indexed
+        if (pos == 1) { insertBegin(val); return; }
+        Node curr = head;
+        for (int i = 1; i < pos - 1 && curr != null; i++) curr = curr.next;
+        if (curr == null) return;
+        Node newNode = new Node(val);
+        newNode.next = curr.next;
+        curr.next = newNode;
+        if (newNode.next == null) tail = newNode;
+    }
+
+    public void delete(int val) {
+        if (head == null) return;
+        if (head.val == val) {
+            head = head.next;
+            if (head == null) tail = null;
+            return;
         }
+        Node curr = head;
+        while (curr.next != null && curr.next.val != val) curr = curr.next;
+        if (curr.next != null) {
+            if (curr.next == tail) tail = curr;
+            curr.next = curr.next.next;
+        }
+    }
+
+    public void print() {
+        Node c = head;
+        while (c != null) { System.out.print(c.val + (c.next != null ? " -> " : "")); c = c.next; }
         System.out.println();
     }
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
-
-        System.out.print("Original list: ");
-        printList(head);
-        head = removeNthFromEnd(head, 2);
-        System.out.print("After removing 2nd from end: ");
-        printList(head);
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.insertBegin(10);           System.out.print("insertBegin(10): "); list.print();
+        list.insertEnd(20);             System.out.print("insertEnd(20):   "); list.print();
+        list.insertEnd(30);             System.out.print("insertEnd(30):   "); list.print();
+        list.insertAt(25, 3);           System.out.print("insertAt(25, 3):  "); list.print();
+        list.delete(20);                System.out.print("delete(20):       "); list.print();
     }
 }
 ```
-**Sample Input**: `1 -> 2 -> 3 -> 4 -> 5`, $N = 2$  
-**Sample Output**:
+**Execution Trace Output**:
 ```text
-Original list: 1 -> 2 -> 3 -> 4 -> 5
-After removing 2nd from end: 1 -> 2 -> 3 -> 5
+insertBegin(10): 10
+insertEnd(20):   10 -> 20
+insertEnd(30):   10 -> 20 -> 30
+insertAt(25, 3):  10 -> 20 -> 25 -> 30
+delete(20):       10 -> 25 -> 30
 ```
 
 ---
 
-## 2. Advanced Stack & Queue Patterns
+### 1.2 In-Place Merge of Two Sorted Singly Linked Lists
+*(Paper 2 Q9 & Paper 3 Q9 — 8 Marks)*
 
-### 2.1 Min-Stack with $O(1)$ Extra Space (Arithmetic Encoding)
-*(Priority Topic 7 — `Stack_Problems.pptx`, Sample Paper Q4)*
+Reuses existing node pointers without allocating any new nodes:
+```java
+public class InPlaceMergeLists {
+    public static Node merge(Node l1, Node l2) {
+        Node dummy = new Node(0);
+        Node curr = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                curr.next = l1; l1 = l1.next;
+            } else {
+                curr.next = l2; l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+        curr.next = (l1 != null) ? l1 : l2;
+        return dummy.next;
+    }
+}
+// Time Complexity: O(M + N), Space Complexity: O(1)
+```
 
-Stores min value along with encoded difference values $(2x - \text{min})$:
-* When pushing value $x < \min$: Push $2x - \min$ into stack and update $\min = x$.
-  - Note: Since $x < \min$, $2x - \min < x$. The stored value is strictly less than the new $\min$, serving as a recovery flag!
-* When popping: If top $< \min$, previous minimum was $2 \cdot \min - \text{top}$.
+---
+
+### 1.3 Reverse Singly Linked List (Iterative & Recursive)
+*(Paper 4 Q4a-i — 6 Marks)*
+
+* **Iterative ($O(1)$ Space)**:
+```java
+public static Node reverseIterative(Node head) {
+    Node prev = null, curr = head;
+    while (curr != null) {
+        Node next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+```
+* **Recursive ($O(N)$ Space due to Call Stack)**:
+```java
+public static Node reverseRecursive(Node head) {
+    if (head == null || head.next == null) return head;
+    Node newHead = reverseRecursive(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
+}
+```
+
+---
+
+## 2. Advanced Stack Patterns
+
+### 2.1 Max Stack / Min Stack in $O(1)$ Time
+*(Paper 1 Q4b, Paper 3 Q4a, Paper 4 Q4a-ii — 12 Marks)*
+
+#### Evaluation of Alternative Designs:
+1. **Scanning Stack on Every Query**: $O(1)$ push/pop, but `getMax()` requires traversing all $N$ elements $\implies O(N)$ time. Inefficient for frequent queries.
+2. **Storing `(value, currentMax)` Pairs**: Pushing `(x, Math.max(x, currentMax))` gives $O(1)$ for all queries, but doubles memory consumption to $O(N)$ extra space.
+3. **Arithmetic Encoding in Single Stack ($O(1)$ Extra Space - RECOMMENDED)**:
+   - For **Max Stack**:
+     - When pushing $x > \max$: push encoded flag $2x - \max$ to stack; update $\max = x$.
+     - When popping: if $\text{top} > \max \implies$ previous maximum was $2\max - \text{top}$.
+   - For **Min Stack**:
+     - When pushing $x < \min$: push encoded flag $2x - \min$ to stack; update $\min = x$.
+     - When popping: if $\text{top} < \min \implies$ previous minimum was $2\min - \text{top}$.
 
 ```java
 import java.util.Stack;
 
-public class MinStackConstantSpace {
+public class MaxStackConstantSpace {
     private Stack<Long> stack = new Stack<>();
-    private long min;
+    private long max;
 
     public void push(int val) {
         long x = val;
         if (stack.isEmpty()) {
             stack.push(x);
-            min = x;
-        } else if (x < min) {
-            stack.push(2 * x - min);
-            min = x;
+            max = x;
+        } else if (x > max) {
+            stack.push(2 * x - max); // Encoded flag: strictly greater than new max!
+            max = x;
         } else {
             stack.push(x);
         }
@@ -156,236 +185,236 @@ public class MinStackConstantSpace {
     public void pop() {
         if (stack.isEmpty()) return;
         long top = stack.pop();
-        if (top < min) {
-            min = 2 * min - top; // Restore previous min
+        if (top > max) {
+            max = 2 * max - top; // Restore previous max
         }
     }
 
     public int top() {
         long top = stack.peek();
-        return (top < min) ? (int) min : (int) top;
+        return (top > max) ? (int) max : (int) top;
     }
 
-    public int getMin() {
-        return (int) min;
+    public int getMax() {
+        return (int) max;
     }
 
     public static void main(String[] args) {
-        MinStackConstantSpace ms = new MinStackConstantSpace();
-        ms.push(5);
-        ms.push(3);
-        ms.push(7);
-        ms.push(2);
-        System.out.println("Current Min: " + ms.getMin()); // 2
-        ms.pop();
-        System.out.println("Min after popping 2: " + ms.getMin()); // 3
-        System.out.println("Top element: " + ms.top()); // 7
+        MaxStackConstantSpace ms = new MaxStackConstantSpace();
+        ms.push(3); ms.push(5); ms.push(2); ms.push(9);
+        System.out.println("Max: " + ms.getMax()); // 9
+        ms.pop(); // pops 9
+        System.out.println("Max after pop: " + ms.getMax()); // 5
     }
 }
-```
-**Sample Output**:
-```text
-Current Min: 2
-Min after popping 2: 3
-Top element: 7
 ```
 
 ---
 
-### 2.2 Circular Queue Implementation Using Array
-*(Priority Topic 14 — `CircularQueue_SlidingWindow.pptx`)*
-
-Wrap-around arithmetic using modulo `% capacity`:
-- Full condition: `(rear + 1) % capacity == front`
-- Empty condition: `front == -1`
-
-```java
-public class CircularQueue {
-    private int[] arr;
-    private int front, rear, size, capacity;
-
-    public CircularQueue(int k) {
-        capacity = k;
-        arr = new int[k];
-        front = -1;
-        rear = -1;
-        size = 0;
-    }
-
-    public boolean enQueue(int value) {
-        if (isFull()) return false;
-        if (isEmpty()) front = 0;
-        rear = (rear + 1) % capacity;
-        arr[rear] = value;
-        size++;
-        return true;
-    }
-
-    public boolean deQueue() {
-        if (isEmpty()) return false;
-        if (front == rear) {
-            front = -1;
-            rear = -1;
-        } else {
-            front = (front + 1) % capacity;
-        }
-        size--;
-        return true;
-    }
-
-    public int Front() { return isEmpty() ? -1 : arr[front]; }
-    public int Rear() { return isEmpty() ? -1 : arr[rear]; }
-    public boolean isEmpty() { return size == 0; }
-    public boolean isFull() { return size == capacity; }
-
-    public static void main(String[] args) {
-        CircularQueue q = new CircularQueue(3);
-        q.enQueue(10);
-        q.enQueue(20);
-        q.enQueue(30);
-        System.out.println("Enqueued 10, 20, 30. Is full? " + q.isFull());
-        q.deQueue();
-        q.enQueue(40);
-        System.out.println("Front: " + q.Front() + ", Rear: " + q.Rear());
-    }
-}
-```
-**Sample Output**:
-```text
-Enqueued 10, 20, 30. Is full? true
-Front: 20, Rear: 40
-```
-
----
-
-### 2.3 Sliding Window Maximum using Monotonic Deque
-*(Tested in Unit 3 Question — `CircularQueue_SlidingWindow.pptx`)*
+### 2.2 Next Greater Element (NGE) Using Monotonic Stack
+*(Paper 4 Q4b-ii — 6 Marks)*
 
 ```java
 import java.util.*;
 
-public class SlidingWindowMax {
-    public static int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums == null || k <= 0) return new int[0];
-        int n = nums.length;
-        int[] result = new int[n - k + 1];
-        Deque<Integer> deque = new ArrayDeque<>();
+public class NextGreaterElement {
+    public static int[] nextGreater(int[] arr) {
+        int n = arr.length;
+        int[] nge = new int[n];
+        Stack<Integer> stack = new Stack<>();
 
-        for (int i = 0; i < n; i++) {
-            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
-                deque.pollFirst();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                stack.pop();
             }
-            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
-                deque.pollLast();
-            }
-            deque.offerLast(i);
-
-            if (i >= k - 1) {
-                result[i - k + 1] = nums[deque.peekFirst()];
-            }
+            nge[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(arr[i]);
         }
-        return result;
+        return nge;
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, -1, -3, 5, 3, 6, 7};
-        int k = 3;
-        System.out.println("Sliding Window Max: " + Arrays.toString(maxSlidingWindow(arr, k)));
+        int[] arr = {4, 5, 2, 25};
+        System.out.println("NGE: " + Arrays.toString(nextGreater(arr))); // [5, 25, 25, -1]
     }
 }
-```
-**Sample Input**: `nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3`  
-**Sample Output**:
-```text
-Sliding Window Max: [3, 3, 5, 5, 6, 7]
 ```
 
 ---
 
-## 3. String & Array Algorithms
+### 2.3 Balanced Parentheses Check
+*(Paper 2 Q5b & Paper 3 Q5b — 6 Marks)*
 
-### 3.1 Move Hyphens to Beginning in $O(1)$ Space
-*(Sample Paper, Q1)*
+```java
+import java.util.Stack;
+
+public class BalancedParentheses {
+    public static boolean isBalanced(String expr) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : expr.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') stack.push(c);
+            else if (c == ')' || c == '}' || c == ']') {
+                if (stack.isEmpty()) return false;
+                char top = stack.pop();
+                if ((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+```
+
+---
+
+## 3. Sliding Window & Queue Patterns
+
+### 3.1 Sliding Window Minimum with Deque Contents Trace
+*(Paper 1 Q9 — 8 Marks)*
+
+Given array $A = \{4, 2, 12, 3, 8, 1, 7, 9\}$ and window size $K = 3$:
+* Maintain a **monotonic increasing deque** storing indices.
+
+#### Execution Trace Table for $\{4, 2, 12, 3, 8, 1, 7, 9\}$ with $K = 3$:
+
+| Index $i$ | Element $A[i]$ | Indices in Deque | Values in Deque | Window Range | Window Min ($A[\text{peekFirst}]$) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 4 | $[0]$ | $[4]$ | — | — |
+| 1 | 2 | $[1]$ (0 popped) | $[2]$ | — | — |
+| 2 | 12 | $[1, 2]$ | $[2, 12]$ | $[4, 2, 12]$ | **2** |
+| 3 | 3 | $[1, 3]$ (2 popped) | $[2, 3]$ | $[2, 12, 3]$ | **2** |
+| 4 | 8 | $[3, 4]$ (1 out of window) | $[3, 8]$ | $[12, 3, 8]$ | **3** |
+| 5 | 1 | $[5]$ (all popped) | $[1]$ | $[3, 8, 1]$ | **1** |
+| 6 | 7 | $[5, 6]$ | $[1, 7]$ | $[8, 1, 7]$ | **1** |
+| 7 | 9 | $[5, 6, 7]$ | $[1, 7, 9]$ | $[1, 7, 9]$ | **1** |
+
+* **Final Output Array**: **$[2, 2, 3, 1, 1, 1]$**. Time: $O(N)$, Auxiliary Space: $O(K)$.
+
+---
+
+### 3.2 Circular Queue Implementation Using Array
+*(Paper 4 Q9 — 8 Marks; Priority Topic 14)*
+
+* **Overflow Condition**: `(rear + 1) % capacity == front`
+* **Underflow Condition**: `front == -1`
+* **Enqueue**: `rear = (rear + 1) % capacity; arr[rear] = val;`
+* **Dequeue**: If `front == rear` $\implies$ reset `front = rear = -1`; else `front = (front + 1) % capacity`.
+
+```java
+public class CircularQueue {
+    private int[] arr;
+    private int front, rear, capacity;
+
+    public CircularQueue(int k) {
+        capacity = k;
+        arr = new int[k];
+        front = rear = -1;
+    }
+
+    public boolean enqueue(int val) {
+        if ((rear + 1) % capacity == front) {
+            System.out.println("Overflow! Queue is full");
+            return false;
+        }
+        if (front == -1) front = 0;
+        rear = (rear + 1) % capacity;
+        arr[rear] = val;
+        return true;
+    }
+
+    public int dequeue() {
+        if (front == -1) {
+            System.out.println("Underflow! Queue is empty");
+            return -1;
+        }
+        int val = arr[front];
+        if (front == rear) front = rear = -1;
+        else front = (front + 1) % capacity;
+        return val;
+    }
+}
+```
+
+---
+
+## 4. String Algorithms
+
+### 4.1 Move Hyphens to Beginning in $O(1)$ Space
+*(Paper 2 Q1a — 12 Marks)*
 
 ```java
 public class MoveHyphens {
-    public static String moveHyphensToBeginning(char[] str) {
-        int n = str.length;
+    public static String moveHyphens(char[] s) {
+        int n = s.length;
         int writeIdx = n - 1;
-
-        // Process from right to left
         for (int i = n - 1; i >= 0; i--) {
-            if (str[i] != '-') {
-                str[writeIdx--] = str[i];
-            }
+            if (s[i] != '-') s[writeIdx--] = s[i];
         }
-        // Fill front with hyphens
-        while (writeIdx >= 0) {
-            str[writeIdx--] = '-';
-        }
-        return new String(str);
+        while (writeIdx >= 0) s[writeIdx--] = '-';
+        return new String(s);
     }
 
     public static void main(String[] args) {
-        char[] s = "Face-Prep-Java".toCharArray();
-        System.out.println("Result: " + moveHyphensToBeginning(s));
+        char[] str = "Face-Prep-Java".toCharArray();
+        System.out.println("Result: " + moveHyphens(str)); // --FacePrepJava
     }
 }
-```
-**Sample Input**: `"Face-Prep-Java"`  
-**Sample Output**:
-```text
-Result: --FacePrepJava
 ```
 
 ---
 
-### 3.2 Equilibrium Index of an Array
-*(Priority Topic 2)*
+### 4.2 Lexicographically Largest / Smallest Palindrome Rearrangement
+*(Paper 1 Q3c & Paper 4 Q8 — 8 to 12 Marks)*
 
-Index where sum of elements at lower indices equals sum at higher indices:
-$$\sum_{j=0}^{i-1} A[j] = \sum_{j=i+1}^{n-1} A[j]$$
+Rearrange string characters to form the lexicographically largest or smallest palindrome. If impossible (more than 1 odd frequency), return `-1`.
 
 ```java
-public class EquilibriumPoint {
-    public static int findEquilibrium(int[] arr) {
-        int totalSum = 0;
-        for (int x : arr) totalSum += x;
+public class PalindromeRearrangement {
+    public static String largestPalindrome(String s) {
+        int[] freq = new int[26];
+        for (char c : s.toCharArray()) freq[c - 'a']++;
 
-        int leftSum = 0;
-        for (int i = 0; i < arr.length; i++) {
-            // totalSum - leftSum - arr[i] is the right sum
-            if (leftSum == totalSum - leftSum - arr[i]) {
-                return i;
+        int oddCount = 0;
+        char oddChar = 0;
+        for (int i = 0; i < 26; i++) {
+            if (freq[i] % 2 != 0) {
+                oddCount++;
+                oddChar = (char) ('a' + i);
             }
-            leftSum += arr[i];
         }
-        return -1;
+        if (oddCount > 1) return "-1"; // Not possible
+
+        // For largest palindrome: iterate from 'z' down to 'a'
+        StringBuilder half = new StringBuilder();
+        for (int i = 25; i >= 0; i--) {
+            for (int k = 0; k < freq[i] / 2; k++) {
+                half.append((char) ('a' + i));
+            }
+        }
+
+        String rightHalf = new StringBuilder(half).reverse().toString();
+        return (oddCount == 1) ? half.toString() + oddChar + rightHalf : half.toString() + rightHalf;
     }
 
     public static void main(String[] args) {
-        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
-        System.out.println("Equilibrium index: " + findEquilibrium(arr));
+        System.out.println("aabbbcc: " + largestPalindrome("aabbbcc")); // cbababc
+        System.out.println("abcd:    " + largestPalindrome("abcd"));    // -1
     }
 }
 ```
-**Sample Input**: `[-7, 1, 5, 2, -4, 3, 0]`  
 **Sample Output**:
 ```text
-Equilibrium index: 3
+aabbbcc: cbababc
+abcd:    -1
 ```
-*(At index 3, element 2: Left sum = -7 + 1 + 5 = -1; Right sum = -4 + 3 + 0 = -1).*
 
 ---
 
-### 3.3 Block Swap Algorithm for Array Rotation
-*(Priority Topic 12)*
-
-Rotates array `arr` by $d$ positions in $O(N)$ time and $O(1)$ space by recursively swapping blocks of size $d$ and $n-d$:
+### 4.3 Block Swap Algorithm for Array Left Rotation by $d$
+*(Paper 4 Q7 — 8 Marks; Priority Topic 12)*
 
 ```java
-import java.util.Arrays;
-
 public class BlockSwapRotation {
     public static void rotate(int[] arr, int d, int n) {
         d = d % n;
@@ -395,18 +424,11 @@ public class BlockSwapRotation {
 
     private static void rotateRec(int[] arr, int i, int d, int n) {
         if (d == 0 || d == n) return;
-
-        // If A and B have equal length
-        if (n - d == d) {
-            swap(arr, i, i + d, d);
-            return;
-        }
-
-        // If A is shorter
+        if (n - d == d) { swap(arr, i, i + d, d); return; }
         if (d < n - d) {
             swap(arr, i, i + n - d, d);
             rotateRec(arr, i, d, n - d);
-        } else { // If B is shorter
+        } else {
             swap(arr, i, i + d, n - d);
             rotateRec(arr, i + n - d, 2 * d - n, d);
         }
@@ -414,73 +436,9 @@ public class BlockSwapRotation {
 
     private static void swap(int[] arr, int fi, int si, int d) {
         for (int k = 0; k < d; k++) {
-            int temp = arr[fi + k];
-            arr[fi + k] = arr[si + k];
-            arr[si + k] = temp;
+            int t = arr[fi + k]; arr[fi + k] = arr[si + k]; arr[si + k] = t;
         }
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
-        rotate(arr, 2, arr.length);
-        System.out.println("Rotated by 2: " + Arrays.toString(arr));
     }
 }
-```
-**Sample Input**: `[1, 2, 3, 4, 5, 6, 7]`, $d = 2$  
-**Sample Output**:
-```text
-Rotated by 2: [3, 4, 5, 6, 7, 1, 2]
-```
-
----
-
-### 3.4 Run-Length Encoding and Decoding
-*(Priority Topic 10)*
-
-```java
-public class StringEncodeDecode {
-    public static String encode(String s) {
-        if (s == null || s.isEmpty()) return "";
-        StringBuilder sb = new StringBuilder();
-        int count = 1;
-        for (int i = 1; i <= s.length(); i++) {
-            if (i < s.length() && s.charAt(i) == s.charAt(i - 1)) {
-                count++;
-            } else {
-                sb.append(s.charAt(i - 1)).append(count);
-                count = 1;
-            }
-        }
-        return sb.toString();
-    }
-
-    public static String decode(String s) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        while (i < s.length()) {
-            char ch = s.charAt(i++);
-            int num = 0;
-            while (i < s.length() && Character.isDigit(s.charAt(i))) {
-                num = num * 10 + (s.charAt(i++) - '0');
-            }
-            for (int k = 0; k < num; k++) sb.append(ch);
-        }
-        return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        String original = "aaabbccccd";
-        String encoded = encode(original);
-        String decoded = decode(encoded);
-        System.out.println("Encoded: " + encoded);
-        System.out.println("Decoded: " + decoded);
-    }
-}
-```
-**Sample Input**: `"aaabbccccd"`  
-**Sample Output**:
-```text
-Encoded: a3b2c4d1
-Decoded: aaabbccccd
+// Time Complexity: O(N), Space Complexity: O(1)
 ```
