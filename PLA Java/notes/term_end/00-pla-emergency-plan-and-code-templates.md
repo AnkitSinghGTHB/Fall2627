@@ -1,12 +1,34 @@
 # ⏱️ PLA1004: Emergency Study Plan & Master Code Blueprints
 
 > **Exam Date**: Sunday, October 25, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Position**: +2.0 marks ahead of class! Needs only **65–68 / 100** in TEE for A Grade.  
-> **Study Window**: Thursday, Oct 22 to Saturday, Oct 24 (3 Full Gap Days!)
+> **Pre-TEE Position**: **61.5 / 70.0** (+2.0 marks ahead of class! Lab marks 34/35).  
+> **Score Target**: Needs only **65–68 / 100** in TEE for an **A Grade (9.0 GP)**; **82+** for an **S Grade (10.0 GP)**.  
+> **Study Window**: Thursday, Oct 22 to Saturday, Oct 24 (3 Full Gap Days!)  
+> 🚨 **Primary Resource**: Complete solutions for all 15 topics in [08-pla-tee-master-study-sheet-and-imp-topics.md](./08-pla-tee-master-study-sheet-and-imp-topics.md).
 
 ---
 
-## 🎯 The 5 Master Java Code Blueprints (Guaranteed 60+ Marks)
+## 📅 3-Day TEE Battle Schedule
+
+```
++-----------------------------------------------------------------------------------------------------------------+
+| Day                | Focus Modules & Priority Topics                            | Target Goal                   |
++--------------------+------------------------------------------------------------+-------------------------------+
+| **Day 1 (Thu, Oct 22)**| Unit 1 & Unit 2: Complexity, Swap Nibbles, Flip Bit,     | Master bitwise hacks &        |
+|                    | Segmented Sieve, Euler's Totient, Booth's Multiplier       | hardware arithmetic (40 Marks)|
++--------------------+------------------------------------------------------------+-------------------------------+
+| **Day 2 (Fri, Oct 23)**| Unit 3: MinStack O(1) space, Sliding Window, Floyd Cycle,  | Secure linear structures &    |
+|                    | Circular Queue, Move Hyphens, Equilibrium, Block Swap      | array rotations (20 Marks)    |
++--------------------+------------------------------------------------------------+-------------------------------+
+| **Day 3 (Sat, Oct 24)**| Unit 4 & Unit 5: Huffman Coding, Weighted Substring,       | Master backtracking, trees,   |
+|                    | N-Queens, Josephus, Hamiltonian, Knapsack, LCS, Kruskal,   | and DP algorithms (40 Marks)  |
+|                    | Tree Traversals + 1-Page Cheat Sheet Review                |                               |
++--------------------+------------------------------------------------------------+-------------------------------+
+```
+
+---
+
+## 🎯 The 5 Master Java Code Blueprints
 
 ### Blueprint 1: Sliding Window Maximum using Monotonic Deque (Unit 3 - 12 Marks)
 ```java
@@ -37,8 +59,19 @@ public class SlidingWindowMax {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
+        System.out.println("Max in each window: " + Arrays.toString(maxSlidingWindow(arr, k)));
+    }
 }
-// Time: O(N), Space: O(K)
+// Time: O(N), Auxiliary Space: O(K)
+```
+**Sample Input**: `nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3`  
+**Sample Output**:
+```text
+Max in each window: [3, 3, 5, 5, 6, 7]
 ```
 
 ---
@@ -47,7 +80,7 @@ public class SlidingWindowMax {
 ```java
 import java.util.Stack;
 
-class MinStack {
+public class MinStackDemo {
     private Stack<Long> stack = new Stack<>();
     private long min;
 
@@ -80,8 +113,24 @@ class MinStack {
     public int getMin() {
         return (int) min;
     }
+
+    public static void main(String[] args) {
+        MinStackDemo ms = new MinStackDemo();
+        ms.push(10);
+        ms.push(5);
+        ms.push(12);
+        System.out.println("Min: " + ms.getMin());
+        ms.pop();
+        ms.pop();
+        System.out.println("Min after pops: " + ms.getMin());
+    }
 }
 // Time: O(1) for all operations, Auxiliary Space: O(1)
+```
+**Sample Output**:
+```text
+Min: 5
+Min after pops: 10
 ```
 
 ---
@@ -90,24 +139,22 @@ class MinStack {
 ```java
 import java.util.*;
 
-public class SegmentedSieve {
+public class SegmentedSieveDemo {
     public static List<Integer> primesInRange(int L, int R) {
         int limit = (int) Math.sqrt(R);
-        // Step 1: Find all primes up to sqrt(R) using simple sieve
         boolean[] isPrime = new boolean[limit + 1];
         Arrays.fill(isPrime, true);
-        List<Integer> primes = new ArrayList<>();
+        List<Integer> basePrimes = new ArrayList<>();
         for (int p = 2; p <= limit; p++) {
             if (isPrime[p]) {
-                primes.add(p);
+                basePrimes.add(p);
                 for (int i = p * p; i <= limit; i += p) isPrime[i] = false;
             }
         }
 
-        // Step 2: Mark non-primes in range [L, R]
         boolean[] range = new boolean[R - L + 1];
         Arrays.fill(range, true);
-        for (int p : primes) {
+        for (int p : basePrimes) {
             int firstMultiple = Math.max(p * p, ((L + p - 1) / p) * p);
             for (int j = firstMultiple; j <= R; j += p) {
                 range[j - L] = false;
@@ -117,11 +164,20 @@ public class SegmentedSieve {
 
         List<Integer> result = new ArrayList<>();
         for (int i = 0; i <= R - L; i++) {
-            if (range[i]) result.add(L + i);
+            if (range[i] && (L + i) > 1) result.add(L + i);
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        System.out.println("Primes in [10, 50]: " + primesInRange(10, 50));
+    }
 }
+```
+**Sample Input**: `L = 10, R = 50`  
+**Sample Output**:
+```text
+Primes in [10, 50]: [11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 ```
 
 ---
@@ -153,7 +209,17 @@ public class BoothsAlgorithm {
         }
         return (accumulator << 8) | (Q & 0xFF);
     }
+
+    public static void main(String[] args) {
+        int a = 7, b = -5;
+        System.out.println(a + " * " + b + " = " + multiply(a, b));
+    }
 }
+```
+**Sample Input**: `7, -5`  
+**Sample Output**:
+```text
+7 * -5 = -35
 ```
 
 ---
@@ -174,7 +240,6 @@ public class NQueensBitmask {
             count++;
             return;
         }
-        // Valid positions are bits that are 0 in all 3 masks
         int valid = mask & ~(cols | diag1 | diag2);
         while (valid != 0) {
             int bit = valid & -valid; // Extract lowest set bit
@@ -182,6 +247,15 @@ public class NQueensBitmask {
             solve(cols | bit, (diag1 | bit) << 1, (diag2 | bit) >> 1, mask);
         }
     }
+
+    public static void main(String[] args) {
+        int n = 4;
+        System.out.println("Distinct solutions for " + n + "-Queens: " + totalNQueens(n));
+    }
 }
-// Massive speedup over standard 2D array backtracking!
+```
+**Sample Input**: `4`  
+**Sample Output**:
+```text
+Distinct solutions for 4-Queens: 2
 ```

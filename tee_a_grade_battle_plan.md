@@ -1,6 +1,6 @@
 # 🎯 TEE Battle Plan — "A Grade in Every Subject"
 
-> **Updated**: October 17, 2026 (Mid-TEE Checkpoint: 4 of 7 Exams Completed)  
+> **Updated**: October 21, 2026 (Final Stretch: 6 of 7 Exams Completed!)  
 > **Exam Window**: Oct 13 – Oct 25, 2026
 
 ---
@@ -29,9 +29,9 @@ Using typical VIT Bhopal end-of-semester stats:
 | 2 | **CSE2004** — TOC & Compiler Design | **57.7** (35 int) | ~59.2 | **-1.5** | 70–74 | **A** | ✅ Done (Oct 15) |
 | 3 | **ECE2002** — Digital Logic Design | **54.4** (29 int) | ~54.0 | **+0.4** | 68–72 | **A** | ✅ Done (Oct 16) |
 | 4 | **CSE4005** — Machine Learning | **62.2** (35 int) | ~61.9 | **+0.3** | 64–68 | **A** | ✅ Done (Oct 17) |
-| 5 | **CSE3011** — Python Programming | **63.4** (35 int) | ~60.1 | **+3.3** | **60–64** | **A (or S with 85+)** | ⏳ **Monday, Oct 19** |
-| 6 | **MAT2002** — Discrete Math & GT | **45.25** (28.25 int)| ~53.5 | **-8.25** | **63–66** (for B) | **B** (A: 89–92 reach) | ⏳ **Wednesday, Oct 21** |
-| 7 | **PLA1004** — Competitive Coding | **61.5** (34 int) | ~59.5 | **+2.0** | **65–68** | **A** | ⏳ **Sunday, Oct 25** |
+| 5 | **CSE3011** — Python Programming | **63.4** (35 int) | ~60.1 | **+3.3** | **60–64** | **A / S** | ✅ Done (Oct 19) |
+| 6 | **MAT2002** — Discrete Math & GT | **45.25** (28.25 int)| ~53.5 | **-8.25** | **63–66** | **B** | ✅ Done (Oct 21) |
+| 7 | **PLA1004** — Competitive Coding | **61.5** (34 int) | ~59.5 | **+2.0** | **65–68** | **A (or S with 82+)**| 🎯 **Sunday, Oct 25 (FINAL EXAM!)** |
 
 ---
 
@@ -73,11 +73,11 @@ Using typical VIT Bhopal end-of-semester stats:
 
 ## 📅 Remaining Exam Schedule & Focus
 
-| Date | Time | Exam | What to Do |
+| Date | Time | Exam | Status & Strategy |
 |:---|:---:|:---|:---|
-| **Oct 19 (Mon)** | 01:15 PM – 04:15 PM | **CSE3011: Python Programming** | **NOW & TOMORROW**: Review PYQs, OOP, regex, file handling. Lock the easy A / chase S. |
-| **Oct 21 (Wed)** | 01:15 PM – 04:15 PM | **MAT2002: Discrete Math & GT** | **Oct 19 evening & Oct 20**: Drill the 6 standard templates repeatedly. Lock 68–72 for B. |
-| **Oct 25 (Sun)** | 01:15 PM – 04:15 PM | **PLA1004: Competitive Coding** | **Oct 22–24**: Practice standard DSA patterns. Secure the A grade. |
+| **Oct 19 (Mon)** | 01:15 PM – 04:15 PM | **CSE3011: Python Programming** | ✅ Completed |
+| **Oct 21 (Wed)** | 01:15 PM – 04:15 PM | **MAT2002: Discrete Math & GT** | ✅ Completed |
+| **Oct 25 (Sun)** | 01:15 PM – 04:15 PM | **PLA1004: Competitive Coding** | 🎯 **ACTIVE TARGET**: 3 full gap days (Oct 22–24). Drill the 15 priority topics from PPTs. Secure **65–68** for A (or **82+** for S)! |
 
 ---
 

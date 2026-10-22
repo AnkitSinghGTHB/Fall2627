@@ -1,0 +1,22 @@
+paper
+A)
+6+6 OR 6+6 x5
+B)
+8x 5
+
+
+Time & Space complexity 1 ques guaranteed with basic program
+Equilibrium sum & equilibrium index
+swap 2 nibbles
+n queens
+Huffman
+weight of substring
+stack
+Floyd cycle detection
+Hamiltonian cycle
+encode decode
+segmented sieve
+block swap
+lexicographically first palindrome
+circular queue
+post order, preorder, level order

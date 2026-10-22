@@ -36,6 +36,7 @@
 
 | File | Description |
 |:---|:---|
+| [08-pla-tee-master-study-sheet-and-imp-topics.md](./08-pla-tee-master-study-sheet-and-imp-topics.md) | 🚨 **TEE MASTER STUDY SHEET & PRIORITY TOPICS**: Complete coverage of all 15 topics from `tee_imp.txt`, PPTs, and sample papers with Java code & dry-run traces |
 | [00-pla-emergency-plan-and-code-templates.md](./00-pla-emergency-plan-and-code-templates.md) | Emergency study checklist, timing strategy, and master code templates |
 | [01-module1-time-complexity-bit-manipulation.md](./01-module1-time-complexity-bit-manipulation.md) | Unit 1: Master theorem, Bitwise operations, Swap nibbles, Flip zero |
 | [02-module2-number-theory-sieves-booths-euler.md](./02-module2-number-theory-sieves-booths-euler.md) | Unit 2: Prime sieves, Euler's $\phi$, Booth's multiplier, Binary palindromes |
