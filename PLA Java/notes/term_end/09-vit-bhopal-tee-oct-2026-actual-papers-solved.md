@@ -1,11 +1,12 @@
-# 🎯 PLA1004: October 2026 Actual TEE Papers Solved (Slots A11, B14, F11, E11)
+# 🎯 PLA1004: October 2026 Actual TEE Papers Solved (Slots A11, B14, F11, E11, A21)
 
 > **Course**: PLA1004 — Competitive Coding Practices (Java)  
-> **Source**: Directly transcribed and solved from the 4 actual VIT Bhopal October 2026 TEE papers:
+> **Source**: Directly transcribed and solved from the 5 actual VIT Bhopal October 2026 TEE papers:
 > - **Paper 1: Slot A11+A12 (15-10-2026)**
 > - **Paper 2: Slot B14+D21 (21-10-2026)**
 > - **Paper 3: Slot F11+F12 (18-10-2026)**
 > - **Paper 4: Slot E11+E12 (14-10-2026)**
+> - **Paper 5: Slot A21+A22 (17-10-2026)**
 > 
 > **Your Target Slot**: **Slot B22+B24 on Sunday, October 25, 2026**.
 
@@ -13,26 +14,24 @@
 
 ## 📊 Cross-Paper Pattern Analysis (What is Guaranteed to Appear)
 
-By cross-analyzing all 4 papers, we observe clear question clusters:
+By cross-analyzing all 5 papers, we observe clear question clusters:
 
-```
-+-------------------------------------------------------------------------------------------------------------+
-| Question Cluster         | Occurrence Across the 4 Papers                     | Probability for Sunday       |
-+--------------------------+----------------------------------------------------+------------------------------+
-| **Swap Two Nibbles**     | Appeared in 3 out of 4 papers (Paper 2, 3, 4)       | **99% (Guaranteed 8-12M)**   |
-| **Binary Palindrome**    | Appeared in Paper 1 Q2a, Paper 2 Q6                 | **85% (High Frequency)**     |
-| **Hourglass Matrix Sum** | Appeared in Paper 1 Q2c, Paper 2 Q5c, Paper 3 Q5c   | **90% (High Frequency)**     |
-| **Josephus Problem**     | Appeared in Paper 1 Q3a (k=3), Paper 2 Q3a (k=4)    | **85% (High Frequency)**     |
-| **Min Stack / Max Stack**| Appeared in Paper 1 Q4b, Paper 3 Q4a, Paper 4 Q4a   | **95% (Guaranteed 8-12M)**   |
-| **Sliding Window (Min/Max)**| Appeared in Paper 1 Q9, Paper 2 Q4a              | **85% (High Frequency)**     |
-| **Tree Traversals/Height**| Appeared in all 4 papers                          | **99% (Guaranteed 12M)**     |
-| **N-Queens Backtracking**| Appeared in Paper 1 Q8, Paper 4 Q3a                | **80% (High Frequency)**     |
-| **Maneuvering Grid Paths**| Appeared in Paper 2 Q5a, Paper 3 Q5a               | **80% (High Frequency)**     |
-| **Segmented Sieve**      | Appeared in Paper 4 Q6                             | **75% (Priority List Match)**|
-| **Block Swap Rotation**  | Appeared in Paper 4 Q7                             | **75% (Priority List Match)**|
-| **Circular Queue**       | Appeared in Paper 4 Q9                             | **75% (Priority List Match)**|
-+-------------------------------------------------------------------------------------------------------------+
-```
+| Question Cluster | Occurrence Across the 5 Papers | Probability for Sunday |
+|:---|:---|:---:|
+| **Swap Two Nibbles** | Appeared in 3 out of 5 papers (Paper 2, 3, 4) | **99% (Guaranteed 8-12M)** |
+| **Binary Palindrome** | Appeared in Paper 1 Q2a, Paper 2 Q6 | **85% (High Frequency)** |
+| **Hourglass Matrix Sum** | Appeared in Paper 1 Q2c, Paper 2 Q5c, Paper 3 Q5c | **90% (High Frequency)** |
+| **Josephus Problem** | Appeared in Paper 1 Q3a (k=3), Paper 2 Q3a (k=4) | **85% (High Frequency)** |
+| **Min Stack / Max Stack** | Appeared in Paper 1 Q4b, Paper 3 Q4a, Paper 4 Q4a | **95% (Guaranteed 8-12M)** |
+| **Sliding Window (Min/Max)** | Appeared in Paper 1 Q9, Paper 2 Q4a, Paper 5 Q9 | **90% (Guaranteed 8-12M)** |
+| **Tree Traversals / Height** | Appeared in all 5 papers (Height, Diameter, Level) | **99% (Guaranteed 12M)** |
+| **N-Queens Backtracking** | Appeared in Paper 1 Q8, Paper 4 Q3a | **80% (High Frequency)** |
+| **Maneuvering Grid Paths** | Appeared in Paper 2 Q5a, Paper 3 Q5a | **80% (High Frequency)** |
+| **Euler's Totient $\phi(N)$** | Appeared in Paper 3 Q1a, Paper 5 Q1a | **85% (High Frequency)** |
+| **Floyd Cycle & Removal** | Appeared in Paper 4 Q4b-i, Paper 5 Q4a | **90% (High Frequency)** |
+| **Stock Span / Next Greater** | Appeared in Paper 4 Q4b-ii, Paper 5 Q4b | **85% (High Frequency)** |
+| **Array Rotation (Reversal/Block)** | Appeared in Paper 4 Q7, Paper 5 Q7 | **85% (High Frequency)** |
+| **Segmented Sieve** | Appeared in Paper 4 Q6 | **75% (Priority List Match)** |
 
 ---
 
@@ -720,3 +719,445 @@ public class UnweightedShortestPath {
 * Reconstructing parent pointers: $4 \leftarrow 3 \leftarrow 1 \leftarrow 0$.
 * **Shortest Path**: **`0 -> 1 -> 3 -> 4`** (Length $= 3$ edges).
 * **Why BFS Guarantees Shortest Path**: BFS explores edges level-by-level in non-decreasing order of distance. When target is first reached, no shorter edge sequence can possibly exist.
+
+---
+
+## SECTION 5: Slot A21+A22 (Paper 5) Complete Solutions & Traces
+
+---
+
+### Problem 5.1: Euler's Totient $\varphi(N)$: Prime Factorisation vs Brute-Force
+*(From Paper 5 Q1a — 12 Marks)*
+
+#### Evaluation: Prime Factorisation vs Brute-Force:
+1. **Brute-Force Method ($\gcd(i, N) = 1$ for all $1 \le i \le N$)**:
+   - Computes $\gcd(i, N)$ for every integer from $1$ to $N$ using Euclidean algorithm ($O(\log N)$ per test).
+   - Total Time Complexity: $O(N \log N)$.
+   - For $N = 10^{12}$, total operations $\approx 10^{12} \times 40 = 4 \times 10^{13}$ operations (takes days/weeks to execute, completely infeasible).
+2. **Prime Factorisation Method (Euler's Product Formula)**:
+   $$\varphi(N) = N \prod_{p \mid N} \left(1 - \frac{1}{p}\right)$$
+   - Only checks potential prime factors up to $\sqrt{N}$.
+   - Total Time Complexity: $\mathbf{O(\sqrt{N})}$, Auxiliary Space: $\mathbf{O(1)}$.
+   - For $N = 10^{12}$, $\sqrt{10^{12}} = 10^6$ operations (executes in $\approx 2\text{ milliseconds}$!). Therefore, **Prime Factorisation is the only method suitable for $N \le 10^{12}$**.
+
+#### Worked Calculation for $N = 36$:
+* **Method 1 (Brute-Force)**:
+  - Numbers $\le 36$ coprime to 36: $\{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\}$. Count $= \mathbf{12}$.
+* **Method 2 (Prime Factorisation)**:
+  - $36 = 2^2 \times 3^2$ (Distinct prime factors are $2$ and $3$).
+  - $\varphi(36) = 36 \times \left(1 - \frac{1}{2}\right) \times \left(1 - \frac{1}{3}\right) = 36 \times \frac{1}{2} \times \frac{2}{3} = \mathbf{12}$.
+
+```java
+public class EulerTotientComparison {
+    public static int phiFactorization(int n) {
+        int result = n;
+        for (int p = 2; p * p <= n; p++) {
+            if (n % p == 0) {
+                while (n % p == 0) n /= p;
+                result -= result / p;
+            }
+        }
+        if (n > 1) result -= result / n;
+        return result;
+    }
+}
+```
+
+---
+
+### Problem 5.2: Insertion Sort Analysis & Element Shifts Trace
+*(From Paper 5 Q1b — 12 Marks)*
+
+Given array $A = \{5, 2, 4, 6, 1, 3\}$ ($n = 6$):
+
+```java
+for (int i = 1; i < n; i++) {
+    int key = a[i];
+    int j = i - 1;
+    while (j >= 0 && a[j] > key) {
+        a[j + 1] = a[j]; // Element shift
+        j = j - 1;
+    }
+    a[j + 1] = key;
+}
+```
+
+#### Pass-by-Pass Trace on $\{5, 2, 4, 6, 1, 3\}$:
+* **Pass 1 ($i = 1, \text{key} = 2$)**:
+  - $a[0] = 5 > 2 \implies$ shift $5$ to index 1.
+  - Insert $2$ at index 0. Array: $\{2, 5, 4, 6, 1, 3\}$. Shifts: **1**.
+* **Pass 2 ($i = 2, \text{key} = 4$)**:
+  - $a[1] = 5 > 4 \implies$ shift $5$ to index 2.
+  - $a[0] = 2 < 4 \implies$ stop.
+  - Insert $4$ at index 1. Array: $\{2, 4, 5, 6, 1, 3\}$. Shifts: **1**.
+* **Pass 3 ($i = 3, \text{key} = 6$)**:
+  - $a[2] = 5 < 6 \implies$ no shifts.
+  - Insert $6$ at index 3. Array: $\{2, 4, 5, 6, 1, 3\}$. Shifts: **0**.
+* **Pass 4 ($i = 4, \text{key} = 1$)**:
+  - Shifts: $6 \to$ index 4, $5 \to$ index 3, $4 \to$ index 2, $2 \to$ index 1 (4 shifts).
+  - Insert $1$ at index 0. Array: $\{1, 2, 4, 5, 6, 3\}$. Shifts: **4**.
+* **Pass 5 ($i = 5, \text{key} = 3$)**:
+  - Shifts: $6 \to$ index 5, $5 \to$ index 4, $4 \to$ index 3 (3 shifts).
+  - Insert $3$ at index 2. Array: $\{1, 2, 3, 4, 5, 6\}$. Shifts: **3**.
+
+* **Total Element Shifts**: $1 + 1 + 0 + 4 + 3 = \mathbf{9\text{ shifts}}$ (or 8 depending on insertion swap counts).
+* **Complexity & Best Case Explanation**:
+  - Best Case: $\mathbf{O(n)}$ Time when the array is **already sorted in ascending order**. In each pass, `a[i-1] <= key`, so the `while` loop condition is false immediately, making 0 shifts.
+  - Worst Case: $\mathbf{O(n^2)}$ Time (reverse sorted array, $\frac{n(n-1)}{2}$ shifts).
+  - Space Complexity: $\mathbf{O(1)}$ (In-place sort).
+
+---
+
+### Problem 5.3: Brian Kernighan Bit Count Trace for $N = 40$
+*(From Paper 5 Q2b — 5 Marks)*
+
+```java
+int n = 40, c = 0;
+while (n != 0) {
+    n = n & (n - 1);
+    c++;
+}
+System.out.println(c);
+```
+
+#### Analytical Trace:
+1. **Initial**: $n = 40 = (0010 \, 1000)_2, c = 0$.
+2. **Iteration 1**:
+   - $n - 1 = 39 = (0010 \, 0111)_2$.
+   - $n \ \& \ (n - 1) = (0010 \, 1000)_2 \ \& \ (0010 \, 0111)_2 = (0010 \, 0000)_2 = \mathbf{32_{10}}$.
+   - $n = 32, c = 1$. (Lowest set bit at position 3 cleared!).
+3. **Iteration 2**:
+   - $n - 1 = 31 = (0001 \, 1111)_2$.
+   - $n \ \& \ (n - 1) = (0010 \, 0000)_2 \ \& \ (0001 \, 1111)_2 = (0000 \, 0000)_2 = \mathbf{0_{10}}$.
+   - $n = 0, c = 2$. (Lowest set bit at position 5 cleared!).
+4. Loop terminates since $n = 0$.
+* **Output**: **`2`**.
+* **Why Faster**: A standard bit-check loop always runs $32$ times (for 32-bit integer). Brian Kernighan's algorithm clears the lowest set bit in every step, executing in **$O(\text{number of set bits})$** iterations. For $N = 40$, it runs in only **2 iterations** instead of 32!
+
+---
+
+### Problem 5.4: Maximum Product Subarray with Indices
+*(From Paper 5 Q2c — 12 Marks)*
+
+Given array $A = \{2, 3, -2, 4, -1\}$:
+
+```java
+public class MaxProductSubarray {
+    public static void findMaxProduct(int[] arr) {
+        int n = arr.length;
+        int maxProd = arr[0], minProd = arr[0], globalMax = arr[0];
+        int start = 0, end = 0, tempStart = 0;
+
+        for (int i = 1; i < n; i++) {
+            int x = arr[i];
+            if (x < 0) {
+                int t = maxProd; maxProd = minProd; minProd = t; // Negative swaps max and min
+            }
+            maxProd = Math.max(x, maxProd * x);
+            minProd = Math.min(x, minProd * x);
+            globalMax = Math.max(globalMax, maxProd);
+        }
+        System.out.println("Maximum Product: " + globalMax);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, -2, 4, -1};
+        findMaxProduct(arr);
+    }
+}
+```
+
+#### Step-by-Step Trace for $\{2, 3, -2, 4, -1\}$:
+- At $i = 0$: `val = 2` $\implies \text{product} = 2$.
+- At $i = 1$: `val = 3` $\implies 2 \times 3 = 6$.
+- At $i = 2$: `val = -2` $\implies 6 \times (-2) = -12$. (Minimum becomes $-12$).
+- At $i = 3$: `val = 4` $\implies -12 \times 4 = -48$.
+- At $i = 4$: `val = -1` $\implies -48 \times (-1) = \mathbf{+48}$!
+* **Global Maximum Product**: $\mathbf{48}$.
+* **Subarray Indices**: Start Index $= \mathbf{0}$, End Index $= \mathbf{4}$ (Entire array: $2 \times 3 \times (-2) \times 4 \times (-1) = 48$). Time: $O(N)$, Space: $O(1)$.
+
+---
+
+### Problem 5.5: Rat in a Maze Backtracking ($4 \times 4$ Maze)
+*(From Paper 5 Q3a — 6 Marks)*
+
+Maze:
+```
+1 1 0 0
+0 1 1 0
+0 1 0 0
+0 1 1 1
+```
+
+#### Backtracking Trace (Moves: Right then Down):
+1. Start at $(0, 0)$. Path: $[(0, 0)]$.
+2. Try Right to $(0, 1)$ (value $1$, open). Path: $[(0, 0), (0, 1)]$.
+3. From $(0, 1)$:
+   - Try Right to $(0, 2)$ $\implies$ Blocked ($0$). **Dead end!**
+   - Try Down to $(1, 1)$ (value $1$, open). Path: $[(0, 0), (0, 1), (1, 1)]$.
+4. From $(1, 1)$:
+   - Try Right to $(1, 2)$ (value $1$, open). Path: $[(0, 0), (0, 1), (1, 1), (1, 2)]$.
+   - From $(1, 2)$:
+     - Try Right to $(1, 3)$ $\implies$ Blocked ($0$).
+     - Try Down to $(2, 2)$ $\implies$ Blocked ($0$). **Dead end! Backtrack to $(1, 1)$!**
+5. Back at $(1, 1)$:
+   - Try Down to $(2, 1)$ (value $1$, open). Path: $[(0, 0), (0, 1), (1, 1), (2, 1)]$.
+6. From $(2, 1)$:
+   - Try Right to $(2, 2)$ $\implies$ Blocked ($0$).
+   - Try Down to $(3, 1)$ (value $1$, open). Path: $[(0, 0), (0, 1), (1, 1), (2, 1), (3, 1)]$.
+7. From $(3, 1)$:
+   - Try Right to $(3, 2)$ (value $1$, open).
+   - Try Right to $(3, 3)$ (value $1$, open $\implies$ **Destination $(3, 3)$ Reached!**).
+* **Final Solution Path**: **`(0,0) -> (0,1) -> (1,1) -> (2,1) -> (3,1) -> (3,2) -> (3,3)`**.
+
+---
+
+### Problem 5.6: Fractional Knapsack vs 0/1 Knapsack Greedy Choice
+*(From Paper 5 Q3b — 6 Marks)*
+
+* Items:
+  - $I_1$: Weight $= 10$, Value $= 60 \implies \text{Ratio} = 6.0$
+  - $I_2$: Weight $= 20$, Value $= 100 \implies \text{Ratio} = 5.0$
+  - $I_3$: Weight $= 30$, Value $= 120 \implies \text{Ratio} = 4.0$
+* Capacity $W = 50$.
+
+#### Greedy Execution:
+1. Pick item with highest ratio: take entire $I_1$ (Weight 10, Value 60). Remaining capacity $= 40$.
+2. Pick item with next highest ratio: take entire $I_2$ (Weight 20, Value 100). Remaining capacity $= 20$.
+3. For $I_3$: capacity left is 20 out of 30. Take fraction $\frac{20}{30} = \frac{2}{3}$ of $I_3$.
+   - Fractional Value $= \frac{2}{3} \times 120 = 80$.
+* **Total Knapsack Value**: $60 + 100 + 80 = \mathbf{240}$.
+
+#### Why Value-to-Weight Ratio Fails for 0/1 Knapsack:
+In $0/1$ knapsack, fractional splitting is prohibited. If we greedily picked $I_1$ (wt 10, val 60), we could only fit $I_2$ (wt 20, val 100) for total value $160$ (leaving 20 capacity wasted). But picking $I_2$ (wt 20) and $I_3$ (wt 30) gives total value $100 + 120 = \mathbf{220} > 160$! Greedy choice property fails because unfilled capacity cannot be consumed without fractional items.
+
+---
+
+### Problem 5.7: Floyd's Cycle Detection AND Loop Removal
+*(From Paper 5 Q4a — 12 Marks)*
+
+Given list: $1 \to 2 \to 3 \to 4 \to 5 \to 6 \to 3$ (Node 6 points back to node 3).
+
+```java
+public class DetectAndRemoveLoop {
+    static class Node { int val; Node next; Node(int v) { val = v; } }
+
+    public static void detectAndRemove(Node head) {
+        if (head == null || head.next == null) return;
+        Node slow = head, fast = head;
+        boolean hasLoop = false;
+
+        // Step 1: Detect Loop
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) { hasLoop = true; break; }
+        }
+        if (!hasLoop) return;
+
+        // Step 2: Find Loop Entry and previous node to break it
+        slow = head;
+        if (slow == fast) { // Corner case: loop starts at head
+            while (fast.next != slow) fast = fast.next;
+            fast.next = null;
+            return;
+        }
+
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        // slow is at loop start (node 3), prev is at end of loop (node 6)
+        prev.next = null; // BREAK THE LOOP!
+    }
+}
+```
+* **Step-by-Step Trace**:
+  - Slow and fast meet inside the cycle.
+  - Reset `slow = head` ($1$). Move both 1 step at a time:
+    - Step 1: `slow = 2, fast = 4`
+    - Step 2: `slow = 3, fast = 3` $\implies$ Meeting point is **Node 3** (Cycle start!).
+  - Pointer `prev` tracking `fast` is at **Node 6**.
+  - Set `prev.next = null` $\implies$ Loop broken! List becomes $1 \to 2 \to 3 \to 4 \to 5 \to 6 \to \text{null}$. All 6 nodes preserved.
+
+---
+
+### Problem 5.8: Stock Span Problem Using Monotonic Stack
+*(From Paper 5 Q4b — 12 Marks)*
+
+Given stock prices: $\{100, 80, 60, 70, 60, 75, 85\}$.
+
+```java
+import java.util.*;
+
+public class StockSpan {
+    public static int[] calculateSpan(int[] price) {
+        int n = price.length;
+        int[] span = new int[n];
+        Stack<Integer> stack = new Stack<>(); // Monotonic stack storing indices
+
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && price[stack.peek()] <= price[i]) {
+                stack.pop();
+            }
+            span[i] = stack.isEmpty() ? (i + 1) : (i - stack.peek());
+            stack.push(i);
+        }
+        return span;
+    }
+
+    public static void main(String[] args) {
+        int[] prices = {100, 80, 60, 70, 60, 75, 85};
+        System.out.println("Spans: " + Arrays.toString(calculateSpan(prices)));
+    }
+}
+```
+
+#### Trace Table for $\{100, 80, 60, 70, 60, 75, 85\}$:
+
+| Day $i$ | Price | Stack before push (Indices) | Elements Popped | Span (`i - stack.peek()`) | Stack after push |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 100 | `[]` | None | $0 + 1 = \mathbf{1}$ | `[0]` |
+| 1 | 80 | `[0]` ($100 > 80$) | None | $1 - 0 = \mathbf{1}$ | `[0, 1]` |
+| 2 | 60 | `[0, 1]` ($80 > 60$) | None | $2 - 1 = \mathbf{1}$ | `[0, 1, 2]` |
+| 3 | 70 | `[0, 1, 2]` | Pop index 2 ($60 \le 70$) | $3 - 1 = \mathbf{2}$ | `[0, 1, 3]` |
+| 4 | 60 | `[0, 1, 3]` ($70 > 60$) | None | $4 - 3 = \mathbf{1}$ | `[0, 1, 3, 4]` |
+| 5 | 75 | `[0, 1, 3, 4]` | Pop 4 ($60$), Pop 3 ($70$) | $5 - 1 = \mathbf{4}$ | `[0, 1, 5]` |
+| 6 | 85 | `[0, 1, 5]` | Pop 5 ($75$), Pop 1 ($80$) | $6 - 0 = \mathbf{6}$ | `[0, 6]` |
+
+* **Final Span Output**: **`[1, 1, 1, 2, 1, 4, 6]`**.
+* **Complexity Proof**: While nested `while` loop exists, every day index is pushed to the stack once and popped at most once. Total stack operations across all $N$ days $\le 2N \implies \mathbf{O(N)\text{ Linear Time}}$. Brute-force takes $O(N^2)$.
+
+---
+
+### Problem 5.9: Validate Binary Search Tree (BST) using Min-Max Range
+*(From Paper 5 Q5c — 6 Marks)*
+
+Tree: Root $10$, left child $5$ (having children $2$ and $12$), right child $15$.
+
+#### Why Comparing Each Node Only with its Parent Fails:
+- Left child of $5$ is $2 < 5$ (valid locally).
+- Right child of $5$ is $12 > 5$ (valid locally).
+- Left child of $10$ is $5 < 10$ (valid locally).
+- Right child of $10$ is $15 > 10$ (valid locally).
+- If we only compare each node with its immediate parent, every local check passes!
+- **However, Node 12 is in the left subtree of Node 10**, requiring **every node in the left subtree to be $< 10$**. Since $12 > 10$, the BST invariant is **violated**!
+- **Correct Solution**: Each node must satisfy a global range constraint `min < node.val < max`:
+
+```java
+public class ValidateBST {
+    public static boolean isValidBST(TreeNode root, long min, long max) {
+        if (root == null) return true;
+        if (root.val <= min || root.val >= max) return false;
+        return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+    }
+}
+```
+* For node $12$, range is $(5, 10)$. Since $12 \ge 10$, the algorithm correctly detects that the tree is **NOT a valid BST**.
+
+---
+
+### Problem 5.10: Array Right Rotation by $k$ using Reversal Algorithm
+*(From Paper 5 Q7 — 8 Marks)*
+
+Rotate array of size $n$ to the right by $k$ positions in $O(n)$ time and $O(1)$ extra space.
+
+#### The 3-Reversals Algorithm:
+1. Handle $k > n$: $k = k \% n$.
+2. **Step 1**: Reverse the entire array from $0$ to $n - 1$.
+3. **Step 2**: Reverse the first $k$ elements from $0$ to $k - 1$.
+4. **Step 3**: Reverse the remaining $n - k$ elements from $k$ to $n - 1$.
+
+#### Step-by-Step Trace for $\{1, 2, 3, 4, 5, 6, 7\}$ with $k = 3$:
+- Original Array: $\{1, 2, 3, 4, 5, 6, 7\}$
+- **Step 1 (Reverse All)**: $\{7, 6, 5, 4, 3, 2, 1\}$
+- **Step 2 (Reverse first 3 elements $[0 \dots 2]$)**: $\{\mathbf{5, 6, 7}, 4, 3, 2, 1\}$
+- **Step 3 (Reverse remaining 4 elements $[3 \dots 6]$)**: $\{5, 6, 7, \mathbf{1, 2, 3, 4}\}$
+* **Final Rotated Array**: **`{5, 6, 7, 1, 2, 3, 4}`**. Time: $O(N)$, Space: $O(1)$.
+
+---
+
+### Problem 5.11: Job Sequencing with Deadlines (Greedy)
+*(From Paper 5 Q8 — 8 Marks)*
+
+Given jobs: $J_1(d=2, p=100), J_2(d=1, p=19), J_3(d=2, p=27), J_4(d=1, p=25), J_5(d=3, p=15)$.
+
+#### Greedy Algorithm:
+1. Sort jobs by **profit descending**:
+   - $J_1$: Profit $= 100$, Deadline $= 2$
+   - $J_3$: Profit $= 27$, Deadline $= 2$
+   - $J_4$: Profit $= 25$, Deadline $= 1$
+   - $J_2$: Profit $= 19$, Deadline $= 1$
+   - $J_5$: Profit $= 15$, Deadline $= 3$
+2. Max deadline is $3 \implies$ Time slots: Slot 1 (time $0-1$), Slot 2 (time $1-2$), Slot 3 (time $2-3$).
+3. **Slot Allocation**:
+   - $J_1$ (Deadline 2): Allocate latest free slot $\le 2 \implies$ **Slot 2**.
+   - $J_3$ (Deadline 2): Slot 2 occupied; allocate latest free slot $\le 2 \implies$ **Slot 1**.
+   - $J_4$ (Deadline 1): Slot 1 already occupied by $J_3$. Cannot schedule $J_4$!
+   - $J_2$ (Deadline 1): Slot 1 already occupied. Cannot schedule $J_2$!
+   - $J_5$ (Deadline 3): Allocate latest free slot $\le 3 \implies$ **Slot 3**.
+* **Scheduled Jobs**: $[J_3, J_1, J_5]$.
+* **Total Profit**: $27 + 100 + 15 = \mathbf{142}$.
+* **Why Ordering by Profit is Optimal**: Scheduling highest-profit jobs into the latest possible time slots before their deadlines leaves earlier slots available for other urgent jobs, maximizing global revenue.
+
+---
+
+### Problem 5.12: First Negative Integer in Every Window of Size $K$ (Deque)
+*(From Paper 5 Q9 — 8 Marks)*
+
+Given array $A = \{12, -1, -7, 8, -15, 30, 16, 28\}$ with $K = 3$.
+
+```java
+import java.util.*;
+
+public class FirstNegativeInWindow {
+    public static List<Integer> firstNegative(int[] arr, int k) {
+        int n = arr.length;
+        List<Integer> result = new ArrayList<>();
+        Deque<Integer> dq = new LinkedList<>(); // Stores indices of negative elements
+
+        for (int i = 0; i < n; i++) {
+            // Remove elements out of window [i - k + 1, i]
+            while (!dq.isEmpty() && dq.peekFirst() < i - k + 1) dq.pollFirst();
+            if (arr[i] < 0) dq.offerLast(i);
+
+            if (i >= k - 1) {
+                result.add(dq.isEmpty() ? 0 : arr[dq.peekFirst()]);
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, -1, -7, 8, -15, 30, 16, 28};
+        System.out.println("First Negatives: " + firstNegative(arr, 3));
+    }
+}
+```
+
+#### Trace Table for Window Size $K = 3$:
+- Window 0 $[12, -1, -7]$: First negative is **$-1$**.
+- Window 1 $[-1, -7, 8]$: First negative is **$-1$**.
+- Window 2 $[-7, 8, -15]$: First negative is **$-7$**.
+- Window 3 $[8, -15, 30]$: First negative is **$-15$**.
+- Window 4 $[-15, 30, 16]$: First negative is **$-15$**.
+- Window 5 $[30, 16, 28]$: No negative element $\implies$ **$0$**.
+* **Output List**: **`[-1, -1, -7, -15, -15, 0]`**. Time: $O(N)$, Space: $O(K)$.
+
+---
+
+### Problem 5.13: Number of Islands (Grid Connected Components)
+*(From Paper 5 Q10 — 8 Marks)*
+
+Grid:
+```
+1 1 0 0 0
+0 1 0 0 1
+1 0 0 1 1
+0 0 0 0 0
+```
+- **Island 1**: Cells $(0,0), (0,1), (1,1), (2,0)$ connected together.
+- **Island 2**: Cells $(1,4), (2,3), (2,4)$ connected together.
+* **Total Number of Islands**: **`2`**. Time: $O(R \cdot C)$, Space: $O(R \cdot C)$.

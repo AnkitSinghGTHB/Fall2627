@@ -146,6 +146,49 @@ public static Node reverseRecursive(Node head) {
 
 ---
 
+### 1.4 Floyd's Cycle Detection AND Loop Removal (Without Losing Any Node)
+*(Paper 5 Q4a — 12 Marks)*
+
+Given a list with a loop (e.g., $1 \to 2 \to 3 \to 4 \to 5 \to 6 \to 3$):
+1. **Detect Meeting Point**: Fast pointer moves 2 steps, slow pointer moves 1 step until `slow == fast`.
+2. **Find Loop Entry**: Reset `slow = head`. Keep `fast` at meeting point. Advance both by 1 step while maintaining a `prev` pointer right behind `fast`.
+3. **Break Loop**: When `slow == fast`, they meet at the cycle entry (Node 3). Set `prev.next = null` (Node 6 was pointing to 3; setting `6.next = null` breaks the cycle while preserving all nodes!).
+
+```java
+public class DetectAndRemoveLoop {
+    public static void detectAndRemove(Node head) {
+        if (head == null || head.next == null) return;
+        Node slow = head, fast = head;
+        boolean hasLoop = false;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) { hasLoop = true; break; }
+        }
+        if (!hasLoop) return;
+
+        slow = head;
+        if (slow == fast) { // Loop starts at head node
+            while (fast.next != slow) fast = fast.next;
+            fast.next = null;
+            return;
+        }
+
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+        prev.next = null; // Break the cycle!
+    }
+}
+```
+* **Complexity**: Time: $O(N)$, Auxiliary Space: $O(1)$.
+
+---
+
 ## 2. Advanced Stack Patterns
 
 ### 2.1 Max Stack / Min Stack in $O(1)$ Time
@@ -265,6 +308,48 @@ public class BalancedParentheses {
     }
 }
 ```
+
+---
+
+### 2.4 Stock Span Problem Using Monotonic Stack
+*(Paper 5 Q4b — 12 Marks)*
+
+Given daily stock prices, the **span** of a day is the maximum number of consecutive days just before the given day, for which the price of the stock was less than or equal to its price on the current day.
+
+```java
+import java.util.*;
+
+public class StockSpan {
+    public static int[] calculateSpan(int[] price) {
+        int n = price.length;
+        int[] span = new int[n];
+        Stack<Integer> stack = new Stack<>(); // Monotonic decreasing stack storing indices
+
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && price[stack.peek()] <= price[i]) {
+                stack.pop();
+            }
+            span[i] = stack.isEmpty() ? (i + 1) : (i - stack.peek());
+            stack.push(i);
+        }
+        return span;
+    }
+
+    public static void main(String[] args) {
+        int[] prices = {100, 80, 60, 70, 60, 75, 85};
+        System.out.println("Spans: " + Arrays.toString(calculateSpan(prices)));
+    }
+}
+```
+* **Trace for $\{100, 80, 60, 70, 60, 75, 85\}$**:
+  - $100 \implies 1$
+  - $80 \implies 1$
+  - $60 \implies 1$
+  - $70 \implies 2$ (covers $60, 70$)
+  - $60 \implies 1$
+  - $75 \implies 4$ (covers $60, 70, 60, 75$)
+  - $85 \implies 6$ (covers $80, 60, 70, 60, 75, 85$)
+* **Output**: `[1, 1, 1, 2, 1, 4, 6]`. Time: $O(N)$, Space: $O(N)$.
 
 ---
 
@@ -441,4 +526,77 @@ public class BlockSwapRotation {
     }
 }
 // Time Complexity: O(N), Space Complexity: O(1)
+```
+
+---
+
+### 4.4 Array Right Rotation by $k$ Using Reversal Algorithm
+*(Paper 5 Q7 — 8 Marks)*
+
+Rotate array to the right by $k$ positions in $O(n)$ time and $O(1)$ extra space using **3 reversals**:
+1. Handle $k > n$: `k = k % n`.
+2. **Reverse entire array** from $0$ to $n - 1$.
+3. **Reverse first $k$ elements** from $0$ to $k - 1$.
+4. **Reverse remaining $n - k$ elements** from $k$ to $n - 1$.
+
+```java
+import java.util.Arrays;
+
+public class ReversalRotation {
+    public static void rotateRight(int[] arr, int k) {
+        int n = arr.length;
+        k = k % n;
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
+    }
+
+    private static void reverse(int[] a, int l, int r) {
+        while (l < r) {
+            int t = a[l]; a[l] = a[r]; a[r] = t;
+            l++; r--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        rotateRight(arr, 3);
+        System.out.println("Rotated by 3: " + Arrays.toString(arr)); // [5, 6, 7, 1, 2, 3, 4]
+    }
+}
+```
+
+---
+
+### 4.5 First Negative Integer in Every Window of Size $K$ (Deque)
+*(Paper 5 Q9 — 8 Marks)*
+
+```java
+import java.util.*;
+
+public class FirstNegativeInWindow {
+    public static List<Integer> firstNegative(int[] arr, int k) {
+        int n = arr.length;
+        List<Integer> res = new ArrayList<>();
+        Deque<Integer> dq = new LinkedList<>(); // Monotonic queue of negative indices
+
+        for (int i = 0; i < n; i++) {
+            while (!dq.isEmpty() && dq.peekFirst() < i - k + 1) dq.pollFirst();
+            if (arr[i] < 0) dq.offerLast(i);
+            if (i >= k - 1) {
+                res.add(dq.isEmpty() ? 0 : arr[dq.peekFirst()]);
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, -1, -7, 8, -15, 30, 16, 28};
+        System.out.println("First Negatives (k=3): " + firstNegative(arr, 3));
+    }
+}
+```
+**Sample Output**:
+```text
+First Negatives (k=3): [-1, -1, -7, -15, -15, 0]
 ```

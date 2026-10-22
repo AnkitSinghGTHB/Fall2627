@@ -37,7 +37,7 @@
 | File | Description |
 |:---|:---|
 | [08-pla-tee-master-study-sheet-and-imp-topics.md](./08-pla-tee-master-study-sheet-and-imp-topics.md) | 🚨 **TEE MASTER STUDY SHEET & PRIORITY TOPICS**: Complete coverage of all 15 topics from `tee_imp.txt`, PPTs, and sample papers with Java code & dry-run traces |
-| [09-vit-bhopal-tee-oct-2026-actual-papers-solved.md](./09-vit-bhopal-tee-oct-2026-actual-papers-solved.md) | 🏆 **OCTOBER 2026 ACTUAL TEE PAPERS SOLVED**: Cross-paper breakdown of Slots A11, B14, F11, E11 with step-by-step traces, loop proofs, and Java programs |
+| [09-vit-bhopal-tee-oct-2026-actual-papers-solved.md](./09-vit-bhopal-tee-oct-2026-actual-papers-solved.md) | 🏆 **OCTOBER 2026 ACTUAL TEE PAPERS SOLVED**: Cross-paper breakdown of all 5 Slots (A11, B14, F11, E11, A21) with step-by-step traces, loop proofs, and Java programs |
 | [00-pla-emergency-plan-and-code-templates.md](./00-pla-emergency-plan-and-code-templates.md) | Emergency study checklist, timing strategy, and master code templates |
 | [01-module1-time-complexity-bit-manipulation.md](./01-module1-time-complexity-bit-manipulation.md) | Unit 1: Master theorem, Bitwise operations, Swap nibbles, Flip zero |
 | [02-module2-number-theory-sieves-booths-euler.md](./02-module2-number-theory-sieves-booths-euler.md) | Unit 2: Prime sieves, Euler's $\phi$, Booth's multiplier, Binary palindromes |

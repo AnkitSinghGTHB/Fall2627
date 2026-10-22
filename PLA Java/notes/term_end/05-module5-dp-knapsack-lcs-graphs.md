@@ -297,3 +297,86 @@ public class BFSShortestPath {
 
 Uses **Disjoint Set Union (DSU)** with path compression and rank to greedily pick the smallest non-cycle edges:
 * Time Complexity: $O(E \log E)$, Auxiliary Space: $O(V)$.
+
+---
+
+### 3.4 Number of Islands (Grid Connected Components via DFS/BFS)
+*(Paper 5 Q10 — 8 Marks)*
+
+Given a 2D binary matrix where `1` represents land and `0` represents water, count the number of islands.
+
+```java
+public class NumberOfIslands {
+    public static int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        int count = 0;
+        int R = grid.length, C = grid[0].length;
+
+        for (int r = 0; r < R; r++) {
+            for (int c = 0; c < C; c++) {
+                if (grid[r][c] == '1') {
+                    count++;
+                    dfsSink(grid, r, c); // Sink the entire island
+                }
+            }
+        }
+        return count;
+    }
+
+    private static void dfsSink(char[][] grid, int r, int c) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != '1') return;
+        grid[r][c] = '0'; // Mark visited
+        dfsSink(grid, r + 1, c);
+        dfsSink(grid, r - 1, c);
+        dfsSink(grid, r, c + 1);
+        dfsSink(grid, r, c - 1);
+    }
+
+    public static void main(String[] args) {
+        char[][] grid = {
+            {'1', '1', '0', '0', '0'},
+            {'0', '1', '0', '0', '1'},
+            {'1', '0', '0', '1', '1'},
+            {'0', '0', '0', '0', '0'}
+        };
+        System.out.println("Total Islands: " + numIslands(grid)); // 2
+    }
+}
+```
+* **Complexity**: Time: $O(R \cdot C)$, Auxiliary Space: $O(R \cdot C)$ due to recursion stack.
+
+---
+
+## 4. Tree Validation & Optimization Analysis
+
+### 4.1 Validate Binary Search Tree: Min-Max Range Approach
+*(Paper 5 Q5c — 6 Marks)*
+
+Tree: Root $10$, left child $5$ (having children $2$ and $12$), right child $15$.
+
+* **Why Comparing Each Node Only with its Parent Fails**:
+  - $2 < 5$ is locally valid.
+  - $12 > 5$ is locally valid.
+  - $5 < 10$ and $15 > 10$ are locally valid.
+  - **However, node 12 lies in the left subtree of node 10**, meaning **every node in that entire subtree must be strictly $< 10$**. Since $12 > 10$, the BST property is violated!
+  - Local parent checks fail to catch global ancestor bounds.
+* **Algorithm**: Pass allowable range `(min, max)` down during traversal:
+```java
+public static boolean isValidBST(TreeNode root, long min, long max) {
+    if (root == null) return true;
+    if (root.val <= min || root.val >= max) return false;
+    return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+}
+```
+
+---
+
+### 4.2 Diameter of Binary Tree: Naive $O(N^2)$ vs Single-Traversal $O(N)$
+*(Paper 5 Q5a — 12 Marks)*
+
+* **Naive Approach ($O(N^2)$ Time)**:
+  - For each node, separately call `height(node.left)` and `height(node.right)` ($O(N)$ work per node).
+  - Across all $N$ nodes, total runtime is $O(N^2)$.
+* **Optimised Approach ($O(N)$ Time — RECOMMENDED)**:
+  - In a single bottom-up post-order DFS traversal, compute height of each subtree while simultaneously updating a global `maxDiameter = Math.max(maxDiameter, leftH + rightH)`.
+  - Every node is visited exactly once $\implies \mathbf{O(N)\text{ Linear Time}}$, Space: $O(H)$.

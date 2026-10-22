@@ -10,21 +10,11 @@
 
 ## 📅 3-Day TEE Battle Schedule
 
-```
-+-----------------------------------------------------------------------------------------------------------------+
-| Day                | Focus Modules & Priority Topics                            | Target Goal                   |
-+--------------------+------------------------------------------------------------+-------------------------------+
-| **Day 1 (Thu, Oct 22)**| Unit 1 & Unit 2: Complexity, Swap Nibbles, Flip Bit,     | Master bitwise hacks &        |
-|                    | Segmented Sieve, Euler's Totient, Booth's Multiplier       | hardware arithmetic (40 Marks)|
-+--------------------+------------------------------------------------------------+-------------------------------+
-| **Day 2 (Fri, Oct 23)**| Unit 3: MinStack O(1) space, Sliding Window, Floyd Cycle,  | Secure linear structures &    |
-|                    | Circular Queue, Move Hyphens, Equilibrium, Block Swap      | array rotations (20 Marks)    |
-+--------------------+------------------------------------------------------------+-------------------------------+
-| **Day 3 (Sat, Oct 24)**| Unit 4 & Unit 5: Huffman Coding, Weighted Substring,       | Master backtracking, trees,   |
-|                    | N-Queens, Josephus, Hamiltonian, Knapsack, LCS, Kruskal,   | and DP algorithms (40 Marks)  |
-|                    | Tree Traversals + 1-Page Cheat Sheet Review                |                               |
-+--------------------+------------------------------------------------------------+-------------------------------+
-```
+| Day | Focus Modules & Priority Topics | Target Goal |
+|:---|:---|:---|
+| **Day 1 (Thu, Oct 22)** | **Unit 1 & Unit 2**: Complexity, Swap Nibbles, Flip Bit, Segmented Sieve, Euler's Totient, Booth's Multiplier | Master bitwise hacks & hardware arithmetic (40 Marks) |
+| **Day 2 (Fri, Oct 23)** | **Unit 3**: MinStack $O(1)$ space, Sliding Window, Floyd Cycle, Circular Queue, Move Hyphens, Equilibrium, Block Swap | Secure linear structures & array rotations (20 Marks) |
+| **Day 3 (Sat, Oct 24)** | **Unit 4 & Unit 5**: Huffman Coding, Weighted Substring, $N$-Queens, Josephus, Hamiltonian, Knapsack, LCS, Kruskal, Tree Traversals + 1-Page Cheat Sheet Review | Master backtracking, trees, and DP algorithms (40 Marks) |
 
 ---
 

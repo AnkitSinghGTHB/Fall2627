@@ -261,3 +261,60 @@ public class Josephus {
 ```
 * For $n = 8, k = 3 \implies$ **Survivor is Person 7**.
 * For $n = 8, k = 4 \implies$ **Survivor is Person 6**. Time: $O(N)$, Space: $O(1)$.
+
+---
+
+## 7. Fractional Knapsack vs 0/1 Knapsack: Greedy Choice Justification
+*(Paper 5 Q3b — 6 Marks)*
+
+* **Items**: $I_1(\text{wt}=10, \text{val}=60, \text{ratio}=6.0), I_2(\text{wt}=20, \text{val}=100, \text{ratio}=5.0), I_3(\text{wt}=30, \text{val}=120, \text{ratio}=4.0)$. Capacity $W = 50$.
+* **Fractional Knapsack Execution**:
+  1. Take all of $I_1$ (wt 10, val 60). Remaining capacity $= 40$.
+  2. Take all of $I_2$ (wt 20, val 100). Remaining capacity $= 20$.
+  3. Take $\frac{20}{30} = \frac{2}{3}$ fraction of $I_3$ (wt 20, val $\frac{2}{3} \times 120 = 80$).
+  * **Total Optimal Value**: $60 + 100 + 80 = \mathbf{240}$.
+* **Why Ordering by Ratio Fails for 0/1 Knapsack**:
+  - In $0/1$ knapsack, items cannot be broken. Picking $I_1$ (ratio 6.0) leaves only room for $I_2$ for a total value of $160$ (wasting 20 capacity).
+  - But picking $I_2$ and $I_3$ yields weight $20+30=50$ and total value $100+120 = \mathbf{220} > 160$!
+  - Therefore, the greedy choice property **fails for 0/1 Knapsack** because empty space cannot be filled with partial items (requires Dynamic Programming).
+
+---
+
+## 8. Job Sequencing with Deadlines (Greedy)
+*(Paper 5 Q8 — 8 Marks)*
+
+Given jobs: $J_1(d=2, p=100), J_2(d=1, p=19), J_3(d=2, p=27), J_4(d=1, p=25), J_5(d=3, p=15)$. Each job takes 1 unit of time.
+
+* **Greedy Strategy**:
+  1. Sort jobs by **profit descending**: $J_1(100), J_3(27), J_4(25), J_2(19), J_5(15)$.
+  2. Maximum deadline is $3 \implies$ 3 time slots available: Slot 1 ($0-1$), Slot 2 ($1-2$), Slot 3 ($2-3$).
+  3. Schedule each job at the **latest available slot $\le$ deadline**:
+     - $J_1$ (deadline 2) $\to$ Slot 2.
+     - $J_3$ (deadline 2) $\to$ Slot 1 (latest free slot $\le 2$).
+     - $J_4$ (deadline 1) $\to$ Slot 1 is already taken. Cannot schedule!
+     - $J_2$ (deadline 1) $\to$ Slot 1 is already taken. Cannot schedule!
+     - $J_5$ (deadline 3) $\to$ Slot 3.
+* **Scheduled Sequence**: $[J_3, J_1, J_5]$. **Total Profit**: $27 + 100 + 15 = \mathbf{142}$.
+* **Why Ordering by Profit is Optimal**: Greedily securing high profits and pushing their execution as late as possible preserves earlier slots for more urgent tasks.
+
+---
+
+## 9. Rat in a Maze Backtracking ($4 \times 4$ Maze)
+*(Paper 5 Q3a — 6 Marks)*
+
+Maze:
+```
+1 1 0 0
+0 1 1 0
+0 1 0 0
+0 1 1 1
+```
+* Movements allowed: **Right** and **Down** only.
+* **Trace of Dead Ends & Backtracking**:
+  1. $(0,0) \to (0,1)$
+  2. From $(0,1)$, Right $(0,2)$ is blocked ($0$). Go Down $\to (1,1)$.
+  3. From $(1,1)$, Right $\to (1,2)$. But from $(1,2)$, Right $(1,3)$ and Down $(2,2)$ are blocked ($0$). **Dead end! Backtrack to $(1,1)$!**
+  4. From $(1,1)$, try Down $\to (2,1)$.
+  5. From $(2,1)$, Right $(2,2)$ is blocked ($0$). Try Down $\to (3,1)$.
+  6. From $(3,1)$, Right $\to (3,2) \to (3,3)$ (**Destination reached!**).
+* **Final Solution Path**: **`(0,0) -> (0,1) -> (1,1) -> (2,1) -> (3,1) -> (3,2) -> (3,3)`**.

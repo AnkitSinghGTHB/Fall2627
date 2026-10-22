@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PLA Java/notes/term_end/01-module1-time-complexity-bit-manipulation.md",
+                "file": "PLA Java/notes/term_end/09-vit-bhopal-tee-oct-2026-actual-papers-solved.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "01-module1-time-complexity-bit-manipulation"
+              "title": "09-vit-bhopal-tee-oct-2026-actual-papers-solved"
             }
           }
         ]
@@ -80,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 221.5,
-    "collapsed": true
+    "width": 221.5
   },
   "right": {
     "id": "02fbfcc4c55b6218",
@@ -212,6 +211,7 @@
   },
   "active": "b7853a80d17777e3",
   "lastOpenFiles": [
+    "PLA Java/notes/term_end/01-module1-time-complexity-bit-manipulation.md",
     "PLA Java/notes/term_end/09-vit-bhopal-tee-oct-2026-actual-papers-solved.md",
     "PLA Java/resources/vit_bhopal_competitive_coding_practice_exam_papers.md",
     "PLA Java/notes/term_end/00-pla-emergency-plan-and-code-templates.md",
@@ -247,7 +247,6 @@
     "Python/notes/term_end/02-module2-collections-functions-regex.md",
     "Python/notes/term_end/01-module1-syntax-control-flow-operators.md",
     "Python/notes/term_end/08-python-guaranteed-topics-master-study-sheet.md",
-    "Python/notes/term_end/00-python-emergency-plan-and-blueprints.md",
     "ML/notes/term_end/images/svm_hyperplane_margin.svg",
     "ML/notes/term_end/images/smote_synthetic_interpolation.svg",
     "ML/notes/term_end/images/pca_variance_maximization.svg",

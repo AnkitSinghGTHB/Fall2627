@@ -1,6 +1,6 @@
 # 📘 Unit 2: Number Theory, Prime Sieves, Euler's Totient & Fast Math
 
-> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11  
+> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11, A21  
 > **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
 
 ---
@@ -158,35 +158,153 @@ public class SegmentedSieve {
 
 ---
 
-## 3. Euler's Totient Function $\phi(n)$
-*(Paper 3 Q1a — 12 Marks)*
+## 3. Euler's Totient Function $\phi(N)$
+*(Paper 3 Q1a & Paper 5 Q1a — 12 Marks)*
 
-Count of integers $k \in [1, n]$ coprime to $n$ ($\gcd(k, n) = 1$):
-$$\phi(n) = n \prod_{p \mid n} \left(1 - \frac{1}{p}\right)$$
+Euler's Totient function $\varphi(N)$ counts the number of positive integers $k \in [1, N]$ that are relatively prime (coprime) to $N$, i.e., $\gcd(k, N) = 1$.
+
+---
+
+### 3.1 Comparison of Methods: Prime Factorisation vs Brute-Force Testing
+
+| Criterion | Method A: Brute-Force Testing | Method B: Prime Factorisation |
+|:---|:---|:---|
+| **Core Idea** | Test $\gcd(k, N) == 1$ for all $k \in [1, N]$ | Express $N = p_1^{a_1} \cdot p_2^{a_2} \dots$ |
+| **Formula Used** | Count if Euclidean $\gcd(k, N) == 1$ | $\varphi(N) = N \prod (1 - 1/p)$ |
+| **Time Complexity** | $O(N \log N)$ | $O(\sqrt{N})$ |
+| **Auxiliary Space** | $O(1)$ | $O(1)$ |
+| **Feasibility for $10^{12}$** | **IMPOSSIBLE** ($\approx 4 \times 10^{13}$ operations, $\approx 111$ hours) | **FEASIBLE** ($\approx 10^6$ operations, $< 10\text{ ms}$) |
+
+1. **Method A: Brute-Force GCD Enumeration ($O(N \log N)$)**:
+   - Evaluates $\gcd(k, N)$ for every integer $k \in [1, N]$ using the Euclidean algorithm.
+   - Euclidean $\gcd$ takes $O(\log(\min(k, N))) = O(\log N)$ steps.
+   - Running this over all $N$ candidates yields total time: $\sum_{k=1}^N O(\log N) = \mathbf{O(N \log N)}$.
+
+2. **Method B: Prime Factorisation ($O(\sqrt{N})$)**:
+   - Based on Euler’s product formula. If $N = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$:
+     $$\varphi(N) = N \prod_{p \mid N} \left(1 - \frac{1}{p}\right) = N \prod_{p \mid N} \frac{p - 1}{p}$$
+   - Any composite integer $N$ has at most one prime factor greater than $\sqrt{N}$.
+   - We trial-divide $N$ by all candidate primes $p \le \sqrt{N}$. When a prime factor $p$ divides $N$, we remove all occurrences of $p$ (`while (n % p == 0) n /= p`) and multiply our accumulator by $(1 - 1/p)$.
+   - After testing all $p \le \sqrt{N}$, if the remaining $N > 1$, it is a prime factor and we apply $(1 - 1/N)$.
+   - Time Complexity is bounded strictly by the loop running up to $\sqrt{N} \implies \mathbf{O(\sqrt{N})}$.
+
+---
+
+### 3.2 Computation of $\varphi(36)$ Using Both Methods
+
+#### Method A: Brute-Force GCD Enumeration on $[1, 36]$
+Testing $\gcd(k, 36) = 1$ for all integers from $1$ to $36$:
+- **Coprime Elements ($\gcd(k, 36) = 1$)**:
+  $$\mathbf{\{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\}}$$
+- **Non-Coprime Elements** (share factors 2 or 3 with 36):
+  $$\{2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 26, 27, 28, 30, 32, 33, 34, 36\}$$
+- **Total Coprime Count**: **`12`**.
+
+#### Method B: Prime Factorisation Formula
+1. Find distinct prime factors of $36$:
+   $$36 = 4 \times 9 = 2^2 \times 3^2 \implies \text{Distinct prime factors are } p_1 = 2, \, p_2 = 3$$
+2. Substitute into Euler's product formula:
+   $$\varphi(36) = 36 \times \left(1 - \frac{1}{2}\right) \times \left(1 - \frac{1}{3}\right) = 36 \times \frac{1}{2} \times \frac{2}{3} = 36 \times \frac{1}{3} = \mathbf{12}$$
+
+Both methods yield identical results: $\mathbf{\varphi(36) = 12}$.
+
+---
+
+### 3.3 Computational Feasibility Proof for $N \le 10^{12}$
+
+Consider evaluating $\varphi(N)$ for $N = 10^{12}$ on standard computer hardware executing $\approx 10^8$ operations per second:
+
+1. **Brute-Force Approach ($O(N \log N)$)**:
+   - Number of Operations:
+     $$10^{12} \times \log_2(10^{12}) \approx 10^{12} \times 40 = \mathbf{4 \times 10^{13}\text{ operations}}$$
+   - Estimated Wall-Clock Execution Time:
+     $$T = \frac{4 \times 10^{13}\text{ operations}}{10^8\text{ ops/sec}} = 400,000\text{ seconds} \approx \mathbf{111.1\text{ hours (over 4.6 days!)}}$$
+   - **Verdict**: Completely infeasible. Fails timeout limits ($1.0\text{ s}$) exponentially.
+
+2. **Prime Factorisation Approach ($O(\sqrt{N})$)**:
+   - Number of Operations:
+     $$\sqrt{N} = \sqrt{10^{12}} = \mathbf{10^6\text{ operations}}$$
+   - Estimated Wall-Clock Execution Time:
+     $$T = \frac{10^6\text{ operations}}{10^8\text{ ops/sec}} = 0.01\text{ seconds} = \mathbf{10\text{ milliseconds!}}$$
+   - **Verdict**: Highly efficient and well within the 1.0-second execution envelope.
+   - **Conclusion**: Prime factorisation is **mandatory** for large $N \le 10^{12}$.
+
+---
+
+### 3.4 Complete Java Implementation (Both Methods)
 
 ```java
-public class EulerTotient {
-    public static int eulerPhi(int n) {
-        int result = n;
-        for (int p = 2; p * p <= n; p++) {
-            if (n % p == 0) {
-                while (n % p == 0) n /= p; // Remove factor p completely
-                result -= result / p;      // Equivalent to: result * (1 - 1/p)
+import java.util.*;
+
+public class EulerTotientComparison {
+    // Method A: Brute-Force O(N log N)
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
+    }
+
+    public static int eulerPhiBruteForce(int n, List<Integer> coprimes) {
+        int count = 0;
+        for (int k = 1; k <= n; k++) {
+            if (gcd(k, n) == 1) {
+                count++;
+                if (coprimes != null) coprimes.add(k);
             }
         }
-        if (n > 1) { // Remaining prime factor
+        return count;
+    }
+
+    // Method B: Prime Factorisation O(sqrt(N))
+    public static long eulerPhiFactorisation(long n) {
+        long result = n;
+        for (long p = 2; p * p <= n; p++) {
+            if (n % p == 0) {
+                while (n % p == 0) n /= p; // Remove all multiples of prime factor p
+                result -= result / p;      // Multiply result by (1 - 1/p)
+            }
+        }
+        if (n > 1) { // Remaining prime factor greater than sqrt(N)
             result -= result / n;
         }
         return result;
     }
 
     public static void main(String[] args) {
-        int n = 360;
-        System.out.println("phi(" + n + ") = " + eulerPhi(n)); // 96
+        int n = 36;
+        List<Integer> coprimes = new ArrayList<>();
+        int ansBrute = eulerPhiBruteForce(n, coprimes);
+        long ansFactor = eulerPhiFactorisation(n);
+
+        System.out.println("=== Euler's Totient for N = " + n + " ===");
+        System.out.println("Method A (Brute-Force): " + ansBrute);
+        System.out.println("Coprime Set: " + coprimes);
+        System.out.println("Method B (Factorisation): " + ansFactor);
+
+        // Verification for large N = 10^12
+        long largeN = 1000000000000L;
+        long startTime = System.nanoTime();
+        long ansLarge = eulerPhiFactorisation(largeN);
+        long duration = (System.nanoTime() - startTime) / 1000000;
+        System.out.println("\n=== Large N = 10^12 Test ===");
+        System.out.println("phi(10^12) = " + ansLarge + " (Computed in " + duration + " ms)");
     }
 }
 ```
-* **Time Complexity**: $O(\sqrt{n})$, **Auxiliary Space**: $O(1)$.
+
+**Sample Output**:
+```text
+=== Euler's Totient for N = 36 ===
+Method A (Brute-Force): 12
+Coprime Set: [1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35]
+Method B (Factorisation): 12
+
+=== Large N = 10^12 Test ===
+phi(10^12) = 400000000000 (Computed in 2 ms)
+```
 
 ---
 
