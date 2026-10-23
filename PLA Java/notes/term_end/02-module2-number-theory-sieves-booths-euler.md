@@ -1,248 +1,386 @@
-# 📘 Unit 2: Number Theory, Prime Sieves, Euler's Totient & Fast Math
+# 📘 Unit 2: Bit Manipulation, Array Properties & Hardware Mathematics
 
-> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11, A21  
-> **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
+> **Aligned with VIT Bhopal PLA1004 Syllabus & TEE Papers (Slots A11, B14, F11, E11, A21)**  
+> **Exam Paper Mapping**:
+> - **PART A**: **Question 2** (12 Marks — with internal choice `OR`)
+> - **PART B**: **Question 7** (8 Marks — direct implementation)  
+> **Total Unit Weight in TEE**: **Exactly 20 Marks**
 
 ---
 
-## 1. Strobogrammatic Numbers
+# PART 1: SECTION A QUESTIONS (12 MARKS) [Question 2 Pool]
 
-A Strobogrammatic number looks identical when rotated $180^\circ$.
-* **Reversible Digit Pairs**: `("0", "0")`, `("1", "1")`, `("8", "8")`, `("6", "9")`, `("9", "6")`.
+---
 
-### 1.1 Generate All Strobogrammatic Numbers of Length $N$
-*(Paper 1 Q1a — 12 Marks)*
+## 1. Swap Two Nibbles in an 8-bit Byte
+*(Paper 2 Q2c, Paper 4 Q2c — 12 Marks)*
 
-#### Evaluation: Building from Middle Outwards vs Checking Every Number:
-1. **Checking Every Number**: Testing all $10^N$ numbers requires generating strings and checking digit pairs, taking $O(N \cdot 10^N)$ time. This is prohibitively slow for $N \ge 6$.
-2. **Building from Middle Outwards (Recursive Construction)**:
-   - We construct numbers recursively from length $N-2$ to length $N$ by placing matching reversible pairs on both ends.
-   - For the outermost pair, **digit `'0'` cannot be used** because numbers cannot have leading zeros (e.g., `"080"` is not a valid 3-digit number; its numerical length is 1).
-   - Time Complexity reduces to $O(5^{N/2})$, which is exponentially faster and visits only valid strobogrammatic numbers!
+A nibble consists of $4$ bits. An $8$-bit byte has an upper nibble (bits 4–7) and a lower nibble (bits 0–3).
 
 ```java
-import java.util.*;
+public class SwapNibbles {
+    public static int swapNibbles(int n) {
+        // Step 1: Extract lower 4 bits (0x0F = 0000 1111)
+        int lowerNibble = n & 0x0F;
 
-public class StrobogrammaticGenerator {
-    public static List<String> findStrobogrammatic(int n) {
-        return helper(n, n);
-    }
+        // Step 2: Extract upper 4 bits (0xF0 = 1111 0000)
+        int upperNibble = n & 0xF0;
 
-    private static List<String> helper(int n, int totalLen) {
-        if (n == 0) return new ArrayList<>(Arrays.asList(""));
-        if (n == 1) return new ArrayList<>(Arrays.asList("0", "1", "8"));
+        // Step 3: Shift lower nibble left by 4 to higher position
+        int shiftedLower = lowerNibble << 4;
 
-        List<String> subList = helper(n - 2, totalLen);
-        List<String> result = new ArrayList<>();
+        // Step 4: Shift upper nibble right by 4 to lower position
+        int shiftedUpper = upperNibble >> 4;
 
-        for (String s : subList) {
-            // Digit '0' cannot be placed at the outermost boundary
-            if (n != totalLen) {
-                result.add("0" + s + "0");
-            }
-            result.add("1" + s + "1");
-            result.add("8" + s + "8");
-            result.add("6" + s + "9");
-            result.add("9" + s + "6");
-        }
-        return result;
+        // Step 5: Combine both parts using bitwise OR
+        return shiftedLower | shiftedUpper;
     }
 
     public static void main(String[] args) {
-        int n = 3;
-        List<String> ans = findStrobogrammatic(n);
-        System.out.println("Strobogrammatic numbers of length " + n + ": " + ans);
-        System.out.println("Total count: " + ans.size());
+        int n = 100;
+        int swapped = swapNibbles(n);
+        System.out.println("Before: " + n + " (" + String.format("%8s", Integer.toBinaryString(n)).replace(' ', '0') + ")");
+        System.out.println("After:  " + swapped + " (" + String.format("%8s", Integer.toBinaryString(swapped)).replace(' ', '0') + ")");
     }
 }
 ```
-**Sample Input**: $N = 3$  
-**Output Produced for $N = 3$**:
-```text
-Strobogrammatic numbers of length 3: [101, 808, 609, 906, 111, 818, 619, 916, 181, 888, 689, 986]
-Total count: 12
-```
-*(Explanation: Middle single-digit base case provides `["0", "1", "8"]`. Outermost pairs added are `(1,1)`, `(8,8)`, `(6,9)`, `(9,6)`. Total $= 3 \times 4 = 12$ numbers).*
+
+#### Step-by-Step Execution Trace for $N = 100$:
+- Binary representation of $100_{10}$: $0110 \, 0100_2$.
+- **Upper Nibble**: $0110_2 = 6_{10}$.
+- **Lower Nibble**: $0100_2 = 4_{10}$.
+- Shift Lower Nibble left by 4: $0100_2 \to 0100 \, 0000_2 = 64_{10}$.
+- Shift Upper Nibble right by 4: $0110_2 \to 0000 \, 0110_2 = 6_{10}$.
+- Bitwise OR: $0100 \, 0000_2 \mid 0000 \, 0110_2 = 0100 \, 0110_2 = 64 + 6 = \mathbf{70_{10}}$.
+* **Complexity**: Time: $O(1)$, Space: $O(1)$.
 
 ---
 
-## 2. Prime Generation: Simple Sieve vs Segmented Sieve
+## 2. Single Number with XOR vs HashMap Space Comparison
+*(Paper 1 Q2b — 5 to 6 Marks)*
 
-### 2.1 Simple Sieve of Eratosthenes ($O(N \log \log N)$)
-*(Paper 3 Q7 — 8 Marks)*
+Given an array where every element appears twice except one unique element, find that element in $O(N)$ time and $O(1)$ space.
 
 ```java
-import java.util.*;
-
-public class SimpleSieve {
-    public static List<Integer> simpleSieve(int n) {
-        boolean[] isPrime = new boolean[n + 1];
-        Arrays.fill(isPrime, true);
-        isPrime[0] = isPrime[1] = false;
-
-        for (int p = 2; p * p <= n; p++) {
-            if (isPrime[p]) {
-                for (int i = p * p; i <= n; i += p) isPrime[i] = false;
-            }
+public class SingleNumberXOR {
+    public static int findSingle(int[] a) {
+        int r = 0;
+        for (int x : a) {
+            r ^= x;
         }
-
-        List<Integer> primes = new ArrayList<>();
-        for (int i = 2; i <= n; i++) {
-            if (isPrime[i]) primes.add(i);
-        }
-        return primes;
+        return r;
     }
 
     public static void main(String[] args) {
-        System.out.println("Primes up to 30: " + simpleSieve(30));
+        int[] a = {4, 1, 2, 1, 2};
+        System.out.println("Single Element: " + findSingle(a)); // Output: 4
     }
 }
 ```
-**Sample Output**:
-```text
-Primes up to 30: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
-```
+
+#### Properties of XOR that Make the Code Work:
+1. **Self-Inverse Property**: $x \oplus x = 0$. Identical pairs cancel each other out to zero.
+2. **Identity Element**: $x \oplus 0 = x$. XORing any number with zero preserves the number.
+3. **Commutative & Associative**: $a \oplus b \oplus a = (a \oplus a) \oplus b = 0 \oplus b = b$. Order does not matter.
+
+#### Trace on $\{4, 1, 2, 1, 2\}$:
+- Initially: `r = 0`
+- $x = 4 \implies r = 0 \oplus 4 = 4$
+- $x = 1 \implies r = 4 \oplus 1 = 5$
+- $x = 2 \implies r = 5 \oplus 2 = 7$
+- $x = 1 \implies r = 7 \oplus 1 = 6$
+- $x = 2 \implies r = 6 \oplus 2 = \mathbf{4}$
+
+#### Space Complexity Comparison:
+- **XOR Solution**: Auxiliary Space $= \mathbf{O(1)}$. Uses only a single scalar integer variable `r`.
+- **HashMap Solution**: Auxiliary Space $= \mathbf{O(N)}$. Must store $N/2 + 1$ keys and their frequencies in memory.
 
 ---
 
-### 2.2 Segmented Sieve for Arbitrary Ranges $[L, R]$
-*(Paper 4 Q6 — 8 Marks; Priority Topic 11)*
+## 3. Maximum $6 \times 6$ (or $N \times M$) Hourglass Sum in Matrix
+*(Paper 1 Q2c, Paper 2 Q5c, Paper 3 Q5c — 12 Marks)*
 
-#### Why Segmented Sieve is Preferred over Simple Sieve for Large Ranges:
-* **Memory Limitation of Simple Sieve**: When $R = 10^9$, allocating a boolean array of size $10^9$ bytes requires $\approx 1\text{ GB}$ of contiguous memory, throwing a fatal `java.lang.OutOfMemoryError`.
-* **Segmented Sieve Advantage**: Any composite number $x \le R$ must have at least one prime factor $p \le \sqrt{R}$. Since $\sqrt{10^9} \approx 31,622$, we only generate base primes up to $31,622$. Then, we allocate an array of size $(R - L + 1) \le 10^6$ (takes only $\approx 1\text{ MB}$ memory) and cross multiples of the base primes!
+An hourglass in a 2D matrix consists of 7 cells:
+$$\begin{matrix} (i, j) & (i, j+1) & (i, j+2) \\ & (i+1, j+1) & \\ (i+2, j) & (i+2, j+1) & (i+2, j+2) \end{matrix}$$
 
 ```java
-import java.util.*;
+public class HourglassSum {
+    public static int maxHourglass(int[][] mat) {
+        int R = mat.length;
+        int C = mat[0].length;
+        if (R < 3 || C < 3) return -1;
 
-public class SegmentedSieve {
-    public static List<Long> segmentedSieve(long L, long R) {
-        int limit = (int) Math.sqrt(R);
-        // Step 1: Base primes up to sqrt(R)
-        boolean[] base = new boolean[limit + 1];
-        Arrays.fill(base, true);
-        for (int p = 2; p * p <= limit; p++) {
-            if (base[p]) {
-                for (int i = p * p; i <= limit; i += p) base[i] = false;
+        int maxSum = Integer.MIN_VALUE;
+
+        for (int i = 0; i < R - 2; i++) {
+            for (int j = 0; j < C - 2; j++) {
+                int sum = mat[i][j]     + mat[i][j + 1]     + mat[i][j + 2]
+                                        + mat[i + 1][j + 1]
+                        + mat[i + 2][j] + mat[i + 2][j + 1] + mat[i + 2][j + 2];
+
+                if (sum > maxSum) {
+                    maxSum = sum;
+                }
             }
         }
-        List<Integer> primes = new ArrayList<>();
-        for (int i = 2; i <= limit; i++) if (base[i]) primes.add(i);
-
-        // Step 2: Mark non-primes in window [L, R]
-        int rangeSize = (int) (R - L + 1);
-        boolean[] isPrime = new boolean[rangeSize];
-        Arrays.fill(isPrime, true);
-
-        for (int p : primes) {
-            long firstMultiple = Math.max((long) p * p, ((L + p - 1) / p) * p);
-            for (long j = firstMultiple; j <= R; j += p) {
-                isPrime[(int) (j - L)] = false;
-            }
-        }
-
-        List<Long> result = new ArrayList<>();
-        for (long i = L; i <= R; i++) {
-            if (i > 1 && isPrime[(int) (i - L)]) result.add(i);
-        }
-        return result;
+        return maxSum;
     }
 
     public static void main(String[] args) {
-        long L = 10, R = 50;
-        System.out.println("Primes in [" + L + ", " + R + "]: " + segmentedSieve(L, R));
+        int[][] mat = {
+            {1, 1, 1, 0, 0},
+            {0, 1, 0, 0, 0},
+            {1, 1, 1, 0, 0},
+            {0, 0, 2, 4, 4},
+            {0, 0, 0, 2, 0}
+        };
+        System.out.println("Maximum Hourglass Sum: " + maxHourglass(mat));
     }
 }
 ```
-* **Complexity**: Time: $O((R - L + 1) \log \log R + \sqrt{R} \log \log \sqrt{R})$, Auxiliary Space: $O(R - L + 1 + \sqrt{R})$.
+* **Complexity**: Time: $O((R-2)(C-2)) = \mathbf{O(R \cdot C)}$, Auxiliary Space: $\mathbf{O(1)}$.
 
 ---
 
-## 3. Euler's Totient Function $\phi(N)$
+## 4. Equilibrium Index & Maximum Equilibrium Sum
+*(Paper 4 Q2a/b — 12 Marks)*
+
+An index $i$ is an **Equilibrium Index** if the sum of elements before $i$ equals the sum of elements after $i$:
+$$\sum_{j=0}^{i-1} A[j] = \sum_{j=i+1}^{n-1} A[j]$$
+
+```java
+public class EquilibriumIndex {
+    public static int findMaxEquilibriumSum(int[] arr) {
+        int totalSum = 0;
+        for (int x : arr) totalSum += x;
+
+        int leftSum = 0;
+        int maxEquilibriumSum = Integer.MIN_VALUE;
+        int bestIndex = -1;
+
+        for (int i = 0; i < arr.length; i++) {
+            int rightSum = totalSum - leftSum - arr[i];
+
+            if (leftSum == rightSum) {
+                if (leftSum > maxEquilibriumSum) {
+                    maxEquilibriumSum = leftSum;
+                    bestIndex = i;
+                }
+            }
+            leftSum += arr[i];
+        }
+
+        System.out.println("Best Equilibrium Index: " + bestIndex);
+        return maxEquilibriumSum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
+        System.out.println("Max Equilibrium Sum: " + findMaxEquilibriumSum(arr));
+    }
+}
+```
+
+#### Step-by-Step Execution Trace on $\{-7, 1, 5, 2, -4, 3, 0\}$:
+- Total Sum $= -7 + 1 + 5 + 2 + (-4) + 3 + 0 = \mathbf{0}$.
+
+| Index $i$ | Element $A[i]$ | Left Sum | Right Sum (`total - left - A[i]`) | Equilibrium? |
+|:---:|:---:|:---:|:---:|:---:|
+| 0 | -7 | 0 | $0 - 0 - (-7) = 7$ | No |
+| 1 | 1 | -7 | $0 - (-7) - 1 = 6$ | No |
+| 2 | 5 | -6 | $0 - (-6) - 5 = 1$ | No |
+| **3** | **2** | **-1** | **$0 - (-1) - 2 = -1$** | **YES! (Sum = -1)** |
+| 4 | -4 | 1 | $0 - 1 - (-4) = 3$ | No |
+| 5 | 3 | -3 | $0 - (-3) - 3 = 0$ | No |
+| **6** | **0** | **0** | **$0 - 0 - 0 = 0$** | **YES! (Sum = 0)** |
+
+* **Equilibrium Indices**: Index 3 (Sum = -1) and Index 6 (Sum = 0).
+* **Maximum Equilibrium Sum**: $\mathbf{0}$ at Index 6.
+* **Complexity**: Time: $O(N)$ (single pass), Space: $O(1)$.
+
+---
+
+## 5. Longest Sequence of 1s by Flipping At Most One 0 Bit
+*(Paper 5 Q2a — 7 Marks)*
+
+Given an integer $N$, find the length of the longest sequence of consecutive $1\text{s}$ in its binary representation obtainable by flipping at most one $0$ to $1$.
+
+```java
+public class LongestConsecutiveOnesWithOneFlip {
+    public static int longestSequence(int n) {
+        String binary = Integer.toBinaryString(n);
+        int currentStreak = 0;
+        int previousStreak = 0;
+        int maxStreak = 1;
+
+        for (int i = 0; i < binary.length(); i++) {
+            char bit = binary.charAt(i);
+
+            if (bit == '1') {
+                currentStreak++;
+            } else { // bit == '0'
+                // If two zeros occur in a row, a single flip cannot bridge them
+                if (i > 0 && binary.charAt(i - 1) == '0') {
+                    previousStreak = 0;
+                } else {
+                    previousStreak = currentStreak;
+                }
+                currentStreak = 0;
+            }
+
+            // Streak formed by flipping the zero between previous and current block
+            int total = previousStreak + currentStreak + 1;
+            if (total > maxStreak) {
+                maxStreak = total;
+            }
+        }
+        return maxStreak;
+    }
+
+    public static void main(String[] args) {
+        int N = 1775;
+        System.out.println("Binary Before Flip: " + Integer.toBinaryString(N));
+        int ans = longestSequence(N);
+        System.out.println("Longest Sequence of 1s: " + ans);
+
+        // Flipping bit at index 4 (from right)
+        int flippedN = N | (1 << 4);
+        System.out.println("Binary After Flip:  " + Integer.toBinaryString(flippedN) + " (Value = " + flippedN + ")");
+    }
+}
+```
+
+#### Worked Trace for $N = 1775$:
+- **Binary Conversion**: $1775_{10} = \mathbf{(11011101111)_2}$.
+- Blocks of 1s:
+  - Higher block: $2$ ones (`11`)
+  - Middle block: $3$ ones (`111`)
+  - Lower block: $4$ ones (`1111`)
+- Flipping zero between lower and middle blocks gives: $4 + 1 + 3 = \mathbf{8\text{ consecutive 1s}}$!
+- **Binary After Flip**: $\mathbf{(11011111111)_2} = 1791_{10}$.
+- Time Complexity: $O(\text{bits}) = O(\log N)$, Space Complexity: $O(1)$.
+
+---
+
+## 6. Brian Kernighan’s Algorithm vs Naive Bit Shifting
+*(Paper 5 Q2b — 5 Marks)*
+
+```java
+public class BrianKernighanDemo {
+    public static void main(String[] args) {
+        int n = 40, c = 0;
+        while (n != 0) {
+            n = n & (n - 1); // Clears the lowest set bit
+            c++;
+        }
+        System.out.println("Set Bits Count: " + c);
+    }
+}
+```
+
+#### Step-by-Step Binary Trace for $N = 40$:
+- Binary representation of $40$: $(0010 \, 1000)_2$.
+- **Iteration 1**:
+  - $n = 40 = (0010 \, 1000)_2$, $n - 1 = 39 = (0010 \, 0111)_2$.
+  - $n \ \& \ (n - 1) = (0010 \, 0000)_2 = 32_{10}$.
+  - Counter `c` becomes **1**. (Lowest set bit cleared).
+- **Iteration 2**:
+  - $n = 32 = (0010 \, 0000)_2$, $n - 1 = 31 = (0001 \, 1111)_2$.
+  - $n \ \& \ (n - 1) = (0000 \, 0000)_2 = 0_{10}$.
+  - Counter `c` becomes **2**.
+- Loop exits since $n == 0$. Final Output: **`2`**.
+* **Why Faster**: A standard shift loop always tests 32 bits ($O(32)$). Brian Kernighan’s algorithm runs in **$O(K)$** where $K$ is the number of set bits. For $N = 40$, it requires **only 2 iterations** instead of 32!
+
+---
+
+## 7. Maximum Product Subarray with Boundary Indices
+*(Paper 5 Q2c — 12 Marks)*
+
+Given an array of integers, find the contiguous subarray that has the largest product, reporting the product and start/end indices.
+
+```java
+public class MaxProductSubarray {
+    public static void findMaxProduct(int[] arr) {
+        int n = arr.length;
+        if (n == 0) return;
+
+        // DP state:
+        // maxProd: maximum product ending at current index
+        // minProd: minimum product ending at current index (tracks negative numbers)
+        int maxProd = arr[0];
+        int minProd = arr[0];
+        int globalMax = arr[0];
+
+        int bestStart = 0;
+        int bestEnd = 0;
+
+        for (int i = 1; i < n; i++) {
+            int num = arr[i];
+
+            // Calculate the two possible product extensions
+            int choice1 = num * maxProd;
+            int choice2 = num * minProd;
+
+            // Maximum product ending at i can be:
+            // 1. Starting fresh with 'num'
+            // 2. Extending previous maximum product
+            // 3. Extending previous minimum product (negative * negative = positive)
+            maxProd = Math.max(num, Math.max(choice1, choice2));
+            minProd = Math.min(num, Math.min(choice1, choice2));
+
+            if (maxProd > globalMax) {
+                globalMax = maxProd;
+            }
+        }
+
+        // Identify the exact start and end indices of the best subarray
+        for (int i = 0; i < n; i++) {
+            int p = 1;
+            for (int j = i; j < n; j++) {
+                p *= arr[j];
+                if (p == globalMax) {
+                    bestStart = i;
+                    bestEnd = j;
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Maximum Product: " + globalMax);
+        System.out.println("Subarray Indices: [" + bestStart + ", " + bestEnd + "]");
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, -2, 4, -1};
+        findMaxProduct(arr);
+    }
+}
+```
+
+#### Step-by-Step Trace for $\{2, 3, -2, 4, -1\}$:
+- At $i = 0$: `num = 2` $\implies \text{product} = 2$.
+- At $i = 1$: `num = 3` $\implies 2 \times 3 = 6$.
+- At $i = 2$: `num = -2` $\implies 6 \times (-2) = -12$ (min becomes $-12$).
+- At $i = 3$: `num = 4` $\implies -12 \times 4 = -48$.
+- At $i = 4$: `num = -1` $\implies -48 \times (-1) = \mathbf{+48}$!
+* **Global Maximum Product**: $\mathbf{48}$.
+* **Subarray Indices**: Start Index $= \mathbf{0}$, End Index $= \mathbf{4}$ (Entire array: $2 \times 3 \times (-2) \times 4 \times (-1) = 48$). Time: $O(N)$, Space: $O(1)$.
+
+---
+
+## 8. Euler's Totient Function $\varphi(N)$
 *(Paper 3 Q1a & Paper 5 Q1a — 12 Marks)*
 
-Euler's Totient function $\varphi(N)$ counts the number of positive integers $k \in [1, N]$ that are relatively prime (coprime) to $N$, i.e., $\gcd(k, N) = 1$.
-
----
-
-### 3.1 Comparison of Methods: Prime Factorisation vs Brute-Force Testing
-
-| Criterion | Method A: Brute-Force Testing | Method B: Prime Factorisation |
-|:---|:---|:---|
-| **Core Idea** | Test $\gcd(k, N) == 1$ for all $k \in [1, N]$ | Express $N = p_1^{a_1} \cdot p_2^{a_2} \dots$ |
-| **Formula Used** | Count if Euclidean $\gcd(k, N) == 1$ | $\varphi(N) = N \prod (1 - 1/p)$ |
-| **Time Complexity** | $O(N \log N)$ | $O(\sqrt{N})$ |
-| **Auxiliary Space** | $O(1)$ | $O(1)$ |
-| **Feasibility for $10^{12}$** | **IMPOSSIBLE** ($\approx 4 \times 10^{13}$ operations, $\approx 111$ hours) | **FEASIBLE** ($\approx 10^6$ operations, $< 10\text{ ms}$) |
-
-1. **Method A: Brute-Force GCD Enumeration ($O(N \log N)$)**:
-   - Evaluates $\gcd(k, N)$ for every integer $k \in [1, N]$ using the Euclidean algorithm.
-   - Euclidean $\gcd$ takes $O(\log(\min(k, N))) = O(\log N)$ steps.
-   - Running this over all $N$ candidates yields total time: $\sum_{k=1}^N O(\log N) = \mathbf{O(N \log N)}$.
-
-2. **Method B: Prime Factorisation ($O(\sqrt{N})$)**:
-   - Based on Euler’s product formula. If $N = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$:
-     $$\varphi(N) = N \prod_{p \mid N} \left(1 - \frac{1}{p}\right) = N \prod_{p \mid N} \frac{p - 1}{p}$$
-   - Any composite integer $N$ has at most one prime factor greater than $\sqrt{N}$.
-   - We trial-divide $N$ by all candidate primes $p \le \sqrt{N}$. When a prime factor $p$ divides $N$, we remove all occurrences of $p$ (`while (n % p == 0) n /= p`) and multiply our accumulator by $(1 - 1/p)$.
-   - After testing all $p \le \sqrt{N}$, if the remaining $N > 1$, it is a prime factor and we apply $(1 - 1/N)$.
-   - Time Complexity is bounded strictly by the loop running up to $\sqrt{N} \implies \mathbf{O(\sqrt{N})}$.
-
----
-
-### 3.2 Computation of $\varphi(36)$ Using Both Methods
-
-#### Method A: Brute-Force GCD Enumeration on $[1, 36]$
-Testing $\gcd(k, 36) = 1$ for all integers from $1$ to $36$:
-- **Coprime Elements ($\gcd(k, 36) = 1$)**:
-  $$\mathbf{\{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\}}$$
-- **Non-Coprime Elements** (share factors 2 or 3 with 36):
-  $$\{2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, 24, 26, 27, 28, 30, 32, 33, 34, 36\}$$
-- **Total Coprime Count**: **`12`**.
-
-#### Method B: Prime Factorisation Formula
-1. Find distinct prime factors of $36$:
-   $$36 = 4 \times 9 = 2^2 \times 3^2 \implies \text{Distinct prime factors are } p_1 = 2, \, p_2 = 3$$
-2. Substitute into Euler's product formula:
-   $$\varphi(36) = 36 \times \left(1 - \frac{1}{2}\right) \times \left(1 - \frac{1}{3}\right) = 36 \times \frac{1}{2} \times \frac{2}{3} = 36 \times \frac{1}{3} = \mathbf{12}$$
-
-Both methods yield identical results: $\mathbf{\varphi(36) = 12}$.
-
----
-
-### 3.3 Computational Feasibility Proof for $N \le 10^{12}$
-
-Consider evaluating $\varphi(N)$ for $N = 10^{12}$ on standard computer hardware executing $\approx 10^8$ operations per second:
-
-1. **Brute-Force Approach ($O(N \log N)$)**:
-   - Number of Operations:
-     $$10^{12} \times \log_2(10^{12}) \approx 10^{12} \times 40 = \mathbf{4 \times 10^{13}\text{ operations}}$$
-   - Estimated Wall-Clock Execution Time:
-     $$T = \frac{4 \times 10^{13}\text{ operations}}{10^8\text{ ops/sec}} = 400,000\text{ seconds} \approx \mathbf{111.1\text{ hours (over 4.6 days!)}}$$
-   - **Verdict**: Completely infeasible. Fails timeout limits ($1.0\text{ s}$) exponentially.
-
-2. **Prime Factorisation Approach ($O(\sqrt{N})$)**:
-   - Number of Operations:
-     $$\sqrt{N} = \sqrt{10^{12}} = \mathbf{10^6\text{ operations}}$$
-   - Estimated Wall-Clock Execution Time:
-     $$T = \frac{10^6\text{ operations}}{10^8\text{ ops/sec}} = 0.01\text{ seconds} = \mathbf{10\text{ milliseconds!}}$$
-   - **Verdict**: Highly efficient and well within the 1.0-second execution envelope.
-   - **Conclusion**: Prime factorisation is **mandatory** for large $N \le 10^{12}$.
-
----
-
-### 3.4 Complete Java Implementation (Both Methods)
+Euler's Totient function $\varphi(N)$ counts the number of integers $k \in [1, N]$ such that $\gcd(k, N) = 1$.
 
 ```java
 import java.util.*;
 
 public class EulerTotientComparison {
-    // Method A: Brute-Force O(N log N)
+    // Method A: Brute-Force Testing O(N log N)
     public static int gcd(int a, int b) {
         while (b != 0) {
-            int t = b;
-            b = a % b;
-            a = t;
+            int t = b; b = a % b; a = t;
         }
         return a;
     }
@@ -263,11 +401,11 @@ public class EulerTotientComparison {
         long result = n;
         for (long p = 2; p * p <= n; p++) {
             if (n % p == 0) {
-                while (n % p == 0) n /= p; // Remove all multiples of prime factor p
-                result -= result / p;      // Multiply result by (1 - 1/p)
+                while (n % p == 0) n /= p; // Remove factor p
+                result -= result / p;      // result = result * (1 - 1/p)
             }
         }
-        if (n > 1) { // Remaining prime factor greater than sqrt(N)
+        if (n > 1) {
             result -= result / n;
         }
         return result;
@@ -276,42 +414,245 @@ public class EulerTotientComparison {
     public static void main(String[] args) {
         int n = 36;
         List<Integer> coprimes = new ArrayList<>();
-        int ansBrute = eulerPhiBruteForce(n, coprimes);
-        long ansFactor = eulerPhiFactorisation(n);
-
-        System.out.println("=== Euler's Totient for N = " + n + " ===");
-        System.out.println("Method A (Brute-Force): " + ansBrute);
-        System.out.println("Coprime Set: " + coprimes);
-        System.out.println("Method B (Factorisation): " + ansFactor);
-
-        // Verification for large N = 10^12
-        long largeN = 1000000000000L;
-        long startTime = System.nanoTime();
-        long ansLarge = eulerPhiFactorisation(largeN);
-        long duration = (System.nanoTime() - startTime) / 1000000;
-        System.out.println("\n=== Large N = 10^12 Test ===");
-        System.out.println("phi(10^12) = " + ansLarge + " (Computed in " + duration + " ms)");
+        System.out.println("phi(36) via Brute Force: " + eulerPhiBruteForce(n, coprimes));
+        System.out.println("Coprimes to 36: " + coprimes);
+        System.out.println("phi(36) via Factorisation: " + eulerPhiFactorisation(n));
     }
 }
 ```
 
-**Sample Output**:
-```text
-=== Euler's Totient for N = 36 ===
-Method A (Brute-Force): 12
-Coprime Set: [1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35]
-Method B (Factorisation): 12
+#### Worked Trace for $\varphi(36) = 12$:
+- **Brute-Force**: Coprime set $= \{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\} \implies \mathbf{12}$.
+- **Prime Factorisation**: $36 = 2^2 \times 3^2 \implies \varphi(36) = 36 \times (1 - 1/2) \times (1 - 1/3) = 36 \times 1/2 \times 2/3 = \mathbf{12}$.
+- **Feasibility for $N \le 10^{12}$**:
+  - $O(N \log N) \implies 10^{12} \times 40 = 4 \times 10^{13}$ operations ($\approx 111\text{ hours}$, impossible).
+  - $O(\sqrt{N}) \implies \sqrt{10^{12}} = 10^6$ operations ($\approx 2\text{ ms}$, highly feasible).
 
-=== Large N = 10^12 Test ===
-phi(10^12) = 400000000000 (Computed in 2 ms)
+---
+
+## 9. Strobogrammatic Number Generation
+*(Paper 1 Q1a, Paper 2 Q1b, Paper 3 Q1b — 12 Marks)*
+
+A Strobogrammatic number looks identical when rotated $180^\circ$.
+* Reversible digit pairs: `(0, 0)`, `(1, 1)`, `(8, 8)`, `(6, 9)`, `(9, 6)`.
+
+```java
+import java.util.*;
+
+public class StrobogrammaticGenerator {
+    public static List<String> findStrobogrammatic(int n) {
+        return helper(n, n);
+    }
+
+    private static List<String> helper(int n, int totalLen) {
+        if (n == 0) return new ArrayList<>(Arrays.asList(""));
+        if (n == 1) return new ArrayList<>(Arrays.asList("0", "1", "8"));
+
+        List<String> subList = helper(n - 2, totalLen);
+        List<String> result = new ArrayList<>();
+
+        for (String s : subList) {
+            // '0' cannot be placed at the outermost ends
+            if (n != totalLen) {
+                result.add("0" + s + "0");
+            }
+            result.add("1" + s + "1");
+            result.add("8" + s + "8");
+            result.add("6" + s + "9");
+            result.add("9" + s + "6");
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int n = 3;
+        List<String> ans = findStrobogrammatic(n);
+        System.out.println("Strobogrammatic numbers of length " + n + ": " + ans);
+        System.out.println("Total Count: " + ans.size());
+    }
+}
+```
+**Sample Output for $N = 3$**:
+```text
+Strobogrammatic numbers of length 3: [101, 808, 609, 906, 111, 818, 619, 916, 181, 888, 689, 986]
+Total Count: 12
 ```
 
 ---
 
-## 4. Binary Palindromes & Next Binary Palindrome
+## 10. Booth's Multiplication Algorithm for Signed Binary
+*(Syllabus Model — 12 Marks)*
 
-### 4.1 Smallest Binary Palindrome Strictly Greater than $N$
-*(Paper 1 Q2a — 7 Marks)*
+Multiplies two signed binary integers using registers $[A, Q, Q_{-1}]$ and Arithmetic Shift Right (ASR):
+* `Q_0 Q_{-1} = 10` $\implies A = A - M$, then ASR.
+* `Q_0 Q_{-1} = 01` $\implies A = A + M$, then ASR.
+* `00` or `11` $\implies$ ASR directly (Sign bit of $A$ is preserved).
+* Fully worked trace for $(7)_{10} \times (-5)_{10}$ yields $[11110 \, 11101]_2 = \mathbf{-35_{10}}$.
+
+---
+---
+
+# PART 2: SECTION B QUESTIONS (8 MARKS) [Question 7 Pool]
+
+---
+
+## 11. Dutch National Flag Algorithm ($0, 1, 2$ Single-Pass Sort)
+*(Paper 1 Q7 — 8 Marks)*
+
+Sort an array containing only $0\text{s}$, $1\text{s}$, and $2\text{s}$ in a single pass without using any library sort.
+
+```java
+import java.util.Arrays;
+
+public class DutchNationalFlag {
+    public static void sort012(int[] arr) {
+        int low = 0, mid = 0, high = arr.length - 1;
+
+        while (mid <= high) {
+            if (arr[mid] == 0) {
+                swap(arr, low++, mid++);
+            } else if (arr[mid] == 1) {
+                mid++;
+            } else { // arr[mid] == 2
+                swap(arr, mid, high--);
+            }
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 0, 2, 1, 1, 0};
+        sort012(arr);
+        System.out.println("Sorted Array: " + Arrays.toString(arr));
+    }
+}
+```
+
+#### Step-by-Step Pointer Trace for $\{2, 0, 2, 1, 1, 0\}$:
+- Initially: `low = 0, mid = 0, high = 5`.
+1. `arr[mid=0] == 2`: Swap `arr[0]` and `arr[5]`. Array: $\{0, 0, 2, 1, 1, 2\}$. `high = 4`.
+2. `arr[mid=0] == 0`: Swap `arr[0]` and `arr[0]`. `low = 1, mid = 1`. Array: $\{0, 0, 2, 1, 1, 2\}$.
+3. `arr[mid=1] == 0`: Swap `arr[1]` and `arr[1]`. `low = 2, mid = 2`. Array: $\{0, 0, 2, 1, 1, 2\}$.
+4. `arr[mid=2] == 2`: Swap `arr[2]` and `arr[4]`. Array: $\{0, 0, 1, 1, 2, 2\}$. `high = 3`.
+5. `arr[mid=2] == 1`: `mid = 3`.
+6. `arr[mid=3] == 1`: `mid = 4`.
+- Now `mid = 4 > high = 3` $\implies$ Loop terminates!
+* **Final Sorted Array**: $\{0, 0, 1, 1, 2, 2\}$. Time: $O(N)$, Space: $O(1)$.
+
+---
+
+## 12. Block Swap Algorithm for Array Left Rotation
+*(Paper 4 Q7 — 8 Marks)*
+
+To rotate an array of size $n$ to the left by $d$ positions in $O(n)$ time and $O(1)$ space:
+Divide array into $A = arr[0..d-1]$ and $B = arr[d..n-1]$. Recursively swap blocks until sizes match.
+
+```java
+import java.util.Arrays;
+
+public class BlockSwapRotation {
+    public static void leftRotate(int[] arr, int d, int n) {
+        d = d % n;
+        if (d == 0) return;
+        rotateRecursive(arr, 0, d, n);
+    }
+
+    private static void rotateRecursive(int[] arr, int i, int d, int n) {
+        if (d == 0 || d == n) return;
+
+        if (n - d == d) {
+            swap(arr, i, n - d + i, d);
+            return;
+        }
+
+        if (d < n - d) {
+            swap(arr, i, n - d + i, d);
+            rotateRecursive(arr, i, d, n - d);
+        } else {
+            swap(arr, i, d + i, n - d);
+            rotateRecursive(arr, n - d + i, 2 * d - n, d);
+        }
+    }
+
+    private static void swap(int[] arr, int fi, int si, int d) {
+        for (int k = 0; k < d; k++) {
+            int temp = arr[fi + k];
+            arr[fi + k] = arr[si + k];
+            arr[si + k] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        leftRotate(arr, 2, arr.length);
+        System.out.println("Rotated Left by 2: " + Arrays.toString(arr)); // [3, 4, 5, 6, 7, 1, 2]
+    }
+}
+```
+
+---
+
+## 13. Array Right Rotation by $K$ Positions via 3 Reversals
+*(Paper 5 Q7 — 8 Marks)*
+
+Rotate an array of size $n$ to the right by $k$ positions in $O(n)$ time and $O(1)$ extra space using the reversal algorithm.
+
+```java
+import java.util.Arrays;
+
+public class ArrayRightRotation {
+    public static void reverse(int[] a, int start, int end) {
+        while (start < end) {
+            int temp = a[start];
+            a[start] = a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static void rotateRight(int[] a, int k) {
+        int n = a.length;
+        k = k % n; // Handle k >= n
+
+        // Step 1: Reverse the entire array
+        reverse(a, 0, n - 1);
+        // Step 2: Reverse the first k elements
+        reverse(a, 0, k - 1);
+        // Step 3: Reverse the remaining n - k elements
+        reverse(a, k, n - 1);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        int k = 3;
+        System.out.println("Original: " + Arrays.toString(arr));
+        rotateRight(arr, k);
+        System.out.println("Right Rotated by " + k + ": " + Arrays.toString(arr));
+    }
+}
+```
+
+#### Step-by-Step Trace for $\{1, 2, 3, 4, 5, 6, 7\}$ with $k = 3$:
+- **Initial Array**: `[1, 2, 3, 4, 5, 6, 7]`
+- **Step 1 (Reverse all 7 elements)**:
+  `[7, 6, 5, 4, 3, 2, 1]`
+- **Step 2 (Reverse first $k=3$ elements)**:
+  `[5, 6, 7, 4, 3, 2, 1]`
+- **Step 3 (Reverse remaining $n-k=4$ elements from index 3 to 6)**:
+  `[5, 6, 7, 1, 2, 3, 4]`
+* **Final Rotated Array**: `[5, 6, 7, 1, 2, 3, 4]`.
+* **Complexity**: Time: $O(N)$, Auxiliary Space: $O(1)$.
+
+---
+
+## 14. Binary Palindromes & Next Binary Palindrome
+*(Paper 1 Q2a, Paper 2 Q6 — 7 to 8 Marks)*
+
+Find the smallest integer strictly greater than $N$ whose binary representation is a palindrome.
 
 ```java
 public class NextBinaryPalindrome {
@@ -338,123 +679,9 @@ public class NextBinaryPalindrome {
     }
 }
 ```
-**Sample Input**: $N = 25$  
-**Execution Trace**:
+
+#### Execution Trace for $N = 25$:
 - $25_{10} = 11001_2$ (Reverse $= 10011_2 \ne 11001_2 \implies$ Not palindrome).
 - $26_{10} = 11010_2$ (Reverse $= 01011_2 \implies$ Not palindrome).
 - $27_{10} = 11011_2$ (Reverse $= 11011_2 \implies$ **Binary Palindrome!**).  
-**Sample Output**:
-```text
-Next binary palindrome after 25: 27
-```
-
----
-
-## 5. Equilibrium Index & Maximum Equilibrium Sum
-*(Paper 4 Q2a/b — 12 Marks; Priority Topic 2)*
-
-An index $i$ is an **Equilibrium Index** if:
-$$\sum_{j=0}^{i-1} A[j] = \sum_{j=i+1}^{n-1} A[j]$$
-
-```java
-public class EquilibriumIndex {
-    public static int findMaxEquilibriumSum(int[] arr) {
-        int totalSum = 0;
-        for (int x : arr) totalSum += x;
-
-        int leftSum = 0;
-        int maxEquilibriumSum = Integer.MIN_VALUE;
-        int bestIndex = -1;
-
-        for (int i = 0; i < arr.length; i++) {
-            int rightSum = totalSum - leftSum - arr[i];
-            if (leftSum == rightSum) {
-                if (leftSum > maxEquilibriumSum) {
-                    maxEquilibriumSum = leftSum;
-                    bestIndex = i;
-                }
-            }
-            leftSum += arr[i];
-        }
-
-        System.out.println("Best Equilibrium Index: " + bestIndex);
-        return maxEquilibriumSum;
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {-7, 1, 5, 2, -4, 3, 0};
-        System.out.println("Max Equilibrium Sum: " + findMaxEquilibriumSum(arr));
-    }
-}
-```
-
-#### Step-by-Step Trace for $\{-7, 1, 5, 2, -4, 3, 0\}$:
-- Total Sum $= -7 + 1 + 5 + 2 + (-4) + 3 + 0 = \mathbf{-0} = \mathbf{0}$.
-
-| Index $i$ | Element $A[i]$ | Left Sum | Right Sum (`total - left - A[i]`) | Equilibrium? |
-|:---:|:---:|:---:|:---:|:---:|
-| 0 | -7 | 0 | $0 - 0 - (-7) = 7$ | No |
-| 1 | 1 | -7 | $0 - (-7) - 1 = 6$ | No |
-| 2 | 5 | -6 | $0 - (-6) - 5 = 1$ | No |
-| **3** | **2** | **-1** | **$0 - (-1) - 2 = -1$** | **YES! (Sum = -1)** |
-| 4 | -4 | 1 | $0 - 1 - (-4) = 3$ | No |
-| 5 | 3 | -3 | $0 - (-3) - 3 = 0$ | No |
-| **6** | **0** | **0** | **$0 - 0 - 0 = 0$** | **YES! (Sum = 0)** |
-
-* **Equilibrium Indices**: Index 3 (Sum = -1) and Index 6 (Sum = 0).
-* **Maximum Equilibrium Sum**: $\mathbf{0}$ at Index 6.
-* **Complexity**: Time: $O(N)$ (single pass), Auxiliary Space: $O(1)$.
-
----
-
-## 6. Armstrong Numbers Between $m$ and $n$
-*(Paper 4 Q1b-i — 6 Marks)*
-
-An $n$-digit integer is an Armstrong number if the sum of its digits raised to the power of the number of digits equals the number itself (e.g., $153 = 1^3 + 5^3 + 3^3$).
-
-```java
-import java.util.*;
-
-public class ArmstrongNumbers {
-    public static boolean isArmstrong(int num) {
-        int original = num;
-        int digits = String.valueOf(num).length();
-        int sum = 0;
-
-        while (num > 0) {
-            int digit = num % 10;
-            sum += Math.pow(digit, digits);
-            num /= 10;
-        }
-        return sum == original;
-    }
-
-    public static List<Integer> getArmstrongBetween(int m, int n) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = m; i <= n; i++) {
-            if (isArmstrong(i)) list.add(i);
-        }
-        return list;
-    }
-
-    public static void main(String[] args) {
-        int m = 100, n = 500;
-        System.out.println("Armstrong numbers between " + m + " and " + n + ": " + getArmstrongBetween(m, n));
-    }
-}
-```
-**Sample Output**:
-```text
-Armstrong numbers between 100 and 500: [153, 370, 371, 407]
-```
-
----
-
-## 7. Booth's Multiplication Algorithm for Signed Binary
-*(Syllabus Model — 12 Marks)*
-
-Multiplies two signed integers using registers $[A, Q, Q_{-1}]$ and Arithmetic Shift Right (ASR):
-* `Q_0 Q_{-1} = 10` $\implies A = A - M$, then ASR.
-* `Q_0 Q_{-1} = 01` $\implies A = A + M$, then ASR.
-* `00` or `11` $\implies$ ASR directly (Sign bit of $A$ is preserved).
-* Fully worked trace for $(7)_{10} \times (-5)_{10}$ yields $[11110 \, 11101]_2 = \mathbf{-35_{10}}$.
+* **Sample Output**: `27` ($11011_2$).

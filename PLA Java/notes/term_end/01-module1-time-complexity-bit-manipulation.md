@@ -1,22 +1,51 @@
-# 📘 Unit 1: Complexity Analysis & Bit Manipulation Algorithms
+# 📘 Unit 1: Programming Foundations, Complexity Analysis & Basic Algorithms
 
-> **Aligned with VIT Bhopal October 2026 TEE Papers**: Slots A11, B14, F11, E11, A21  
-> **Unit Weight in TEE**: Exactly 20 Marks (12M in Section A + 8M in Section B)
-
----
-
-## 1. Asymptotic Notations & Complexity Analysis
-
-### 1.1 Asymptotic Definitions
-* **Big-$O$ ($O$)**: Asymptotic upper bound ($f(n) \le c \cdot g(n)$ for all $n \ge n_0$). Worst-case guarantee.
-* **Big-$\Omega$ ($\Omega$)**: Asymptotic lower bound ($f(n) \ge c \cdot g(n)$ for all $n \ge n_0$). Best-case floor.
-* **Big-$\Theta$ ($\Theta$)**: Tight bound ($c_1 g(n) \le f(n) \le c_2 g(n)$ for all $n \ge n_0$). Precise growth rate.
+> **Aligned with VIT Bhopal PLA1004 Syllabus & TEE Papers (Slots A11, B14, F11, E11, A21)**  
+> **Exam Paper Mapping**:
+> - **PART A**: **Question 1** (12 Marks — with internal choice `OR`)
+> - **PART B**: **Question 6** (8 Marks — direct implementation)  
+> **Total Unit Weight in TEE**: **Exactly 20 Marks**
 
 ---
 
-### 1.2 High-Frequency Exam Loop Complexity Traces
+# PART 1: SECTION A QUESTIONS (12 MARKS) [Question 1 Pool]
 
-#### Loop Pattern A: Halving Double Loop *(Paper 2 Q8 & Paper 3 Q8 — 8 Marks)*
+---
+
+## 1. Asymptotic Notations & Formal Definitions
+*(Foundational Theory for Q1)*
+
+* **Big-$O$ ($O$) — Asymptotic Upper Bound**:
+  $$f(n) = O(g(n)) \iff \exists \; c > 0, n_0 > 0 \text{ such that } 0 \le f(n) \le c \cdot g(n) \; \forall \; n \ge n_0$$
+  Guarantees the algorithm will never take more time than this bound (worst-case ceiling).
+* **Big-$\Omega$ ($\Omega$) — Asymptotic Lower Bound**:
+  $$f(n) = \Omega(g(n)) \iff \exists \; c > 0, n_0 > 0 \text{ such that } 0 \le c \cdot g(n) \le f(n) \; \forall \; n \ge n_0$$
+  Guarantees the minimum time an algorithm requires (best-case floor).
+* **Big-$\Theta$ ($\Theta$) — Asymptotically Tight Bound**:
+  $$f(n) = \Theta(g(n)) \iff \exists \; c_1, c_2 > 0, n_0 > 0 \text{ such that } c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n) \; \forall \; n \ge n_0$$
+  Represents exact growth rate when upper and lower bounds match.
+
+---
+
+## 2. High-Frequency Exam Loop Complexity Traces
+*(Paper 4 Q1a-i, Q1a-ii, Q1b-ii — 6 to 12 Marks)*
+
+### 2.1 Geometric Series Inner Bound Loop
+```java
+for (i = 1; i <= n; i = i * 2) {
+    for (j = 1; j <= i; j++) {
+        print(j);
+    }
+}
+```
+* **Analysis & Proof**:
+  - Outer loop variable $i$ takes values $2^0, 2^1, 2^2, \dots, 2^k \le n$ where $k = \lfloor \log_2 n \rfloor$.
+  - For each step $i$, inner loop runs exactly $i$ times.
+  - Sum of operations is a geometric progression:
+    $$\text{Total Steps} = \sum_{p=0}^{\lfloor \log_2 n \rfloor} 2^p = 1 + 2 + 4 + 8 + \dots + 2^k = 2^{k+1} - 1 < 2n = \mathbf{O(n)}$$
+* **Complexity**: Time Complexity is **$O(n)$ (Linear Time)**, NOT $O(n^2)$ or $O(n \log n)$! Auxiliary Space: $O(1)$.
+
+### 2.2 Halving Double Loop
 ```java
 int count = 0;
 for (int i = 1; i < n; i = i * 2) {
@@ -26,28 +55,15 @@ for (int i = 1; i < n; i = i * 2) {
 }
 ```
 * **Analysis**:
-  - Outer loop: $i \in \{1, 2, 4, \dots, < n\} \implies \lceil \log_2 n \rceil$ iterations.
-  - Inner loop: $j \in \{n, \lfloor n/2 \rfloor, \lfloor n/4 \rfloor, \dots, 1\} \implies (\lfloor \log_2 n \rfloor + 1)$ iterations.
+  - Outer loop doubles: $i \in \{1, 2, 4, \dots, < n\} \implies \lceil \log_2 n \rceil$ iterations.
+  - Inner loop halves: $j \in \{n, \lfloor n/2 \rfloor, \lfloor n/4 \rfloor, \dots, 1\} \implies (\lfloor \log_2 n \rfloor + 1)$ iterations.
   - Total Operations: $O(\log n) \times O(\log n) = \mathbf{O(\log^2 n)}$. Space: $\mathbf{O(1)}$.
 * **Execution Trace for $N = 16$**:
   - Outer values: $i = 1, 2, 4, 8$ (4 iterations).
   - Inner values: $j = 16, 8, 4, 2, 1$ (5 iterations).
   - Cumulative `count` $= 4 \times 5 = \mathbf{20}$.
 
-#### Loop Pattern B: Geometric Inner Bound *(Paper 4 Q1a-ii — 6 Marks)*
-```java
-for (i = 1; i <= n; i = i * 2)
-    for (j = 1; j <= i; j++)
-        print(j);
-```
-* **Analysis & Proof**:
-  - Outer variable $i$ takes values $2^0, 2^1, 2^2, \dots, 2^k \le n$.
-  - Inner loop executes $i$ times for each outer step.
-  - Sum of operations is a geometric series:
-    $$\sum_{p=0}^{\lfloor \log_2 n \rfloor} 2^p = 1 + 2 + 4 + 8 + \dots + 2^k = 2^{k+1} - 1 < 2n = \mathbf{O(n)}$$
-  - Time Complexity is **$O(n)$ (Linear Time)**, NOT $O(n^2)$ or $O(n \log n)$! Auxiliary Space: $O(1)$.
-
-#### Loop Pattern C: Recursive Fibonacci *(Paper 4 Q1b-ii — 6 Marks)*
+### 2.3 Recursive Fibonacci Recurrence
 ```java
 int fib(int n) {
     if (n <= 1) return n;
@@ -56,59 +72,71 @@ int fib(int n) {
 ```
 * **Analysis**:
   - Recurrence: $T(n) = T(n - 1) + T(n - 2) + O(1)$.
-  - The recursion generates a binary tree of height $n$ where the number of nodes roughly doubles at each level.
+  - The recursion generates a binary call tree of height $n$.
   - Total recursive calls: $2^0 + 2^1 + 2^2 + \dots + 2^n \approx 2^{n+1} - 1 = \mathbf{O(2^n)}$ (Exponential Time).
   - Auxiliary Space: $\mathbf{O(n)}$ due to maximum call stack depth reaching $n$.
 
 ---
 
-### 1.3 Binary Search: Complexity & Execution Trace
+## 3. Master Theorem for Divide-and-Conquer Recurrences
+*(Essential for Recurrence Solving in Q1)*
+
+$$T(n) = a T(n/b) + f(n), \quad \text{where } a \ge 1, b > 1$$
+
+Compare $f(n)$ with watershed boundary $n^{\log_b a}$:
+1. **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon})$ for some $\epsilon > 0 \implies \mathbf{T(n) = \Theta(n^{\log_b a})}$.
+2. **Case 2**: If $f(n) = \Theta(n^{\log_b a} \log^k n)$ for $k \ge 0 \implies \mathbf{T(n) = \Theta(n^{\log_b a} \log^{k+1} n)}$.
+   - Example: $T(n) = 4T(n/2) + n^2 \log n \implies n^{\log_2 4} = n^2 \implies T(n) = \mathbf{\Theta(n^2 \log^2 n)}$.
+   - Example: $T(n) = 2T(n/2) + O(n)$ (Merge Sort) $\implies n^{\log_2 2} = n^1 \implies T(n) = \mathbf{\Theta(n \log n)}$.
+3. **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon})$ and regularity condition holds ($a f(n/b) \le c f(n)$) $\implies \mathbf{T(n) = \Theta(f(n))}$.
+
+---
+
+## 4. Binary Search: Complexity & Execution Trace
 *(Paper 1 Q1b — 12 Marks)*
 
 ```java
 public class BinarySearchDemo {
-    public static int binarySearch(int a[], int l, int r, int key) {
+    public static int binarySearch(int[] a, int l, int r, int key) {
         while (l <= r) {
-            int mid = l + (r - l) / 2;
-            if (a[mid] == key) return mid;
-            else if (a[mid] < key) l = mid + 1;
-            else r = mid - 1;
+            int mid = l + (r - l) / 2; // Prevents integer overflow
+            if (a[mid] == key) {
+                return mid; // Key found
+            } else if (a[mid] < key) {
+                l = mid + 1; // Search right half
+            } else {
+                r = mid - 1; // Search left half
+            }
         }
-        return -1;
+        return -1; // Key not present
     }
 
     public static void main(String[] args) {
         int[] arr = {2, 5, 8, 12, 16, 23, 38, 45, 56, 72};
-        System.out.println("Search 23: " + binarySearch(arr, 0, arr.length - 1, 23));
-        System.out.println("Search 50: " + binarySearch(arr, 0, arr.length - 1, 50));
+        System.out.println("Search 23: Index " + binarySearch(arr, 0, arr.length - 1, 23));
+        System.out.println("Search 50: Index " + binarySearch(arr, 0, arr.length - 1, 50));
     }
 }
 ```
 
 #### Step-by-Step Execution Traces on Array $\{2, 5, 8, 12, 16, 23, 38, 45, 56, 72\}$:
 1. **Searching for Key = 23**:
-   - $l=0, r=9 \implies \text{mid} = 4, a[4] = 16 < 23 \implies l = 5$.
-   - $l=5, r=9 \implies \text{mid} = 7, a[7] = 45 > 23 \implies r = 6$.
-   - $l=5, r=6 \implies \text{mid} = 5, a[5] = 23 == 23 \implies$ **Found at Index 5!**
+   - $l=0, r=9 \implies \text{mid} = 0 + (9-0)/2 = 4$. $a[4] = 16 < 23 \implies l = 5$.
+   - $l=5, r=9 \implies \text{mid} = 5 + (9-5)/2 = 7$. $a[7] = 45 > 23 \implies r = 6$.
+   - $l=5, r=6 \implies \text{mid} = 5 + (6-5)/2 = 5$. $a[5] = 23 == 23 \implies$ **Found at Index 5!**
 2. **Searching for Key = 50**:
    - $l=0, r=9 \implies \text{mid} = 4, a[4] = 16 < 50 \implies l = 5$.
    - $l=5, r=9 \implies \text{mid} = 7, a[7] = 45 < 50 \implies l = 8$.
    - $l=8, r=9 \implies \text{mid} = 8, a[8] = 56 > 50 \implies r = 7$.
-   - $l = 8 > r = 7 \implies$ Loop ends. **Return -1 (Not Found)**.
-* **Complexities**: Best: $O(1)$, Average/Worst: $O(\log n)$. Iterative Space: $O(1)$, Recursive Space: $O(\log n)$.
+   - $l = 8 > r = 7 \implies$ Loop terminates. **Return -1 (Not Found)**.
+* **Complexities**:
+  - Best-Case Time: $O(1)$ (key matches initial midpoint).
+  - Average & Worst-Case Time: $O(\log n)$.
+  - Auxiliary Space: Iterative $= O(1)$, Recursive $= O(\log n)$ (call stack).
 
 ---
 
-### 1.4 Master Theorem for Divide-and-Conquer Recurrences
-$$T(n) = a T(n/b) + f(n), \quad \text{where } a \ge 1, b > 1$$
-
-Compare $f(n)$ with watershed boundary $n^{\log_b a}$:
-1. **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon}) \implies T(n) = \Theta(n^{\log_b a})$.
-2. **Case 2**: If $f(n) = \Theta(n^{\log_b a} \log^k n) \implies T(n) = \Theta(n^{\log_b a} \log^{k+1} n)$.
-   - Example: $T(n) = 4T(n/2) + n^2 \log n \implies n^{\log_2 4} = n^2 \implies T(n) = \mathbf{\Theta(n^2 \log^2 n)}$.
-3. **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon}) \implies T(n) = \Theta(f(n))$.
-
-### 1.5 Insertion Sort: Complexity Analysis & Element Shift Trace
+## 5. Insertion Sort: Complexity Analysis & Element Shift Trace
 *(Paper 5 Q1b — 12 Marks)*
 
 ```java
@@ -116,9 +144,12 @@ public class InsertionSortDemo {
     public static int insertionSort(int[] a) {
         int n = a.length;
         int totalShifts = 0;
+
         for (int i = 1; i < n; i++) {
             int key = a[i];
             int j = i - 1;
+
+            // Move elements of a[0..i-1] that are greater than key one position ahead
             while (j >= 0 && a[j] > key) {
                 a[j + 1] = a[j]; // Element shift
                 totalShifts++;
@@ -140,9 +171,9 @@ public class InsertionSortDemo {
 
 #### Step-by-Step Execution Trace on Array $\{5, 2, 4, 6, 1, 3\}$:
 
-| Pass $i$ | Key $a[i]$ | Comparisons & Shifts Performed | Array State After Pass | Shifts in Pass | Cumulative Shifts |
+| Pass $i$ | Key $a[i]$ | Action & Shifts | Array State After Pass | Shifts in Pass | Cumulative Shifts |
 |:---:|:---:|:---|:---|:---:|:---:|
-| **Initial** | — | — | `[5, 2, 4, 6, 1, 3]` | 0 | 0 |
+| **Initial** | — | Array before sorting | `[5, 2, 4, 6, 1, 3]` | 0 | 0 |
 | **Pass 1** ($i=1$) | **2** | $5 > 2 \implies$ shift $5$ right to index 1. Place $2$ at index 0. | `[2, 5, 4, 6, 1, 3]` | 1 | 1 |
 | **Pass 2** ($i=2$) | **4** | $5 > 4 \implies$ shift $5$ right. $2 \le 4 \implies$ stop. Place $4$ at index 1. | `[2, 4, 5, 6, 1, 3]` | 1 | 2 |
 | **Pass 3** ($i=3$) | **6** | $5 \le 6 \implies$ loop condition fails immediately. No shift. | `[2, 4, 5, 6, 1, 3]` | 0 | 2 |
@@ -150,409 +181,354 @@ public class InsertionSortDemo {
 | **Pass 5** ($i=5$) | **3** | $6 > 3, 5 > 3, 4 > 3 \implies$ shift $6, 5, 4$ right. $2 \le 3 \implies$ stop. Place $3$ at index 2. | `[1, 2, 3, 4, 5, 6]` | 3 | **9** |
 
 * **Total Element Shifts**: **9 Shifts**.
-* **Final Sorted Array**: `[1, 2, 3, 4, 5, 6]`.
-
-#### Complexity Analysis & Best/Worst Case Derivations:
-1. **Best-Case Time Complexity — $O(N)$**:
-   - Occurs when the input array is **already sorted in ascending order** (e.g., $\{1, 2, 3, 4, 5, 6\}$).
-   - In each pass $i$, the while loop condition `a[j] > key` fails on the very first comparison because $a[i - 1] \le a[i]$.
-   - Number of comparisons $= N - 1 = O(N)$.
-   - Number of element shifts $= \mathbf{0}$.
-2. **Worst-Case Time Complexity — $O(N^2)$**:
-   - Occurs when the input array is **sorted in reverse descending order** (e.g., $\{6, 5, 4, 3, 2, 1\}$).
-   - Every element $a[i]$ must be compared and shifted past all $i$ elements in the sorted prefix:
-     $$\text{Total Shifts} = \sum_{i=1}^{N-1} i = 1 + 2 + 3 + \dots + (N - 1) = \frac{N(N - 1)}{2} = \mathbf{O(N^2)}$$
-3. **Average-Case Time Complexity — $O(N^2)$**:
-   - On random permutations, each element is compared with half of the elements in the sorted subarray: $\approx \frac{N(N-1)}{4}$ shifts $= O(N^2)$.
-4. **Space Complexity — $O(1)$**:
-   - Strictly in-place; requires only scalar integer variables (`key`, `i`, `j`).
+* **Complexity & Best/Worst Case Derivations**:
+  - **Best-Case Time ($O(n)$)**: Occurs when the array is **already sorted in ascending order**. The condition `a[j] > key` fails on the very first comparison for every $i$. Total comparisons $= n - 1$, element shifts $= \mathbf{0}$.
+  - **Worst-Case Time ($O(n^2)$)**: Occurs when the array is **sorted in reverse descending order**. Every element shifts past all preceding elements: $\sum_{i=1}^{n-1} i = \frac{n(n-1)}{2}$ shifts.
+  - **Space Complexity ($O(1)$)**: Strictly in-place.
 
 ---
 
-## 2. Bitwise Hacks & Algorithmic Recipes
+## 6. Armstrong Numbers Between $m$ and $n$
+*(Paper 4 Q1b-i — 6 Marks)*
 
-| Operation | Bitwise Expression |
-|:---|:---|
-| **Check if $k$-th bit is set** | `(n & (1 << k)) != 0` |
-| **Set $k$-th bit** | `n | (1 << k)` |
-| **Clear $k$-th bit** | `n & ~(1 << k)` |
-| **Toggle $k$-th bit** | `n ^ (1 << k)` |
-| **Check if power of 2** | `n > 0 && (n & (n - 1)) == 0` |
-| **Clear lowest set bit** | `n & (n - 1)` |
-| **Extract lowest set bit** | `n & -n` |
-| **Swap two numbers without temp var** | `a ^= b; b ^= a; a ^= b;` |
-| **Swap two nibbles in a byte** | `((n & 0x0F) << 4) | ((n & 0xF0) >> 4)` |
-
-### 2.1 Swap Two Nibbles in an 8-bit Byte
-*(Guaranteed TEE Question — Appeared in Paper 2 Q2c, Paper 2 Q7, Paper 3 Q7, Paper 4 Q2c)*
+An integer is an Armstrong number if the sum of its digits raised to the power of the number of digits equals the number itself (e.g., $153 = 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153$).
 
 ```java
-public class SwapNibbles {
-    public static int swapNibbles(int n) {
-        return ((n & 0x0F) << 4) | ((n & 0xF0) >> 4);
+import java.util.*;
+
+public class ArmstrongNumbers {
+    public static boolean isArmstrong(int num) {
+        int original = num;
+        int digits = String.valueOf(num).length();
+        int sum = 0;
+
+        while (num > 0) {
+            int digit = num % 10;
+            sum += Math.pow(digit, digits);
+            num /= 10;
+        }
+        return sum == original;
+    }
+
+    public static List<Integer> getArmstrongBetween(int m, int n) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = m; i <= n; i++) {
+            if (isArmstrong(i)) list.add(i);
+        }
+        return list;
     }
 
     public static void main(String[] args) {
-        int n = 100;
-        int swapped = swapNibbles(n);
-        System.out.println("Before: " + n + " (" + String.format("%8s", Integer.toBinaryString(n)).replace(' ', '0') + ")");
-        System.out.println("After:  " + swapped + " (" + String.format("%8s", Integer.toBinaryString(swapped)).replace(' ', '0') + ")");
+        int m = 100, n = 500;
+        System.out.println("Armstrong numbers between " + m + " and " + n + ": " + getArmstrongBetween(m, n));
     }
 }
 ```
-**Sample Input**: `100`  
-**Execution Trace**:
-- $100_{10} = 0110 \, 0100_2$
-- `n & 0x0F` isolates low nibble: $0000 \, 0100_2$. Shift left 4 bits: $0100 \, 0000_2 = 64$.
-- `n & 0xF0` isolates high nibble: $0110 \, 0000_2$. Shift right 4 bits: $0000 \, 0110_2 = 6$.
-- Bitwise OR: $0100 \, 0110_2 = 64 + 6 = \mathbf{70_{10}}$.
 **Sample Output**:
 ```text
-Before: 100 (01100100)
-After:  70 (01000110)
+Armstrong numbers between 100 and 500: [153, 370, 371, 407]
 ```
+
 
 ---
 
-### 2.2 Dutch National Flag ($0, 1, 2$ Single-Pass Sort)
-*(Paper 1 Q7 — 8 Marks)*
+## 7. Move All Hyphens to the Beginning
+*(Paper 2 Q1a — 12 Marks)*
 
-Sort an array of $0\text{s}, 1\text{s}, 2\text{s}$ in $O(N)$ time and $O(1)$ space using 3 pointers:
-```java
-import java.util.Arrays;
-
-public class DutchFlag {
-    public static void sort012(int[] arr) {
-        int low = 0, mid = 0, high = arr.length - 1;
-        while (mid <= high) {
-            if (arr[mid] == 0) {
-                swap(arr, low++, mid++);
-            } else if (arr[mid] == 1) {
-                mid++;
-            } else { // arr[mid] == 2
-                swap(arr, mid, high--);
-            }
-        }
-    }
-
-    private static void swap(int[] a, int i, int j) {
-        int t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {2, 0, 2, 1, 1, 0};
-        sort012(arr);
-        System.out.println("Sorted: " + Arrays.toString(arr));
-    }
-}
-```
-**Sample Input**: `[2, 0, 2, 1, 1, 0]`  
-**Sample Output**:
-```text
-Sorted: [0, 0, 1, 1, 2, 2]
-```
+### Problem Statement:
+Given a string containing characters and hyphens (`'-'`), move all hyphens to the beginning of the string while strictly preserving the relative order of all non-hyphen characters.
 
 ---
 
-### 2.3 Single Number with XOR vs HashMap Space Comparison
-*(Paper 1 Q2b — 5 Marks)*
+### Approach 1: Intuitive Two-String / StringBuilder Method (Recommended for Exams)
+This is the simplest, most natural, and error-proof way to solve this in an exam:
+1. Create two `StringBuilder` instances: `hyphens` (to store all `'-'`) and `letters` (to store all normal characters).
+2. Traverse the input string character by character:
+   - If the character is `'-'`, append it to `hyphens`.
+   - Otherwise, append it to `letters`.
+3. Combine and return: `hyphens.append(letters).toString()`.
 
 ```java
-int[] a = {4, 1, 2, 1, 2};
-int r = 0;
-for (int x : a) r ^= x;
-System.out.println(r); // Output: 4
-```
-* **Properties of XOR that make it work**:
-  1. **Self-inverse**: $x \oplus x = 0$. (Pairs cancel out).
-  2. **Identity element**: $x \oplus 0 = x$.
-  3. **Commutative & Associative**: Order of operations does not affect the final result.
-* **Space Comparison**:
-  - **XOR Approach**: Auxiliary Space $= \mathbf{O(1)}$ (uses only a single integer variable `r`).
-  - **HashMap Approach**: Auxiliary Space $= \mathbf{O(N)}$ (must store $N/2 + 1$ distinct keys and their frequencies in memory).
+public class MoveHyphensSimple {
+    public static String moveHyphens(String str) {
+        StringBuilder hyphens = new StringBuilder();
+        StringBuilder letters = new StringBuilder();
 
----
-
-### 2.4 Maximum $6 \times 6$ (or $N \times M$) Hourglass Sum
-*(Paper 1 Q2c, Paper 2 Q5c, Paper 3 Q5c — 6 to 12 Marks)*
-
-```java
-public class HourglassSum {
-    public static int maxHourglass(int[][] mat) {
-        int R = mat.length, C = mat[0].length;
-        if (R < 3 || C < 3) return -1;
-        int maxSum = Integer.MIN_VALUE;
-
-        for (int i = 0; i < R - 2; i++) {
-            for (int j = 0; j < C - 2; j++) {
-                int sum = mat[i][j]   + mat[i][j+1]   + mat[i][j+2]
-                                      + mat[i+1][j+1]
-                        + mat[i+2][j] + mat[i+2][j+1] + mat[i+2][j+2];
-                if (sum > maxSum) maxSum = sum;
-            }
-        }
-        return maxSum;
-    }
-
-    public static void main(String[] args) {
-        int[][] mat = {
-            {1, 1, 1, 0, 0},
-            {0, 1, 0, 0, 0},
-            {1, 1, 1, 0, 0},
-            {0, 0, 2, 4, 4},
-            {0, 0, 0, 2, 0}
-        };
-        System.out.println("Maximum Hourglass Sum: " + maxHourglass(mat));
-    }
-}
-```
-* **Complexity**: Time: $O((R-2)(C-2)) = \mathbf{O(R \cdot C)}$, Auxiliary Space: $\mathbf{O(1)}$.
-
----
-
-### 2.5 Longest Sequence of 1s by Flipping at Most One 0 Bit
-*(Paper 5 Q2a — 7 Marks)*
-
-Given an integer $N$, find the length of the longest contiguous sequence of $1\text{s}$ that can be created in its binary representation by flipping at most one $0$ to $1$.
-
-```java
-public class LongestConsecutiveOnesWithOneFlip {
-    public static int longestSequence(int n) {
-        // If all bits are 1s in integer (or n == -1), length is 32
-        if (~n == 0) return Integer.BYTES * 8;
-
-        int currentLength = 0;
-        int previousLength = 0;
-        int maxLength = 1; // Can always flip at least one 0 to get length 1
-
-        while (n != 0) {
-            if ((n & 1) == 1) {
-                currentLength++;
-            } else if ((n & 1) == 0) {
-                // If next bit is 0, previousLength becomes 0; else it holds currentLength
-                previousLength = ((n & 2) == 0) ? 0 : currentLength;
-                currentLength = 0;
-            }
-            maxLength = Math.max(previousLength + currentLength + 1, maxLength);
-            n >>>= 1;
-        }
-        return maxLength;
-    }
-
-    public static void main(String[] args) {
-        int N = 1775;
-        System.out.println("Input N: " + N);
-        System.out.println("Binary Before Flip: " + Integer.toBinaryString(N));
-        int maxOnes = longestSequence(N);
-        System.out.println("Longest Sequence of 1s: " + maxOnes);
-        // Trace showing the optimal flipped position
-        int flippedN = N | (1 << 4); // Flipping bit 4
-        System.out.println("Binary After Flip:  " + Integer.toBinaryString(flippedN) + " (Value = " + flippedN + ")");
-    }
-}
-```
-
-#### Detailed Execution Trace for $N = 1775$:
-- **Binary Conversion**:
-  $$1775_{10} = 1024 + 512 + 128 + 64 + 32 + 8 + 4 + 2 + 1 = \mathbf{(11011101111)_2}$$
-- **Bit Structure & 1s Blocks**:
-  - Bits 0 to 3: Four 1s (`1111`, length = 4).
-  - Bit 4: Single `0`.
-  - Bits 5 to 7: Three 1s (`111`, length = 3).
-  - Bit 8: Single `0`.
-  - Bits 9 to 10: Two 1s (`11`, length = 2).
-- **Evaluating Flip Candidates**:
-  1. **Flip Bit 8**: Bridges block of 2 ones and block of 3 ones $\implies 2 + 1 + 3 = \mathbf{6\text{ ones}}$.
-  2. **Flip Bit 4**: Bridges block of 3 ones and block of 4 ones $\implies 3 + 1 + 4 = \mathbf{8\text{ ones}}$!
-- **State After Optimal Flip (Bit 4)**:
-  - Flipped Binary: `11011111111` ($1791_{10}$).
-  - Longest sequence of consecutive $1\text{s} = \mathbf{8}$.
-- **Complexity**: Time: $O(\text{number of bits}) = \mathbf{O(\log N)}$ (at most 32 loop steps), Auxiliary Space: $\mathbf{O(1)}$.
-
----
-
-### 2.6 Brian Kernighan’s Algorithm vs Naive Bit Checking
-*(Paper 5 Q2b — 5 Marks)*
-
-```java
-public class BrianKernighanDemo {
-    public static void main(String[] args) {
-        int n = 40, c = 0;
-        System.out.println("Initial n = " + n + " (" + Integer.toBinaryString(n) + ")");
-        while (n != 0) {
-            int prev = n;
-            n = n & (n - 1);
-            c++;
-            System.out.println("Iteration " + c + ": " + prev + " & " + (prev - 1) 
-                               + " -> n = " + n + " (" + Integer.toBinaryString(n) + ")");
-        }
-        System.out.println("Final Output (Set Bits Count): " + c);
-    }
-}
-```
-
-#### Step-by-Step Binary Trace for $N = 40$:
-- Binary Representation of $40$: $(00101000)_2$.
-- **Iteration 1**:
-  - $n = 40 = (00101000)_2$, $n - 1 = 39 = (00100111)_2$.
-  - Bitwise AND:
-    $$\begin{aligned}
-    n &= 00101000_2 \\
-    n - 1 &= 00100111_2 \\
-    \hline
-    n \ \& \ (n - 1) &= 00100000_2 = 32_{10}
-    \end{aligned}$$
-  - Counter `c` becomes **1**.
-- **Iteration 2**:
-  - $n = 32 = (00100000)_2$, $n - 1 = 31 = (00011111)_2$.
-  - Bitwise AND:
-    $$\begin{aligned}
-    n &= 00100000_2 \\
-    n - 1 &= 00011111_2 \\
-    \hline
-    n \ \& \ (n - 1) &= 00000000_2 = 0_{10}
-    \end{aligned}$$
-  - Counter `c` becomes **2**.
-- **Termination**:
-  - $n == 0 \implies$ loop exits.
-  - Final Output: **`2`**.
-
-#### Why Brian Kernighan’s Algorithm is Faster than Naive Bit Shifting:
-1. **What the code computes**: It counts the number of set bits (Hamming weight) in the integer.
-2. **Naive Shift Approach**:
-   - Loops through every single bit position: `while (n > 0) { c += (n & 1); n >>= 1; }`.
-   - Always executes $\mathbf{32\text{ iterations}}$ for 32-bit integers, even if only one bit is set.
-3. **Brian Kernighan’s Speed Advantage**:
-   - Subtracting 1 from $n$ flips all bits from the lowest set bit to the rightmost bit. Performing $n \ \& \ (n - 1)$ clears **strictly the lowest set bit** and preserves all higher bits.
-   - Time Complexity is **$O(K)$**, where $K$ is the number of set bits ($K \le \log_2 N$).
-   - For $N = 40$, it requires **only 2 iterations** instead of 32 iterations!
-
----
-
-### 2.7 Maximum Product Subarray with Boundary Indices
-*(Paper 5 Q2c — 12 Marks)*
-
-Given an array of integers, find the contiguous subarray that has the largest product, reporting the maximum product as well as its start and end indices.
-
-```java
-public class MaxProductSubarray {
-    public static void findMaxProduct(int[] a) {
-        int n = a.length;
-        long maxEndingHere = a[0];
-        long minEndingHere = a[0];
-        long maxSoFar = a[0];
-
-        int bestStart = 0, bestEnd = 0;
-        int currentStart = 0;
-
-        for (int i = 1; i < n; i++) {
-            long val = a[i];
-
-            // If current element is negative, max and min swap when multiplied
-            if (val < 0) {
-                long temp = maxEndingHere;
-                maxEndingHere = minEndingHere;
-                minEndingHere = temp;
-            }
-
-            if (val > maxEndingHere * val) {
-                maxEndingHere = val;
-                if (val >= 0) currentStart = i;
+        for (char c : str.toCharArray()) {
+            if (c == '-') {
+                hyphens.append(c);
             } else {
-                maxEndingHere = maxEndingHere * val;
-            }
-
-            minEndingHere = Math.min(val, minEndingHere * val);
-
-            if (maxEndingHere > maxSoFar) {
-                maxSoFar = maxEndingHere;
-                bestStart = currentStart;
-                bestEnd = i;
+                letters.append(c);
             }
         }
 
-        // Special handling for full array product verification
-        long fullProd = 1;
-        for (int x : a) fullProd *= x;
-        if (fullProd > maxSoFar) {
-            maxSoFar = fullProd;
-            bestStart = 0;
-            bestEnd = n - 1;
-        }
-
-        System.out.println("Maximum Product: " + maxSoFar);
-        System.out.println("Subarray Indices: [" + bestStart + ", " + bestEnd + "]");
-        System.out.print("Subarray Elements: [");
-        for (int i = bestStart; i <= bestEnd; i++) {
-            System.out.print(a[i] + (i < bestEnd ? ", " : ""));
-        }
-        System.out.println("]");
+        return hyphens.append(letters).toString();
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 3, -2, 4, -1};
-        findMaxProduct(arr);
+        String input1 = "face-prep";
+        System.out.println("Input:  \"" + input1 + "\"");
+        System.out.println("Output: \"" + moveHyphens(input1) + "\""); // "-faceprep"
+
+        String input2 = "a-b-c-d";
+        System.out.println("Input:  \"" + input2 + "\"");
+        System.out.println("Output: \"" + moveHyphens(input2) + "\""); // "---abcd"
     }
 }
 ```
 
-#### Why Standard Kadane’s Algorithm Fails & The Dynamic Programming State:
-- In standard Kadane's algorithm (for maximum subarray *sum*), adding a negative number always decreases the cumulative sum.
-- For *products*, **multiplying two negative numbers produces a positive number**! A very small negative product can become the global maximum if multiplied by another negative element.
-- Therefore, we must maintain two running values at each index $i$:
-  1. `maxEndingHere`: Maximum product ending at index $i$.
-  2. `minEndingHere`: Minimum (most negative) product ending at index $i$.
-  - When $a[i] < 0$, `maxEndingHere` and `minEndingHere` swap before multiplication.
-
-#### Execution Trace for $\{2, 3, -2, 4, -1\}$:
-
-| Index $i$ | Element $a[i]$ | Action / Swap | `maxEndingHere` | `minEndingHere` | `maxSoFar` | Current Best Range |
-|:---:|:---:|:---|:---:|:---:|:---:|:---:|
-| **Init** ($i=0$) | **2** | Base initialization | 2 | 2 | 2 | $[0, 0]$ |
-| **1** | **3** | Positive: $\max(3, 2 \times 3)$, $\min(3, 2 \times 3)$ | **6** | 3 | **6** | $[0, 1]$ |
-| **2** | **-2** | Negative: Swap max & min $\to$ $\max(-2, 3 \times -2)$, $\min(-2, 6 \times -2)$ | **-2** | -12 | **6** | $[0, 1]$ |
-| **3** | **4** | Positive: $\max(4, -2 \times 4)$, $\min(4, -12 \times 4)$ | **4** | -48 | **6** | $[0, 1]$ |
-| **4** | **-1** | Negative: Swap max & min $\to$ $\max(-1, -48 \times -1)$, $\min(-1, 4 \times -1)$ | **48** | -4 | **48** | **$[0, 4]$** |
-
-* **Product of Subarray**: $2 \times 3 \times (-2) \times 4 \times (-1) = \mathbf{48}$.
-* **Start Index**: `0`, **End Index**: `4`.
-* **Complexity**: Time Complexity: $\mathbf{O(N)}$ (single linear scan), Auxiliary Space: $\mathbf{O(1)}$.
+#### Step-by-Step Execution Trace on `"face-prep"`:
+- Characters read from left to right:
+  - `'f'` $\to$ `letters = "f"`
+  - `'a'` $\to$ `letters = "fa"`
+  - `'c'` $\to$ `letters = "fac"`
+  - `'e'` $\to$ `letters = "face"`
+  - `'-'` $\to$ `hyphens = "-"`
+  - `'p'` $\to$ `letters = "facep"`
+  - `'r'` $\to$ `letters = "facepr"`
+  - `'e'` $\to$ `letters = "facepre"`
+  - `'p'` $\to$ `letters = "faceprep"`
+- Combine `hyphens + letters` $\implies$ `"-faceprep"`.
+* **Complexities**: Time: $O(N)$ (single pass), Space: $O(N)$ (linear auxiliary space).
 
 ---
 
-### 2.8 Quadratic Equation Roots Decision Flow
-*(Paper 5 Q6 — 8 Marks)*
+### Approach 2: In-Place Backward Pointer Method (Only if $O(1)$ Space is Explicitly Requested)
+If the question specifically specifies "do not use extra memory / do it in $O(1)$ auxiliary space":
+1. Traverse the character array from right to left using a write pointer `writeIndex = n - 1`.
+2. When a non-hyphen character is seen, write it to `s[writeIndex]` and decrement `writeIndex`.
+3. Fill remaining positions from index $0$ to `writeIndex` with `'-'`.
+
+```java
+public class MoveHyphensInPlace {
+    public static String moveHyphensInPlace(char[] s) {
+        int n = s.length;
+        int writeIndex = n - 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (s[i] != '-') {
+                s[writeIndex--] = s[i];
+            }
+        }
+
+        while (writeIndex >= 0) {
+            s[writeIndex--] = '-';
+        }
+
+        return new String(s);
+    }
+}
+```
+* **Complexities**: Time: $O(N)$, Auxiliary Space: $O(1)$.
+
+---
+
+## 8. Strobogrammatic Numbers: Generation of Length $N$ & Rotational Check
+*(Paper 1 Q1a, Paper 2 Q1b, Paper 3 Q1b — 12 Marks)*
+
+### Definition & Rotational Mappings:
+A number is strobogrammatic if it appears identical when rotated $180^\circ$.
+* Valid pairs: `(0, 0)`, `(1, 1)`, `(8, 8)`, `(6, 9)`, `(9, 6)`.
+* Single middle digits (for odd length): `'0'`, `'1'`, `'8'`.
+
+### Part A: Generate All Strobogrammatic Numbers of Length $N$ (Middle Outwards):
+```java
+import java.util.*;
+
+public class StrobogrammaticGenerator {
+    public static List<String> findStrobogrammatic(int n) {
+        return helper(n, n);
+    }
+
+    private static List<String> helper(int n, int totalLength) {
+        // Base cases
+        if (n == 0) return new ArrayList<>(Arrays.asList(""));
+        if (n == 1) return new ArrayList<>(Arrays.asList("0", "1", "8"));
+
+        // Recursively build inner sub-numbers of length n - 2
+        List<String> subList = helper(n - 2, totalLength);
+        List<String> result = new ArrayList<>();
+
+        for (String s : subList) {
+            // Digit '0' cannot be placed in the outermost pair of the final number
+            if (n != totalLength) {
+                result.add("0" + s + "0");
+            }
+            result.add("1" + s + "1");
+            result.add("6" + s + "9");
+            result.add("8" + s + "8");
+            result.add("9" + s + "6");
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int n = 3;
+        List<String> res = findStrobogrammatic(n);
+        System.out.println("Strobogrammatic numbers of length " + n + ": " + res);
+        System.out.println("Total Count: " + res.size());
+    }
+}
+```
+
+#### Analytical Evaluations Required in Exam:
+1. **Numbers Produced for $N = 3$**:
+   - For $n = 1$, base sub-numbers: `["0", "1", "8"]`.
+   - Wrapping outer pairs (excluding `"0"` on outside since $n = totalLength = 3$):
+     - Wrapped with `"1...1"`: `"101"`, `"111"`, `"181"`.
+     - Wrapped with `"6...9"`: `"609"`, `"619"`, `"689"`.
+     - Wrapped with `"8...8"`: `"808"`, `"818"`, `"888"`.
+     - Wrapped with `"9...6"`: `"906"`, `"916"`, `"986"`.
+   - **Complete List for $N = 3$ (12 numbers)**:
+     `["101", "609", "808", "906", "111", "619", "818", "916", "181", "689", "888", "986"]`.
+2. **Evaluation (Middle-Outwards vs Brute-Force Checking)**:
+   - *Brute-Force*: Checking every $N$-digit number requires inspecting $9 \times 10^{N-1}$ integers. For $N = 8$, that is $90,000,000$ checks!
+   - *Building from Middle*: Generates only valid strobogrammatic numbers directly in $O(5^{N/2})$ time, avoiding $99.99\%$ wasted checks.
+3. **Justification of why digit `0` cannot be in the outermost pair**:
+   - If `'0'` is placed at the outermost boundary, the resulting number has a leading zero (e.g., `"010"`), which mathematically reduces it to a 2-digit number ($10$), violating the length $N$ constraint.
+
+---
+
+## 9. Student Grade Evaluation & Decision Making
+*(Paper 4 Q1a-i — 6 Marks)*
 
 ```java
 import java.util.Scanner;
 
-public class QuadraticRootsSolver {
-    public static void solveQuadratic(double a, double b, double c) {
-        if (a == 0) {
-            System.out.println("Invalid: Coefficient 'a' cannot be 0 for a quadratic equation.");
+public class StudentGradeCalculator {
+    public static void evaluateGrade(int m1, int m2, int m3) {
+        // Individual subject passing criteria: minimum 40 in each subject
+        if (m1 < 40 || m2 < 40 || m3 < 40) {
+            System.out.println("Result: Failed (Individual subject score below passing threshold 40)");
+            System.out.println("Grade:  F");
             return;
         }
 
+        double average = (m1 + m2 + m3) / 3.0;
+        char grade;
+
+        if (average >= 90) {
+            grade = 'O';
+        } else if (average >= 80) {
+            grade = 'A';
+        } else if (average >= 70) {
+            grade = 'B';
+        } else if (average >= 60) {
+            grade = 'C';
+        } else if (average >= 50) {
+            grade = 'D';
+        } else {
+            grade = 'P';
+        }
+
+        System.out.printf("Average Marks: %.2f | Result: Passed | Grade: %c\n", average, grade);
+    }
+
+    public static void main(String[] args) {
+        evaluateGrade(92, 88, 95); // High scorer
+        evaluateGrade(75, 68, 80); // First class
+        evaluateGrade(85, 35, 90); // Failed in one subject
+    }
+}
+```
+
+---
+---
+
+# PART 2: SECTION B QUESTIONS (8 MARKS) [Question 6 Pool]
+
+---
+
+## 7. Day of the Week Display using Switch-Case & Fall-Through Analysis
+*(Paper 1 Q6 — 8 Marks)*
+
+```java
+import java.util.Scanner;
+
+public class DayOfWeek {
+    public static void displayDay(int day) {
+        // Normal version with break statements
+        System.out.print("Standard Output for day " + day + ": ");
+        switch (day) {
+            case 1: System.out.println("Monday - Weekday"); break;
+            case 2: System.out.println("Tuesday - Weekday"); break;
+            case 3: System.out.println("Wednesday - Weekday"); break;
+            case 4: System.out.println("Thursday - Weekday"); break;
+            case 5: System.out.println("Friday - Weekday"); break;
+            case 6: System.out.println("Saturday - Weekend"); break;
+            case 7: System.out.println("Sunday - Weekend"); break;
+            default: System.out.println("Invalid day entered!");
+        }
+    }
+
+    public static void traceFallThrough(int day) {
+        System.out.println("Output without 'break' statements for input " + day + ":");
+        switch (day) {
+            case 1: System.out.println("Monday");
+            case 2: System.out.println("Tuesday");
+            case 3: System.out.println("Wednesday");
+            case 4: System.out.println("Thursday");
+            case 5: System.out.println("Friday");
+            case 6: System.out.println("Saturday");
+            case 7: System.out.println("Sunday");
+            default: System.out.println("Invalid / Fallthrough End");
+        }
+    }
+
+    public static void main(String[] args) {
+        displayDay(6);
+        displayDay(9);
+        System.out.println("-------------------------------------------");
+        traceFallThrough(6);
+    }
+}
+```
+
+#### Analytical Answers Required in Exam:
+1. **Output for Input $9$**: `"Invalid day entered!"` (matches `default` case).
+2. **Behavior when all `break` statements are removed**:
+   - In Java, `switch-case` exhibits **fall-through**: execution continues into subsequent cases regardless of their case values until the switch block ends.
+   - For **Input $6$**, execution jumps to `case 6` and executes all remaining lines:
+     ```text
+     Saturday
+     Sunday
+     Invalid / Fallthrough End
+     ```
+
+---
+
+## 8. Quadratic Equation Roots Solver & Decision Flow
+*(Paper 5 Q6 — 8 Marks)*
+
+```java
+public class QuadraticRootsSolver {
+    public static void solveQuadratic(double a, double b, double c) {
+        if (a == 0) {
+            System.out.println("Not a quadratic equation (a cannot be 0).");
+            return;
+        }
+
+        // Calculate discriminant D = b^2 - 4ac
         double discriminant = (b * b) - (4 * a * c);
-        System.out.printf("Equation: (%.1f)x^2 + (%.1f)x + (%.1f) = 0 | Discriminant D = %.2f\n", a, b, c, discriminant);
+
+        System.out.printf("Equation: (%.0f)x^2 + (%.0f)x + (%.0f) = 0 | D = %.2f\n", a, b, c, discriminant);
 
         if (discriminant > 0) {
-            // Branch 1: Real and Distinct
-            double r1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-            double r2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-            System.out.printf("Nature of Roots: Real and Distinct\nRoots: x1 = %.2f, x2 = %.2f\n", r1, r2);
+            // Branch 1: Real and Distinct Roots
+            double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            System.out.printf("Branch Executed: Real and Distinct | Roots: x1 = %.2f, x2 = %.2f\n", root1, root2);
         } else if (discriminant == 0) {
-            // Branch 2: Real and Equal
-            double r = -b / (2 * a);
-            System.out.printf("Nature of Roots: Real and Equal\nRoots: x1 = x2 = %.2f\n", r);
+            // Branch 2: Real and Equal Roots
+            double root = -b / (2 * a);
+            System.out.printf("Branch Executed: Real and Equal | Roots: x1 = x2 = %.2f\n", root);
         } else {
-            // Branch 3: Complex Conjugate (Imaginary)
+            // Branch 3: Imaginary (Complex Conjugates)
             double realPart = -b / (2 * a);
             double imagPart = Math.sqrt(-discriminant) / (2 * a);
-            System.out.printf("Nature of Roots: Imaginary (Complex Conjugates)\nRoots: x1 = %.2f + %.2fi, x2 = %.2f - %.2fi\n", 
-                              realPart, imagPart, realPart, imagPart);
+            System.out.printf("Branch Executed: Imaginary (Complex) | Roots: %.2f ± %.2fi\n", realPart, imagPart);
         }
-        System.out.println("-----------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
@@ -563,22 +539,7 @@ public class QuadraticRootsSolver {
 }
 ```
 
-#### Decision Flow & Analytical Trace for the 3 Cases:
-
-```
-                  Calculate Discriminant D = b^2 - 4ac
-                                  |
-            +---------------------+---------------------+
-            |                                           |
-         D > 0                                        D <= 0
-            |                                           |
-  [Branch 1: Real & Distinct]                  +--------+--------+
-  r1, r2 = (-b ± √D) / (2a)                    |                 |
-                                             D == 0            D < 0
-                                               |                 |
-                                     [Branch 2: Equal]  [Branch 3: Imaginary]
-                                     r = -b / (2a)      -b/(2a) ± i(√|D|)/(2a)
-```
+#### Decision Flow & Test Case Analysis:
 
 | Coefficients $(a, b, c)$ | Discriminant Calculation $D = b^2 - 4ac$ | Sign of $D$ | Decision Branch Executed | Roots Computed |
 |:---|:---|:---:|:---|:---|
@@ -586,5 +547,147 @@ public class QuadraticRootsSolver {
 | **Case 2**: $(1, 2, 1)$ | $(2)^2 - 4(1)(1) = 4 - 4 = \mathbf{0}$ | $D == 0$ | **Branch 2 (Real & Equal)** | $x_1 = x_2 = \frac{-2}{2} = \mathbf{-1.0}$ |
 | **Case 3**: $(1, 2, 5)$ | $(2)^2 - 4(1)(5) = 4 - 20 = \mathbf{-16}$ | $D < 0$ | **Branch 3 (Imaginary / Complex)** | $\text{Real} = -1.0, \text{Imag} = \frac{\sqrt{16}}{2} = 2.0 \implies \mathbf{-1.0 \pm 2.0i}$ |
 
-* **Complexity**: Time Complexity: $O(1)$ (direct arithmetic and square root), Space Complexity: $O(1)$.
+* **Complexity**: Time: $O(1)$, Space: $O(1)$.
+
+---
+
+## 9. Prime Sieves: Simple Sieve & Segmented Sieve
+*(Paper 3 Q6 & Paper 4 Q6 — 8 Marks)*
+
+### 9.1 Simple Sieve of Eratosthenes ($O(N \log \log N)$)
+```java
+import java.util.*;
+
+public class SimpleSieve {
+    public static List<Integer> simpleSieve(int n) {
+        boolean[] isPrime = new boolean[n + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
+
+        for (int p = 2; p * p <= n; p++) {
+            if (isPrime[p]) {
+                for (int i = p * p; i <= n; i += p) {
+                    isPrime[i] = false;
+                }
+            }
+        }
+
+        List<Integer> primes = new ArrayList<>();
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) primes.add(i);
+        }
+        return primes;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Primes up to 30: " + simpleSieve(30));
+    }
+}
+```
+**Sample Output**: `[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]`
+
+### 9.2 Segmented Sieve for Large Ranges $[L, R]$ ($R \le 10^9, R - L \le 10^6$)
+#### Why Segmented Sieve is Preferred for Large Ranges:
+* **Memory Limitation of Simple Sieve**: When $R = 10^9$, allocating a boolean array of size $10^9$ takes $\approx 1\text{ GB}$ contiguous memory, causing a fatal `OutOfMemoryError`.
+* **Segmented Sieve Advantage**: Any composite number $x \le R$ has at least one prime factor $p \le \sqrt{R}$. Since $\sqrt{10^9} \approx 31,622$, we only generate base primes up to $31,622$. Then we allocate an array of size $(R - L + 1) \le 10^6$ (takes only $\approx 1\text{ MB}$ memory) and cross multiples of the base primes!
+
+```java
+import java.util.*;
+
+public class SegmentedSieve {
+    public static List<Long> segmentedSieve(long L, long R) {
+        int limit = (int) Math.sqrt(R);
+
+        // Step 1: Base primes up to sqrt(R) using simple sieve
+        boolean[] base = new boolean[limit + 1];
+        Arrays.fill(base, true);
+        for (int p = 2; p * p <= limit; p++) {
+            if (base[p]) {
+                for (int i = p * p; i <= limit; i += p) base[i] = false;
+            }
+        }
+        List<Integer> primes = new ArrayList<>();
+        for (int i = 2; i <= limit; i++) if (base[i]) primes.add(i);
+
+        // Step 2: Mark non-primes in range [L, R]
+        int rangeSize = (int) (R - L + 1);
+        boolean[] isPrime = new boolean[rangeSize];
+        Arrays.fill(isPrime, true);
+
+        for (int p : primes) {
+            // Find first multiple of p >= L
+            long firstMultiple = Math.max((long) p * p, ((L + p - 1) / p) * p);
+            for (long j = firstMultiple; j <= R; j += p) {
+                isPrime[(int) (j - L)] = false;
+            }
+        }
+
+        List<Long> result = new ArrayList<>();
+        for (long i = L; i <= R; i++) {
+            if (i > 1 && isPrime[(int) (i - L)]) result.add(i);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        long L = 10, R = 50;
+        System.out.println("Primes in [" + L + ", " + R + "]: " + segmentedSieve(L, R));
+    }
+}
+```
+* **Complexity**: Time: $O((R - L + 1) \log \log R + \sqrt{R} \log \log \sqrt{R})$, Auxiliary Space: $O(R - L + 1 + \sqrt{R})$.
+
+---
+
+## 13. Binary Palindrome Verification
+*(Paper 2 Q6 — 8 Marks)*
+
+### Problem Statement:
+Write an algorithm and Java program to check whether a given integer's binary representation is a palindrome.
+
+### Algorithmic Logic:
+1. Extract the binary representation of the given integer $N$ by collecting bits from right to left using bitwise operations (`n & 1` and `n >>= 1`), or convert to binary string / reverse bits.
+2. Compare the reversed bit sequence with the original bit sequence.
+3. If the bits match reading forwards and backwards, output that it is a Binary Palindrome; otherwise, it is not.
+
+```java
+public class BinaryPalindromeCheck {
+    public static boolean isBinaryPalindrome(int n) {
+        String bin = Integer.toBinaryString(n);
+        int l = 0, r = bin.length() - 1;
+
+        while (l < r) {
+            if (bin.charAt(l) != bin.charAt(r)) {
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+
+    public static void checkAndDisplay(int n) {
+        String bin = Integer.toBinaryString(n);
+        boolean result = isBinaryPalindrome(n);
+        System.out.printf("Number: %d | Binary: %s | Is Binary Palindrome? %s\n", n, bin, result ? "YES" : "NO");
+    }
+
+    public static void main(String[] args) {
+        checkAndDisplay(9);   // 1001_2 -> Palindrome
+        checkAndDisplay(27);  // 11011_2 -> Palindrome
+        checkAndDisplay(10);  // 1010_2 -> Not palindrome
+        checkAndDisplay(25);  // 11001_2 -> Not palindrome
+    }
+}
+```
+
+#### Step-by-Step Execution Trace:
+| Integer $N$ | Binary Form | Reversed Binary | Comparison ($L \dots R$) | Result |
+|:---:|:---:|:---:|:---|:---:|
+| **9** | `1001` | `1001` | `1==1`, `0==0` | **YES (Palindrome)** |
+| **27** | `11011` | `11011` | `1==1`, `1==1`, `0==0` | **YES (Palindrome)** |
+| **10** | `1010` | `0101` | `1 != 0` (mismatch at index 0) | **NO** |
+| **25** | `11001` | `10011` | `1==1`, `1 != 0` (mismatch at index 1) | **NO** |
+
+* **Complexities**: Time: $O(\log N)$ (proportional to number of bits), Auxiliary Space: $O(1)$.
 

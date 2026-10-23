@@ -220,6 +220,45 @@ public class DutchNationalFlag {
 
 ---
 
+### Problem 1.6: Move All Hyphens to the Beginning
+*(From Paper 2 Q1a — 12 Marks)*
+
+Move all occurrences of `'-'` to the beginning of a string while strictly preserving the relative order of all non-hyphen characters.
+
+#### Solution (Simple Two-String / StringBuilder Approach):
+```java
+public class MoveHyphensSimple {
+    public static String moveHyphens(String str) {
+        StringBuilder hyphens = new StringBuilder();
+        StringBuilder letters = new StringBuilder();
+
+        for (char c : str.toCharArray()) {
+            if (c == '-') {
+                hyphens.append(c);
+            } else {
+                letters.append(c);
+            }
+        }
+        return hyphens.append(letters).toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Result: " + moveHyphens("face-prep")); // "-faceprep"
+        System.out.println("Result: " + moveHyphens("a-b-c-d"));     // "---abcd"
+    }
+}
+```
+
+* **Execution Trace for `"face-prep"`**:
+  - Scanning `"face-prep"`:
+    - Normal characters appended to `letters`: `"faceprep"`
+    - Hyphens appended to `hyphens`: `"-"`
+  - Combine: `hyphens + letters` $\implies$ **`"-faceprep"`**.
+  - Complexities: Time: $O(N)$, Auxiliary Space: $O(N)$.
+  *(Optional: If asked specifically for $O(1)$ extra space, write non-hyphens from the end backwards and pad hyphens at the front).*
+
+---
+
 ## SECTION 2: Stacks, Queues & Linked Lists
 
 ---
@@ -808,7 +847,69 @@ for (int i = 1; i < n; i++) {
 
 ---
 
-### Problem 5.3: Brian Kernighan Bit Count Trace for $N = 40$
+### Problem 5.3: Longest Sequence of 1s by Flipping At Most One 0 Bit
+*(From Paper 5 Q2a — 7 Marks)*
+
+Given an integer $N$, find the length of the longest sequence of consecutive $1\text{s}$ obtainable by flipping at most one $0$ to $1$.
+
+```java
+public class LongestConsecutiveOnesWithOneFlip {
+    public static int longestSequence(int n) {
+        String binary = Integer.toBinaryString(n);
+        int currentStreak = 0;
+        int previousStreak = 0;
+        int maxStreak = 1;
+
+        for (int i = 0; i < binary.length(); i++) {
+            char bit = binary.charAt(i);
+
+            if (bit == '1') {
+                currentStreak++;
+            } else { // bit == '0'
+                // If two zeros in a row, they cannot bridge across a single flip
+                if (i > 0 && binary.charAt(i - 1) == '0') {
+                    previousStreak = 0;
+                } else {
+                    previousStreak = currentStreak;
+                }
+                currentStreak = 0;
+            }
+
+            // Streak formed by flipping the zero between previous and current block
+            int total = previousStreak + currentStreak + 1;
+            if (total > maxStreak) {
+                maxStreak = total;
+            }
+        }
+        return maxStreak;
+    }
+
+    public static void main(String[] args) {
+        int N = 1775;
+        System.out.println("Binary Before Flip: " + Integer.toBinaryString(N));
+        int ans = longestSequence(N);
+        System.out.println("Longest Sequence of 1s: " + ans);
+
+        // Optimal flip at bit index 4 (from right)
+        int flippedN = N | (1 << 4);
+        System.out.println("Binary After Flip:  " + Integer.toBinaryString(flippedN) + " (Value = " + flippedN + ")");
+    }
+}
+```
+
+#### Worked Trace for $N = 1775$:
+- **Binary Before Flip**: $1775_{10} = \mathbf{(11011101111)_2}$
+- Block breakdown:
+  - Higher block: $2$ ones (`11`)
+  - Middle block: $3$ ones (`111`)
+  - Lower block: $4$ ones (`1111`)
+- Flipping zero between lower and middle blocks gives: $4 + 1 + 3 = \mathbf{8\text{ consecutive 1s}}$!
+- **Binary After Flip**: $\mathbf{(11011111111)_2} = 1791_{10}$.
+- Time Complexity: $O(\text{bits}) = O(\log N)$, Space Complexity: $O(1)$.
+
+---
+
+### Problem 5.4: Brian Kernighan Bit Count Trace for $N = 40$
 *(From Paper 5 Q2b — 5 Marks)*
 
 ```java
@@ -836,7 +937,7 @@ System.out.println(c);
 
 ---
 
-### Problem 5.4: Maximum Product Subarray with Indices
+### Problem 5.5: Maximum Product Subarray with Indices
 *(From Paper 5 Q2c — 12 Marks)*
 
 Given array $A = \{2, 3, -2, 4, -1\}$:
@@ -845,19 +946,52 @@ Given array $A = \{2, 3, -2, 4, -1\}$:
 public class MaxProductSubarray {
     public static void findMaxProduct(int[] arr) {
         int n = arr.length;
-        int maxProd = arr[0], minProd = arr[0], globalMax = arr[0];
-        int start = 0, end = 0, tempStart = 0;
+        if (n == 0) return;
+
+        // DP State:
+        // maxProd: maximum product ending at current index
+        // minProd: minimum product ending at current index (tracks negative numbers)
+        int maxProd = arr[0];
+        int minProd = arr[0];
+        int globalMax = arr[0];
+
+        int bestStart = 0;
+        int bestEnd = 0;
 
         for (int i = 1; i < n; i++) {
-            int x = arr[i];
-            if (x < 0) {
-                int t = maxProd; maxProd = minProd; minProd = t; // Negative swaps max and min
+            int num = arr[i];
+
+            // Calculate the two possible product extensions
+            int choice1 = num * maxProd;
+            int choice2 = num * minProd;
+
+            // Maximum product ending at i can be:
+            // 1. Starting fresh with 'num'
+            // 2. Extending previous maximum product
+            // 3. Extending previous minimum product (negative * negative = positive)
+            maxProd = Math.max(num, Math.max(choice1, choice2));
+            minProd = Math.min(num, Math.min(choice1, choice2));
+
+            if (maxProd > globalMax) {
+                globalMax = maxProd;
             }
-            maxProd = Math.max(x, maxProd * x);
-            minProd = Math.min(x, minProd * x);
-            globalMax = Math.max(globalMax, maxProd);
         }
+
+        // Identify the exact start and end indices of the best subarray
+        for (int i = 0; i < n; i++) {
+            int p = 1;
+            for (int j = i; j < n; j++) {
+                p *= arr[j];
+                if (p == globalMax) {
+                    bestStart = i;
+                    bestEnd = j;
+                    break;
+                }
+            }
+        }
+
         System.out.println("Maximum Product: " + globalMax);
+        System.out.println("Subarray Indices: [" + bestStart + ", " + bestEnd + "]");
     }
 
     public static void main(String[] args) {

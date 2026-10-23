@@ -56,7 +56,20 @@ Single Element: 1
 ```java
 public class SwapNibbles {
     public static int swapNibbles(int n) {
-        return ((n & 0x0F) << 4) | ((n & 0xF0) >> 4);
+        // Step 1: Isolate lower 4 bits (mask with 0x0F = 0000 1111)
+        int lowerNibble = n & 0x0F;
+
+        // Step 2: Isolate upper 4 bits (mask with 0xF0 = 1111 0000)
+        int upperNibble = n & 0xF0;
+
+        // Step 3: Shift lower nibble left by 4 to higher position
+        int shiftedLower = lowerNibble << 4;
+
+        // Step 4: Shift upper nibble right by 4 to lower position
+        int shiftedUpper = upperNibble >> 4;
+
+        // Step 5: Merge with bitwise OR
+        return shiftedLower | shiftedUpper;
     }
 
     public static void main(String[] args) {
@@ -236,41 +249,41 @@ Min after pops: 10
 
 ---
 
-### Q6 (8 Marks) [Section B Model]
-**Write an in-place algorithm to move all occurrences of `'-'` to the beginning of a character array in $O(N)$ time and $O(1)$ space. Dry-run on `"a-b-c-d"`.**
+### Q6 (8 to 12 Marks) [Move Hyphens to Beginning]
+**Move all occurrences of `'-'` to the beginning of a string while preserving relative order of characters. Dry-run on `"a-b-c-d"`.**
 
-#### Solution:
+#### Solution (Simple Two-String / StringBuilder Approach — Recommended):
 ```java
-public class MoveHyphensDemo {
-    public static String moveHyphens(char[] str) {
-        int n = str.length;
-        int writeIdx = n - 1;
-        for (int i = n - 1; i >= 0; i--) {
-            if (str[i] != '-') {
-                str[writeIdx--] = str[i];
+public class MoveHyphensSimple {
+    public static String moveHyphens(String str) {
+        StringBuilder hyphens = new StringBuilder();
+        StringBuilder letters = new StringBuilder();
+
+        for (char c : str.toCharArray()) {
+            if (c == '-') {
+                hyphens.append(c);
+            } else {
+                letters.append(c);
             }
         }
-        while (writeIdx >= 0) {
-            str[writeIdx--] = '-';
-        }
-        return new String(str);
+        return hyphens.append(letters).toString();
     }
 
     public static void main(String[] args) {
-        char[] arr = "a-b-c-d".toCharArray();
-        System.out.println("Result: " + moveHyphens(arr));
+        System.out.println("Result: " + moveHyphens("a-b-c-d")); // "---abcd"
+        System.out.println("Result: " + moveHyphens("face-prep")); // "-faceprep"
     }
 }
 ```
+
 * **Execution Trace**:
-  - String length $= 7$. Non-hyphens read right-to-left: `'d'`, `'c'`, `'b'`, `'a'`.
-  - Placed into indices $6, 5, 4, 3$.
-  - Remaining prefix indices $2, 1, 0$ filled with `'-'`.
-  - Final string: `"---abcd"`.
-* **Sample Output**:
-```text
-Result: ---abcd
-```
+  - Scanning `"a-b-c-d"`:
+    - Normal characters appended to `letters`: `"abcd"`
+    - Hyphens appended to `hyphens`: `"---"`
+  - Combine: `hyphens + letters` $\implies$ **`"---abcd"`**.
+  - Complexities: Time: $O(N)$, Auxiliary Space: $O(N)$.
+
+*(Note: If the question specifically asks for $O(1)$ extra space, use the backward write-pointer method: scan right-to-left, write non-hyphens from the end, and pad hyphens at the front).*
 
 ---
 

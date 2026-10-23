@@ -428,7 +428,48 @@ Shortest & Lexicographically Smallest String for weight 25: ACC
 ### Topic 7: Min-Stack in $O(1)$ Extra Space
 *(Direct from `Stack_Problems.pptx` & `sample_paper_text.txt Q4`)*
 
-#### Arithmetic Encoding Mechanics:
+#### Design Options for Min Stack:
+1. **Method 1: Two Stacks Approach (Standard & Recommended)**:
+   - Uses `mainStack` for data and `minStack` to track running minimums.
+   - Extremely clean, simple to remember, zero risk of formula confusion or overflow. Time: $O(1)$, Auxiliary Space: $O(N)$.
+2. **Method 2: Arithmetic Encoding in Single Stack (Space-Optimized)**:
+   - Uses formula $2x - \text{min}$ to store both data and state in a single stack. Time: $O(1)$, Auxiliary Space: $O(1)$.
+
+```java
+import java.util.Stack;
+
+// Method 1: Standard Two-Stack Approach (Recommended for exam writing)
+class MinStackStandard {
+    private Stack<Integer> mainStack = new Stack<>();
+    private Stack<Integer> minStack = new Stack<>();
+
+    public void push(int x) {
+        mainStack.push(x);
+        if (minStack.isEmpty() || x <= minStack.peek()) {
+            minStack.push(x);
+        } else {
+            minStack.push(minStack.peek());
+        }
+    }
+
+    public void pop() {
+        if (!mainStack.isEmpty()) {
+            mainStack.pop();
+            minStack.pop();
+        }
+    }
+
+    public int top() {
+        return mainStack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+```
+
+#### Method 2 Arithmetic Encoding Mechanics:
 * Instead of allocating an auxiliary tracking stack, store a **modified encoded value**:
 1. **Push($x$)**:
    - If stack is empty: `min = x`, push $x$.
@@ -450,8 +491,7 @@ Shortest & Lexicographically Smallest String for weight 25: ACC
 5. `pop()`: Top $= 10 \ge \text{min}(4) \implies$ pop $10$. Stack: `[8, 2, 3]`, `min = 4`.
 
 ```java
-import java.util.Stack;
-
+// Method 2: Single-Stack O(1) Extra Space Formula Implementation
 public class MinStackSpaceOptimized {
     private Stack<Long> stack = new Stack<>();
     private Long minEle;
