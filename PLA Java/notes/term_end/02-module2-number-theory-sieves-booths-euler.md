@@ -421,12 +421,21 @@ public class EulerTotientComparison {
 }
 ```
 
-#### Worked Trace for $\varphi(36) = 12$:
-- **Brute-Force**: Coprime set $= \{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\} \implies \mathbf{12}$.
-- **Prime Factorisation**: $36 = 2^2 \times 3^2 \implies \varphi(36) = 36 \times (1 - 1/2) \times (1 - 1/3) = 36 \times 1/2 \times 2/3 = \mathbf{12}$.
-- **Feasibility for $N \le 10^{12}$**:
-  - $O(N \log N) \implies 10^{12} \times 40 = 4 \times 10^{13}$ operations ($\approx 111\text{ hours}$, impossible).
-  - $O(\sqrt{N}) \implies \sqrt{10^{12}} = 10^6$ operations ($\approx 2\text{ ms}$, highly feasible).
+#### Hand Calculations by Prime Factorisation (Assignment Q1.3):
+1. **$\varphi(36)$**:
+   - Prime factorisation: $36 = 2^2 \times 3^2$. Distinct prime factors: $p \in \{2, 3\}$.
+   - Formula: $\varphi(36) = 36 \times (1 - \frac{1}{2}) \times (1 - \frac{1}{3}) = 36 \times \frac{1}{2} \times \frac{2}{3} = \mathbf{12}$.
+   - Coprime set: $\{1, 5, 7, 11, 13, 17, 19, 23, 25, 29, 31, 35\}$ (Count = 12).
+2. **$\varphi(100)$**:
+   - Prime factorisation: $100 = 2^2 \times 5^2$. Distinct prime factors: $p \in \{2, 5\}$.
+   - Formula: $\varphi(100) = 100 \times (1 - \frac{1}{2}) \times (1 - \frac{1}{5}) = 100 \times \frac{1}{2} \times \frac{4}{5} = \mathbf{40}$.
+3. **$\varphi(97)$**:
+   - Prime factorisation: $97$ is a **prime number**.
+   - Formula for any prime $p$: $\varphi(p) = p - 1 \implies \varphi(97) = 97 - 1 = \mathbf{96}$.
+
+#### Feasibility Comparison for $N \le 10^{12}$:
+- **Brute-Force ($O(N \log N)$)**: Testing $\gcd(i, 10^{12}) = 1$ for all $1 \le i \le 10^{12}$ requires $10^{12} \times 40 \approx 4 \times 10^{13}$ operations ($\approx 111\text{ hours}$ of CPU time $\implies$ **completely infeasible**).
+- **Prime Factorisation ($O(\sqrt{N})$)**: Loops up to $\sqrt{10^{12}} = 10^6$ operations ($\approx 2\text{ milliseconds} \implies$ **highly feasible and optimal**).
 
 ---
 
@@ -488,6 +497,59 @@ Multiplies two signed binary integers using registers $[A, Q, Q_{-1}]$ and Arith
 * `Q_0 Q_{-1} = 01` $\implies A = A + M$, then ASR.
 * `00` or `11` $\implies$ ASR directly (Sign bit of $A$ is preserved).
 * Fully worked trace for $(7)_{10} \times (-5)_{10}$ yields $[11110 \, 11101]_2 = \mathbf{-35_{10}}$.
+
+---
+
+## 11. Toggle the Switch Problem & Perfect Squares Mathematical Proof
+*(Assignment Q2.4 & PPT L13 — 12 Marks)*
+
+### Problem Statement:
+There are $N$ switches numbered $1$ to $N$, all initially **OFF**.
+- In round 1, you toggle every 1st switch (switches 1, 2, 3, 4, ... are toggled).
+- In round 2, you toggle every 2nd switch (switches 2, 4, 6, 8, ... are toggled).
+- In round $i$, you toggle every $i$-th switch (switches $i, 2i, 3i, \dots$).
+Find which switches are **ON** after $N$ rounds and justify your answer mathematically.
+
+### Mathematical Proof:
+1. A switch at position $k$ is toggled in round $i$ if and only if $i$ is a divisor of $k$.
+2. Therefore, the total number of times switch $k$ is toggled is equal to the **total number of divisors** of $k$.
+3. Since the switch starts in the OFF position:
+   - An **even number of toggles** leaves the switch **OFF** ($\text{OFF} \to \text{ON} \to \text{OFF}$).
+   - An **odd number of toggles** leaves the switch **ON** ($\text{OFF} \to \text{ON}$).
+4. Divisors of any positive integer naturally occur in distinct pairs: $(d, \frac{k}{d})$. For example:
+   - Divisors of $12$: $(1, 12), (2, 6), (3, 4) \implies 6\text{ divisors (even)} \implies$ Switch 12 ends **OFF**.
+5. The only integers that have an **odd number of divisors** are **perfect squares** ($k = d^2$), because the divisor $d = \sqrt{k}$ is paired with itself and counted only once!
+   - Divisors of $16$: $(1, 16), (2, 8), (4, 4) \implies 5\text{ divisors (odd)} \implies$ Switch 16 ends **ON**.
+6. **Conclusion**: Exactly those switches whose numbers are **perfect squares** ($1, 4, 9, 16, 25, \dots \le N$) will remain **ON**.
+   The total count of ON switches is $\mathbf{\lfloor \sqrt{N} \rfloor}$.
+
+```java
+import java.util.*;
+
+public class ToggleTheSwitch {
+    public static List<Integer> getSwitchesON(int n) {
+        List<Integer> onSwitches = new ArrayList<>();
+        // Only perfect squares remain ON
+        for (int i = 1; i * i <= n; i++) {
+            onSwitches.add(i * i);
+        }
+        return onSwitches;
+    }
+
+    public static void main(String[] args) {
+        int n = 50;
+        List<Integer> result = getSwitchesON(n);
+        System.out.println("Switches ON after " + n + " rounds: " + result);
+        System.out.println("Total count: " + result.size() + " (= floor(sqrt(" + n + ")))");
+    }
+}
+```
+**Sample Output for $N = 50$**:
+```text
+Switches ON after 50 rounds: [1, 4, 9, 16, 25, 36, 49]
+Total count: 7 (= floor(sqrt(50)))
+```
+* **Complexities**: Time: $O(\sqrt{N})$, Auxiliary Space: $O(1)$.
 
 ---
 ---

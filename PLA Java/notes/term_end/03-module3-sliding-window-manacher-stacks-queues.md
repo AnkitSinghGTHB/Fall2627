@@ -84,6 +84,25 @@ public class JosephusSolver {
 8. Circle: `[7]`. Last person remaining: Person **7** is the **Survivor**!
 * **Elimination Order**: `[3, 6, 1, 5, 2, 8, 4, 7]`.
 
+#### Step-by-Step Execution Trace for $n = 7, k = 3$ (Assignment Q1.4):
+* **Simulation Steps**:
+  1. Circle: `[1, 2, 3, 4, 5, 6, 7]`. `(0 + 3 - 1) % 7 = 2` $\implies$ Person **3** eliminated.
+  2. Circle: `[1, 2, 4, 5, 6, 7]`. `(2 + 3 - 1) % 6 = 4` $\implies$ Person **6** eliminated.
+  3. Circle: `[1, 2, 4, 5, 7]`. `(4 + 3 - 1) % 5 = 1` $\implies$ Person **2** eliminated.
+  4. Circle: `[1, 4, 5, 7]`. `(1 + 3 - 1) % 4 = 3` $\implies$ Person **7** eliminated.
+  5. Circle: `[1, 4, 5]`. `(3 + 3 - 1) % 3 = 2` $\implies$ Person **5** eliminated.
+  6. Circle: `[1, 4]`. `(2 + 3 - 1) % 2 = 0` $\implies$ Person **1** eliminated.
+  7. Circle: `[4]`. Person **4** is the **Survivor**!
+* **Elimination Order**: `[3, 6, 2, 7, 5, 1, 4]`.
+* **Verification via Recurrence Formula**:
+  - $J(1, 3) = 1$
+  - $J(2, 3) = (1 + 2) \pmod 2 + 1 = \mathbf{2}$
+  - $J(3, 3) = (2 + 2) \pmod 3 + 1 = \mathbf{2}$
+  - $J(4, 3) = (2 + 2) \pmod 4 + 1 = \mathbf{1}$
+  - $J(5, 3) = (1 + 2) \pmod 5 + 1 = \mathbf{4}$
+  - $J(6, 3) = (4 + 2) \pmod 6 + 1 = \mathbf{1}$
+  - $J(7, 3) = (1 + 2) \pmod 7 + 1 = \mathbf{4}$ $\implies$ Exact match!
+
 ---
 
 ## 2. Minimum Meeting Rooms Required (Greedy Interval Scheduling)
@@ -425,6 +444,38 @@ public class HuffmanCoding {
 
 * **Final Decoded Sequence**: **`"DCABE"`**.
 * **Complexities**: Encoding: $O(N \log N)$, Decoding: $O(M)$ where $M$ is the number of bits.
+
+---
+
+### Part C: Complete Huffman Tree Construction Trace (Assignment Q5.4)
+*(Standard Benchmark: $a:5, b:9, c:12, d:13, e:16, f:45$)*
+
+#### Step-by-Step Priority Queue Merging:
+1. **Initial Queue**: $\{a(5), b(9), c(12), d(13), e(16), f(45)\}$
+2. **Merge 1**: Poll $a(5)$ and $b(9) \implies$ Parent $N_1(14)$.
+   Queue: $\{c(12), d(13), N_1(14), e(16), f(45)\}$
+3. **Merge 2**: Poll $c(12)$ and $d(13) \implies$ Parent $N_2(25)$.
+   Queue: $\{N_1(14), e(16), N_2(25), f(45)\}$
+4. **Merge 3**: Poll $N_1(14)$ and $e(16) \implies$ Parent $N_3(30)$.
+   Queue: $\{N_2(25), N_3(30), f(45)\}$
+5. **Merge 4**: Poll $N_2(25)$ and $N_3(30) \implies$ Parent $N_4(55)$.
+   Queue: $\{f(45), N_4(55)\}$
+6. **Merge 5**: Poll $f(45)$ and $N_4(55) \implies$ Root $N_5(100)$.
+
+#### Codebook, Lengths & Total Bit Cost:
+| Character | Frequency | Huffman Prefix Code | Code Length ($L_i$) | Total Bits ($f_i \times L_i$) |
+|:---:|:---:|:---:|:---:|:---:|
+| **f** | 45 | `0` | 1 | $45 \times 1 = 45$ |
+| **c** | 12 | `100` | 3 | $12 \times 3 = 36$ |
+| **d** | 13 | `101` | 3 | $13 \times 3 = 39$ |
+| **a** | 5 | `1100` | 4 | $5 \times 4 = 20$ |
+| **b** | 9 | `1101` | 4 | $9 \times 4 = 36$ |
+| **e** | 16 | `111` | 3 | $16 \times 3 = 48$ |
+| **Total** | **100** | — | — | **224 Bits** |
+
+* **Average Code Length**:
+  $$\bar{L} = \frac{\sum (f_i \cdot L_i)}{\sum f_i} = \frac{224}{100} = \mathbf{2.24\text{ bits/character}}$$
+* **Bandwidth Comparison**: A standard 3-bit fixed-length encoding requires $100 \times 3 = 300\text{ bits}$. Huffman reduces storage to $224\text{ bits}$, achieving a **$25.33\%$ bandwidth reduction**.
 
 ---
 
@@ -937,12 +988,24 @@ public class SmallestPalindromeRearrangement {
     }
 
     public static void main(String[] args) {
-        System.out.println("Smallest for \"aabbcc\":  \"" + smallestPalindrome("aabbcc") + "\""); // "abccba"
-        System.out.println("Smallest for \"aabbbcc\": \"" + smallestPalindrome("aabbbcc") + "\""); // "abcbca"
+        // Assignment Q3.3 Test Cases:
+        System.out.println("Smallest for \"aabbccd\": \"" + smallestPalindrome("aabbccd") + "\""); // "abcdcba"
+        System.out.println("Smallest for \"aabbc\":   \"" + smallestPalindrome("aabbc") + "\"");   // "abcba"
+        System.out.println("Smallest for \"aabbcc\":  \"" + smallestPalindrome("aabbcc") + "\"");  // "abccba"
         System.out.println("Smallest for \"abc\":     \"" + smallestPalindrome("abc") + "\"");     // "-1"
     }
 }
 ```
+
+#### Step-by-Step Execution Trace (Assignment Q3.3):
+1. **$S =$ `"aabbccd"`**:
+   - Frequencies: $a:2, b:2, c:2, d:1$. Odd count $= 1$ ($d$). Mid $= 'd'$.
+   - Half counts: $a:1, b:1, c:1$. Ascending traversal: `"abc"`.
+   - Result: `"abc"` + `'d'` + `"cba"` = **`"abcdcba"`**.
+2. **$S =$ `"aabbc"`**:
+   - Frequencies: $a:2, b:2, c:1$. Odd count $= 1$ ($c$). Mid $= 'c'$.
+   - Half counts: $a:1, b:1$. Ascending traversal: `"ab"`.
+   - Result: `"ab"` + `'c'` + `"ba"` = **`"abcba"`**.
 
 * **Complexities**: Time: $O(N)$, Auxiliary Space: $O(1)$.
 

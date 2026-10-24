@@ -463,6 +463,20 @@ public class KruskalMST {
 }
 ```
 
+#### Step-by-Step Edge Selection Trace (Assignment Q10.4):
+Given graph with vertices $\{A, B, C, D, E\}$ ($V = 5$, requires $V - 1 = 4$ edges):
+Edges: $(A-B, 4), (A-C, 2), (B-C, 1), (B-D, 5), (C-D, 8), (C-E, 10), (D-E, 2)$.
+
+| Step | Edge Picked | Weight | Sets / Cycle Check | Action | Disjoint Sets After Step |
+|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | **(B, C)** | **1** | $B$ and $C$ belong to different sets | **ACCEPTED** | $\{A\}, \{B, C\}, \{D\}, \{E\}$ |
+| 2 | **(A, C)** | **2** | $A$ and $C$ belong to different sets | **ACCEPTED** | $\{A, B, C\}, \{D\}, \{E\}$ |
+| 3 | **(D, E)** | **2** | $D$ and $E$ belong to different sets | **ACCEPTED** | $\{A, B, C\}, \{D, E\}$ |
+| 4 | **(A, B)** | **4** | Both $A$ and $B$ are already in $\{A, B, C\}$ (Forms cycle $A-C-B-A$) | **REJECTED** | $\{A, B, C\}, \{D, E\}$ |
+| 5 | **(B, D)** | **5** | $B \in \{A, B, C\}$ and $D \in \{D, E\}$ | **ACCEPTED** | $\{A, B, C, D, E\}$ (All connected) |
+
+* **Total MST Weight**: $1 + 2 + 2 + 5 = \mathbf{10}$.
+* Total edges accepted: $4 = V - 1$. Algorithm terminates successfully.
 * **Complexities**: Time: $O(E \log E)$ for sorting $+ O(E \cdot \alpha(V))$ for DSU operations $\implies \mathbf{O(E \log E)}$, Space: $O(V + E)$.
 
 ---
@@ -551,7 +565,112 @@ public class HamiltonianCycleSolver {
 4. At $D$: Neighbors of $D$ are $C, B, E$. Try $E$ $\implies \text{Path} = [A, B, C, D, E]$.
 5. Reached length 5. Check if edge exists from $E$ back to $A$: Edge $(E, A)$ is present!
 * **Valid Hamiltonian Cycle Found**: **$A \to B \to C \to D \to E \to A$**.
-* **Complexities**: Time: $O(N!)$, Space: $O(N)$ path array.
+
+#### Second Trace on Graph with Edges $\{0-1, 0-3, 1-2, 1-3, 1-4, 2-4, 3-4\}$ (Assignment Q6.4):
+* Vertices: $\{0, 1, 2, 3, 4\}$ ($V = 5$).
+* Starting at vertex 0:
+  - $0 \to 1 \to 2 \to 4 \to 3 \to 0$ (Cycle completes since edge $(3, 0)$ exists!).
+* **Valid Hamiltonian Cycle**: **$0 \to 1 \to 2 \to 4 \to 3 \to 0$**.
+* **Complexities**: Time: $O(N!)$, Auxiliary Space: $O(N)$ path array.
+
+---
+
+## 10. Graph $m$-Coloring Problem Using Backtracking
+*(Assignment Q6.3 & PPT: `Hamiltonian_Cycle_and_Graph_Coloring.pptx` — 12 Marks)*
+
+### Problem Statement:
+Given an undirected graph and an integer $m$, determine if the graph can be colored with at most $m$ colors such that no two adjacent vertices share the same color. Trace your solution on:
+1. A 4-cycle graph ($C_4$) with $m = 2$.
+2. A complete graph on 4 vertices ($K_4$) with $m = 3$.
+
+### Algorithmic Logic:
+1. Assign colors one by one to different vertices starting from vertex $0$.
+2. Before assigning a color to vertex $v$, check if it is **safe** (no adjacent neighbor already has that color).
+3. If safe, assign the color and recursively try to color the next vertex $v + 1$.
+4. If no color from $1$ to $m$ can be assigned, backtrack (reset color of $v$ to $0$ and return `false`).
+
+```java
+public class GraphColoring {
+    private int V;
+    private int[] color;
+
+    public GraphColoring(int v) {
+        this.V = v;
+        this.color = new int[v];
+    }
+
+    private boolean isSafe(int v, int[][] graph, int c) {
+        for (int i = 0; i < V; i++) {
+            if (graph[v][i] == 1 && color[i] == c) {
+                return false; // Adjacent vertex has same color
+            }
+        }
+        return true;
+    }
+
+    private boolean graphColoringUtil(int[][] graph, int m, int v) {
+        if (v == V) return true; // All vertices colored successfully
+
+        for (int c = 1; c <= m; c++) {
+            if (isSafe(v, graph, c)) {
+                color[v] = c;
+                if (graphColoringUtil(graph, m, v + 1)) return true;
+                color[v] = 0; // Backtrack
+            }
+        }
+        return false;
+    }
+
+    public boolean solve(int[][] graph, int m) {
+        java.util.Arrays.fill(color, 0);
+        if (!graphColoringUtil(graph, m, 0)) {
+            System.out.println("No " + m + "-coloring solution exists.");
+            return false;
+        }
+
+        System.out.print("Valid " + m + "-Coloring: ");
+        for (int i = 0; i < V; i++) System.out.print("V" + i + ": Color " + color[i] + " | ");
+        System.out.println();
+        return true;
+    }
+
+    public static void main(String[] args) {
+        // Case 1: 4-cycle graph (C4) with m = 2
+        int[][] c4 = {
+            {0, 1, 0, 1},
+            {1, 0, 1, 0},
+            {0, 1, 0, 1},
+            {1, 0, 1, 0}
+        };
+        System.out.println("--- Test Case 1: 4-Cycle (C4) with m = 2 ---");
+        new GraphColoring(4).solve(c4, 2);
+
+        // Case 2: Complete Graph (K4) with m = 3
+        int[][] k4 = {
+            {0, 1, 1, 1},
+            {1, 0, 1, 1},
+            {1, 1, 0, 1},
+            {1, 1, 1, 0}
+        };
+        System.out.println("--- Test Case 2: Complete Graph (K4) with m = 3 ---");
+        new GraphColoring(4).solve(k4, 3);
+    }
+}
+```
+
+#### Analytical Answers for Exam (Assignment Q6.3):
+1. **Trace on 4-Cycle ($C_4$) with $m = 2$**:
+   - $V_0 \to \text{Color } 1$
+   - $V_1 \to \text{Color } 2$
+   - $V_2 \to \text{Color } 1$
+   - $V_3 \to \text{Color } 2$
+   - **Result**: **Possible!** Every even cycle is bipartite, meaning its chromatic number $\chi(C_4) = \mathbf{2}$.
+2. **Trace on $K_4$ with $m = 3$**:
+   - In a complete graph $K_4$, every vertex is connected to all other 3 vertices.
+   - By the Pigeonhole Principle, assigning $3$ colors across $4$ mutually adjacent vertices forces at least two adjacent vertices to share a color.
+   - The chromatic number of $K_4$ is $\chi(K_4) = \mathbf{4}$.
+   - **Result**: **Impossible!** Backtracking exhausts all combinations and returns `false`.
+* **Complexities**: Time: $O(m^V)$, Auxiliary Space: $O(V)$ recursion stack.
 
 ---
 

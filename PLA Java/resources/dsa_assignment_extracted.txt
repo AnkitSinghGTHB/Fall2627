@@ -1,0 +1,81 @@
+
+ASSIGNMENT
+Algorithms and Data Structures
+Name:
+
+Roll No.:
+
+Course:
+
+Date:
+
+Max Marks:
+100
+Due Date:
+
+Instructions
+Attempt all 10 questions. Each question carries 10 marks (2.5 marks per part).
+Write code in C, C++, Java or Python and state the time and space complexity wherever asked.
+Show dry runs and tracing steps clearly. Answers without working will receive partial marks.
+Submit your own original work.
+Q1. Complexity Analysis, Sieve, Euler's Phi & Josephus  [10 Marks]
+Topics: Time & Space Complexity, Simple Sieve, Euler's Phi, Josephus Problem
+Explain Big-O, Omega and Theta notation. Find the time and space complexity of a function containing a triple nested loop where the innermost loop runs j = 1, 2, 4, ... up to n.
+Implement the Simple Sieve of Eratosthenes to print all primes up to n. Prove that its time complexity is O(n log log n) and state its space complexity.
+Write an algorithm to compute Euler's phi function φ(n) using prime factorisation. Compute φ(36), φ(100) and φ(97) by hand and show every step.
+Solve the Josephus Problem for n = 7 and k = 3 by simulation, then derive the recursive formula J(n,k) = (J(n-1,k) + k) mod n and implement it.
+Q2. Bit Manipulation  [10 Marks]
+Topics: Binary Palindrome, Longest Sequence of 1s after Flipping a Bit, Swap Two Nibbles, Toggle the Switch
+Write a program to check whether the binary representation of a given integer is a palindrome (ignore leading zeros). Test it on 9, 10 and 33.
+Given an integer, find the length of the longest sequence of 1s you can obtain by flipping exactly one 0 bit to 1. Trace your algorithm on 1775 (11011101111) and state its complexity.
+Swap the two nibbles of a byte using bitwise operators only. Show the working for 0x4D (01001101) in binary.
+There are n switches, all initially OFF. In round i you toggle every i-th switch. Find which switches are ON after n rounds and justify your answer mathematically (relate it to perfect squares).
+Q3. String Algorithms and Palindromes  [10 Marks]
+Topics: Strobogrammatic Number, Manacher's Algorithm, Lexicographically First Palindromic String, Weighted Substring, Move Hyphen to Beginning
+Write a function to check if a number (given as a string) is strobogrammatic. Explain the valid digit pairs and test on 69, 88, 818 and 962.
+Explain Manacher's Algorithm. For the string "babcbabcbaccba" build the transformed string and the radius array P[], and report the longest palindromic substring.
+Given a string, rearrange its characters to form the lexicographically smallest palindrome, or report that none exists. Apply it to "aabbccd" and "aabbc".
+Given a string s and a weight for each letter, find the substring with the maximum total weight. Then write an in-place O(n) algorithm that moves all hyphens ('-') in a string to the beginning while preserving the order of other characters.
+Q4. Array Problems  [10 Marks]
+Topics: Max Product Subarray, Maximum Sum of Hourglass, Max Equilibrium Sum, Block Swap Algorithm
+Find the maximum product subarray of {2, 3, -2, 4, -1}. Explain why both the running maximum and minimum must be maintained, and give the O(n) algorithm.
+For a 6x6 matrix, find the maximum sum of an hourglass shape (3 cells on top, 1 in the middle, 3 on the bottom). Write code and dry run it on a matrix of your choice.
+Find the maximum equilibrium sum of an array, i.e. the largest prefix sum that equals the corresponding suffix sum. Trace it on {-2, 5, 3, 1, 2, 6, -4, 2}.
+Rotate an array of size n by d positions using the Block Swap Algorithm (recursive and iterative). State the complexity and compare it with the juggling and reversal methods.
+Q5. Sorting and Greedy Algorithms  [10 Marks]
+Topics: Quick Sort, Selection Sort, Activity Selection Problem, Huffman Coding
+Trace Selection Sort and Quick Sort (Lomuto partition, last element as pivot) on {29, 10, 14, 37, 13, 5, 21}. Show every pass.
+Compare Selection Sort and Quick Sort for best, average and worst-case time, space and stability. When does Quick Sort degrade to O(n²) and how can this be avoided?
+Solve the Activity Selection Problem for activities with start times {1, 3, 0, 5, 8, 5} and finish times {2, 4, 6, 7, 9, 9}. Justify why the greedy choice (earliest finish time) is optimal.
+Build the Huffman tree for characters a:5, b:9, c:12, d:13, e:16, f:45. Give the code for every character, the average code length and the total encoded size.
+Q6. Backtracking  [10 Marks]
+Topics: N-Queens, Graph Coloring, Hamiltonian Cycle
+Explain the backtracking technique and draw the state space tree for the 4-Queens problem. Show both solutions.
+Write a program that solves the N-Queens problem using a safety-check function. Analyse the time complexity and describe an optimisation using column and diagonal arrays.
+Implement the m-Coloring problem: decide if a graph can be coloured with at most m colours so that no two adjacent vertices share a colour. Trace it on a 4-cycle with m = 2 and on K4 with m = 3.
+Write an algorithm to detect a Hamiltonian Cycle in a graph. Apply it to the graph with edges {0-1, 0-3, 1-2, 1-3, 1-4, 2-4, 3-4} and show the cycle, if any.
+Q7. Linked List Operations  [10 Marks]
+Topics: Reverse Linked List, Detect and Remove Loop, Merge Sorted Lists
+Reverse a singly linked list iteratively using three pointers. Show the pointer changes for 1 → 2 → 3 → 4 → NULL.
+Reverse the same list recursively. Explain the base case, the recursive step and the O(n) stack space used.
+Detect a loop using Floyd's cycle detection algorithm. Prove why the slow and fast pointers must meet inside the loop, and write code to find the starting node of the loop.
+Remove the loop found in the previous part, then merge two sorted linked lists (1 → 3 → 5 and 2 → 4 → 6) into one sorted list in O(1) extra space. Give the code.
+Q8. Stacks, Queues and Deques  [10 Marks]
+Topics: Balanced Parentheses, Next Greater Element, Min Stack, Circular Queue, Sliding Window Maximum
+Check whether an expression with (), {} and [] is balanced using a stack. Test on "{[()]}", "{[(])}" and "((()".
+Find the Next Greater Element for every element of {4, 5, 2, 25, 7, 8} using a monotonic stack and explain why the complexity is O(n).
+Design a Min Stack supporting push, pop, top and getMin in O(1). Show two different designs (auxiliary stack and encoded values).
+Implement a Circular Queue using an array and explain how to distinguish a full queue from an empty one. Then solve Sliding Window Maximum for {1, 3, -1, -3, 5, 3, 6, 7} with k = 3 using a deque.
+Q9. Binary Trees  [10 Marks]
+Topics: Inorder, Preorder, Postorder and Level Order Traversals, Height, Diameter
+For the tree with root 1, children 2 and 3, and 2's children 4 and 5, write the inorder, preorder, postorder and level order traversals.
+Write recursive and iterative (stack-based) versions of inorder traversal. Explain how Morris traversal reduces the space to O(1).
+Implement level order traversal using a queue, including a version that prints each level on a separate line.
+Find the height of a binary tree and then the diameter. Explain why the naive O(n²) approach can be improved to O(n) by computing height and diameter in a single pass.
+Q10. Graph Traversals and Minimum Spanning Tree  [10 Marks]
+Topics: BFS & DFS Foundations, Kruskal's Algorithm
+Represent a graph using an adjacency list and an adjacency matrix. Compare their space and traversal costs.
+Write BFS and DFS for a graph. Starting at vertex 0, give both traversal orders for the edges {0-1, 0-2, 1-3, 1-4, 2-5, 4-5}.
+Explain Kruskal's Algorithm and the Union-Find (Disjoint Set) structure with path compression and union by rank.
+Apply Kruskal's Algorithm to the graph with edges (A-B,4), (A-C,2), (B-C,1), (B-D,5), (C-D,8), (C-E,10), (D-E,2). List the sorted edges, show which are accepted or rejected, and give the total MST weight and complexity.
+— End of Assignment —

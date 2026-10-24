@@ -384,3 +384,88 @@ System.out.println(c);
 1 0 0 1 1
 0 0 0 0 0
 ```
+
+---
+
+# Paper 6: Slot B21+E24 (23-10-2026/S-2)
+
+## PART A – (60 Marks)
+
+**Q1.**
+* **(a)** Explain the **Josephus Problem**. Derive the recursive formulation to find the position of the survivor for $n$ people and elimination step $k$. Solve for $n = 7, k = 3$. *(12 Marks)*
+
+**OR**
+
+* **(b)** Given a set of activities, where each activity has a starting time and a finishing time, write a **Java program to implement the Activity Selection Problem using the greedy approach**. The program should select the **maximum number of non-overlapping activities** by choosing the activity that finishes earliest. For the given input, display the selected activities and the maximum number of activities selected. *(12 Marks)*
+
+```text
+Sample Input:
+6
+1 2
+3 4
+0 6
+5 7
+8 9
+5 9
+```
+
+**Q2.**
+* **(a)** Differentiate between **Quick Sort and Selection Sort** in terms of time complexity (best, average, and worst cases), space complexity, and stability. Discuss the role of pivot selection in Quick Sort's performance. *(7 Marks)*
+* **(b)** Design a **Min Stack** data structure that supports `push()`, `pop()`, `top()`, and `getMin()` operations, all in $O(1)$ time complexity. Write the pseudo-code and explain the auxiliary memory used. *(5 Marks)*
+
+**OR**
+
+* **(c)** Consider an undirected graph with **6 vertices** and edges $(1,2)$, $(1,3)$, $(2,3)$, $(2,4)$, $(3,4)$, $(3,5)$, $(4,5)$, $(4,6)$, $(5,6)$. Write a **Java program using backtracking** to determine whether the given graph can be colored using at most **3 colors** such that no two adjacent vertices have the same color, and also determine whether the graph contains a **Hamiltonian Cycle**. Display the valid vertex coloring, if one exists, and the Hamiltonian Cycle, if one exists. Also state the **worst-case time complexity** of the backtracking approach. *(12 Marks)*
+
+**Q3.**
+* **(a)** Write a Java program that demonstrates the use of decision-making control structures (if-else, switch-case) along with bitwise and assignment operators. Display clear descriptive messages for each branch. *(6 Marks)*
+* **(b)** Write a **Java program to check whether a given positive integer is a binary palindrome**. Convert the number into its binary representation and determine whether the binary representation reads the same forward and backward. For the input $37$, display its binary representation and the result. *(6 Marks)*
+
+**OR**
+
+* **(c)** Define a **strobogrammatic number**. Write a **Java program using a HashMap** to determine whether the given number $619$ is strobogrammatic. Display the result and state the time and space complexity of your solution. *(12 Marks)*
+
+**Q4.**
+* **(a)** Define an **hourglass** in a 2D matrix. Write a **Java program to find the maximum hourglass sum** in the given matrix. Display the maximum hourglass sum and state the time and space complexity of your solution. *(12 Marks)*
+
+```text
+Input:
+1 2 3
+4 5 6
+7 8 9
+```
+
+**OR**
+
+* **(b)** Define the **Grid Maneuvering Problem**. Write a **Java program using recursion** to find the number of possible ways to move from the top-left corner to the bottom-right corner of the given grid, where movement is allowed only **right or down**. Identify the data structure used internally during recursion and explain why it is required. Also state the time and space complexity of your solution. *(12 Marks)*
+
+**Q5.**
+* **(a)** Write a **Java program to detect whether a loop exists in a singly linked list**. If a loop is present, **find the position (nth node from the beginning) at which the loop starts**, remove the loop, and display the linked list after removing it. Also state the time and space complexity of your solution. *(12 Marks)*
+
+**OR**
+
+* **(b)** Write the algorithm and Java program to solve the **N-Queens Problem using backtracking**. Trace your solution for $N = 4$. Draw Matrix. *(6 Marks)*
+* **(c)** Write the algorithm and Java program for **Huffman Coding using a greedy approach** to generate prefix codes for a set of characters with given frequencies. *(6 Marks)*
+
+## PART B – (40 Marks)
+
+* **Q6.** Define Preorder, Inorder, and Postorder traversal of a binary tree. Write the algorithm and Java program to perform all three traversals for the given binary tree. Display the traversal results and state the time and space complexity of your approach. *(8 Marks)*
+
+```text
+Input Tree:
+    1
+   / \
+  2   3
+ / \   \
+4   5   6
+```
+
+* **Q7.** Write a Java program that reads an integer between $1$ & $7$ using switch case, display the corresponding day of the week (Mon to Sun), and use logical operators to indicate whether the day is week day or weekend. Analyze the behavior of your program if every `break` statement is removed by tracking the output for the input $6$, state the output for input $9$. *(8 Marks)*
+* **Q8.** Define the **diameter of a binary tree**. Explain how a binary tree can be represented using an **array and linked-node representation**. Write a **Java program to find the diameter** of the given binary tree and state the time and space complexity of your approach. *(8 Marks)*
+* **Q9.** Write the **Quick Sort algorithm and a Java program** to sort an array in ascending order. Trace the partitioning/selection steps explicitly for the input $\{64, 25, 12, 22, 11\}$. *(8 Marks)*
+* **Q10.** Differentiate between a **Stack and a Queue** based on their working principles and operations. Then write a **Java program using a Stack** to check whether a given expression has **balanced parentheses**. For the given input, determine whether the parentheses are balanced and display the result. *(8 Marks)*
+
+```text
+Input:
+{[()]}
+```
