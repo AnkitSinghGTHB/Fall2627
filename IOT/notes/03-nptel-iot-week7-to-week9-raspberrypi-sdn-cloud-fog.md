@@ -385,182 +385,185 @@
 
 ---
 
-## 📘 Week 9: Cloud & Fog Computing in IoT, Stream Analytics & Big Data
+## 📘 Week 9: Cloud & Fog Computing, Sensor-Cloud & OpenStack (Official Solutions)
 
-### Q1. Which of the following best characterizes Fog Computing in contrast to Cloud Computing?
+### Q1. Which of the following is/are the advantages of cloud computing?
 
-* a. Fog computing operates strictly inside remote mega data centers
-* b. Fog computing brings computing, storage, and networking services closer to the end devices at the network edge
-* c. Fog computing has infinite computational capacity compared to Cloud
-* d. Fog computing does not communicate with the Cloud under any circumstances
+* a.  Elasticity
+* b. Pay-per-use
+* c.  Self Service
+* d. All of the above
 
-> **✅ Correct Answer**: `b. Fog computing brings computing, storage, and networking services closer to the end devices at the network edge`  
-> **💡 Explanation**: Fog computing extends the cloud to be closer to the things that produce and act on data. Any device with computing, storage, and network connectivity can be a fog node, significantly reducing latency and bandwidth consumption.
-
----
-
-### Q2. In an IoT data pipeline, which type of data analytics focuses on answering the question "What will happen in the future based on past sensor trends"?
-
-* a. Descriptive Analytics
-* b. Diagnostic Analytics
-* c. Predictive Analytics
-* d. Prescriptive Analytics
-
-> **✅ Correct Answer**: `c. Predictive Analytics`  
-> **💡 Explanation**: Descriptive analytics asks "What happened?"; Diagnostic asks "Why did it happen?"; Predictive analytics uses historical data and statistical/ML models to forecast "What will happen?"; Prescriptive analytics advises on "What action should be taken?".
+> **✅ Correct Answer**: `d. All of the above`  
+> **💡 Explanation**: The advantages of cloud computinginclude Elasticity, Pay-per-use and Self-Service. (Please refer Lecture 42@6:45)
 
 ---
 
-### Q3. Which of the following Big Data characteristics represents the trustworthiness, quality, and accuracy of IoT sensor data?
+### Q2. Fill in the blanks. Fog computing is an intermediate layer between __________ and _________.
 
-* a. Volume
-* b. Velocity
-* c. Variety
-* d. Veracity
+* a.      Dew and devices
+* b.      Cloud and devices
+* c.      Cloud and server
+* NPTEL Online Certification Courses
+* Indian Institute of Technology Kharagpur
+* d.      None of these
 
-> **✅ Correct Answer**: `d. Veracity`  
-> **💡 Explanation**: The 5 Vs of Big Data in IoT are Volume (sheer size), Velocity (speed of incoming streaming data), Variety (heterogeneous data formats), Veracity (data trustworthiness/noise), and Value (actionable business/operational insights).
-
----
-
-### Q4. Which distributed messaging system is widely used in IoT for ingesting real-time sensor event streams with high throughput and fault tolerance?
-
-* a. Apache Kafka
-* b. SQLite
-* c. CronTab
-* d. Apache Ant
-
-> **✅ Correct Answer**: `a. Apache Kafka`  
-> **💡 Explanation**: Apache Kafka is a distributed publish-subscribe event streaming platform used to ingest high-velocity IoT sensor data streams at scale.
+> **✅ Correct Answer**: `b. Cloud and devices`  
+> **💡 Explanation**: Fog computing is an intermediatelayer between Cloud and devices. (Please refer Lecture 44@6:40)
 
 ---
 
-### Q5. State whether the following statement is True or False.
-Statement: Edge computing processes sensor data directly on the device or local gateway, thereby minimizing transmission latency and preserving user privacy.
+### Q3. The managerial role is played by __________ in sensor-cloud architecture.
+
+* a.      End-users
+* b.     Sensor-Cloud Service Provider
+* c.      Neither a nor b
+* d.      Both a and b
+
+> **✅ Correct Answer**: `b. Sensor-Cloud Service Provider`  
+> **💡 Explanation**: Sensor-Cloud Service Provider plays the managerial role in sensor-cloud architecture. (Please refer Lecture 42@14:29)
+
+---
+
+### Q4. Which of the following is not a component of OpenStack?
+
+* a. Suse
+* NPTEL Online Certification Courses
+* Indian Institute of Technology Kharagpur
+* b. Nova
+* c. Swift
+* d. All of these
+
+> **✅ Correct Answer**: `a. Suse`  
+> **💡 Explanation**: Nova and Swift are two of themany components of OpenStack (Please refer Lecture 41@3:18)
+
+---
+
+### Q5. Who coined the term Fog computing?
+
+* a. IBM
+* b. CISCO
+* c. All of these
+* d. None of these
+
+> **✅ Correct Answer**: `b. CISCO`  
+> **💡 Explanation**: CISCO coined the term Fog computing.(Please refer Lecture 44@4:18)
+
+---
+
+### Q6. Fill in the blank. The concept of ________ enables physical hardware to be shared among multiple entities. NPTEL Online Certification Courses Indian Institute of Technology Kharagpur
+
+* a. Hardware virtualization
+* b. Software virtualization
+* c. Module virtualization
+* d. All of these
+
+> **✅ Correct Answer**: `a. Hardware virtualization`  
+> **💡 Explanation**: The concept of hardware virtualizationenables physical hardware to be shared among multiple entities. (Please refer to Page 262, Chapter 11, Introduction to IoT. S. Misra, A. Mukherjee, and A. Roy, 2020. Cambridge University Press.)
+
+---
+
+### Q7. Openstack is a free open source software for cloud framework simulation and experimentation with various cloud applications.
 
 * a. True
 * b. False
 
 > **✅ Correct Answer**: `a. True`  
-> **💡 Explanation**: Edge computing performs data processing locally near the source of data, reducing bandwidth needs, latency, and keeping sensitive raw data from traveling across the public internet.
+> **💡 Explanation**: Openstack is a free open sourcesoftware for cloud framework simulation and experimentation with various cloud applications. It can be downloaded and installed for free. Refer Lecture 41.
 
 ---
 
-### Q6. Which Machine Learning paradigm is most appropriate when clustering unlabeled temperature and humidity readings to detect anomalous machine states?
+### Q8. In IoT, temporal sensitivity of data DOES NOT playan important role a. True b. False NPTEL Online Certification Courses Indian Institute of Technology Kharagpur
 
-* a. Supervised Learning
-* b. Unsupervised Learning
-* c. Reinforcement Learning
-* d. Supervised Classification
-
-> **✅ Correct Answer**: `b. Unsupervised Learning`  
-> **💡 Explanation**: Unsupervised learning (such as k-means clustering or isolation forests) discovers inherent patterns or groupings in unlabeled sensor data without needing predefined ground-truth labels.
+> **✅ Correct Answer**: `b. False`  
+> **💡 Explanation**: IoT data can be classified in totime sensitive data, less time sensitive data and data not sensitive to time. Hence time sensitivity plays a big role in IOT data classification. Refer lecture 44 on Fog Computing
 
 ---
 
-### Q7. In Sensor-Cloud architecture, what is "Sensor Virtualization"?
+### Q9. Which among the following is NOT a component of OpenStack.
 
-* a. Physically destroying old sensor hardware
-* b. Creating software abstractions/instances of physical sensors that can be shared dynamically among multiple client applications
-* c. Replacing all wireless sensors with hardwired fiber optic cables
-* d. Running sensor firmware without battery power
+* a. Horizon
+* b. Heat
+* c. Stellar
+* d. Neutron
 
-> **✅ Correct Answer**: `b. Creating software abstractions/instances of physical sensors that can be shared dynamically among multiple client applications`  
-> **💡 Explanation**: Sensor virtualization in Sensor-Cloud abstracts physical sensors into Virtual Sensors (VS), allowing multi-tenancy, dynamic provisioning, and multi-user access to physical sensing infrastructure.
-
----
-
-### Q8. Which deep learning neural network architecture is best suited for analyzing sequential time-series sensor measurements in predictive maintenance?
-
-* a. Convolutional Neural Networks (CNN) with 1x1 kernels only
-* b. Recurrent Neural Networks (RNN) / Long Short-Term Memory (LSTM)
-* c. Feedforward Multilayer Perceptron with no recurrent connections
-* d. Radial Basis Function Network
-
-> **✅ Correct Answer**: `b. Recurrent Neural Networks (RNN) / Long Short-Term Memory (LSTM)`  
-> **💡 Explanation**: RNNs and LSTMs are explicitly designed to capture temporal dependencies, sequential patterns, and time-lagged correlations in time-series IoT sensor streams.
+> **✅ Correct Answer**: `c. Stellar`  
+> **💡 Explanation**: Stellar is not a component of OpenStack.The rest are various components, including Nova, Glance, Swift etc. Refer lecture 41, ppt No. 4
 
 ---
 
-### Q9. What is the primary motivation for performing data preprocessing (filtering, normalization, noise removal) on IoT sensor readings before machine learning training?
+### Q10. Which among the following is the principal feature of sensor clouds, with respect to sensor nodes?
 
-* a. To artificially increase the file size
-* b. To eliminate sensor noise, handle missing values, and improve model convergence and accuracy
-* c. To change all floating point sensor values to random integers
-* d. Data preprocessing is never required in IoT
+* a. Sensor monitoring
+* b. Sensor instantiation
+* c. Sensor virtualization
+* NPTEL Online Certification Courses
+* Indian Institute of Technology Kharagpur
+* d. Sensor collection
 
-> **✅ Correct Answer**: `b. To eliminate sensor noise, handle missing values, and improve model convergence and accuracy`  
-> **💡 Explanation**: Raw IoT sensor data is frequently noisy, uncalibrated, and subject to packet loss. Preprocessing cleans the data, handles outliers, and scales features for reliable machine learning.
-
----
-
-### Q10. In Complex Event Processing (CEP) for IoT, what does an "event" typically represent?
-
-* a. The expiration of the operating system license
-* b. A state change or notable occurrence detected by one or more sensors at a specific timestamp
-* c. The physical replacement of an antenna
-* d. Compiling a Python script
-
-> **✅ Correct Answer**: `b. A state change or notable occurrence detected by one or more sensors at a specific timestamp`  
-> **💡 Explanation**: An event in CEP is a significant change in system state (e.g., sudden temperature spike above 100°C) occurring at a specific point in time.
+> **✅ Correct Answer**: `c. Sensor virtualization`  
+> **💡 Explanation**: Sesnorvirtualizationistheprincipalfeatureofsensorcloudsandtheir utility. Refer lecture 42 and 43 on Sensor cloud
 
 ---
 
-### Q11. Which Cloud Service model delivers fundamental computing resources such as virtual machines, storage, and raw networking for hosting IoT backends?
+### Q11. The optimal composition of __________ is a management issue in sensor-cloud.
 
-* a. SaaS (Software as a Service)
-* b. PaaS (Platform as a Service)
-* c. IaaS (Infrastructure as a Service)
-* d. DaaS (Data as a Service)
+* a. Logistics
+* b. Pricing
+* c. Caching
+* d. Virtual sensor nodes
 
-> **✅ Correct Answer**: `c. IaaS (Infrastructure as a Service)`  
-> **💡 Explanation**: IaaS (e.g. AWS EC2, Google Compute Engine) provides raw virtualized hardware, OS selection, storage, and networking.
-
----
-
-### Q12. Why is Batch Processing alone insufficient for critical Industrial IoT safety monitoring systems?
-
-* a. Because batch processing requires too little memory
-* b. Because batch processing introduces high latency by waiting to collect large data batches before computing, missing immediate emergency triggers
-* c. Batch processing cannot run on Linux servers
-* d. Batch processing is faster than stream processing
-
-> **✅ Correct Answer**: `b. Because batch processing introduces high latency by waiting to collect large data batches before computing, missing immediate emergency triggers`  
-> **💡 Explanation**: Critical safety monitoring (gas leaks, machine fires) demands real-time stream processing with sub-second response times, which high-latency batch processing cannot provide.
+> **✅ Correct Answer**: `d. Virtual sensor nodes`  
+> **💡 Explanation**: The optimal composition of Virtualsensor nodes is a management issue in sensor-cloud. (Please refer Lecture 43@4:39)
 
 ---
 
-### Q13. State whether the following statement is True or False.
-Statement: Fog nodes can act as both fog compute servers for lower-layer edge devices and clients to higher-layer centralized cloud servers.
+### Q12. How many different types of caching mechanism are there in sensor cloud?
 
-* a. True
-* b. False
+* a. 1
+* b. 4
+* c. 2
+* d. 3
 
-> **✅ Correct Answer**: `a. True`  
-> **💡 Explanation**: Fog computing is hierarchical; intermediate fog nodes serve local edge devices while aggregating and relaying summarized data upstream to the centralized cloud.
+> **✅ Correct Answer**: `c. 2 Detailed Answer:Internal Cache (IC) and ExternalCache (EC) are two different types of caching NPTEL Online Certification Courses Indian Institute of Technology Kharagpur mechanisms used in sensor cloud. Refer lecture 43, ppt No. 13`  
 
----
-
-### Q14. Which stream-processing framework was originally developed by UC Berkeley AMPLab and supports both batch and micro-batch stream analytics?
-
-* a. Apache Spark (Spark Streaming)
-* b. WordNet
-* c. Git
-* d. Docker
-
-> **✅ Correct Answer**: `a. Apache Spark (Spark Streaming)`  
-> **💡 Explanation**: Apache Spark provides fast distributed in-memory computing with Spark Streaming for micro-batch real-time analytics.
 
 ---
 
-### Q15. In IoT anomaly detection, what is a "Contextual Anomaly"?
+### Q13. Data from an IoT device is transferred to cloud via a network, which is then processed at the cloud and then a response is sent back to the IoT device from the cloud after processing. The time it takes for one- way data transfer between the node and cloud is 10s and the data processing time at the cloud is ‘x’ seconds. It takes a total of 25s for the entire to and fro transfer of data between the sensor and cloud along with processing at the cloud. What is the value of x?
 
-* a. An anomaly that occurs only when all sensors are switched off
-* b. A data instance that is anomalous only within a specific context (e.g., 35°C ambient temperature during winter midnight vs summer noon)
-* c. An anomaly caused exclusively by a broken network wire
-* d. An anomaly that has no data values
+* a. 10s
+* b. 5s
+* c. 15s
+* d. 20s
 
-> **✅ Correct Answer**: `b. A data instance that is anomalous only within a specific context (e.g., 35°C ambient temperature during winter midnight vs summer noon)`  
-> **💡 Explanation**: A contextual anomaly depends on contextual attributes (e.g., time, location). A reading of 35°C is normal on a summer afternoon, but is an alarming contextual anomaly during winter midnight.
+> **✅ Correct Answer**: `b. 5s`  
+> **💡 Explanation**: Time taken for one-way data transferbetween the node and cloud is 10s. Total time taken for the data transfer is 25s. So 25=10+x+10 (transfer from node to cloud+processing at cloud+transfer from cloud to node). Thus x=5s. NPTEL Online Certification Courses Indian Institute of Technology Kharagpur
+
+---
+
+### Q14. Which among the following is true?
+
+* a. Fog computing acts as a complement to cloud computing.
+* b. Fog computing is a replacement for cloud computing.
+* c. Fog computing and cloud computing are the same.
+* d. Fog computing is more powerful than cloud computing (with respect to resources).
+
+> **✅ Correct Answer**: `a. Fog computing acts as a complement to cloud computing.`  
+> **💡 Explanation**: Fog computing and cloud computingare complementary technologies. Fog helps in bringing the cloud closer to the IoT devices. (Please refer Lecture 45@1:06)
+
+---
+
+### Q15. Which component of OpenStack do you use to access all the other components?
+
+* a. Horizon
+* b. Glance
+* c. Neutron
+* d. None of these
+* NPTEL Online Certification Courses
+* Indian Institute of Technology Kharagpur
+
+> **✅ Correct Answer**: `a. Horizon`  
+> **💡 Explanation**: Horizon is the dashboard of OpenStackwhich provides the GUI and from where you can access other components. Please refer Lecture 41@3:54 ************END***********
 
 ---
