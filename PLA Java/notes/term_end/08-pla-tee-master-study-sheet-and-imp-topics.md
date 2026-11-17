@@ -2,7 +2,6 @@
 
 > **Target Exam**: Sunday, October 25, 2026 (01:15 PM – 04:15 PM)  
 > **Course**: PLA1004 — Competitive Coding Practices (Java)  
-> **Pre-TEE Standing**: **61.5 / 70.0** (+2.0 marks ahead of class). **Target: 65–68 / 100 for A Grade**, **82+ for S Grade**.  
 > **Source Material**: Exclusively synthesized from the official class PPTs, `Sample paper_1.docx`, `SAMPLE_PAPER.docx.pdf`, and the priority list (`tee_imp.txt`). *(All assignments excluded as requested)*.
 
 ---

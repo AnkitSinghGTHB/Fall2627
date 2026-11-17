@@ -1,7 +1,6 @@
 # ⏱️ MGT2003: 2-Day Emergency Exam Crash Course & Execution Checklist
 
 > **Target Exam**: Tuesday, October 13, 2026 (01:15 PM – 04:15 PM)  
-> **Target Score**: **75+ / 100** (Guarantees A Grade comfortably with your 56.1/70 pre-TEE score)  
 > **Total Time Required**: ~7–8 Hours across Oct 11 & Oct 12
 
 ---

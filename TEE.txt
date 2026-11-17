@@ -1,162 +1,99 @@
-TEE format:
-Section A: 12 Marks 5 questions either 6+6 or 12 all in OR format (like 12 or 12)
-Section B: 8 marks 5 questions without sub parts
-every module 1ques in section A, 1 ques in section B
-question difficulty will be somewhere between cat 1 & cat 2, depending on faculty
-internals consist of anything that isnt cat 1, cat 2, tee, attendance
-
-here are my cat1 + cat2 + internals:
-
---------------------------------------------------------------------------------------------------------
-1. PLA1004: Competitive Coding Practices
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100459           Faculty : PAT TRAINER
-Course Type : Lecture and Practical     Slot    : B22+B24
-System      : CAL                       Mode    : LPM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Lab Assessment - Challenging Task        15      15%      Present    15.0        15.0
-  2   Lab Assessment - Continuous Assessment   20      20%      Present    19.0        19.0
-  3   Continuous Assessment Test - II          50      15%      Present    35.0        10.5
-  4   Continuous Assessment Test - I           50      15%      Present    40.0        12.0
-  5   Attendance                                5       5%      Present     5.0         5.0
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 61.5 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-2. CSE4005: Machine Learning
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100679           Faculty : NILAMADHAB MISHRA
-Course Type : Lecture and Practical     Slot    : A21+A23
-System      : CAL                       Mode    : LPM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Lab Assessment - Challenging Task        15      15%      Present    15.0        15.00
-  2   Lab Assessment - Continuous Assessment   20      20%      Present    20.0        20.00
-  3   Continuous Assessment Test - II          50      15%      Present    40.5        12.15
-  4   Continuous Assessment Test - I           50      15%      Present    33.5        10.05
-  5   Attendance                                5       5%      Present     5.0         5.00
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 62.2 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-3. MGT2003: Technology Entrepreneurship
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100970           Faculty : ABHISHEK RAJ
-Course Type : Lecture and Tutorial      Slot    : E14+F14
-System      : CAL                       Mode    : LTM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Continuous Assessment Test - II          50      15%      Present    43.0        12.9
-  2   Continuous Assessment Test - I           50      15%      Present    34.0        10.2
-  3   Class Assessment - Tutorial              10      10%      Present     8.0         8.0
-  4   Class Assessment - Quiz                  10      10%      Present     8.0         8.0
-  5   Class Assessment - Group Activity         5       5%      Present     4.0         4.0
-  6   Assignment                               10      10%      Present     8.0         8.0
-  7   Attendance                                5       5%      Present     5.0         5.0
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 56.1 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-4. CSE2004: Theory Of Computation And Compiler Design
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100375           Faculty : GAURAV SONI
-Course Type : Lecture and Tutorial      Slot    : A11+A12+A13
-System      : CAL                       Mode    : LTM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Continuous Assessment Test - II          50      15%      Present    28.0         8.4
-  2   Continuous Assessment Test - I           50      15%      Present    31.0         9.3
-  3   Class Assessment - Internals / Tutorial  35      35%      Present    35.0        35.0
-  4   Attendance                                5       5%      Present     5.0         5.0
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 57.7 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-5. CSE3011: Python Programming
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100336           Faculty : VAISHNAVI S
-Course Type : Lecture and Practical     Slot    : B11+B12
-System      : CAL                       Mode    : LPM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Continuous Assessment Test - II          50      15%      Present    41.0        12.3
-  2   Continuous Assessment Test - I           50      15%      Present    37.0        11.1
-  3   Lab Assessment - Continuous & Internals  35      35%      Present    35.0        35.0
-  4   Attendance                                5       5%      Present     5.0         5.0
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 63.4 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-6. ECE2002: Digital Logic Design
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100899           Faculty : KANIMOZHI M
-Course Type : Lecture, Tutorial & Lab   Slot    : A14+D11+D12
-System      : CAL                       Mode    : LTPM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Lab Assessment - Viva                     5       5%      Present     4.0         4.0
-  2   Lab Assessment - Challenging Task        10      10%      Present     7.0         7.0
-  3   Lab Assessment - Continuous Assessment   10      10%      Present     8.0         8.0
-  4   Continuous Assessment Test - II          50      15%      Present    38.0        11.4
-  5   Continuous Assessment Test - I           50      15%      Present    30.0         9.0
-  6   Class Assessment - Tutorial               5       5%      Present     5.0         5.0
-  7   Attendance                                5       5%      Present     5.0         5.0
-  8   Class Assessment - Group Activity         5       5%      Present     5.0         5.0
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 54.4 / 70.0
-
-
---------------------------------------------------------------------------------------------------------
-7. MAT2002: Discrete Mathematics and Graph Theory
---------------------------------------------------------------------------------------------------------
-Class Nbr   : BL2026270100016           Faculty : VVPRVB SURESH DARA
-Course Type : Lecture and Tutorial      Slot    : B14+B23+D21
-System      : CAL                       Mode    : LTM
-
-Assessments:
-  Sl  Assessment Title                         Max   Weight(%)  Status    Scored   Weighted Mark
-  ----------------------------------------------------------------------------------------------
-  1   Continuous Assessment Test - II          50      15%      Present    20.0         6.00
-  2   Continuous Assessment Test - I           50      15%      Present    20.0         6.00
-  3   Class Assessment - Tutorial              10      10%      Present     8.25        8.25
-  4   Class Assessment - Quiz                  10      10%      Present     8.0         8.00
-  5   Class Assessment - Group Activity         5       5%      Present     3.5         3.50
-  6   Attendance                                5       5%      Present     5.0         5.00
-  7   Assignment                               10      10%      Present     8.5         8.50
-  ----------------------------------------------------------------------------------------------
-  TOTAL RECORDED WEIGHTAGE: 45.25 / 70.0
-
+========================================================================================================
+                    TERM END EXAMINATION (TEE / FAT) MASTER SPECIFICATION
 ========================================================================================================
 
+1. TEE PAPER STRUCTURE:
+--------------------------------------------------------------------------------------------------------
+- Duration     : 3 Hours (Closed Book)
+- Total Marks  : 100 Marks (Scaled to 30% Weightage -> Max 30 Marks)
+- Section A    : 5 Questions x 12 Marks = 60 Marks
+                 (1 Question per module, internal choice "OR" format, e.g. 12 or 12, or split 6 + 6)
+- Section B    : 5 Questions x 8 Marks = 40 Marks
+                 (1 Question per module, direct question without subparts)
+- Distribution : Every module (1 to 5) has exactly 20 marks (12M in Section A + 8M in Section B).
+- Difficulty   : Knowledge Levels KL01/02 up to KL03/04 (comprehensive problem solving).
+- Passing Rule : Mandatory minimum of 40/100 in TEE (>= 12 / 30 weighted).
 
-expect that people get similar internals to me and some internals will be added later, so i havent added yet
-now tell me A grade criterias grading.txt for all the subjects & prepare me accordingly
-take the averages from cat1.txt cat2.txt
+
+2. REGISTERED COURSES & ASSESSMENT WEIGHTAGE SCHEMAS:
+--------------------------------------------------------------------------------------------------------
+Course 1: PLA1004 — Competitive Coding Practices (Slot: B22+B24 | PAT TRAINER)
+  - Lab Assessment - Challenging Task        : Max 15 (15% Weightage)
+  - Lab Assessment - Continuous Assessment   : Max 20 (20% Weightage)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 2: CSE4005 — Machine Learning (Slot: A21+A23 | NILAMADHAB MISHRA)
+  - Lab Assessment - Challenging Task        : Max 15 (15% Weightage)
+  - Lab Assessment - Continuous Assessment   : Max 20 (20% Weightage)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 3: MGT2003 — Technology Entrepreneurship (Slot: E14+F14 | ABHISHEK RAJ)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Class Assessment - Tutorial              : Max 10 (10% Weightage)
+  - Class Assessment - Quiz                  : Max 10 (10% Weightage)
+  - Class Assessment - Group Activity        : Max 5  (5% Weightage)
+  - Assignment                               : Max 10 (10% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 4: CSE2004 — Theory Of Computation And Compiler Design (Slot: A11+A12+A13 | GAURAV SONI)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Class Assessment - Internals / Tutorial  : Max 35 (35% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 5: CSE3011 — Python Programming (Slot: B11+B12 | VAISHNAVI S)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Lab Assessment - Continuous & Internals  : Max 35 (35% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 6: ECE2002 — Digital Logic Design (Slot: A14+D11+D12 | KANIMOBHI M)
+  - Lab Assessment - Viva                    : Max 5  (5% Weightage)
+  - Lab Assessment - Challenging Task        : Max 10 (10% Weightage)
+  - Lab Assessment - Continuous Assessment   : Max 10 (10% Weightage)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Class Assessment - Tutorial              : Max 5  (5% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Class Assessment - Group Activity        : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
+
+Course 7: MAT2002 — Discrete Mathematics and Graph Theory (Slot: B14+B23+D21 | VVPRVB SURESH DARA)
+  - Continuous Assessment Test - II (CAT-2)  : Max 50 (15% Weightage)
+  - Continuous Assessment Test - I (CAT-1)   : Max 50 (15% Weightage)
+  - Class Assessment - Tutorial              : Max 10 (10% Weightage)
+  - Class Assessment - Quiz                  : Max 10 (10% Weightage)
+  - Class Assessment - Group Activity        : Max 5  (5% Weightage)
+  - Assignment                               : Max 10 (10% Weightage)
+  - Attendance                               : Max 5  (5% Weightage)
+  - Term End Examination (TEE)               : Max 100 (30% Weightage)
+  Total: 100%
 
 
-TEE Schedule
-1	CSE2004	Theory Of Computation And Compiler Design	LT	BL2026270100375	A11+A12+A13	15-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-2	ECE2002	Digital Logic Design	LTP	BL2026270100899	A14+D11+D12	16-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-3	CSE4005	Machine Learning	LP	BL2026270100679	A21+A23	17-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-4	CSE3011	Python Programming	LP	BL2026270100336	B11+B12	19-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-5	MAT2002	Discrete Mathematics and Graph Theory	LT	BL2026270100016	B14+B23+D21	21-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-6	PLA1004	Competitive Coding Practices	LP	BL2026270100459	B22+B24	25-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM	-	-	-
-7	MGT2003	Technology Entrepreneurship	LT	BL2026270100970	E14+F14	13-Oct-2026	AN1	01:00 PM	01:15 PM - 04:15 PM
+3. OFFICIAL TEE EXAMINATION SCHEDULE:
+--------------------------------------------------------------------------------------------------------
+#   Code     Title                                       Slot            Date          Timing
+1   MGT2003  Technology Entrepreneurship                 E14+F14         13-Oct-2026   01:15 PM - 04:15 PM
+2   CSE2004  Theory Of Computation And Compiler Design   A11+A12+A13     15-Oct-2026   01:15 PM - 04:15 PM
+3   ECE2002  Digital Logic Design                        A14+D11+D12     16-Oct-2026   01:15 PM - 04:15 PM
+4   CSE4005  Machine Learning                            A21+A23         17-Oct-2026   01:15 PM - 04:15 PM
+5   CSE3011  Python Programming                          B11+B12         19-Oct-2026   01:15 PM - 04:15 PM
+6   MAT2002  Discrete Mathematics and Graph Theory       B14+B23+D21     21-Oct-2026   01:15 PM - 04:15 PM
+7   PLA1004  Competitive Coding Practices                B22+B24         25-Oct-2026   01:15 PM - 04:15 PM
+========================================================================================================

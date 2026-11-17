@@ -1,11 +1,6 @@
 # ⏱️ CSE4005: ML Emergency Study Plan & Formula Matrix
 
 > **Exam Date**: Saturday, October 17, 2026 (01:15 PM – 04:15 PM)  
-> **Your Starting Position**: **62.20 / 70.0 Recorded Subtotal** vs Class Average: **61.90 / 70.0**  
-> *(Everyone in class got full 35/35 internals + 5/5 att; you enter TEE +0.30 ahead on a level playing field)*  
-> **Target for A Grade ($\ge \mu + 0.5\sigma$)**: **70–74 / 100** *(Must beat class TEE avg by ~10–12 marks)*  
-> **Target for S Grade (Total $\ge 90$)**: **93+ / 100** *(Strict VIT rule)*  
-> **B-Grade Danger Zone**: **48–69 / 100** *(Must be avoided at all costs!)*  
 
 ---
 

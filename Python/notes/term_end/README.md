@@ -2,9 +2,6 @@
 
 > **Course Code**: CSE3011 | **Slot**: B11+B12 | **Faculty**: Prof. Vaishnavi S  
 > **Exam Date**: Monday, October 19, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: **63.4 / 70.0** (CAT1: 11.1 + CAT2: 12.3 + Att: 5.0 + Lab: 35.0 — **+3.3 marks ahead of class!**)  
-> **TEE Target for A Grade**: **60–64 / 100** (Match class average!)  
-> **TEE Target for S Grade**: **85–88+ / 100**
 
 ---
 

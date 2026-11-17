@@ -3,8 +3,6 @@
 
 > **Course**: CSE3011 — Python Programming | **Slot**: B11+B12 | **Faculty**: Prof. Vaishnavi S  
 > **Exam Pattern**: Section A (5 × 12 Marks = 60M, with internal `OR`) + Section B (5 × 8 Marks = 40M)  
-> **Pre-TEE Standing**: **63.4 / 70.0** (+3.3 marks ahead of class average!)  
-> **Target for A Grade**: **60–64 / 100** | **Target for S Grade**: **85–88+ / 100**
 
 ---
 

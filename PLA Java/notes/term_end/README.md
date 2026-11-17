@@ -2,9 +2,6 @@
 
 > **Course Code**: PLA1004 | **Slot**: B22+B24 | **Faculty**: PAT Trainer  
 > **Exam Date**: Sunday, October 25, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: **61.5 / 70.0** (+2.0 marks ahead of class! Lab marks 34/35)  
-> **TEE Target for A Grade**: **65–68 / 100** (Very achievable with 3 full days of prep!)  
-> **TEE Target for S Grade**: **88–92 / 100**
 
 ---
 

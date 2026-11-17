@@ -2,8 +2,6 @@
 
 > **Exam Date**: Sunday, October 25, 2026 (01:15 PM – 04:15 PM)  
 > **Course**: PLA1004 — Competitive Coding Practices (Java)  
-> **Pre-TEE Position**: **61.5 / 70.0** (Top-tier standing!).  
-> **Target Needed**: **65–68 / 100** for **A Grade (9.0 GP)**; **82+ / 100** for **S Grade (10.0 GP)**.  
 > **Primary Rule**: **DO NOT LEAVE ANY QUESTION BLANK!** Follow the 4-part faculty step-marking blueprint below.
 
 ---
@@ -225,7 +223,6 @@ If you open the paper and encounter a question where you don't recall the exact 
 ---
 
 ## 🎯 Final Confidence Booster
-* You have already proven your skills with **61.5 / 70.0** pre-TEE.
 * You do **not** need a perfect 100/100 to secure an **A Grade** (only ~65/100 needed!).
 * Keep your handwriting clean, underline key headings (`Approach`, `Code`, `Dry Run`, `Complexity`), and write with calm confidence.
 

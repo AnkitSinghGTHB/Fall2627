@@ -2,10 +2,6 @@
 
 > **Course Code**: CSE4005 | **Slot**: A21+A23 | **Faculty**: Dr. Nilamadhab Mishra  
 > **Exam Date**: Saturday, October 17, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: **62.20 / 70.0** vs Class Mean **61.90 / 70.0** (+0.30 ahead; everyone got full 35/35 internals + 5/5 att)  
-> **The B-Grade Danger Zone**: **48–69 / 100** *(B Grade is an absolute NO-GO for CGPA)*  
-> **TEE Target for A Grade ($\ge \mu + 0.5\sigma$)**: **70–74 / 100** *(Must beat class TEE avg by ~10–12 marks)*  
-> **TEE Target for S Grade (Total $\ge 90$)**: **93+ / 100** *(Strict VIT rule)*
 
 ---
 

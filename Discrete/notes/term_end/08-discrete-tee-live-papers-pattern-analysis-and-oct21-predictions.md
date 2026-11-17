@@ -2,8 +2,6 @@
 
 > **Compiled**: October 20, 2026 (Evening) | **Exam Date**: Tomorrow, Wednesday, Oct 21, 2026 (01:15 PM – 04:15 PM)  
 > **Course**: MAT2002 – Discrete Mathematics and Graph Theory  
-> **Current Standing**: Pre-TEE **45.25 / 70.0** (CAT1: 6, CAT2: 6, Tut: 8.25, Quiz: 8.0, Group: 3.5, Att: 5.0, Assign: 8.5)  
-> **Target Standing**: **63–66 / 100 in TEE guarantees B Grade (8.0 GP)**; **89–92 / 100 reaches A Grade (9.0 GP)**.
 
 ---
 

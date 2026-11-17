@@ -1,9 +1,6 @@
 # ⏱️ PLA1004: Emergency Study Plan & Master Code Blueprints
 
 > **Exam Date**: Sunday, October 25, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Position**: **61.5 / 70.0** (+2.0 marks ahead of class! Lab marks 34/35).  
-> **Score Target**: Needs only **65–68 / 100** in TEE for an **A Grade (9.0 GP)**; **82+** for an **S Grade (10.0 GP)**.  
-> **Study Window**: Thursday, Oct 22 to Saturday, Oct 24 (3 Full Gap Days!)  
 > 🚨 **Primary Resource**: Complete solutions for all 15 topics in [08-pla-tee-master-study-sheet-and-imp-topics.md](./08-pla-tee-master-study-sheet-and-imp-topics.md).
 
 ---

@@ -37,22 +37,22 @@ If you miss *even one* of these 6 components (e.g. you skip the transition table
 
 ---
 
-## 📊 Relative Grading Reality in TOC (CSE2004)
+## 📊 Course Assessment & Grading Scheme (CSE2004)
 
-Let's look at your actual standing in TOC:
+TOC follows standard university weightage and relative grading:
 
-| Assessment | Your Score | Class Average | Standing |
-| :--- | :---: | :---: | :---: |
-| **CAT-1** ($\times 0.30$) | $31 \times 0.30 = 9.3$ | $30 \times 0.30 = 9.0$ | $+0.3$ |
-| **CAT-2** ($\times 0.30$) | $28 \times 0.30 = 8.4$ | $34 \times 0.30 = 10.2$ | $-1.8$ |
-| **Internals** | $\approx 32.0$ | $\approx 32.0$ | $0.0$ |
-| **Attendance** | $5.0$ | $5.0$ | $0.0$ |
-| **Pre-TEE Total (out of 70)**| **$54.7 / 70$** | **$56.2 / 70$** | **$-1.5$ deficit** |
+| Assessment Component | Max Marks | Weightage % |
+| :--- | :---: | :---: |
+| **Continuous Assessment Test – I (CAT-1)** | 50 | 15% |
+| **Continuous Assessment Test – II (CAT-2)** | 50 | 15% |
+| **Digital Assignments / Tutorials / Quizzes / Activity** | 35 | 35% |
+| **Attendance** | 5 | 5% |
+| **Term End Examination (TEE)** | 100 | 30% |
+| **Total** | | **100%** |
 
-### The Good News:
-Unlike Discrete (where you were $-8.1$ marks behind), in TOC you are **only $-1.5$ marks behind the class average**!
-- In TEE (30% weightage), if you score **72–75 out of 100**, your total reaches **77+**, which comfortably puts you in the **A Grade band** ($\ge \mu + 0.5\sigma$).
-- If you use Dr. Soni's 6-part template and score **85+**, you can even snatch an **S Grade**!
+### Evaluation Criteria:
+- **Presentation Rigor**: Adhering strictly to Dr. Soni's 6-part formal presentation (formal definition, transition table, transition diagrams, state explanations, instantaneous description traces) is essential to avoid deductions across automaton and Turing Machine questions.
+- **Relative Grading Band**: Grades are awarded based on Gaussian distribution cutoffs $(\mu + k\sigma)$ calculated across the entire cohort.
 
 ---
 

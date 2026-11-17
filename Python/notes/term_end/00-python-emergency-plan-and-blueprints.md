@@ -1,7 +1,6 @@
 # ⏱️ CSE3011: Python Emergency Plan & Master Code Blueprints
 
 > **Exam Date**: Monday, October 19, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Position**: **63.4 / 70.0** (+3.3 marks ahead of class average!). Needs only **60–64 / 100** in TEE for A Grade, or **85–88+** for S Grade.  
 > **Study Window**: Saturday night & Sunday (Oct 17–18)
 
 ---

@@ -2,8 +2,6 @@
 
 > **Course Code**: ECE2002 | **Slot**: A14+D11+D12 | **Faculty**: Dr. Kanimozhi M  
 > **Exam Date**: Friday, October 16, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: 49.4 / 65.0 (Estimated 70-scale: ~53.5 / 70)  
-> **TEE Target for A Grade**: **70–74 / 100** (Weighted: 21.0–22.2 / 30)
 
 ---
 

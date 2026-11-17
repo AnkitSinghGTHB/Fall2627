@@ -1,9 +1,8 @@
 ================================================================================
           FALL 2026–27 TERM END EXAMINATION (TEE/FAT) MASTER STRATEGY SUMMARY
 ================================================================================
-Generated On : October 11, 2026
-Target Exams : Starting October 13, 2026
-Student Goal : Maximize TEE scores across all 7 subjects to secure A/S Grades
+Target Exams : Fall Semester 2026-27
+Purpose      : Comprehensive curriculum breakdown, examination rubrics & study suites
 
 ================================================================================
 1. TEE / FAT EXAM PAPER STRUCTURE (OFFICIAL FORMAT FROM TEE.txt)
@@ -39,146 +38,67 @@ Mandatory Passing Rules:
   1. TEE Component Minimum: Must score at least 40 out of 100 in TEE (>= 12 / 30).
   2. Course Aggregate Minimum: Final composite total aggregate must be >= 50 / 100.
 
-Typical Class Parameters in TEE:
-  - TEE is closed-book across all 5 modules; class averages drop to ~58–62 / 100.
-  - Final Course Mean (mu) typically settles at 73.0 to 75.0.
-  - Course Standard Deviation (sigma) typically sits at 7.5 to 8.5 (0.5*sigma ~= 4.0).
+================================================================================
+3. REGISTERED 7-SUBJECT CURRICULUM OVERVIEW
+================================================================================
+1. CSE3011 - Python Programming (Slot: B11+B12 | Faculty: Vaishnavi S)
+   - Scope: OOP, Exceptions, File I/O, Regular Expressions, SQLite, GUI (Tkinter), NumPy/Pandas.
+   - Core Strategy: Master coding blueprints and standard exception hierarchies.
+
+2. CSE4005 - Machine Learning (Slot: A21+A23 | Faculty: Nilamadhab Mishra)
+   - Scope: Decision Trees (ID3/C4.5), Naive Bayes, SVM, PCA, AdaBoost, K-Means, Imbalanced Data (SMOTE).
+   - Core Strategy: Formula-first presentation for high step marks.
+
+3. PLA1004 - Competitive Coding Practices (Slot: B22+B24 | Faculty: PAT Trainer)
+   - Scope: Arrays, Bit Manipulation, Number Theory, Linked Lists, Stacks, Queues, Graphs, Trees, DP.
+   - Core Strategy: Master 4-part solution format (Logic, Code, Dry Run, Complexity).
+
+4. MGT2003 - Technology Entrepreneurship (Slot: E14+F14 | Faculty: Abhishek Raj)
+   - Scope: Opportunity recognition, business models, market feasibility, startup finance, IPR.
+   - Core Strategy: Structured diagrams, frameworks (Lean Canvas, SWOT, PESTEL), and case studies.
+
+5. ECE2002 - Digital Logic Design (Slot: A14+D11+D12 | Faculty: Kanimozhi M)
+   - Scope: Boolean algebra, K-Maps, Combinational circuits (Adders, MUX, Decoders), Sequential circuits (Flip-Flops, Counters, FSM).
+   - Core Strategy: Clear state transition tables, excitation tables, and IEEE logic schematics.
+
+6. CSE2004 - Theory Of Computation & Compiler Design (Slot: A11+A12+A13 | Faculty: Gaurav Soni)
+   - Scope: DFA/NFA, Pumping Lemma, CFG/PDA, Parsing (LL/LR/SLR/LALR), Turing Machines, Intermediate Code (3AC).
+   - Core Strategy: Strict 6-part formal syntactic rubric for automata and Turing machines.
+
+7. MAT2002 - Discrete Mathematics & Graph Theory (Slot: B14+B23+D21 | Faculty: Suresh Dara)
+   - Scope: Propositional & predicate logic, sets, relations, lattices, Posets (Hasse diagrams), graph isomorphism, trees, coloring.
+   - Core Strategy: Execute the 6 mechanical calculation templates.
 
 ================================================================================
-3. COMPREHENSIVE 7-SUBJECT AUDIT & TEE TARGET MATRIX
+4. KEY EXAM REVELATIONS & CRITICAL INSIGHTS
 ================================================================================
-Data combined from CAT1.txt, CAT2.txt, TEE.txt, and grading.txt:
+1. RELATIVE GRADING S-GRADE RULE:
+   - S Grade requires meeting BOTH conditions: Total >= (Mean + 1.5*sigma) AND Total >= 90%.
 
---------------------------------------------------------------------------------
-Subject 1: CSE3011 - Python Programming (Slot: B11+B12 | Faculty: Vaishnavi S)
---------------------------------------------------------------------------------
-  - CAT-1: 37 / 50 (Class Avg: 29) -> Scaled: 11.1 / 15  (+2.4 ahead of class)
-  - CAT-2: 41 / 50 (Class Avg: 38) -> Scaled: 12.3 / 15  (+0.9 ahead of class)
-  - Internals / Lab: 35.0 / 35.0 (Full marks!)
-  - Attendance: 5.0 / 5
-  - TOTAL RECORDED PRE-TEE: 63.4 / 70.0 (Class Avg: ~60.1 / 70.0)
-  - Standing: +3.3 MARKS AHEAD OF THE CLASS!
-  - Target for A Grade (9.0 GP): Need only ~60–64 / 100 in TEE (Match class average!).
-  - Target for S Grade (10.0 GP): ~85–88 / 100 in TEE.
-
---------------------------------------------------------------------------------
-Subject 2: CSE4005 - Machine Learning (Slot: A21+A23 | Faculty: Nilamadhab Mishra)
---------------------------------------------------------------------------------
-  - CAT-1: 33.5 / 50 (Class Avg: 35) -> Scaled: 10.05 / 15
-  - CAT-2: 40.5 / 50 (Class Avg: 38) -> Scaled: 12.15 / 15
-  - Lab Challenging: 15.0 / 15
-  - Lab Continuous : 20.0 / 20 (Full Marks!)
-  - Attendance     : 5.0 / 5
-  - Recorded Pre-TEE Subtotal: 62.2 / 70.0 (Class Avg: 61.9 / 70.0)
-  - Internals Status: EVERYONE in class got full marks (35/35 internals + 5/5 att)
-  - Standing: +0.3 MARKS AHEAD OF CLASS (Essentially tied at class mean; zero internal cushion!)
-  - B-Grade Danger Zone: 48–69 / 100 in TEE (B Grade must be strictly avoided!)
-  - Target for A Grade (>= mu + 0.5*sigma): 70–74 / 100 in TEE (~10–12 marks above TEE avg).
-  - Target for S Grade (Total >= 90): 93+ / 100 in TEE.
-
---------------------------------------------------------------------------------
-Subject 3: PLA1004 - Competitive Coding Practices (Slot: B22+B24 | PAT Trainer)
---------------------------------------------------------------------------------
-  - CAT-1: 40 / 50 (Class Avg: 36) -> Scaled: 12.0 / 15
-  - CAT-2: 35 / 50 (Class Avg: 38.5) -> Scaled: 10.5 / 15
-  - Lab Challenging: 15.0 / 15 (Full Marks!)
-  - Lab Continuous : 19.0 / 20
-  - Attendance     : 5.0 / 5
-  - Recorded Pre-TEE Subtotal: 61.5 / 70.0 (Class Avg: ~59.5 / 70)
-  - Standing: +2.0 MARKS AHEAD OF CLASS!
-  - Target for A Grade: Need only ~65–68 / 100 in TEE.
-
---------------------------------------------------------------------------------
-Subject 4: MGT2003 - Technology Entrepreneurship (Slot: E14+F14 | Abhishek Raj)
---------------------------------------------------------------------------------
-  - CAT-1: 34 / 50 (Class Avg: 31) -> Scaled: 10.2 / 15
-  - CAT-2: 43 / 50 (Class Avg: High) -> Scaled: 12.9 / 15
-  - Tutorial + Quiz + Group Activity + Assignment: 28.0 / 35
-  - Attendance: 5.0 / 5
-  - Recorded Pre-TEE Subtotal: 56.1 / 70.0 (Solid, comfortably above class mean)
-  - Target for A Grade: Need ~68–72 / 100 in TEE.
-
---------------------------------------------------------------------------------
-Subject 5: ECE2002 - Digital Logic Design (Slot: A14+D11+D12 | Kanimozhi M)
---------------------------------------------------------------------------------
-  - CAT-1: 30 / 50 (Class Avg: 37) -> Scaled: 9.0 / 15
-  - CAT-2: 38 / 50 (Class Avg: 34) -> Scaled: 11.4 / 15 (+1.2 ahead in CAT2!)
-  - Internals: 4/5 (Viva) + 7/10 (Challenging) + 8/10 (Cont) + 5/5 (Tut) + 5/5 (Group Activity) = 29.0 / 35.0
-  - Attendance: 5.0 / 5
-  - TOTAL RECORDED PRE-TEE: 54.4 / 70.0 (Class Avg: ~54.0 / 70.0)
-  - Standing: Neck-and-neck / slightly ahead (+0.4) of class average!
-  - Target for A Grade: Need ~68–72 / 100 in TEE.
-
---------------------------------------------------------------------------------
-Subject 6: CSE2004 - Theory Of Computation & CD (Slot: A11+A12+A13 | Gaurav Soni)
---------------------------------------------------------------------------------
-  - CAT-1: 31 / 50 (Class Avg: 30) -> Scaled: 9.3 / 15
-  - CAT-2: 28 / 50 (Class Avg: 34) -> Scaled: 8.4 / 15
-  - Internals / Tutorials: 35.0 / 35.0 (Full marks!)
-  - Attendance: 5.0 / 5
-  - TOTAL RECORDED PRE-TEE: 57.7 / 70.0 (Class Avg: ~59.2 / 70.0)
-  - Standing: Only -1.5 marks deficit from class average!
-  - Target for A Grade: Need ~70–74 / 100 in TEE.
-  - Key to Success: Strictly follow Dr. Soni's mandatory 6-part syntactic rubric.
-
---------------------------------------------------------------------------------
-Subject 7: MAT2002 - Discrete Mathematics & GT (Slot: B14+B23+D21 | Suresh Dara)
---------------------------------------------------------------------------------
-  - CAT-1: 20 / 50 (Class Avg: 29) -> Scaled: 6.0 / 15  (-2.7 deficit)
-  - CAT-2: 20 / 50 on portal (Class Avg: 35) -> Scaled: 6.0 / 15 (-4.5 deficit)
-  - Attendance: 5.0 / 5 (Full marks)
-  - Internals Breakdown: Tut 8.25/10 + Quiz 8.0/10 + Group Act 3.5/5 + Assignment 8.5/10 = 28.25 / 35.0
-  - TOTAL RECORDED PRE-TEE: 45.25 / 70.0 (vs Estimated Class ~53.5)
-  - Starting Deficit: ~ -8.25 marks behind class (improved from -9.75!).
-  - Passing Check: Passing requires TEE >= 40/100 (12M) -> 45.25 + 12.0 = 57.25 >= 50 (100% Passed!).
-  - Target for B Grade (8.0 GPA): Need ~63–66 / 100 in TEE (Very realistic, protects CGPA!).
-  - Target for A Grade (9.0 GPA): Need ~89–92 / 100 in TEE (Competitive stretch).
-
-================================================================================
-4. KEY REVELATIONS & CRITICAL INSIGHTS FROM THIS CHAT
-================================================================================
-
-1. THE FORMULA CORRECTION IN grading.txt:
-   Section 3 of grading.txt originally contained a typo writing CAT1 * 0.15 instead
-   of CAT1 * 0.30. Because CAT exams are scored out of 50, (score / 50) * 15 =
-   score * 0.30. This was corrected, restoring full accurate credit calculations.
-
-2. WHY YOU ARE NOT FAILING / WHY RELATIVE GRADING IS ON YOUR SIDE:
-   - In 4 out of 7 subjects (Python, ML, PLA Java, DLD), you are ALREADY ahead of
-     or even with the class average!
-   - In TOC, you are only 1.5 marks behind.
-   - Discrete is the ONLY subject with a noticeable deficit (-7 to -8 marks).
-   - TEE carries 30% of the entire course weight (more than CAT1 + CAT2 combined).
-   - Scoring solidly in TEE easily shifts your grade by an entire letter bracket.
-
-3. THE TOC DIAGNOSIS (WHY 28/50 IN CAT-2):
-   - Faculty Dr. Gaurav Soni cuts up to 6 marks per question if answers lack formal
-     syntax, even if the logic/diagram is correct.
-   - The 12 students who scored 50/50 followed his mandatory 6-part format:
+2. THE TOC MANDATORY 6-PART FORMAT (DR. GAURAV SONI):
+   - High step marks require following this structured rubric:
        Part 1: Language Description (Formal set builder notation)
        Part 2: Design Logic (Algorithm in plain English)
-       Part 3: Formal 7-Tuples (Explicit enumeration of Q, Sigma, Gamma, etc.)
+       Part 3: Formal Tuples (Explicit enumeration of Q, Sigma, Gamma, etc.)
        Part 4: State Transition Table (delta matrix)
        Part 5: State Transition Diagram (Clean graph with start & final states)
-       Part 6: Validation (Instantaneous Description |– trace for a test string)
+       Part 6: Validation (Instantaneous Description |- trace for a test string)
 
-4. DISCRETE MATH "GUARANTEED 60 MARKS" SAFETY NET:
-   You do not need to cram the entire textbook. 60 marks come from 6 purely
-   mechanical algorithms:
-     1) Kruskal's / Prim's MST table (10M - edge sorting)
-     2) Havel-Hakimi graphic degree sequence reduction (5-10M - simple subtraction)
-     3) Hasse diagram of Dn with GLB(gcd) and LUB(lcm) (10M - pure arithmetic)
-     4) Dijkstra shortest path table (10M - table filling)
-     5) Congruence modulo m equivalence proof (5-10M - 3 memorized steps)
-     6) Logical equivalence without truth tables (5M - 5 standard laws)
+3. DISCRETE MATH 6 CORE MECHANICAL TEMPLATES:
+   - 60+ marks come from repeatable algorithmic procedures:
+       1) Kruskal's / Prim's MST table (edge sorting & cycle checking)
+       2) Havel-Hakimi graphic degree sequence reduction (subtraction sorting)
+       3) Hasse diagram of Dn with GLB(gcd) and LUB(lcm)
+       4) Dijkstra shortest path table (node status & distance updates)
+       5) Equivalence relation proofs (Reflexive, Symmetric, Transitive)
+       6) Propositional logic laws & normal forms (PDNF / PCNF)
 
 ================================================================================
 5. COMPLETE STUDY SUITES CREATED IN THE WORKSPACE
 ================================================================================
-
-A. DISCRETE MATHEMATICS (c:\Users\ankit\Fall2627\Discrete\notes\term_end\):
-   - README.md                               : Official grading proof & roadmap
-   - 00-7-day-emergency-crash-course.md      : Daily 2-hour checklist & 6 templates
+A. DISCRETE MATHEMATICS (Discrete/notes/term_end/):
+   - README.md                               : Official course guide & roadmap
+   - 00-7-day-emergency-crash-course.md      : Core mechanical templates
    - 01-module1-predicate-calculus.md        : Logic, laws, inference, quantifiers
    - 02-module2-sets-relations-hasse.md      : Equivalence relations, Posets, Dn Hasse
    - 03-module3-lattices-boolean-algebra.md  : Lattices, M5/N5 rule, PDNF/PCNF
@@ -187,34 +107,26 @@ A. DISCRETE MATHEMATICS (c:\Users\ankit\Fall2627\Discrete\notes\term_end\):
    - 06-term-end-master-formula-cheat-sheet.md: 1-page quick formula revision sheet
    - 07-fat-high-frequency-exam-question-bank.md: 20 fully solved past exam questions
 
-B. THEORY OF COMPUTATION (c:\Users\ankit\Fall2627\TOC\notes\term_end\):
-   - README.md                               : Dr. Soni's grading psychology & guide
-   - 00-7-day-toc-emergency-plan.md          : Daily 1.5-hour checklist
+B. THEORY OF COMPUTATION (TOC/notes/term_end/):
+   - README.md                               : Course overview & syntactic rubric
+   - 00-7-day-toc-emergency-plan.md          : Study checklist & topics
    - 01-module1-finite-automata-and-minimization.md : 5-Tuple, Table-Filling, Pumping Lemma
    - 02-module2-cfg-cnf-and-pda.md           : 2-Tree Ambiguity, 4-Step CNF, PDA IDs
-   - 03-module3-parsing-ll1-slr-clr-lalr.md  : FIRST/FOLLOW, LL(1), SLR(1) S/R conflicts
-   - 04-module4-turing-machines-and-undecidability.md : Mandatory 6-Part TM format, Halting
+   - 03-module3-parsing-ll1-slr-clr-lalr.md  : FIRST/FOLLOW, LL(1), SLR(1) conflicts
+   - 04-module4-turing-machines-and-undecidability.md : 6-Part TM format, Halting
    - 05-module5-intermediate-code-and-optimization.md : TAC Quad/Triples, Basic Blocks
    - 06-toc-master-formula-sheet.md          : 1-page formula & tuple summary
-   - 07-toc-fat-high-frequency-exam-question-bank.md : 15 solved questions in Dr. Soni style
+   - 07-toc-fat-high-frequency-exam-question-bank.md : 15 solved questions
 
-C. MARKDOWN / KATEX RENDERING FIXES:
-   - Audited and fixed KaTeX formatting across all files (eliminated multiline
-     aligned blocks and trailing-space blockquote bugs to guarantee flawless
-     rendering in Obsidian, VS Code, and GitHub).
-
-================================================================================
-6. BATTLE-TESTED ACTION PLAN FOR EXAM DAYS
-================================================================================
-1. Python, ML, PLA Java, DLD:
-   - Maintain your lead by solving standard previous-year questions.
-   - A normal score of 65–72 in TEE safely locks in your A Grade.
-2. TOC:
-   - Write every Automata / TM question using Dr. Soni's 6 numbered headings.
-   - Practice FIRST/FOLLOW, LL(1) table, and SLR(1) Shift-Reduce conflict proof.
-   - Aim for 75+ in TEE to lock in your A Grade.
-3. Discrete Mathematics:
-   - Execute the 6 guaranteed mechanical templates first in the exam hall.
-   - Aim for 75 in TEE to lock in a safe, respectable B Grade (8.0 GPA).
-   - If the paper is easy, push for 90+ to pull off an A Grade comeback.
+C. PLA JAVA (PLA Java/notes/term_end/):
+   - 00-pla-emergency-plan-and-code-templates.md
+   - 01-module1-time-complexity-bit-manipulation.md
+   - 02-module2-number-theory-sieves-booths-euler.md
+   - 03-module3-sliding-window-manacher-stacks-queues.md
+   - 04-module4-greedy-huffman-backtracking-nqueens.md
+   - 05-module5-dp-knapsack-lcs-graphs.md
+   - 06-pla-master-cheat-sheet.md
+   - 08-pla-tee-master-study-sheet-and-imp-topics.md
+   - 09-vit-bhopal-tee-oct-2026-actual-papers-solved.md
+   - 10-pla-last-minute-exam-survival-guide.md
 ================================================================================

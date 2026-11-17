@@ -2,8 +2,6 @@
 
 > **Course Code**: MGT2003 | **Slot**: E14+F14 | **Faculty**: Dr. Abhishek Raj  
 > **Exam Date**: Tuesday, October 13, 2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Recorded Standing**: 56.1 / 70.0 (Comfortably ahead of class mean!)  
-> **TEE Target for A Grade**: **68–72 / 100** (Weighted: 20.4–21.6 / 30)
 
 ---
 

@@ -1,11 +1,20 @@
-CAT1 is over, every subject consisted of modules 1 and 2,
-mainly focusing on KL01 and KL02 type of questions,
-I scored bad in the high credit subjects
-CAT1 weightage is 15% of the total 
-Discrete: 20 (avg 29)
-DLD: 30 (avg: 37)
-ML: 33.5 (high avg appx 35 u take)
-PLA: 40 (avg: 36)
-Py: 37 (avg: 29)
-MGT: 34 (avg appx 31)
-TOC: 31 (avg appx 30)
+================================================================================
+                    CONTINUOUS ASSESSMENT TEST - I (CAT-I)
+================================================================================
+1. Exam Scope & Structure:
+   - Coverage: Modules 1 and 2 for every registered course.
+   - Question Types: Primarily Knowledge Level 1 (KL01 - Remember) and 
+     Knowledge Level 2 (KL02 - Understand).
+   - Mode: Closed book.
+   - Maximum Marks: 50 Marks (scaled down to 15 Marks).
+   - Weightage: 15% of the total course composite.
+
+2. Registered Courses in CAT-I:
+   - MAT2002: Discrete Mathematics and Graph Theory
+   - ECE2002: Digital Logic Design
+   - CSE4005: Machine Learning
+   - PLA1004: Competitive Coding Practices
+   - CSE3011: Python Programming
+   - MGT2003: Technology Entrepreneurship
+   - CSE2004: Theory Of Computation And Compiler Design
+================================================================================

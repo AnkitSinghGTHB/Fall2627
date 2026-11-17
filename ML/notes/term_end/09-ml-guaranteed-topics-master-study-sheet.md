@@ -3,10 +3,7 @@
 
 > **Course Code**: CSE4005 — Machine Learning | **Faculty**: Dr. Nilamadhab Mishra  
 > **Slot**: A21+A23 | **Duration**: 3 Hours (Closed Book) | **Maximum Marks**: 100  
-> **Pre-TEE Internal Standing**: **62.20 / 70.0** vs Class Mean **61.90 / 70.0** *(+0.30 ahead)*  
-> **A Grade Target ($\ge \mu + 0.5\sigma$)**: **70–74 / 100** *(Need ~10–12 marks above TEE class average)*  
-> **S Grade Target (Total $\ge 90.0$)**: **93+ / 100** *(Strict VIT rule)*  
-> **B-Grade Danger Zone**: **48–69 / 100** *(B Grade hurts CGPA — aim for 74+ to lock A Grade)*  
+> **Structure**: 5 Modules | Section A: 5 × 12M (with internal OR) | Section B: 5 × 8M (direct)  
 
 ---
 

@@ -2,7 +2,6 @@
 
 > **Compiled**: October 19, 2026 (00:45 IST) | **Exam Time**: Today, Oct 19, 2026 (01:15 PM – 04:15 PM)  
 > **Course**: CSE3011 – Python Programming | **Slot**: B11+B12  
-> **Target Standing**: Pre-TEE **63.4 / 70.0** (+3.3 marks ahead of class). Target: **60–64 / 100 for A Grade**, **85+ for S Grade**.
 
 ---
 
@@ -461,8 +460,6 @@ GUI Window Interaction:
 ## 5. Exam Hall Execution Strategy (Oct 19, 01:15 PM)
 
 ### 5.1 Score Mathematics
-* **Your Pre-TEE Standing**: **63.4 / 70.0** (Internal Lab: 35.0, CAT-1: 11.1, CAT-2: 12.3, Attendance: 5.0).
-* **Class Mean Pre-TEE**: ~60.1 / 70.0 $\to$ **You are +3.3 marks ahead of the class**.
 * **Target Breakdown**:
   - **A Grade (9.0 GP)**: Requires composite ~76–78 $\to$ **Only need 60–64 / 100 in TEE**.
   - **S Grade (10.0 GP)**: Requires composite ~88–90 $\to$ **Need 82–85 / 100 in TEE**.

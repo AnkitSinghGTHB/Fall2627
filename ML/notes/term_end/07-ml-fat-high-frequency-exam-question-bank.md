@@ -3,7 +3,6 @@
 > **Course**: CSE4005 — Machine Learning  
 > **Faculty**: Dr. Nilamadhab Mishra | **Slot**: A21+A23  
 > **Target**: FAT / TEE Exam — Saturday, 17-Oct-2026 (01:15 PM – 04:15 PM)  
-> **Pre-TEE Standing**: **62.2 / 70.0** (+3.3 marks ahead of class!) | **Target for A Grade**: **64–68 / 100** | **Target for S Grade**: **88–92 / 100**  
 > **Study Priority Architecture**:
 > 1. **TIER 1**: Official Assignment 13 & 14 Questions (Faculty High-Probability Repeats)
 > 2. **TIER 2**: The 6 Guaranteed Exam Numericals (50+ Direct Marks)
@@ -189,7 +188,11 @@ Consider a cancer screening dataset with $1,000$ patient test samples:
 Total instances $N = 14$: Positive ($p = 9$, `Yes`), Negative ($n = 5$, `No`).
 $$egin{aligned}
 H(S) &= - p_+ \log_2(p_+) - p_- \log_2(p_-) \
-     &= - \left(\frac{9}{14}ight) \log_2\left(\frac{9}{14}ight) - \left(\frac{5}{14}ight) \log_2\left(\frac{5}{14}ight) \
+     &= - \left(\frac{9}{14}
+ight) \log_2\left(\frac{9}{14}
+ight) - \left(\frac{5}{14}
+ight) \log_2\left(\frac{5}{14}
+ight) \
      &= - (0.6429)(-0.6374) - (0.3571)(-1.4854) \
      &= 0.4098 + 0.5305 = \mathbf{0.9403 \text{ bits}}
 \end{aligned}$$
@@ -197,9 +200,13 @@ H(S) &= - p_+ \log_2(p_+) - p_- \log_2(p_-) \
 #### Step 2: Information Gain for Attribute `Wind`
 `Wind` has two values: `Weak` (8 instances) and `Strong` (6 instances).
 - **For `Wind = Weak`** (8 instances: 6 Yes, 2 No):
-  $$H(S_{\text{Weak}}) = - \frac{6}{8} \log_2\left(\frac{6}{8}ight) - \frac{2}{8} \log_2\left(\frac{2}{8}ight) = - 0.75(-0.4150) - 0.25(-2.000) = 0.3113 + 0.5000 = \mathbf{0.8113}$$
+  $$H(S_{\text{Weak}}) = - \frac{6}{8} \log_2\left(\frac{6}{8}
+ight) - \frac{2}{8} \log_2\left(\frac{2}{8}
+ight) = - 0.75(-0.4150) - 0.25(-2.000) = 0.3113 + 0.5000 = \mathbf{0.8113}$$
 - **For `Wind = Strong`** (6 instances: 3 Yes, 3 No):
-  $$H(S_{\text{Strong}}) = - \frac{3}{6} \log_2\left(\frac{3}{6}ight) - \frac{3}{6} \log_2\left(\frac{3}{6}ight) = - 0.5(-1) - 0.5(-1) = \mathbf{1.0000}$$
+  $$H(S_{\text{Strong}}) = - \frac{3}{6} \log_2\left(\frac{3}{6}
+ight) - \frac{3}{6} \log_2\left(\frac{3}{6}
+ight) = - 0.5(-1) - 0.5(-1) = \mathbf{1.0000}$$
 - **Expected Entropy**:
   $$E(S, \text{Wind}) = \frac{8}{14} H(S_{\text{Weak}}) + \frac{6}{14} H(S_{\text{Strong}}) = \frac{8}{14}(0.8113) + \frac{6}{14}(1.0000) = 0.4636 + 0.4286 = \mathbf{0.8922}$$
 - **Information Gain**:
@@ -238,7 +245,9 @@ $$\epsilon_1 = \sum_{h_1(x_i)
 e y_i} w_i = w_2 + w_4 = 0.20 + 0.20 = \mathbf{0.40}$$
 
 #### 2. Classifier Voting Weight $lpha_1$:
-$$lpha_1 = \frac{1}{2} \ln \left( \frac{1 - \epsilon_1}{\epsilon_1} ight) = \frac{1}{2} \ln \left( \frac{0.60}{0.40} ight) = \frac{1}{2} \ln(1.50) = \frac{1}{2} (0.4055) = \mathbf{0.2027}$$
+$$lpha_1 = \frac{1}{2} \ln \left( \frac{1 - \epsilon_1}{\epsilon_1} 
+ight) = \frac{1}{2} \ln \left( \frac{0.60}{0.40} 
+ight) = \frac{1}{2} \ln(1.50) = \frac{1}{2} (0.4055) = \mathbf{0.2027}$$
 
 #### 3. Weight Multipliers:
 * For misclassified samples ($i = 2, 4$):
@@ -476,7 +485,8 @@ Height (h)
 #### 2. Projected Data Variance:
 * For data point $\mathbf{x}_i$, its scalar projection onto $\mathbf{u}_1$ is $z_i = \mathbf{x}_i^T \mathbf{u}_1$.
 * The sample variance of projected points is:
-  $$\sigma_z^2 = \frac{1}{m} \sum_{i=1}^m (\mathbf{x}_i^T \mathbf{u}_1)^2 = \frac{1}{m} \mathbf{u}_1^T \left( \sum_{i=1}^m \mathbf{x}_i \mathbf{x}_i^T ight) \mathbf{u}_1 = \mathbf{u}_1^T \mathbf{\Sigma} \mathbf{u}_1$$
+  $$\sigma_z^2 = \frac{1}{m} \sum_{i=1}^m (\mathbf{x}_i^T \mathbf{u}_1)^2 = \frac{1}{m} \mathbf{u}_1^T \left( \sum_{i=1}^m \mathbf{x}_i \mathbf{x}_i^T 
+ight) \mathbf{u}_1 = \mathbf{u}_1^T \mathbf{\Sigma} \mathbf{u}_1$$
 
 #### 3. Constrained Optimization (Lagrangian):
 $$\max_{\mathbf{u}_1} \mathbf{u}_1^T \mathbf{\Sigma} \mathbf{u}_1 \quad \text{subject to } \mathbf{u}_1^T \mathbf{u}_1 = 1$$
@@ -612,19 +622,25 @@ $$v_{\text{BOC}} = rg\max_{v_j \in V} \sum_{h_i \in H} P(v_j \mid h_i) P(h_i \m
 
 **Solution**:
 1. **Find-S Trace**:
-   - Initial hypothesis: $h_0 = \langle \Phi, \Phi, \Phi, \Phi, \Phi, \Phi angle$.
-   - Example 1 (+): $h_1 = \langle \text{Sunny, Warm, Normal, Strong, Warm, Same} angle$.
-   - Example 2 (+): $h_2 = \langle \text{Sunny, Warm, ?, Strong, Warm, Same} angle$ (`Humidity` generalized).
+   - Initial hypothesis: $h_0 = \langle \Phi, \Phi, \Phi, \Phi, \Phi, \Phi 
+angle$.
+   - Example 1 (+): $h_1 = \langle \text{Sunny, Warm, Normal, Strong, Warm, Same} 
+angle$.
+   - Example 2 (+): $h_2 = \langle \text{Sunny, Warm, ?, Strong, Warm, Same} 
+angle$ (`Humidity` generalized).
    - Example 3 (-): Negative example $\implies$ Ignored by Find-S! $h_3 = h_2$.
    - Example 4 (+): `(Sunny, Warm, High, Strong, Cool, Change)`.
      - `Water`: `Warm` vs `Cool` $\implies$ Generalize to `?`.
      - `Forecast`: `Same` vs `Change` $\implies$ Generalize to `?`.
-     - $h_4 = \langle \mathbf{\text{Sunny, Warm, ?, Strong, ?, ?}} angle$.
-   - **Final Hypothesis**: $\mathbf{h = \langle \text{Sunny, Warm, ?, Strong, ?, ?} angle}$.
+     - $h_4 = \langle \mathbf{\text{Sunny, Warm, ?, Strong, ?, ?}} 
+angle$.
+   - **Final Hypothesis**: $\mathbf{h = \langle \text{Sunny, Warm, ?, Strong, ?, ?} 
+angle}$.
 2. **PAC Learnability**:
    - A concept class $C$ is Probably Approximately Correct (PAC) learnable if learner outputs hypothesis $h$ with error $\le \epsilon$ with probability $\ge 1 - \delta$ in polynomial time.
    - **Sample Complexity** formula:
-     $$m \ge \frac{1}{\epsilon} \left( \ln |H| + \ln \frac{1}{\delta} ight)$$
+     $$m \ge \frac{1}{\epsilon} \left( \ln |H| + \ln \frac{1}{\delta} 
+ight)$$
 
 ---
 

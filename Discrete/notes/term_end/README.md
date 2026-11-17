@@ -18,63 +18,25 @@ If you scored 17/50 in CAT-2, **you are not bad at math**; you were victimized b
 
 ---
 
-## 🧮 Official University Grading Analysis ([grading.txt](file:///c:/Users/ankit/Fall2627/grading.txt) + [CAT1.txt](file:///c:/Users/ankit/Fall2627/CAT1.txt) + [CAT2.txt](file:///c:/Users/ankit/Fall2627/CAT2.txt))
+## 🧮 Official University Grading Analysis ([grading.txt](file:///c:/Users/ankit/Fall2627/grading.txt))
 
 ### 1. Course Composition & Weightage Breakdown
 Per official university regulations:
 $$\text{Course Total (100)} = \underbrace{(\text{CAT1} \times 0.30)}_{15} + \underbrace{(\text{CAT2} \times 0.30)}_{15} + \underbrace{\text{Internals}}_{35} + \underbrace{\text{Attendance}}_{5} + \underbrace{(\text{TEE} \times 0.30)}_{30}$$
 
-### 2. Pre-TEE Starting Ledger
-Using your actual scores from CAT-1 and CAT-2:
+### 2. Mandatory Passing Regulations
+Per university examination rules:
+1. **TEE Mandatory Minimum**: Must score $\ge 40 / 100$ in TEE ($\ge 12 / 30$ weighted).
+2. **Course Total Minimum**: Final composite total aggregate must be $\ge 50 / 100$.
 
-```text
-┌────────────────────────┬──────────────┬──────────────────┬──────────────────┬─────────────────┐
-│ Assessment Component   │ Total Weight │ Class Average    │ Your Score       │ Your Standing   │
-├────────────────────────┼──────────────┼──────────────────┼──────────────────┼─────────────────┤
-│ CAT-1 (Scored / 50)    │ 15 Marks     │ 29 (8.7 / 15)    │ 20 (6.0 / 15)    │ -2.7 Marks      │
-│ CAT-2 (Scored / 50)    │ 15 Marks     │ 35 (10.5 / 15)   │ 17 (5.1 / 15)    │ -5.4 Marks      │
-│ Internals (DAs/Quiz)   │ 35 Marks     │ ~32.0 / 35       │ ~32.0 / 35       │  0.0 Marks      │
-│ Attendance Bonus       │ 5 Marks      │ 5.0 / 5          │ 5.0 / 5          │  0.0 Marks      │
-├────────────────────────┼──────────────┼──────────────────┼──────────────────┼─────────────────┤
-│ PRE-TEE SUBTOTAL (/70) │ 70 Marks     │ 56.2 / 70        │ 48.1 / 70        │ -8.1 DEFICIT    │
-└────────────────────────┴──────────────┴──────────────────┴──────────────────┴─────────────────┘
-```
-
-*(Note: If your internal assignment/quiz score is 34/35, your Pre-TEE is 50.1 / 70, reducing the deficit to -6.1).*
-
----
-
-### 3. The Mandatory Passing Safety Net
-Per the university exam regulations:
-1. **TEE Mandatory Minimum**: Must score $\ge 40 / 100$ ($\ge 12 / 30$ weighted).
-2. **Course Total Minimum**: Composite total aggregate must be $\ge 50 / 100$.
-
-> 🛡️ **SAFETY PROOF**:  
-> If you score the minimum required **$40 / 100$ in TEE**:  
-> 
-> $$\text{Final Total} = 48.1 + (40 \times 0.30) = 48.1 + 12.0 = \mathbf{60.1 / 100}$$
-> 
-> Since $60.1 \ge 50$, **you are 100% immune from failing the course as long as you clear the 40/100 TEE minimum!**
-
----
-
-### 4. Relative Grading Targets in TEE ($\mu \approx 74.0, \sigma \approx 8.0$)
-
-In a closed-book 100-mark TEE covering all 5 modules, class average drops to $\approx 58–62 / 100$, producing a course Mean $\mu \approx 74.0$ with $\sigma \approx 8.0$:
-
-```text
-┌───────────────┬──────────────────────────┬──────────────┬──────────────────┬──────────────────────┐
-│ Target Grade  │ Relative Formula         │ Cutoff Total │ Pre-TEE Subtotal │ Raw TEE Score Needed │
-├───────────────┼──────────────────────────┼──────────────┼──────────────────┼──────────────────────┤
-│ C Grade       │ Total ≥ μ - 1.0σ         │ ~66.0 / 100  │ 48.1 / 70        │ ~60 / 100 in TEE     │
-│ B Grade       │ Total ≥ μ - 0.5σ         │ ~70.0 / 100  │ 48.1 / 70        │ ~73 / 100 in TEE     │
-│ A Grade       │ Total ≥ μ + 0.5σ         │ ~78.0 / 100  │ 48.1 / 70        │ ~95–100 / 100 in TEE │
-└───────────────┴──────────────────────────┴──────────────┴──────────────────┴──────────────────────┘
-```
-
-> 🎯 **THE TACTICAL TAKEAWAY**:  
-> - **A Grade** requires finishing in the top 2% of the university in TEE ($95+/100$) due to the $-8.1$ starting deficit from CATs.  
-> - **B Grade (8.0 GPA)** requires **$\approx 73–75 / 100$ in TEE**, which is completely realistic, locks in a respectable grade, and protects your CGPA!
+### 3. Relative Grading Cutoffs Formula
+- **S Grade**: $\text{Total} \ge \mu + 1.5\sigma$ with a minimum of 90% total
+- **A Grade**: $\text{Total} \ge \mu + 0.5\sigma$ and $< \mu + 1.5\sigma$
+- **B Grade**: $\text{Total} \ge \mu - 0.5\sigma$ and $< \mu + 0.5\sigma$
+- **C Grade**: $\text{Total} \ge \mu - 1.0\sigma$ and $< \mu - 0.5\sigma$
+- **D Grade**: $\text{Total} \ge \mu - 1.5\sigma$ and $< \mu - 1.0\sigma$
+- **E Grade**: $\text{Total} \ge \mu - 2.0\sigma$ and $< \mu - 1.5\sigma$
+- **F Grade**: $\text{Total} < \mu - 2.0\sigma$ OR $\text{Total} < 50$ OR $\text{TEE} < 40/100$
 
 ---
 
